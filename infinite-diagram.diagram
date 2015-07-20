@@ -1,0 +1,3246 @@
+<diagram>
+  <option>
+    <shiftx>-7377</shiftx>
+    <shifty>12</shifty>
+    <firstLayereShift.x>0</firstLayereShift.x>
+    <firstLayereShift.y>0</firstLayereShift.y>
+    <layer>0</layer>
+    <diagramreadonly>false</diagramreadonly>
+    <grid>true</grid>
+    <borders>false</borders>
+    <defaultfont>DejaVu Sans, 10pt</defaultfont>
+    <coordinates>false</coordinates>
+    <window.position.x>0</window.position.x>
+    <window.position.y>0</window.position.y>
+    <window.position.width>100</window.position.width>
+    <window.position.height>100</window.position.height>
+    <window.state>0</window.state>
+  </option>
+  <rectangles>
+    <rectangle>
+      <id>2</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-4022</x>
+      <y>190</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-3-9 09:40:54</timecreate>
+      <timemodify>2015-3-9 09:40:54</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>4</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>2015-03-09 09:40:59</text>
+      <layer>0</layer>
+      <x>-3904</x>
+      <y>96</y>
+      <color>#8AC5FF</color>
+      <timecreate>2015-3-9 09:40:59</timecreate>
+      <timemodify>2015-3-9 09:40:59</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>5</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-3837</x>
+      <y>190</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-3-9 09:41:01</timecreate>
+      <timemodify>2015-3-9 09:41:01</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>6</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>vyriesit okienko v linuxe</text>
+      <layer>0</layer>
+      <x>-3761</x>
+      <y>242</y>
+      <color>#FF8040</color>
+      <timecreate>2015-3-9 09:41:38</timecreate>
+      <timemodify>2015-3-9 09:41:38</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>7</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-3693</x>
+      <y>189</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-3-9 09:41:40</timecreate>
+      <timemodify>2015-3-9 09:41:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>10</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>calculation fix</text>
+      <layer>0</layer>
+      <x>7807</x>
+      <y>789</y>
+      <color>#80FF80</color>
+      <timecreate>2015-3-9 09:43:29</timecreate>
+      <timemodify>2015-3-9 09:43:29</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>11</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>premiestnit ho</text>
+      <layer>0</layer>
+      <x>-3616</x>
+      <y>302</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-3-9 09:44:02</timecreate>
+      <timemodify>2015-3-9 09:44:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>12</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>pregenerovanie velkosti okienok pri spusteni</text>
+      <layer>0</layer>
+      <x>7807</x>
+      <y>836</y>
+      <color>#80FF80</color>
+      <timecreate>2015-3-9 09:44:39</timecreate>
+      <timemodify>2015-3-9 09:44:39</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>13</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>undo</text>
+      <layer>0</layer>
+      <x>7807</x>
+      <y>306</y>
+      <color>#80FF80</color>
+      <timecreate>2015-3-9 09:45:10</timecreate>
+      <timemodify>2015-3-9 09:45:10</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>14</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>popup</text>
+      <layer>0</layer>
+      <x>7807</x>
+      <y>353</y>
+      <color>#80FF80</color>
+      <timecreate>2015-3-9 09:45:19</timecreate>
+      <timemodify>2015-3-9 09:45:19</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>16</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>drop image dialog ebend</text>
+      <layer>0</layer>
+      <x>7807</x>
+      <y>400</y>
+      <color>#80FF80</color>
+      <timecreate>2015-3-9 09:45:44</timecreate>
+      <timemodify>2015-3-9 09:45:44</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>17</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>f4 switch position bookmark</text>
+      <layer>0</layer>
+      <x>6886</x>
+      <y>262</y>
+      <color>#FF8040</color>
+      <timecreate>2015-3-9 09:46:06</timecreate>
+      <timemodify>2015-3-9 09:46:06</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>18</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>esc nezrusi nodu pri pisani novej nody</text>
+      <layer>0</layer>
+      <x>5908</x>
+      <y>362</y>
+      <color>#FF8040</color>
+      <timecreate>2015-3-9 09:46:23</timecreate>
+      <timemodify>2015-3-9 09:46:35</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>19</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>open file and focus existing file</text>
+      <layer>0</layer>
+      <x>6607</x>
+      <y>265</y>
+      <color>#FF8040</color>
+      <timecreate>2015-3-9 12:36:19</timecreate>
+      <timemodify>2015-3-9 12:36:19</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>20</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>touch ~/Templates/Turbo\ diagram.diagram</text>
+      <layer>0</layer>
+      <x>-3334</x>
+      <y>338</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-3-10 16:36:32</timecreate>
+      <timemodify>2015-3-10 16:36:32</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>21</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>2015-03-10 21:09:47</text>
+      <layer>0</layer>
+      <x>-3500</x>
+      <y>90</y>
+      <color>#8AC5FF</color>
+      <timecreate>2015-3-10 21:09:47</timecreate>
+      <timemodify>2015-3-10 21:09:47</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>22</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-3433</x>
+      <y>191</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-3-10 21:09:49</timecreate>
+      <timemodify>2015-3-10 21:09:49</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>23</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>https://help.ubuntu.com/community/CreateAuthenticatedRepository</text>
+      <link>https://help.ubuntu.com/community/CreateAuthenticatedRepository</link>
+      <layer>0</layer>
+      <x>-3412</x>
+      <y>424</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-3-10 23:03:59</timecreate>
+      <timemodify>2015-3-10 23:03:59</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>24</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>ubuntu repository create</text>
+      <layer>0</layer>
+      <x>-3272</x>
+      <y>264</y>
+      <color>#80FF80</color>
+      <timecreate>2015-3-10 23:04:11</timecreate>
+      <timemodify>2015-4-19 09:42:39</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>25</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-3196</x>
+      <y>189</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-3-10 23:04:13</timecreate>
+      <timemodify>2015-3-10 23:04:13</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>26</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>How to make my own local repository? - Ask Ubuntu</text>
+      <link>http://askubuntu.com/questions/170348/how-to-make-my-own-local-repository</link>
+      <layer>0</layer>
+      <x>-3363</x>
+      <y>381</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-3-10 23:06:07</timecreate>
+      <timemodify>2015-3-10 23:06:07</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>29</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>aby sa zachovala velkost</text>
+      <layer>0</layer>
+      <x>-2873</x>
+      <y>312</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-3-11 11:30:59</timecreate>
+      <timemodify>2015-3-11 11:30:59</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>30</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>spravit posuvatelny start point</text>
+      <layer>0</layer>
+      <x>5908</x>
+      <y>405</y>
+      <color>#FF8040</color>
+      <timecreate>2015-3-11 11:31:17</timecreate>
+      <timemodify>2015-3-11 11:31:17</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>31</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>node name escape nezmaze nodu</text>
+      <layer>0</layer>
+      <x>5891</x>
+      <y>272</y>
+      <color>#FF8040</color>
+      <timecreate>2015-3-11 11:31:40</timecreate>
+      <timemodify>2015-3-11 11:31:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>32</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>ak sa posuva pozadie musi sa posuvat aj textova noda 
+alebo zakazat posuvanie pri pisani</text>
+      <layer>0</layer>
+      <x>7807</x>
+      <y>447</y>
+      <color>#80FF80</color>
+      <timecreate>2015-3-11 11:32:24</timecreate>
+      <timemodify>2015-3-11 11:32:29</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>33</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-2708</x>
+      <y>184</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-3-29 21:22:23</timecreate>
+      <timemodify>2015-3-29 21:22:23</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>35</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>14435</x>
+      <y>190</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-3-29 21:22:27</timecreate>
+      <timemodify>2015-3-29 21:22:27</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>36</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>font default</text>
+      <layer>0</layer>
+      <x>-2712</x>
+      <y>241</y>
+      <color>#80FF80</color>
+      <timecreate>2015-3-29 21:22:50</timecreate>
+      <timemodify>2015-3-29 21:22:50</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>37</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>otestovat v linuxe</text>
+      <layer>0</layer>
+      <x>-2634</x>
+      <y>297</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-3-29 21:23:00</timecreate>
+      <timemodify>2015-3-29 21:23:00</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>38</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>nainstalovat z repozitaru</text>
+      <layer>0</layer>
+      <x>-2590</x>
+      <y>350</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-3-29 21:23:17</timecreate>
+      <timemodify>2015-3-29 21:23:17</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>39</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>2015-03-29 21:23:33</text>
+      <layer>0</layer>
+      <x>-2987</x>
+      <y>93</y>
+      <color>#8AC5FF</color>
+      <timecreate>2015-3-29 21:23:33</timecreate>
+      <timemodify>2015-3-29 21:23:33</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>40</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-2920</x>
+      <y>193</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-3-29 21:23:36</timecreate>
+      <timemodify>2015-3-29 21:23:36</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>41</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>spravit zobrazovanie skratiek v popup menu</text>
+      <layer>0</layer>
+      <x>5898</x>
+      <y>320</y>
+      <color>#FF8040</color>
+      <timecreate>2015-2-28 21:36:07</timecreate>
+      <timemodify>2015-2-28 21:36:07</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>43</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>command line generovanie diagramu</text>
+      <layer>0</layer>
+      <x>7807</x>
+      <y>507</y>
+      <color>#80FF80</color>
+      <timecreate>2015-2-28 21:37:04</timecreate>
+      <timemodify>2015-2-28 21:37:04</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>44</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>ukladat konfig do suboru pre viacere vievi do suboru</text>
+      <layer>0</layer>
+      <x>7807</x>
+      <y>554</y>
+      <color>#80FF80</color>
+      <timecreate>2015-1-19 18:06:24</timecreate>
+      <timemodify>2015-1-19 18:06:24</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>46</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>diagram &gt; command line &gt; import xml diagram</text>
+      <layer>0</layer>
+      <x>8146</x>
+      <y>507</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-2-8 18:25:41</timecreate>
+      <timemodify>2015-2-8 18:25:41</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>47</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>colorpicker</text>
+      <layer>0</layer>
+      <x>7807</x>
+      <y>601</y>
+      <color>#80FF80</color>
+      <timecreate>2015-2-8 18:25:55</timecreate>
+      <timemodify>2015-5-4 13:00:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>48</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>diagram
+do options pridany reset fontu
+prejde vsetky nody a nastavi im defaultny font</text>
+      <layer>0</layer>
+      <x>7197</x>
+      <y>251</y>
+      <color>#FF8040</color>
+      <timecreate>2015-2-9 23:03:03</timecreate>
+      <timemodify>2015-2-9 23:03:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>49</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>vyhladavanie pomocou skratiek</text>
+      <layer>0</layer>
+      <x>7807</x>
+      <y>648</y>
+      <color>#80FF80</color>
+      <timecreate>2015-3-29 21:29:47</timecreate>
+      <timemodify>2015-3-29 21:29:47</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>50</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>Infinite diagram</text>
+      <layer>0</layer>
+      <x>-2207</x>
+      <y>339</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-3-29 21:31:37</timecreate>
+      <timemodify>2015-3-29 21:32:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>51</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>program premenovany</text>
+      <layer>0</layer>
+      <x>-2235</x>
+      <y>275</y>
+      <color>#FF8040</color>
+      <timecreate>2015-3-29 21:31:40</timecreate>
+      <timemodify>2015-3-29 21:31:48</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>52</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-2201</x>
+      <y>188</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-3-29 21:31:50</timecreate>
+      <timemodify>2015-3-29 21:31:50</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>53</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>svn://pekand.com/diagram</text>
+      <link>svn://pekand.com/diagram</link>
+      <layer>0</layer>
+      <x>-1994</x>
+      <y>12</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-3-29 21:47:48</timecreate>
+      <timemodify>2015-3-29 21:47:48</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>54</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>svn://pekand.com/pm</text>
+      <link>svn://pekand.com/pm</link>
+      <layer>0</layer>
+      <x>-1994</x>
+      <y>55</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-3-29 21:47:56</timecreate>
+      <timemodify>2015-3-29 21:47:56</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>55</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>svn://pekand.com/grep</text>
+      <link>svn://pekand.com/grep</link>
+      <layer>0</layer>
+      <x>-1994</x>
+      <y>98</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-3-29 21:48:05</timecreate>
+      <timemodify>2015-3-29 21:48:05</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>56</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>sudo apt-get install subversion </text>
+      <layer>0</layer>
+      <x>-1755</x>
+      <y>81</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-3-29 22:11:07</timecreate>
+      <timemodify>2015-3-29 22:11:07</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>57</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>svn checkout svn://pekand.com/diagram
+</text>
+      <layer>0</layer>
+      <x>-1784</x>
+      <y>27</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-3-29 22:13:18</timecreate>
+      <timemodify>2015-3-29 22:13:18</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>58</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>startx</text>
+      <layer>0</layer>
+      <x>-1700</x>
+      <y>-27</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-3-29 22:36:06</timecreate>
+      <timemodify>2015-3-29 22:36:06</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>59</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>problem s pt vo windowse moze byt aj dessatinna velkost</text>
+      <layer>0</layer>
+      <x>-2657</x>
+      <y>419</y>
+      <color>#80FF80</color>
+      <timecreate>2015-3-30 00:24:28</timecreate>
+      <timemodify>2015-3-30 00:24:28</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>60</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>bude treba spravit preratanie aby stredy ostali na svojej pozicii</text>
+      <layer>0</layer>
+      <x>-2688</x>
+      <y>475</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-3-30 00:26:12</timecreate>
+      <timemodify>2015-3-30 00:26:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>61</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>vyfarbovanie ciar ktore su oznacene</text>
+      <layer>0</layer>
+      <x>7807</x>
+      <y>695</y>
+      <color>#80FF80</color>
+      <timecreate>2015-3-30 00:26:32</timecreate>
+      <timemodify>2015-3-30 00:26:32</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>62</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>#!/bin/bash
+
+if [ "$1" = "firefox" ]; then
+    /usr/bin/firefox
+else
+    echo "nothink"
+fi</text>
+      <layer>0</layer>
+      <x>-1303</x>
+      <y>291</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-3-31 17:34:31</timecreate>
+      <timemodify>2015-3-31 17:34:31</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>63</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>                /*pyScope.SetVariable("logxxx", Program.log);*/
+                //dynamic proxy = new ExpandoObject();
+                //proxy.ShowMessage = new Action&lt;string&gt;(ShowMessage);
+                //proxy.getTextFromClipboard = new Action&lt;string&gt;(getTextFromClipboard);
+                //pyScope.proxy = proxy;</text>
+      <layer>0</layer>
+      <x>-192</x>
+      <y>649</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-4 02:13:41</timecreate>
+      <timemodify>2015-4-4 02:13:41</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>64</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>scripts</text>
+      <layer>0</layer>
+      <x>-839</x>
+      <y>256</y>
+      <color>#FF8040</color>
+      <timecreate>2015-4-4 02:13:46</timecreate>
+      <timemodify>2015-4-4 02:13:46</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>65</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-874</x>
+      <y>196</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-4 02:13:47</timecreate>
+      <timemodify>2015-4-4 02:13:47</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>74</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>python test</text>
+      <layer>0</layer>
+      <x>-1007</x>
+      <y>553</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-5 13:33:01</timecreate>
+      <timemodify>2015-4-19 09:44:37</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>84</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>timer
+zrusit bech skriptu po 30sekundach</text>
+      <layer>0</layer>
+      <x>-747</x>
+      <y>285</y>
+      <color>#80FF80</color>
+      <timecreate>2015-4-8 23:40:23</timecreate>
+      <timemodify>2015-4-19 09:45:47</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>85</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>Timer Constructor (TimerCallback, Object, Int32, Int32) (System.Threading)</text>
+      <link>https://msdn.microsoft.com/en-us/library/2x96zfy7%28v=vs.110%29.aspx</link>
+      <layer>0</layer>
+      <x>-745</x>
+      <y>376</y>
+      <color>#F2FFCC</color>
+      <timecreate>2015-4-8 23:40:25</timecreate>
+      <timemodify>2015-4-8 23:40:25</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>86</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>            /*Timer myTimer = new Timer();
+            myTimer.Interval = (10) * (1000);
+            myTimer.Tick += (sender, e) =&gt; StopOpenLink(sender, e, myTimer, worker);
+            myTimer.Start();*/
+
+            /*Thread thread = new Thread(() =&gt;
+            {
+                Thread.CurrentThread.IsBackground = true;
+                OpenLink(DiagramView, rec, clipboard);
+            });
+            thread.Start();
+
+
+            System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
+            myTimer.Interval = (10) * (1000);
+            myTimer.Tick += (sender, e) =&gt; StopOpenLink(sender, e, myTimer, thread);
+            myTimer.Start();*/</text>
+      <layer>0</layer>
+      <x>-188</x>
+      <y>782</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-8 23:41:52</timecreate>
+      <timemodify>2015-4-8 23:41:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>87</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>        /*public void StopOpenLink(object sender, EventArgs e, System.Windows.Forms.Timer t, Thread thread)
+        {
+            Program.log.write("open link: thrad: terminated");
+            thread.Abort();
+   
+            t.Stop();
+            t.Dispose();
+        }*/</text>
+      <layer>0</layer>
+      <x>-188</x>
+      <y>1039</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-8 23:42:02</timecreate>
+      <timemodify>2015-4-8 23:42:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>88</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>
+                System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
+                myTimer.Interval = (5) * (1000);
+                myTimer.Tick += (sender, e) =&gt; StopOpenLink(sender, e, myTimer, thread);
+                myTimer.Enabled = true;</text>
+      <layer>0</layer>
+      <x>-187</x>
+      <y>1199</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-8 23:42:57</timecreate>
+      <timemodify>2015-4-8 23:42:57</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>89</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>        public void StopOpenLink(object sender, EventArgs e, System.Windows.Forms.Timer t, Thread thread)
+        {
+            Program.log.write("open link: thrad: terminated");
+            thread.Abort();
+
+            t.Stop();
+            t.Dispose();
+        }</text>
+      <layer>0</layer>
+      <x>-188</x>
+      <y>1306</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-8 23:43:13</timecreate>
+      <timemodify>2015-4-8 23:43:13</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>90</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>                Thread thread = new Thread(() =&gt;
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    
+                    try
+                    {
+                        this.CompileSourceAndExecute(script);
+
+                        ms.Position = 0;
+                        StreamReader sr = new StreamReader(ms);
+                        string output = sr.ReadToEnd();
+
+                        Program.log.write("Script: output:\n" + output);
+                    }
+                    catch (Exception ex)
+                    {
+                        Program.log.write("Script: error: " + ex.ToString());
+                    }
+                });
+                thread.Start();  </text>
+      <layer>0</layer>
+      <x>-191</x>
+      <y>1474</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-8 23:44:04</timecreate>
+      <timemodify>2015-4-8 23:44:04</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>91</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>font sa zle zobrazuje na linuxe</text>
+      <layer>0</layer>
+      <x>245</x>
+      <y>261</y>
+      <color>#80FF80</color>
+      <timecreate>2015-4-8 23:45:49</timecreate>
+      <timemodify>2015-4-8 23:45:49</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>92</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>nepodporuje desatinnu cast</text>
+      <layer>0</layer>
+      <x>254</x>
+      <y>317</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-8 23:45:57</timecreate>
+      <timemodify>2015-4-8 23:45:57</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>93</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>rozdelit font v xml </text>
+      <layer>0</layer>
+      <x>284</x>
+      <y>369</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-8 23:46:07</timecreate>
+      <timemodify>2015-4-8 23:46:43</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>94</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>skontrolovat n linuxe ci velkost nieje desatinna</text>
+      <layer>0</layer>
+      <x>190</x>
+      <y>419</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-8 23:46:29</timecreate>
+      <timemodify>2015-4-8 23:46:29</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>95</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>Diagram.2010.sln</text>
+      <link>./Diagram.SRC/Diagram.2010.sln</link>
+      <layer>0</layer>
+      <x>8235</x>
+      <y>-166</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-4-9 10:13:20</timecreate>
+      <timemodify>2015-4-9 10:13:20</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>96</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>Diagram.2012.sln</text>
+      <link>./Diagram.SRC/Diagram.2012.sln</link>
+      <layer>0</layer>
+      <x>8235</x>
+      <y>-117</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-4-9 10:13:20</timecreate>
+      <timemodify>2015-4-9 10:13:20</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>97</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>Diagram.Mono.sln</text>
+      <link>./Diagram.SRC/Diagram.Mono.sln</link>
+      <layer>0</layer>
+      <x>8235</x>
+      <y>-68</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-4-9 10:13:20</timecreate>
+      <timemodify>2015-4-9 10:13:20</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>98</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>Diagram.Mono.sln</text>
+      <link>./Diagram.SRC/Diagram.Mono.sln</link>
+      <layer>0</layer>
+      <x>8235</x>
+      <y>-215</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-4-9 10:16:10</timecreate>
+      <timemodify>2015-4-9 10:16:10</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>99</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>pridat casovac na automaticke ukladanie</text>
+      <layer>0</layer>
+      <x>7807</x>
+      <y>742</y>
+      <color>#80FF80</color>
+      <timecreate>2015-4-9 11:53:19</timecreate>
+      <timemodify>2015-4-9 11:53:19</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>100</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>spravit prepajanie novej nody tabom</text>
+      <layer>0</layer>
+      <x>758</x>
+      <y>313</y>
+      <color>#FF8000</color>
+      <timecreate>2015-4-14 22:31:55</timecreate>
+      <timemodify>2015-4-14 22:31:55</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>101</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>880</x>
+      <y>187</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-14 22:31:57</timecreate>
+      <timemodify>2015-4-14 22:31:57</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>102</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>2015-04-14 22:32:03</text>
+      <layer>0</layer>
+      <x>678</x>
+      <y>106</y>
+      <color>#8AC5FF</color>
+      <timecreate>2015-4-14 22:32:03</timecreate>
+      <timemodify>2015-4-14 22:32:03</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>103</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>745</x>
+      <y>196</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-14 22:32:05</timecreate>
+      <timemodify>2015-4-14 22:32:05</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>104</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>zmena centralneho bonu na aktualnu poziciu</text>
+      <layer>0</layer>
+      <x>1069</x>
+      <y>283</y>
+      <color>#FF8000</color>
+      <timecreate>2015-4-14 22:32:22</timecreate>
+      <timemodify>2015-4-14 22:32:22</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>105</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>1094</x>
+      <y>185</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-14 22:32:28</timecreate>
+      <timemodify>2015-4-14 22:32:28</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>106</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>prerobit na position class co sa da</text>
+      <layer>0</layer>
+      <x>1151</x>
+      <y>345</y>
+      <color>#FF8000</color>
+      <timecreate>2015-4-14 23:50:51</timecreate>
+      <timemodify>2015-4-14 23:50:51</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>107</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>TODO</text>
+      <layer>0</layer>
+      <x>7755</x>
+      <y>254</y>
+      <color>#FF80FF</color>
+      <timecreate>2015-4-19 09:36:57</timecreate>
+      <timemodify>2015-4-19 09:37:03</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>111</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>nebude len na nete bude zoznam skratiek</text>
+      <layer>0</layer>
+      <x>6233</x>
+      <y>323</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-4-19 09:40:52</timecreate>
+      <timemodify>2015-4-19 09:40:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>113</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>Infinite diagram</text>
+      <layer>0</layer>
+      <x>-4074</x>
+      <y>30</y>
+      <color>#FF80FF</color>
+      <timecreate>2015-3-29 21:31:37</timecreate>
+      <timemodify>2015-3-29 21:32:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>114</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-1679</x>
+      <y>189</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:44:14</timecreate>
+      <timemodify>2015-4-19 09:44:14</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>115</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-1278</x>
+      <y>196</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:44:29</timecreate>
+      <timemodify>2015-4-19 09:44:29</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>119</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>novy thread a ten treba zavolat abort</text>
+      <layer>0</layer>
+      <x>-456</x>
+      <y>329</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:45:52</timecreate>
+      <timemodify>2015-4-19 09:46:09</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>120</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>import clr
+import System
+Tools.log("test")</text>
+      <layer>0</layer>
+      <x>-1213</x>
+      <y>699</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:46:51</timecreate>
+      <timemodify>2015-4-19 09:46:51</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>121</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>import clr
+import System
+Logxxx.write('xxx')</text>
+      <layer>0</layer>
+      <x>-1213</x>
+      <y>767</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:46:56</timecreate>
+      <timemodify>2015-4-19 09:46:56</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>122</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>import clr
+import System
+Tools.getTextFromClipboard()</text>
+      <layer>0</layer>
+      <x>-1213</x>
+      <y>835</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:47:01</timecreate>
+      <timemodify>2015-4-19 09:47:01</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>123</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>import clr
+import System
+Tools.log(Tools.getTextFromClipboard())</text>
+      <layer>0</layer>
+      <x>-1213</x>
+      <y>903</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:47:08</timecreate>
+      <timemodify>2015-4-19 09:47:08</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>124</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>import clr
+import System
+
+
+import clr
+clr.AddReference('System.Windows.Forms')
+from System.Windows.Forms import Clipboard
+
+def setText(text):
+    Clipboard.SetText(text)
+    
+def getText():
+    return Clipboard.GetText()
+
+Tools.log("xxx"+getText())</text>
+      <layer>0</layer>
+      <x>-1213</x>
+      <y>971</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:47:23</timecreate>
+      <timemodify>2015-4-19 09:47:23</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>125</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>import clr
+import System
+
+Tools.log("xxx"+Script.getClipboard())</text>
+      <layer>0</layer>
+      <x>-1213</x>
+      <y>1189</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:47:28</timecreate>
+      <timemodify>2015-4-19 09:47:28</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>126</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>import clr
+import System
+Diagram.CloseDiagram()</text>
+      <layer>0</layer>
+      <x>-902</x>
+      <y>681</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:47:40</timecreate>
+      <timemodify>2015-4-19 09:47:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>127</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>import clr
+import System
+Diagram.ResetFont()</text>
+      <layer>0</layer>
+      <x>-903</x>
+      <y>756</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:47:45</timecreate>
+      <timemodify>2015-4-19 09:47:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>128</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>import time
+
+Tools.log("step")
+time.sleep( 3 )
+Tools.log("step")
+time.sleep( 3 )
+Tools.log("step")
+time.sleep( 3 )
+Tools.log("step")
+time.sleep( 3 )
+Tools.log("step")
+time.sleep( 3 )
+Tools.log("step")
+time.sleep( 3 )
+Tools.log("step")
+time.sleep( 3 )
+Tools.log("step")
+time.sleep( 3 )
+Tools.log("step")
+time.sleep( 3 )
+Tools.log("step")
+time.sleep( 3 )
+Tools.log("step")
+time.sleep( 3 )
+Tools.log("step")
+time.sleep( 3 )
+Tools.log("step")</text>
+      <layer>0</layer>
+      <x>-687</x>
+      <y>695</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:48:12</timecreate>
+      <timemodify>2015-4-19 09:48:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>132</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-840</x>
+      <y>641</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-4-19 09:49:20</timecreate>
+      <timemodify>2015-4-19 09:49:20</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>133</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-648</x>
+      <y>649</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-4-19 09:49:21</timecreate>
+      <timemodify>2015-4-19 09:49:21</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>134</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-1152</x>
+      <y>650</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-4-19 09:49:22</timecreate>
+      <timemodify>2015-4-19 09:49:22</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>135</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-974</x>
+      <y>611</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-4-19 09:49:25</timecreate>
+      <timemodify>2015-4-19 09:49:25</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>136</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>344</x>
+      <y>189</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:50:09</timecreate>
+      <timemodify>2015-4-19 09:50:09</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>145</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>open problem on ubuntu</text>
+      <layer>0</layer>
+      <x>-1334</x>
+      <y>244</y>
+      <color>#FF8040</color>
+      <timecreate>2015-4-19 09:52:35</timecreate>
+      <timemodify>2015-4-19 09:52:35</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>146</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>treba to otestovat</text>
+      <layer>0</layer>
+      <x>-3773</x>
+      <y>333</y>
+      <color>#80FF80</color>
+      <timecreate>2015-4-19 09:53:00</timecreate>
+      <timemodify>2015-4-19 09:53:00</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>147</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>options pridat definiciu farieb</text>
+      <layer>0</layer>
+      <x>1583</x>
+      <y>244</y>
+      <color>#80FF80</color>
+      <timecreate>2015-4-19 09:56:05</timecreate>
+      <timemodify>2015-4-19 09:56:05</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>148</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>ukladanie do suboru</text>
+      <layer>0</layer>
+      <x>1622</x>
+      <y>297</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:56:11</timecreate>
+      <timemodify>2015-4-19 09:56:11</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>149</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>spravit univerzalnejsi sposob na nacitavanie xml suborov</text>
+      <layer>0</layer>
+      <x>1593</x>
+      <y>346</y>
+      <color>#80FF80</color>
+      <timecreate>2015-4-19 09:56:27</timecreate>
+      <timemodify>2015-4-19 09:56:27</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>150</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>pole name.name a hodnota string</text>
+      <layer>0</layer>
+      <x>1709</x>
+      <y>399</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:56:51</timecreate>
+      <timemodify>2015-4-19 09:56:51</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>151</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>ukladanie to preparsuje a vytvori strukturu</text>
+      <layer>0</layer>
+      <x>1911</x>
+      <y>399</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:57:07</timecreate>
+      <timemodify>2015-4-19 09:57:07</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>152</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>ak je meno rovnake ide o pole</text>
+      <layer>0</layer>
+      <x>1916</x>
+      <y>441</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:57:18</timecreate>
+      <timemodify>2015-4-19 09:57:18</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>153</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>8568</x>
+      <y>-158</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-3-9 09:41:43</timecreate>
+      <timemodify>2015-3-9 09:41:43</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>154</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>8622</x>
+      <y>-126</y>
+      <color>#80FF80</color>
+      <timecreate>2015-3-9 09:41:53</timecreate>
+      <timemodify>2015-3-9 09:41:53</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>155</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>8586</x>
+      <y>-91</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:37:57</timecreate>
+      <timemodify>2015-4-19 09:37:57</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>156</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>Palleta</text>
+      <layer>0</layer>
+      <x>8682</x>
+      <y>-132</y>
+      <color>#FF80FF</color>
+      <timecreate>2015-4-19 09:50:25</timecreate>
+      <timemodify>2015-4-19 09:50:25</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>157</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>8644</x>
+      <y>-75</y>
+      <color>#FF80FF</color>
+      <timecreate>2015-4-19 09:50:44</timecreate>
+      <timemodify>2015-4-19 09:50:44</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>158</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>8636</x>
+      <y>-176</y>
+      <color>#FF8040</color>
+      <timecreate>2015-4-19 09:51:23</timecreate>
+      <timemodify>2015-4-19 09:51:23</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>159</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>1664</x>
+      <y>191</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:58:12</timecreate>
+      <timemodify>2015-4-19 09:58:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>160</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>ma pole atributov</text>
+      <layer>0</layer>
+      <x>2009</x>
+      <y>488</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:58:26</timecreate>
+      <timemodify>2015-4-19 09:58:26</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>161</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>string a hodnota</text>
+      <layer>0</layer>
+      <x>2129</x>
+      <y>488</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 09:58:38</timecreate>
+      <timemodify>2015-4-19 09:58:38</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>162</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>zrychlovanie posuvania pomocou sipiek</text>
+      <layer>0</layer>
+      <x>2235</x>
+      <y>268</y>
+      <color>#FF8040</color>
+      <timecreate>2015-4-19 09:59:29</timecreate>
+      <timemodify>2015-4-19 10:00:16</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>163</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>2336</x>
+      <y>188</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 10:00:18</timecreate>
+      <timemodify>2015-4-19 10:00:18</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>164</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>vyriesene zvacsenym rychlosti</text>
+      <layer>0</layer>
+      <x>2400</x>
+      <y>341</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-19 21:42:23</timecreate>
+      <timemodify>2015-4-19 21:42:23</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>165</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>directory name z linku nefunguje</text>
+      <layer>0</layer>
+      <x>2664</x>
+      <y>264</y>
+      <color>#FF8040</color>
+      <timecreate>2015-4-20 00:40:08</timecreate>
+      <timemodify>2015-4-20 00:40:08</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>166</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>2721</x>
+      <y>198</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-20 01:02:59</timecreate>
+      <timemodify>2015-4-20 01:02:59</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>167</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>vyriesit ratnie vyrazov</text>
+      <layer>0</layer>
+      <x>2971</x>
+      <y>268</y>
+      <color>#80FF80</color>
+      <timecreate>2015-4-20 01:12:11</timecreate>
+      <timemodify>2015-4-20 01:12:11</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>168</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>implementovst ncslc</text>
+      <layer>0</layer>
+      <x>3115</x>
+      <y>315</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-20 01:12:22</timecreate>
+      <timemodify>2015-4-20 01:12:22</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>170</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>NCalc - Mathematical Expressions Evaluator for .NET - Home</text>
+      <link>http://ncalc.codeplex.com/</link>
+      <layer>0</layer>
+      <x>2948</x>
+      <y>378</y>
+      <color>#F2FFCC</color>
+      <timecreate>2015-4-20 01:12:28</timecreate>
+      <timemodify>2015-4-20 01:12:28</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>171</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>3000</x>
+      <y>196</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-20 01:12:36</timecreate>
+      <timemodify>2015-4-20 01:12:36</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>172</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>3503</x>
+      <y>461</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-4-27 21:33:37</timecreate>
+      <timemodify>2015-4-27 21:33:37</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>174</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>2015-04-27 21:33:46</text>
+      <layer>0</layer>
+      <x>3436</x>
+      <y>-73</y>
+      <color>#8AC5FF</color>
+      <timecreate>2015-4-27 21:33:46</timecreate>
+      <timemodify>2015-4-27 21:33:46</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>175</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>opravit shift x po starte ma nespravnu hodnotu</text>
+      <layer>0</layer>
+      <x>3707</x>
+      <y>247</y>
+      <color>#FF8040</color>
+      <timecreate>2015-4-27 21:34:40</timecreate>
+      <timemodify>2015-4-27 21:34:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>176</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>3860</x>
+      <y>187</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-27 21:34:42</timecreate>
+      <timemodify>2015-4-27 21:34:42</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>177</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>preco padaju url wo windowse</text>
+      <layer>0</layer>
+      <x>4231</x>
+      <y>306</y>
+      <color>#80FF80</color>
+      <timecreate>2015-4-27 20:47:52</timecreate>
+      <timemodify>2015-4-27 20:47:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>178</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>diagram</text>
+      <layer>0</layer>
+      <x>4302</x>
+      <y>239</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-27 20:47:55</timecreate>
+      <timemodify>2015-4-27 20:47:55</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>179</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>4329</x>
+      <y>189</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-27 20:47:58</timecreate>
+      <timemodify>2015-4-27 20:47:58</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>180</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>pridat version.txt do mono</text>
+      <layer>0</layer>
+      <x>4517</x>
+      <y>261</y>
+      <color>#80FF80</color>
+      <timecreate>2015-4-27 21:18:20</timecreate>
+      <timemodify>2015-5-4 11:27:11</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>181</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>4603</x>
+      <y>190</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-27 21:18:22</timecreate>
+      <timemodify>2015-4-27 21:18:22</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>182</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>echo "Today is $(date)"</text>
+      <layer>0</layer>
+      <x>4527</x>
+      <y>309</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-27 21:19:03</timecreate>
+      <timemodify>2015-4-27 21:19:03</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>184</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>url preco krasne</text>
+      <layer>0</layer>
+      <x>4848</x>
+      <y>276</y>
+      <color>#FF8000</color>
+      <timecreate>2015-4-26 17:18:35</timecreate>
+      <timemodify>2015-4-26 17:18:35</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>185</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>4900</x>
+      <y>187</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-26 17:18:37</timecreate>
+      <timemodify>2015-4-26 17:18:37</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>186</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>windows</text>
+      <layer>0</layer>
+      <x>4872</x>
+      <y>328</y>
+      <color>Silver</color>
+      <timecreate>2015-4-27 23:47:37</timecreate>
+      <timemodify>2015-4-27 23:47:37</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>187</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>8560</x>
+      <y>-125</y>
+      <color>Silver</color>
+      <timecreate>2015-4-27 23:47:41</timecreate>
+      <timemodify>2015-4-27 23:47:41</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>188</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>from System.IO import Directory, Path
+
+Tools.log(Directory.GetCurrentDirectory())
+
+
+a = Diagram.GetNodeByScriptID("xxx")
+Tools.log(a.text)
+
+f = open('test.txt', 'w')
+f.write('This is a test\n')
+f.close()</text>
+      <layer>0</layer>
+      <x>5071</x>
+      <y>278</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-29 22:45:00</timecreate>
+      <timemodify>2015-4-29 22:45:00</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>189</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>5208</x>
+      <y>193</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-29 22:45:02</timecreate>
+      <timemodify>2015-4-29 22:45:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>191</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>updatnut visual studio 2012</text>
+      <layer>0</layer>
+      <x>5535</x>
+      <y>238</y>
+      <color>#80FF80</color>
+      <timecreate>2015-5-4 11:28:55</timecreate>
+      <timemodify>2015-5-4 11:28:55</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>192</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>5625</x>
+      <y>188</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 11:28:57</timecreate>
+      <timemodify>2015-5-4 11:28:57</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>193</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>problem s password oknom</text>
+      <layer>0</layer>
+      <x>-3637</x>
+      <y>413</y>
+      <color>Silver</color>
+      <timecreate>2015-5-4 12:38:48</timecreate>
+      <timemodify>2015-5-4 12:38:48</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>194</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>BUG</text>
+      <layer>0</layer>
+      <x>-2243</x>
+      <y>417</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 12:39:23</timecreate>
+      <timemodify>2015-5-4 12:39:23</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>195</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-3952</x>
+      <y>190</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-5-4 12:40:14</timecreate>
+      <timemodify>2015-5-4 12:40:14</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>196</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>stop script thread</text>
+      <layer>0</layer>
+      <x>-75</x>
+      <y>594</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 12:43:02</timecreate>
+      <timemodify>2015-5-4 12:43:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>197</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-18</x>
+      <y>192</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 12:43:04</timecreate>
+      <timemodify>2015-5-4 12:43:04</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>198</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>script example</text>
+      <layer>0</layer>
+      <x>5075</x>
+      <y>459</y>
+      <color>Silver</color>
+      <timecreate>2015-5-4 12:54:57</timecreate>
+      <timemodify>2015-5-4 12:54:57</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>199</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>5849</x>
+      <y>196</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 12:55:39</timecreate>
+      <timemodify>2015-5-4 12:55:39</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>200</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>5849</x>
+      <y>284</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-5-4 12:55:47</timecreate>
+      <timemodify>2015-5-4 12:55:47</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>201</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>5849</x>
+      <y>334</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-5-4 12:55:50</timecreate>
+      <timemodify>2015-5-4 12:55:50</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>202</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>5849</x>
+      <y>377</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-5-4 12:55:50</timecreate>
+      <timemodify>2015-5-4 12:55:50</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>203</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>5849</x>
+      <y>421</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-5-4 12:55:51</timecreate>
+      <timemodify>2015-5-4 12:55:51</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>204</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>6686</x>
+      <y>195</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 12:56:55</timecreate>
+      <timemodify>2015-5-4 12:56:55</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>205</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>6980</x>
+      <y>188</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 12:57:13</timecreate>
+      <timemodify>2015-5-4 12:57:13</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>206</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>component</text>
+      <layer>0</layer>
+      <x>7879</x>
+      <y>349</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 12:58:12</timecreate>
+      <timemodify>2015-5-4 12:58:18</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>208</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>7350</x>
+      <y>188</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 12:59:48</timecreate>
+      <timemodify>2015-5-4 12:59:48</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>209</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>reset fontu len oznacenim nodam ak su oznacene nejake</text>
+      <layer>0</layer>
+      <x>7179</x>
+      <y>328</y>
+      <color>#80FF80</color>
+      <timecreate>2015-5-4 13:00:15</timecreate>
+      <timemodify>2015-5-4 13:00:15</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>210</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>component</text>
+      <layer>0</layer>
+      <x>7916</x>
+      <y>603</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 12:58:12</timecreate>
+      <timemodify>2015-5-4 12:58:18</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>211</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>7774</x>
+      <y>314</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-5-4 13:01:12</timecreate>
+      <timemodify>2015-5-4 13:01:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>212</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>7774</x>
+      <y>358</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-5-4 13:01:12</timecreate>
+      <timemodify>2015-5-4 13:01:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>213</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>7774</x>
+      <y>410</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-5-4 13:01:13</timecreate>
+      <timemodify>2015-5-4 13:01:13</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>214</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>7774</x>
+      <y>468</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-5-4 13:01:13</timecreate>
+      <timemodify>2015-5-4 13:01:13</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>215</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>7774</x>
+      <y>518</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-5-4 13:01:14</timecreate>
+      <timemodify>2015-5-4 13:01:14</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>216</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>7774</x>
+      <y>574</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-5-4 13:01:15</timecreate>
+      <timemodify>2015-5-4 13:01:15</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>217</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>7774</x>
+      <y>620</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-5-4 13:01:15</timecreate>
+      <timemodify>2015-5-4 13:01:15</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>218</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>7774</x>
+      <y>660</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-5-4 13:01:15</timecreate>
+      <timemodify>2015-5-4 13:01:15</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>219</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>7774</x>
+      <y>702</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-5-4 13:01:16</timecreate>
+      <timemodify>2015-5-4 13:01:16</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>220</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>7774</x>
+      <y>754</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-5-4 13:01:17</timecreate>
+      <timemodify>2015-5-4 13:01:17</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>221</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>7774</x>
+      <y>815</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-5-4 13:01:17</timecreate>
+      <timemodify>2015-5-4 13:01:17</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>222</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>7774</x>
+      <y>859</y>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2015-5-4 13:01:18</timecreate>
+      <timemodify>2015-5-4 13:01:18</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>223</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>7774</x>
+      <y>198</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 13:01:33</timecreate>
+      <timemodify>2015-5-4 13:01:33</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>224</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>2015-05-04 13:01:39</text>
+      <layer>0</layer>
+      <x>7565</x>
+      <y>46</y>
+      <color>#8AC5FF</color>
+      <timecreate>2015-5-4 13:01:39</timecreate>
+      <timemodify>2015-5-4 13:01:39</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>225</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>7634</x>
+      <y>197</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 13:01:41</timecreate>
+      <timemodify>2015-5-4 13:01:41</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>226</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>pridat dialog na image transformation</text>
+      <layer>0</layer>
+      <x>8234</x>
+      <y>256</y>
+      <color>#80FF80</color>
+      <timecreate>2015-5-4 13:10:18</timecreate>
+      <timemodify>2015-5-4 13:10:18</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>227</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>8358</x>
+      <y>195</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 13:10:21</timecreate>
+      <timemodify>2015-5-4 13:10:21</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>228</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>zmensenie a zvacsenie</text>
+      <layer>0</layer>
+      <x>8282</x>
+      <y>310</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 13:10:28</timecreate>
+      <timemodify>2015-5-4 13:10:28</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>229</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>rotacia</text>
+      <layer>0</layer>
+      <x>8336</x>
+      <y>362</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 13:10:35</timecreate>
+      <timemodify>2015-5-4 13:10:35</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>230</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>vyhladavanie spat nefunguje spravne</text>
+      <layer>0</layer>
+      <x>8675</x>
+      <y>272</y>
+      <color>#FF8040</color>
+      <timecreate>2015-5-4 14:58:07</timecreate>
+      <timemodify>2015-5-4 14:58:07</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>231</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>8797</x>
+      <y>188</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 14:58:10</timecreate>
+      <timemodify>2015-5-4 14:58:10</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>232</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>vyhladavanie podla vzdialenosti</text>
+      <layer>0</layer>
+      <x>9046</x>
+      <y>270</y>
+      <color>#80FF80</color>
+      <timecreate>2015-5-4 16:36:10</timecreate>
+      <timemodify>2015-5-4 16:36:10</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>233</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>9151</x>
+      <y>193</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 16:36:12</timecreate>
+      <timemodify>2015-5-4 16:36:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>236</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>zla asociacia mime typov</text>
+      <layer>0</layer>
+      <x>-1540</x>
+      <y>292</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-4 16:38:23</timecreate>
+      <timemodify>2015-5-4 16:38:23</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>237</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>shortcut</text>
+      <layer>0</layer>
+      <x>9503</x>
+      <y>473</y>
+      <color>#80FF80</color>
+      <timecreate>2015-4-16 10:47:21</timecreate>
+      <timemodify>2015-4-16 10:47:21</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>238</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>key</text>
+      <layer>0</layer>
+      <x>9579</x>
+      <y>473</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-16 10:47:22</timecreate>
+      <timemodify>2015-4-16 10:47:22</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>239</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>key to shortcut </text>
+      <layer>0</layer>
+      <x>9629</x>
+      <y>473</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-16 10:47:32</timecreate>
+      <timemodify>2015-4-16 10:47:32</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>240</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>to string</text>
+      <layer>0</layer>
+      <x>9744</x>
+      <y>473</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-16 10:47:41</timecreate>
+      <timemodify>2015-4-16 10:47:41</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>241</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>from string</text>
+      <layer>0</layer>
+      <x>9748</x>
+      <y>426</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-16 10:47:44</timecreate>
+      <timemodify>2015-4-16 10:47:44</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>242</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>shortcut class</text>
+      <layer>0</layer>
+      <x>9841</x>
+      <y>426</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-16 10:48:01</timecreate>
+      <timemodify>2015-4-16 10:48:01</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>243</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>name</text>
+      <layer>0</layer>
+      <x>9949</x>
+      <y>426</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-16 10:48:03</timecreate>
+      <timemodify>2015-4-16 10:48:03</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>244</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>get default</text>
+      <layer>0</layer>
+      <x>10011</x>
+      <y>426</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-16 10:48:09</timecreate>
+      <timemodify>2015-4-16 10:48:09</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>245</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>save to options</text>
+      <layer>0</layer>
+      <x>10020</x>
+      <y>471</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-16 10:48:13</timecreate>
+      <timemodify>2015-4-16 10:48:22</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>246</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>remap</text>
+      <layer>0</layer>
+      <x>10019</x>
+      <y>370</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-16 10:48:25</timecreate>
+      <timemodify>2015-4-16 10:48:25</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>247</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>xml</text>
+      <layer>0</layer>
+      <x>10148</x>
+      <y>497</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-4-16 10:48:30</timecreate>
+      <timemodify>2015-4-16 10:48:30</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>249</id>
+      <font>DejaVu Sans, 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>9529</x>
+      <y>199</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-5 10:08:25</timecreate>
+      <timemodify>2015-5-5 10:08:25</timemodify>
+    </rectangle>
+  </rectangles>
+  <lines>
+    <line>
+      <start>5</start>
+      <end>4</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>7</start>
+      <end>6</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>11</start>
+      <end>6</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>22</start>
+      <end>21</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>25</start>
+      <end>24</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>37</start>
+      <end>36</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>38</start>
+      <end>37</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>40</start>
+      <end>39</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>29</start>
+      <end>36</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>46</start>
+      <end>43</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>52</start>
+      <end>51</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>50</start>
+      <end>51</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>57</start>
+      <end>53</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>54</start>
+      <end>53</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>55</start>
+      <end>54</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>56</start>
+      <end>57</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>58</start>
+      <end>57</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>59</start>
+      <end>38</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>60</start>
+      <end>59</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>65</start>
+      <end>64</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>84</start>
+      <end>64</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>85</start>
+      <end>84</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>92</start>
+      <end>91</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>93</start>
+      <end>92</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>94</start>
+      <end>93</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>101</start>
+      <end>100</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>103</start>
+      <end>102</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>105</start>
+      <end>104</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>106</start>
+      <end>104</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>41</start>
+      <end>111</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>20</start>
+      <end>24</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>23</start>
+      <end>24</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>26</start>
+      <end>24</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>113</start>
+      <end>2</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>114</start>
+      <end>56</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>119</start>
+      <end>84</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>74</start>
+      <end>64</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>132</start>
+      <end>126</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>133</start>
+      <end>128</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>134</start>
+      <end>120</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>135</start>
+      <end>74</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>134</start>
+      <end>135</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>132</start>
+      <end>135</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>133</start>
+      <end>132</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>127</start>
+      <end>126</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>121</start>
+      <end>120</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>122</start>
+      <end>121</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>123</start>
+      <end>122</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>124</start>
+      <end>123</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>125</start>
+      <end>124</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>136</start>
+      <end>91</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>145</start>
+      <end>62</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>146</start>
+      <end>6</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>148</start>
+      <end>147</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>150</start>
+      <end>151</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>150</start>
+      <end>149</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>152</start>
+      <end>150</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>154</start>
+      <end>153</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>155</start>
+      <end>154</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>156</start>
+      <end>154</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>157</start>
+      <end>154</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>158</start>
+      <end>154</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>159</start>
+      <end>147</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>160</start>
+      <end>152</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>160</start>
+      <end>161</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>148</start>
+      <end>149</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>163</start>
+      <end>162</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>164</start>
+      <end>162</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>166</start>
+      <end>165</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>167</start>
+      <end>168</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>170</start>
+      <end>168</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>171</start>
+      <end>167</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>176</start>
+      <end>175</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>177</start>
+      <end>178</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>179</start>
+      <end>178</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>181</start>
+      <end>180</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>182</start>
+      <end>180</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>184</start>
+      <end>186</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>187</start>
+      <end>154</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>184</start>
+      <end>185</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>189</start>
+      <end>188</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>192</start>
+      <end>191</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>172</start>
+      <end>174</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>193</start>
+      <end>146</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>36</start>
+      <end>33</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>194</start>
+      <end>59</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>195</start>
+      <end>35</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>195</start>
+      <end>2</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>145</start>
+      <end>115</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>197</start>
+      <end>196</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>196</start>
+      <end>63</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>63</start>
+      <end>86</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>86</start>
+      <end>87</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>87</start>
+      <end>88</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>88</start>
+      <end>89</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>89</start>
+      <end>90</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>198</start>
+      <end>188</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>200</start>
+      <end>31</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>201</start>
+      <end>41</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>202</start>
+      <end>18</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>203</start>
+      <end>30</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>201</start>
+      <end>199</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>202</start>
+      <end>199</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>203</start>
+      <end>199</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>200</start>
+      <end>199</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>204</start>
+      <end>19</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>205</start>
+      <end>17</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>206</start>
+      <end>14</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>208</start>
+      <end>48</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>209</start>
+      <end>48</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>210</start>
+      <end>47</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>211</start>
+      <end>13</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>212</start>
+      <end>14</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>213</start>
+      <end>16</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>214</start>
+      <end>32</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>215</start>
+      <end>43</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>216</start>
+      <end>44</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>217</start>
+      <end>47</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>218</start>
+      <end>49</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>219</start>
+      <end>61</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>220</start>
+      <end>99</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>221</start>
+      <end>10</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>222</start>
+      <end>12</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>211</start>
+      <end>107</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>212</start>
+      <end>107</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>213</start>
+      <end>107</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>214</start>
+      <end>107</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>215</start>
+      <end>107</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>216</start>
+      <end>107</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>217</start>
+      <end>107</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>218</start>
+      <end>107</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>219</start>
+      <end>107</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>220</start>
+      <end>107</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>221</start>
+      <end>107</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>222</start>
+      <end>107</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>223</start>
+      <end>107</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>225</start>
+      <end>224</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>227</start>
+      <end>226</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>228</start>
+      <end>226</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>229</start>
+      <end>228</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>231</start>
+      <end>230</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>233</start>
+      <end>232</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>236</start>
+      <end>145</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>237</start>
+      <end>238</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>238</start>
+      <end>239</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>239</start>
+      <end>240</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>241</start>
+      <end>239</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>241</start>
+      <end>242</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>242</start>
+      <end>243</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>243</start>
+      <end>244</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>245</start>
+      <end>243</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>246</start>
+      <end>243</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>247</start>
+      <end>245</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>249</start>
+      <end>237</end>
+      <arrow>0</arrow>
+    </line>
+  </lines>
+</diagram>

@@ -1,0 +1,14 @@
+Package: turbo-diagram
+Section: misc
+Priority: optional
+Version: 1.0
+Installed-Size: 6500
+Architecture: all
+Pre-Depends:
+Recommends:
+Maintainer: Pekar Andrej <pekand@gmail.com>
+Conflicts:
+Replaces:
+Provides: turbo-diagram
+Description: Diagrams
+ Program for diagrams

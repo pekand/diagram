@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram>
+  <options>
+    <shiftx>0</shiftx>
+    <shifty>0</shifty>
+    <firstLayereShift.x>0</firstLayereShift.x>
+    <firstLayereShift.y>0</firstLayereShift.y>
+    <window.position.width>100</window.position.width>
+    <window.position.height>100</window.position.height>
+    <window.state>0</window.state>
+  </options>
+  <rectangles>
+    <rectangle>
+      <id>1</id>
+      <font>Open Sans; 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>test</text>
+      <layer>0</layer>
+      <x>685</x>
+      <y>319</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-23 20:33:28</timecreate>
+    </rectangle>
+    <rectangle>
+      <id>2</id>
+      <font>Open Sans; 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>test2</text>
+      <layer>0</layer>
+      <x>860</x>
+      <y>344</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-23 20:33:28</timecreate>
+    </rectangle>
+    <rectangle>
+      <id>3</id>
+      <font>Open Sans; 10pt</font>
+      <fontcolor>Black</fontcolor>
+      <text>test3</text>
+      <layer>0</layer>
+      <x>755</x>
+      <y>430</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-5-23 20:33:28</timecreate>
+    </rectangle>
+  </rectangles>
+  <lines>
+    <line>
+      <start>3</start>
+      <end>1</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>3</start>
+      <end>2</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>2</start>
+      <end>1</end>
+      <arrow>0</arrow>
+    </line>
+  </lines>
+</diagram>

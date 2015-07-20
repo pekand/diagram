@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Turbo Diagram
+Comment=Diagrams
+TryExec=diagram
+Exec=diagram %F
+Icon=/usr/share/icons/gnome/256x256/mimetypes/application-diagram.png
+MimeType=application/diagram;

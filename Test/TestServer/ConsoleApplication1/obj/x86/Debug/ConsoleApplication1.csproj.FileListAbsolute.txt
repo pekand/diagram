@@ -1,0 +1,12 @@
+C:\Users\Andrej\AppData\Local\Temporary Projects\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Andrej\AppData\Local\Temporary Projects\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Andrej\AppData\Local\Temporary Projects\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+C:\Users\Andrej\AppData\Local\Temporary Projects\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+C:\Users\Andrej\Desktop\Diagram\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+C:\Users\Andrej\Desktop\Diagram\ConsoleApplication1\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+C:\Users\Andrej\Desktop\Diagram\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Andrej\Desktop\Diagram\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Andrej\Desktop\Diagram\Test\TestServer\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+C:\Users\Andrej\Desktop\Diagram\Test\TestServer\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+C:\Users\Andrej\Desktop\Diagram\Test\TestServer\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Andrej\Desktop\Diagram\Test\TestServer\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb

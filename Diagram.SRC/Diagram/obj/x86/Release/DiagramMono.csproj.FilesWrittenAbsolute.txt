@@ -1,0 +1,15 @@
+/home/kerberos/Desktop/diagram/Diagram.SRC/Diagram/obj/x86/Release/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/home/kerberos/Desktop/diagram/Diagram.SRC/Diagram/obj/x86/Release/Diagram.Properties.Resources.resources
+/home/kerberos/Desktop/diagram/Diagram.SRC/Diagram/bin/Release/Diagram.exe.mdb
+/home/kerberos/Desktop/diagram/Diagram.SRC/Diagram/bin/Release/Diagram.exe
+/home/kerberos/Desktop/diagram/Diagram.SRC/Diagram/obj/x86/Release/Diagram.exe
+/home/kerberos/Desktop/diagram/Diagram.SRC/Diagram/obj/x86/Release/Diagram.exe.mdb
+/home/kerberos/Desktop/diagram/Diagram.SRC/Diagram/bin/Release/IronPython.dll
+/home/kerberos/Desktop/diagram/Diagram.SRC/Diagram/bin/Release/IronPython.SQLite.dll
+/home/kerberos/Desktop/diagram/Diagram.SRC/Diagram/bin/Release/IronPython.Modules.dll
+/home/kerberos/Desktop/diagram/Diagram.SRC/Diagram/bin/Release/IronPython.Wpf.dll
+/home/kerberos/Desktop/diagram/Diagram.SRC/Diagram/bin/Release/Microsoft.Dynamic.dll
+/home/kerberos/Desktop/diagram/Diagram.SRC/Diagram/bin/Release/Microsoft.Scripting.AspNet.dll
+/home/kerberos/Desktop/diagram/Diagram.SRC/Diagram/bin/Release/Microsoft.Scripting.dll
+/home/kerberos/Desktop/diagram/Diagram.SRC/Diagram/bin/Release/Microsoft.Scripting.Metadata.dll
+/home/kerberos/Desktop/diagram/Diagram.SRC/Diagram/bin/Release/NCalc.dll
