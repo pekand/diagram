@@ -1,2 +1,2 @@
 #/bin/bash
-sudo dpkg -i turbo-diagram.deb
+sudo dpkg -i infinite-diagram.deb

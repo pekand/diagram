@@ -45,11 +45,14 @@ if [ "$1" = "svn" ]; then
     fi
 
 elif [ "$1" = "build" ]; then
-        cd ./install-linux/
-        ./make-package.sh
+	cd ./Diagram.SRC/
+        xbuild /p:Configuration=Release Diagram.Mono.sln
         
 elif [ "$1" = "install" ]; then
 	cd ./install-linux/
+	chmod 775 make-package.sh
+        ./make-package.sh
+        chmod 775 install-package.sh
         ./install-package.sh
 
 elif [ "$1" = "clean" ]; then
@@ -60,17 +63,11 @@ elif [ "$1" = "clean" ]; then
         sudo chown kerberos:kerberos -R ./
         sudo find "./" -type d -exec chmod 775 {} \;
         sudo find "./" -type f -exec chmod 664 {} \;
-        chmod 755 clean.sh
-        chmod 755 svn-ignore.sh
-        chmod 755 svn-submit.sh
-        chmod 755 svn-ignore.sh
-        chmod 755 svn-update.sh
-        chmod 755 build-mono.sh
         chmod 755 ./install-linux/make-package.sh
         chmod 755 ./install-linux/install-package.sh
         rm -R ./Diagram.SRC/Diagram/bin/Debug/
         rm -R ./Diagram.SRC/Diagram/bin/Release/
-        #rm ./install-linux/turbo-diagram.deb
+        rm ./install-linux/turbo-diagram.deb
     fi
 
     if [ "$2" = "" ]; then
@@ -79,6 +76,7 @@ elif [ "$1" = "clean" ]; then
     fi
 else
     echo "svn"
-    echo "build mono"
+    echo "build"
+    echo "install"
     echo "clean project"
 fi

@@ -1,14 +1,15 @@
-Package: turbo-diagram
+Package: infinite-diagram
 Section: misc
 Priority: optional
 Version: 1.0
 Installed-Size: 6500
 Architecture: all
+Depends: mono-complete 
 Pre-Depends:
 Recommends:
 Maintainer: Pekar Andrej <pekand@gmail.com>
 Conflicts:
 Replaces:
-Provides: turbo-diagram
+Provides: infinite-diagram
 Description: Diagrams
  Program for diagrams

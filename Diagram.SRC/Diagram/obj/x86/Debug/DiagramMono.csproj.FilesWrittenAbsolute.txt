@@ -1,0 +1,15 @@
+/home/kerberos/Desktop/infinite-diagram/Diagram.SRC/Diagram/obj/x86/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/home/kerberos/Desktop/infinite-diagram/Diagram.SRC/Diagram/obj/x86/Debug/Diagram.Properties.Resources.resources
+/home/kerberos/Desktop/infinite-diagram/Diagram.SRC/Diagram/bin/Debug/Diagram.exe.mdb
+/home/kerberos/Desktop/infinite-diagram/Diagram.SRC/Diagram/bin/Debug/Diagram.exe
+/home/kerberos/Desktop/infinite-diagram/Diagram.SRC/Diagram/obj/x86/Debug/Diagram.exe
+/home/kerberos/Desktop/infinite-diagram/Diagram.SRC/Diagram/obj/x86/Debug/Diagram.exe.mdb
+/home/kerberos/Desktop/infinite-diagram/Diagram.SRC/Diagram/bin/Debug/IronPython.dll
+/home/kerberos/Desktop/infinite-diagram/Diagram.SRC/Diagram/bin/Debug/IronPython.SQLite.dll
+/home/kerberos/Desktop/infinite-diagram/Diagram.SRC/Diagram/bin/Debug/IronPython.Modules.dll
+/home/kerberos/Desktop/infinite-diagram/Diagram.SRC/Diagram/bin/Debug/IronPython.Wpf.dll
+/home/kerberos/Desktop/infinite-diagram/Diagram.SRC/Diagram/bin/Debug/Microsoft.Dynamic.dll
+/home/kerberos/Desktop/infinite-diagram/Diagram.SRC/Diagram/bin/Debug/Microsoft.Scripting.AspNet.dll
+/home/kerberos/Desktop/infinite-diagram/Diagram.SRC/Diagram/bin/Debug/Microsoft.Scripting.dll
+/home/kerberos/Desktop/infinite-diagram/Diagram.SRC/Diagram/bin/Debug/Microsoft.Scripting.Metadata.dll
+/home/kerberos/Desktop/infinite-diagram/Diagram.SRC/Diagram/bin/Debug/NCalc.dll

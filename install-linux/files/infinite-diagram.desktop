@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=Turbo Diagram
+Name=Infinite Diagram
 Comment=Diagrams
 TryExec=diagram
 Exec=diagram %F
