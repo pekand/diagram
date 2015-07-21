@@ -251,11 +251,12 @@ namespace Diagram
 #if DEBUG
             string[] args = Environment.GetCommandLineArgs();
 
+            // custom debug arguments
             if (args.Length == 1)
             { // comand line arguments testing
                 args = new string[] { 
-                    System.Reflection.Assembly.GetExecutingAssembly().Location, 
-                    "test.diagram"
+                    System.Reflection.Assembly.GetExecutingAssembly().Location
+                    //,"file.diagram"
                 };
             }
 
