@@ -4,10 +4,11 @@
     {
         /*
          * OPTIONS FOR DIAGRAM
-         * evry diagram can have diferent options
+         * every diagram can have diferent options
+         * options for diagram file
          */
 
-        public bool readOnly = false;      // nastavy diagram len na prezeranie
+        public bool readOnly = false;             // nastavy diagram len na prezeranie
         public bool grid = true;                  // vykreslit grid
         public bool borders = false;              // vykreslovanie ohraničení prvkov 
         public bool coordinates = false;          // vykreslit aktualne súradnice
@@ -20,8 +21,8 @@
         public int Height = 100;
         public int WindowState = 0; // 0 nenastavene; 1 maximzlizovane; 2 normalne; 3 minimzlizovane
 
-        public Position homePosition = new Position(); // diagram start position
-        public Position endPosition = new Position(); //  diagram end position seet by end key
+        public Position homePosition = new Position(); // diagram start and home key position
+        public Position endPosition = new Position(); //  diagram end key position seet by end key
         public int keyArrowSlowSpeed = 1;
         public int keyArrowFastSpeed = 100;
 

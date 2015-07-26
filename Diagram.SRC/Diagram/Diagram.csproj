@@ -116,7 +116,7 @@
     <Compile Include="Src\Lib\Os.cs" />
     <Compile Include="Src\Main.cs" />
     <Compile Include="Src\Model\Position.cs" />
-    <Compile Include="Src\Parameters.cs" />
+    <Compile Include="Src\ProgramOptions.cs" />
     <Compile Include="Src\Forms\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -57,83 +57,10 @@ namespace Diagram
         }
         /*************************************************************************************************************************/
 
-        // [FILE] [CLOSE] - Vycisti  nastavenie do východzieho tavu a prekresli obrazovku
-        public void CloseFile()
+        // [FILE] IS NEW - check if file is empty
+        public bool isNew()
         {
-            // Prednadstavenie atributov
-            this.maxid = 0;
-            this.NewFile = true;
-            this.SavedFile = true;
-            this.FileName = "";
-
-            // Vycistenie zasobnikov
-            this.Lines.Clear();
-            this.Nodes.Clear();
-            
-           
-
-            this.options.readOnly = false;
-            this.options.grid = true;
-            this.options.coordinates = false;  
-
-            this.TextWindows.Clear();
-        }
-
-        // [FILE] [SAVE] Ulozenie xml súboru
-        public void SaveFile(string FileName)
-        {
-            string diagraxml = "";
-            
-            try
-            {
-                System.IO.StreamWriter file = new System.IO.StreamWriter(FileName);
-                diagraxml = this.SaveXML();
-                if(this.password=="") 
-                {
-                  file.Write(diagraxml);
-                }                
-                else
-                {
-                  XElement root = new XElement("diagram");
-                  try
-                  {
-                    root.Add(new XElement("version", "1"));
-                    this.salt = Encrypt.CreateSalt(14);
-                    root.Add(new XElement("encrypted", Encrypt.EncryptStringAES(diagraxml, this.password, this.salt)));
-                    root.Add(new XElement("salt", Encrypt.GetSalt(this.salt)));
-
-                    StringBuilder sb = new StringBuilder();
-                    XmlWriterSettings xws = new XmlWriterSettings();
-                    xws.OmitXmlDeclaration = true;
-                    xws.CheckCharacters = false;
-                    xws.Indent = true;
-
-                    using (XmlWriter xw = XmlWriter.Create(sb, xws))
-                    {
-                        root.WriteTo(xw);
-                    }
-
-                    file.Write(sb.ToString());
-                  }
-                  catch (Exception ex)
-                  {
-                      Program.log.write("save file error: " + ex.Message);
-                  }
-                }
-                
-                file.Close();
-
-            }
-            catch (System.IO.IOException ex)
-            {
-                Program.log.write("save file io error: " + ex.Message);
-                MessageBox.Show(main.translations.fileIsLocked);
-                this.CloseFile();
-            }
-            catch (Exception ex)
-            {
-                Program.log.write("save file error: " + ex.Message);
-            }
+            return (this.FileName == "" && this.NewFile && this.SavedFile);
         }
 
         // [FILE] [OPEN] Otvorenie xml súboru
@@ -646,8 +573,93 @@ namespace Diagram
             }
         }
 
+        // [FILE] Save - Ulozit súbor
+        public bool save()
+        {
+            if (this.FileName != "" && File.Exists(this.FileName))
+            {
+                this.SaveXMLFile(this.FileName);
+                this.NewFile = false;
+                this.SavedFile = true;
+                this.SetTitle();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        // [FILE] SAVEAS - Uložiť súbor ako
+        public void saveas(String FileName)
+        {
+
+            this.SaveXMLFile(FileName);
+            this.FileName = FileName;
+            this.SavedFile = true;
+            this.NewFile = false;
+
+            this.SetTitle();
+        }
+
+        // [FILE] [SAVE] Ulozenie xml súboru
+        public void SaveXMLFile(string FileName)
+        {
+            string diagraxml = "";
+
+            try
+            {
+                System.IO.StreamWriter file = new System.IO.StreamWriter(FileName);
+                diagraxml = this.SaveInnerXMLFile();
+                if (this.password == "")
+                {
+                    file.Write(diagraxml);
+                }
+                else
+                {
+                    XElement root = new XElement("diagram");
+                    try
+                    {
+                        root.Add(new XElement("version", "1"));
+                        this.salt = Encrypt.CreateSalt(14);
+                        root.Add(new XElement("encrypted", Encrypt.EncryptStringAES(diagraxml, this.password, this.salt)));
+                        root.Add(new XElement("salt", Encrypt.GetSalt(this.salt)));
+
+                        StringBuilder sb = new StringBuilder();
+                        XmlWriterSettings xws = new XmlWriterSettings();
+                        xws.OmitXmlDeclaration = true;
+                        xws.CheckCharacters = false;
+                        xws.Indent = true;
+
+                        using (XmlWriter xw = XmlWriter.Create(sb, xws))
+                        {
+                            root.WriteTo(xw);
+                        }
+
+                        file.Write(sb.ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        Program.log.write("save file error: " + ex.Message);
+                    }
+                }
+
+                file.Close();
+
+            }
+            catch (System.IO.IOException ex)
+            {
+                Program.log.write("save file io error: " + ex.Message);
+                MessageBox.Show(main.translations.fileIsLocked);
+                this.CloseFile();
+            }
+            catch (Exception ex)
+            {
+                Program.log.write("save file error: " + ex.Message);
+            }
+        }
+
         // [FILE] [SAVE] [XML]
-        public string SaveXML()
+        public string SaveInnerXMLFile()
         {
             bool checkpoint = false;
             XElement root = new XElement("diagram");
@@ -671,7 +683,7 @@ namespace Diagram
                 option.Add(new XElement("window.position.y", this.options.Top));
                 option.Add(new XElement("window.position.width", this.options.Width));
                 option.Add(new XElement("window.position.height", this.options.Height));
-                option.Add(new XElement("window.state", this.options.WindowState));               
+                option.Add(new XElement("window.state", this.options.WindowState));
 
                 // Rectangles
                 XElement rectangles = new XElement("rectangles");
@@ -728,7 +740,7 @@ namespace Diagram
                     XElement line = new XElement("line");
                     line.Add(new XElement("start", lin.start));
                     line.Add(new XElement("end", lin.end));
-                    line.Add(new XElement("arrow", (lin.arrow)?"1":"0"));
+                    line.Add(new XElement("arrow", (lin.arrow) ? "1" : "0"));
                     lines.Add(line);
                 }
 
@@ -779,41 +791,30 @@ namespace Diagram
             this.SetTitle();
         }
 
-        // [FILE] Save - Ulozit súbor
-        public bool save()
+        // [FILE] [CLOSE] - Vycisti  nastavenie do východzieho tavu a prekresli obrazovku
+        public void CloseFile()
         {
-            if (this.FileName != "" && File.Exists(this.FileName))
-            {
-                SaveFile(this.FileName);
-                this.NewFile = false;
-                this.SavedFile = true;
-                this.SetTitle();
+            // Prednadstavenie atributov
+            this.maxid = 0;
+            this.NewFile = true;
+            this.SavedFile = true;
+            this.FileName = "";
 
-                return true;
-            }
+            // Vycistenie zasobnikov
+            this.Lines.Clear();
+            this.Nodes.Clear();
 
-            return false;
+
+
+            this.options.readOnly = false;
+            this.options.grid = true;
+            this.options.coordinates = false;
+
+            this.TextWindows.Clear();
         }
 
-        // [FILE] SAVEAS - Uložiť súbor ako
-        public void saveas(String FileName)
-        {
-            
-                this.SaveFile(FileName);
-                this.FileName = FileName;
-                this.SavedFile = true;
-                this.NewFile = false;
+        /*************************************************************************************************************************/
 
-                this.SetTitle();
-        }
-    
-        // [FILE] IS NEW - check if file is empty
-        public bool isNew()
-        {
-            return (this.FileName == "" && this.NewFile && this.SavedFile);
-        }
-         /*************************************************************************************************************************/
-       
         // [NODE] Najdenie nody podla id 
         public Node GetNodeByID(int id)
         {

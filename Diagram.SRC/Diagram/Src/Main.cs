@@ -10,9 +10,9 @@ namespace Diagram
     {
         public MainForm mainform = null; // forma na zachytvanie sprav z tcp serveru
 
-        public Parameters parameters = new Parameters();
-        public OptionsFile options = new OptionsFile();
-        public Translations translations = new Translations(); // class with translations strings
+        public ProgramOptions parameters = null;
+        public OptionsFile options = null;
+        public Translations translations = null; // class with translations strings
         public Console console = null;
 
         // ENCRYPTION FORM
@@ -230,8 +230,11 @@ namespace Diagram
 
         public Main()
         {
+            translations = new Translations();
+            parameters = new ProgramOptions();
+            options = new OptionsFile(parameters);
+            
             server = new Server(this);
-
 
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);

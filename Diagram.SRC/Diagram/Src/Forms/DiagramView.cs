@@ -1222,7 +1222,7 @@ namespace Diagram
                     {
                         if (DSave.ShowDialog() == DialogResult.OK)
                         {
-                            this.diagram.SaveFile(this.DSave.FileName);
+                            this.diagram.SaveXMLFile(this.DSave.FileName);
                             this.diagram.SetTitle();
                             close = true;
                         }
@@ -1252,7 +1252,7 @@ namespace Diagram
                     var res = MessageBox.Show(main.translations.saveBeforeExit, main.translations.confirmExit, MessageBoxButtons.YesNoCancel);
                     if (res == DialogResult.Yes)
                     {
-                        this.diagram.SaveFile(this.diagram.FileName);
+                        this.diagram.SaveXMLFile(this.diagram.FileName);
                     }
                     else if (res == DialogResult.Cancel)
                     {
@@ -2770,7 +2770,7 @@ namespace Diagram
             {
                 if (!this.diagram.SavedFile && this.diagram.FileName != "")  //treba overit ci existuje a dat dialg na ulozenie ako
                 {
-                    this.diagram.SaveFile(this.diagram.FileName);
+                    this.diagram.SaveXMLFile(this.diagram.FileName);
                     this.diagram.NewFile = false;
                     this.diagram.SavedFile = true;
                 }

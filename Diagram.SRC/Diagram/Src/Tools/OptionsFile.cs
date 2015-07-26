@@ -4,6 +4,7 @@ using System.Xml.Linq;
 using System.Xml;
 using System.IO;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace Diagram
 {
@@ -11,173 +12,98 @@ namespace Diagram
     {
 
         public String configFileDirectory = "Diagram"; // meno adresaru pre ukladanie konfiguracie
-        public String configFileName = "diagram.cfg";  
 
-        public String diagramFileExtension = "";
+#if DEBUG
+        public String configFileName = "diagram.debug.json";
+#else
+        public String configFileName = "diagram.json";  
+#endif
+
 
         public String optionsFilePath = "";
-        public String configUserDirectory = ""; 
 
+        ProgramOptions parameters = null;
 
-        public OptionsFile()
+        public OptionsFile(ProgramOptions parameters)
         {
-            string optionsFilePath = Path.GetDirectoryName(Application.ExecutablePath) + configFileName;
+            this.parameters = parameters;
 
-            if (File.Exists(optionsFilePath + configFileName))
+            this.optionsFilePath = this.getPortableConfigFilePath();
+
+            if (File.Exists(this.optionsFilePath))
             {
+
             }
             else 
             {
-                optionsFilePath = Path.GetDirectoryName(Application.ExecutablePath) + configFileName;
-            }
+                this.optionsFilePath = this.getGlobalConfigFilePath();
 
-
-        }
-
-        public void saveOptionsFile()
-        {
-        }
-
-        public void loadOptions()
-        {
-            string appPath = Path.GetDirectoryName(Application.ExecutablePath);
-            String configInLocalDirectoryPath = this.optionsFilePath = Path.Combine(appPath, configFileName);
-            string localPath = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)).FullName;
-            configUserDirectory = Path.Combine(localPath, configFileDirectory);
-            String configUserDirectoryPath = Path.Combine(configUserDirectory, configFileName);
-
-            if (File.Exists(configInLocalDirectoryPath))
-            {
-                this.optionsFilePath = Path.Combine(appPath, configFileName);
-            }
-            else 
-            { 
-                //check ci je v standardnom adresari
-                try
+                if (File.Exists(this.optionsFilePath))
                 {
-                    getOptions();
-
+                    this.loadConfigFile();
                 }
-                catch (Exception ex)
+                else
                 {
-                    Program.log.write(ex.Message);
-                }
-            }
-            openOptionsFile(this.optionsFilePath);
-        }
-
-        public void openOptionsFile(String FileName)
-        {
-            if (File.Exists(FileName)) 
-            {
-                try
-                {
-                    string xml;
-                    using (StreamReader streamReader = new StreamReader(FileName, Encoding.UTF8))
+                    if (!Directory.Exists(this.getGlobalConfigFileDirectory()))
                     {
-                        xml = streamReader.ReadToEnd();
+                        Directory.CreateDirectory(this.getGlobalConfigFileDirectory());
                     }
-                    this.setOptions(xml);
 
-                }
-                catch (System.IO.IOException ex)
-                {
-                    Program.log.write(ex.Message);
+                    this.saveConfigFile();
                 }
             }
+
+
         }
 
-        public void saveOptionsFile(String FileName)
+        private void loadConfigFile()
         {
             try
             {
-                getOptions();
-
+                string inputJSON = File.ReadAllText(this.optionsFilePath);
+                this.parameters = JsonConvert.DeserializeObject<ProgramOptions>(inputJSON);
             }
             catch (Exception ex)
             {
-                Program.log.write(ex.Message);
+                Program.log.write("loadConfigFile: " + ex.Message);
             }
         }
 
-        public void setOptions(String xmlOptions)
+        private void saveConfigFile()
         {
-
-            XmlReaderSettings xws = new XmlReaderSettings();
-            xws.CheckCharacters = false;
-
             try
             {
-                using (XmlReader xr = XmlReader.Create(new StringReader(xmlOptions), xws))
-                {
-
-                    XElement root = XElement.Load(xr);
-                    foreach (XElement diagram in root.Elements())
-                    {
-                        if (diagram.HasElements)
-                        {
-
-                            if (diagram.Name.ToString() == "option")
-                            {
-                                foreach (XElement el in diagram.Descendants())
-                                {
-                                    try
-                                    {
-                                        /*if (el.Name.ToString() == "shiftx")
-                                        {
-                                            this.shiftx = Int32.Parse(el.Value);
-                                        }*/
-
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Program.log.write(ex.Message);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                string outputJSON = JsonConvert.SerializeObject(this.parameters);
+                File.WriteAllText(this.optionsFilePath, outputJSON);
             }
             catch (Exception ex)
             {
-                Program.log.write(ex.Message);
+                Program.log.write("saveConfigFile: " + ex.Message);
             }
         }
 
+        public String getPortableConfigFilePath() {
+            return Path.Combine(
+                Path.GetDirectoryName(Application.ExecutablePath),
+                this.configFileName
+            );
 
-        public String getOptions()
+        }
+
+        private string getGlobalConfigFileDirectory()
         {
-            XElement root = new XElement("diagram");
-            try
-            {
-                // Options
-                XElement option = new XElement("option");
-                //option.Add(new XElement("shiftx", this.shiftx));
-
-                StringBuilder sb = new StringBuilder();
-                XmlWriterSettings xws = new XmlWriterSettings();
-                xws.OmitXmlDeclaration = true;
-                xws.CheckCharacters = false;
-                xws.Indent = true;
-
-                using (XmlWriter xw = XmlWriter.Create(sb, xws))
-                {
-                    root.WriteTo(xw);
-                }
-
-                return sb.ToString();
-
-            }
-            catch (Exception e)
-            {
-                Program.log.write(e.Message);
-            }
-
-
-            return "";
+            return Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                this.configFileDirectory
+            );
         }
 
-       
+        private string getGlobalConfigFilePath()
+        {
+            return Path.Combine(
+                this.getGlobalConfigFileDirectory(),
+                this.configFileName
+            );
+        }
     }
 }
