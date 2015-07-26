@@ -20,7 +20,8 @@
         public int Height = 100;
         public int WindowState = 0; // 0 nenastavene; 1 maximzlizovane; 2 normalne; 3 minimzlizovane
 
-        public Position startPosition = new Position();
+        public Position homePosition = new Position(); // diagram start position
+        public Position endPosition = new Position(); //  diagram end position seet by end key
         public int keyArrowSlowSpeed = 1;
         public int keyArrowFastSpeed = 100;
 

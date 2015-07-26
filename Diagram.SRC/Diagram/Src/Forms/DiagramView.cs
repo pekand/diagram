@@ -913,12 +913,12 @@ namespace Diagram
         // MENU Center                                                                                 
         public void centerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.CenterScreen();
+            this.GoToHome();
         }
 
         private void setStartPositionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.setCurentPositionAsStartPosition();
+            this.setCurentPositionAsHomePosition();
         }
 
         // MENU Read only
@@ -1197,8 +1197,8 @@ namespace Diagram
 
             this.inicializeNodeNamePanel();
 
-            this.shift.x = diagram.options.startPosition.x;
-            this.shift.y = diagram.options.startPosition.y;
+            this.shift.x = diagram.options.homePosition.x;
+            this.shift.y = diagram.options.homePosition.y;
         }
 
         // FORM LOAD DEBUG - nastavenie len pre debug mod
@@ -1290,8 +1290,8 @@ namespace Diagram
                 this.Text = "*" + this.Text;
         }
 
-        // FORM Center - Centrovanie obrazovky
-        public void CenterScreen()
+        // FORM go to home position - Centrovanie obrazovky
+        public void GoToHome()
         {
             if (this.LayerNode != null)
             {
@@ -1300,17 +1300,40 @@ namespace Diagram
             }
             else
             {
-                this.shift.x = diagram.options.startPosition.x;
-                this.shift.y = diagram.options.startPosition.y;
+                this.shift.x = diagram.options.homePosition.x;
+                this.shift.y = diagram.options.homePosition.y;
             }
             this.diagram.InvalidateDiagram();
         }
 
-        // FORM Center - Centrovanie obrazovky
-        public void setCurentPositionAsStartPosition()
+        // FORM set home position - Centrovanie obrazovky
+        public void setCurentPositionAsHomePosition()
         {
-            diagram.options.startPosition.x = this.shift.x;
-            diagram.options.startPosition.y = this.shift.y;
+            diagram.options.homePosition.x = this.shift.x;
+            diagram.options.homePosition.y = this.shift.y;
+        }
+
+        // FORM go to home position - Centrovanie obrazovky
+        public void GoToEnd()
+        {
+            if (this.LayerNode != null)
+            {
+                this.shift.x = -this.LayerNode.position.x + this.ClientSize.Width / 2;
+                this.shift.y = -this.LayerNode.position.y + this.ClientSize.Height / 2;
+            }
+            else
+            {
+                this.shift.x = diagram.options.endPosition.x;
+                this.shift.y = diagram.options.endPosition.y;
+            }
+            this.diagram.InvalidateDiagram();
+        }
+
+        // FORM set home position - Centrovanie obrazovky
+        public void setCurentPositionAsEndPosition()
+        {
+            diagram.options.endPosition.x = this.shift.x;
+            diagram.options.endPosition.y = this.shift.y;
         }
 
        /*************************************************************************************************************************/
@@ -2626,15 +2649,26 @@ namespace Diagram
                 this.SearchPrev();
             }
 
-            if (keyData == Keys.F4) // KEY F4 Vycentrovanie
+            if (keyData == Keys.Home) // KEY HOME Vycentrovanie
             {
-                this.CenterScreen();
+                this.GoToHome();
                 return true;
             }
 
-            if (keyData == (Keys.Shift | Keys.F4))  // [KEY] [SHIFT+F4] Move start point
+            if (keyData == (Keys.Shift | Keys.Home))  // [KEY] [SHIFT+HOME] Move start point
             {
-                this.setCurentPositionAsStartPosition();
+                this.setCurentPositionAsHomePosition();
+            }
+
+            if (keyData == Keys.End) // KEY END Vycentrovanie
+            {
+                this.GoToEnd();
+                return true;
+            }
+
+            if (keyData == (Keys.Shift | Keys.End))  // [KEY] [SHIFT+END] Move start point
+            {
+                this.setCurentPositionAsEndPosition();
             }
 
             /* 

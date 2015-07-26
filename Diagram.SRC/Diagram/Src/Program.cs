@@ -13,7 +13,7 @@ namespace Diagram
 {
     static class Program
     {
-        private static ProgramSetup aplicationSetup = new ProgramSetup(); //setup application
+        private static ProgramInit aplicationSetup = new ProgramInit(); //setup application
         public static Log log = new Log(); // debuging console for displaiing messages
         public static Main main = new Main();
         

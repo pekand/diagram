@@ -2,5 +2,6 @@ Diagram.SRC/Diagram/bin
 Diagram.SRC/Diagram/obj
 install-linux/infinite-diagram.deb
 install-linux/infinite-diagram
-install-windows/Output/
+install-windows/Output
+install-windows/files
 Documentation

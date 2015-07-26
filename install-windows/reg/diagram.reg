@@ -17,5 +17,5 @@ Windows Registry Editor Version 5.00
 [HKEY_CLASSES_ROOT\diagramfile\shell\open]
 
 [HKEY_CLASSES_ROOT\diagramfile\shell\open\command]
-@="d:\\Apps\\Diagram\\Diagram \"%1\""
+@="d:\\Programs\\Diagram\\Diagram \"%1\""
 

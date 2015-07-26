@@ -230,7 +230,6 @@ namespace Diagram
 
         public Main()
         {
-
             server = new Server(this);
 
 

@@ -292,22 +292,32 @@ namespace Diagram
                                     {
                                         if (el.Name.ToString() == "shiftx")
                                         {
-                                            this.options.startPosition.x = Int32.Parse(el.Value);
+                                            this.options.homePosition.x = Int32.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "shifty")
                                         {
-                                            this.options.startPosition.y = Int32.Parse(el.Value);
+                                            this.options.homePosition.y = Int32.Parse(el.Value);
+                                        }
+
+                                        if (el.Name.ToString() == "endPositionx")
+                                        {
+                                            this.options.endPosition.x = Int32.Parse(el.Value);
+                                        }
+
+                                        if (el.Name.ToString() == "endPositiony")
+                                        {
+                                            this.options.endPosition.y = Int32.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "startShiftX")
                                         {
-                                            options.startPosition.x = Int32.Parse(el.Value);
+                                            options.homePosition.x = Int32.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "startShiftY")
                                         {
-                                            options.startPosition.y = Int32.Parse(el.Value);
+                                            options.homePosition.y = Int32.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "layer")
@@ -645,8 +655,10 @@ namespace Diagram
             {
                 // Options
                 XElement option = new XElement("option");
-                option.Add(new XElement("shiftx", this.options.startPosition.x));
-                option.Add(new XElement("shifty", this.options.startPosition.y));
+                option.Add(new XElement("shiftx", this.options.homePosition.x));
+                option.Add(new XElement("shifty", this.options.homePosition.y));
+                option.Add(new XElement("endPositionx", this.options.endPosition.x));
+                option.Add(new XElement("endPositiony", this.options.endPosition.y));
                 option.Add(new XElement("firstLayereShift.x", this.options.firstLayereShift.x));
                 option.Add(new XElement("firstLayereShift.y", this.options.firstLayereShift.y));
                 option.Add(new XElement("layer", this.options.layer));

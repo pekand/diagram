@@ -21,11 +21,17 @@ namespace Diagram
 
         public OptionsFile()
         {
-            string appPath = Path.GetDirectoryName(Application.ExecutablePath);
+            string optionsFilePath = Path.GetDirectoryName(Application.ExecutablePath) + configFileName;
 
-            if (File.Exists(appPath + configFileName))
+            if (File.Exists(optionsFilePath + configFileName))
             {
             }
+            else 
+            {
+                optionsFilePath = Path.GetDirectoryName(Application.ExecutablePath) + configFileName;
+            }
+
+
         }
 
         public void saveOptionsFile()
