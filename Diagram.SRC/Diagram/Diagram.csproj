@@ -296,6 +296,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
-    <PreBuildEvent>echo %25DATE%25 %25TIME%25 &gt; version.txt</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
 </Project>
