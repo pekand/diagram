@@ -145,6 +145,24 @@ namespace Diagram
             }
         }
 
+        public static void runCommandAndExit(String cmd)
+        {
+
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+#if MONO
+            startInfo.FileName = "/bin/bash";
+            startInfo.Arguments = "-c " + cmd;
+#else
+            startInfo.FileName = "cmd.exe";
+            startInfo.Arguments = "/C " + cmd;
+#endif
+
+            process.StartInfo = startInfo;
+            process.Start();
+        }
+
         public static String getTextFormClipboard()
         {
             DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
@@ -160,6 +178,25 @@ namespace Diagram
         public static void runProcess(String cmd)
         {
             System.Diagnostics.Process.Start(cmd);
+        }
+
+        public static int fndLineNumber(String fileName, String search)
+        {
+            int pos = 0;
+            string line;
+            using (StreamReader file = new StreamReader(fileName))
+            {
+                while ((line = file.ReadLine()) != null)
+                {
+                    pos++;
+                    if (line.Contains(search))
+                    {
+                        return pos;
+                    }
+                }
+            }
+
+            return pos;
         }
     }
 }

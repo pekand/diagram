@@ -17,6 +17,11 @@ namespace Diagram
         [JsonIgnore]
         public String home_page = "https://pekand.com";
         public String server_default_ip = "127.0.0.1";
+#if MONO            
+        public String texteditor = "subl %FILENAME%:%LINE%";
+#else
+        public String texteditor = "c:\\Programs\\SublimeText\\sublime_text.exe %FILENAME%:%LINE%";
+#endif
 
 #if DEBUG            
         public Int32 server_default_port = 13001;

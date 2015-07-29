@@ -4768,12 +4768,101 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                    if (rec.link.Length > 0)
+                if (rec.link.Length > 0)
+                {
+                    // set current directory to current diagrm file destination
+                    if (File.Exists(this.diagram.FileName))
                     {
-                        if (File.Exists(this.diagram.FileName))
+                        Directory.SetCurrentDirectory(new FileInfo(this.diagram.FileName).DirectoryName);
+                    }
+
+                    Match matchFileOpenOnPosition = (new Regex("^([^#]+)#(.*)$")).Match(rec.link.Trim());
+
+                   
+                    //- ak je link nastaveny na "script" po dvojkliku sa vyhodnoti telo nody ako macro
+                    if (matchFileOpenOnPosition.Success && File.Exists(Path.GetFullPath(matchFileOpenOnPosition.Groups[1].Value)))       // OPEN FILE ON POSITION
+                    {
+                        try
                         {
-                            Directory.SetCurrentDirectory(new FileInfo(this.diagram.FileName).DirectoryName);
+
+                            String fileName = matchFileOpenOnPosition.Groups[1].Value;
+                            String searchString = matchFileOpenOnPosition.Groups[2].Value.Trim();
+
+                            Match matchNumber = (new Regex("^(\\d+)$")).Match(searchString);
+
+                            if (!matchNumber.Success)
+                            {
+                                searchString = Os.fndLineNumber(fileName, searchString).ToString();
+                            }
+
+                            String editFileCmd = this.main.parameters.texteditor;
+                            editFileCmd = editFileCmd.Replace("%FILENAME%", fileName);
+                            editFileCmd = editFileCmd.Replace("%LINE%", searchString);
+
+                            Program.log.write("diagram: openlink: open file on position " + editFileCmd);
+                            Os.runCommandAndExit(editFileCmd);
                         }
+                        catch (Exception ex)
+                        {
+                            Program.log.write("open link as file error: " + ex.Message);
+                        }
+                    }
+                    else if(rec.link.Trim() == "script")  // OPEN SCRIPT
+                    {
+                        // run macro
+                        Program.log.write("diagram: openlink: run macro");
+                        Script script = new Script();
+                        script.setDiagram(this.diagram);
+                        script.setDiagramView(this);
+                        script.setClipboard(clipboard);
+                        script.runScript(rec.note);
+                    }
+                    else if (Directory.Exists(rec.link))  // OPEN DIRECTORY
+                    {
+                        try
+                        {
+                            Program.log.write("diagram: openlink: open directory " + rec.link);
+                            System.Diagnostics.Process.Start(rec.link);
+                        }
+                        catch (Exception ex)
+                        {
+                            Program.log.write("open link as directory error: " + ex.Message);
+                        }
+                    }
+                    else if (File.Exists(rec.link))       // OPEN FILE
+                    {
+                        try
+                        {
+                            if (Os.isDiagram(rec.link))
+                            {
+                                Program.log.write("diagram: openlink: open diagram " + rec.link);
+                                Os.openDiagram(rec.link);
+                            }
+                            else
+                            {
+                                Program.log.write("diagram: openlink: open file " + rec.link);
+                                Os.runProcess(rec.link);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Program.log.write("open link as file error: " + ex.Message);
+                        }
+                    }
+                    else  if (Network.isURL(rec.link)) // OPEN URL
+                    {
+                        try
+                        {
+                            Program.log.write("diagram: openlink: open url " + rec.link);
+                            Network.runUrl(rec.link);
+                        }
+                        catch (Exception ex)
+                        {
+                            Program.log.write("open link as url error: " + ex.Message);
+                        }
+                    }
+                    else
+                    {   
 
                         /* 
                         [DOCUMENTATION]
@@ -4791,77 +4880,14 @@ namespace Diagram
                         cmd = cmd.Replace("%ID%", rec.id.ToString());
                         cmd = cmd.Replace("%FILENAME%", this.diagram.FileName);
 
-                        /* 
-                        [DOCUMENTATION]
-                        - ak je link nastaveny na "macro" po dvojkliku sa vyhodnoti telo nody ako macro
-                        */
-                        if (cmd.Trim() == "macro")  // OPEN MACRO
-                        {
-                            // run macro
-                            Program.log.write("diagram: openlink: run macro");
-                            Script macro = new Script();
-                            macro.setDiagram(this.diagram);
-                            macro.setDiagramView(this);
-                            macro.setClipboard(clipboard);
-                            macro.runScript(rec.note);
-                        }
-                        else
-                        if (Network.isURL(cmd)) // OPEN URL
-                        {
-                            try
-                            {
-                                Program.log.write("diagram: openlink: open url " + cmd);
-                                Network.runUrl(cmd);
-                            }
-                            catch (Exception ex)
-                            {
-                                Program.log.write("open link as url error: " + ex.Message);
-                            }
-                        }
-                        else
-                        if (Directory.Exists(Path.GetFullPath(cmd)))  // OPEN DIRECTORY
-                        {
-                            try
-                            {
-                                Program.log.write("diagram: openlink: open directory " + cmd);
-                                System.Diagnostics.Process.Start(cmd);
-                            }
-                            catch (Exception ex)
-                            {
-                                Program.log.write("open link as directory error: " + ex.Message);
-                            }
-                        }
-                        else
-                        if (File.Exists(Path.GetFullPath(cmd)))       // OPEN FILE
-                        {
-                            try
-                            {
-                                if (Os.isDiagram(cmd))
-                                {
-                                    Program.log.write("diagram: openlink: open diagram " + cmd);
-                                    Os.openDiagram(cmd);
-                                }
-                                else
-                                {
-                                    Program.log.write("diagram: openlink: open file " + cmd);
-                                    Os.runProcess(cmd);
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Program.log.write("open link as file error: " + ex.Message);
-                            }
-                        }
-                        else // RUN COMMAND 
-                        {
-                            Program.log.write("diagram: openlink: run command: " + cmd);
-                            Os.runCommand(cmd, Os.getFileDirectory(this.diagram.FileName));
-                        }
+                        Program.log.write("diagram: openlink: run command: " + cmd);
+                        Os.runCommand(cmd, Os.getFileDirectory(this.diagram.FileName)); // RUN COMMAND 
                     }
-                    else // EDIT NODE    
-                    {
-                        return 1;
-                    }
+                }
+                else // EDIT NODE    
+                {
+                    return 1;
+                }
             }
             return 0;
         }
