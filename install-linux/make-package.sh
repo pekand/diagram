@@ -49,7 +49,7 @@ sudo cp ../Diagram.SRC/Diagram/bin/Release/Microsoft.Dynamic.dll ./infinite-diag
 sudo cp ../Diagram.SRC/Diagram/bin/Release/Microsoft.Scripting.AspNet.dll ./infinite-diagram/usr/lib/infinite-diagram/
 sudo cp ../Diagram.SRC/Diagram/bin/Release/Microsoft.Scripting.dll ./infinite-diagram/usr/lib/infinite-diagram/
 sudo cp ../Diagram.SRC/Diagram/bin/Release/Microsoft.Scripting.Metadata.dll ./infinite-diagram/usr/lib/infinite-diagram/
-#sudo cp ../Diagram.SRC/Diagram/bin/Release/ScintillaNET.dll ./infinite-diagram/usr/lib/infinite-diagram/
+sudo cp ../Diagram.SRC/Diagram/bin/Release/Newtonsoft.Json.dll ./infinite-diagram/usr/lib/infinite-diagram/
 sudo cp ../Diagram.SRC/Diagram/bin/Release/NCalc.dll ./infinite-diagram/usr/lib/infinite-diagram/
 
 
