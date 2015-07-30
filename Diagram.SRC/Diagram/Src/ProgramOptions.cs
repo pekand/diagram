@@ -18,7 +18,7 @@ namespace Diagram
         public String home_page = "https://pekand.com";
         public String server_default_ip = "127.0.0.1";
 #if MONO            
-        public String texteditor = "subl %FILENAME%:%LINE%";
+        public String texteditor = "'subl %FILENAME%:%LINE%'";
 #else
         public String texteditor = "c:\\Programs\\SublimeText\\sublime_text.exe %FILENAME%:%LINE%";
 #endif
