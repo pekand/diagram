@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.IO;
 
 namespace Diagram
 {
@@ -43,6 +43,19 @@ namespace Diagram
         {
             log = "";
             this.write("Log clear");
+        }
+
+        // save  current log to file
+        // for example crash log
+        public void saveLogToFile(string logPath = "")
+        {
+            if (logPath == "") {
+                string tempDir = System.IO.Path.GetTempPath();
+                string tempFile = "infinite-diagram-crash-log.txt";
+                logPath = Path.Combine(tempDir, tempFile);
+            }
+
+            File.WriteAllText(logPath, this.log);
         }
     }
 }

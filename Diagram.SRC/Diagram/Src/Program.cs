@@ -15,16 +15,24 @@ namespace Diagram
     {
         private static ProgramInit aplicationSetup = new ProgramInit(); //setup application
         public static Log log = new Log(); // debuging console for displaiing messages
-        public static Main main = new Main();
+        public static Main main = null;
         
         [STAThread]
         [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain)]
         static void Main()
         {
-            if (main.mainform != null) {
+            try
+            {
+                main = new Main();
                 Application.Run(main.mainform);
+                Application.Exit();
+
             }
-            Application.Exit();
+            catch (Exception e) {
+                log.write("Application crash: message:" + e.Message);
+                log.saveLogToFile();
+                System.Environment.Exit(1);
+            }
         }
     }
 }

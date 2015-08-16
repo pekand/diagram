@@ -153,15 +153,6 @@ namespace Diagram
 
         }
 
-        public void GlobalExceptionHandler(object sender, UnhandledExceptionEventArgs args)
-        {
-            // example throw exception
-            // throw new ApplicationException("Exception");
-            Exception e = (Exception)args.ExceptionObject;
-            Program.log.write("GlobalExceptionHandler: " + e.Message);
-            MessageBox.Show("GlobalExceptionHandler: " + e.Message);
-        }
-
         public void ParseCommandLineArguments(string[] args)
         {
             // [PARSE] [COMMAND LINE] prejdenie parametrov z konzoli
@@ -235,9 +226,6 @@ namespace Diagram
             options = new OptionsFile(parameters);
             
             server = new Server(this);
-
-            AppDomain currentDomain = AppDomain.CurrentDomain;
-            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
 
             Program.log.write("Program: Main (version:" + parameters.ApplicationVersion + ")");
 
