@@ -4796,7 +4796,7 @@ namespace Diagram
                             }
 
                             String editFileCmd = this.main.parameters.texteditor;
-                            editFileCmd = editFileCmd.Replace("%FILENAME%", fileName);
+                            editFileCmd = editFileCmd.Replace("%FILENAME%", Path.GetFullPath(fileName));
                             editFileCmd = editFileCmd.Replace("%LINE%", searchString);
 
                             Program.log.write("diagram: openlink: open file on position " + editFileCmd);

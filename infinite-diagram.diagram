@@ -2,13 +2,22 @@
   <option>
     <shiftx>-7377</shiftx>
     <shifty>12</shifty>
+    <endPositionx>0</endPositionx>
+    <endPositiony>0</endPositiony>
     <firstLayereShift.x>0</firstLayereShift.x>
     <firstLayereShift.y>0</firstLayereShift.y>
     <layer>0</layer>
     <diagramreadonly>false</diagramreadonly>
     <grid>true</grid>
     <borders>false</borders>
-    <defaultfont>DejaVu Sans, 10pt</defaultfont>
+    <defaultfont type="font">
+      <name>Microsoft Sans Serif</name>
+      <size>10</size>
+      <bold>false</bold>
+      <italic>false</italic>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+    </defaultfont>
     <coordinates>false</coordinates>
     <window.position.x>0</window.position.x>
     <window.position.y>0</window.position.y>
@@ -19,7 +28,6 @@
   <rectangles>
     <rectangle>
       <id>2</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-4022</x>
@@ -30,7 +38,6 @@
     </rectangle>
     <rectangle>
       <id>4</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>2015-03-09 09:40:59</text>
       <layer>0</layer>
@@ -42,7 +49,6 @@
     </rectangle>
     <rectangle>
       <id>5</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-3837</x>
@@ -53,7 +59,6 @@
     </rectangle>
     <rectangle>
       <id>6</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>vyriesit okienko v linuxe</text>
       <layer>0</layer>
@@ -65,7 +70,6 @@
     </rectangle>
     <rectangle>
       <id>7</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-3693</x>
@@ -76,7 +80,6 @@
     </rectangle>
     <rectangle>
       <id>10</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>calculation fix</text>
       <layer>0</layer>
@@ -88,7 +91,6 @@
     </rectangle>
     <rectangle>
       <id>11</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>premiestnit ho</text>
       <layer>0</layer>
@@ -100,7 +102,6 @@
     </rectangle>
     <rectangle>
       <id>12</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>pregenerovanie velkosti okienok pri spusteni</text>
       <layer>0</layer>
@@ -112,7 +113,6 @@
     </rectangle>
     <rectangle>
       <id>13</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>undo</text>
       <layer>0</layer>
@@ -124,7 +124,6 @@
     </rectangle>
     <rectangle>
       <id>14</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>popup</text>
       <layer>0</layer>
@@ -136,7 +135,6 @@
     </rectangle>
     <rectangle>
       <id>16</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>drop image dialog ebend</text>
       <layer>0</layer>
@@ -148,7 +146,6 @@
     </rectangle>
     <rectangle>
       <id>17</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>f4 switch position bookmark</text>
       <layer>0</layer>
@@ -160,7 +157,6 @@
     </rectangle>
     <rectangle>
       <id>18</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>esc nezrusi nodu pri pisani novej nody</text>
       <layer>0</layer>
@@ -172,7 +168,6 @@
     </rectangle>
     <rectangle>
       <id>19</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>open file and focus existing file</text>
       <layer>0</layer>
@@ -184,7 +179,6 @@
     </rectangle>
     <rectangle>
       <id>20</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>touch ~/Templates/Turbo\ diagram.diagram</text>
       <layer>0</layer>
@@ -196,7 +190,6 @@
     </rectangle>
     <rectangle>
       <id>21</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>2015-03-10 21:09:47</text>
       <layer>0</layer>
@@ -208,7 +201,6 @@
     </rectangle>
     <rectangle>
       <id>22</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-3433</x>
@@ -219,7 +211,6 @@
     </rectangle>
     <rectangle>
       <id>23</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>https://help.ubuntu.com/community/CreateAuthenticatedRepository</text>
       <link>https://help.ubuntu.com/community/CreateAuthenticatedRepository</link>
@@ -232,7 +223,6 @@
     </rectangle>
     <rectangle>
       <id>24</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>ubuntu repository create</text>
       <layer>0</layer>
@@ -244,7 +234,6 @@
     </rectangle>
     <rectangle>
       <id>25</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-3196</x>
@@ -255,7 +244,6 @@
     </rectangle>
     <rectangle>
       <id>26</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>How to make my own local repository? - Ask Ubuntu</text>
       <link>http://askubuntu.com/questions/170348/how-to-make-my-own-local-repository</link>
@@ -268,7 +256,6 @@
     </rectangle>
     <rectangle>
       <id>29</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>aby sa zachovala velkost</text>
       <layer>0</layer>
@@ -280,7 +267,6 @@
     </rectangle>
     <rectangle>
       <id>30</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>spravit posuvatelny start point</text>
       <layer>0</layer>
@@ -292,7 +278,6 @@
     </rectangle>
     <rectangle>
       <id>31</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>node name escape nezmaze nodu</text>
       <layer>0</layer>
@@ -304,7 +289,6 @@
     </rectangle>
     <rectangle>
       <id>32</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>ak sa posuva pozadie musi sa posuvat aj textova noda 
 alebo zakazat posuvanie pri pisani</text>
@@ -317,7 +301,6 @@ alebo zakazat posuvanie pri pisani</text>
     </rectangle>
     <rectangle>
       <id>33</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-2708</x>
@@ -328,7 +311,6 @@ alebo zakazat posuvanie pri pisani</text>
     </rectangle>
     <rectangle>
       <id>35</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>14435</x>
@@ -340,7 +322,6 @@ alebo zakazat posuvanie pri pisani</text>
     </rectangle>
     <rectangle>
       <id>36</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>font default</text>
       <layer>0</layer>
@@ -352,7 +333,6 @@ alebo zakazat posuvanie pri pisani</text>
     </rectangle>
     <rectangle>
       <id>37</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>otestovat v linuxe</text>
       <layer>0</layer>
@@ -364,7 +344,6 @@ alebo zakazat posuvanie pri pisani</text>
     </rectangle>
     <rectangle>
       <id>38</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>nainstalovat z repozitaru</text>
       <layer>0</layer>
@@ -376,7 +355,6 @@ alebo zakazat posuvanie pri pisani</text>
     </rectangle>
     <rectangle>
       <id>39</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>2015-03-29 21:23:33</text>
       <layer>0</layer>
@@ -388,7 +366,6 @@ alebo zakazat posuvanie pri pisani</text>
     </rectangle>
     <rectangle>
       <id>40</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-2920</x>
@@ -399,7 +376,6 @@ alebo zakazat posuvanie pri pisani</text>
     </rectangle>
     <rectangle>
       <id>41</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>spravit zobrazovanie skratiek v popup menu</text>
       <layer>0</layer>
@@ -411,7 +387,6 @@ alebo zakazat posuvanie pri pisani</text>
     </rectangle>
     <rectangle>
       <id>43</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>command line generovanie diagramu</text>
       <layer>0</layer>
@@ -423,7 +398,6 @@ alebo zakazat posuvanie pri pisani</text>
     </rectangle>
     <rectangle>
       <id>44</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>ukladat konfig do suboru pre viacere vievi do suboru</text>
       <layer>0</layer>
@@ -435,7 +409,6 @@ alebo zakazat posuvanie pri pisani</text>
     </rectangle>
     <rectangle>
       <id>46</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>diagram &gt; command line &gt; import xml diagram</text>
       <layer>0</layer>
@@ -447,7 +420,6 @@ alebo zakazat posuvanie pri pisani</text>
     </rectangle>
     <rectangle>
       <id>47</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>colorpicker</text>
       <layer>0</layer>
@@ -459,7 +431,6 @@ alebo zakazat posuvanie pri pisani</text>
     </rectangle>
     <rectangle>
       <id>48</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>diagram
 do options pridany reset fontu
@@ -473,7 +444,6 @@ prejde vsetky nody a nastavi im defaultny font</text>
     </rectangle>
     <rectangle>
       <id>49</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>vyhladavanie pomocou skratiek</text>
       <layer>0</layer>
@@ -485,7 +455,6 @@ prejde vsetky nody a nastavi im defaultny font</text>
     </rectangle>
     <rectangle>
       <id>50</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>Infinite diagram</text>
       <layer>0</layer>
@@ -497,7 +466,6 @@ prejde vsetky nody a nastavi im defaultny font</text>
     </rectangle>
     <rectangle>
       <id>51</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>program premenovany</text>
       <layer>0</layer>
@@ -509,7 +477,6 @@ prejde vsetky nody a nastavi im defaultny font</text>
     </rectangle>
     <rectangle>
       <id>52</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-2201</x>
@@ -520,7 +487,6 @@ prejde vsetky nody a nastavi im defaultny font</text>
     </rectangle>
     <rectangle>
       <id>53</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>svn://pekand.com/diagram</text>
       <link>svn://pekand.com/diagram</link>
@@ -533,7 +499,6 @@ prejde vsetky nody a nastavi im defaultny font</text>
     </rectangle>
     <rectangle>
       <id>54</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>svn://pekand.com/pm</text>
       <link>svn://pekand.com/pm</link>
@@ -546,7 +511,6 @@ prejde vsetky nody a nastavi im defaultny font</text>
     </rectangle>
     <rectangle>
       <id>55</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>svn://pekand.com/grep</text>
       <link>svn://pekand.com/grep</link>
@@ -559,7 +523,6 @@ prejde vsetky nody a nastavi im defaultny font</text>
     </rectangle>
     <rectangle>
       <id>56</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>sudo apt-get install subversion </text>
       <layer>0</layer>
@@ -571,7 +534,6 @@ prejde vsetky nody a nastavi im defaultny font</text>
     </rectangle>
     <rectangle>
       <id>57</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>svn checkout svn://pekand.com/diagram
 </text>
@@ -584,7 +546,6 @@ prejde vsetky nody a nastavi im defaultny font</text>
     </rectangle>
     <rectangle>
       <id>58</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>startx</text>
       <layer>0</layer>
@@ -596,7 +557,6 @@ prejde vsetky nody a nastavi im defaultny font</text>
     </rectangle>
     <rectangle>
       <id>59</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>problem s pt vo windowse moze byt aj dessatinna velkost</text>
       <layer>0</layer>
@@ -608,7 +568,6 @@ prejde vsetky nody a nastavi im defaultny font</text>
     </rectangle>
     <rectangle>
       <id>60</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>bude treba spravit preratanie aby stredy ostali na svojej pozicii</text>
       <layer>0</layer>
@@ -620,7 +579,6 @@ prejde vsetky nody a nastavi im defaultny font</text>
     </rectangle>
     <rectangle>
       <id>61</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>vyfarbovanie ciar ktore su oznacene</text>
       <layer>0</layer>
@@ -632,7 +590,6 @@ prejde vsetky nody a nastavi im defaultny font</text>
     </rectangle>
     <rectangle>
       <id>62</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>#!/bin/bash
 
@@ -650,7 +607,6 @@ fi</text>
     </rectangle>
     <rectangle>
       <id>63</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>                /*pyScope.SetVariable("logxxx", Program.log);*/
                 //dynamic proxy = new ExpandoObject();
@@ -666,7 +622,6 @@ fi</text>
     </rectangle>
     <rectangle>
       <id>64</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>scripts</text>
       <layer>0</layer>
@@ -678,7 +633,6 @@ fi</text>
     </rectangle>
     <rectangle>
       <id>65</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-874</x>
@@ -689,7 +643,6 @@ fi</text>
     </rectangle>
     <rectangle>
       <id>74</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>python test</text>
       <layer>0</layer>
@@ -701,7 +654,6 @@ fi</text>
     </rectangle>
     <rectangle>
       <id>84</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>timer
 zrusit bech skriptu po 30sekundach</text>
@@ -714,7 +666,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>85</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>Timer Constructor (TimerCallback, Object, Int32, Int32) (System.Threading)</text>
       <link>https://msdn.microsoft.com/en-us/library/2x96zfy7%28v=vs.110%29.aspx</link>
@@ -727,7 +678,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>86</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>            /*Timer myTimer = new Timer();
             myTimer.Interval = (10) * (1000);
@@ -755,7 +705,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>87</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>        /*public void StopOpenLink(object sender, EventArgs e, System.Windows.Forms.Timer t, Thread thread)
         {
@@ -774,7 +723,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>88</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>
                 System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
@@ -790,7 +738,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>89</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>        public void StopOpenLink(object sender, EventArgs e, System.Windows.Forms.Timer t, Thread thread)
         {
@@ -809,7 +756,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>90</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>                Thread thread = new Thread(() =&gt;
                 {
@@ -840,7 +786,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>91</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>font sa zle zobrazuje na linuxe</text>
       <layer>0</layer>
@@ -852,7 +797,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>92</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>nepodporuje desatinnu cast</text>
       <layer>0</layer>
@@ -864,7 +808,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>93</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>rozdelit font v xml </text>
       <layer>0</layer>
@@ -876,7 +819,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>94</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>skontrolovat n linuxe ci velkost nieje desatinna</text>
       <layer>0</layer>
@@ -888,7 +830,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>95</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>Diagram.2010.sln</text>
       <link>./Diagram.SRC/Diagram.2010.sln</link>
@@ -901,7 +842,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>96</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>Diagram.2012.sln</text>
       <link>./Diagram.SRC/Diagram.2012.sln</link>
@@ -914,7 +854,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>97</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>Diagram.Mono.sln</text>
       <link>./Diagram.SRC/Diagram.Mono.sln</link>
@@ -927,7 +866,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>98</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>Diagram.Mono.sln</text>
       <link>./Diagram.SRC/Diagram.Mono.sln</link>
@@ -940,7 +878,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>99</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>pridat casovac na automaticke ukladanie</text>
       <layer>0</layer>
@@ -952,7 +889,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>100</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>spravit prepajanie novej nody tabom</text>
       <layer>0</layer>
@@ -964,7 +900,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>101</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>880</x>
@@ -975,7 +910,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>102</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>2015-04-14 22:32:03</text>
       <layer>0</layer>
@@ -987,7 +921,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>103</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>745</x>
@@ -998,7 +931,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>104</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>zmena centralneho bonu na aktualnu poziciu</text>
       <layer>0</layer>
@@ -1010,7 +942,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>105</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>1094</x>
@@ -1021,7 +952,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>106</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>prerobit na position class co sa da</text>
       <layer>0</layer>
@@ -1033,7 +963,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>107</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>TODO</text>
       <layer>0</layer>
@@ -1045,7 +974,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>111</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>nebude len na nete bude zoznam skratiek</text>
       <layer>0</layer>
@@ -1057,7 +985,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>113</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>Infinite diagram</text>
       <layer>0</layer>
@@ -1069,7 +996,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>114</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-1679</x>
@@ -1080,7 +1006,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>115</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-1278</x>
@@ -1091,7 +1016,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>119</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>novy thread a ten treba zavolat abort</text>
       <layer>0</layer>
@@ -1103,7 +1027,6 @@ zrusit bech skriptu po 30sekundach</text>
     </rectangle>
     <rectangle>
       <id>120</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>import clr
 import System
@@ -1117,7 +1040,6 @@ Tools.log("test")</text>
     </rectangle>
     <rectangle>
       <id>121</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>import clr
 import System
@@ -1131,7 +1053,6 @@ Logxxx.write('xxx')</text>
     </rectangle>
     <rectangle>
       <id>122</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>import clr
 import System
@@ -1145,7 +1066,6 @@ Tools.getTextFromClipboard()</text>
     </rectangle>
     <rectangle>
       <id>123</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>import clr
 import System
@@ -1159,7 +1079,6 @@ Tools.log(Tools.getTextFromClipboard())</text>
     </rectangle>
     <rectangle>
       <id>124</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>import clr
 import System
@@ -1185,7 +1104,6 @@ Tools.log("xxx"+getText())</text>
     </rectangle>
     <rectangle>
       <id>125</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>import clr
 import System
@@ -1200,7 +1118,6 @@ Tools.log("xxx"+Script.getClipboard())</text>
     </rectangle>
     <rectangle>
       <id>126</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>import clr
 import System
@@ -1214,7 +1131,6 @@ Diagram.CloseDiagram()</text>
     </rectangle>
     <rectangle>
       <id>127</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>import clr
 import System
@@ -1228,7 +1144,6 @@ Diagram.ResetFont()</text>
     </rectangle>
     <rectangle>
       <id>128</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>import time
 
@@ -1266,7 +1181,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>132</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-840</x>
@@ -1278,7 +1192,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>133</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-648</x>
@@ -1290,7 +1203,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>134</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-1152</x>
@@ -1302,7 +1214,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>135</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-974</x>
@@ -1314,7 +1225,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>136</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>344</x>
@@ -1325,7 +1235,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>145</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>open problem on ubuntu</text>
       <layer>0</layer>
@@ -1337,7 +1246,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>146</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>treba to otestovat</text>
       <layer>0</layer>
@@ -1349,7 +1257,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>147</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>options pridat definiciu farieb</text>
       <layer>0</layer>
@@ -1361,7 +1268,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>148</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>ukladanie do suboru</text>
       <layer>0</layer>
@@ -1373,7 +1279,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>149</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>spravit univerzalnejsi sposob na nacitavanie xml suborov</text>
       <layer>0</layer>
@@ -1385,7 +1290,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>150</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>pole name.name a hodnota string</text>
       <layer>0</layer>
@@ -1397,7 +1301,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>151</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>ukladanie to preparsuje a vytvori strukturu</text>
       <layer>0</layer>
@@ -1409,7 +1312,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>152</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>ak je meno rovnake ide o pole</text>
       <layer>0</layer>
@@ -1421,7 +1323,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>153</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>8568</x>
@@ -1432,7 +1333,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>154</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>8622</x>
@@ -1443,7 +1343,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>155</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>8586</x>
@@ -1454,7 +1353,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>156</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>Palleta</text>
       <layer>0</layer>
@@ -1466,7 +1364,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>157</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>8644</x>
@@ -1477,7 +1374,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>158</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>8636</x>
@@ -1488,7 +1384,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>159</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>1664</x>
@@ -1499,7 +1394,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>160</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>ma pole atributov</text>
       <layer>0</layer>
@@ -1511,7 +1405,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>161</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>string a hodnota</text>
       <layer>0</layer>
@@ -1523,7 +1416,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>162</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>zrychlovanie posuvania pomocou sipiek</text>
       <layer>0</layer>
@@ -1535,7 +1427,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>163</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>2336</x>
@@ -1546,7 +1437,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>164</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>vyriesene zvacsenym rychlosti</text>
       <layer>0</layer>
@@ -1558,7 +1448,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>165</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>directory name z linku nefunguje</text>
       <layer>0</layer>
@@ -1570,7 +1459,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>166</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>2721</x>
@@ -1581,7 +1469,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>167</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>vyriesit ratnie vyrazov</text>
       <layer>0</layer>
@@ -1593,7 +1480,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>168</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>implementovst ncslc</text>
       <layer>0</layer>
@@ -1605,7 +1491,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>170</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>NCalc - Mathematical Expressions Evaluator for .NET - Home</text>
       <link>http://ncalc.codeplex.com/</link>
@@ -1618,7 +1503,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>171</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>3000</x>
@@ -1629,7 +1513,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>172</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>3503</x>
@@ -1641,7 +1524,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>174</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>2015-04-27 21:33:46</text>
       <layer>0</layer>
@@ -1653,7 +1535,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>175</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>opravit shift x po starte ma nespravnu hodnotu</text>
       <layer>0</layer>
@@ -1665,7 +1546,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>176</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>3860</x>
@@ -1676,7 +1556,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>177</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>preco padaju url wo windowse</text>
       <layer>0</layer>
@@ -1688,7 +1567,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>178</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>diagram</text>
       <layer>0</layer>
@@ -1700,7 +1578,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>179</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>4329</x>
@@ -1711,7 +1588,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>180</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>pridat version.txt do mono</text>
       <layer>0</layer>
@@ -1723,7 +1599,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>181</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>4603</x>
@@ -1734,7 +1609,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>182</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>echo "Today is $(date)"</text>
       <layer>0</layer>
@@ -1746,7 +1620,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>184</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>url preco krasne</text>
       <layer>0</layer>
@@ -1758,7 +1631,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>185</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>4900</x>
@@ -1769,7 +1641,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>186</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>windows</text>
       <layer>0</layer>
@@ -1781,7 +1652,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>187</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>8560</x>
@@ -1792,7 +1662,6 @@ Tools.log("step")</text>
     </rectangle>
     <rectangle>
       <id>188</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>from System.IO import Directory, Path
 
@@ -1814,7 +1683,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>189</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>5208</x>
@@ -1825,7 +1693,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>191</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>updatnut visual studio 2012</text>
       <layer>0</layer>
@@ -1837,7 +1704,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>192</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>5625</x>
@@ -1848,7 +1714,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>193</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>problem s password oknom</text>
       <layer>0</layer>
@@ -1860,7 +1725,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>194</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>BUG</text>
       <layer>0</layer>
@@ -1872,7 +1736,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>195</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-3952</x>
@@ -1883,7 +1746,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>196</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>stop script thread</text>
       <layer>0</layer>
@@ -1895,7 +1757,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>197</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>-18</x>
@@ -1906,7 +1767,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>198</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>script example</text>
       <layer>0</layer>
@@ -1918,7 +1778,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>199</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>5849</x>
@@ -1929,7 +1788,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>200</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>5849</x>
@@ -1941,7 +1799,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>201</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>5849</x>
@@ -1953,7 +1810,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>202</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>5849</x>
@@ -1965,7 +1821,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>203</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>5849</x>
@@ -1977,7 +1832,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>204</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>6686</x>
@@ -1988,7 +1842,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>205</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>6980</x>
@@ -1999,7 +1852,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>206</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>component</text>
       <layer>0</layer>
@@ -2011,7 +1863,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>208</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>7350</x>
@@ -2022,7 +1873,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>209</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>reset fontu len oznacenim nodam ak su oznacene nejake</text>
       <layer>0</layer>
@@ -2034,7 +1884,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>210</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>component</text>
       <layer>0</layer>
@@ -2046,7 +1895,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>211</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>7774</x>
@@ -2058,7 +1906,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>212</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>7774</x>
@@ -2070,7 +1917,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>213</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>7774</x>
@@ -2082,7 +1928,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>214</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>7774</x>
@@ -2094,7 +1939,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>215</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>7774</x>
@@ -2106,7 +1950,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>216</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>7774</x>
@@ -2118,7 +1961,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>217</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>7774</x>
@@ -2130,7 +1972,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>218</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>7774</x>
@@ -2142,7 +1983,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>219</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>7774</x>
@@ -2154,7 +1994,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>220</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>7774</x>
@@ -2166,7 +2005,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>221</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>7774</x>
@@ -2178,7 +2016,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>222</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>7774</x>
@@ -2190,7 +2027,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>223</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>7774</x>
@@ -2201,7 +2037,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>224</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>2015-05-04 13:01:39</text>
       <layer>0</layer>
@@ -2213,7 +2048,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>225</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>7634</x>
@@ -2224,7 +2058,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>226</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>pridat dialog na image transformation</text>
       <layer>0</layer>
@@ -2236,7 +2069,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>227</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>8358</x>
@@ -2247,7 +2079,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>228</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>zmensenie a zvacsenie</text>
       <layer>0</layer>
@@ -2259,7 +2090,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>229</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>rotacia</text>
       <layer>0</layer>
@@ -2271,7 +2101,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>230</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>vyhladavanie spat nefunguje spravne</text>
       <layer>0</layer>
@@ -2283,7 +2112,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>231</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>8797</x>
@@ -2294,7 +2122,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>232</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>vyhladavanie podla vzdialenosti</text>
       <layer>0</layer>
@@ -2306,7 +2133,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>233</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>9151</x>
@@ -2317,7 +2143,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>236</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>zla asociacia mime typov</text>
       <layer>0</layer>
@@ -2329,7 +2154,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>237</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>shortcut</text>
       <layer>0</layer>
@@ -2341,7 +2165,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>238</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>key</text>
       <layer>0</layer>
@@ -2353,7 +2176,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>239</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>key to shortcut </text>
       <layer>0</layer>
@@ -2365,7 +2187,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>240</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>to string</text>
       <layer>0</layer>
@@ -2377,7 +2198,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>241</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>from string</text>
       <layer>0</layer>
@@ -2389,7 +2209,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>242</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>shortcut class</text>
       <layer>0</layer>
@@ -2401,7 +2220,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>243</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>name</text>
       <layer>0</layer>
@@ -2413,7 +2231,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>244</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>get default</text>
       <layer>0</layer>
@@ -2425,7 +2242,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>245</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>save to options</text>
       <layer>0</layer>
@@ -2437,7 +2253,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>246</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>remap</text>
       <layer>0</layer>
@@ -2449,7 +2264,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>247</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <text>xml</text>
       <layer>0</layer>
@@ -2461,7 +2275,6 @@ f.close()</text>
     </rectangle>
     <rectangle>
       <id>249</id>
-      <font>DejaVu Sans, 10pt</font>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>9529</x>
@@ -2469,6 +2282,60 @@ f.close()</text>
       <color>#FFFFB8</color>
       <timecreate>2015-5-5 10:08:25</timecreate>
       <timemodify>2015-5-5 10:08:25</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>252</id>
+      <fontcolor>Black</fontcolor>
+      <text>2015-08-23 22:31:27</text>
+      <layer>0</layer>
+      <x>10613</x>
+      <y>-8</y>
+      <color>#8AC5FF</color>
+      <timecreate>2015-8-23 22:31:27</timecreate>
+      <timemodify>2015-8-23 22:31:27</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>253</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>10678</x>
+      <y>194</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-8-23 22:31:29</timecreate>
+      <timemodify>2015-8-23 22:31:29</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>254</id>
+      <fontcolor>Black</fontcolor>
+      <text>zmapovat diagram</text>
+      <layer>0</layer>
+      <x>10993</x>
+      <y>288</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-8-23 22:31:37</timecreate>
+      <timemodify>2015-8-23 22:31:37</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>255</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>11051</x>
+      <y>196</y>
+      <color>#FFFFB8</color>
+      <timecreate>2015-8-23 22:31:40</timecreate>
+      <timemodify>2015-8-23 22:31:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>256</id>
+      <fontcolor>Black</fontcolor>
+      <text>diagram.map.diagram</text>
+      <link>.\diagram.map.diagram</link>
+      <layer>0</layer>
+      <x>10871</x>
+      <y>351</y>
+      <color>#D9CCFF</color>
+      <timecreate>2015-8-23 22:32:01</timecreate>
+      <timemodify>2015-8-23 22:32:01</timemodify>
     </rectangle>
   </rectangles>
   <lines>
@@ -3240,6 +3107,21 @@ f.close()</text>
     <line>
       <start>249</start>
       <end>237</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>253</start>
+      <end>252</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>255</start>
+      <end>254</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>256</start>
+      <end>254</end>
       <arrow>0</arrow>
     </line>
   </lines>

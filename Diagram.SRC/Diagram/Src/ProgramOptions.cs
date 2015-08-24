@@ -20,7 +20,7 @@ namespace Diagram
 #if MONO            
         public String texteditor = "'subl %FILENAME%:%LINE%'";
 #else
-        public String texteditor = "c:\\Programs\\SublimeText\\sublime_text.exe %FILENAME%:%LINE%";
+        public String texteditor = "\"c:\\Program Files\\Sublime Text 3\\sublime_text.exe\" \"%FILENAME%\":%LINE%";
 #endif
 
 #if DEBUG            

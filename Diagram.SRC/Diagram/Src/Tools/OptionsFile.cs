@@ -60,6 +60,7 @@ namespace Diagram
         {
             try
             {
+                Program.log.write("loadConfigFile: path:" + this.optionsFilePath);
                 string inputJSON = File.ReadAllText(this.optionsFilePath);
                 this.parameters = JsonConvert.DeserializeObject<ProgramOptions>(inputJSON);
             }
