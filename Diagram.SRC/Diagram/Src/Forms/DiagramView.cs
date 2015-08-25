@@ -2604,6 +2604,59 @@ namespace Diagram
                 return true;
             }
 
+            if (keyData == (Keys.Control | Keys.P)) // [KEY] [CTRL+P] Promote node
+            {
+                if (this.SelectedNodes.Count() == 1)
+                {
+                    Point ptCursor = Cursor.Position;
+                    ptCursor = PointToClient(ptCursor);
+                    Node selectedNode = this.SelectedNodes[0];
+                    Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
+                    newrec.copyNode(selectedNode, true, true);
+
+                    string expression = newrec.text;
+                    string[] days = { "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" };
+                    int dayPosition = Array.IndexOf(days, newrec.text);
+
+                    var matchesFloat = Regex.Matches(expression, @"(\d+(?:\.\d+)?)");
+                    var matchesDate = Regex.Matches(expression, @"^(\d{4}-\d{2}-\d{2})$");
+
+                    if (dayPosition != -1) { //get next day 
+                        dayPosition += 1;
+                        if (dayPosition == 7) {
+                            dayPosition = 0;
+                        }
+
+                        newrec.text = days[dayPosition];
+                    }
+                    else if (matchesDate.Count > 0) // add day to date
+                    {
+                        DateTime theDate;
+                        DateTime.TryParseExact(expression, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out theDate);
+                        theDate = theDate.AddDays(1);
+                        string dateValue = matchesFloat[0].Groups[1].Value;
+                        string newnDateValue = String.Format("{0:yyyy-MM-dd}", theDate);
+                        newrec.text = newnDateValue;
+                    }
+                    else if (matchesFloat.Count > 0) //add to number 
+                    {
+                        string number = matchesFloat[0].Groups[1].Value;
+                        string newnumber = (float.Parse(number) + 1).ToString();
+                        newrec.text = expression.Replace(number, newnumber);
+                    }
+
+
+                    SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
+                    newrec.width = (int)s.Width;
+                    newrec.height = (int)s.Height;
+
+                    this.diagram.InvalidateDiagram();
+                    return true;
+
+                }
+                return true;
+            }
+
             if (keyData == Keys.F3) // [KEY] [F3] Hide background
             {
 

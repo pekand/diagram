@@ -43,5 +43,34 @@ namespace Diagram
 
         //Script
         public string scriptid = ""; // oznacenie 
+
+        public void copyNode(Node node, bool skipPosition = false, bool skipSize = false) {
+            this.font = node.font;
+            this.fontcolor = node.fontcolor;
+            this.text = node.text;
+            this.note = node.note;
+            this.link = node.link;
+            this.shortcut = node.shortcut;
+
+            if (!skipPosition)
+            {
+                this.position = node.position;
+            }
+
+            if (!skipSize)
+            {
+                this.width = node.width;
+                this.height = node.height;
+            }
+
+            this.color = node.color;
+            this.transparent = node.transparent;
+            this.isimage = node.isimage;
+            this.embeddedimage = node.embeddedimage;
+            this.imagepath = node.imagepath;
+            this.image = node.image;
+            this.iwidth = node.iwidth;
+            this.iheight = node.iheight;
+        }
     }
 }
