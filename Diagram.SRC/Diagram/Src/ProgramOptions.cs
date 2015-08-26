@@ -11,19 +11,19 @@ namespace Diagram
     public class ProgramOptions
     {
         [JsonIgnore]
-        public string ApplicationVersion = "0.2.007 beta";
+        public string ApplicationVersion = "0.2.009";
         [JsonIgnore]
-        public string ReleaseDate = "2015-06-22";
+        public string ReleaseDate = "2015-08-26";
         [JsonIgnore]
         public String home_page = "https://pekand.com";
         public String server_default_ip = "127.0.0.1";
-#if MONO            
+#if MONO
         public String texteditor = "'subl %FILENAME%:%LINE%'";
 #else
         public String texteditor = "\"c:\\Program Files\\Sublime Text 3\\sublime_text.exe\" \"%FILENAME%\":%LINE%";
 #endif
 
-#if DEBUG            
+#if DEBUG
         public Int32 server_default_port = 13001;
 #else
         public Int32 server_default_port = 13000;

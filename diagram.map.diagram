@@ -11,7 +11,7 @@
     <grid>true</grid>
     <borders>false</borders>
     <defaultfont type="font">
-      <name>Microsoft Sans Serif</name>
+      <name>DejaVu Sans</name>
       <size>10</size>
       <bold>false</bold>
       <italic>false</italic>
@@ -30,13 +30,13 @@
       <id>667</id>
       <fontcolor>Black</fontcolor>
       <text>Components</text>
-      <link>C:\Users\pekan\Desktop\infinite-diagram\Diagram.SRC\Diagram\Src\Components</link>
+      <link>./Diagram.SRC/Diagram/Src/Components</link>
       <layer>0</layer>
       <x>644</x>
       <y>479</y>
       <color>#FF80FF</color>
       <timecreate>2015-8-21 23:24:59</timecreate>
-      <timemodify>2015-8-21 23:24:59</timemodify>
+      <timemodify>2015-8-24 10:21:07</timemodify>
     </rectangle>
     <rectangle>
       <id>668</id>
