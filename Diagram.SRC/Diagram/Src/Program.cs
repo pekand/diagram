@@ -16,7 +16,7 @@ namespace Diagram
         private static ProgramInit aplicationSetup = new ProgramInit(); //setup application
         public static Log log = new Log(); // debuging console for displaiing messages
         public static Main main = null;
-        
+
         [STAThread]
         [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain)]
         static void Main()

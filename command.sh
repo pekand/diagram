@@ -43,11 +43,14 @@ if [ "$1" = "svn" ]; then
         echo "svn status"
         echo "svn ignore - set ignore list"
     fi
+elif [ "$1" = "debug" ]; then
+    cd ./Diagram.SRC/
+    xbuild /p:Configuration=Debug Diagram.Mono.sln
 
 elif [ "$1" = "build" ]; then
 	cd ./Diagram.SRC/
         xbuild /p:Configuration=Release Diagram.Mono.sln
-        
+
 elif [ "$1" = "install" ]; then
 	cd ./install-linux/
 	chmod 775 make-package.sh
@@ -76,6 +79,7 @@ elif [ "$1" = "clean" ]; then
     fi
 else
     echo "svn"
+    echo "debug"
     echo "build"
     echo "install"
     echo "clean project"

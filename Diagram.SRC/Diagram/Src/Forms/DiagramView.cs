@@ -3776,7 +3776,8 @@ namespace Diagram
         // CLIPBOARD PASTE vloží časť zo schranky do otvoreneho diagramu                                   // CLIPBOARD
         public void AddDiagramPart(string DiagramXml)
         {
-            string FontDefaultString = TypeDescriptor.GetConverter(typeof(Font)).ConvertToString(this.diagram.FontDefault);
+            //OBSOLATE
+            //string FontDefaultString = TypeDescriptor.GetConverter(typeof(Font)).ConvertToString(this.diagram.FontDefault);
 
             List<Node> NewNodes = new List<Node>();
             List<Line> NewLines = new List<Line>();

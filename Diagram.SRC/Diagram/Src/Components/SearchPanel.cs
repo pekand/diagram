@@ -33,9 +33,9 @@ namespace Diagram
         {
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
+            //
             // textBoxSearch
-            // 
+            //
             this.textBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxSearch.Location = new System.Drawing.Point(4, 4);
             this.textBoxSearch.Name = "textBoxSearch";
@@ -43,9 +43,9 @@ namespace Diagram
             this.textBoxSearch.TabIndex = 0;
             this.textBoxSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_KeyDown);
             this.textBoxSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
-            // 
+            //
             // SearchPanel
-            // 
+            //
             this.Controls.Add(this.textBoxSearch);
             this.VisibleChanged += new System.EventHandler(this.panel1_VisibleChanged);
             this.ResumeLayout(false);
