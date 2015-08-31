@@ -198,5 +198,51 @@ namespace Diagram
 
             return pos;
         }
+
+		public static string makeRelative(String filePath, String currentPath, bool inCurrentDir = true)
+		{
+			filePath = filePath.Trim();
+			currentPath = currentPath.Trim();
+
+			if (currentPath == "") 
+			{
+				return filePath;
+			} 
+
+			if (!File.Exists(filePath) && !Directory.Exists(filePath)) 
+			{
+				return filePath;
+			}
+
+			filePath = Path.GetFullPath(filePath);
+
+			if (File.Exists(currentPath)) 
+			{
+				currentPath = Path.GetDirectoryName(currentPath);
+			}
+
+			if (!Directory.Exists(currentPath))
+			{
+				return filePath;
+			}
+
+			currentPath = Path.GetFullPath(currentPath);
+
+			Uri pathUri = new Uri(filePath);
+			// Folders must end in a slash
+			if (!currentPath.EndsWith(Path.DirectorySeparatorChar.ToString()))
+			{
+				currentPath += Path.DirectorySeparatorChar;
+			}
+
+			int pos = filePath.IndexOf (currentPath);
+			if( inCurrentDir &&  pos != 0) // skip files outside of currentPath
+			{
+				return filePath;
+			}
+
+			Uri folderUri = new Uri(currentPath);
+			return Uri.UnescapeDataString(folderUri.MakeRelativeUri(pathUri).ToString().Replace('/', Path.DirectorySeparatorChar));
+		}
     }
 }

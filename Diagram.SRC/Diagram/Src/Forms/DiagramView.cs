@@ -2088,19 +2088,47 @@ namespace Diagram
                 return false;
             }
 
-            if (keyData == (Keys.Control | Keys.Shift | Keys.C))  // [KEY] [CTRL+SHIFT+C] kopirovanie poznamok v node
+            if (keyData == (Keys.Control | Keys.Shift | Keys.C))  // [KEY] [CTRL+SHIFT+C] copy links from selected nodes
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
                     string copytext = "";
                     foreach (Node rec in this.SelectedNodes)
                     {
-                        copytext = copytext + rec.note + "\n";
+						if (rec.link != null) 
+						{ 
+							copytext = copytext + rec.link;
+
+							if (this.SelectedNodes.Count () > 1) { //separate nodes
+								copytext = copytext + "\n";
+							}
+						}
                     }
                     Clipboard.SetText(copytext);
                 }
                 return true;
             }
+
+			if (keyData == (Keys.Control | Keys.Alt | Keys.Shift | Keys.C))  // [KEY] [CTRL+ALT+SHIFT+C] copy notes from selected nodes
+			{
+				if (this.SelectedNodes.Count() > 0)
+				{
+					string copytext = "";
+					foreach (Node rec in this.SelectedNodes)
+					{
+						if (rec.note != null) 
+						{ 
+							copytext = copytext + rec.note;
+
+							if (this.SelectedNodes.Count () > 1) { //separate nodes
+								copytext = copytext + "\n";
+							}
+						}
+					}
+					Clipboard.SetText(copytext);
+				}
+				return true;
+			}
 
             if (keyData == (Keys.Control | Keys.V))  // [KEY] [CTRL+V] [PASTE] Vozenie textu zo schranky
             {
@@ -2175,7 +2203,7 @@ namespace Diagram
                             SizeF s2 = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
                         	newrec.width = (int)s2.Width;
                         	newrec.height = (int)s2.Height;
-                            newrec.link = ClipText;
+							newrec.link = Os.makeRelative(ClipText, this.diagram.FileName);
                             newrec.color = Media.getColor(diagram.options.colorDirectory);
 						}
 
@@ -2185,7 +2213,7 @@ namespace Diagram
                             SizeF s2 = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
                             newrec.width = (int)s2.Width;
                             newrec.height = (int)s2.Height;
-                            newrec.link = ClipText;
+							newrec.link = Os.makeRelative(ClipText, this.diagram.FileName);
                             newrec.color = Media.getColor(diagram.options.colorFile);
                         }
                             
@@ -3064,65 +3092,78 @@ namespace Diagram
                 newrec.width = (int)s.Width;
                 newrec.height = (int)s.Height;
 
-                if (File.Exists(file))
+				newrec.link = file;
+				if (Directory.Exists(file)) // directory
                 {
-                    if (Directory.Exists(this.diagram.FileName)) // directory
+					newrec.link = Os.makeRelative(file, this.diagram.FileName);
+					newrec.color = System.Drawing.ColorTranslator.FromHtml("#FFCCF2");
+                }
+				else 
+				if (File.Exists(file))
+                {
+                    string ext = "";
+                    if (file != "")
                     {
-                        if (this.diagram.FileName != "" && Directory.Exists(this.diagram.FileName)) // DROP DIRECTORY - skatenie cesty k adresaru
+                        ext = Path.GetExtension(file).ToLower();
+                    }
+
+                    if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // DROP IMAGE skratenie cesty k suboru
+                    {
+                        newrec.isimage = true;
+                        newrec.imagepath = file;
+                        if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName) && file.IndexOf(new FileInfo(this.diagram.FileName).DirectoryName) == 0)
                         {
                             int start = new FileInfo(this.diagram.FileName).DirectoryName.Length;
                             int finish = file.Length - start;
-                            newrec.link = "." + file.Substring(start, finish);
-                            newrec.color = System.Drawing.ColorTranslator.FromHtml("#FFCCF2");
+                            newrec.imagepath = "." + file.Substring(start, finish);
+                        }
+                        newrec.image = new Bitmap(newrec.imagepath);
+                        if (ext != ".ico") newrec.image.MakeTransparent(Color.White);
+                        newrec.height = newrec.image.Height;
+                        newrec.width = newrec.image.Width;
+                    }
+                    else
+                        if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName)) // DROP FILE - skratenie cesty k suboru
+                        {
+							newrec.link = Os.makeRelative(file, this.diagram.FileName);
+                            newrec.color = System.Drawing.ColorTranslator.FromHtml("#D9CCFF");
                         }
                         else
                         {
                             newrec.link = file;
-                            newrec.color = System.Drawing.ColorTranslator.FromHtml("#FFCCF2");
-                        }
-                    }
-                    else // file
-                    {
-                        string ext = "";
-                        if (file != "")
-                        {
-                            ext = Path.GetExtension(file).ToLower();
-                        }
+                            newrec.color = System.Drawing.ColorTranslator.FromHtml("#D9CCFF");
 
-                        if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // DROP IMAGE skratenie cesty k suboru
-                        {
-                            newrec.isimage = true;
-                            newrec.imagepath = file;
-                            if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName) && file.IndexOf(new FileInfo(this.diagram.FileName).DirectoryName) == 0)
+						    #if !MONO
+                            if (ext == ".exe")// [EXECUTABLE] [DROP] [ICON] extract icon
                             {
-                                int start = new FileInfo(this.diagram.FileName).DirectoryName.Length;
-                                int finish = file.Length - start;
-                                newrec.imagepath = "." + file.Substring(start, finish);
-                            }
-                            newrec.image = new Bitmap(newrec.imagepath);
-                            if (ext != ".ico") newrec.image.MakeTransparent(Color.White);
-                            newrec.height = newrec.image.Height;
-                            newrec.width = newrec.image.Width;
-                        }
-                        else
-                            if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName) && file.IndexOf(new FileInfo(this.diagram.FileName).DirectoryName) == 0) // DROP FILE - skratenie cesty k suboru
-                            {
-                                int start = new FileInfo(this.diagram.FileName).DirectoryName.Length;
-                                int finish = file.Length - start;
-                                newrec.link = "." + file.Substring(start, finish);
-                                newrec.color = System.Drawing.ColorTranslator.FromHtml("#D9CCFF");
-                            }
-                            else
-                            {
-                                newrec.link = file;
-                                newrec.color = System.Drawing.ColorTranslator.FromHtml("#D9CCFF");
-
-							    #if !MONO
-                                if (ext == ".exe")// [EXECUTABLE] [DROP] [ICON] extract icon
+                                try 
                                 {
-                                    try 
+                                    Icon ico = Icon.ExtractAssociatedIcon(file);
+                                    newrec.isimage = true;
+                                    newrec.embeddedimage = true;
+                                    newrec.image = ico.ToBitmap();
+                                    newrec.image.MakeTransparent(Color.White);
+                                    newrec.height = newrec.image.Height;
+                                    newrec.width = newrec.image.Width;
+                                }
+                                catch (Exception ex)
+                                {
+                                    Program.log.write("extract icon from exe error: " + ex.Message);
+                                }
+                            }
+						    #endif
+
+                            #if !MONO
+                            if (ext == ".lnk") // [LINK] [DROP] extract target
+                            {
+                                try
+                                {
+                                    newrec.link = Os.GetShortcutTargetFile(file);
+
+                                    // ak je odkaz a odkazuje na exe subor pokusit sa extrahovat ikonu
+                                    if (File.Exists(newrec.link) && Path.GetExtension(newrec.link).ToLower() == ".exe")// extract icon
                                     {
-                                        Icon ico = Icon.ExtractAssociatedIcon(file);
+                                        Icon ico = Icon.ExtractAssociatedIcon(newrec.link);
                                         newrec.isimage = true;
                                         newrec.embeddedimage = true;
                                         newrec.image = ico.ToBitmap();
@@ -3130,47 +3171,18 @@ namespace Diagram
                                         newrec.height = newrec.image.Height;
                                         newrec.width = newrec.image.Width;
                                     }
-                                    catch (Exception ex)
-                                    {
-                                        Program.log.write("extract icon from exe error: " + ex.Message);
-                                    }
-                                }
-							    #endif
 
-                                #if !MONO
-                                if (ext == ".lnk") // [LINK] [DROP] extract target
+                                }
+                                catch (Exception ex)
                                 {
-                                    try
-                                    {
-                                        newrec.link = Os.GetShortcutTargetFile(file);
-
-                                        // ak je odkaz a odkazuje na exe subor pokusit sa extrahovat ikonu
-                                        if (File.Exists(newrec.link) && Path.GetExtension(newrec.link).ToLower() == ".exe")// extract icon
-                                        {
-                                            Icon ico = Icon.ExtractAssociatedIcon(newrec.link);
-                                            newrec.isimage = true;
-                                            newrec.embeddedimage = true;
-                                            newrec.image = ico.ToBitmap();
-                                            newrec.image.MakeTransparent(Color.White);
-                                            newrec.height = newrec.image.Height;
-                                            newrec.width = newrec.image.Width;
-                                        }
-
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Program.log.write("extract icon from lnk error: " + ex.Message);
-                                    }
+                                    Program.log.write("extract icon from lnk error: " + ex.Message);
                                 }
-                                #endif
                             }
+                            #endif
+                        }
 
-                    }
                 }
-                else 
-                {
-                    newrec.link = file;
-                }
+
 
                 this.diagram.unsave();
             }
