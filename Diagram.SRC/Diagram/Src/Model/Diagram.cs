@@ -35,7 +35,7 @@ namespace Diagram
         public bool SavedFile = true;            //súbor bol uložený na disk(má svoje meno)
         public string FileName = "";             //názov otvoreného súboru
 
-        // ATRIBUTES OBJECTS 
+        // ATRIBUTES OBJECTS
         public int maxid = 0;                    // največšie vložené id objektu
 
         // ATTRIBUTES ENCRYPTION
@@ -50,7 +50,7 @@ namespace Diagram
         // ATTRIBUTES OPTIONS
         public Options options = new Options();
 
-        public Diagram(Main main) 
+        public Diagram(Main main)
         {
             this.main = main;
 			this.FontDefault = new Font("Open Sans", 10);
@@ -105,9 +105,9 @@ namespace Diagram
         }
 
         // [FILE] [LOAD] [XML]
-        public void LoadXML(string xml) 
+        public void LoadXML(string xml)
         {
-            
+
             XmlReaderSettings xws = new XmlReaderSettings();
             xws.CheckCharacters = false;
 
@@ -186,10 +186,10 @@ namespace Diagram
                 } while (error);
             }
             else
-            { 
+            {
                 LoadInnerXML(xml);
             }
-            
+
         }
 
         // [FILE] [LOAD] [XML] vnutorna cast
@@ -269,11 +269,11 @@ namespace Diagram
 
                                         if (el.Name.ToString() == "defaultfont")
                                         {
-                                            if (el.Attribute("type").Value == "font") 
+                                            if (el.Attribute("type").Value == "font")
                                             {
                                                 this.FontDefault = Fonts.XmlToFont(el);
                                             }
-                                            else 
+                                            else
                                             {
                                                 if (FontDefaultString != el.Value)
                                                 {
@@ -284,7 +284,7 @@ namespace Diagram
 
                                         if (el.Name.ToString() == "coordinates")
                                         {
-                                            this.options.coordinates = bool.Parse(el.Value); 
+                                            this.options.coordinates = bool.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "firstLayereShift.x")
@@ -316,7 +316,7 @@ namespace Diagram
                                         {
                                             this.options.Height = Int32.Parse(el.Value);
                                         }
-                                        
+
                                         if (el.Name.ToString() == "window.state")
                                         {
                                             this.options.WindowState = Int32.Parse(el.Value);
@@ -425,6 +425,16 @@ namespace Diagram
                                                 if (el.Name.ToString() == "y")
                                                 {
                                                     R.position.y = Int32.Parse(el.Value);
+                                                }
+
+                                                if (el.Name.ToString() == "width")
+                                                {
+                                                    R.width = Int32.Parse(el.Value);
+                                                }
+
+                                                if (el.Name.ToString() == "height")
+                                                {
+                                                    R.height = Int32.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "color")
@@ -551,13 +561,28 @@ namespace Diagram
                 this.CloseFile();
             }
 
+            int newWidth = 0;
+            int newHeight = 0;
+
             foreach (Node rec in this.Nodes) // Loop through List with foreach
             {
                 if (!rec.isimage)
                 {
                     SizeF s = this.MeasureStringWithMargin(rec.text, rec.font);
-                    rec.width = (int)s.Width;
-                    rec.height = (int)s.Height;
+                    newWidth = (int)s.Width
+                    newHeight = (int)s.Height
+
+                    // font change correction > center node
+                    if (rec.width != 0 && newWidth != rec.width) {
+                        rec.position.x -= (rec.width - newWidth) / 2;
+                    }
+
+                    if (rec.Height != 0 && newHeight != rec.Height) {
+                       rec.position.y -= (rec.Height - newHeight) / 2;
+                    }
+
+                    rec.width = newWidth;
+                    rec.height = newHeight;
                 }
             }
 
@@ -713,6 +738,8 @@ namespace Diagram
 
                     rectangle.Add(new XElement("x", rec.position.x));
                     rectangle.Add(new XElement("y", rec.position.y));
+                    rectangle.Add(new XElement("width", rec.width));
+                    rectangle.Add(new XElement("height", rec.height));
                     rectangle.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(rec.color)));
                     if (rec.transparent) rectangle.Add(new XElement("transparent", rec.transparent));
                     if (rec.embeddedimage) rectangle.Add(new XElement("embeddedimage", rec.embeddedimage));
@@ -784,7 +811,7 @@ namespace Diagram
             return "";
         }
 
-        // [FILE] UNSAVE Subor sa zmenil treba ho ulozit 
+        // [FILE] UNSAVE Subor sa zmenil treba ho ulozit
         public void unsave()
         {
             this.SavedFile = false;
@@ -815,7 +842,7 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // [NODE] Najdenie nody podla id 
+        // [NODE] Najdenie nody podla id
         public Node GetNodeByID(int id)
         {
             foreach (Node rec in this.Nodes) // Loop through List with foreach
@@ -825,7 +852,7 @@ namespace Diagram
             return null;
         }
 
-        // [NODE] Najdenie indexu v poli nody podla id 
+        // [NODE] Najdenie indexu v poli nody podla id
         public int GetIndexByID(int id)
         {
             for (int i = 0; i < this.Nodes.Count(); i++) // Loop through List with foreach
@@ -835,7 +862,7 @@ namespace Diagram
             return -1;
         }
 
-        // [NODE] Najdenie nody podla scriptid 
+        // [NODE] Najdenie nody podla scriptid
         public Node GetNodeByScriptID(string id)
         {
             foreach (Node rec in this.Nodes) // Loop through List with foreach
@@ -861,7 +888,7 @@ namespace Diagram
             return true;
         }
 
-        // [NODE] Zmazanie nody 
+        // [NODE] Zmazanie nody
         public void DeleteNode(Node rec)
         {
             if (rec != null && !this.options.readOnly)
@@ -916,7 +943,7 @@ namespace Diagram
         }
 
         // NODE Editovanie vlastnosti nody
-        public TextForm EditNode(Node rec) 
+        public TextForm EditNode(Node rec)
         {
             bool found = false;
             for (int i = TextWindows.Count() - 1; i >= 0; i--) // Loop through List with foreach
@@ -937,14 +964,14 @@ namespace Diagram
                 string[] lines = rec.text.Split(Environment.NewLine.ToCharArray()).ToArray();
                 if(lines.Count()>0)
                     textf.Text = lines[0];
-                
+
                 this.TextWindows.Add(textf);
                 main.TextWindows.Add(textf);
                 textf.Show();
                 textf.SetFocus();
-                return textf; 
+                return textf;
             }
-            return null; 
+            return null;
         }
 
         // NODE Editovanie vlastnosti nody
@@ -959,7 +986,7 @@ namespace Diagram
             }
         }
 
-        // NODE Create Rectangle on point 
+        // NODE Create Rectangle on point
         public Node CreateNode(int x, int y, int layer, string text = "", string  color = null)
         {
             if (!this.options.readOnly)
@@ -985,7 +1012,7 @@ namespace Diagram
                 this.Nodes.Add(rec);
                 return rec;
             }
-            else 
+            else
             {
                 return null;
             }
@@ -1160,7 +1187,7 @@ namespace Diagram
             if (node.shortcut > 0) node.shortcut = 0;
         }
 
-        // NODE Zmeranie velosti textu a prida margin 
+        // NODE Zmeranie velosti textu a prida margin
         public SizeF MeasureStringWithMargin(string s, Font font)
         {
             SizeF result;
@@ -1209,7 +1236,7 @@ namespace Diagram
             }
         }
 
-        // NODE Najdenie nody podla pozicie myši 
+        // NODE Najdenie nody podla pozicie myši
         public Node findNodeInPosition(int x, int y, int layer)
         {
             for (int i = this.Nodes.Count() - 1; i >= 0; i--) // Loop through List with foreach
@@ -1279,6 +1306,6 @@ namespace Diagram
                 DiagramView.SetTitle();
             }
         }
-        /*************************************************************************************************************************/      
+        /*************************************************************************************************************************/
     }
 }

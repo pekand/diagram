@@ -42,7 +42,7 @@ namespace Diagram
         public string timemodify = "";// cas modifikovania nody
 
         //Script
-        public string scriptid = ""; // oznacenie 
+        public string scriptid = ""; // oznacenie
 
         public void copyNode(Node node, bool skipPosition = false, bool skipSize = false) {
             this.font = node.font;

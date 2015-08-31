@@ -15,7 +15,7 @@ using NCalc;
 
 namespace Diagram
 {
-    
+
 
     public partial class DiagramView : Form
     {
@@ -79,7 +79,7 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // ATRIBUTES SCREEN 
+        // ATRIBUTES SCREEN
         public Position shift = new Position();                   //poun horneho rohu obrazovky;
 
         public Position startShift = new Position();              //docasne ulozenie pozicie obrazovky pred zmenou
@@ -88,14 +88,14 @@ namespace Diagram
         public Position startMousePos = new Position();           //docasne ulozenie pozicie mysi
         public Position startNodePos = new Position();            //docasne ulozenie pozicie zaciatocnej nody
         public Position vmouse = new Position();                  //vektor posunutia mysi vo vybranom obdlzniku
-        public Position actualMousePos = new Position();          //priebezna pozicia mysi vo forme pri tahani 
+        public Position actualMousePos = new Position();          //priebezna pozicia mysi vo forme pri tahani
 
         // ATTRIBUTES KEYBOARD
         public char key = ' ';                   // posledne zachytene pismenko
         public bool keyshift = false;            // detekovanie klavesovich modifikatorov pri mysi
         public bool keyctrl = false;
         public bool keyalt = false;
-        
+
         // ATTRIBUTES STATES
         public bool drag = false;                // psuvanie nody
         public bool move = false;                // posunutie objektu
@@ -120,7 +120,7 @@ namespace Diagram
         public int layer = 0;                      // vrstva v ktorej sa program nachádza (0 je najvrchnejšia)
         public Node LayerNode = null;        // Vybrata noda - obdlznik
         public Position firstLayereShift = new Position();          // poun horneho rohu obrazovky v najvrchnejsom layery
-        public List<int> Layers = new List<int>(); // zoznam vnorenich layerov, na konci je posledny zobrazeny layer    ; 
+        public List<int> Layers = new List<int>(); // zoznam vnorenich layerov, na konci je posledny zobrazeny layer    ;
 
         // COMPONENTS
         public ScrollBar bottomScrollBar = null;
@@ -128,11 +128,11 @@ namespace Diagram
 
         // EDITPANEL
         public Node prevSelectedNode = null;
-        public bool editingNodeName = false; // panel je zobrazený                                     
+        public bool editingNodeName = false; // panel je zobrazený
         public Panel nodeNamePanel = null; // panel margin pre edit form
         public TextBox nodeNameEdit = null; // edit pre nove meno nody
 
-        // OTHER 
+        // OTHER
         private ToolStripMenuItem groupToolStripMenuItem;
         private IContainer components;
 
@@ -195,9 +195,9 @@ namespace Diagram
             this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PopupMenu.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // PopupMenu
-            // 
+            //
             this.PopupMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editToolStripMenuItem,
             this.colorToolStripMenuItem,
@@ -215,30 +215,30 @@ namespace Diagram
             this.PopupMenu.Name = "contextMenuStrip1";
             this.PopupMenu.Size = new System.Drawing.Size(165, 280);
             this.PopupMenu.Opening += new System.ComponentModel.CancelEventHandler(this.PopupMenu_Opening);
-            // 
+            //
             // editToolStripMenuItem
-            // 
+            //
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
-            // 
+            //
             // colorToolStripMenuItem
-            // 
+            //
             this.colorToolStripMenuItem.Name = "colorToolStripMenuItem";
             this.colorToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.colorToolStripMenuItem.Text = "Color";
             this.colorToolStripMenuItem.Click += new System.EventHandler(this.colorToolStripMenuItem_Click);
-            // 
+            //
             // removeShortcutToolStripMenuItem
-            // 
+            //
             this.removeShortcutToolStripMenuItem.Name = "removeShortcutToolStripMenuItem";
             this.removeShortcutToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.removeShortcutToolStripMenuItem.Text = "Remove shortcut";
             this.removeShortcutToolStripMenuItem.Click += new System.EventHandler(this.removeShortcutToolStripMenuItem_Click);
-            // 
+            //
             // linkToolStripMenuItem
-            // 
+            //
             this.linkToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openlinkToolStripMenuItem,
             this.copylinkToolStripMenuItem,
@@ -246,30 +246,30 @@ namespace Diagram
             this.linkToolStripMenuItem.Name = "linkToolStripMenuItem";
             this.linkToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.linkToolStripMenuItem.Text = "Link";
-            // 
+            //
             // openlinkToolStripMenuItem
-            // 
+            //
             this.openlinkToolStripMenuItem.Name = "openlinkToolStripMenuItem";
             this.openlinkToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.openlinkToolStripMenuItem.Text = "Open";
             this.openlinkToolStripMenuItem.Click += new System.EventHandler(this.openlinkToolStripMenuItem1_Click);
-            // 
+            //
             // copylinkToolStripMenuItem
-            // 
+            //
             this.copylinkToolStripMenuItem.Name = "copylinkToolStripMenuItem";
             this.copylinkToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.copylinkToolStripMenuItem.Text = "Copy";
             this.copylinkToolStripMenuItem.Click += new System.EventHandler(this.copylinkToolStripMenuItem_Click_1);
-            // 
+            //
             // openDirectoryToolStripMenuItem1
-            // 
+            //
             this.openDirectoryToolStripMenuItem1.Name = "openDirectoryToolStripMenuItem1";
             this.openDirectoryToolStripMenuItem1.Size = new System.Drawing.Size(153, 22);
             this.openDirectoryToolStripMenuItem1.Text = "Open directory";
             this.openDirectoryToolStripMenuItem1.Click += new System.EventHandler(this.openDirectoryToolStripMenuItem1_Click);
-            // 
+            //
             // alignToolStripMenuItem
-            // 
+            //
             this.alignToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.leftToolStripMenuItem,
             this.rightToolStripMenuItem,
@@ -279,42 +279,42 @@ namespace Diagram
             this.alignToolStripMenuItem.Name = "alignToolStripMenuItem";
             this.alignToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.alignToolStripMenuItem.Text = "Align";
-            // 
+            //
             // leftToolStripMenuItem
-            // 
+            //
             this.leftToolStripMenuItem.Name = "leftToolStripMenuItem";
             this.leftToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.leftToolStripMenuItem.Text = "Left";
             this.leftToolStripMenuItem.Click += new System.EventHandler(this.leftToolStripMenuItem_Click);
-            // 
+            //
             // rightToolStripMenuItem
-            // 
+            //
             this.rightToolStripMenuItem.Name = "rightToolStripMenuItem";
             this.rightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.rightToolStripMenuItem.Text = "Right";
             this.rightToolStripMenuItem.Click += new System.EventHandler(this.rightToolStripMenuItem_Click);
-            // 
+            //
             // toLineToolStripMenuItem
-            // 
+            //
             this.toLineToolStripMenuItem.Name = "toLineToolStripMenuItem";
             this.toLineToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.toLineToolStripMenuItem.Text = "To line";
             this.toLineToolStripMenuItem.Click += new System.EventHandler(this.toLineToolStripMenuItem_Click);
-            // 
+            //
             // inColumnToolStripMenuItem
-            // 
+            //
             this.inColumnToolStripMenuItem.Name = "inColumnToolStripMenuItem";
             this.inColumnToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.inColumnToolStripMenuItem.Text = "In column";
             this.inColumnToolStripMenuItem.Click += new System.EventHandler(this.inColumnToolStripMenuItem_Click);
-            // 
+            //
             // toolStripMenuItem2
-            // 
+            //
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(161, 6);
-            // 
+            //
             // fileToolStripMenuItem
-            // 
+            //
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
             this.saveToolStripMenuItem,
@@ -326,140 +326,140 @@ namespace Diagram
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.fileToolStripMenuItem.Text = "File";
-            // 
+            //
             // newToolStripMenuItem
-            // 
+            //
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
-            // 
+            //
             // saveToolStripMenuItem
-            // 
+            //
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            // 
+            //
             // saveAsToolStripMenuItem
-            // 
+            //
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
-            // 
+            //
             // exportToolStripMenuItem
-            // 
+            //
             this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.textToolStripMenuItem,
             this.exportToPngToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.exportToolStripMenuItem.Text = "Export";
-            // 
+            //
             // textToolStripMenuItem
-            // 
+            //
             this.textToolStripMenuItem.Name = "textToolStripMenuItem";
             this.textToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.textToolStripMenuItem.Text = "Text";
             this.textToolStripMenuItem.Click += new System.EventHandler(this.textToolStripMenuItem_Click);
-            // 
+            //
             // exportToPngToolStripMenuItem
-            // 
+            //
             this.exportToPngToolStripMenuItem.Name = "exportToPngToolStripMenuItem";
             this.exportToPngToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.exportToPngToolStripMenuItem.Text = "Export to png";
             this.exportToPngToolStripMenuItem.Click += new System.EventHandler(this.exportToPngToolStripMenuItem_Click);
-            // 
+            //
             // openToolStripMenuItem
-            // 
+            //
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            // 
+            //
             // openDirectoryToolStripMenuItem
-            // 
+            //
             this.openDirectoryToolStripMenuItem.Name = "openDirectoryToolStripMenuItem";
             this.openDirectoryToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.openDirectoryToolStripMenuItem.Text = "Open Directory";
             this.openDirectoryToolStripMenuItem.Click += new System.EventHandler(this.openDirectoryToolStripMenuItem_Click);
-            // 
+            //
             // exitToolStripMenuItem
-            // 
+            //
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
+            //
             // screenToolStripMenuItem
-            // 
+            //
             this.screenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.centerToolStripMenuItem,
             this.setStartPositionToolStripMenuItem});
             this.screenToolStripMenuItem.Name = "screenToolStripMenuItem";
             this.screenToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.screenToolStripMenuItem.Text = "Screen";
-            // 
+            //
             // centerToolStripMenuItem
-            // 
+            //
             this.centerToolStripMenuItem.Name = "centerToolStripMenuItem";
             this.centerToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.centerToolStripMenuItem.Text = "Center";
             this.centerToolStripMenuItem.Click += new System.EventHandler(this.centerToolStripMenuItem_Click);
-            // 
+            //
             // setStartPositionToolStripMenuItem
-            // 
+            //
             this.setStartPositionToolStripMenuItem.Name = "setStartPositionToolStripMenuItem";
             this.setStartPositionToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.setStartPositionToolStripMenuItem.Text = "Set start position";
             this.setStartPositionToolStripMenuItem.Click += new System.EventHandler(this.setStartPositionToolStripMenuItem_Click);
-            // 
+            //
             // viewToolStripMenuItem
-            // 
+            //
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newViewToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.viewToolStripMenuItem.Text = "View";
-            // 
+            //
             // newViewToolStripMenuItem
-            // 
+            //
             this.newViewToolStripMenuItem.Name = "newViewToolStripMenuItem";
             this.newViewToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.newViewToolStripMenuItem.Text = "New View";
             this.newViewToolStripMenuItem.Click += new System.EventHandler(this.newViewToolStripMenuItem_Click);
-            // 
+            //
             // layerToolStripMenuItem
-            // 
+            //
             this.layerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inToolStripMenuItem,
             this.outToolStripMenuItem});
             this.layerToolStripMenuItem.Name = "layerToolStripMenuItem";
             this.layerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.layerToolStripMenuItem.Text = "Layer";
-            // 
+            //
             // inToolStripMenuItem
-            // 
+            //
             this.inToolStripMenuItem.Name = "inToolStripMenuItem";
             this.inToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
             this.inToolStripMenuItem.Text = "In";
             this.inToolStripMenuItem.Click += new System.EventHandler(this.inToolStripMenuItem_Click);
-            // 
+            //
             // outToolStripMenuItem
-            // 
+            //
             this.outToolStripMenuItem.Name = "outToolStripMenuItem";
             this.outToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
             this.outToolStripMenuItem.Text = "Out";
             this.outToolStripMenuItem.Click += new System.EventHandler(this.outToolStripMenuItem_Click);
-            // 
+            //
             // toolStripMenuItem1
-            // 
+            //
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(161, 6);
-            // 
+            //
             // optionToolStripMenuItem
-            // 
+            //
             this.optionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.encryptToolStripMenuItem,
             this.changePasswordToolStripMenuItem,
@@ -472,31 +472,31 @@ namespace Diagram
             this.optionToolStripMenuItem.Name = "optionToolStripMenuItem";
             this.optionToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.optionToolStripMenuItem.Text = "Option";
-            // 
+            //
             // encryptToolStripMenuItem
-            // 
+            //
             this.encryptToolStripMenuItem.Name = "encryptToolStripMenuItem";
             this.encryptToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.encryptToolStripMenuItem.Text = "Encrypt";
             this.encryptToolStripMenuItem.Click += new System.EventHandler(this.encryptToolStripMenuItem_Click);
-            // 
+            //
             // changePasswordToolStripMenuItem
-            // 
+            //
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
             this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.changePasswordToolStripMenuItem.Text = "Change password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
-            // 
+            //
             // readonlyToolStripMenuItem
-            // 
+            //
             this.readonlyToolStripMenuItem.CheckOnClick = true;
             this.readonlyToolStripMenuItem.Name = "readonlyToolStripMenuItem";
             this.readonlyToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.readonlyToolStripMenuItem.Text = "Read only";
             this.readonlyToolStripMenuItem.Click += new System.EventHandler(this.readonlyToolStripMenuItem_Click);
-            // 
+            //
             // gridToolStripMenuItem
-            // 
+            //
             this.gridToolStripMenuItem.Checked = true;
             this.gridToolStripMenuItem.CheckOnClick = true;
             this.gridToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -504,40 +504,40 @@ namespace Diagram
             this.gridToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.gridToolStripMenuItem.Text = "Grid";
             this.gridToolStripMenuItem.Click += new System.EventHandler(this.gridToolStripMenuItem_Click);
-            // 
+            //
             // coordinatesToolStripMenuItem
-            // 
+            //
             this.coordinatesToolStripMenuItem.CheckOnClick = true;
             this.coordinatesToolStripMenuItem.Name = "coordinatesToolStripMenuItem";
             this.coordinatesToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.coordinatesToolStripMenuItem.Text = "Coordinates";
             this.coordinatesToolStripMenuItem.Visible = false;
             this.coordinatesToolStripMenuItem.Click += new System.EventHandler(this.coordinatesToolStripMenuItem_Click);
-            // 
+            //
             // bordersToolStripMenuItem
-            // 
+            //
             this.bordersToolStripMenuItem.CheckOnClick = true;
             this.bordersToolStripMenuItem.Name = "bordersToolStripMenuItem";
             this.bordersToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.bordersToolStripMenuItem.Text = "Borders";
             this.bordersToolStripMenuItem.Click += new System.EventHandler(this.bordersToolStripMenuItem_Click);
-            // 
+            //
             // defaultFontToolStripMenuItem
-            // 
+            //
             this.defaultFontToolStripMenuItem.Name = "defaultFontToolStripMenuItem";
             this.defaultFontToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.defaultFontToolStripMenuItem.Text = "Default font";
             this.defaultFontToolStripMenuItem.Click += new System.EventHandler(this.defaultFontToolStripMenuItem_Click);
-            // 
+            //
             // resetFontToolStripMenuItem
-            // 
+            //
             this.resetFontToolStripMenuItem.Name = "resetFontToolStripMenuItem";
             this.resetFontToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.resetFontToolStripMenuItem.Text = "Reset font";
             this.resetFontToolStripMenuItem.Click += new System.EventHandler(this.resetFontToolStripMenuItem_Click);
-            // 
+            //
             // helpToolStripMenuItem
-            // 
+            //
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.consoleToolStripMenuItem,
             this.visitWebsiteToolStripMenuItem,
@@ -545,62 +545,62 @@ namespace Diagram
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.helpToolStripMenuItem.Text = "Help";
-            // 
+            //
             // consoleToolStripMenuItem
-            // 
+            //
             this.consoleToolStripMenuItem.Name = "consoleToolStripMenuItem";
             this.consoleToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.consoleToolStripMenuItem.Text = "Debug Console";
             this.consoleToolStripMenuItem.Visible = false;
             this.consoleToolStripMenuItem.Click += new System.EventHandler(this.consoleToolStripMenuItem_Click);
-            // 
+            //
             // visitWebsiteToolStripMenuItem
-            // 
+            //
             this.visitWebsiteToolStripMenuItem.Name = "visitWebsiteToolStripMenuItem";
             this.visitWebsiteToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.visitWebsiteToolStripMenuItem.Text = "Visit homesite";
             this.visitWebsiteToolStripMenuItem.Click += new System.EventHandler(this.visitWebsiteToolStripMenuItem_Click);
-            // 
+            //
             // aboutToolStripMenuItem
-            // 
+            //
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
+            //
             // DSave
-            // 
+            //
             this.DSave.DefaultExt = "*.diagram";
             this.DSave.Filter = "Diagram (*.diagram)|*.diagram";
-            // 
+            //
             // DOpen
-            // 
+            //
             this.DOpen.DefaultExt = "*.diagram";
             this.DOpen.Filter = "Diagram (*.diagram)|*.diagram";
-            // 
+            //
             // MoveTimer
-            // 
+            //
             this.MoveTimer.Tick += new System.EventHandler(this.MoveTimer_Tick);
-            // 
+            //
             // exportFile
-            // 
+            //
             this.exportFile.DefaultExt = "*.png";
             this.exportFile.Filter = "Image (*.png) | *.png";
-            // 
+            //
             // saveTextFileDialog
-            // 
+            //
             this.saveTextFileDialog.DefaultExt = "*.txt";
             this.saveTextFileDialog.Filter = "Text file (*.txt)|*.txt";
-            // 
+            //
             // groupToolStripMenuItem
-            // 
+            //
             this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
             this.groupToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.groupToolStripMenuItem.Text = "Group";
             this.groupToolStripMenuItem.Click += new System.EventHandler(this.groupToolStripMenuItem_Click);
-            // 
+            //
             // DiagramView
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
@@ -809,7 +809,7 @@ namespace Diagram
                 }
             }
         }
-        
+
         // MENU Open
         public void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -848,8 +848,8 @@ namespace Diagram
                 {
                     System.Diagnostics.Process.Start(Path.GetDirectoryName(this.diagram.FileName));
                 }
-                catch (Exception ex) 
-                { 
+                catch (Exception ex)
+                {
                     Program.log.write("open diagram directory error: " + ex.Message);
                 }
             }
@@ -890,7 +890,7 @@ namespace Diagram
             }
         }
 
-        // MENU Console 
+        // MENU Console
         public void consoleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.showConsole();
@@ -910,7 +910,7 @@ namespace Diagram
             this.Close();
         }
 
-        // MENU Center                                                                                 
+        // MENU Center
         public void centerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.GoToHome();
@@ -999,11 +999,11 @@ namespace Diagram
             LayerIn();
         }
 
-        // MENU Layer Out 
+        // MENU Layer Out
         public void outToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LayerOut();
-        }        
+        }
 
         // MENU align left
         private void leftToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1103,7 +1103,7 @@ namespace Diagram
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (main.aboutForm == null)
-            {   
+            {
                  main.aboutForm = new AboutForm(main);
             }
 
@@ -1113,7 +1113,7 @@ namespace Diagram
         // MENU SCRIPT  Generate - generate script
         private void generateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
 
@@ -1140,7 +1140,7 @@ namespace Diagram
         {
             //Only in debug
             #if DEBUG
-                this.debugOnly();             
+                this.debugOnly();
             #endif
 
             this.Left = 50;
@@ -1169,9 +1169,9 @@ namespace Diagram
                 }
             }
 
-            //Load Events 
+            //Load Events
             this.MouseWheel += new MouseEventHandler(DiagramApp_MouseWheel);
-            
+
             this.DragEnter += new DragEventHandler(DiagramApp_DragEnter);
             this.DragDrop += new DragEventHandler(DiagramApp_DragDrop);
             this.AllowDrop = true;
@@ -1208,7 +1208,7 @@ namespace Diagram
             coordinatesToolStripMenuItem.Visible = true;
         }
 
-        // FORM Quit Close 
+        // FORM Quit Close
         public void DiagramApp_FormClosing(object sender, FormClosingEventArgs e)
         {
             bool close = true;
@@ -1239,8 +1239,8 @@ namespace Diagram
                     {
                         close = true;
                     }
-                } 
-                else 
+                }
+                else
                 {
                     close = true;
                 }
@@ -1263,7 +1263,7 @@ namespace Diagram
                         close = true;
                     }
                 }
-                else 
+                else
                 {
                     close = true;
                 }
@@ -1427,7 +1427,7 @@ namespace Diagram
         // EVENT Mouse Down                                                                            // [MOUSE] [DOWN] [EVENT]
         public void DiagramApp_MouseDown(object sender, MouseEventArgs e)
         {
-            if (this.searching) 
+            if (this.searching)
             {
                 this.searching = false;
                 this.searhPanel.HidePanel();
@@ -1500,7 +1500,7 @@ namespace Diagram
                         {
                             this.SelectOnlyOneNode(this.SourceNode);
                             this.diagram.InvalidateDiagram();
-                        }                       
+                        }
                     }
                 }
             }
@@ -1625,10 +1625,10 @@ namespace Diagram
                     foreach (Node rec in diagram.Nodes) // LOOP through List with foreach
                     {
                         if (
-                            (rec.layer == this.layer || rec.id == this.layer) 
-                            && -this.shift.x + a <= rec.position.x 
-                            && rec.position.x + rec.width <= -this.shift.x + c 
-                            && -this.shift.y + b <= rec.position.y 
+                            (rec.layer == this.layer || rec.id == this.layer)
+                            && -this.shift.x + a <= rec.position.x
+                            && rec.position.x + rec.width <= -this.shift.x + c
+                            && -this.shift.y + b <= rec.position.y
                             && rec.position.y + rec.height <= -this.shift.y + d)
                         {
                             if (keyshift && !keyctrl && !keyalt)
@@ -1651,18 +1651,18 @@ namespace Diagram
             if (buttonleft) // MLEFT
             {
 
-                if (bottomScrollBar != null && rightScrollBar!=null && (bottomScrollBar.MouseUp() || rightScrollBar.MouseUp())) 
+                if (bottomScrollBar != null && rightScrollBar!=null && (bottomScrollBar.MouseUp() || rightScrollBar.MouseUp()))
                 {
                     this.diagram.InvalidateDiagram();
                 }else
                 // KEY MLEFT clear selection
-                if (!mousemove && TargetNode == null && this.SourceNode == null && this.SelectedNodes.Count() > 0 && !keyalt && !keyctrl && !keyshift) 
+                if (!mousemove && TargetNode == null && this.SourceNode == null && this.SelectedNodes.Count() > 0 && !keyalt && !keyctrl && !keyshift)
                 {
                     this.ClearSelection();
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DRAG+CTRL Skopirovanie obdlznika 
+                // KEY DRAG+CTRL Skopirovanie obdlznika
                 if (!isreadonly && keyctrl && TargetNode == null && this.SourceNode != null)
                 {
                     this.AddDiagramPart(GetDiagramPart());
@@ -1689,8 +1689,8 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DRAG Posunutie obdlznika 
-                if 
+                // KEY DRAG Posunutie obdlznika
+                if
                 (
                     !isreadonly &&
                     ((TargetNode == null && this.SourceNode != null) ||
@@ -1712,7 +1712,7 @@ namespace Diagram
                     {
                         var vx = this.SourceNode.position.x - this.startNodePos.x;
                         var vy = this.SourceNode.position.y - this.startNodePos.y;
- 
+
                         foreach (Node rec in this.SelectedNodes) // Loop through List with foreach
                         {
                             if (rec != this.SourceNode)
@@ -1735,7 +1735,7 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DRAG+CTRL Vytvorenie noveho obdlznika a spojenie s existujucim 
+                // KEY DRAG+CTRL Vytvorenie noveho obdlznika a spojenie s existujucim
                 if (!isreadonly && keyctrl && TargetNode != null && this.SourceNode == null)
                 {
                     this.diagram.Connect(this.CreateNode( +this.shift.x - startShift.x + this.startMousePos.x, +this.shift.y - startShift.y + this.startMousePos.y), TargetNode, false);
@@ -1787,7 +1787,7 @@ namespace Diagram
                 }
                 else
                 // KEY CTRL+MLEFT
-                // KEY DBLCLICK Vytvorenie noveho obdlznika  
+                // KEY DBLCLICK Vytvorenie noveho obdlznika
                 if (!isreadonly && (dblclick || keyctrl) && TargetNode == null && this.SourceNode == null && e.X == this.startMousePos.x && e.Y == this.startMousePos.y)
                 {
                     this.CreateNode(e.X - 10, e.Y - 10, false);
@@ -1840,7 +1840,7 @@ namespace Diagram
                     {
                         arrow = true;
                     }
-                    
+
                     if (this.SelectedNodes.Count() > 0)
                     {
                         foreach (Node rec in this.SelectedNodes)
@@ -1851,14 +1851,14 @@ namespace Diagram
                                 {
                                     this.diagram.Connect(TargetNode, rec, arrow);        // spojenie viacerich nody
                                 }
-                                else 
+                                else
                                 {
                                     this.diagram.Connect(rec, TargetNode, arrow);        // spojenie viacerich nody
                                 }
                             }
                         }
                     }
-                    else 
+                    else
                     {
                         this.diagram.Connect(SourceNode, TargetNode, arrow);  // spojenie jednej vybratej nody
                     }
@@ -1878,7 +1878,7 @@ namespace Diagram
                     this.RemoveNodeFromSelection(TargetNode);
                     this.diagram.InvalidateDiagram();
                 }
-              
+
             }
             else
             if (buttonright) // KEY MRIGHT
@@ -1909,7 +1909,7 @@ namespace Diagram
             else
             if (buttonmiddle) // MMIDDLE
             {
-                // KEY DRAG+MMIDDLE Vytvorenie noveho obdlznika a spojenie s existujucim 
+                // KEY DRAG+MMIDDLE Vytvorenie noveho obdlznika a spojenie s existujucim
                 if (!isreadonly && TargetNode != null)
                 {
                     this.diagram.Connect(this.CreateNode(+this.shift.x - this.startShift.x + this.startMousePos.x, +this.shift.y - this.startShift.y + this.startMousePos.y), TargetNode);
@@ -1923,8 +1923,8 @@ namespace Diagram
             this.addingNode = false;
             this.selecting = false;
         }
-        
-        // EVENT Mouse Whell 
+
+        // EVENT Mouse Whell
         public void DiagramApp_MouseWheel(object sender, MouseEventArgs e)                             // [MOUSE] [WHELL] [EVENT]
         {
             //throw new NotImplementedException();
@@ -1968,20 +1968,20 @@ namespace Diagram
                     {
                         int a = (int)((this.shift.x - (this.ClientSize.Width / 2 * this.scale)));
                         int b = (int)((this.shift.y - (this.ClientSize.Height / 2 * this.scale)));
-                        if (this.scale>1) 
+                        if (this.scale>1)
                             this.scale = this.scale - 1;
                         else
-                        if (this.scale > 0.1f) 
+                        if (this.scale > 0.1f)
                             this.scale = this.scale - 0.1f;
-                            
-                        if (this.scale>1) 
+
+                        if (this.scale>1)
                             this.zoomingScale = this.scale;
                         else
                             this.zoomingScale = 4;
                         this.shift.x = (int)((a + (this.ClientSize.Width / 2 * this.scale)));
                         this.shift.y = (int)((b + (this.ClientSize.Height / 2 * this.scale)));
 
-                        
+
                     }
 
                     if (this.scale < 0.1) this.scale = 0.1f;
@@ -2053,7 +2053,7 @@ namespace Diagram
                 }
             }
 
-            
+
             if (keyData == (Keys.Control | Keys.K)) // [KEY] [CTRL+K] zarovnanie vybranych prvkov s pravidelným odstupom
             {
                 if (this.SelectedNodes.Count() > 0)
@@ -2063,13 +2063,13 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
             }
-           
+
             if (keyData == (Keys.Control | Keys.C))  // [KEY] [CTRL+C]
             {
 				if (this.SelectedNodes.Count() > 0)  // kopirovanie textu objektu
                 {
                 	DataObject data = new DataObject();
-                
+
                     string copytext = "";
                     foreach (Node rec in this.SelectedNodes)
                     {
@@ -2079,12 +2079,12 @@ namespace Diagram
                     data.SetData(copytext);
 
                     data.SetData("DiagramXml", GetDiagramPart());//create and copy xml
-					
+
 					Clipboard.SetDataObject(data);
-					
+
 					return true;
                 }
-                                
+
                 return false;
             }
 
@@ -2095,8 +2095,8 @@ namespace Diagram
                     string copytext = "";
                     foreach (Node rec in this.SelectedNodes)
                     {
-						if (rec.link != null) 
-						{ 
+						if (rec.link != null)
+						{
 							copytext = copytext + rec.link;
 
 							if (this.SelectedNodes.Count () > 1) { //separate nodes
@@ -2116,8 +2116,8 @@ namespace Diagram
 					string copytext = "";
 					foreach (Node rec in this.SelectedNodes)
 					{
-						if (rec.note != null) 
-						{ 
+						if (rec.note != null)
+						{
 							copytext = copytext + rec.note;
 
 							if (this.SelectedNodes.Count () > 1) { //separate nodes
@@ -2186,7 +2186,7 @@ namespace Diagram
                                 Program.log.write("get link name error: " + ex.Message);
                             }
                         }
-                        
+
                         this.diagram.unsave();
                         SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
                         newrec.width = (int)s.Width;
@@ -2197,7 +2197,7 @@ namespace Diagram
                         newrec.text = ClipText;
                         this.diagram.unsave();
 
-						if (File.Exists(ClipText)) 
+						if (File.Exists(ClipText))
                         {
 							newrec.text = Path.GetFileName(ClipText);
                             SizeF s2 = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
@@ -2216,7 +2216,7 @@ namespace Diagram
 							newrec.link = Os.makeRelative(ClipText, this.diagram.FileName);
                             newrec.color = Media.getColor(diagram.options.colorFile);
                         }
-                            
+
                         SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
                         newrec.width = (int)s.Width;
                         newrec.height = (int)s.Height;
@@ -2311,8 +2311,8 @@ namespace Diagram
                         this.diagram.unsave();
                         this.diagram.InvalidateDiagram();
 
-                        /* 
-                        
+                        /*
+
                         // Paste image to file
                         try
                         {
@@ -2382,18 +2382,18 @@ namespace Diagram
                 }
 
                 Clipboard.SetDataObject(data);
-                
+
                 return true;
             }
-			
+
 			if (keyData == (Keys.Control | Keys.Shift | Keys.V))  // [KEY] [CTRL+SHIFT+V] vlozenie textu do poznamky
             {
 				DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
-				
-				if (retrievedData.GetDataPresent(DataFormats.Text)) 
+
+				if (retrievedData.GetDataPresent(DataFormats.Text))
 				{
 					string ClipText = retrievedData.GetData(DataFormats.Text) as string;
-					
+
 	                if (this.SelectedNodes.Count() == 0)
 	                {
 	                    Point ptCursor = Cursor.Position;
@@ -2410,8 +2410,8 @@ namespace Diagram
 						{
 							this.SelectedNodes[0].note += "\n";
 						}
-						
-						this.SelectedNodes[0].note += ClipText;						
+
+						this.SelectedNodes[0].note += ClipText;
 					}
 				}
 
@@ -2470,13 +2470,13 @@ namespace Diagram
 	                    Point ptCursor = Cursor.Position;
 	                    ptCursor = PointToClient(ptCursor);
 	                    Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
-	
+
 	                    newrec.text = result;
 	                    SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
 	                    newrec.width = (int)s.Width;
 	                    newrec.height = (int)s.Height;
 	                    newrec.color = System.Drawing.ColorTranslator.FromHtml("#8AC5FF");
-	
+
 	                    this.diagram.InvalidateDiagram();
 					}*/
 
@@ -2486,7 +2486,7 @@ namespace Diagram
                     if (Regex.IsMatch(expression, @"^\d+$"))
                     {
                         expression = expression + "+1";
-                    } 
+                    }
 
                     try
                     {
@@ -2514,7 +2514,7 @@ namespace Diagram
 
                         this.diagram.InvalidateDiagram();
                     }
-                    
+
 
                     return true;
                 }
@@ -2544,8 +2544,8 @@ namespace Diagram
 
                     this.diagram.InvalidateDiagram();
                     return true;
-                } 
-               
+                }
+
             }
 
             if (keyData == (Keys.Control | Keys.D))  // [KEY] [CTRL+D] Vozenie textu zo schranky
@@ -2609,19 +2609,19 @@ namespace Diagram
                 if (insertdate) // vloženie časovej značky na danú pozíciu
                 {
                     DateTime dt = DateTime.Now;
-                    insertdatestring = 
-                        dt.Year + "-" + 
-                        ((dt.Month < 10) ? "0" : "") + dt.Month + "-" + 
-                        ((dt.Day < 10) ? "0" : "") + dt.Day + " " + 
-                        ((dt.Hour < 10) ? "0" : "") + dt.Hour + ":" + 
-                        ((dt.Minute < 10) ? "0" : "") + dt.Minute + ":" + 
-                        ((dt.Second < 10) ? "0" : "") + dt.Second; 
+                    insertdatestring =
+                        dt.Year + "-" +
+                        ((dt.Month < 10) ? "0" : "") + dt.Month + "-" +
+                        ((dt.Day < 10) ? "0" : "") + dt.Day + " " +
+                        ((dt.Hour < 10) ? "0" : "") + dt.Hour + ":" +
+                        ((dt.Minute < 10) ? "0" : "") + dt.Minute + ":" +
+                        ((dt.Second < 10) ? "0" : "") + dt.Second;
                 }
 
                 Point ptCursor = Cursor.Position;
                 ptCursor = PointToClient(ptCursor);
                 Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
-                
+
                 newrec.text = insertdatestring;
                 SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
                 newrec.width = (int)s.Width;
@@ -2649,7 +2649,7 @@ namespace Diagram
                     var matchesFloat = Regex.Matches(expression, @"(\d+(?:\.\d+)?)");
                     var matchesDate = Regex.Matches(expression, @"^(\d{4}-\d{2}-\d{2})$");
 
-                    if (dayPosition != -1) { //get next day 
+                    if (dayPosition != -1) { //get next day
                         dayPosition += 1;
                         if (dayPosition == 7) {
                             dayPosition = 0;
@@ -2666,7 +2666,7 @@ namespace Diagram
                         string newnDateValue = String.Format("{0:yyyy-MM-dd}", theDate);
                         newrec.text = newnDateValue;
                     }
-                    else if (matchesFloat.Count > 0) //add to number 
+                    else if (matchesFloat.Count > 0) //add to number
                     {
                         string number = matchesFloat[0].Groups[1].Value;
                         string newnumber = (float.Parse(number) + 1).ToString();
@@ -2703,7 +2703,7 @@ namespace Diagram
                         }
                     }
 
-                    foreach (Node rec in this.SelectedNodes)     
+                    foreach (Node rec in this.SelectedNodes)
                     {
 
                         if (allHidden)
@@ -2721,7 +2721,7 @@ namespace Diagram
                 }
                 if(changed)this.diagram.unsave();
                 this.diagram.InvalidateDiagram();
- 
+
                 return true;
             }
 
@@ -2752,7 +2752,7 @@ namespace Diagram
                 this.setCurentPositionAsEndPosition();
             }
 
-            /* 
+            /*
              [DOCUMENTATION]
              Shortcut F5
             -otvorenie adresara vybranej nody
@@ -2871,7 +2871,7 @@ namespace Diagram
                 return true;
             }
 
-            if ((keyData == Keys.Left) || keyData == (Keys.Shift | Keys.Left))  // [KEY] [left] [SHIFT+LEFT] [ARROW] Move node 
+            if ((keyData == Keys.Left) || keyData == (Keys.Shift | Keys.Left))  // [KEY] [left] [SHIFT+LEFT] [ARROW] Move node
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2883,7 +2883,7 @@ namespace Diagram
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
-                else // MOVE SCREEN 
+                else // MOVE SCREEN
                 {
                     this.shift.x = this.shift.x + 50;
                     this.diagram.InvalidateDiagram();
@@ -2905,7 +2905,7 @@ namespace Diagram
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
-                else // MOVE SCREEN 
+                else // MOVE SCREEN
                 {
                     this.shift.x = this.shift.x - 50;
                     this.diagram.InvalidateDiagram();
@@ -2926,7 +2926,7 @@ namespace Diagram
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
-                else // MOVE SCREEN 
+                else // MOVE SCREEN
                 {
                     this.shift.y = this.shift.y + 50;
                     this.diagram.InvalidateDiagram();
@@ -2947,7 +2947,7 @@ namespace Diagram
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
-                else // MOVE SCREEN 
+                else // MOVE SCREEN
                 {
                     this.shift.y = this.shift.y - 50;
                     this.diagram.InvalidateDiagram();
@@ -2964,7 +2964,7 @@ namespace Diagram
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
-                else 
+                else
                 {
                     this.addNodeAfterNode();
                 }
@@ -2973,7 +2973,7 @@ namespace Diagram
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        // EVENT Key down                                                                              
+        // EVENT Key down
         public void DiagramApp_KeyDown(object sender, KeyEventArgs e)                                  // [KEYBOARD] [DOWN] [EVENT]
         {
             if (this.nodeNameEdit.Focused || this.searching)
@@ -3016,7 +3016,7 @@ namespace Diagram
                 this.diagram.InvalidateDiagram();
             }
 
-        }                              
+        }
 
         // EVENT Key up
         public void DiagramApp_KeyUp(object sender, KeyEventArgs e)
@@ -3050,7 +3050,7 @@ namespace Diagram
         // EVENT Keypress
         public void DiagramApp_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (this.nodeNameEdit.Focused || this.searching) 
+            if (this.nodeNameEdit.Focused || this.searching)
             {
                 return;
             }
@@ -3077,7 +3077,7 @@ namespace Diagram
             }
         }                         // [KEYBOARD] [PRESS] [EVENT]
 
-        // EVENT File Drop; DROP file                                                                
+        // EVENT File Drop; DROP file
         public void DiagramApp_DragDrop(object sender, DragEventArgs e)                                // [DROP] [EVENT]
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
@@ -3098,7 +3098,7 @@ namespace Diagram
 					newrec.link = Os.makeRelative(file, this.diagram.FileName);
 					newrec.color = System.Drawing.ColorTranslator.FromHtml("#FFCCF2");
                 }
-				else 
+				else
 				if (File.Exists(file))
                 {
                     string ext = "";
@@ -3136,7 +3136,7 @@ namespace Diagram
 						    #if !MONO
                             if (ext == ".exe")// [EXECUTABLE] [DROP] [ICON] extract icon
                             {
-                                try 
+                                try
                                 {
                                     Icon ico = Icon.ExtractAssociatedIcon(file);
                                     newrec.isimage = true;
@@ -3212,7 +3212,7 @@ namespace Diagram
                 rightScrollBar.Resize(this.ClientRectangle.Width, this.ClientRectangle.Height);
             }
 
-			if (this.diagram != null) 
+			if (this.diagram != null)
 			{
 				this.diagram.InvalidateDiagram ();
 			}
@@ -3253,7 +3253,7 @@ namespace Diagram
                 if (changed) this.diagram.InvalidateDiagram();
             }
         }                                      // [MOVE] [TIMER] [EVENT]
-        
+
         // EVENT Focus - lost focus
         public void DiagramApp_Deactivate(object sender, EventArgs e)
         {
@@ -3321,7 +3321,7 @@ namespace Diagram
             }
         }
 
-        // LAYER OUT 
+        // LAYER OUT
         public void LayerOut()
         {
             if (this.layer != 0)
@@ -3339,7 +3339,7 @@ namespace Diagram
                     }
 
                     this.LayerNode.haslayer = hasnode;
-                    this.LayerNode.layershiftx = this.shift.x; 
+                    this.LayerNode.layershiftx = this.shift.x;
                     this.LayerNode.layershifty = this.shift.y;
                 }
 
@@ -3404,7 +3404,7 @@ namespace Diagram
             }
         }
 
-        // LAYER HISTORY Buld laier history from 
+        // LAYER HISTORY Buld laier history from
         public void BuildLayerHistory(int id)
         {
             Layers.Clear();
@@ -3534,7 +3534,7 @@ namespace Diagram
                 mySize = g.MeasureString(nodeNameEdit.Text, myFont);
             }
 
-            // Resize the textbox 
+            // Resize the textbox
             this.nodeNameEdit.Width = (int)Math.Round(mySize.Width, 0) + 20;
             this.nodeNamePanel.Width = this.nodeNameEdit.Width;
         }
@@ -3590,14 +3590,14 @@ namespace Diagram
 
         /// <summary>
         ///  SEARCH FIRST
-        ///  
+        ///
         /// Build array of search results and then select first Node.
-        /// 
+        ///
         /// </summary>
         /// <param name="find">Search string</param>
         public void SearchFirst(string find)
         {
-            
+
             List<Node> foundNodes = new List<Node>();
 
             this.lastFound = -1;
@@ -3636,15 +3636,15 @@ namespace Diagram
             }
 
             this.SearchNext();
-            
+
         }
 
         /// <summary>
         /// SEARCH NEXT
-        /// 
+        ///
         /// Search node in cycle. Find first in array or start in begining of array
         /// </summary>
- 
+
         public void SearchNext()
         {
             Node node = null;
@@ -3656,14 +3656,14 @@ namespace Diagram
             {
                 node = this.diagram.GetNodeByID(NodesSearchResult[i]);
 
-                if (node != null) 
+                if (node != null)
                 {
                     lastFound = i;
                     break;
                 }
             }
 
-            if (node == null) 
+            if (node == null)
             {
                 for (int i = 0; i < lastFound; i++)
                 {
@@ -3871,7 +3871,7 @@ namespace Diagram
                                                 {
                                                     R.link = el.Value;
                                                 }
-                                                
+
                                                 if (el.Name.ToString() == "shortcut")
                                                 {
                                                     R.shortcut = Int32.Parse(el.Value);
@@ -3981,7 +3981,7 @@ namespace Diagram
                 this.SelectNode(newrec);
             }
 
-            foreach(Line line in NewLines) 
+            foreach(Line line in NewLines)
             {
                 foreach (Node[] mapbegin in maps)
                 {
@@ -4136,7 +4136,7 @@ namespace Diagram
         }
 
         // SCROLLBAR MOVE UP-DOWN
-        public void moveScreenVertical(float per) 
+        public void moveScreenVertical(float per)
         {
             int miny = int.MaxValue;
             int maxy = int.MinValue;
@@ -4221,7 +4221,7 @@ namespace Diagram
             this.Layers.Clear();
 
             this.diagram.CloseDiagram();
-            
+
         }
 
         // FILE Save - Ulozit súbor
@@ -4660,7 +4660,7 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // VIEW CLOSE 
+        // VIEW CLOSE
         private void DiagramView_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.diagram.DiagramViews.Remove(this);
@@ -4793,7 +4793,7 @@ namespace Diagram
             }
         }
 
-        // NODE Najdenie nody podla pozicie myši 
+        // NODE Najdenie nody podla pozicie myši
         public Node findNodeInMousePosition(int x, int y)
         {
             return this.diagram.findNodeInPosition((int)(x * this.scale - this.shift.x), (int)(y * this.scale - this.shift.y), this.layer);
@@ -4844,7 +4844,7 @@ namespace Diagram
 
                     Match matchFileOpenOnPosition = (new Regex("^([^#]+)#(.*)$")).Match(rec.link.Trim());
 
-                   
+
                     //- ak je link nastaveny na "script" po dvojkliku sa vyhodnoti telo nody ako macro
                     if (matchFileOpenOnPosition.Success && File.Exists(Path.GetFullPath(matchFileOpenOnPosition.Groups[1].Value)))       // OPEN FILE ON POSITION
                     {
@@ -4928,16 +4928,16 @@ namespace Diagram
                         }
                     }
                     else
-                    {   
+                    {
 
-                        /* 
+                        /*
                         [DOCUMENTATION]
                         - po dvojkliku na nodu sa spusti link
                         - v linku sa nahradia klucove vyrazi
                             %TEXT%     - aktualny text nody
                             %NOTE%     - poznamka v node
                             %ID%       - text v id nody
-                            %FILENAME% - meno diagramu 
+                            %FILENAME% - meno diagramu
                         */
 
                         string cmd = rec.link;                     // replace variables in link
@@ -4947,10 +4947,10 @@ namespace Diagram
                         cmd = cmd.Replace("%FILENAME%", this.diagram.FileName);
 
                         Program.log.write("diagram: openlink: run command: " + cmd);
-                        Os.runCommand(cmd, Os.getFileDirectory(this.diagram.FileName)); // RUN COMMAND 
+                        Os.runCommand(cmd, Os.getFileDirectory(this.diagram.FileName)); // RUN COMMAND
                     }
                 }
-                else // EDIT NODE    
+                else // EDIT NODE
                 {
                     return 1;
                 }
