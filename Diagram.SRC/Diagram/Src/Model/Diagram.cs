@@ -577,8 +577,8 @@ namespace Diagram
                         rec.position.x -= (rec.width - newWidth) / 2;
                     }
 
-                    if (rec.Height != 0 && newHeight != rec.Height) {
-                       rec.position.y -= (rec.Height - newHeight) / 2;
+                    if (rec.height != 0 && newHeight != rec.height) {
+                       rec.position.y -= (rec.height - newHeight) / 2;
                     }
 
                     rec.width = newWidth;
