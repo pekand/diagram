@@ -839,6 +839,19 @@
       <timecreate>2015-9-1 16:56:20</timecreate>
       <timemodify>2015-9-1 16:56:20</timemodify>
     </rectangle>
+    <rectangle>
+      <id>65</id>
+      <fontcolor>Black</fontcolor>
+      <text>T+i*n=S</text>
+      <layer>0</layer>
+      <x>769</x>
+      <y>1106</y>
+      <width>74</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-9-1 22:36:54</timecreate>
+      <timemodify>2015-9-1 22:36:54</timemodify>
+    </rectangle>
   </rectangles>
   <lines>
     <line>
