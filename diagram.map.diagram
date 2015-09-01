@@ -702,8 +702,8 @@
 
 }</text>
       <layer>0</layer>
-      <x>909</x>
-      <y>-91</y>
+      <x>514</x>
+      <y>-387</y>
       <width>196</width>
       <height>82</height>
       <color>#FFFFB8</color>
@@ -721,8 +721,8 @@
     }
 }</text>
       <layer>0</layer>
-      <x>1211</x>
-      <y>-94</y>
+      <x>727</x>
+      <y>-386</y>
       <width>234</width>
       <height>127</height>
       <color>#FFFFB8</color>
@@ -806,6 +806,38 @@
       <color>#FFFFB8</color>
       <timecreate>2015-9-1 16:40:03</timecreate>
       <timemodify>2015-9-1 16:40:03</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>63</id>
+      <fontcolor>Black</fontcolor>
+      <text>#if MONO
+            
+#else
+            
+#endif</text>
+      <layer>0</layer>
+      <x>991</x>
+      <y>-390</y>
+      <width>85</width>
+      <height>97</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-9-1 16:54:24</timecreate>
+      <timemodify>2015-9-1 16:54:24</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>64</id>
+      <fontcolor>Black</fontcolor>
+      <text>#if !MONO
+
+#endif</text>
+      <layer>0</layer>
+      <x>1090</x>
+      <y>-392</y>
+      <width>89</width>
+      <height>66</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-9-1 16:56:20</timecreate>
+      <timemodify>2015-9-1 16:56:20</timemodify>
     </rectangle>
   </rectangles>
   <lines>

@@ -203,7 +203,11 @@ namespace Diagram
 
 		public static string makeRelative(String filePath, String currentPath, bool inCurrentDir = true)
 		{
-			filePath = filePath.Trim();
+#if !MONO
+            filePath = filePath.ToLower();
+            currentPath = currentPath.ToLower();
+#endif
+            filePath = filePath.Trim();
 			currentPath = currentPath.Trim();
 
 			if (currentPath == "") 
@@ -237,7 +241,7 @@ namespace Diagram
 				currentPath += Path.DirectorySeparatorChar;
 			}
 
-			int pos = filePath.IndexOf (currentPath);
+			int pos = filePath.ToLower().IndexOf(currentPath.ToLower());
 			if( inCurrentDir &&  pos != 0) // skip files outside of currentPath
 			{
 				return filePath;

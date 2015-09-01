@@ -3056,11 +3056,15 @@ namespace Diagram
 				else
 				if (File.Exists(file))
                 {
-                    string ext = "";
-                    if (file != "")
+                    newrec.color = System.Drawing.ColorTranslator.FromHtml("#D9CCFF");
+
+                    if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName)) // DROP FILE - skratenie cesty k suboru
                     {
-                        ext = Path.GetExtension(file).ToLower();
+                        newrec.link = Os.makeRelative(file, this.diagram.FileName);
                     }
+
+                    string ext = "";
+                    ext = Path.GetExtension(file).ToLower();
 
                     if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // DROP IMAGE skratenie cesty k suboru
                     {
@@ -3077,64 +3081,54 @@ namespace Diagram
                         newrec.height = newrec.image.Height;
                         newrec.width = newrec.image.Width;
                     }
-                    else
-                        if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName)) // DROP FILE - skratenie cesty k suboru
+
+                        
+					#if !MONO
+                    if (ext == ".exe")// [EXECUTABLE] [DROP] [ICON] extract icon
+                    {
+                        try
                         {
-							newrec.link = Os.makeRelative(file, this.diagram.FileName);
-                            newrec.color = System.Drawing.ColorTranslator.FromHtml("#D9CCFF");
+                            Icon ico = Icon.ExtractAssociatedIcon(file);
+                            newrec.isimage = true;
+                            newrec.embeddedimage = true;
+                            newrec.image = ico.ToBitmap();
+                            newrec.image.MakeTransparent(Color.White);
+                            newrec.height = newrec.image.Height;
+                            newrec.width = newrec.image.Width;
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            newrec.link = file;
-                            newrec.color = System.Drawing.ColorTranslator.FromHtml("#D9CCFF");
-
-						    #if !MONO
-                            if (ext == ".exe")// [EXECUTABLE] [DROP] [ICON] extract icon
-                            {
-                                try
-                                {
-                                    Icon ico = Icon.ExtractAssociatedIcon(file);
-                                    newrec.isimage = true;
-                                    newrec.embeddedimage = true;
-                                    newrec.image = ico.ToBitmap();
-                                    newrec.image.MakeTransparent(Color.White);
-                                    newrec.height = newrec.image.Height;
-                                    newrec.width = newrec.image.Width;
-                                }
-                                catch (Exception ex)
-                                {
-                                    Program.log.write("extract icon from exe error: " + ex.Message);
-                                }
-                            }
-						    #endif
-
-                            #if !MONO
-                            if (ext == ".lnk") // [LINK] [DROP] extract target
-                            {
-                                try
-                                {
-                                    newrec.link = Os.GetShortcutTargetFile(file);
-
-                                    // ak je odkaz a odkazuje na exe subor pokusit sa extrahovat ikonu
-                                    if (File.Exists(newrec.link) && Path.GetExtension(newrec.link).ToLower() == ".exe")// extract icon
-                                    {
-                                        Icon ico = Icon.ExtractAssociatedIcon(newrec.link);
-                                        newrec.isimage = true;
-                                        newrec.embeddedimage = true;
-                                        newrec.image = ico.ToBitmap();
-                                        newrec.image.MakeTransparent(Color.White);
-                                        newrec.height = newrec.image.Height;
-                                        newrec.width = newrec.image.Width;
-                                    }
-
-                                }
-                                catch (Exception ex)
-                                {
-                                    Program.log.write("extract icon from lnk error: " + ex.Message);
-                                }
-                            }
-                            #endif
+                            Program.log.write("extract icon from exe error: " + ex.Message);
                         }
+                    }
+					#endif
+
+                    #if !MONO
+                    if (ext == ".lnk") // [LINK] [DROP] extract target
+                    {
+                        try
+                        {
+                            newrec.link = Os.GetShortcutTargetFile(file);
+
+                            // ak je odkaz a odkazuje na exe subor pokusit sa extrahovat ikonu
+                            if (File.Exists(newrec.link) && Path.GetExtension(newrec.link).ToLower() == ".exe")// extract icon
+                            {
+                                Icon ico = Icon.ExtractAssociatedIcon(newrec.link);
+                                newrec.isimage = true;
+                                newrec.embeddedimage = true;
+                                newrec.image = ico.ToBitmap();
+                                newrec.image.MakeTransparent(Color.White);
+                                newrec.height = newrec.image.Height;
+                                newrec.width = newrec.image.Width;
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Program.log.write("extract icon from lnk error: " + ex.Message);
+                        }
+                    }
+                    #endif
 
                 }
 
