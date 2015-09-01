@@ -246,7 +246,7 @@ namespace Diagram
             { // comand line arguments testing
                 args = new string[] { 
                     System.Reflection.Assembly.GetExecutingAssembly().Location
-                    //,"file.diagram"
+                    ,"c:\\Users\\root\\Desktop\\test.diagram"
                 };
             }
 

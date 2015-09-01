@@ -27,6 +27,7 @@ OutputBaseFilename=infinite-diagram-{#MyAppVersion}
 SetupIconFile=files\Diagram.ico
 Compression=lzma
 SolidCompression=yes
+ArchitecturesInstallIn64BitMode=x64
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

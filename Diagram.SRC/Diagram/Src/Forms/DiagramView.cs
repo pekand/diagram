@@ -12,10 +12,8 @@ using System.Drawing.Drawing2D;
 using System.Globalization;
 using NCalc;
 
-
 namespace Diagram
 {
-
 
     public partial class DiagramView : Form
     {
@@ -656,7 +654,6 @@ namespace Diagram
                 openlinkToolStripMenuItem.Enabled = this.SelectedNodes[0].link.Trim() != "";
                 toolStripMenuItem2.Visible = true;//separator
                 alignToolStripMenuItem.Visible = false;
-                if (this.SelectedNodes[0].shortcut > 0) removeShortcutToolStripMenuItem.Visible = true;
                 openDirectoryToolStripMenuItem1.Visible = false;
                 if (this.SelectedNodes[0].link.Trim().Length > 0 && File.Exists(this.SelectedNodes[0].link))
                     openDirectoryToolStripMenuItem1.Visible = true;
@@ -674,6 +671,22 @@ namespace Diagram
                 alignToolStripMenuItem.Visible = true;
                 removeShortcutToolStripMenuItem.Visible = false;
                 openDirectoryToolStripMenuItem1.Visible = false;
+            }
+
+            if (this.SelectedNodes.Count() > 0)
+            {
+                bool hasShortcut = false;
+                foreach (Node node in this.SelectedNodes)
+                {
+                    if (node.shortcut > 0) {
+                        hasShortcut = true;
+                        break;
+                    }
+                }
+
+                if (hasShortcut) {
+                    removeShortcutToolStripMenuItem.Visible = true;
+                }
             }
 
             if (this.diagram.password == "")
@@ -701,11 +714,6 @@ namespace Diagram
         // MENU Link Open
         public void openlinkToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            openLink();
-        }
-
-        public void openLink()
-        {
             if (this.SelectedNodes.Count() > 0)
             {
                 this.OpenLinkAsync(this.SelectedNodes[0]);
@@ -717,7 +725,7 @@ namespace Diagram
         {
             if (this.SelectedNodes.Count() > 0)
             {
-                Clipboard.SetText(this.SelectedNodes[0].link);
+                this.copyLinkToClipboard(this.SelectedNodes[0]);
             }
         }
 
@@ -744,51 +752,7 @@ namespace Diagram
         {
             if (exportFile.ShowDialog() == DialogResult.OK)
             {
-                if (diagram.Nodes.Count>0)
-                {
-
-                    int minx = diagram.Nodes[0].position.x;
-                    int maxx = diagram.Nodes[0].position.x + diagram.Nodes[0].width;
-                    int miny = diagram.Nodes[0].position.y;
-                    int maxy = diagram.Nodes[0].position.y + diagram.Nodes[0].height;
-
-                    foreach (Node rec in diagram.Nodes) // Loop through List with foreach
-                    {
-                        if (rec.position.x < minx)
-                        {
-                            minx = rec.position.x;
-                        }
-
-                        if (maxx < rec.position.x + rec.width)
-                        {
-                            maxx = rec.position.x + rec.width;
-                        }
-
-                        if (rec.position.y < miny)
-                        {
-                            miny = rec.position.y;
-                        }
-
-                        if (maxy < rec.position.y + rec.height)
-                        {
-                            maxy = rec.position.y + rec.height;
-                        }
-                    }
-
-                    minx = minx - 100;
-                    maxx = maxx + 100;
-                    miny = miny - 100;
-                    maxy = maxy + 100;
-
-                    Bitmap bmp = new Bitmap(maxx - minx, maxy - miny);
-                    Graphics g = Graphics.FromImage(bmp);
-                    g.Clear(this.BackColor);
-                    this.PaintDiagram(g, true, -this.shift.x - minx, -this.shift.y - miny);
-                    g.Dispose();
-                    bmp.Save(exportFile.FileName, System.Drawing.Imaging.ImageFormat.Png);
-                    bmp.Dispose();
-                }
-
+                this.exportDiagramToPng();
             }
         }
 
@@ -797,16 +761,7 @@ namespace Diagram
         {
             if (saveTextFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (diagram.Nodes.Count>0)
-                {
-                    string outtext = "";
-
-                    foreach (Node rec in diagram.Nodes)
-                    {
-                        outtext += rec.text + "\n" + (rec.link!=""?rec.link+"\n":"") + "\n" + rec.note + "\n---\n";
-                    }
-                    System.IO.File.WriteAllText(saveTextFileDialog.FileName, outtext);
-                }
+                exportDiagramToTxt(saveTextFileDialog.FileName);
             }
         }
 
@@ -838,21 +793,6 @@ namespace Diagram
         public void openDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openDiagramDirectory();
-        }
-
-        public void openDiagramDirectory()
-        {
-            if (!this.diagram.NewFile && File.Exists(this.diagram.FileName))
-            {
-                try
-                {
-                    System.Diagnostics.Process.Start(Path.GetDirectoryName(this.diagram.FileName));
-                }
-                catch (Exception ex)
-                {
-                    Program.log.write("open diagram directory error: " + ex.Message);
-                }
-            }
         }
 
         // MENU Encription
@@ -896,14 +836,6 @@ namespace Diagram
             this.showConsole();
         }
 
-        public void showConsole()
-        {
-            if (main.console == null)
-            {
-                main.console = new Console(main);
-            }
-            main.console.Show();
-        }
         // MENU Exit
         public void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -916,6 +848,7 @@ namespace Diagram
             this.GoToHome();
         }
 
+        // MENU set home position
         private void setStartPositionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.setCurentPositionAsHomePosition();
@@ -1049,7 +982,7 @@ namespace Diagram
             }
         }
 
-        // MENU align to group
+        // MENU align to group to column
         private void groupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.SelectedNodes.Count() > 0)
@@ -1065,13 +998,7 @@ namespace Diagram
         {
             if (this.SelectedNodes.Count() > 0)
             {
-                foreach (Node rec in this.SelectedNodes) // Loop through List with foreach
-                {
-                    this.diagram.RemoveShortcut(rec);
-                }
-
-
-                this.diagram.InvalidateDiagram();
+                removeShortcuts(this.SelectedNodes);
             }
         }
 
@@ -1096,7 +1023,7 @@ namespace Diagram
         // MENU Homepage navštíviť domovskú stránku
         private void visitWebsiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(main.parameters.home_page);
+            Network.openUrl(main.parameters.home_page);
         }
 
         // MENU About navštíviť domovskú stránku
@@ -1110,12 +1037,6 @@ namespace Diagram
             main.aboutForm.Show();
         }
 
-        // MENU SCRIPT  Generate - generate script
-        private void generateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         /*************************************************************************************************************************/
 
@@ -1126,22 +1047,14 @@ namespace Diagram
             this.InitializeComponent();
         }
 
-        public void setDiagram(Diagram diagram)
-        {
-            this.diagram = diagram;
-        }
-
-        public Diagram getDiagram()
-        {
-            return this.diagram;
-        }
-
+        // FORM Load event - 
         public void DiagramViewLoad(object sender, EventArgs e)
         {
             //Only in debug
-            #if DEBUG
-                this.debugOnly();
-            #endif
+#if DEBUG
+            consoleToolStripMenuItem.Visible = true;
+            coordinatesToolStripMenuItem.Visible = true;
+#endif
 
             this.Left = 50;
             this.Top = 40;
@@ -1199,13 +1112,6 @@ namespace Diagram
 
             this.shift.x = diagram.options.homePosition.x;
             this.shift.y = diagram.options.homePosition.y;
-        }
-
-        // FORM LOAD DEBUG - nastavenie len pre debug mod
-        public void debugOnly()
-        {
-            consoleToolStripMenuItem.Visible     = true;
-            coordinatesToolStripMenuItem.Visible = true;
         }
 
         // FORM Quit Close
@@ -1290,7 +1196,7 @@ namespace Diagram
                 this.Text = "*" + this.Text;
         }
 
-        // FORM go to home position - Centrovanie obrazovky
+        // FORM go to home position - center window to home position
         public void GoToHome()
         {
             if (this.LayerNode != null)
@@ -1313,7 +1219,7 @@ namespace Diagram
             diagram.options.homePosition.y = this.shift.y;
         }
 
-        // FORM go to home position - Centrovanie obrazovky
+        // FORM go to end position - senter window to second remembered position
         public void GoToEnd()
         {
             if (this.LayerNode != null)
@@ -1329,7 +1235,7 @@ namespace Diagram
             this.diagram.InvalidateDiagram();
         }
 
-        // FORM set home position - Centrovanie obrazovky
+        // FORM set end position - center window
         public void setCurentPositionAsEndPosition()
         {
             diagram.options.endPosition.x = this.shift.x;
@@ -1743,7 +1649,7 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DBLCLICK otvorenie editacie alebo linku
+                // KEY DBLCLICK otvorenie editacie alebo linku [dblclick]
                 if (dblclick && this.SourceNode != null && !keyctrl && !keyalt && !keyshift)
                 {
 
@@ -1999,6 +1905,55 @@ namespace Diagram
             }
         }
 
+        private bool parseKey(string key, Keys keyData){
+
+            string[] parts = key.Split('+');
+            Keys keyCode = 0;
+            Keys code = 0;
+
+            foreach (string part in parts) {
+                if (part == "CTRL")
+                {
+                    keyCode = Keys.Control | keyCode;
+                    continue;
+                }
+
+                if (part == "ALT")
+                {
+                    keyCode = Keys.Alt | keyCode;
+                    continue;
+                }
+
+                if (part == "SHIFT")
+                {
+                    keyCode = Keys.Shift | keyCode;
+                    continue;
+                }
+
+                if (part == "PAGEUP")
+                {
+                    keyCode = Keys.PageUp | keyCode;
+                    continue;
+                }
+
+                if (part == "PAGEDOWN")
+                {
+                    keyCode = Keys.PageDown | keyCode;
+                    continue;
+                }
+
+                if (Enum.TryParse(Fonts.FirstCharToUpper(part), out code)) {
+                    keyCode = code | keyCode;
+                }
+            }
+
+            if (keyCode == keyData) {
+               return  true;
+            }
+
+            return false;
+        }
+
         // EVENT Shortcuts                                                                             // [KEYBOARD] [EVENT]
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -2011,17 +1966,7 @@ namespace Diagram
              * [doc] order : ProcessCmdKey, DiagramApp_KeyDown, DiagramApp_KeyPress, DiagramApp_KeyUp;
              */
 
-            if (keyData == (Keys.Shift | Keys.Tab))  // [KEY] [SHIFT+TAB] Zarovnanie vybranych prvkov doprava //KEY shift+tab
-            {
-                if (this.SelectedNodes.Count() > 0)
-                {
-                    this.diagram.AlignRight(this.SelectedNodes);
-                    this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
-                }
-            }
-
-            if (keyData == (Keys.Control | Keys.A)) // [KEY] [CTRL+A] select all elements
+            if (parseKey("CTRL+A", keyData) ) // [KEY] [CTRL+A] select all elements
             {
                 this.ClearSelection();
                 foreach (Node rec in this.diagram.Nodes)
@@ -2033,7 +1978,7 @@ namespace Diagram
                 this.diagram.InvalidateDiagram();
             }
 
-            if (keyData == (Keys.Control | Keys.L)) // [KEY] [CTRL+L] zarovnanie vybranych prvkov do roviny
+            if (parseKey("CTRL+L", keyData)) // [KEY] [CTRL+L] zarovnanie vybranych prvkov do roviny
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2043,7 +1988,7 @@ namespace Diagram
                 }
             }
 
-            if (keyData == (Keys.Control | Keys.H)) // [KEY] [CTRL+H] zarovnanie vybranych prvkov do stlpca
+            if (parseKey("CTRL+H", keyData)) // [KEY] [CTRL+H] zarovnanie vybranych prvkov do stlpca
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2054,7 +1999,7 @@ namespace Diagram
             }
 
 
-            if (keyData == (Keys.Control | Keys.K)) // [KEY] [CTRL+K] zarovnanie vybranych prvkov s pravidelným odstupom
+            if (parseKey("CTRL+K", keyData)) // [KEY] [CTRL+K] zarovnanie vybranych prvkov s pravidelným odstupom
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2064,7 +2009,7 @@ namespace Diagram
                 }
             }
 
-            if (keyData == (Keys.Control | Keys.C))  // [KEY] [CTRL+C]
+            if (parseKey("CTRL+C", keyData))  // [KEY] [CTRL+C]
             {
 				if (this.SelectedNodes.Count() > 0)  // kopirovanie textu objektu
                 {
@@ -2088,7 +2033,7 @@ namespace Diagram
                 return false;
             }
 
-            if (keyData == (Keys.Control | Keys.Shift | Keys.C))  // [KEY] [CTRL+SHIFT+C] copy links from selected nodes
+            if (parseKey("CTRL+SHIFT+C", keyData))  // [KEY] [CTRL+SHIFT+C] copy links from selected nodes
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2109,7 +2054,7 @@ namespace Diagram
                 return true;
             }
 
-			if (keyData == (Keys.Control | Keys.Alt | Keys.Shift | Keys.C))  // [KEY] [CTRL+ALT+SHIFT+C] copy notes from selected nodes
+			if (parseKey("CTRL+ALT+SHIFT+C", keyData))  // [KEY] [CTRL+ALT+SHIFT+C] copy notes from selected nodes
 			{
 				if (this.SelectedNodes.Count() > 0)
 				{
@@ -2130,7 +2075,7 @@ namespace Diagram
 				return true;
 			}
 
-            if (keyData == (Keys.Control | Keys.V))  // [KEY] [CTRL+V] [PASTE] Vozenie textu zo schranky
+            if (parseKey("CTRL+V", keyData))  // [KEY] [CTRL+V] [PASTE] Vozenie textu zo schranky
             {
                 DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
 
@@ -2362,7 +2307,7 @@ namespace Diagram
                 return true;
             }
 
-            if (keyData == (Keys.Control | Keys.X))  // [KEY] [CTRL+X] Copy diagram
+            if (parseKey("CTRL+X", keyData))  // [KEY] [CTRL+X] Copy diagram
             {
                 DataObject data = new DataObject();
                 if (this.SelectedNodes.Count() > 0)  // kopirovanie textu objektu
@@ -2386,7 +2331,7 @@ namespace Diagram
                 return true;
             }
 
-			if (keyData == (Keys.Control | Keys.Shift | Keys.V))  // [KEY] [CTRL+SHIFT+V] vlozenie textu do poznamky
+			if (parseKey("CTRL+SHIFT+V", keyData))  // [KEY] [CTRL+SHIFT+V] vlozenie textu do poznamky
             {
 				DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
 
@@ -2419,37 +2364,37 @@ namespace Diagram
                 return true;
             }
 
-            if (keyData == (Keys.Control | Keys.N))  // [KEY] [CTRL+N] New Diagram
+            if (parseKey("CTRL+N", keyData))  // [KEY] [CTRL+N] New Diagram
             {
                 main.OpenDiagram();
                 return true;
             }
 
-            if (keyData == (Keys.Control | Keys.Shift | Keys.N))  // [KEY] [CTRL+SHIFT+N] New Diagram
+            if (parseKey("CTRL+SHIFT+N", keyData))  // [KEY] [CTRL+SHIFT+N] New Diagram
             {
                 this.diagram.openDiagramView();
                 return true;
             }
 
-            if (keyData == (Keys.Control | Keys.S))  // [KEY] [CTRL+S] Uloženie okna
+            if (parseKey("CTRL+S", keyData))  // [KEY] [CTRL+S] Uloženie okna
             {
                 this.save();
                 return true;
             }
 
-            if (keyData == (Keys.Control | Keys.O))  // [KEY] [CTRL+O] Otvorenie diagramu
+            if (parseKey("CTRL+O", keyData))  // [KEY] [CTRL+O] Otvorenie diagramu
             {
                 openToolStripMenuItem_Click(null, null);
                 return true;
             }
 
-            if (keyData == (Keys.Control | Keys.F))  // [KEY] [CTRL+F] Search form
+            if (parseKey("CTRL+F", keyData))  // [KEY] [CTRL+F] Search form
             {
                 this.showSearchPanel();
                 return true;
             }
 
-            if (keyData == (Keys.Control | Keys.G))  // [KEY] [CTRL+G] Evaluate expresion
+            if (parseKey("CTRL+G", keyData))  // [KEY] [CTRL+G] Evaluate expresion
             {
                 if (this.SelectedNodes.Count()==1)
                 {
@@ -2548,7 +2493,7 @@ namespace Diagram
 
             }
 
-            if (keyData == (Keys.Control | Keys.D))  // [KEY] [CTRL+D] Vozenie textu zo schranky
+            if (parseKey("CTRL+D", keyData))  // [KEY] [CTRL+D] Vozenie textu zo schranky
             {
                 bool insertdate = true;
                 string insertdatestring = "";
@@ -2632,7 +2577,7 @@ namespace Diagram
                 return true;
             }
 
-            if (keyData == (Keys.Control | Keys.P)) // [KEY] [CTRL+P] Promote node
+            if (parseKey("CTRL+P", keyData)) // [KEY] [CTRL+P] Promote node
             {
                 if (this.SelectedNodes.Count() == 1)
                 {
@@ -2685,7 +2630,7 @@ namespace Diagram
                 return true;
             }
 
-            if (keyData == Keys.F3) // [KEY] [F3] Hide background
+            if (parseKey("F3", keyData)) // [KEY] [F3] Hide background
             {
 
                 bool changed = false;
@@ -2725,29 +2670,29 @@ namespace Diagram
                 return true;
             }
 
-            if (keyData == (Keys.Shift | Keys.F3)) // [KEY] [SHIFT+F3] reverse search
+            if (parseKey("SHIFT+F3", keyData)) // [KEY] [SHIFT+F3] reverse search
             {
                 this.SearchPrev();
             }
 
-            if (keyData == Keys.Home) // KEY HOME Vycentrovanie
+            if (parseKey("HOME", keyData)) // KEY [HOME] Vycentrovanie
             {
                 this.GoToHome();
                 return true;
             }
 
-            if (keyData == (Keys.Shift | Keys.Home))  // [KEY] [SHIFT+HOME] Move start point
+            if (parseKey("SHIFT+HOME", keyData))  // [KEY] [SHIFT+HOME] Move start point
             {
                 this.setCurentPositionAsHomePosition();
             }
 
-            if (keyData == Keys.End) // KEY END Vycentrovanie
+            if (parseKey("END", keyData)) // KEY [END] Vycentrovanie
             {
                 this.GoToEnd();
                 return true;
             }
 
-            if (keyData == (Keys.Shift | Keys.End))  // [KEY] [SHIFT+END] Move start point
+            if (parseKey("SHIFT+END", keyData))  // [KEY] [SHIFT+END] Move start point
             {
                 this.setCurentPositionAsEndPosition();
             }
@@ -2759,18 +2704,18 @@ namespace Diagram
             -prejdu sa vybrane nody a ak je to adresar alebo subor otvori sa adresar
             -ak nie su vybrane ziadne nody otvori sa adresar diagrammu
             */
-            if (keyData == Keys.F5) // KEY F5 Open link directory or diagram directory
+            if (parseKey("F5", keyData)) // KEY [F5] Open link directory or diagram directory
             {
                 openLinkDirectory();
                 return true;
             }
 
-            if (keyData == Keys.F12) // [KEY] [F12] show Debug console
+            if (parseKey("F12", keyData)) // [KEY] [F12] show Debug console
             {
                 this.showConsole();
             }
 
-            if (keyData == (Keys.Control | Keys.PageUp)) // KEY CTRL+PAGEUP Posun prvku do popredia
+            if (parseKey("CTRL+PAGEUP", keyData)) // KEY CTRL+PAGEUP Posun prvku do popredia
             {
                 if (this.SelectedNodes.Count() > 0 )
                 {
@@ -2787,7 +2732,7 @@ namespace Diagram
                 return true;
             }
 
-            if (keyData == (Keys.Control | Keys.PageDown)) // [KEY] [CTRL+PAGEDOWN] Posun prvku do pozadia
+            if (parseKey("CTRL+PAGEDOWN", keyData)) // [KEY] [CTRL+PAGEDOWN] Posun prvku do pozadia
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2803,21 +2748,21 @@ namespace Diagram
                 return true;
             }
 
-            if (keyData == Keys.PageUp) // [KEY] [PAGEUP] Posun obrazovky
+            if (parseKey("PAGEUP", keyData)) // [KEY] [PAGEUP] Posun obrazovky
             {
                 this.shift.y = this.shift.y + this.ClientSize.Height;
                 this.diagram.InvalidateDiagram();
                 return true;
             }
 
-            if (keyData == Keys.PageDown) // [KEY] [PAGEDOWN] Posun obrazovky
+            if (parseKey("PAGEDOWN", keyData)) // [KEY] [PAGEDOWN] Posun obrazovky
             {
                 this.shift.y = this.shift.y - this.ClientSize.Height;
                 this.diagram.InvalidateDiagram();
                 return true;
             }
 
-            if (keyData == Keys.F2) // [KEY] [F2] Editovanie
+            if (parseKey("F2", keyData)) // [KEY] [F2] Editovanie
             {
                 if (this.SelectedNodes.Count() == 1)
                 {
@@ -2831,7 +2776,7 @@ namespace Diagram
                 return false;
             }
 
-            if (keyData == Keys.Enter) // [KEY] [ENTER] Editovanie nody
+            if (parseKey("ENTER", keyData)) // [KEY] [ENTER] Editovanie nody
             {
                 if (this.SelectedNodes.Count() == 1)
                 {
@@ -2847,7 +2792,7 @@ namespace Diagram
                 return true;
             }
 
-            if (keyData == Keys.Escape) // [KEY] [ESC] Minimalizovanie okna //KEY Esc
+            if (parseKey("ESCAPE", keyData)) // [KEY] [ESC] Minimalizovanie okna //KEY Esc
             {
                 if (!this.diagram.SavedFile && this.diagram.FileName != "")  //treba overit ci existuje a dat dialg na ulozenie ako
                 {
@@ -2859,19 +2804,19 @@ namespace Diagram
                 return true;
             }
 
-            if (keyData == Keys.Back) // [KEY] [ENTER] Editovanie nody
+            if (parseKey("BACK", keyData)) // [KEY] [BACK] Editovanie nody
             {
                 this.LayerOut();
                 return true;
             }
 
-            if (keyData == Keys.Delete) // [KEY] [DELETE] zmazanie nody
+            if (parseKey("DELETE", keyData)) // [KEY] [DELETE] zmazanie nody
             {
                 this.DeleteSelectedNodes(this);
                 return true;
             }
 
-            if ((keyData == Keys.Left) || keyData == (Keys.Shift | Keys.Left))  // [KEY] [left] [SHIFT+LEFT] [ARROW] Move node
+            if (parseKey("LEFT", keyData) || parseKey("SHIFT+LEFT", keyData))  // [KEY] [left] [SHIFT+LEFT] [ARROW] Move node
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2892,7 +2837,7 @@ namespace Diagram
                 return true;
             }
 
-            if (keyData == Keys.Right || keyData == (Keys.Shift | Keys.Right))  // [KEY] [right] [SHIFT+RIGHT] [ARROW] Move node
+            if (parseKey("RIGHT", keyData) || parseKey("SHIFT+RIGHT", keyData))  // [KEY] [right] [SHIFT+RIGHT] [ARROW] Move node
             {
 
                 if (this.SelectedNodes.Count() > 0)
@@ -2914,7 +2859,7 @@ namespace Diagram
                 return true;
             }
 
-            if (keyData == Keys.Up || keyData == (Keys.Shift | Keys.Up))  // [KEY] [up] [SHIFT+UP] [ARROW] Move node
+            if (parseKey("UP", keyData) || parseKey("SHIFT+UP", keyData))  // [KEY] [up] [SHIFT+UP] [ARROW] Move node
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2935,7 +2880,7 @@ namespace Diagram
                 return true;
             }
 
-            if (keyData == Keys.Down || keyData == (Keys.Shift | Keys.Down))  // [KEY] [down] [SHIFT+DOWN] [ARROW] Move node
+            if (parseKey("DOWN", keyData) || parseKey("SHIFT+DOWN", keyData))  // [KEY] [down] [SHIFT+DOWN] [ARROW] Move node
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2956,7 +2901,7 @@ namespace Diagram
                 return true;
             }
 
-            if (keyData == Keys.Tab) // [KEY] [TAB] zarovnanie vybranych prvkov dolava
+            if (parseKey("TAB", keyData)) // [KEY] [TAB] zarovnanie vybranych prvkov dolava
             {
                 if (this.SelectedNodes.Count() > 1)
                 {
@@ -2967,6 +2912,16 @@ namespace Diagram
                 else
                 {
                     this.addNodeAfterNode();
+                }
+            }
+
+            if (parseKey("SHIFT+TAB", keyData))  // [KEY] [SHIFT+TAB] Zarovnanie vybranych prvkov doprava //KEY shift+tab
+            {
+                if (this.SelectedNodes.Count() > 0)
+                {
+                    this.diagram.AlignRight(this.SelectedNodes);
+                    this.diagram.unsave();
+                    this.diagram.InvalidateDiagram();
                 }
             }
 
@@ -3771,6 +3726,7 @@ namespace Diagram
                 this.SearchFirst(search);
             }
         }
+        
         /*************************************************************************************************************************/
 
         // CLIPBOARD PASTE vloží časť zo schranky do otvoreneho diagramu                                   // CLIPBOARD
@@ -4074,6 +4030,12 @@ namespace Diagram
             return copyxml;
         }
 
+        // CLIPBOARD Copy link to clipboard
+        public void copyLinkToClipboard(Node node)
+        {
+            Clipboard.SetText(node.link);
+        }
+        
         /*************************************************************************************************************************/
 
         // SCROLLBAR MOVE LEFT-RIGHT                                                                       // SCROLLBAR
@@ -4247,9 +4209,91 @@ namespace Diagram
             }
         }
 
+        // FILE Open diagram directory
+        public void openDiagramDirectory()
+        {
+            if (!this.diagram.NewFile && File.Exists(this.diagram.FileName))
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(Path.GetDirectoryName(this.diagram.FileName));
+                }
+                catch (Exception ex)
+                {
+                    Program.log.write("open diagram directory error: " + ex.Message);
+                }
+            }
+        }
+        
         /*************************************************************************************************************************/
 
-        // DIAGRAM paint
+        // EXPORT Export diagram to png
+        public void exportDiagramToPng()
+        {
+            if (diagram.Nodes.Count > 0)
+            {
+
+                int minx = diagram.Nodes[0].position.x;
+                int maxx = diagram.Nodes[0].position.x + diagram.Nodes[0].width;
+                int miny = diagram.Nodes[0].position.y;
+                int maxy = diagram.Nodes[0].position.y + diagram.Nodes[0].height;
+
+                foreach (Node rec in diagram.Nodes) // Loop through List with foreach
+                {
+                    if (rec.position.x < minx)
+                    {
+                        minx = rec.position.x;
+                    }
+
+                    if (maxx < rec.position.x + rec.width)
+                    {
+                        maxx = rec.position.x + rec.width;
+                    }
+
+                    if (rec.position.y < miny)
+                    {
+                        miny = rec.position.y;
+                    }
+
+                    if (maxy < rec.position.y + rec.height)
+                    {
+                        maxy = rec.position.y + rec.height;
+                    }
+                }
+
+                minx = minx - 100;
+                maxx = maxx + 100;
+                miny = miny - 100;
+                maxy = maxy + 100;
+
+                Bitmap bmp = new Bitmap(maxx - minx, maxy - miny);
+                Graphics g = Graphics.FromImage(bmp);
+                g.Clear(this.BackColor);
+                this.PaintDiagram(g, true, -this.shift.x - minx, -this.shift.y - miny);
+                g.Dispose();
+                bmp.Save(exportFile.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                bmp.Dispose();
+            }
+        }
+
+        // EXPORT Export diagram to txt
+        public void exportDiagramToTxt(string filePath)
+        {
+            if (diagram.Nodes.Count > 0)
+            {
+                string outtext = "";
+
+                foreach (Node rec in diagram.Nodes)
+                {
+                    outtext += rec.text + "\n" + (rec.link != "" ? rec.link + "\n" : "") + "\n" + rec.note + "\n---\n";
+                }
+                System.IO.File.WriteAllText(filePath, outtext);
+            }
+        }
+
+        /*************************************************************************************************************************/
+
+        // PAINT paint                                                                                  // PAINT
         void PaintDiagram(Graphics gfx, bool export = false, int cx = 0, int cy = 0)
         {
             // cx cy -> correction for export image
@@ -4660,6 +4704,20 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
+        //DIAGRAM Set model
+        public void setDiagram(Diagram diagram)
+        {
+            this.diagram = diagram;
+        }
+
+        //DIAGRAM Get model
+        public Diagram getDiagram()
+        {
+            return this.diagram;
+        }
+
+        /*************************************************************************************************************************/
+
         // VIEW CLOSE
         private void DiagramView_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -4862,7 +4920,7 @@ namespace Diagram
                             }
 
                             String editFileCmd = this.main.parameters.texteditor;
-                            editFileCmd = editFileCmd.Replace("%FILENAME%", Path.GetFullPath(fileName));
+                            editFileCmd = editFileCmd.Replace("%FILENAME%", Os.normalizePath(fileName));
                             editFileCmd = editFileCmd.Replace("%LINE%", searchString);
 
                             Program.log.write("diagram: openlink: open file on position " + editFileCmd);
@@ -4883,30 +4941,30 @@ namespace Diagram
                         script.setClipboard(clipboard);
                         script.runScript(rec.note);
                     }
-                    else if (Directory.Exists(rec.link))  // OPEN DIRECTORY
+                    else if (Os.DirectoryExists(rec.link))  // OPEN DIRECTORY
                     {
                         try
                         {
-                            Program.log.write("diagram: openlink: open directory " + rec.link);
-                            System.Diagnostics.Process.Start(rec.link);
+                            Program.log.write("diagram: openlink: open directory " + Os.normalizePath(rec.link));
+                            Os.runProcess(rec.link);
                         }
                         catch (Exception ex)
                         {
                             Program.log.write("open link as directory error: " + ex.Message);
                         }
                     }
-                    else if (File.Exists(rec.link))       // OPEN FILE
+                    else if (Os.FileExists(rec.link))       // OPEN FILE
                     {
                         try
                         {
                             if (Os.isDiagram(rec.link))
                             {
-                                Program.log.write("diagram: openlink: open diagram " + rec.link);
+                                Program.log.write("diagram: openlink: open diagram " + Os.normalizePath(rec.link));
                                 Os.openDiagram(rec.link);
                             }
                             else
                             {
-                                Program.log.write("diagram: openlink: open file " + rec.link);
+                                Program.log.write("diagram: openlink: open file " + Os.normalizePath(rec.link));
                                 Os.runProcess(rec.link);
                             }
                         }
@@ -4920,7 +4978,7 @@ namespace Diagram
                         try
                         {
                             Program.log.write("diagram: openlink: open url " + rec.link);
-                            Network.runUrl(rec.link);
+                            Network.openUrl(rec.link);
                         }
                         catch (Exception ex)
                         {
@@ -4956,6 +5014,30 @@ namespace Diagram
                 }
             }
             return 0;
+        }
+
+
+        // NODE Remove shortcuts
+        public void removeShortcuts(List<Node> Nodes)
+        {
+            foreach (Node rec in Nodes) // Loop through List with foreach
+            {
+                this.diagram.RemoveShortcut(rec);
+            }
+
+            this.diagram.InvalidateDiagram();
+        }
+
+        /*************************************************************************************************************************/
+
+        // DEBUG Show console
+        public void showConsole()
+        {
+            if (main.console == null)
+            {
+                main.console = new Console(main);
+            }
+            main.console.Show();
         }
     }
 }

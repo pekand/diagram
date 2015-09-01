@@ -569,16 +569,16 @@ namespace Diagram
                 if (!rec.isimage)
                 {
                     SizeF s = this.MeasureStringWithMargin(rec.text, rec.font);
-                    newWidth = (int)s.Width
-                    newHeight = (int)s.Height
+                    newWidth = (int)s.Width;
+                    newHeight = (int)s.Height;
 
                     // font change correction > center node
                     if (rec.width != 0 && newWidth != rec.width) {
-                        rec.position.x -= (rec.width - newWidth) / 2;
+                        rec.position.x += (rec.width - newWidth) / 2;
                     }
 
                     if (rec.height != 0 && newHeight != rec.height) {
-                       rec.position.y -= (rec.height - newHeight) / 2;
+                       rec.position.y += (rec.height - newHeight) / 2;
                     }
 
                     rec.width = newWidth;

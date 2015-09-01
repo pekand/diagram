@@ -46,7 +46,7 @@ namespace Diagram
             return (Regex.IsMatch(url, @"(https)://.*"));
         }
 
-		public static void runUrl(String url)
+		public static void openUrl(String url)
         {
 			url = url.Replace(" ", "%20");
 			System.Diagnostics.Process.Start(url);

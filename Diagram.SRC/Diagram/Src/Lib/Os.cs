@@ -72,6 +72,7 @@ namespace Diagram
 
         public static bool isDiagram(String diagramPath)
         {
+            diagramPath = normalizePath(diagramPath);
             if (File.Exists(diagramPath) && Path.GetExtension(diagramPath).ToLower() == ".diagram")
             {
                 return true;
@@ -175,9 +176,10 @@ namespace Diagram
             return clipboard;
         }
 
-        public static void runProcess(String cmd)
+        public static void runProcess(String path)
         {
-            System.Diagnostics.Process.Start(cmd);
+            path = normalizePath(path);
+            System.Diagnostics.Process.Start(path);
         }
 
         public static int fndLineNumber(String fileName, String search)
@@ -244,5 +246,32 @@ namespace Diagram
 			Uri folderUri = new Uri(currentPath);
 			return Uri.UnescapeDataString(folderUri.MakeRelativeUri(pathUri).ToString().Replace('/', Path.DirectorySeparatorChar));
 		}
+
+        public static string normalizePath(string path)
+        {
+
+#if MONO
+            return path.Replace("\\","/");
+#else
+            return path.Replace("/","\\");
+#endif
+
+        }
+
+        public static string normalizedFullPath(string path)
+        {
+            return Path.GetFullPath(normalizePath(path));
+        }
+
+        public static bool FileExists(string path)
+        {
+            return File.Exists(normalizePath(path));
+        }
+
+        public static bool DirectoryExists(string path)
+        {
+            return Directory.Exists(normalizePath(path));
+        }
+
     }
 }

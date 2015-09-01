@@ -11,7 +11,7 @@ namespace Diagram
     public class ProgramOptions
     {
         [JsonIgnore]
-        public string ApplicationVersion = "0.2.009";
+        public string ApplicationVersion = "0.2.010";
         [JsonIgnore]
         public string ReleaseDate = "2015-08-26";
         [JsonIgnore]
