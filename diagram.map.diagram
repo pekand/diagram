@@ -1,7 +1,7 @@
 <diagram>
   <option>
-    <shiftx>0</shiftx>
-    <shifty>0</shifty>
+    <shiftx>-301</shiftx>
+    <shifty>-53</shifty>
     <endPositionx>0</endPositionx>
     <endPositiony>0</endPositiony>
     <firstLayereShift.x>0</firstLayereShift.x>
@@ -841,6 +841,32 @@
       <timecreate>2015-9-2 02:16:37</timecreate>
       <timemodify>2015-9-2 02:16:37</timemodify>
     </rectangle>
+    <rectangle>
+      <id>68</id>
+      <fontcolor>Black</fontcolor>
+      <text>search bar</text>
+      <layer>0</layer>
+      <x>877</x>
+      <y>1018</y>
+      <width>89</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-9-2 22:00:23</timecreate>
+      <timemodify>2015-9-2 22:00:23</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>69</id>
+      <fontcolor>Black</fontcolor>
+      <text>search automaticky</text>
+      <layer>0</layer>
+      <x>976</x>
+      <y>1018</y>
+      <width>142</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-9-2 22:00:30</timecreate>
+      <timemodify>2015-9-2 22:00:30</timemodify>
+    </rectangle>
   </rectangles>
   <lines>
     <line>
@@ -911,6 +937,11 @@
     <line>
       <start>66</start>
       <end>65</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>68</start>
+      <end>69</end>
       <arrow>0</arrow>
     </line>
   </lines>
