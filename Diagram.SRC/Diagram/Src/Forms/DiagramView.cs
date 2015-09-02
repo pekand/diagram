@@ -4856,6 +4856,11 @@ namespace Diagram
         {
             Program.log.write("diagram: openlink: run worker");
             String clipboard = Os.getTextFormClipboard();
+            
+
+#if DEBUG
+            this.OpenLink(rec, clipboard);
+#else
             var worker = new BackgroundWorker();
             worker.WorkerSupportsCancellation = true;
             worker.DoWork += (sender, e) =>
@@ -4872,6 +4877,7 @@ namespace Diagram
                 }
             };
             worker.RunWorkerAsync();
+#endif
         }
 
         // NODE Open Link
@@ -4914,11 +4920,11 @@ namespace Diagram
                             }
 
                             String editFileCmd = this.main.parameters.texteditor;
-                            editFileCmd = editFileCmd.Replace("%FILENAME%", Os.normalizePath(fileName));
+                            editFileCmd = editFileCmd.Replace("%FILENAME%", Os.normalizedFullPath(fileName));
                             editFileCmd = editFileCmd.Replace("%LINE%", searchString);
 
                             Program.log.write("diagram: openlink: open file on position " + editFileCmd);
-                            Os.runCommandAndExit(editFileCmd);
+                            Os.runCommand(editFileCmd);
                         }
                         catch (Exception ex)
                         {
@@ -5009,7 +5015,6 @@ namespace Diagram
             }
             return 0;
         }
-
 
         // NODE Remove shortcuts
         public void removeShortcuts(List<Node> Nodes)

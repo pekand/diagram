@@ -769,45 +769,6 @@
       <timemodify>2015-9-1 16:36:00</timemodify>
     </rectangle>
     <rectangle>
-      <id>60</id>
-      <fontcolor>Black</fontcolor>
-      <text>diagram</text>
-      <layer>0</layer>
-      <x>845</x>
-      <y>959</y>
-      <width>74</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2015-9-1 16:39:55</timecreate>
-      <timemodify>2015-9-1 16:39:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>61</id>
-      <fontcolor>Black</fontcolor>
-      <text>drop</text>
-      <layer>0</layer>
-      <x>929</x>
-      <y>959</y>
-      <width>51</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2015-9-1 16:39:56</timecreate>
-      <timemodify>2015-9-1 16:39:56</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>62</id>
-      <fontcolor>Black</fontcolor>
-      <text>short path dont work</text>
-      <layer>0</layer>
-      <x>990</x>
-      <y>959</y>
-      <width>148</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2015-9-1 16:40:03</timecreate>
-      <timemodify>2015-9-1 16:40:03</timemodify>
-    </rectangle>
-    <rectangle>
       <id>63</id>
       <fontcolor>Black</fontcolor>
       <text>#if MONO
@@ -844,13 +805,41 @@
       <fontcolor>Black</fontcolor>
       <text>T+i*n=S</text>
       <layer>0</layer>
-      <x>769</x>
-      <y>1106</y>
+      <x>600</x>
+      <y>713</y>
       <width>74</width>
       <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-1 22:36:54</timecreate>
       <timemodify>2015-9-1 22:36:54</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>66</id>
+      <fontcolor>Black</fontcolor>
+      <text>dev</text>
+      <layer>0</layer>
+      <x>598</x>
+      <y>661</y>
+      <width>46</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-9-2 02:01:07</timecreate>
+      <timemodify>2015-9-2 02:01:07</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>67</id>
+      <fontcolor>Black</fontcolor>
+      <text>#if DEBUG
+
+#endif</text>
+      <layer>0</layer>
+      <x>1205</x>
+      <y>-389</y>
+      <width>91</width>
+      <height>66</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-9-2 02:16:37</timecreate>
+      <timemodify>2015-9-2 02:16:37</timemodify>
     </rectangle>
   </rectangles>
   <lines>
@@ -920,13 +909,8 @@
       <arrow>0</arrow>
     </line>
     <line>
-      <start>60</start>
-      <end>61</end>
-      <arrow>0</arrow>
-    </line>
-    <line>
-      <start>61</start>
-      <end>62</end>
+      <start>66</start>
+      <end>65</end>
       <arrow>0</arrow>
     </line>
   </lines>
