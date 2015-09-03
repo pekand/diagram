@@ -11,7 +11,7 @@
     <grid>true</grid>
     <borders>false</borders>
     <defaultfont type="font">
-      <name>Microsoft Sans Serif</name>
+      <name>DejaVu Sans</name>
       <size>10</size>
       <bold>false</bold>
       <italic>false</italic>
@@ -32,10 +32,10 @@
       <text>Diagram.SRC</text>
       <link>Diagram.SRC</link>
       <layer>0</layer>
-      <x>532</x>
+      <x>533</x>
       <y>170</y>
-      <width>109</width>
-      <height>36</height>
+      <width>106</width>
+      <height>37</height>
       <color>#FFCCF2</color>
       <timecreate>2015-8-31 15:40:01</timecreate>
       <timemodify>2015-8-31 15:40:01</timemodify>
@@ -46,10 +46,10 @@
       <text>Diagram.2015.sln</text>
       <link>Diagram.SRC\Diagram.2015.sln</link>
       <layer>0</layer>
-      <x>518</x>
+      <x>517</x>
       <y>242</y>
-      <width>132</width>
-      <height>36</height>
+      <width>135</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:40:18</timecreate>
       <timemodify>2015-8-31 22:21:26</timemodify>
@@ -60,10 +60,10 @@
       <text>Diagram.Mono.sln</text>
       <link>Diagram.SRC/Diagram.Mono.sln</link>
       <layer>0</layer>
-      <x>516</x>
+      <x>515</x>
       <y>289</y>
-      <width>136</width>
-      <height>36</height>
+      <width>139</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:40:18</timecreate>
       <timemodify>2015-8-31 15:40:18</timemodify>
@@ -77,7 +77,7 @@
       <x>683</x>
       <y>170</y>
       <width>76</width>
-      <height>36</height>
+      <height>37</height>
       <color>#FFCCF2</color>
       <timecreate>2015-8-31 15:40:39</timecreate>
       <timemodify>2015-8-31 15:40:39</timemodify>
@@ -88,10 +88,10 @@
       <text>Src</text>
       <link>Diagram.SRC/Diagram/Src</link>
       <layer>0</layer>
-      <x>791</x>
+      <x>793</x>
       <y>170</y>
-      <width>45</width>
-      <height>36</height>
+      <width>40</width>
+      <height>37</height>
       <color>#FFCCF2</color>
       <timecreate>2015-8-31 15:40:51</timecreate>
       <timemodify>2015-8-31 15:40:51</timemodify>
@@ -105,7 +105,7 @@
       <x>953</x>
       <y>170</y>
       <width>102</width>
-      <height>36</height>
+      <height>37</height>
       <color>#FFCCF2</color>
       <timecreate>2015-8-31 15:41:12</timecreate>
       <timemodify>2015-8-31 15:41:12</timemodify>
@@ -116,10 +116,10 @@
       <text>Forms</text>
       <link>Diagram.SRC/Diagram/Src/Forms</link>
       <layer>0</layer>
-      <x>1173</x>
+      <x>1174</x>
       <y>170</y>
-      <width>63</width>
-      <height>36</height>
+      <width>61</width>
+      <height>37</height>
       <color>#FFCCF2</color>
       <timecreate>2015-8-31 15:41:12</timecreate>
       <timemodify>2015-8-31 15:41:12</timemodify>
@@ -130,10 +130,10 @@
       <text>Lib</text>
       <link>Diagram.SRC/Diagram/Src/Lib</link>
       <layer>0</layer>
-      <x>1401</x>
+      <x>1402</x>
       <y>170</y>
-      <width>42</width>
-      <height>36</height>
+      <width>39</width>
+      <height>37</height>
       <color>#FFCCF2</color>
       <timecreate>2015-8-31 15:41:12</timecreate>
       <timemodify>2015-8-31 15:41:12</timemodify>
@@ -146,8 +146,8 @@
       <layer>0</layer>
       <x>1582</x>
       <y>170</y>
-      <width>61</width>
-      <height>36</height>
+      <width>60</width>
+      <height>37</height>
       <color>#FFCCF2</color>
       <timecreate>2015-8-31 15:41:12</timecreate>
       <timemodify>2015-8-31 15:41:12</timemodify>
@@ -158,10 +158,10 @@
       <text>Tools</text>
       <link>Diagram.SRC/Diagram/Src/Tools</link>
       <layer>0</layer>
-      <x>1716</x>
+      <x>1717</x>
       <y>170</y>
-      <width>58</width>
-      <height>36</height>
+      <width>55</width>
+      <height>37</height>
       <color>#FFCCF2</color>
       <timecreate>2015-8-31 15:41:12</timecreate>
       <timemodify>2015-8-31 15:41:12</timemodify>
@@ -172,10 +172,10 @@
       <text>Script.cs</text>
       <link>Diagram.SRC/Diagram/Src/Components/Script.cs</link>
       <layer>0</layer>
-      <x>953</x>
+      <x>954</x>
       <y>358</y>
-      <width>77</width>
-      <height>36</height>
+      <width>75</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:41:31</timecreate>
       <timemodify>2015-8-31 15:41:31</timemodify>
@@ -188,8 +188,8 @@
       <layer>0</layer>
       <x>953</x>
       <y>217</y>
-      <width>97</width>
-      <height>36</height>
+      <width>96</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:41:31</timecreate>
       <timemodify>2015-8-31 15:41:31</timemodify>
@@ -200,10 +200,10 @@
       <text>SearchPanel.cs</text>
       <link>Diagram.SRC/Diagram/Src/Components/SearchPanel.cs</link>
       <layer>0</layer>
-      <x>953</x>
+      <x>954</x>
       <y>264</y>
-      <width>120</width>
-      <height>36</height>
+      <width>118</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:41:31</timecreate>
       <timemodify>2015-8-31 15:41:31</timemodify>
@@ -214,10 +214,10 @@
       <text>Server.cs</text>
       <link>Diagram.SRC/Diagram/Src/Components/Server.cs</link>
       <layer>0</layer>
-      <x>953</x>
+      <x>954</x>
       <y>311</y>
-      <width>82</width>
-      <height>36</height>
+      <width>80</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:41:31</timecreate>
       <timemodify>2015-8-31 15:41:31</timemodify>
@@ -230,8 +230,8 @@
       <layer>0</layer>
       <x>791</x>
       <y>262</y>
-      <width>71</width>
-      <height>36</height>
+      <width>70</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:42:04</timecreate>
       <timemodify>2015-8-31 15:42:04</timemodify>
@@ -244,8 +244,8 @@
       <layer>0</layer>
       <x>791</x>
       <y>216</y>
-      <width>94</width>
-      <height>36</height>
+      <width>93</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:42:04</timecreate>
       <timemodify>2015-8-31 15:42:04</timemodify>
@@ -258,8 +258,8 @@
       <layer>0</layer>
       <x>791</x>
       <y>308</y>
-      <width>142</width>
-      <height>36</height>
+      <width>143</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:42:04</timecreate>
       <timemodify>2015-8-31 15:42:04</timemodify>
@@ -272,8 +272,8 @@
       <layer>0</layer>
       <x>1173</x>
       <y>538</y>
-      <width>109</width>
-      <height>36</height>
+      <width>110</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:42:52</timecreate>
       <timemodify>2015-8-31 15:42:52</timemodify>
@@ -286,8 +286,8 @@
       <layer>0</layer>
       <x>1173</x>
       <y>446</y>
-      <width>182</width>
-      <height>36</height>
+      <width>183</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:42:52</timecreate>
       <timemodify>2015-8-31 15:42:52</timemodify>
@@ -298,10 +298,10 @@
       <text>ConsoleLog.cs</text>
       <link>Diagram.SRC/Diagram/Src/Forms/ConsoleLog.cs</link>
       <layer>0</layer>
-      <x>1173</x>
+      <x>1174</x>
       <y>492</y>
-      <width>115</width>
-      <height>36</height>
+      <width>113</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:42:52</timecreate>
       <timemodify>2015-8-31 15:42:52</timemodify>
@@ -312,10 +312,10 @@
       <text>DiagramView.cs</text>
       <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs</link>
       <layer>0</layer>
-      <x>1173</x>
+      <x>1172</x>
       <y>216</y>
-      <width>123</width>
-      <height>36</height>
+      <width>126</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:42:52</timecreate>
       <timemodify>2015-8-31 15:42:52</timemodify>
@@ -328,8 +328,8 @@
       <layer>0</layer>
       <x>1173</x>
       <y>308</y>
-      <width>103</width>
-      <height>36</height>
+      <width>104</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:42:52</timecreate>
       <timemodify>2015-8-31 15:42:52</timemodify>
@@ -340,10 +340,10 @@
       <text>NewPasswordForm.cs</text>
       <link>Diagram.SRC/Diagram/Src/Forms/NewPasswordForm.cs</link>
       <layer>0</layer>
-      <x>1173</x>
+      <x>1172</x>
       <y>400</y>
-      <width>161</width>
-      <height>36</height>
+      <width>163</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:42:52</timecreate>
       <timemodify>2015-8-31 15:42:52</timemodify>
@@ -357,7 +357,7 @@
       <x>1173</x>
       <y>354</y>
       <width>134</width>
-      <height>36</height>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:42:52</timecreate>
       <timemodify>2015-8-31 15:42:52</timemodify>
@@ -370,8 +370,8 @@
       <layer>0</layer>
       <x>1173</x>
       <y>262</y>
-      <width>100</width>
-      <height>36</height>
+      <width>101</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:42:52</timecreate>
       <timemodify>2015-8-31 15:42:52</timemodify>
@@ -384,8 +384,8 @@
       <layer>0</layer>
       <x>1401</x>
       <y>400</y>
-      <width>88</width>
-      <height>36</height>
+      <width>87</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:43:14</timecreate>
       <timemodify>2015-8-31 15:43:14</timemodify>
@@ -396,10 +396,10 @@
       <text>Fonts.cs</text>
       <link>Diagram.SRC/Diagram/Src/Lib/Fonts.cs</link>
       <layer>0</layer>
-      <x>1401</x>
+      <x>1402</x>
       <y>354</y>
-      <width>76</width>
-      <height>36</height>
+      <width>74</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:43:14</timecreate>
       <timemodify>2015-8-31 15:43:14</timemodify>
@@ -412,8 +412,8 @@
       <layer>0</layer>
       <x>1401</x>
       <y>308</y>
-      <width>79</width>
-      <height>36</height>
+      <width>78</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:43:14</timecreate>
       <timemodify>2015-8-31 15:43:14</timemodify>
@@ -426,8 +426,8 @@
       <layer>0</layer>
       <x>1401</x>
       <y>262</y>
-      <width>92</width>
-      <height>36</height>
+      <width>93</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:43:14</timecreate>
       <timemodify>2015-8-31 15:43:14</timemodify>
@@ -438,10 +438,10 @@
       <text>Os.cs</text>
       <link>Diagram.SRC/Diagram/Src/Lib/Os.cs</link>
       <layer>0</layer>
-      <x>1401</x>
+      <x>1403</x>
       <y>216</y>
-      <width>59</width>
-      <height>36</height>
+      <width>55</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:43:14</timecreate>
       <timemodify>2015-8-31 15:43:14</timemodify>
@@ -454,8 +454,8 @@
       <layer>0</layer>
       <x>1582</x>
       <y>308</y>
-      <width>93</width>
-      <height>36</height>
+      <width>94</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:43:36</timecreate>
       <timemodify>2015-8-31 15:43:36</timemodify>
@@ -466,10 +466,10 @@
       <text>Line.cs</text>
       <link>Diagram.SRC/Diagram/Src/Model/Line.cs</link>
       <layer>0</layer>
-      <x>1582</x>
+      <x>1583</x>
       <y>262</y>
-      <width>68</width>
-      <height>36</height>
+      <width>65</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:43:36</timecreate>
       <timemodify>2015-8-31 15:43:36</timemodify>
@@ -480,10 +480,10 @@
       <text>Node.cs</text>
       <link>Diagram.SRC/Diagram/Src/Model/Node.cs</link>
       <layer>0</layer>
-      <x>1582</x>
+      <x>1583</x>
       <y>216</y>
-      <width>74</width>
-      <height>36</height>
+      <width>72</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:43:36</timecreate>
       <timemodify>2015-8-31 15:43:36</timemodify>
@@ -496,8 +496,8 @@
       <layer>0</layer>
       <x>1582</x>
       <y>400</y>
-      <width>89</width>
-      <height>36</height>
+      <width>88</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:43:36</timecreate>
       <timemodify>2015-8-31 15:43:36</timemodify>
@@ -510,8 +510,8 @@
       <layer>0</layer>
       <x>1582</x>
       <y>354</y>
-      <width>91</width>
-      <height>36</height>
+      <width>90</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:43:36</timecreate>
       <timemodify>2015-8-31 15:43:36</timemodify>
@@ -522,10 +522,10 @@
       <text>Log.cs</text>
       <link>Diagram.SRC/Diagram/Src/Tools/Log.cs</link>
       <layer>0</layer>
-      <x>1716</x>
+      <x>1717</x>
       <y>217</y>
-      <width>64</width>
-      <height>36</height>
+      <width>61</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:43:51</timecreate>
       <timemodify>2015-8-31 15:43:51</timemodify>
@@ -538,8 +538,8 @@
       <layer>0</layer>
       <x>1716</x>
       <y>264</y>
-      <width>111</width>
-      <height>36</height>
+      <width>112</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:43:51</timecreate>
       <timemodify>2015-8-31 15:43:51</timemodify>
@@ -552,8 +552,8 @@
       <layer>0</layer>
       <x>1716</x>
       <y>311</y>
-      <width>113</width>
-      <height>36</height>
+      <width>114</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:43:51</timecreate>
       <timemodify>2015-8-31 15:43:51</timemodify>
@@ -564,10 +564,10 @@
       <text>Translations.cs</text>
       <link>Diagram.SRC/Diagram/Src/Tools/Translations.cs</link>
       <layer>0</layer>
-      <x>1716</x>
+      <x>1715</x>
       <y>358</y>
-      <width>116</width>
-      <height>36</height>
+      <width>118</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:43:51</timecreate>
       <timemodify>2015-8-31 15:43:51</timemodify>
@@ -578,10 +578,10 @@
       <text>dll</text>
       <link>Diagram.SRC/Diagram/dll</link>
       <layer>0</layer>
-      <x>683</x>
+      <x>684</x>
       <y>264</y>
-      <width>38</width>
-      <height>36</height>
+      <width>36</width>
+      <height>37</height>
       <color>#FFCCF2</color>
       <timecreate>2015-8-31 15:44:17</timecreate>
       <timemodify>2015-8-31 15:44:17</timemodify>
@@ -594,8 +594,8 @@
       <layer>0</layer>
       <x>683</x>
       <y>311</y>
-      <width>47</width>
-      <height>36</height>
+      <width>46</width>
+      <height>37</height>
       <color>#FFCCF2</color>
       <timecreate>2015-8-31 15:44:19</timecreate>
       <timemodify>2015-8-31 15:44:19</timemodify>
@@ -606,10 +606,10 @@
       <text>bin</text>
       <link>Diagram.SRC/Diagram/bin</link>
       <layer>0</layer>
-      <x>683</x>
+      <x>684</x>
       <y>217</y>
-      <width>42</width>
-      <height>36</height>
+      <width>40</width>
+      <height>37</height>
       <color>#FFCCF2</color>
       <timecreate>2015-8-31 15:44:22</timecreate>
       <timemodify>2015-8-31 15:44:22</timemodify>
@@ -620,10 +620,10 @@
       <text>Resources</text>
       <link>Diagram.SRC/Diagram/Resources</link>
       <layer>0</layer>
-      <x>683</x>
+      <x>684</x>
       <y>358</y>
-      <width>90</width>
-      <height>36</height>
+      <width>87</width>
+      <height>37</height>
       <color>#FFCCF2</color>
       <timecreate>2015-8-31 15:44:29</timecreate>
       <timemodify>2015-8-31 15:44:29</timemodify>
@@ -636,7 +636,7 @@
       <x>810</x>
       <y>729</y>
       <width>74</width>
-      <height>36</height>
+      <height>37</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-1 10:40:33</timecreate>
       <timemodify>2015-9-1 10:40:33</timemodify>
@@ -646,10 +646,10 @@
       <fontcolor>Black</fontcolor>
       <text>open</text>
       <layer>0</layer>
-      <x>894</x>
+      <x>895</x>
       <y>729</y>
-      <width>54</width>
-      <height>36</height>
+      <width>52</width>
+      <height>37</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-1 10:40:36</timecreate>
       <timemodify>2015-9-1 10:40:36</timemodify>
@@ -659,10 +659,10 @@
       <fontcolor>Black</fontcolor>
       <text>on position</text>
       <layer>0</layer>
-      <x>958</x>
+      <x>957</x>
       <y>729</y>
-      <width>90</width>
-      <height>36</height>
+      <width>92</width>
+      <height>37</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-1 10:40:40</timecreate>
       <timemodify>2015-9-1 10:40:40</timemodify>
@@ -672,10 +672,10 @@
       <fontcolor>Black</fontcolor>
       <text>open command</text>
       <layer>0</layer>
-      <x>1058</x>
+      <x>1057</x>
       <y>729</y>
-      <width>118</width>
-      <height>36</height>
+      <width>121</width>
+      <height>37</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-1 10:41:11</timecreate>
       <timemodify>2015-9-1 10:41:11</timemodify>
@@ -688,8 +688,8 @@
       <layer>0</layer>
       <x>1487</x>
       <y>705</y>
-      <width>100</width>
-      <height>36</height>
+      <width>101</width>
+      <height>37</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:42:52</timecreate>
       <timemodify>2015-8-31 15:42:52</timemodify>
@@ -702,10 +702,10 @@
 
 }</text>
       <layer>0</layer>
-      <x>514</x>
-      <y>-387</y>
-      <width>196</width>
-      <height>82</height>
+      <x>487</x>
+      <y>-384</y>
+      <width>250</width>
+      <height>76</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-1 15:52:39</timecreate>
       <timemodify>2015-9-1 15:53:45</timemodify>
@@ -721,10 +721,10 @@
     }
 }</text>
       <layer>0</layer>
-      <x>727</x>
-      <y>-386</y>
-      <width>234</width>
-      <height>127</height>
+      <x>719</x>
+      <y>-380</y>
+      <width>250</width>
+      <height>115</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-1 15:53:48</timecreate>
       <timemodify>2015-9-1 15:53:55</timemodify>
@@ -734,10 +734,10 @@
       <fontcolor>Black</fontcolor>
       <text>run command</text>
       <layer>0</layer>
-      <x>1186</x>
+      <x>1185</x>
       <y>729</y>
-      <width>108</width>
-      <height>36</height>
+      <width>110</width>
+      <height>37</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-1 16:31:38</timecreate>
       <timemodify>2015-9-1 16:31:38</timemodify>
@@ -750,7 +750,7 @@
       <x>835</x>
       <y>881</y>
       <width>74</width>
-      <height>36</height>
+      <height>37</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-1 16:35:56</timecreate>
       <timemodify>2015-9-1 16:35:56</timemodify>
@@ -762,8 +762,8 @@
       <layer>0</layer>
       <x>919</x>
       <y>881</y>
-      <width>76</width>
-      <height>36</height>
+      <width>77</width>
+      <height>37</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-1 16:36:00</timecreate>
       <timemodify>2015-9-1 16:36:00</timemodify>
@@ -778,9 +778,9 @@
 #endif</text>
       <layer>0</layer>
       <x>991</x>
-      <y>-390</y>
-      <width>85</width>
-      <height>97</height>
+      <y>-386</y>
+      <width>86</width>
+      <height>89</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-1 16:54:24</timecreate>
       <timemodify>2015-9-1 16:54:24</timemodify>
@@ -792,10 +792,10 @@
 
 #endif</text>
       <layer>0</layer>
-      <x>1090</x>
-      <y>-392</y>
-      <width>89</width>
-      <height>66</height>
+      <x>1089</x>
+      <y>-391</y>
+      <width>91</width>
+      <height>63</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-1 16:56:20</timecreate>
       <timemodify>2015-9-1 16:56:20</timemodify>
@@ -805,10 +805,10 @@
       <fontcolor>Black</fontcolor>
       <text>T+i*n=S</text>
       <layer>0</layer>
-      <x>600</x>
+      <x>599</x>
       <y>713</y>
-      <width>74</width>
-      <height>36</height>
+      <width>77</width>
+      <height>37</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-1 22:36:54</timecreate>
       <timemodify>2015-9-1 22:36:54</timemodify>
@@ -818,10 +818,10 @@
       <fontcolor>Black</fontcolor>
       <text>dev</text>
       <layer>0</layer>
-      <x>598</x>
+      <x>599</x>
       <y>661</y>
-      <width>46</width>
-      <height>36</height>
+      <width>44</width>
+      <height>37</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-2 02:01:07</timecreate>
       <timemodify>2015-9-2 02:01:07</timemodify>
@@ -834,9 +834,9 @@
 #endif</text>
       <layer>0</layer>
       <x>1205</x>
-      <y>-389</y>
+      <y>-388</y>
       <width>91</width>
-      <height>66</height>
+      <height>63</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-2 02:16:37</timecreate>
       <timemodify>2015-9-2 02:16:37</timemodify>
@@ -848,8 +848,8 @@
       <layer>0</layer>
       <x>877</x>
       <y>1018</y>
-      <width>89</width>
-      <height>36</height>
+      <width>88</width>
+      <height>37</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-2 22:00:23</timecreate>
       <timemodify>2015-9-2 22:00:23</timemodify>
@@ -859,10 +859,10 @@
       <fontcolor>Black</fontcolor>
       <text>search automaticky</text>
       <layer>0</layer>
-      <x>976</x>
+      <x>973</x>
       <y>1018</y>
-      <width>142</width>
-      <height>36</height>
+      <width>149</width>
+      <height>37</height>
       <color>#FFFFB8</color>
       <timecreate>2015-9-2 22:00:30</timecreate>
       <timemodify>2015-9-2 22:00:30</timemodify>
