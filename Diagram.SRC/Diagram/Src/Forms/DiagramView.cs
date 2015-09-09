@@ -2149,7 +2149,7 @@ namespace Diagram
                         	newrec.width = (int)s2.Width;
                         	newrec.height = (int)s2.Height;
 							newrec.link = Os.makeRelative(ClipText, this.diagram.FileName);
-                            newrec.color = Media.getColor(diagram.options.colorDirectory);
+                            newrec.color = Media.getColor(diagram.options.colorFile);
 						}
 
                         if (Directory.Exists(ClipText))
@@ -2159,7 +2159,7 @@ namespace Diagram
                             newrec.width = (int)s2.Width;
                             newrec.height = (int)s2.Height;
 							newrec.link = Os.makeRelative(ClipText, this.diagram.FileName);
-                            newrec.color = Media.getColor(diagram.options.colorFile);
+                            newrec.color = Media.getColor(diagram.options.colorDirectory);
                         }
 
                         SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
@@ -3053,12 +3053,12 @@ namespace Diagram
     				if (Directory.Exists(file)) // directory
                     {
     					newrec.link = Os.makeRelative(file, this.diagram.FileName);
-    					newrec.color = System.Drawing.ColorTranslator.FromHtml("#FFCCF2");
+                        newrec.color = Media.getColor(diagram.options.colorDirectory);
                     }
     				else
     				if (File.Exists(file))
                     {
-                        newrec.color = System.Drawing.ColorTranslator.FromHtml("#D9CCFF");
+                        newrec.color = Media.getColor(diagram.options.colorFile);
 
                         if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName)) // DROP FILE - skratenie cesty k suboru
                         {
