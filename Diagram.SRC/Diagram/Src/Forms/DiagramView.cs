@@ -3558,6 +3558,8 @@ namespace Diagram
                 }
             }
 
+            this.searhPanel.highlight(foundNodes.Count() == 0);
+
 
             foundNodes.Sort((first, second) =>
             {

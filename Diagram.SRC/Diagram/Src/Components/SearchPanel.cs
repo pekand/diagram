@@ -36,6 +36,7 @@ namespace Diagram
             //
             // textBoxSearch
             //
+            this.textBoxSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.textBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxSearch.Location = new System.Drawing.Point(4, 4);
             this.textBoxSearch.Name = "textBoxSearch";
@@ -62,7 +63,7 @@ namespace Diagram
 
             this.textBoxSearch.Size = new System.Drawing.Size(this.minimalSize, 15);
             this.Size = new System.Drawing.Size(this.minimalSize + 4, 15);
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
 
             Form parentForm = (this.parentComponent as Form);
             parentForm.Resize += new System.EventHandler(this.Parent_Resize);
@@ -149,6 +150,20 @@ namespace Diagram
             this.centerPanel();
             this.textBoxSearch.Focus();
             this.textBoxSearch.SelectAll();
+        }
+
+        public void highlight(bool state)
+        {
+            if (state)
+            {
+                this.BackColor = System.Drawing.Color.FromArgb(255, 178, 178);
+                this.textBoxSearch.BackColor = System.Drawing.Color.FromArgb(255, 178, 178);
+            }
+            else
+            {
+                this.BackColor = System.Drawing.Color.FromArgb(128, 128, 204);
+                this.textBoxSearch.BackColor = System.Drawing.Color.FromArgb(128, 128, 204);
+            }
         }
 
         public void HidePanel()
