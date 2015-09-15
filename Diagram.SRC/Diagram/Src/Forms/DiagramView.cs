@@ -1047,7 +1047,7 @@ namespace Diagram
             this.InitializeComponent();
         }
 
-        // FORM Load event - 
+        // FORM Load event -
         public void DiagramViewLoad(object sender, EventArgs e)
         {
             //Only in debug
@@ -2149,7 +2149,7 @@ namespace Diagram
                         	newrec.width = (int)s2.Width;
                         	newrec.height = (int)s2.Height;
 							newrec.link = Os.makeRelative(ClipText, this.diagram.FileName);
-                            newrec.color = Media.getColor(diagram.options.colorDirectory);
+                            newrec.color = Media.getColor(diagram.options.colorFile);
 						}
 
                         if (Directory.Exists(ClipText))
@@ -2159,7 +2159,7 @@ namespace Diagram
                             newrec.width = (int)s2.Width;
                             newrec.height = (int)s2.Height;
 							newrec.link = Os.makeRelative(ClipText, this.diagram.FileName);
-                            newrec.color = Media.getColor(diagram.options.colorFile);
+                            newrec.color = Media.getColor(diagram.options.colorDirectory);
                         }
 
                         SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
@@ -3035,85 +3035,55 @@ namespace Diagram
         // EVENT File Drop; DROP file
         public void DiagramApp_DragDrop(object sender, DragEventArgs e)                                // [DROP] [EVENT]
         {
-            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            foreach (string file in files)
+            try
             {
-                Point ptCursor = Cursor.Position;
-                ptCursor = PointToClient(ptCursor);
-                Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
-                newrec.text = Path.GetFileName(file);
-
-                SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-                newrec.width = (int)s.Width;
-                newrec.height = (int)s.Height;
-
-				newrec.link = file;
-				if (Directory.Exists(file)) // directory
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                foreach (string file in files)
                 {
-					newrec.link = Os.makeRelative(file, this.diagram.FileName);
-					newrec.color = System.Drawing.ColorTranslator.FromHtml("#FFCCF2");
-                }
-				else
-				if (File.Exists(file))
-                {
-                    newrec.color = System.Drawing.ColorTranslator.FromHtml("#D9CCFF");
+                    Point ptCursor = Cursor.Position;
+                    ptCursor = PointToClient(ptCursor);
+                    Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
+                    newrec.text = Path.GetFileName(file);
 
-                    if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName)) // DROP FILE - skratenie cesty k suboru
+                    SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
+                    newrec.width = (int)s.Width;
+                    newrec.height = (int)s.Height;
+
+    				newrec.link = file;
+    				if (Directory.Exists(file)) // directory
                     {
-                        newrec.link = Os.makeRelative(file, this.diagram.FileName);
+    					newrec.link = Os.makeRelative(file, this.diagram.FileName);
+                        newrec.color = Media.getColor(diagram.options.colorDirectory);
                     }
-
-                    string ext = "";
-                    ext = Path.GetExtension(file).ToLower();
-
-                    if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // DROP IMAGE skratenie cesty k suboru
+    				else
+    				if (File.Exists(file))
                     {
-                        newrec.isimage = true;
-                        newrec.imagepath = file;
-                        if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName) && file.IndexOf(new FileInfo(this.diagram.FileName).DirectoryName) == 0)
+                        newrec.color = Media.getColor(diagram.options.colorFile);
+
+                        if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName)) // DROP FILE - skratenie cesty k suboru
                         {
-                            int start = new FileInfo(this.diagram.FileName).DirectoryName.Length;
-                            int finish = file.Length - start;
-                            newrec.imagepath = "." + file.Substring(start, finish);
+                            newrec.link = Os.makeRelative(file, this.diagram.FileName);
                         }
-                        newrec.image = new Bitmap(newrec.imagepath);
-                        if (ext != ".ico") newrec.image.MakeTransparent(Color.White);
-                        newrec.height = newrec.image.Height;
-                        newrec.width = newrec.image.Width;
-                    }
 
-                        
-					#if !MONO
-                    if (ext == ".exe")// [EXECUTABLE] [DROP] [ICON] extract icon
-                    {
-                        try
+                        string ext = "";
+                        ext = Path.GetExtension(file).ToLower();
+
+                        if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // DROP IMAGE skratenie cesty k suboru
                         {
-                            Icon ico = Icon.ExtractAssociatedIcon(file);
                             newrec.isimage = true;
-                            newrec.embeddedimage = true;
-                            newrec.image = ico.ToBitmap();
-                            newrec.image.MakeTransparent(Color.White);
+                            newrec.imagepath = Os.makeRelative(file, this.diagram.FileName);
+                            newrec.image = new Bitmap(file);
+                            if (ext != ".ico") newrec.image.MakeTransparent(Color.White);
                             newrec.height = newrec.image.Height;
                             newrec.width = newrec.image.Width;
                         }
-                        catch (Exception ex)
-                        {
-                            Program.log.write("extract icon from exe error: " + ex.Message);
-                        }
-                    }
-					#endif
 
-                    #if !MONO
-                    if (ext == ".lnk") // [LINK] [DROP] extract target
-                    {
-                        try
+    					#if !MONO
+                        if (ext == ".exe")// [EXECUTABLE] [DROP] [ICON] extract icon
                         {
-                            newrec.link = Os.GetShortcutTargetFile(file);
-
-                            // ak je odkaz a odkazuje na exe subor pokusit sa extrahovat ikonu
-                            if (File.Exists(newrec.link) && Path.GetExtension(newrec.link).ToLower() == ".exe")// extract icon
+                            try
                             {
-                                Icon ico = Icon.ExtractAssociatedIcon(newrec.link);
+                                Icon ico = Icon.ExtractAssociatedIcon(file);
                                 newrec.isimage = true;
                                 newrec.embeddedimage = true;
                                 newrec.image = ico.ToBitmap();
@@ -3121,21 +3091,49 @@ namespace Diagram
                                 newrec.height = newrec.image.Height;
                                 newrec.width = newrec.image.Width;
                             }
-
+                            catch (Exception ex)
+                            {
+                                Program.log.write("extract icon from exe error: " + ex.Message);
+                            }
                         }
-                        catch (Exception ex)
+    					#endif
+
+                        #if !MONO
+                        if (ext == ".lnk") // [LINK] [DROP] extract target
                         {
-                            Program.log.write("extract icon from lnk error: " + ex.Message);
+                            try
+                            {
+                                newrec.link = Os.GetShortcutTargetFile(file);
+
+                                // ak je odkaz a odkazuje na exe subor pokusit sa extrahovat ikonu
+                                if (File.Exists(newrec.link) && Path.GetExtension(newrec.link).ToLower() == ".exe")// extract icon
+                                {
+                                    Icon ico = Icon.ExtractAssociatedIcon(newrec.link);
+                                    newrec.isimage = true;
+                                    newrec.embeddedimage = true;
+                                    newrec.image = ico.ToBitmap();
+                                    newrec.image.MakeTransparent(Color.White);
+                                    newrec.height = newrec.image.Height;
+                                    newrec.width = newrec.image.Width;
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Program.log.write("extract icon from lnk error: " + ex.Message);
+                            }
                         }
+                        #endif
+
                     }
-                    #endif
 
+
+                    this.diagram.unsave();
                 }
-
-
-                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            } catch (Exception ex) {
+                Program.log.write("drop file goes wrong: error: " + ex.Message);
             }
-            this.diagram.InvalidateDiagram();
         }
 
         // EVENT File Drop
@@ -3722,7 +3720,7 @@ namespace Diagram
                 this.SearchFirst(search);
             }
         }
-        
+
         /*************************************************************************************************************************/
 
         // CLIPBOARD PASTE vloží časť zo schranky do otvoreneho diagramu                                   // CLIPBOARD
@@ -4031,7 +4029,7 @@ namespace Diagram
         {
             Clipboard.SetText(node.link);
         }
-        
+
         /*************************************************************************************************************************/
 
         // SCROLLBAR MOVE LEFT-RIGHT                                                                       // SCROLLBAR
@@ -4220,7 +4218,7 @@ namespace Diagram
                 }
             }
         }
-        
+
         /*************************************************************************************************************************/
 
         // EXPORT Export diagram to png
@@ -4858,7 +4856,7 @@ namespace Diagram
         {
             Program.log.write("diagram: openlink: run worker");
             String clipboard = Os.getTextFormClipboard();
-            
+
 
 #if DEBUG
             this.OpenLink(rec, clipboard);

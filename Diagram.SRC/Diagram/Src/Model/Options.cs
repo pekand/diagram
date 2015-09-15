@@ -26,8 +26,8 @@
         public int keyArrowSlowSpeed = 1;
         public int keyArrowFastSpeed = 100;
 
-        public string colorDirectory = "#FFCCCC";
-        public string colorFile = "#EB99EB";
+        public string colorDirectory = "#AF92FF";
+        public string colorFile = "#D9CCFF";
         public string colorLink = "#FFCCCC";
     }
 }
