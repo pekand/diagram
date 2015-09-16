@@ -2630,6 +2630,16 @@ namespace Diagram
                 return true;
             }
 
+            if (parseKey("CTRL+R", keyData)) // [KEY] [CTRL+R] Random generator
+            {
+                Point ptCursor = Cursor.Position;
+                ptCursor = PointToClient(ptCursor);
+                this.CreateNode(ptCursor.X, ptCursor.Y, true, Encrypt.GetRandomString());
+
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+
             if (parseKey("F3", keyData)) // [KEY] [F3] Hide background
             {
 
