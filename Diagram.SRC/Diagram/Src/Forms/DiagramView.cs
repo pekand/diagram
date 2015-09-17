@@ -4871,7 +4871,12 @@ namespace Diagram
 
 
 #if DEBUG
-            this.OpenLink(rec, clipboard);
+            var result = 0;
+            result = this.OpenLink(rec, clipboard);
+            if ((int)result == 1)
+            {
+                this.diagram.EditNode(rec);
+            }
 #else
             var worker = new BackgroundWorker();
             worker.WorkerSupportsCancellation = true;
