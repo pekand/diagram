@@ -6,31 +6,71 @@ using System.IO;
 
 namespace Diagram
 {
+    /// <summary>
+    /// Processing command line arguments. </summary>
     public class Main
     {
-        public MainForm mainform = null; // forma na zachytvanie sprav z tcp serveru
 
+        // command line arguments
+        string[] args = null;
+
+        /// <summary>
+        /// form for catching messages from local server</summary>
+        public MainForm mainform = null;
+
+        /// <summary>
+        /// Global program options</summary>
         public ProgramOptions parameters = null;
+
+        /// <summary>
+        /// managing file with global program options</summary>
         public OptionsFile options = null;
-        public Translations translations = null; // class with translations strings
+
+        /// <summary>
+        /// program translation strings</summary>
+        public Translations translations = null;
+
+        /// <summary>
+        /// form for display logged messages</summary>
         public Console console = null;
 
         // ENCRYPTION FORM
+
+        /// <summary>
+        ///input form for password</summary>
         public PasswordForm passwordForm = null;
+
+        /// <summary>
+        /// input form for new password</summary>
         public NewPasswordForm newPasswordForm = null;
+
+        /// <summary>
+        /// input form for change old password</summary>
         public ChangePasswordForm changePasswordForm = null;
 
-        // ABOUT FORM
+        /// <summary>
+        /// about form for display basic informations about application</summary>
         public AboutForm aboutForm = null;
 
-        // SERVER
+        /// <summary>
+        /// local messsaging server for communication between running program instances</summary>
         public Server server = null;
 
-        public List<Diagram> Diagrams = new List<Diagram>();              // zoznam otvorenych diagramov
-        public List<DiagramView> DiagramViews = new List<DiagramView>();  // zoznam otvorenych pohladov do diagramou
-        public List<TextForm> TextWindows = new List<TextForm>();                   // Zoznam otvorenych editacnych okien
+        /// <summary>
+        /// all opened diagrams models</summary>
+        public List<Diagram> Diagrams = new List<Diagram>();
 
-        public void CloseApplication()
+        /// <summary>
+        /// all opened form views to diagrams models</summary>
+        public List<DiagramView> DiagramViews = new List<DiagramView>();
+
+        /// <summary>
+        /// all opened node edit forms for all diagrams models</summary>
+        public List<TextForm> TextWindows = new List<TextForm>();
+
+        /// <summary>
+        /// close application if not diagram view or node edit form is open </summary>
+        public void CloseEmptyApplication()
         {
             Program.log.write("Program : CloseApplication");
 
@@ -54,7 +94,9 @@ namespace Diagram
             }
         }
 
-        //force close application
+
+        /// <summary>
+        /// force close application</summary>
         public void ExitApplication()
         {
             Program.log.write("Program : ExitApplication");
@@ -89,36 +131,47 @@ namespace Diagram
             Environment.Exit(0);
         }
 
-        // open empty or new file and view on this file
+        /// <summary>
+        /// open existing diagram or create new empty diagram 
+        /// Create diagram model and then open diagram view on this model</summary>
         public void OpenDiagram(String FilePath = "")
         {
             Program.log.write("Program : OpenDiagram: " + FilePath);
 
+            // open new empty diagram
             if (FilePath == "")
             {
-                if (server.severExist)
+                // if server already exist in system, send him message whitch open empty diagram
+                if (server.serverAlreadyExist)
                 {
-                    server.SendMessage("open:" + FilePath);
+                    server.SendMessage("open:");
                 }
+                // open diagram in current program instance
                 else
                 {
+                    // create new model
                     Diagram diagram = new Diagram(this);
                     Diagrams.Add(diagram);
+                    // open diagram view on diagram model
                     diagram.openDiagramView();
                 }
             }
+            // open existing diagram file
             else
             {
                 if (File.Exists(FilePath))
                 {
                     FilePath = Path.GetFullPath(FilePath);
 
-                    if (server.severExist)
+                    // if server already exist in system, send him message whitch open diagram file
+                    if (server.serverAlreadyExist)
                     {
                         server.SendMessage("open:" + FilePath);
                     }
+                    // open diagram in current program instance
                     else
                     {
+                        // check if file is already opened in current instance
                         bool alreadyOpen = false;
 
                         foreach (Diagram diagram in Diagrams)
@@ -140,10 +193,10 @@ namespace Diagram
                             Diagram diagram = new Diagram(this);
                             lock (diagram)
                             {
-
+                                // create new model
                                 diagram.OpenFile(FilePath);
                                 Diagrams.Add(diagram);
-
+                                // open diagram view on diagram model
                                 diagram.openDiagramView();
                             }
                         }
@@ -153,29 +206,38 @@ namespace Diagram
 
         }
 
-        public void ParseCommandLineArguments(string[] args)
+        /// <summary>
+        /// process comand line arguments</summary>
+        public void ParseCommandLineArguments(string[] args) // [PARSE] [COMMAND LINE]
         {
-            // [PARSE] [COMMAND LINE] prejdenie parametrov z konzoli
+
+            // options - create new file with given name if not exist
             bool CommandLineCreateIfNotExistFile = false;
+
+            // list of diagram files names for open
             List<String> CommandLineOpen = new List<String>();
 
             String arg = "";
             for (int i = 0; i < args.Count(); i++)
             {
-                if (i == 0) //skip application name
+
+                //skip application name
+                if (i == 0) 
                 {
                     continue;
                 }
 
+                // current processing argument
                 arg = args[i];
 
-                if (arg == "-e")  // [COMAND LINE] [CREATE] vytvori subor ak neexistuje
+                // [COMAND LINE] [CREATE]  oprions create new file with given name if not exist
+                if (arg == "-e")
                 {
-                    CommandLineCreateIfNotExistFile = true; // create diagram if not exist
+                    CommandLineCreateIfNotExistFile = true;
                 }
                 else
                 {
-                    // [COMAND LINE] [OPEN] skusit ci parameter nieje subor ktoy sa moze otvorit
+                    // [COMAND LINE] [OPEN] check if argument is diagram file
                     if (Path.GetExtension(arg).ToLower() == ".diagram")
                     {
                         CommandLineOpen.Add(arg);
@@ -187,12 +249,14 @@ namespace Diagram
                 }
             }
 
-            if (CommandLineOpen.Count > 0) // Otvorenie súboru z parametru
+            // open diagram given as arguments
+            if (CommandLineOpen.Count > 0)
             {
                 for (int i = 0; i < CommandLineOpen.Count(); i++)
                 {
                     string file = CommandLineOpen[i];
 
+                    // tray create diagram file if command line option is set
                     if (CommandLineCreateIfNotExistFile && !File.Exists(file))
                     {
                         try
@@ -207,24 +271,30 @@ namespace Diagram
 
                     if (File.Exists(file))
                     {
-                        OpenDiagram(file);
+                        this.OpenDiagram(file);
                     }
                 }
 
-                CloseApplication(); //cose application if is not file opened
+                // cose application if is not diagram model opened
+                this.CloseEmptyApplication(); 
             }
             else
             {
-                OpenDiagram();
+                //open empty diagram
+                this.OpenDiagram();
             }
         }
 
+        /// <summary>
+        /// parse command line arguments and open forms</summary>
         public Main()
         {
+            // inicialize program
             translations = new Translations();
             parameters = new ProgramOptions();
             options = new OptionsFile(parameters);
             
+            // create local server for comunication between local instances
             server = new Server(this);
 
             Program.log.write("Program: Main (version:" + parameters.ApplicationVersion + ")");
@@ -232,33 +302,34 @@ namespace Diagram
 #if DEBUG
             Program.log.write("program: debug mode");
 #else
-				Program.log.write("program: release mode");
+			Program.log.write("program: release mode");
 #endif
 
+            // TODO: Load global options file and save it when application is closed
             // load options
-            //xxx options.loadOptions();
+            // options.loadOptions();
 
+
+            // get command line arguments
+            this.args = Environment.GetCommandLineArgs();
 #if DEBUG
-            string[] args = Environment.GetCommandLineArgs();
-
             // custom debug arguments
-            if (args.Length == 1)
-            { // comand line arguments testing
-                args = new string[] { 
+            if (this.args.Length == 1) // if not argument is added from system ad some testing arguments
+            {
+                // comand line arguments testing
+                this.args = new string[] { 
                     System.Reflection.Assembly.GetExecutingAssembly().Location
                     ,"c:\\Users\\root\\Desktop\\test.diagram"
                 };
             }
-
-#else
-				string[] args = Environment.GetCommandLineArgs();
 #endif
+            // process comand line arguments
+            this.ParseCommandLineArguments(this.args);
 
-            ParseCommandLineArguments(args);
-
-            if (!server.severExist)
+            // check if this program instance created server
+            if (!server.serverAlreadyExist)
             {
-                mainform = new MainForm(this);
+                this.mainform = new MainForm(this);
             }
         }
     }

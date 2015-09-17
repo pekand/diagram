@@ -9,9 +9,11 @@ namespace Diagram
 {
     public class Server
     {
+
+        // parent
         public Main main = null;
 
-        public bool severExist = false;
+        public bool serverAlreadyExist = false;
 		public bool serverCurrent = false; // je true ak server spustil tento proces
 
         private volatile bool _shouldStop = false;
@@ -38,7 +40,7 @@ namespace Diagram
                 else 
                 {
 					Program.log.write("Server: already exist");
-                    severExist = true;
+                    serverAlreadyExist = true;
                 }
             }
             catch (Exception ex)

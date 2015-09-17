@@ -2257,52 +2257,6 @@ namespace Diagram
 
                         this.diagram.unsave();
                         this.diagram.InvalidateDiagram();
-
-                        /*
-
-                        // Paste image to file
-                        try
-                        {
-                            if (this.NewFile || this.FileName == "" || File.Exists(this.FileName))
-                            {
-                                this.save();
-                            }
-
-                            if (!this.NewFile && this.FileName != "" && File.Exists(this.FileName))
-                            {
-                                if (!Directory.Exists(Path.GetDirectoryName(this.FileName) + Path.DirectorySeparatorChar + "images"))
-                                {
-                                    Directory.CreateDirectory(Path.GetDirectoryName(this.FileName) + Path.DirectorySeparatorChar + "images");
-                                }
-                                int icount = 0;
-                                while (File.Exists(Path.GetDirectoryName(this.FileName) + Path.DirectorySeparatorChar + "images" + Path.DirectorySeparatorChar + "image" + icount.ToString().PadLeft(4, '0') + ".png")) icount++;
-                                Image image = (Image)data.GetData(DataFormats.Bitmap, true);
-                                image.Save(Path.GetDirectoryName(this.FileName) + Path.DirectorySeparatorChar + "images" + Path.DirectorySeparatorChar + "image" + icount.ToString().PadLeft(4, '0') + ".png", System.Drawing.Imaging.ImageFormat.Png);
-
-                                Point ptCursor = Cursor.Position;
-                                ptCursor = PointToClient(ptCursor);
-                                TNode newrec = CreateNode(ptCursor.X, ptCursor.Y);
-                                newrec.text = "image" + icount.ToString().PadLeft(4, '0') + ".png";
-
-                                Font font = newrec.font;
-                                SizeF s = this.MeasureStringWithMargin(newrec.text, newrec.font);
-                                newrec.width = (int)s.Width;
-                                newrec.height = (int)s.Height;
-                                newrec.isimage = true;
-                                newrec.imagepath = "." + Path.DirectorySeparatorChar + "images" + Path.DirectorySeparatorChar + "image" + icount.ToString().PadLeft(4, '0') + ".png";
-                                newrec.image = new Bitmap(newrec.imagepath);
-                                newrec.height = newrec.image.Height;
-                                newrec.width = newrec.image.Width;
-                                this.unsave();
-                                this.diagram.InvalidateDiagram();
-
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            Program.log.write("paste image to file error: " + e.Message);
-                        }
-                        */
                     }
 
                 }
