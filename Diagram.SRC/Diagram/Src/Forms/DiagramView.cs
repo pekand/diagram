@@ -2020,7 +2020,11 @@ namespace Diagram
                     string copytext = "";
                     foreach (Node rec in this.SelectedNodes)
                     {
-                        copytext = copytext + rec.text + "\n";
+                        copytext = copytext + rec.text;
+
+                        if (this.SelectedNodes.Count() > 1) {
+                            copytext = copytext + "\n";
+                        }
                     }
 
                     data.SetData(copytext);
