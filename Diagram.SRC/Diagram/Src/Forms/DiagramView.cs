@@ -929,7 +929,10 @@ namespace Diagram
         // MENU Layer In
         public void inToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LayerIn();
+            if (this.SelectedNodes.Count() == 1)
+            {
+                this.LayerIn(this.SelectedNodes[0]);
+            }
         }
 
         // MENU Layer Out
@@ -1652,7 +1655,6 @@ namespace Diagram
                 // KEY DBLCLICK otvorenie editacie alebo linku [dblclick]
                 if (dblclick && this.SourceNode != null && !keyctrl && !keyalt && !keyshift)
                 {
-
                     this.OpenLinkAsync(this.SourceNode);
                 }
                 else
@@ -2255,52 +2257,6 @@ namespace Diagram
 
                         this.diagram.unsave();
                         this.diagram.InvalidateDiagram();
-
-                        /*
-
-                        // Paste image to file
-                        try
-                        {
-                            if (this.NewFile || this.FileName == "" || File.Exists(this.FileName))
-                            {
-                                this.save();
-                            }
-
-                            if (!this.NewFile && this.FileName != "" && File.Exists(this.FileName))
-                            {
-                                if (!Directory.Exists(Path.GetDirectoryName(this.FileName) + Path.DirectorySeparatorChar + "images"))
-                                {
-                                    Directory.CreateDirectory(Path.GetDirectoryName(this.FileName) + Path.DirectorySeparatorChar + "images");
-                                }
-                                int icount = 0;
-                                while (File.Exists(Path.GetDirectoryName(this.FileName) + Path.DirectorySeparatorChar + "images" + Path.DirectorySeparatorChar + "image" + icount.ToString().PadLeft(4, '0') + ".png")) icount++;
-                                Image image = (Image)data.GetData(DataFormats.Bitmap, true);
-                                image.Save(Path.GetDirectoryName(this.FileName) + Path.DirectorySeparatorChar + "images" + Path.DirectorySeparatorChar + "image" + icount.ToString().PadLeft(4, '0') + ".png", System.Drawing.Imaging.ImageFormat.Png);
-
-                                Point ptCursor = Cursor.Position;
-                                ptCursor = PointToClient(ptCursor);
-                                TNode newrec = CreateNode(ptCursor.X, ptCursor.Y);
-                                newrec.text = "image" + icount.ToString().PadLeft(4, '0') + ".png";
-
-                                Font font = newrec.font;
-                                SizeF s = this.MeasureStringWithMargin(newrec.text, newrec.font);
-                                newrec.width = (int)s.Width;
-                                newrec.height = (int)s.Height;
-                                newrec.isimage = true;
-                                newrec.imagepath = "." + Path.DirectorySeparatorChar + "images" + Path.DirectorySeparatorChar + "image" + icount.ToString().PadLeft(4, '0') + ".png";
-                                newrec.image = new Bitmap(newrec.imagepath);
-                                newrec.height = newrec.image.Height;
-                                newrec.width = newrec.image.Width;
-                                this.unsave();
-                                this.diagram.InvalidateDiagram();
-
-                            }
-                        }
-                        catch (Exception e)
-                        {
-                            Program.log.write("paste image to file error: " + e.Message);
-                        }
-                        */
                     }
 
                 }
@@ -2630,6 +2586,16 @@ namespace Diagram
                 return true;
             }
 
+            if (parseKey("CTRL+R", keyData)) // [KEY] [CTRL+R] Random generator
+            {
+                Point ptCursor = Cursor.Position;
+                ptCursor = PointToClient(ptCursor);
+                this.CreateNode(ptCursor.X, ptCursor.Y, true, Encrypt.GetRandomString());
+
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+
             if (parseKey("F3", keyData)) // [KEY] [F3] Hide background
             {
 
@@ -2782,7 +2748,7 @@ namespace Diagram
                 {
                     if (this.SelectedNodes[0].haslayer)
                     {
-                        this.LayerIn();
+                        this.LayerIn(this.SelectedNodes[0]);
                     }
                     else
                     {
@@ -3017,12 +2983,15 @@ namespace Diagram
 
                 if (this.key == '+') // KEY PLUS In to layer
                 {
-                    LayerIn();
+                    if (this.SelectedNodes.Count() == 1 && this.SelectedNodes[0].haslayer)
+                    {
+                        this.LayerIn(this.SelectedNodes[0]);
+                    }
                 }
                 else
                 if (this.key == '-') // KEY MINUS Out to layer
                 {
-                    LayerOut();
+                    this.LayerOut();
                 }
                 else
                 if (this.key != ' ' && this.key != '\t' && this.key != '\r' && this.key != '\n' && this.key != '`' && this.key != (char)27) // KEY OTHER Pisanie textu - Vytvorenie novej nody
@@ -3223,48 +3192,45 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // LAYER IN                                                                                    // [LAYER]
-        public void LayerIn()
+        public void LayerIn(Node rec)
         {
-            if (this.SelectedNodes.Count() == 1)
+            if (rec.id != this.layer)
             {
-                if (this.SelectedNodes[0].id != this.layer)
+                if (this.layer == 0)
                 {
-                    if (this.layer == 0)
-                    {
-                        this.firstLayereShift.x = this.shift.x;
-                        this.firstLayereShift.y = this.shift.y;
-                    }
-                    else
-                    {
-                        this.LayerNode.haslayer = true;
-                        this.LayerNode.layershiftx = this.shift.x;
-                        this.LayerNode.layershifty = this.shift.y;
-                    }
-
-                    if (this.SelectedNodes[0].haslayer)
-                    {
-                        this.shift.x = this.SelectedNodes[0].layershiftx;
-                        this.shift.y = this.SelectedNodes[0].layershifty;
-                    }
-                    else
-                    {
-                        this.SelectedNodes[0].haslayer = true;
-                        this.SelectedNodes[0].layershiftx = this.shift.x;
-                        this.SelectedNodes[0].layershifty = this.shift.y;
-                    }
-
-                    Layers.Add(this.layer);
-                    this.layer = this.SelectedNodes[0].id;
-                    this.LayerNode = this.SelectedNodes[0];
-
-                    this.diagram.SetTitle();
-
-                    this.diagram.InvalidateDiagram();
+                    this.firstLayereShift.x = this.shift.x;
+                    this.firstLayereShift.y = this.shift.y;
                 }
                 else
                 {
-                    this.LayerOut(); // ak je vybrany vstupný bod tak sa nevnoruje ale vychadza sa von
+                    this.LayerNode.haslayer = true;
+                    this.LayerNode.layershiftx = this.shift.x;
+                    this.LayerNode.layershifty = this.shift.y;
                 }
+
+                if (rec.haslayer)
+                {
+                    this.shift.x = rec.layershiftx;
+                    this.shift.y = rec.layershifty;
+                }
+                else
+                {
+                    rec.haslayer = true;
+                    rec.layershiftx = this.shift.x;
+                    rec.layershifty = this.shift.y;
+                }
+
+                Layers.Add(this.layer);
+                this.layer = rec.id;
+                this.LayerNode = rec;
+
+                this.diagram.SetTitle();
+
+                this.diagram.InvalidateDiagram();
+            }
+            else
+            {
+                this.LayerOut(); // ak je vybrany vstupný bod tak sa nevnoruje ale vychadza sa von
             }
         }
 
@@ -4859,7 +4825,12 @@ namespace Diagram
 
 
 #if DEBUG
-            this.OpenLink(rec, clipboard);
+            var result = 0;
+            result = this.OpenLink(rec, clipboard);
+            if ((int)result == 1)
+            {
+                this.diagram.EditNode(rec);
+            }
 #else
             var worker = new BackgroundWorker();
             worker.WorkerSupportsCancellation = true;
@@ -4931,7 +4902,7 @@ namespace Diagram
                             Program.log.write("open link as file error: " + ex.Message);
                         }
                     }
-                    else if(rec.link.Trim() == "script")  // OPEN SCRIPT
+                    else if (rec.link.Trim() == "script")  // OPEN SCRIPT
                     {
                         // run macro
                         Program.log.write("diagram: openlink: run macro");
@@ -4973,7 +4944,7 @@ namespace Diagram
                             Program.log.write("open link as file error: " + ex.Message);
                         }
                     }
-                    else  if (Network.isURL(rec.link)) // OPEN URL
+                    else if (Network.isURL(rec.link)) // OPEN URL
                     {
                         try
                         {
@@ -5007,6 +4978,9 @@ namespace Diagram
                         Program.log.write("diagram: openlink: run command: " + cmd);
                         Os.runCommand(cmd, Os.getFileDirectory(this.diagram.FileName)); // RUN COMMAND
                     }
+                }
+                else if (rec.haslayer) {
+                    this.LayerIn(rec);
                 }
                 else // EDIT NODE
                 {

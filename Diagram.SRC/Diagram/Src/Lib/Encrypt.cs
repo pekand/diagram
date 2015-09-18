@@ -8,6 +8,22 @@ namespace Diagram
     class Encrypt
     {
 
+        public static string GetRandomString()
+        {
+            RandomNumberGenerator rng = new RNGCryptoServiceProvider();
+            byte[] tokenData = new byte[128];
+            rng.GetBytes(tokenData);
+
+            string token = 
+                Convert.ToBase64String(tokenData)
+                .Replace("=", "")
+                .Replace("/", "")
+                .Replace("+", "")
+                .Substring(0, 32);
+
+            return token;
+        }
+
         public static string CalculateSHA1Hash(string inputString)
         {
             HashAlgorithm algorithm = SHA512.Create();
