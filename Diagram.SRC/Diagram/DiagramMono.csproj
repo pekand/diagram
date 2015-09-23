@@ -120,7 +120,6 @@
     <Compile Include="Src\Lib\Os.cs" />
     <Compile Include="Src\Main.cs" />
     <Compile Include="Src\ProgramOptions.cs" />
-    <Compile Include="Src\Tools\ProgramInit.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

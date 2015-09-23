@@ -314,14 +314,14 @@ namespace Diagram
             this.args = Environment.GetCommandLineArgs();
 #if DEBUG
             // custom debug arguments
-            if (this.args.Length == 1) // if not argument is added from system ad some testing arguments
+            /*if (this.args.Length == 1) // if not argument is added from system ad some testing arguments
             {
                 // comand line arguments testing
                 this.args = new string[] { 
                     System.Reflection.Assembly.GetExecutingAssembly().Location
                     ,"c:\\Users\\root\\Desktop\\test.diagram"
                 };
-            }
+            }*/
 #endif
             // process comand line arguments
             this.ParseCommandLineArguments(this.args);
