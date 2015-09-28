@@ -43,12 +43,12 @@ namespace Diagram
             this.textBoxSearch.Size = new System.Drawing.Size(100, 13);
             this.textBoxSearch.TabIndex = 0;
             this.textBoxSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_KeyDown);
-            this.textBoxSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
+            this.textBoxSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_KeyUp);
             //
             // SearchPanel
             //
             this.Controls.Add(this.textBoxSearch);
-            this.VisibleChanged += new System.EventHandler(this.panel1_VisibleChanged);
+            this.VisibleChanged += new System.EventHandler(this.panel_VisibleChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -79,12 +79,13 @@ namespace Diagram
         {
         }
 
-        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        private void textBoxSearch_KeyUp(object sender, KeyEventArgs e)
         {
             string action = "";
             string currentText = textBoxSearch.Text;
 
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter
+                || oldText != currentText)
             {
                 action = "search";
                 oldText = currentText;
@@ -139,7 +140,7 @@ namespace Diagram
             }
         }
 
-        private void panel1_VisibleChanged(object sender, EventArgs e)
+        private void panel_VisibleChanged(object sender, EventArgs e)
         {
             this.centerPanel();
         }

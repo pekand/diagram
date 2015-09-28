@@ -3522,7 +3522,8 @@ namespace Diagram
 
             for (int i = 0; i < diagram.Nodes.Count(); i++)
             {
-                if (this.diagram.Nodes[i].note.ToUpper().IndexOf(searchFor.ToUpper()) != -1 || this.diagram.Nodes[i].text.ToUpper().IndexOf(searchFor.ToUpper()) != -1)
+                if (this.diagram.Nodes[i].note.ToUpper().IndexOf(searchFor.ToUpper()) != -1 
+                    || this.diagram.Nodes[i].text.ToUpper().IndexOf(searchFor.ToUpper()) != -1)
                 {
                     foundNodes.Add(this.diagram.Nodes[i]);
                 }
@@ -3530,12 +3531,17 @@ namespace Diagram
 
             this.searhPanel.highlight(foundNodes.Count() == 0);
 
+            Position middle = new Position();
+            middle.copy(this.currentPosition);
+
+            middle.x = middle.x - this.Width / 2;
+            middle.y = middle.y - this.Height / 2;
 
             foundNodes.Sort((first, second) =>
             {
-                double d1 = first.position.convertTostandard().distance(this.currentPosition);
-                double d2 = second.position.convertTostandard().distance(this.currentPosition);
-                Program.log.write("[id="+first.id.ToString()+","+second.id.ToString()+", dist= " + d1.ToString() + "," + d2.ToString() + "]");
+                double d1 = first.position.convertTostandard().distance(middle);
+                double d2 = second.position.convertTostandard().distance(middle);
+
                 if (d1 < d2)
                 {
                     return -1;
@@ -3665,11 +3671,22 @@ namespace Diagram
                 this.Controls.Add(this.searhPanel);
             }
 
-            currentPosition.x = -this.shift.x;
+            currentPosition.x = this.shift.x;
             currentPosition.y = this.shift.y;
 
             searhPanel.ShowPanel();
             this.searching = true;
+        }
+
+        // SEARCHPANEL CANCEL - restore beggining search position
+        private void SearchCancel()
+        {
+            this.shift.x = currentPosition.x;
+            this.shift.y = currentPosition.y;
+
+            this.searching = false;
+
+            this.diagram.InvalidateDiagram();
         }
 
         // SEARCHPANEL action
@@ -3688,6 +3705,11 @@ namespace Diagram
             if (action == "search")
             {
                 this.SearchFirst(search);
+            }
+
+            if (action == "cancel")
+            {
+                this.SearchCancel();
             }
         }
 
