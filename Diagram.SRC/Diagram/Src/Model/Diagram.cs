@@ -1294,7 +1294,7 @@ namespace Diagram
             {
                 this.CloseFile();
                 main.Diagrams.Remove(this);
-                main.CloseApplication();
+                main.CloseEmptyApplication();
             }
         }
 

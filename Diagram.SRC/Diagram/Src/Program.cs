@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Security.Permissions;
 
 /*! \mainpage Infinite diagram
  *
@@ -11,27 +10,39 @@ using System.Security.Permissions;
  */
 namespace Diagram
 {
+    /// <summary>
+    /// Application entry point</summary>
     static class Program
     {
-        private static ProgramInit aplicationSetup = new ProgramInit(); //setup application
-        public static Log log = new Log(); // debuging console for displaiing messages
+        /// <summary>
+        /// debuging console for loging messages</summary>
+        public static Log log = new Log();
+
+        /// <summary>
+        /// create main class which oppening forms</summary>
         public static Main main = null;
 
         [STAThread]
-        [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.ControlAppDomain)]
         static void Main()
         {
+            // aplication default settings
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
             try
             {
                 main = new Main();
                 Application.Run(main.mainform);
                 Application.Exit();
-
             }
-            catch (Exception e) {
+            catch (Exception e) // global exception handling
+            {  
                 log.write("Application crash: message:" + e.Message);
                 log.saveLogToFile();
-                System.Environment.Exit(1);
+
+                MessageBox.Show("Application crash: message:" + e.Message);
+
+                System.Environment.Exit(1); //close application with error code 1
             }
         }
     }

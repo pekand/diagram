@@ -5,6 +5,7 @@ namespace Diagram
 {
     public partial class MainForm : Form
     {
+        // parent 
         public Main main = null;
 
         public MainForm(Main main)
