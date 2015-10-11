@@ -1356,6 +1356,8 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
+        // EVENTS
+        
         // EVENT Paint                                                                                 // [PAINT] [EVENT]
         public void DiagramApp_Paint(object sender, PaintEventArgs e)
         {

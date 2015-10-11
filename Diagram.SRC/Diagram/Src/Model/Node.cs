@@ -2,25 +2,26 @@
 
 namespace Diagram
 {
-    // NODE Obdlznik - noda
+    /// <summary>
+    /// Node in diagram</summary>
     public class Node
     {
-        public int id = 0; // jednoznačný identifikátor nody
+        public int id = 0; // node unique id
 
-        public bool selected = false; // či je noda vybraná
+        public bool selected = false; // node is selected by mouse
 
-        public Font font = null;
-        public Color fontcolor = System.Drawing.Color.Black;
+        public Font font = null; // node name font
+        public Color fontcolor = System.Drawing.Color.Black; // node name ext color
 
-        public string text = ""; // názov nody
-        public string note = ""; // poznámka v node
-        public string link = ""; // odkaz v node
+        public string text = ""; // node name
+        public string note = ""; // node note
+        public string link = ""; // node link to external source
 
-        public int shortcut = 0; // číslo nody na ktorú odkazuje daná noda
+        public int shortcut = 0; // node id whitch is linked with this node
 
-        public Position position = new Position(); // pozícia nody
+        public Position position = new Position(); // node position in canvas
 
-        public int width = 0; // velkost nody (po otvorení súboru sa prerátava)
+        public int width = 0; // node size counted from current font
         public int height = 0;
 
         public int layer = 0; // cislo vrstvy v ktorej sa noda nachádza
@@ -28,22 +29,24 @@ namespace Diagram
         public int layershiftx = 0; // zaciatocna pozícia vrstvy
         public int layershifty = 0;
 
-        public Color color = System.Drawing.ColorTranslator.FromHtml("#FFFFB8");
-        public bool transparent = false;
+        public Color color = System.Drawing.ColorTranslator.FromHtml("#FFFFB8"); // node color
+        public bool transparent = false; // node is transparent, color is turn off
 
-        public bool isimage = false; // má sa zobraziť obrázok namiesto textu nody
-        public bool embeddedimage = false; // obrázok je vlozený v súbore
-        public string imagepath = ""; // noda má externý obrázok ktorý je nalinkovaný
-        public Bitmap image = null;
-        public int iwidth = 0; //velkost obrazku
+        public bool isimage = false; // show node as image instead of text
+        public bool embeddedimage = false; // image is imported to xml file as string
+        public string imagepath = ""; // path to node image
+        public Bitmap image = null; // loaded image
+        public int iwidth = 0; //image size
         public int iheight = 0;
 
-        public string timecreate = ""; // cas vytvorenia nody
-        public string timemodify = "";// cas modifikovania nody
+        public string timecreate = ""; // node creation time
+        public string timemodify = "";// node modification time
 
         //Script
-        public string scriptid = ""; // oznacenie
+        public string scriptid = ""; // node text id for in script search
 
+        /// <summary>
+        /// node copy from another node to current node</summary>
         public void copyNode(Node node, bool skipPosition = false, bool skipSize = false) 
         {
             this.font = node.font;
