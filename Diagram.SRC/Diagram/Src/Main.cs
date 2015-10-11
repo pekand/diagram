@@ -20,11 +20,11 @@ namespace Diagram
 
         /// <summary>
         /// Global program options</summary>
-        public ProgramOptions parameters = null;
+        public ProgramOptions options = null;
 
         /// <summary>
         /// managing file with global program options</summary>
-        public OptionsFile options = null;
+        public OptionsFile optionsFile = null;
 
         /// <summary>
         /// program translation strings</summary>
@@ -291,13 +291,13 @@ namespace Diagram
         {
             // inicialize program
             translations = new Translations();
-            parameters = new ProgramOptions();
-            options = new OptionsFile(parameters);
+            options = new ProgramOptions();
+            optionsFile = new OptionsFile(options);
             
             // create local server for comunication between local instances
             server = new Server(this);
 
-            Program.log.write("Program: Main (version:" + parameters.ApplicationVersion + ")");
+            Program.log.write("Program: Main");
 
 #if DEBUG
             Program.log.write("program: debug mode");

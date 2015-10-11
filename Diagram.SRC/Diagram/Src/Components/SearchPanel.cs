@@ -15,6 +15,8 @@ namespace Diagram
 
         public string oldText = "";
 
+        private System.Windows.Forms.TextBox textBoxSearch;
+
         public SearchPanel(object parentComponent)
         {
             this.parentComponent = parentComponent;
@@ -42,7 +44,6 @@ namespace Diagram
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(100, 13);
             this.textBoxSearch.TabIndex = 0;
-            this.textBoxSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_KeyDown);
             this.textBoxSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_KeyUp);
             //
             // SearchPanel
@@ -55,8 +56,6 @@ namespace Diagram
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBoxSearch;
 
         private void InitializeSearchPanelComponent()
         {
@@ -73,10 +72,6 @@ namespace Diagram
             this.Height = size.Height + 2;
 
             this.centerPanel();
-        }
-
-        private void textBoxSearch_KeyDown(object sender, KeyEventArgs e)
-        {
         }
 
         private void textBoxSearch_KeyUp(object sender, KeyEventArgs e)

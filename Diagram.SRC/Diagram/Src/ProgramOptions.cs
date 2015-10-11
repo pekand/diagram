@@ -10,18 +10,14 @@ namespace Diagram
         
         [JsonIgnore]
         /// <summary>
-        /// program version</summary>
-        public string ApplicationVersion = "0.2.010";
-
-        [JsonIgnore]
-        /// <summary>
-        /// last version change date</summary>
-        public string ReleaseDate = "2015-08-26";
-
-        [JsonIgnore]
-        /// <summary>
         /// home page url</summary>
         public String home_page = "https://www.infinite-diagram.com";
+
+
+        [JsonIgnore]
+        /// <summary>
+        /// release note</summary>
+        public String release_note = "ReleaseNote.html";
 
         /// <summary>
         /// local server ip address</summary>

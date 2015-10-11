@@ -28,14 +28,14 @@ namespace Diagram
             {
                 if (!SendMessage("ping"))
                 {
-                    Int32 port = main.parameters.server_default_port;
-                    IPAddress localAddr = IPAddress.Parse(main.parameters.server_default_ip);
+                    Int32 port = main.options.server_default_port;
+                    IPAddress localAddr = IPAddress.Parse(main.options.server_default_ip);
 
                     this.tcpListener = new TcpListener(localAddr, port);
                     this.listenThread = new Thread(new ThreadStart(ListenForClients));
                     this.listenThread.Start();
 					this.serverCurrent = true;
-                    Program.log.write("Server: start on " + main.parameters.server_default_ip + ":" + main.parameters.server_default_port);
+                    Program.log.write("Server: start on " + main.options.server_default_ip + ":" + main.options.server_default_port);
                 }
                 else 
                 {
@@ -135,7 +135,7 @@ namespace Diagram
             {
                 TcpClient client = new TcpClient();
 
-                IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse(main.parameters.server_default_ip), main.parameters.server_default_port);
+                IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse(main.options.server_default_ip), main.options.server_default_port);
 
                 client.Connect(serverEndPoint);
 

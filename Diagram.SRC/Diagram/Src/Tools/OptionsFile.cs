@@ -83,7 +83,8 @@ namespace Diagram
             }
         }
 
-        public String getPortableConfigFilePath() {
+        public String getPortableConfigFilePath() 
+        {
             return Path.Combine(
                 Path.GetDirectoryName(Application.ExecutablePath),
                 this.configFileName

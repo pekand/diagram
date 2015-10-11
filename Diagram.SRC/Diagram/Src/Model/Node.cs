@@ -44,7 +44,8 @@ namespace Diagram
         //Script
         public string scriptid = ""; // oznacenie
 
-        public void copyNode(Node node, bool skipPosition = false, bool skipSize = false) {
+        public void copyNode(Node node, bool skipPosition = false, bool skipSize = false) 
+        {
             this.font = node.font;
             this.fontcolor = node.fontcolor;
             this.text = node.text;

@@ -277,5 +277,22 @@ namespace Diagram
             return Directory.Exists(normalizePath(path));
         }
 
+        public static string getCurrentApplicationDirectory()
+        {
+            String currentApp = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            return Os.getFileDirectory(currentApp); 
+        }
+
+
+        public static string toBackslash(string text)
+        {
+            return text.Replace("\\", "/");
+        }
+
+        public static string getSeparator()
+        {
+            return Path.DirectorySeparatorChar.ToString();
+        }
+
     }
 }

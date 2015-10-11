@@ -32,7 +32,9 @@ namespace Diagram
             try
             {
                 main = new Main();
-                Application.Run(main.mainform);
+                if (main.mainform != null) {
+                    Application.Run(main.mainform);
+                }
                 Application.Exit();
             }
             catch (Exception e) // global exception handling
