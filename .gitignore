@@ -5,5 +5,5 @@ install-linux/infinite-diagram.deb
 install-linux/infinite-diagram
 install-windows/Output
 install-windows/files
-Documentation
+Documentation/Doxygen/html
 .vs
