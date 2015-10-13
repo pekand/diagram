@@ -13,9 +13,6 @@ namespace Diagram
         private System.Windows.Forms.Label labelAuthor;
         private System.Windows.Forms.LinkLabel linkLabelMe;
         private System.Windows.Forms.Label labelLicenceType;
-        private Label labelMode;
-        private Label labelVersionNumber;
-        private Label labelVersion;
 
         public AboutForm(Main main)
         {
@@ -31,9 +28,6 @@ namespace Diagram
             this.labelAuthor = new System.Windows.Forms.Label();
             this.linkLabelMe = new System.Windows.Forms.LinkLabel();
             this.labelLicenceType = new System.Windows.Forms.Label();
-            this.labelMode = new System.Windows.Forms.Label();
-            this.labelVersionNumber = new System.Windows.Forms.Label();
-            this.labelVersion = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelProgramName
@@ -56,7 +50,7 @@ namespace Diagram
             this.buttonOk.TabIndex = 1;
             this.buttonOk.Text = "OK";
             this.buttonOk.UseVisualStyleBackColor = true;
-            this.buttonOk.Click += new System.EventHandler(this.button1_Click);
+            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
             // labelLicence
             // 
@@ -88,7 +82,7 @@ namespace Diagram
             this.linkLabelMe.TabIndex = 5;
             this.linkLabelMe.TabStop = true;
             this.linkLabelMe.Text = "Andrej Pekar";
-            this.linkLabelMe.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabelMe.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMe_LinkClicked);
             // 
             // labelLicenceType
             // 
@@ -100,41 +94,11 @@ namespace Diagram
             this.labelLicenceType.TabIndex = 6;
             this.labelLicenceType.Text = "freeware";
             // 
-            // labelMode
-            // 
-            this.labelMode.AutoSize = true;
-            this.labelMode.Location = new System.Drawing.Point(28, 97);
-            this.labelMode.Name = "labelMode";
-            this.labelMode.Size = new System.Drawing.Size(33, 13);
-            this.labelMode.TabIndex = 8;
-            this.labelMode.Text = "mode";
-            // 
-            // labelVersionNumber
-            // 
-            this.labelVersionNumber.AutoSize = true;
-            this.labelVersionNumber.Location = new System.Drawing.Point(113, 83);
-            this.labelVersionNumber.Name = "labelVersionNumber";
-            this.labelVersionNumber.Size = new System.Drawing.Size(43, 13);
-            this.labelVersionNumber.TabIndex = 10;
-            this.labelVersionNumber.Text = "0.0.000";
-            // 
-            // labelVersion
-            // 
-            this.labelVersion.AutoSize = true;
-            this.labelVersion.Location = new System.Drawing.Point(28, 83);
-            this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(44, 13);
-            this.labelVersion.TabIndex = 12;
-            this.labelVersion.Text = "version:";
-            // 
             // AboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(248, 143);
-            this.Controls.Add(this.labelVersion);
-            this.Controls.Add(this.labelVersionNumber);
-            this.Controls.Add(this.labelMode);
             this.Controls.Add(this.labelLicenceType);
             this.Controls.Add(this.linkLabelMe);
             this.Controls.Add(this.labelAuthor);
@@ -158,23 +122,14 @@ namespace Diagram
 
         private void AboutForm_Load(object sender, EventArgs e)
         {
-            labelMode.Text = "Debug";
-            #if DEBUG
-                labelMode.Text = "Debug";
-            #else
-				labelMode.Text = "";
-            #endif
-
-            labelVersionNumber.Text = main.parameters.ApplicationVersion;
-
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonOk_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabelMe_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("mailto:pekand@gmail.com");
         }

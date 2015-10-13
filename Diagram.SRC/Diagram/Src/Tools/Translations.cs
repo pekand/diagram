@@ -1,6 +1,6 @@
 ﻿namespace Diagram
 {
-    //tabulka prekladov
+    //translation table
     public class Translations
     {
         public string saveBeforeOpenFile = "Save before open file?";

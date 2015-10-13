@@ -81,11 +81,6 @@ namespace Diagram
             return false;
         }
 
-        public static String escape(String text)
-        {
-            return text.Replace("\\", "\\\\").Replace("\"", "\\\"");
-        }
-
         public static void openDiagram(String diagramPath)
         {
             try
@@ -251,17 +246,6 @@ namespace Diagram
 			return Uri.UnescapeDataString(folderUri.MakeRelativeUri(pathUri).ToString().Replace('/', Path.DirectorySeparatorChar));
 		}
 
-        public static string normalizePath(string path)
-        {
-
-#if MONO
-            return path.Replace("\\","/");
-#else
-            return path.Replace("/","\\");
-#endif
-
-        }
-
         public static string normalizedFullPath(string path)
         {
             return Path.GetFullPath(normalizePath(path));
@@ -275,6 +259,38 @@ namespace Diagram
         public static bool DirectoryExists(string path)
         {
             return Directory.Exists(normalizePath(path));
+        }
+
+        public static string getCurrentApplicationDirectory()
+        {
+            String currentApp = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            return Os.getFileDirectory(currentApp); 
+        }
+
+        public static String escape(String text)
+        {
+            return text.Replace("\\", "\\\\").Replace("\"", "\\\"");
+        }
+
+        public static string normalizePath(string path)
+        {
+
+#if MONO
+            return path.Replace("\\","/");
+#else
+            return path.Replace("/","\\");
+#endif
+
+        }
+
+        public static string toBackslash(string text)
+        {
+            return text.Replace("\\", "/");
+        }
+
+        public static string getSeparator()
+        {
+            return Path.DirectorySeparatorChar.ToString();
         }
 
     }

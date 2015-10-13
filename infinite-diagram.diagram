@@ -32,6 +32,8 @@
       <layer>0</layer>
       <x>-4022</x>
       <y>190</y>
+      <width>20</width>
+      <height>20</height>
       <color>#D9CCFF</color>
       <timecreate>2015-3-9 09:40:54</timecreate>
       <timemodify>2015-3-9 09:40:54</timemodify>
@@ -43,6 +45,8 @@
       <layer>0</layer>
       <x>-3904</x>
       <y>96</y>
+      <width>151</width>
+      <height>36</height>
       <color>#8AC5FF</color>
       <timecreate>2015-3-9 09:40:59</timecreate>
       <timemodify>2015-3-9 09:40:59</timemodify>
@@ -53,6 +57,8 @@
       <layer>0</layer>
       <x>-3837</x>
       <y>190</y>
+      <width>20</width>
+      <height>20</height>
       <color>#D9CCFF</color>
       <timecreate>2015-3-9 09:41:01</timecreate>
       <timemodify>2015-3-9 09:41:01</timemodify>
@@ -64,6 +70,8 @@
       <layer>0</layer>
       <x>-3761</x>
       <y>242</y>
+      <width>168</width>
+      <height>36</height>
       <color>#FF8040</color>
       <timecreate>2015-3-9 09:41:38</timecreate>
       <timemodify>2015-3-9 09:41:38</timemodify>
@@ -74,6 +82,8 @@
       <layer>0</layer>
       <x>-3693</x>
       <y>189</y>
+      <width>20</width>
+      <height>20</height>
       <color>#D9CCFF</color>
       <timecreate>2015-3-9 09:41:40</timecreate>
       <timemodify>2015-3-9 09:41:40</timemodify>
@@ -85,6 +95,8 @@
       <layer>0</layer>
       <x>7807</x>
       <y>789</y>
+      <width>107</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-3-9 09:43:29</timecreate>
       <timemodify>2015-3-9 09:43:29</timemodify>
@@ -96,6 +108,8 @@
       <layer>0</layer>
       <x>-3616</x>
       <y>302</y>
+      <width>110</width>
+      <height>36</height>
       <color>#D9CCFF</color>
       <timecreate>2015-3-9 09:44:02</timecreate>
       <timemodify>2015-3-9 09:44:02</timemodify>
@@ -107,6 +121,8 @@
       <layer>0</layer>
       <x>7807</x>
       <y>836</y>
+      <width>294</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-3-9 09:44:39</timecreate>
       <timemodify>2015-3-9 09:44:39</timemodify>
@@ -118,6 +134,8 @@
       <layer>0</layer>
       <x>7807</x>
       <y>306</y>
+      <width>54</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-3-9 09:45:10</timecreate>
       <timemodify>2015-3-9 09:45:10</timemodify>
@@ -129,6 +147,8 @@
       <layer>0</layer>
       <x>7807</x>
       <y>353</y>
+      <width>62</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-3-9 09:45:19</timecreate>
       <timemodify>2015-3-9 09:45:19</timemodify>
@@ -140,6 +160,8 @@
       <layer>0</layer>
       <x>7807</x>
       <y>400</y>
+      <width>175</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-3-9 09:45:44</timecreate>
       <timemodify>2015-3-9 09:45:44</timemodify>
@@ -151,6 +173,8 @@
       <layer>0</layer>
       <x>6886</x>
       <y>262</y>
+      <width>192</width>
+      <height>36</height>
       <color>#FF8040</color>
       <timecreate>2015-3-9 09:46:06</timecreate>
       <timemodify>2015-3-9 09:46:06</timemodify>
@@ -162,6 +186,8 @@
       <layer>0</layer>
       <x>5908</x>
       <y>362</y>
+      <width>256</width>
+      <height>36</height>
       <color>#FF8040</color>
       <timecreate>2015-3-9 09:46:23</timecreate>
       <timemodify>2015-3-9 09:46:35</timemodify>
@@ -173,6 +199,8 @@
       <layer>0</layer>
       <x>6607</x>
       <y>265</y>
+      <width>211</width>
+      <height>36</height>
       <color>#FF8040</color>
       <timecreate>2015-3-9 12:36:19</timecreate>
       <timemodify>2015-3-9 12:36:19</timemodify>
@@ -184,6 +212,8 @@
       <layer>0</layer>
       <x>-3334</x>
       <y>338</y>
+      <width>288</width>
+      <height>36</height>
       <color>#D9CCFF</color>
       <timecreate>2015-3-10 16:36:32</timecreate>
       <timemodify>2015-3-10 16:36:32</timemodify>
@@ -195,6 +225,8 @@
       <layer>0</layer>
       <x>-3500</x>
       <y>90</y>
+      <width>151</width>
+      <height>36</height>
       <color>#8AC5FF</color>
       <timecreate>2015-3-10 21:09:47</timecreate>
       <timemodify>2015-3-10 21:09:47</timemodify>
@@ -205,6 +237,8 @@
       <layer>0</layer>
       <x>-3433</x>
       <y>191</y>
+      <width>20</width>
+      <height>20</height>
       <color>#D9CCFF</color>
       <timecreate>2015-3-10 21:09:49</timecreate>
       <timemodify>2015-3-10 21:09:49</timemodify>
@@ -217,6 +251,8 @@
       <layer>0</layer>
       <x>-3412</x>
       <y>424</y>
+      <width>432</width>
+      <height>36</height>
       <color>#D9CCFF</color>
       <timecreate>2015-3-10 23:03:59</timecreate>
       <timemodify>2015-3-10 23:03:59</timemodify>
@@ -228,6 +264,8 @@
       <layer>0</layer>
       <x>-3272</x>
       <y>264</y>
+      <width>172</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-3-10 23:04:11</timecreate>
       <timemodify>2015-4-19 09:42:39</timemodify>
@@ -238,6 +276,8 @@
       <layer>0</layer>
       <x>-3196</x>
       <y>189</y>
+      <width>20</width>
+      <height>20</height>
       <color>#D9CCFF</color>
       <timecreate>2015-3-10 23:04:13</timecreate>
       <timemodify>2015-3-10 23:04:13</timemodify>
@@ -250,6 +290,8 @@
       <layer>0</layer>
       <x>-3363</x>
       <y>381</y>
+      <width>341</width>
+      <height>36</height>
       <color>#D9CCFF</color>
       <timecreate>2015-3-10 23:06:07</timecreate>
       <timemodify>2015-3-10 23:06:07</timemodify>
@@ -261,6 +303,8 @@
       <layer>0</layer>
       <x>-2873</x>
       <y>312</y>
+      <width>176</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-3-11 11:30:59</timecreate>
       <timemodify>2015-3-11 11:30:59</timemodify>
@@ -272,6 +316,8 @@
       <layer>0</layer>
       <x>5908</x>
       <y>405</y>
+      <width>205</width>
+      <height>36</height>
       <color>#FF8040</color>
       <timecreate>2015-3-11 11:31:17</timecreate>
       <timemodify>2015-3-11 11:31:17</timemodify>
@@ -283,6 +329,8 @@
       <layer>0</layer>
       <x>5891</x>
       <y>272</y>
+      <width>234</width>
+      <height>36</height>
       <color>#FF8040</color>
       <timecreate>2015-3-11 11:31:40</timecreate>
       <timemodify>2015-3-11 11:31:40</timemodify>
@@ -295,6 +343,8 @@ alebo zakazat posuvanie pri pisani</text>
       <layer>0</layer>
       <x>7807</x>
       <y>447</y>
+      <width>356</width>
+      <height>51</height>
       <color>#80FF80</color>
       <timecreate>2015-3-11 11:32:24</timecreate>
       <timemodify>2015-3-11 11:32:29</timemodify>
@@ -305,6 +355,8 @@ alebo zakazat posuvanie pri pisani</text>
       <layer>0</layer>
       <x>-2708</x>
       <y>184</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-3-29 21:22:23</timecreate>
       <timemodify>2015-3-29 21:22:23</timemodify>
@@ -315,6 +367,8 @@ alebo zakazat posuvanie pri pisani</text>
       <layer>0</layer>
       <x>14435</x>
       <y>190</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-3-29 21:22:27</timecreate>
@@ -327,6 +381,8 @@ alebo zakazat posuvanie pri pisani</text>
       <layer>0</layer>
       <x>-2712</x>
       <y>241</y>
+      <width>92</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-3-29 21:22:50</timecreate>
       <timemodify>2015-3-29 21:22:50</timemodify>
@@ -338,6 +394,8 @@ alebo zakazat posuvanie pri pisani</text>
       <layer>0</layer>
       <x>-2634</x>
       <y>297</y>
+      <width>130</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-3-29 21:23:00</timecreate>
       <timemodify>2015-3-29 21:23:00</timemodify>
@@ -349,6 +407,8 @@ alebo zakazat posuvanie pri pisani</text>
       <layer>0</layer>
       <x>-2590</x>
       <y>350</y>
+      <width>173</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-3-29 21:23:17</timecreate>
       <timemodify>2015-3-29 21:23:17</timemodify>
@@ -360,6 +420,8 @@ alebo zakazat posuvanie pri pisani</text>
       <layer>0</layer>
       <x>-2987</x>
       <y>93</y>
+      <width>151</width>
+      <height>36</height>
       <color>#8AC5FF</color>
       <timecreate>2015-3-29 21:23:33</timecreate>
       <timemodify>2015-3-29 21:23:33</timemodify>
@@ -370,6 +432,8 @@ alebo zakazat posuvanie pri pisani</text>
       <layer>0</layer>
       <x>-2920</x>
       <y>193</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-3-29 21:23:36</timecreate>
       <timemodify>2015-3-29 21:23:36</timemodify>
@@ -381,6 +445,8 @@ alebo zakazat posuvanie pri pisani</text>
       <layer>0</layer>
       <x>5898</x>
       <y>320</y>
+      <width>291</width>
+      <height>36</height>
       <color>#FF8040</color>
       <timecreate>2015-2-28 21:36:07</timecreate>
       <timemodify>2015-2-28 21:36:07</timemodify>
@@ -392,6 +458,8 @@ alebo zakazat posuvanie pri pisani</text>
       <layer>0</layer>
       <x>7807</x>
       <y>507</y>
+      <width>250</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-2-28 21:37:04</timecreate>
       <timemodify>2015-2-28 21:37:04</timemodify>
@@ -403,6 +471,8 @@ alebo zakazat posuvanie pri pisani</text>
       <layer>0</layer>
       <x>7807</x>
       <y>554</y>
+      <width>341</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-1-19 18:06:24</timecreate>
       <timemodify>2015-1-19 18:06:24</timemodify>
@@ -414,6 +484,8 @@ alebo zakazat posuvanie pri pisani</text>
       <layer>0</layer>
       <x>8146</x>
       <y>507</y>
+      <width>306</width>
+      <height>36</height>
       <color>#D9CCFF</color>
       <timecreate>2015-2-8 18:25:41</timecreate>
       <timemodify>2015-2-8 18:25:41</timemodify>
@@ -425,6 +497,8 @@ alebo zakazat posuvanie pri pisani</text>
       <layer>0</layer>
       <x>7807</x>
       <y>601</y>
+      <width>91</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-2-8 18:25:55</timecreate>
       <timemodify>2015-5-4 13:00:40</timemodify>
@@ -438,6 +512,8 @@ prejde vsetky nody a nastavi im defaultny font</text>
       <layer>0</layer>
       <x>7197</x>
       <y>251</y>
+      <width>301</width>
+      <height>66</height>
       <color>#FF8040</color>
       <timecreate>2015-2-9 23:03:03</timecreate>
       <timemodify>2015-2-9 23:03:40</timemodify>
@@ -449,6 +525,8 @@ prejde vsetky nody a nastavi im defaultny font</text>
       <layer>0</layer>
       <x>7807</x>
       <y>648</y>
+      <width>215</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-3-29 21:29:47</timecreate>
       <timemodify>2015-3-29 21:29:47</timemodify>
@@ -460,6 +538,8 @@ prejde vsetky nody a nastavi im defaultny font</text>
       <layer>0</layer>
       <x>-2207</x>
       <y>339</y>
+      <width>118</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-3-29 21:31:37</timecreate>
       <timemodify>2015-3-29 21:32:02</timemodify>
@@ -471,6 +551,8 @@ prejde vsetky nody a nastavi im defaultny font</text>
       <layer>0</layer>
       <x>-2235</x>
       <y>275</y>
+      <width>162</width>
+      <height>36</height>
       <color>#FF8040</color>
       <timecreate>2015-3-29 21:31:40</timecreate>
       <timemodify>2015-3-29 21:31:48</timemodify>
@@ -481,6 +563,8 @@ prejde vsetky nody a nastavi im defaultny font</text>
       <layer>0</layer>
       <x>-2201</x>
       <y>188</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-3-29 21:31:50</timecreate>
       <timemodify>2015-3-29 21:31:50</timemodify>
@@ -493,6 +577,8 @@ prejde vsetky nody a nastavi im defaultny font</text>
       <layer>0</layer>
       <x>-1994</x>
       <y>12</y>
+      <width>185</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-3-29 21:47:48</timecreate>
       <timemodify>2015-3-29 21:47:48</timemodify>
@@ -505,6 +591,8 @@ prejde vsetky nody a nastavi im defaultny font</text>
       <layer>0</layer>
       <x>-1994</x>
       <y>55</y>
+      <width>154</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-3-29 21:47:56</timecreate>
       <timemodify>2015-3-29 21:47:56</timemodify>
@@ -517,6 +605,8 @@ prejde vsetky nody a nastavi im defaultny font</text>
       <layer>0</layer>
       <x>-1994</x>
       <y>98</y>
+      <width>163</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-3-29 21:48:05</timecreate>
       <timemodify>2015-3-29 21:48:05</timemodify>
@@ -528,6 +618,8 @@ prejde vsetky nody a nastavi im defaultny font</text>
       <layer>0</layer>
       <x>-1755</x>
       <y>81</y>
+      <width>209</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-3-29 22:11:07</timecreate>
       <timemodify>2015-3-29 22:11:07</timemodify>
@@ -540,6 +632,8 @@ prejde vsetky nody a nastavi im defaultny font</text>
       <layer>0</layer>
       <x>-1784</x>
       <y>27</y>
+      <width>269</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-3-29 22:13:18</timecreate>
       <timemodify>2015-3-29 22:13:18</timemodify>
@@ -551,6 +645,8 @@ prejde vsetky nody a nastavi im defaultny font</text>
       <layer>0</layer>
       <x>-1700</x>
       <y>-27</y>
+      <width>58</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-3-29 22:36:06</timecreate>
       <timemodify>2015-3-29 22:36:06</timemodify>
@@ -562,6 +658,8 @@ prejde vsetky nody a nastavi im defaultny font</text>
       <layer>0</layer>
       <x>-2657</x>
       <y>419</y>
+      <width>372</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-3-30 00:24:28</timecreate>
       <timemodify>2015-3-30 00:24:28</timemodify>
@@ -573,6 +671,8 @@ prejde vsetky nody a nastavi im defaultny font</text>
       <layer>0</layer>
       <x>-2688</x>
       <y>475</y>
+      <width>402</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-3-30 00:26:12</timecreate>
       <timemodify>2015-3-30 00:26:12</timemodify>
@@ -584,6 +684,8 @@ prejde vsetky nody a nastavi im defaultny font</text>
       <layer>0</layer>
       <x>7807</x>
       <y>695</y>
+      <width>243</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-3-30 00:26:32</timecreate>
       <timemodify>2015-3-30 00:26:32</timemodify>
@@ -601,6 +703,8 @@ fi</text>
       <layer>0</layer>
       <x>-1303</x>
       <y>291</y>
+      <width>171</width>
+      <height>127</height>
       <color>#FFFFB8</color>
       <timecreate>2015-3-31 17:34:31</timecreate>
       <timemodify>2015-3-31 17:34:31</timemodify>
@@ -616,6 +720,8 @@ fi</text>
       <layer>0</layer>
       <x>-192</x>
       <y>649</y>
+      <width>546</width>
+      <height>97</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-4 02:13:41</timecreate>
       <timemodify>2015-4-4 02:13:41</timemodify>
@@ -627,6 +733,8 @@ fi</text>
       <layer>0</layer>
       <x>-839</x>
       <y>256</y>
+      <width>64</width>
+      <height>36</height>
       <color>#FF8040</color>
       <timecreate>2015-4-4 02:13:46</timecreate>
       <timemodify>2015-4-4 02:13:46</timemodify>
@@ -637,6 +745,8 @@ fi</text>
       <layer>0</layer>
       <x>-874</x>
       <y>196</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-4 02:13:47</timecreate>
       <timemodify>2015-4-4 02:13:47</timemodify>
@@ -648,6 +758,8 @@ fi</text>
       <layer>0</layer>
       <x>-1007</x>
       <y>553</y>
+      <width>91</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-5 13:33:01</timecreate>
       <timemodify>2015-4-19 09:44:37</timemodify>
@@ -660,6 +772,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>-747</x>
       <y>285</y>
+      <width>239</width>
+      <height>51</height>
       <color>#80FF80</color>
       <timecreate>2015-4-8 23:40:23</timecreate>
       <timemodify>2015-4-19 09:45:47</timemodify>
@@ -672,6 +786,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>-745</x>
       <y>376</y>
+      <width>482</width>
+      <height>36</height>
       <color>#F2FFCC</color>
       <timecreate>2015-4-8 23:40:25</timecreate>
       <timemodify>2015-4-8 23:40:25</timemodify>
@@ -699,6 +815,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>-188</x>
       <y>782</y>
+      <width>556</width>
+      <height>278</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-8 23:41:52</timecreate>
       <timemodify>2015-4-8 23:41:52</timemodify>
@@ -717,6 +835,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>-188</x>
       <y>1039</y>
+      <width>687</width>
+      <height>142</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-8 23:42:02</timecreate>
       <timemodify>2015-4-8 23:42:02</timemodify>
@@ -732,6 +852,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>-187</x>
       <y>1199</y>
+      <width>571</width>
+      <height>97</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-8 23:42:57</timecreate>
       <timemodify>2015-4-8 23:42:57</timemodify>
@@ -750,6 +872,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>-188</x>
       <y>1306</y>
+      <width>678</width>
+      <height>142</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-8 23:43:13</timecreate>
       <timemodify>2015-4-8 23:43:13</timemodify>
@@ -780,6 +904,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>-191</x>
       <y>1474</y>
+      <width>416</width>
+      <height>323</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-8 23:44:04</timecreate>
       <timemodify>2015-4-8 23:44:04</timemodify>
@@ -791,6 +917,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>245</x>
       <y>261</y>
+      <width>208</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-4-8 23:45:49</timecreate>
       <timemodify>2015-4-8 23:45:49</timemodify>
@@ -802,6 +930,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>254</x>
       <y>317</y>
+      <width>192</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-8 23:45:57</timecreate>
       <timemodify>2015-4-8 23:45:57</timemodify>
@@ -813,6 +943,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>284</x>
       <y>369</y>
+      <width>131</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-8 23:46:07</timecreate>
       <timemodify>2015-4-8 23:46:43</timemodify>
@@ -824,6 +956,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>190</x>
       <y>419</y>
+      <width>305</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-8 23:46:29</timecreate>
       <timemodify>2015-4-8 23:46:29</timemodify>
@@ -836,6 +970,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>8235</x>
       <y>-166</y>
+      <width>132</width>
+      <height>36</height>
       <color>#D9CCFF</color>
       <timecreate>2015-4-9 10:13:20</timecreate>
       <timemodify>2015-4-9 10:13:20</timemodify>
@@ -848,6 +984,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>8235</x>
       <y>-117</y>
+      <width>132</width>
+      <height>36</height>
       <color>#D9CCFF</color>
       <timecreate>2015-4-9 10:13:20</timecreate>
       <timemodify>2015-4-9 10:13:20</timemodify>
@@ -860,6 +998,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>8235</x>
       <y>-68</y>
+      <width>136</width>
+      <height>36</height>
       <color>#D9CCFF</color>
       <timecreate>2015-4-9 10:13:20</timecreate>
       <timemodify>2015-4-9 10:13:20</timemodify>
@@ -872,6 +1012,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>8235</x>
       <y>-215</y>
+      <width>136</width>
+      <height>36</height>
       <color>#D9CCFF</color>
       <timecreate>2015-4-9 10:16:10</timecreate>
       <timemodify>2015-4-9 10:16:10</timemodify>
@@ -883,6 +1025,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>7807</x>
       <y>742</y>
+      <width>272</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-4-9 11:53:19</timecreate>
       <timemodify>2015-4-9 11:53:19</timemodify>
@@ -894,6 +1038,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>758</x>
       <y>313</y>
+      <width>244</width>
+      <height>36</height>
       <color>#FF8000</color>
       <timecreate>2015-4-14 22:31:55</timecreate>
       <timemodify>2015-4-14 22:31:55</timemodify>
@@ -904,6 +1050,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>880</x>
       <y>187</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-14 22:31:57</timecreate>
       <timemodify>2015-4-14 22:31:57</timemodify>
@@ -915,6 +1063,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>678</x>
       <y>106</y>
+      <width>151</width>
+      <height>36</height>
       <color>#8AC5FF</color>
       <timecreate>2015-4-14 22:32:03</timecreate>
       <timemodify>2015-4-14 22:32:03</timemodify>
@@ -925,6 +1075,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>745</x>
       <y>196</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-14 22:32:05</timecreate>
       <timemodify>2015-4-14 22:32:05</timemodify>
@@ -936,6 +1088,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>1069</x>
       <y>283</y>
+      <width>296</width>
+      <height>36</height>
       <color>#FF8000</color>
       <timecreate>2015-4-14 22:32:22</timecreate>
       <timemodify>2015-4-14 22:32:22</timemodify>
@@ -946,6 +1100,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>1094</x>
       <y>185</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-14 22:32:28</timecreate>
       <timemodify>2015-4-14 22:32:28</timemodify>
@@ -957,6 +1113,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>1151</x>
       <y>345</y>
+      <width>231</width>
+      <height>36</height>
       <color>#FF8000</color>
       <timecreate>2015-4-14 23:50:51</timecreate>
       <timemodify>2015-4-14 23:50:51</timemodify>
@@ -968,6 +1126,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>7755</x>
       <y>254</y>
+      <width>64</width>
+      <height>36</height>
       <color>#FF80FF</color>
       <timecreate>2015-4-19 09:36:57</timecreate>
       <timemodify>2015-4-19 09:37:03</timemodify>
@@ -979,6 +1139,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>6233</x>
       <y>323</y>
+      <width>278</width>
+      <height>36</height>
       <color>#D9CCFF</color>
       <timecreate>2015-4-19 09:40:52</timecreate>
       <timemodify>2015-4-19 09:40:52</timemodify>
@@ -990,6 +1152,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>-4074</x>
       <y>30</y>
+      <width>118</width>
+      <height>36</height>
       <color>#FF80FF</color>
       <timecreate>2015-3-29 21:31:37</timecreate>
       <timemodify>2015-3-29 21:32:02</timemodify>
@@ -1000,6 +1164,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>-1679</x>
       <y>189</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:44:14</timecreate>
       <timemodify>2015-4-19 09:44:14</timemodify>
@@ -1010,6 +1176,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>-1278</x>
       <y>196</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:44:29</timecreate>
       <timemodify>2015-4-19 09:44:29</timemodify>
@@ -1021,6 +1189,8 @@ zrusit bech skriptu po 30sekundach</text>
       <layer>0</layer>
       <x>-456</x>
       <y>329</y>
+      <width>247</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:45:52</timecreate>
       <timemodify>2015-4-19 09:46:09</timemodify>
@@ -1034,6 +1204,8 @@ Tools.log("test")</text>
       <layer>0</layer>
       <x>-1213</x>
       <y>699</y>
+      <width>121</width>
+      <height>66</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:46:51</timecreate>
       <timemodify>2015-4-19 09:46:51</timemodify>
@@ -1047,6 +1219,8 @@ Logxxx.write('xxx')</text>
       <layer>0</layer>
       <x>-1213</x>
       <y>767</y>
+      <width>135</width>
+      <height>66</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:46:56</timecreate>
       <timemodify>2015-4-19 09:46:56</timemodify>
@@ -1060,6 +1234,8 @@ Tools.getTextFromClipboard()</text>
       <layer>0</layer>
       <x>-1213</x>
       <y>835</y>
+      <width>207</width>
+      <height>66</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:47:01</timecreate>
       <timemodify>2015-4-19 09:47:01</timemodify>
@@ -1073,6 +1249,8 @@ Tools.log(Tools.getTextFromClipboard())</text>
       <layer>0</layer>
       <x>-1213</x>
       <y>903</y>
+      <width>272</width>
+      <height>66</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:47:08</timecreate>
       <timemodify>2015-4-19 09:47:08</timemodify>
@@ -1098,6 +1276,8 @@ Tools.log("xxx"+getText())</text>
       <layer>0</layer>
       <x>-1213</x>
       <y>971</y>
+      <width>308</width>
+      <height>248</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:47:23</timecreate>
       <timemodify>2015-4-19 09:47:23</timemodify>
@@ -1112,6 +1292,8 @@ Tools.log("xxx"+Script.getClipboard())</text>
       <layer>0</layer>
       <x>-1213</x>
       <y>1189</y>
+      <width>254</width>
+      <height>82</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:47:28</timecreate>
       <timemodify>2015-4-19 09:47:28</timemodify>
@@ -1125,6 +1307,8 @@ Diagram.CloseDiagram()</text>
       <layer>0</layer>
       <x>-902</x>
       <y>681</y>
+      <width>176</width>
+      <height>66</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:47:40</timecreate>
       <timemodify>2015-4-19 09:47:40</timemodify>
@@ -1138,6 +1322,8 @@ Diagram.ResetFont()</text>
       <layer>0</layer>
       <x>-903</x>
       <y>756</y>
+      <width>152</width>
+      <height>66</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:47:45</timecreate>
       <timemodify>2015-4-19 09:47:45</timemodify>
@@ -1175,6 +1361,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>-687</x>
       <y>695</y>
+      <width>125</width>
+      <height>429</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:48:12</timecreate>
       <timemodify>2015-4-19 09:48:12</timemodify>
@@ -1185,6 +1373,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>-840</x>
       <y>641</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-4-19 09:49:20</timecreate>
@@ -1196,6 +1386,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>-648</x>
       <y>649</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-4-19 09:49:21</timecreate>
@@ -1207,6 +1399,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>-1152</x>
       <y>650</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-4-19 09:49:22</timecreate>
@@ -1218,6 +1412,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>-974</x>
       <y>611</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-4-19 09:49:25</timecreate>
@@ -1229,6 +1425,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>344</x>
       <y>189</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:50:09</timecreate>
       <timemodify>2015-4-19 09:50:09</timemodify>
@@ -1240,6 +1438,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>-1334</x>
       <y>244</y>
+      <width>172</width>
+      <height>36</height>
       <color>#FF8040</color>
       <timecreate>2015-4-19 09:52:35</timecreate>
       <timemodify>2015-4-19 09:52:35</timemodify>
@@ -1251,6 +1451,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>-3773</x>
       <y>333</y>
+      <width>130</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-4-19 09:53:00</timecreate>
       <timemodify>2015-4-19 09:53:00</timemodify>
@@ -1262,6 +1464,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>1583</x>
       <y>244</y>
+      <width>199</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-4-19 09:56:05</timecreate>
       <timemodify>2015-4-19 09:56:05</timemodify>
@@ -1273,6 +1477,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>1622</x>
       <y>297</y>
+      <width>147</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:56:11</timecreate>
       <timemodify>2015-4-19 09:56:11</timemodify>
@@ -1284,6 +1490,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>1593</x>
       <y>346</y>
+      <width>369</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-4-19 09:56:27</timecreate>
       <timemodify>2015-4-19 09:56:27</timemodify>
@@ -1295,6 +1503,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>1709</x>
       <y>399</y>
+      <width>228</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:56:51</timecreate>
       <timemodify>2015-4-19 09:56:51</timemodify>
@@ -1306,6 +1516,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>1911</x>
       <y>399</y>
+      <width>278</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:57:07</timecreate>
       <timemodify>2015-4-19 09:57:07</timemodify>
@@ -1317,6 +1529,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>1916</x>
       <y>441</y>
+      <width>206</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:57:18</timecreate>
       <timemodify>2015-4-19 09:57:18</timemodify>
@@ -1327,6 +1541,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>8568</x>
       <y>-158</y>
+      <width>20</width>
+      <height>20</height>
       <color>#D9CCFF</color>
       <timecreate>2015-3-9 09:41:43</timecreate>
       <timemodify>2015-3-9 09:41:43</timemodify>
@@ -1337,6 +1553,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>8622</x>
       <y>-126</y>
+      <width>20</width>
+      <height>20</height>
       <color>#80FF80</color>
       <timecreate>2015-3-9 09:41:53</timecreate>
       <timemodify>2015-3-9 09:41:53</timemodify>
@@ -1347,6 +1565,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>8586</x>
       <y>-91</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:37:57</timecreate>
       <timemodify>2015-4-19 09:37:57</timemodify>
@@ -1358,6 +1578,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>8682</x>
       <y>-132</y>
+      <width>66</width>
+      <height>36</height>
       <color>#FF80FF</color>
       <timecreate>2015-4-19 09:50:25</timecreate>
       <timemodify>2015-4-19 09:50:25</timemodify>
@@ -1368,6 +1590,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>8644</x>
       <y>-75</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FF80FF</color>
       <timecreate>2015-4-19 09:50:44</timecreate>
       <timemodify>2015-4-19 09:50:44</timemodify>
@@ -1378,6 +1602,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>8636</x>
       <y>-176</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FF8040</color>
       <timecreate>2015-4-19 09:51:23</timecreate>
       <timemodify>2015-4-19 09:51:23</timemodify>
@@ -1388,6 +1614,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>1664</x>
       <y>191</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:58:12</timecreate>
       <timemodify>2015-4-19 09:58:12</timemodify>
@@ -1399,6 +1627,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>2009</x>
       <y>488</y>
+      <width>129</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:58:26</timecreate>
       <timemodify>2015-4-19 09:58:26</timemodify>
@@ -1410,6 +1640,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>2129</x>
       <y>488</y>
+      <width>122</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 09:58:38</timecreate>
       <timemodify>2015-4-19 09:58:38</timemodify>
@@ -1421,6 +1653,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>2235</x>
       <y>268</y>
+      <width>266</width>
+      <height>36</height>
       <color>#FF8040</color>
       <timecreate>2015-4-19 09:59:29</timecreate>
       <timemodify>2015-4-19 10:00:16</timemodify>
@@ -1431,6 +1665,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>2336</x>
       <y>188</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 10:00:18</timecreate>
       <timemodify>2015-4-19 10:00:18</timemodify>
@@ -1442,6 +1678,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>2400</x>
       <y>341</y>
+      <width>209</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-19 21:42:23</timecreate>
       <timemodify>2015-4-19 21:42:23</timemodify>
@@ -1453,6 +1691,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>2664</x>
       <y>264</y>
+      <width>221</width>
+      <height>36</height>
       <color>#FF8040</color>
       <timecreate>2015-4-20 00:40:08</timecreate>
       <timemodify>2015-4-20 00:40:08</timemodify>
@@ -1463,6 +1703,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>2721</x>
       <y>198</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-20 01:02:59</timecreate>
       <timemodify>2015-4-20 01:02:59</timemodify>
@@ -1474,6 +1716,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>2971</x>
       <y>268</y>
+      <width>156</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-4-20 01:12:11</timecreate>
       <timemodify>2015-4-20 01:12:11</timemodify>
@@ -1485,6 +1729,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>3115</x>
       <y>315</y>
+      <width>148</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-20 01:12:22</timecreate>
       <timemodify>2015-4-20 01:12:22</timemodify>
@@ -1497,6 +1743,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>2948</x>
       <y>378</y>
+      <width>398</width>
+      <height>36</height>
       <color>#F2FFCC</color>
       <timecreate>2015-4-20 01:12:28</timecreate>
       <timemodify>2015-4-20 01:12:28</timemodify>
@@ -1507,6 +1755,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>3000</x>
       <y>196</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-20 01:12:36</timecreate>
       <timemodify>2015-4-20 01:12:36</timemodify>
@@ -1517,6 +1767,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>3503</x>
       <y>461</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-4-27 21:33:37</timecreate>
@@ -1529,6 +1781,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>3436</x>
       <y>-73</y>
+      <width>151</width>
+      <height>36</height>
       <color>#8AC5FF</color>
       <timecreate>2015-4-27 21:33:46</timecreate>
       <timemodify>2015-4-27 21:33:46</timemodify>
@@ -1540,6 +1794,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>3707</x>
       <y>247</y>
+      <width>305</width>
+      <height>36</height>
       <color>#FF8040</color>
       <timecreate>2015-4-27 21:34:40</timecreate>
       <timemodify>2015-4-27 21:34:40</timemodify>
@@ -1550,6 +1806,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>3860</x>
       <y>187</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-27 21:34:42</timecreate>
       <timemodify>2015-4-27 21:34:42</timemodify>
@@ -1561,6 +1819,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>4231</x>
       <y>306</y>
+      <width>207</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-4-27 20:47:52</timecreate>
       <timemodify>2015-4-27 20:47:52</timemodify>
@@ -1572,6 +1832,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>4302</x>
       <y>239</y>
+      <width>74</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-27 20:47:55</timecreate>
       <timemodify>2015-4-27 20:47:55</timemodify>
@@ -1582,6 +1844,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>4329</x>
       <y>189</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-27 20:47:58</timecreate>
       <timemodify>2015-4-27 20:47:58</timemodify>
@@ -1593,6 +1857,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>4517</x>
       <y>261</y>
+      <width>182</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-4-27 21:18:20</timecreate>
       <timemodify>2015-5-4 11:27:11</timemodify>
@@ -1603,6 +1869,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>4603</x>
       <y>190</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-27 21:18:22</timecreate>
       <timemodify>2015-4-27 21:18:22</timemodify>
@@ -1614,6 +1882,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>4527</x>
       <y>309</y>
+      <width>166</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-27 21:19:03</timecreate>
       <timemodify>2015-4-27 21:19:03</timemodify>
@@ -1625,6 +1895,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>4848</x>
       <y>276</y>
+      <width>122</width>
+      <height>36</height>
       <color>#FF8000</color>
       <timecreate>2015-4-26 17:18:35</timecreate>
       <timemodify>2015-4-26 17:18:35</timemodify>
@@ -1635,6 +1907,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>4900</x>
       <y>187</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-26 17:18:37</timecreate>
       <timemodify>2015-4-26 17:18:37</timemodify>
@@ -1646,6 +1920,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>4872</x>
       <y>328</y>
+      <width>77</width>
+      <height>36</height>
       <color>Silver</color>
       <timecreate>2015-4-27 23:47:37</timecreate>
       <timemodify>2015-4-27 23:47:37</timemodify>
@@ -1656,6 +1932,8 @@ Tools.log("step")</text>
       <layer>0</layer>
       <x>8560</x>
       <y>-125</y>
+      <width>20</width>
+      <height>20</height>
       <color>Silver</color>
       <timecreate>2015-4-27 23:47:41</timecreate>
       <timemodify>2015-4-27 23:47:41</timemodify>
@@ -1677,6 +1955,8 @@ f.close()</text>
       <layer>0</layer>
       <x>5071</x>
       <y>278</y>
+      <width>280</width>
+      <height>187</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-29 22:45:00</timecreate>
       <timemodify>2015-4-29 22:45:00</timemodify>
@@ -1687,6 +1967,8 @@ f.close()</text>
       <layer>0</layer>
       <x>5208</x>
       <y>193</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-29 22:45:02</timecreate>
       <timemodify>2015-4-29 22:45:02</timemodify>
@@ -1698,6 +1980,8 @@ f.close()</text>
       <layer>0</layer>
       <x>5535</x>
       <y>238</y>
+      <width>191</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-5-4 11:28:55</timecreate>
       <timemodify>2015-5-4 11:28:55</timemodify>
@@ -1708,6 +1992,8 @@ f.close()</text>
       <layer>0</layer>
       <x>5625</x>
       <y>188</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 11:28:57</timecreate>
       <timemodify>2015-5-4 11:28:57</timemodify>
@@ -1719,6 +2005,8 @@ f.close()</text>
       <layer>0</layer>
       <x>-3637</x>
       <y>413</y>
+      <width>191</width>
+      <height>36</height>
       <color>Silver</color>
       <timecreate>2015-5-4 12:38:48</timecreate>
       <timemodify>2015-5-4 12:38:48</timemodify>
@@ -1730,6 +2018,8 @@ f.close()</text>
       <layer>0</layer>
       <x>-2243</x>
       <y>417</y>
+      <width>54</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 12:39:23</timecreate>
       <timemodify>2015-5-4 12:39:23</timemodify>
@@ -1740,6 +2030,8 @@ f.close()</text>
       <layer>0</layer>
       <x>-3952</x>
       <y>190</y>
+      <width>20</width>
+      <height>20</height>
       <color>#D9CCFF</color>
       <timecreate>2015-5-4 12:40:14</timecreate>
       <timemodify>2015-5-4 12:40:14</timemodify>
@@ -1751,6 +2043,8 @@ f.close()</text>
       <layer>0</layer>
       <x>-75</x>
       <y>594</y>
+      <width>129</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 12:43:02</timecreate>
       <timemodify>2015-5-4 12:43:02</timemodify>
@@ -1761,6 +2055,8 @@ f.close()</text>
       <layer>0</layer>
       <x>-18</x>
       <y>192</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 12:43:04</timecreate>
       <timemodify>2015-5-4 12:43:04</timemodify>
@@ -1772,6 +2068,8 @@ f.close()</text>
       <layer>0</layer>
       <x>5075</x>
       <y>459</y>
+      <width>112</width>
+      <height>36</height>
       <color>Silver</color>
       <timecreate>2015-5-4 12:54:57</timecreate>
       <timemodify>2015-5-4 12:54:57</timemodify>
@@ -1782,6 +2080,8 @@ f.close()</text>
       <layer>0</layer>
       <x>5849</x>
       <y>196</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 12:55:39</timecreate>
       <timemodify>2015-5-4 12:55:39</timemodify>
@@ -1792,6 +2092,8 @@ f.close()</text>
       <layer>0</layer>
       <x>5849</x>
       <y>284</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-5-4 12:55:47</timecreate>
@@ -1803,6 +2105,8 @@ f.close()</text>
       <layer>0</layer>
       <x>5849</x>
       <y>334</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-5-4 12:55:50</timecreate>
@@ -1814,6 +2118,8 @@ f.close()</text>
       <layer>0</layer>
       <x>5849</x>
       <y>377</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-5-4 12:55:50</timecreate>
@@ -1825,6 +2131,8 @@ f.close()</text>
       <layer>0</layer>
       <x>5849</x>
       <y>421</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-5-4 12:55:51</timecreate>
@@ -1836,6 +2144,8 @@ f.close()</text>
       <layer>0</layer>
       <x>6686</x>
       <y>195</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 12:56:55</timecreate>
       <timemodify>2015-5-4 12:56:55</timemodify>
@@ -1846,6 +2156,8 @@ f.close()</text>
       <layer>0</layer>
       <x>6980</x>
       <y>188</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 12:57:13</timecreate>
       <timemodify>2015-5-4 12:57:13</timemodify>
@@ -1857,6 +2169,8 @@ f.close()</text>
       <layer>0</layer>
       <x>7879</x>
       <y>349</y>
+      <width>92</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 12:58:12</timecreate>
       <timemodify>2015-5-4 12:58:18</timemodify>
@@ -1867,6 +2181,8 @@ f.close()</text>
       <layer>0</layer>
       <x>7350</x>
       <y>188</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 12:59:48</timecreate>
       <timemodify>2015-5-4 12:59:48</timemodify>
@@ -1878,6 +2194,8 @@ f.close()</text>
       <layer>0</layer>
       <x>7179</x>
       <y>328</y>
+      <width>370</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-5-4 13:00:15</timecreate>
       <timemodify>2015-5-4 13:00:15</timemodify>
@@ -1889,6 +2207,8 @@ f.close()</text>
       <layer>0</layer>
       <x>7916</x>
       <y>603</y>
+      <width>92</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 12:58:12</timecreate>
       <timemodify>2015-5-4 12:58:18</timemodify>
@@ -1897,8 +2217,10 @@ f.close()</text>
       <id>211</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>7774</x>
+      <x>7777</x>
       <y>314</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-5-4 13:01:12</timecreate>
@@ -1908,8 +2230,10 @@ f.close()</text>
       <id>212</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>7774</x>
+      <x>7777</x>
       <y>358</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-5-4 13:01:12</timecreate>
@@ -1919,8 +2243,10 @@ f.close()</text>
       <id>213</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>7774</x>
+      <x>7777</x>
       <y>410</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-5-4 13:01:13</timecreate>
@@ -1930,8 +2256,10 @@ f.close()</text>
       <id>214</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>7774</x>
+      <x>7777</x>
       <y>468</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-5-4 13:01:13</timecreate>
@@ -1941,8 +2269,10 @@ f.close()</text>
       <id>215</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>7774</x>
+      <x>7777</x>
       <y>518</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-5-4 13:01:14</timecreate>
@@ -1952,8 +2282,10 @@ f.close()</text>
       <id>216</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>7774</x>
+      <x>7777</x>
       <y>574</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-5-4 13:01:15</timecreate>
@@ -1963,8 +2295,10 @@ f.close()</text>
       <id>217</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>7774</x>
+      <x>7777</x>
       <y>620</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-5-4 13:01:15</timecreate>
@@ -1974,8 +2308,10 @@ f.close()</text>
       <id>218</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>7774</x>
+      <x>7777</x>
       <y>660</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-5-4 13:01:15</timecreate>
@@ -1985,8 +2321,10 @@ f.close()</text>
       <id>219</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>7774</x>
+      <x>7777</x>
       <y>702</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-5-4 13:01:16</timecreate>
@@ -1996,8 +2334,10 @@ f.close()</text>
       <id>220</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>7774</x>
+      <x>7777</x>
       <y>754</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-5-4 13:01:17</timecreate>
@@ -2007,8 +2347,10 @@ f.close()</text>
       <id>221</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>7774</x>
+      <x>7777</x>
       <y>815</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-5-4 13:01:17</timecreate>
@@ -2018,8 +2360,10 @@ f.close()</text>
       <id>222</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>7774</x>
+      <x>7777</x>
       <y>859</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <transparent>true</transparent>
       <timecreate>2015-5-4 13:01:18</timecreate>
@@ -2031,6 +2375,8 @@ f.close()</text>
       <layer>0</layer>
       <x>7774</x>
       <y>198</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 13:01:33</timecreate>
       <timemodify>2015-5-4 13:01:33</timemodify>
@@ -2042,6 +2388,8 @@ f.close()</text>
       <layer>0</layer>
       <x>7565</x>
       <y>46</y>
+      <width>151</width>
+      <height>36</height>
       <color>#8AC5FF</color>
       <timecreate>2015-5-4 13:01:39</timecreate>
       <timemodify>2015-5-4 13:01:39</timemodify>
@@ -2052,6 +2400,8 @@ f.close()</text>
       <layer>0</layer>
       <x>7634</x>
       <y>197</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 13:01:41</timecreate>
       <timemodify>2015-5-4 13:01:41</timemodify>
@@ -2063,6 +2413,8 @@ f.close()</text>
       <layer>0</layer>
       <x>8234</x>
       <y>256</y>
+      <width>250</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-5-4 13:10:18</timecreate>
       <timemodify>2015-5-4 13:10:18</timemodify>
@@ -2073,6 +2425,8 @@ f.close()</text>
       <layer>0</layer>
       <x>8358</x>
       <y>195</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 13:10:21</timecreate>
       <timemodify>2015-5-4 13:10:21</timemodify>
@@ -2084,6 +2438,8 @@ f.close()</text>
       <layer>0</layer>
       <x>8282</x>
       <y>310</y>
+      <width>167</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 13:10:28</timecreate>
       <timemodify>2015-5-4 13:10:28</timemodify>
@@ -2095,6 +2451,8 @@ f.close()</text>
       <layer>0</layer>
       <x>8336</x>
       <y>362</y>
+      <width>65</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 13:10:35</timecreate>
       <timemodify>2015-5-4 13:10:35</timemodify>
@@ -2106,6 +2464,8 @@ f.close()</text>
       <layer>0</layer>
       <x>8675</x>
       <y>272</y>
+      <width>250</width>
+      <height>36</height>
       <color>#FF8040</color>
       <timecreate>2015-5-4 14:58:07</timecreate>
       <timemodify>2015-5-4 14:58:07</timemodify>
@@ -2116,6 +2476,8 @@ f.close()</text>
       <layer>0</layer>
       <x>8797</x>
       <y>188</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 14:58:10</timecreate>
       <timemodify>2015-5-4 14:58:10</timemodify>
@@ -2127,6 +2489,8 @@ f.close()</text>
       <layer>0</layer>
       <x>9046</x>
       <y>270</y>
+      <width>217</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-5-4 16:36:10</timecreate>
       <timemodify>2015-5-4 16:36:10</timemodify>
@@ -2137,6 +2501,8 @@ f.close()</text>
       <layer>0</layer>
       <x>9151</x>
       <y>193</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 16:36:12</timecreate>
       <timemodify>2015-5-4 16:36:12</timemodify>
@@ -2148,6 +2514,8 @@ f.close()</text>
       <layer>0</layer>
       <x>-1540</x>
       <y>292</y>
+      <width>176</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-4 16:38:23</timecreate>
       <timemodify>2015-5-4 16:38:23</timemodify>
@@ -2159,6 +2527,8 @@ f.close()</text>
       <layer>0</layer>
       <x>9503</x>
       <y>473</y>
+      <width>73</width>
+      <height>36</height>
       <color>#80FF80</color>
       <timecreate>2015-4-16 10:47:21</timecreate>
       <timemodify>2015-4-16 10:47:21</timemodify>
@@ -2170,6 +2540,8 @@ f.close()</text>
       <layer>0</layer>
       <x>9579</x>
       <y>473</y>
+      <width>45</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-16 10:47:22</timecreate>
       <timemodify>2015-4-16 10:47:22</timemodify>
@@ -2181,6 +2553,8 @@ f.close()</text>
       <layer>0</layer>
       <x>9629</x>
       <y>473</y>
+      <width>113</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-16 10:47:32</timecreate>
       <timemodify>2015-4-16 10:47:32</timemodify>
@@ -2192,6 +2566,8 @@ f.close()</text>
       <layer>0</layer>
       <x>9744</x>
       <y>473</y>
+      <width>73</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-16 10:47:41</timecreate>
       <timemodify>2015-4-16 10:47:41</timemodify>
@@ -2203,6 +2579,8 @@ f.close()</text>
       <layer>0</layer>
       <x>9748</x>
       <y>426</y>
+      <width>89</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-16 10:47:44</timecreate>
       <timemodify>2015-4-16 10:47:44</timemodify>
@@ -2214,6 +2592,8 @@ f.close()</text>
       <layer>0</layer>
       <x>9841</x>
       <y>426</y>
+      <width>108</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-16 10:48:01</timecreate>
       <timemodify>2015-4-16 10:48:01</timemodify>
@@ -2225,6 +2605,8 @@ f.close()</text>
       <layer>0</layer>
       <x>9949</x>
       <y>426</y>
+      <width>58</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-16 10:48:03</timecreate>
       <timemodify>2015-4-16 10:48:03</timemodify>
@@ -2236,6 +2618,8 @@ f.close()</text>
       <layer>0</layer>
       <x>10011</x>
       <y>426</y>
+      <width>88</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-16 10:48:09</timecreate>
       <timemodify>2015-4-16 10:48:09</timemodify>
@@ -2247,6 +2631,8 @@ f.close()</text>
       <layer>0</layer>
       <x>10020</x>
       <y>471</y>
+      <width>116</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-16 10:48:13</timecreate>
       <timemodify>2015-4-16 10:48:22</timemodify>
@@ -2258,6 +2644,8 @@ f.close()</text>
       <layer>0</layer>
       <x>10019</x>
       <y>370</y>
+      <width>63</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-16 10:48:25</timecreate>
       <timemodify>2015-4-16 10:48:25</timemodify>
@@ -2269,6 +2657,8 @@ f.close()</text>
       <layer>0</layer>
       <x>10148</x>
       <y>497</y>
+      <width>45</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-4-16 10:48:30</timecreate>
       <timemodify>2015-4-16 10:48:30</timemodify>
@@ -2279,6 +2669,8 @@ f.close()</text>
       <layer>0</layer>
       <x>9529</x>
       <y>199</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-5-5 10:08:25</timecreate>
       <timemodify>2015-5-5 10:08:25</timemodify>
@@ -2290,6 +2682,8 @@ f.close()</text>
       <layer>0</layer>
       <x>10613</x>
       <y>-8</y>
+      <width>151</width>
+      <height>36</height>
       <color>#8AC5FF</color>
       <timecreate>2015-8-23 22:31:27</timecreate>
       <timemodify>2015-8-23 22:31:27</timemodify>
@@ -2300,6 +2694,8 @@ f.close()</text>
       <layer>0</layer>
       <x>10678</x>
       <y>194</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-8-23 22:31:29</timecreate>
       <timemodify>2015-8-23 22:31:29</timemodify>
@@ -2311,6 +2707,8 @@ f.close()</text>
       <layer>0</layer>
       <x>10993</x>
       <y>288</y>
+      <width>137</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-8-23 22:31:37</timecreate>
       <timemodify>2015-8-23 22:31:37</timemodify>
@@ -2321,6 +2719,8 @@ f.close()</text>
       <layer>0</layer>
       <x>11051</x>
       <y>196</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
       <timecreate>2015-8-23 22:31:40</timecreate>
       <timemodify>2015-8-23 22:31:40</timemodify>
@@ -2333,6 +2733,8 @@ f.close()</text>
       <layer>0</layer>
       <x>10871</x>
       <y>351</y>
+      <width>158</width>
+      <height>36</height>
       <color>#D9CCFF</color>
       <timecreate>2015-8-23 22:32:01</timecreate>
       <timemodify>2015-8-23 22:32:01</timemodify>
