@@ -1,13 +1,9 @@
 ﻿<Properties StartupItem="Diagram/DiagramMono.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Diagram/Src/Lib/Os.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Diagram/Src/Program.cs">
     <Files>
-      <File FileName="Diagram/Src/ProgramOptions.cs" Line="1" Column="1" />
       <File FileName="Diagram/Src/Main.cs" Line="1" Column="1" />
-      <File FileName="Diagram/Src/Tools/OptionsFile.cs" Line="1" Column="1" />
       <File FileName="Diagram/Src/Program.cs" Line="1" Column="1" />
-      <File FileName="Diagram/Src/Forms/DiagramView.cs" Line="3098" Column="1" />
-      <File FileName="Diagram/Src/Lib/Os.cs" Line="243" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
