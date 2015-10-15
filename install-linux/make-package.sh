@@ -2,7 +2,7 @@
 
 #clean
 sudo rm ./infinite-diagram.deb
-sudo rm -R ./infinite-diagram 
+sudo rm -R ./infinite-diagram
 
 #make dir structure
 mkdir ./infinite-diagram
@@ -52,6 +52,8 @@ sudo cp ../Diagram.SRC/Diagram/bin/Release/Microsoft.Scripting.Metadata.dll ./in
 sudo cp ../Diagram.SRC/Diagram/bin/Release/Newtonsoft.Json.dll ./infinite-diagram/usr/lib/infinite-diagram/
 sudo cp ../Diagram.SRC/Diagram/bin/Release/NCalc.dll ./infinite-diagram/usr/lib/infinite-diagram/
 
+#release note
+sudo cp ../Documentation/ReleaseNote/ReleaseNote.html ./infinite-diagram/usr/lib/infinite-diagram/
 
 #permissions
 sudo chown -R root:root ./infinite-diagram

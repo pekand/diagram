@@ -210,7 +210,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\font\" />
     <Folder Include="Src\Model\" />
   </ItemGroup>
 </Project>
