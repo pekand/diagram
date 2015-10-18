@@ -8,6 +8,8 @@ namespace Diagram
     class Encrypt
     {
 
+        /// <summary>
+        /// get random crypto secure string</summary>
         public static string GetRandomString()
         {
             RandomNumberGenerator rng = new RNGCryptoServiceProvider();
@@ -24,6 +26,8 @@ namespace Diagram
             return token;
         }
 
+        /// <summary>
+        /// get sha hash from inputString</summary>
         public static string CalculateSHA1Hash(string inputString)
         {
             HashAlgorithm algorithm = SHA512.Create();
@@ -39,7 +43,8 @@ namespace Diagram
             return sb.ToString();
         }
 
-        // MD5
+        /// <summary>
+        /// get md5 hash from inputString</summary>
         public static string CalculateMD5Hash(string inputString)
         {
             // step 1, calculate MD5 hash from input
@@ -58,16 +63,22 @@ namespace Diagram
 
         // ENCRYPTION
 
+        /// <summary>
+        /// convert salt to stryng base64 encoded array</summary>
         public static string GetSalt(byte[] salt)
         {
             return Convert.ToBase64String(salt);
         }
 
+        /// <summary>
+        /// convert salt to byte array</summary>
         public static byte[] SetSalt(string salt)
         {
             return Convert.FromBase64String(salt);
         }
 
+        /// <summary>
+        /// generate random crypto secure salt</summary>
         public static byte[] CreateSalt(int size)
         {
             RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
@@ -76,7 +87,8 @@ namespace Diagram
             return buff;
         }
 
-        // ENCRYPT STRING
+        /// <summary>
+        /// encrypt plainText with sharedSecret password using salt</summary>
         public static string EncryptStringAES(string plainText, string sharedSecret, byte[] salt = null)
         {
 
@@ -126,7 +138,8 @@ namespace Diagram
             return outStr;
         }
 
-        // DECRYPT STRING
+        /// <summary>
+        /// decrypt cipherText with sharedSecret password using salt</summary>
         public static string DecryptStringAES(string cipherText, string sharedSecret, byte[] salt = null)
         {
             if (string.IsNullOrEmpty(cipherText)) throw new ArgumentNullException("cipherText");
@@ -177,6 +190,8 @@ namespace Diagram
             return plaintext;
         }
 
+        /// <summary>
+        /// helper function for DecryptStringAES</summary>
         private static byte[] ReadByteArray(Stream s)
         {
             byte[] rawLength = new byte[sizeof(int)];
