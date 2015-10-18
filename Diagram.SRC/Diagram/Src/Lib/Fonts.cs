@@ -6,7 +6,8 @@ namespace Diagram
 {
     public class Fonts
     {
-        // Zmeranie velosti textu
+        /// <summary>
+        /// meassure s string size written in font</summary>
         public static SizeF MeasureString(string s, Font font)
         {
             SizeF result;
@@ -21,6 +22,8 @@ namespace Diagram
             return result;
         }
 
+        /// <summary>
+        /// convert xml element to Font object</summary>
         public static Font XmlToFont(XElement element)
         {
 
@@ -98,6 +101,8 @@ namespace Diagram
             return font;
         }
 
+        /// <summary>
+        /// convert Font object to xml </summary>
         public static XElement FontToXml(Font font, string name = "font")
         {
             XElement element = new XElement(name, new XAttribute("type", "font"));
@@ -112,6 +117,8 @@ namespace Diagram
             return element;
         }
 
+        /// <summary>
+        /// compare fonts by attributes</summary>
         public static bool compare(Font font1, Font font2)
         {
             if (font1.Name != font2.Name) return false;
@@ -120,6 +127,8 @@ namespace Diagram
             return true;
         }
 
+        /// <summary>
+        /// convert first character of input string to upper case</summary>
         public static string FirstCharToUpper(string input)
         {
             return input.Substring(0,1).ToUpper() + input.Substring(1).ToLower();

@@ -2153,39 +2153,50 @@ namespace Diagram
                         newrec.link = ClipText;
                         newrec.text = ClipText;
 
-                        if (!Network.isHttpsURL(ClipText))
+                        if (Network.isHttpsURL(ClipText))
                         {
-                            try
-                            {
-                                BackgroundWorker bw = new BackgroundWorker();
+                            Job.doJob(
+                                new DoWorkEventHandler( // do work 
+                                    delegate (object o, DoWorkEventArgs args)
+                                    {
+                                        newrec.text = Network.GetSecuredWebPageTitle(ClipText);
 
-                                bw.WorkerReportsProgress = true;
-
-                                bw.DoWork += new DoWorkEventHandler( // spusteny kod
-                                delegate(object o, DoWorkEventArgs args)
-                                {
-                                    newrec.text = Network.GetWebPageTitle(ClipText);
-
-                                });
-
-                                bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler( // kod spusteni po dokonceni
-                                delegate(object o, RunWorkerCompletedEventArgs args)
-                                {
-                                    if (newrec.text == null) newrec.text = "url";
-                                    SizeF s2 = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-                                    newrec.width = (int)s2.Width;
-                                    newrec.height = (int)s2.Height;
-                                    newrec.color = System.Drawing.ColorTranslator.FromHtml("#F2FFCC");
-                                    this.diagram.InvalidateDiagram();
-                                });
-
-                                bw.RunWorkerAsync();
-
-                            }
-                            catch (Exception ex)
-                            {
-                                Program.log.write("get link name error: " + ex.Message);
-                            }
+                                    }
+                                ),
+                                new RunWorkerCompletedEventHandler( //do code after work
+                                    delegate (object o, RunWorkerCompletedEventArgs args)
+                                    {
+                                        if (newrec.text == null) newrec.text = "url";
+                                        SizeF s2 = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
+                                        newrec.width = (int)s2.Width;
+                                        newrec.height = (int)s2.Height;
+                                        newrec.color = System.Drawing.ColorTranslator.FromHtml("#F2FFCC");
+                                        this.diagram.InvalidateDiagram();
+                                    }
+                                )
+                            );
+                        }
+                        else
+                        {
+                            Job.doJob(
+                                new DoWorkEventHandler( // do work 
+                                    delegate (object o, DoWorkEventArgs args)
+                                    {
+                                        newrec.text = Network.GetWebPageTitle(ClipText);
+                                    }
+                                ),
+                                new RunWorkerCompletedEventHandler( //do code after work
+                                    delegate (object o, RunWorkerCompletedEventArgs args)
+                                    {
+                                        if (newrec.text == null) newrec.text = "url";
+                                        SizeF s2 = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
+                                        newrec.width = (int)s2.Width;
+                                        newrec.height = (int)s2.Height;
+                                        newrec.color = System.Drawing.ColorTranslator.FromHtml("#F2FFCC");
+                                        this.diagram.InvalidateDiagram();
+                                    }
+                                )
+                            );
                         }
 
                         this.diagram.unsave();

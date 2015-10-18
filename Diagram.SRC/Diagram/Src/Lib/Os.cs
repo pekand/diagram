@@ -12,6 +12,9 @@ namespace Diagram
     class Os
     {
 #if !MONO
+
+        /// <summary>
+        /// get path from lnk file in windows  </summary>
         public static string GetShortcutTargetFile(string shortcutFilename)
         {
             string pathOnly = System.IO.Path.GetDirectoryName(shortcutFilename);
@@ -29,6 +32,8 @@ namespace Diagram
             return string.Empty;
         }
 
+        /// <summary>
+        ///get icon from lnk file in windows  </summary>
         public static string GetShortcutIcon(string shortcutFilename)
         {
             string pathOnly = System.IO.Path.GetDirectoryName(shortcutFilename);
@@ -49,6 +54,8 @@ namespace Diagram
         }
 #endif
 
+        /// <summary>
+        /// open path in system if exist  </summary>
         public static void openPathInSystem(String path)
         {
             if (File.Exists(path))       // OPEN FILE
@@ -58,7 +65,7 @@ namespace Diagram
                     string parent_diectory = new FileInfo(path).Directory.FullName;
                     System.Diagnostics.Process.Start(parent_diectory);
                 }
-                catch (Exception ex) { Program.log.write(ex.Message); }
+                catch (Exception ex) { Program.log.write("openPathInSystem open file: error:" + ex.Message); }
             }
             else if (Directory.Exists(path))  // OPEN DIRECTORY
             {
@@ -66,10 +73,12 @@ namespace Diagram
                 {
                     System.Diagnostics.Process.Start(path);
                 }
-                catch (Exception ex) { Program.log.write(ex.Message); }
+                catch (Exception ex) { Program.log.write("openPathInSystem open directory: error:"+ex.Message); }
             }
         }
 
+        /// <summary>
+        /// check if diagramPath file path has good extension  </summary>
         public static bool isDiagram(String diagramPath)
         {
             diagramPath = normalizePath(diagramPath);
@@ -81,6 +90,8 @@ namespace Diagram
             return false;
         }
 
+        /// <summary>
+        /// open diagram file in current runing application with system call command </summary>
         public static void openDiagram(String diagramPath)
         {
             try
@@ -99,6 +110,8 @@ namespace Diagram
             }
         }
 
+        /// <summary>
+        /// get parent directory of FileName path </summary>
         public static String getFileDirectory(String FileName)
         {
             if (FileName.Trim().Length > 0 && File.Exists(FileName))
@@ -108,6 +121,8 @@ namespace Diagram
             return null;
         }
 
+        /// <summary>
+        /// run command in system and wait for output </summary>
         public static void runCommand(String cmd, string workdir = null)
         {
             try
@@ -141,6 +156,8 @@ namespace Diagram
             }
         }
 
+        /// <summary>
+        /// run command in system and discard output </summary>
         public static void runCommandAndExit(String cmd)
         {
 
@@ -159,6 +176,8 @@ namespace Diagram
             process.Start();
         }
 
+        /// <summary>
+        /// get string from clipboard </summary>
         public static String getTextFormClipboard()
         {
             DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
@@ -171,12 +190,16 @@ namespace Diagram
             return clipboard;
         }
 
+        /// <summary>
+        /// run application in current os </summary>
         public static void runProcess(String path)
         {
             path = normalizePath(path);
             System.Diagnostics.Process.Start(path);
         }
 
+        /// <summary>
+        /// find line number with first search string occurrence </summary>
         public static int fndLineNumber(String fileName, String search)
         {
             int pos = 0;
@@ -196,9 +219,14 @@ namespace Diagram
             return pos;
         }
 
+        /// <summary>
+        /// meke filePath relative to currentPath. 
+        /// If is set inCurrentDir path is converted to relative only 
+        /// if currentPath is parent of filePath</summary>
 		public static string makeRelative(String filePath, String currentPath, bool inCurrentDir = true)
 		{
 #if !MONO
+            // in windows lovercase path character for path comparison
             filePath = filePath.ToLower();
             currentPath = currentPath.ToLower();
 #endif
@@ -246,32 +274,37 @@ namespace Diagram
 			return Uri.UnescapeDataString(folderUri.MakeRelativeUri(pathUri).ToString().Replace('/', Path.DirectorySeparatorChar));
 		}
 
-        public static string normalizedFullPath(string path)
-        {
-            return Path.GetFullPath(normalizePath(path));
-        }
-
+        /// <summary>
+        /// check if file exist independent on os </summary>
         public static bool FileExists(string path)
         {
             return File.Exists(normalizePath(path));
         }
 
+        /// <summary>
+        /// check if directory exist independent on os </summary>
         public static bool DirectoryExists(string path)
         {
             return Directory.Exists(normalizePath(path));
         }
 
+        /// <summary>
+        /// get current running application executable directory </summary>
         public static string getCurrentApplicationDirectory()
         {
             String currentApp = System.Reflection.Assembly.GetExecutingAssembly().Location;
             return Os.getFileDirectory(currentApp); 
         }
 
+        /// <summary>
+        /// add slash before slash and quote </summary>
         public static String escape(String text)
         {
             return text.Replace("\\", "\\\\").Replace("\"", "\\\"");
         }
 
+        /// <summary>
+        /// convert slash dependent on current os </summary>
         public static string normalizePath(string path)
         {
 
@@ -280,14 +313,23 @@ namespace Diagram
 #else
             return path.Replace("/","\\");
 #endif
-
         }
 
+        /// <summary>
+        /// normalize path and get full path from relative path </summary>
+        public static string normalizedFullPath(string path)
+        {
+            return Path.GetFullPath(normalizePath(path));
+        }
+        /// <summary>
+        /// convert win path slash to linux type slash </summary>
         public static string toBackslash(string text)
         {
             return text.Replace("\\", "/");
         }
 
+        /// <summary>
+        /// get path separator dependent on os </summary>
         public static string getSeparator()
         {
             return Path.DirectorySeparatorChar.ToString();
