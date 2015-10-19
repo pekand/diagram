@@ -118,8 +118,8 @@ namespace Diagram
         public List<Node> SelectedNodes = new List<Node>();  // Zoznam vybratych nod (Zatial sa nepouziva)
 
         // ATTRIBUTES Layers
-        public int layer = 0;                      // vrstva v ktorej sa program nachádza (0 je najvrchnejšia)
-        public Node LayerNode = null;        // Vybrata noda - obdlznik
+        public int layer = 0;                      // current layer (0 is top layer)
+        public Node LayerNode = null;        // current mayn layer node
         public Position firstLayereShift = new Position();          // poun horneho rohu obrazovky v najvrchnejsom layery
         public List<int> Layers = new List<int>(); // zoznam vnorenich layerov, na konci je posledny zobrazeny layer    ;
 
@@ -4921,8 +4921,21 @@ namespace Diagram
             {
                 this.shift.x = -rec.position.x + this.ClientSize.Width / 2;
                 this.shift.y = -rec.position.y + this.ClientSize.Height / 2;
+
+                this.GoToLayer(rec);
             }
         }
+
+        public void GoToLayer(Node rec)
+        {
+            if (this.layer != rec.layer) 
+            {
+                    this.layer = rec.layer;
+                    this.LayerNode = rec;
+                    this.BuildLayerHistory(rec.id);
+            }
+        }
+
 
         // NODE Najdenie nody podla pozicie myši
         public Node findNodeInMousePosition(int x, int y)
