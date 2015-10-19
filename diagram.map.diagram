@@ -9308,6 +9308,34 @@
       <timecreate>2015-10-19 23:06:52</timecreate>
       <timemodify>2015-10-19 23:06:52</timemodify>
     </rectangle>
+    <rectangle>
+      <id>821</id>
+      <fontcolor>Black</fontcolor>
+      <text>class Job</text>
+      <link>diagram.src\diagram\src\lib\job.cs#</link>
+      <layer>0</layer>
+      <x>3253</x>
+      <y>5632</y>
+      <width>81</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-10-19 22:58:32</timecreate>
+      <timemodify>2015-10-19 23:10:25</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>822</id>
+      <fontcolor>Black</fontcolor>
+      <text>public static void doJob(DoWorkEventHandler doJob = null, RunWorkerCompletedEventHandler afterJob = null)</text>
+      <link>diagram.src\diagram\src\lib\job.cs#</link>
+      <layer>0</layer>
+      <x>3253</x>
+      <y>5680</y>
+      <width>702</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-10-19 23:09:12</timecreate>
+      <timemodify>2015-10-19 23:09:37</timemodify>
+    </rectangle>
   </rectangles>
   <lines>
     <line>
@@ -10733,6 +10761,11 @@
     <line>
       <start>818</start>
       <end>217</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>821</start>
+      <end>298</end>
       <arrow>0</arrow>
     </line>
   </lines>
