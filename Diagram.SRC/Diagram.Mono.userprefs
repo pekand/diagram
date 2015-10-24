@@ -1,9 +1,10 @@
 ﻿<Properties StartupItem="Diagram/DiagramMono.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Diagram/Src/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Diagram/Src/Forms/DiagramView.cs">
     <Files>
       <File FileName="Diagram/Src/Main.cs" Line="1" Column="1" />
       <File FileName="Diagram/Src/Program.cs" Line="1" Column="1" />
+      <File FileName="Diagram/Src/Forms/DiagramView.cs" Line="2158" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
