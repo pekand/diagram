@@ -2777,7 +2777,7 @@ namespace Diagram
             if (KeyMap.parseKey("F2", keyData)) // [KEY] [F2] Editovanie
             {
                 if (this.SelectedNodes.Count() == 1)
-                {//xxx
+                {
                     Node rec = this.SelectedNodes[0];
                     Position position = new Position(
                         (int)((this.shift.x + rec.position.x) / this.scale),
@@ -2785,6 +2785,16 @@ namespace Diagram
                     );
                     this.editPanel.editNode(position, this.SelectedNodes[0]);
                     //this.diagram.EditNode(this.SelectedNodes[0]);
+                }
+                return true;
+            }
+
+            if (KeyMap.parseKey("CTRL+E", keyData)) // [KEY] [CTRL+E] Editovanie
+            {
+                if (this.SelectedNodes.Count() == 1)
+                {
+                    Node rec = this.SelectedNodes[0];
+                    this.diagram.EditNode(rec);
                 }
                 return true;
             }
