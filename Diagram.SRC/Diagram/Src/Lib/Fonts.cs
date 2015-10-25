@@ -6,20 +6,21 @@ namespace Diagram
 {
     public class Fonts
     {
+        private static Bitmap bitmap = null;
+        private static Graphics g = null;
+
         /// <summary>
         /// meassure s string size written in font</summary>
         public static SizeF MeasureString(string s, Font font)
         {
-            SizeF result;
-            using (var image = new Bitmap(1, 1))
+
+            if (bitmap == null)
             {
-                using (var g = Graphics.FromImage(image))
-                {
-                    result = g.MeasureString(s, font);
-                }
+                bitmap = new Bitmap(1, 1);
+                g = Graphics.FromImage(bitmap);
             }
 
-            return result;
+            return g.MeasureString(s, font);
         }
 
         /// <summary>

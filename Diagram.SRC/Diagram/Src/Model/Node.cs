@@ -42,6 +42,8 @@ namespace Diagram
         public string timecreate = ""; // node creation time
         public string timemodify = "";// node modification time
 
+        public bool visible = true;
+
         //Script
         public string scriptid = ""; // node text id for in script search
 
