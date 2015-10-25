@@ -141,6 +141,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Src\Components\EditPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Src\Components\SearchPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -167,6 +170,7 @@
     <Compile Include="Src\Model\Line.cs" />
     <Compile Include="Src\Model\Node.cs" />
     <Compile Include="Src\Model\Options.cs" />
+    <Compile Include="Src\Tools\KeyMap.cs" />
     <Compile Include="Src\Tools\OptionsFile.cs" />
     <Compile Include="Src\Tools\Log.cs" />
     <Compile Include="Src\Components\ScrollBar.cs" />
@@ -253,6 +257,9 @@
     <None Include="Resources\diagramico_forms.ico" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Src\Components\EditPanel.resx">
+      <DependentUpon>EditPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Src\Components\SearchPanel.resx">
       <DependentUpon>SearchPanel.cs</DependentUpon>
     </EmbeddedResource>

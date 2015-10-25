@@ -31,6 +31,10 @@ namespace Diagram
         public Translations translations = null;
 
         /// <summary>
+        /// keyboard shorcut mapping</summary>
+        public KeyMap keyMap = null;
+
+        /// <summary>
         /// form for display logged messages</summary>
         public Console console = null;
 

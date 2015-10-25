@@ -5,7 +5,7 @@ namespace Diagram
 {
     public class SearchPanel : Panel
     {
-        private object parentComponent;
+        public DiagramView diagramView = null;
 
         public int minimalSize = 100;
         public int maximalSize = 400;
@@ -17,9 +17,9 @@ namespace Diagram
 
         private System.Windows.Forms.TextBox textBoxSearch;
 
-        public SearchPanel(object parentComponent)
+        public SearchPanel(DiagramView diagramView)
         {
-            this.parentComponent = parentComponent;
+            this.diagramView = diagramView;
 
             InitializeComponent();
             InitializeSearchPanelComponent();
@@ -64,7 +64,7 @@ namespace Diagram
             this.Size = new System.Drawing.Size(this.minimalSize + 4, 15);
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
 
-            Form parentForm = (this.parentComponent as Form);
+            Form parentForm = (this.diagramView as Form);
             parentForm.Resize += new System.EventHandler(this.Parent_Resize);
 
             System.Drawing.Size size = TextRenderer.MeasureText("Text", textBoxSearch.Font);
@@ -110,7 +110,7 @@ namespace Diagram
 
         public void centerPanel()
         {
-            Form parentForm = (this.parentComponent as Form);
+            Form parentForm = (this.diagramView as Form);
             this.Top = parentForm.Height - 100;
             this.Left = parentForm.Width / 2 - this.Width / 2;
 
