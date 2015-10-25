@@ -128,10 +128,7 @@ namespace Diagram
         public ScrollBar rightScrollBar = null;
 
         // EDITPANEL
-        public Node prevSelectedNode = null;
-        public bool editingNodeName = false; // panel je zobrazený
-        public Panel nodeNamePanel = null; // panel margin pre edit form
-        public TextBox nodeNameEdit = null; // edit pre nove meno nody
+        public EditPanel editPanel = null; // panel margin for edit form
 
         // SEARCHPANEL
         public int lastFound = -1;
@@ -1079,10 +1076,15 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // FORM Constructor
-        public DiagramView(Main main)
+        public DiagramView(Main main, Diagram diagram)
         {
             this.main = main;
+            this.diagram = diagram;
             this.InitializeComponent();
+
+            // inicialize edit panel
+            this.editPanel = new EditPanel(this);
+            this.Controls.Add(this.editPanel);
         }
 
         // FORM Load event -
@@ -1145,8 +1147,6 @@ namespace Diagram
             this.bordersToolStripMenuItem.Checked = this.diagram.options.borders;
             this.coordinatesToolStripMenuItem.Checked = this.diagram.options.coordinates;
             this.readonlyToolStripMenuItem.Checked = this.diagram.options.readOnly;
-
-            this.inicializeNodeNamePanel();
 
             this.shift.x = diagram.options.homePosition.x;
             this.shift.y = diagram.options.homePosition.y;
@@ -1280,7 +1280,15 @@ namespace Diagram
             diagram.options.endPosition.y = this.shift.y;
         }
 
-       /*************************************************************************************************************************/
+        // FORM cursor position
+        public Position cursorPosition()
+        {
+            Point ptCursor = Cursor.Position;
+            ptCursor = PointToClient(ptCursor);
+            return new Position(ptCursor.X, ptCursor.Y);
+        }
+
+        /*************************************************************************************************************************/
 
         // SELECTION Zisti ci je noda vo vybere
         public bool isselected(Node a)
@@ -1381,7 +1389,7 @@ namespace Diagram
 
 			this.Focus();
 
-            if (this.nodeNameEdit.Focused)
+            if (this.editPanel.isEditFocused())
             {
                 this.ActiveControl = null;
             }
@@ -1409,9 +1417,9 @@ namespace Diagram
                     return;
                 }
                 else
-                if (editingNodeName) // zavretie editačného panelu ak sa klikne mimo
+                if (this.editPanel.editing) // zavretie editačného panelu ak sa klikne mimo
                 {
-                    this.saveNodeNamePanel();
+                    this.editPanel.saveNodeNamePanel();
                 }
                 else
                 if (this.SourceNode == null)
@@ -1944,72 +1952,10 @@ namespace Diagram
             }
         }
 
-        private bool parseKey(string key, Keys keyData)
-        {
-
-            string[] parts = key.Split('+');
-            Keys keyCode = 0;
-            Keys code = 0;
-
-            foreach (string part in parts) {
-                if (part == "CTRL")
-                {
-                    keyCode = Keys.Control | keyCode;
-                    continue;
-                }
-
-                if (part == "ALT")
-                {
-                    keyCode = Keys.Alt | keyCode;
-                    continue;
-                }
-
-                if (part == "SHIFT")
-                {
-                    keyCode = Keys.Shift | keyCode;
-                    continue;
-                }
-
-                if (part == "PAGEUP")
-                {
-                    keyCode = Keys.PageUp | keyCode;
-                    continue;
-                }
-
-                if (part == "PAGEDOWN")
-                {
-                    keyCode = Keys.PageDown | keyCode;
-                    continue;
-                }
-
-                if (part == "INS")
-                {
-                    keyCode = Keys.Insert | keyCode;
-                    continue;
-                }
-
-                if (part == "DEL")
-                {
-                    keyCode = Keys.Delete | keyCode;
-                    continue;
-                }
-
-                if (Enum.TryParse(Fonts.FirstCharToUpper(part), out code)) {
-                    keyCode = code | keyCode;
-                }
-            }
-
-            if (keyCode == keyData) {
-               return  true;
-            }
-
-            return false;
-        }
-
         // EVENT Shortcuts                                                                             // [KEYBOARD] [EVENT]
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (this.nodeNameEdit.Focused || this.searching)
+            if (this.editPanel.edit.Focused || this.searching)
             {
                 return false;
             }
@@ -2018,7 +1964,7 @@ namespace Diagram
              * [doc] order : ProcessCmdKey, DiagramApp_KeyDown, DiagramApp_KeyPress, DiagramApp_KeyUp;
              */
 
-            if (parseKey("CTRL+A", keyData) ) // [KEY] [CTRL+A] select all elements
+            if (KeyMap.parseKey("CTRL+A", keyData) ) // [KEY] [CTRL+A] select all elements
             {
                 this.ClearSelection();
                 foreach (Node rec in this.diagram.Nodes)
@@ -2030,7 +1976,7 @@ namespace Diagram
                 this.diagram.InvalidateDiagram();
             }
 
-            if (parseKey("CTRL+L", keyData)) // [KEY] [CTRL+L] zarovnanie vybranych prvkov do roviny
+            if (KeyMap.parseKey("CTRL+L", keyData)) // [KEY] [CTRL+L] zarovnanie vybranych prvkov do roviny
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2040,7 +1986,7 @@ namespace Diagram
                 }
             }
 
-            if (parseKey("CTRL+H", keyData)) // [KEY] [CTRL+H] zarovnanie vybranych prvkov do stlpca
+            if (KeyMap.parseKey("CTRL+H", keyData)) // [KEY] [CTRL+H] zarovnanie vybranych prvkov do stlpca
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2051,7 +1997,7 @@ namespace Diagram
             }
 
 
-            if (parseKey("CTRL+K", keyData)) // [KEY] [CTRL+K] zarovnanie vybranych prvkov s pravidelným odstupom
+            if (KeyMap.parseKey("CTRL+K", keyData)) // [KEY] [CTRL+K] zarovnanie vybranych prvkov s pravidelným odstupom
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2061,7 +2007,7 @@ namespace Diagram
                 }
             }
 
-            if (parseKey("CTRL+C", keyData))  // [KEY] [CTRL+C]
+            if (KeyMap.parseKey("CTRL+C", keyData))  // [KEY] [CTRL+C]
             {
 				if (this.SelectedNodes.Count() > 0)  // kopirovanie textu objektu
                 {
@@ -2089,7 +2035,7 @@ namespace Diagram
                 return false;
             }
 
-            if (parseKey("CTRL+SHIFT+C", keyData))  // [KEY] [CTRL+SHIFT+C] copy links from selected nodes
+            if (KeyMap.parseKey("CTRL+SHIFT+C", keyData))  // [KEY] [CTRL+SHIFT+C] copy links from selected nodes
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2110,7 +2056,7 @@ namespace Diagram
                 return true;
             }
 
-			if (parseKey("CTRL+ALT+SHIFT+C", keyData))  // [KEY] [CTRL+ALT+SHIFT+C] copy notes from selected nodes
+			if (KeyMap.parseKey("CTRL+ALT+SHIFT+C", keyData))  // [KEY] [CTRL+ALT+SHIFT+C] copy notes from selected nodes
 			{
 				if (this.SelectedNodes.Count() > 0)
 				{
@@ -2131,7 +2077,7 @@ namespace Diagram
 				return true;
 			}
 
-            if (parseKey("CTRL+V", keyData))  // [KEY] [CTRL+V] [PASTE] Vozenie textu zo schranky
+            if (KeyMap.parseKey("CTRL+V", keyData))  // [KEY] [CTRL+V] [PASTE] Vozenie textu zo schranky
             {
                 DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
 
@@ -2328,7 +2274,7 @@ namespace Diagram
                 return true;
             }
 
-            if (parseKey("CTRL+X", keyData))  // [KEY] [CTRL+X] Copy diagram
+            if (KeyMap.parseKey("CTRL+X", keyData))  // [KEY] [CTRL+X] Copy diagram
             {
                 DataObject data = new DataObject();
                 if (this.SelectedNodes.Count() > 0)  // kopirovanie textu objektu
@@ -2352,7 +2298,7 @@ namespace Diagram
                 return true;
             }
 
-			if (parseKey("CTRL+SHIFT+V", keyData))  // [KEY] [CTRL+SHIFT+V] vlozenie textu do poznamky
+			if (KeyMap.parseKey("CTRL+SHIFT+V", keyData))  // [KEY] [CTRL+SHIFT+V] vlozenie textu do poznamky
             {
 				DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
 
@@ -2388,7 +2334,7 @@ namespace Diagram
                 return true;
             }
 
-            if (parseKey("CTRL+SHIFT+INS", keyData))  // [KEY] [CTRL+INS] insert text to node link
+            if (KeyMap.parseKey("CTRL+SHIFT+INS", keyData))  // [KEY] [CTRL+INS] insert text to node link
             {
                 DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
 
@@ -2420,37 +2366,37 @@ namespace Diagram
                 return true;
             }
 
-            if (parseKey("CTRL+N", keyData))  // [KEY] [CTRL+N] New Diagram
+            if (KeyMap.parseKey("CTRL+N", keyData))  // [KEY] [CTRL+N] New Diagram
             {
                 main.OpenDiagram();
                 return true;
             }
 
-            if (parseKey("CTRL+SHIFT+N", keyData))  // [KEY] [CTRL+SHIFT+N] New Diagram
+            if (KeyMap.parseKey("CTRL+SHIFT+N", keyData))  // [KEY] [CTRL+SHIFT+N] New Diagram
             {
                 this.diagram.openDiagramView();
                 return true;
             }
 
-            if (parseKey("CTRL+S", keyData))  // [KEY] [CTRL+S] Uloženie okna
+            if (KeyMap.parseKey("CTRL+S", keyData))  // [KEY] [CTRL+S] Uloženie okna
             {
                 this.save();
                 return true;
             }
 
-            if (parseKey("CTRL+O", keyData))  // [KEY] [CTRL+O] Otvorenie diagramu
+            if (KeyMap.parseKey("CTRL+O", keyData))  // [KEY] [CTRL+O] Otvorenie diagramu
             {
                 openToolStripMenuItem_Click(null, null);
                 return true;
             }
 
-            if (parseKey("CTRL+F", keyData))  // [KEY] [CTRL+F] Search form
+            if (KeyMap.parseKey("CTRL+F", keyData))  // [KEY] [CTRL+F] Search form
             {
                 this.showSearchPanel();
                 return true;
             }
 
-            if (parseKey("CTRL+G", keyData))  // [KEY] [CTRL+G] Evaluate expresion
+            if (KeyMap.parseKey("CTRL+G", keyData))  // [KEY] [CTRL+G] Evaluate expresion
             {
                 if (this.SelectedNodes.Count()==1)
                 {
@@ -2549,7 +2495,7 @@ namespace Diagram
 
             }
 
-            if (parseKey("CTRL+D", keyData))  // [KEY] [CTRL+D] Vozenie textu zo schranky
+            if (KeyMap.parseKey("CTRL+D", keyData))  // [KEY] [CTRL+D] Vozenie textu zo schranky
             {
                 bool insertdate = true;
                 string insertdatestring = "";
@@ -2633,7 +2579,7 @@ namespace Diagram
                 return true;
             }
 
-            if (parseKey("CTRL+P", keyData)) // [KEY] [CTRL+P] Promote node
+            if (KeyMap.parseKey("CTRL+P", keyData)) // [KEY] [CTRL+P] Promote node
             {
                 if (this.SelectedNodes.Count() == 1)
                 {
@@ -2686,7 +2632,7 @@ namespace Diagram
                 return true;
             }
 
-            if (parseKey("CTRL+R", keyData)) // [KEY] [CTRL+R] Random generator
+            if (KeyMap.parseKey("CTRL+R", keyData)) // [KEY] [CTRL+R] Random generator
             {
                 Point ptCursor = Cursor.Position;
                 ptCursor = PointToClient(ptCursor);
@@ -2696,7 +2642,7 @@ namespace Diagram
                 this.diagram.InvalidateDiagram();
             }
 
-            if (parseKey("F3", keyData)) // [KEY] [F3] Hide background
+            if (KeyMap.parseKey("F3", keyData)) // [KEY] [F3] Hide background
             {
 
                 bool changed = false;
@@ -2736,29 +2682,29 @@ namespace Diagram
                 return true;
             }
 
-            if (parseKey("SHIFT+F3", keyData)) // [KEY] [SHIFT+F3] reverse search
+            if (KeyMap.parseKey("SHIFT+F3", keyData)) // [KEY] [SHIFT+F3] reverse search
             {
                 this.SearchPrev();
             }
 
-            if (parseKey("HOME", keyData)) // KEY [HOME] Vycentrovanie
+            if (KeyMap.parseKey("HOME", keyData)) // KEY [HOME] Vycentrovanie
             {
                 this.GoToHome();
                 return true;
             }
 
-            if (parseKey("SHIFT+HOME", keyData))  // [KEY] [SHIFT+HOME] Move start point
+            if (KeyMap.parseKey("SHIFT+HOME", keyData))  // [KEY] [SHIFT+HOME] Move start point
             {
                 this.setCurentPositionAsHomePosition();
             }
 
-            if (parseKey("END", keyData)) // KEY [END] Vycentrovanie
+            if (KeyMap.parseKey("END", keyData)) // KEY [END] Vycentrovanie
             {
                 this.GoToEnd();
                 return true;
             }
 
-            if (parseKey("SHIFT+END", keyData))  // [KEY] [SHIFT+END] Move start point
+            if (KeyMap.parseKey("SHIFT+END", keyData))  // [KEY] [SHIFT+END] Move start point
             {
                 this.setCurentPositionAsEndPosition();
             }
@@ -2770,18 +2716,18 @@ namespace Diagram
             -prejdu sa vybrane nody a ak je to adresar alebo subor otvori sa adresar
             -ak nie su vybrane ziadne nody otvori sa adresar diagrammu
             */
-            if (parseKey("F5", keyData)) // KEY [F5] Open link directory or diagram directory
+            if (KeyMap.parseKey("F5", keyData)) // KEY [F5] Open link directory or diagram directory
             {
                 openLinkDirectory();
                 return true;
             }
 
-            if (parseKey("F12", keyData)) // [KEY] [F12] show Debug console
+            if (KeyMap.parseKey("F12", keyData)) // [KEY] [F12] show Debug console
             {
                 this.showConsole();
             }
 
-            if (parseKey("CTRL+PAGEUP", keyData)) // KEY CTRL+PAGEUP Posun prvku do popredia
+            if (KeyMap.parseKey("CTRL+PAGEUP", keyData)) // KEY CTRL+PAGEUP Posun prvku do popredia
             {
                 if (this.SelectedNodes.Count() > 0 )
                 {
@@ -2798,7 +2744,7 @@ namespace Diagram
                 return true;
             }
 
-            if (parseKey("CTRL+PAGEDOWN", keyData)) // [KEY] [CTRL+PAGEDOWN] Posun prvku do pozadia
+            if (KeyMap.parseKey("CTRL+PAGEDOWN", keyData)) // [KEY] [CTRL+PAGEDOWN] Posun prvku do pozadia
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2814,35 +2760,41 @@ namespace Diagram
                 return true;
             }
 
-            if (parseKey("PAGEUP", keyData)) // [KEY] [PAGEUP] Posun obrazovky
+            if (KeyMap.parseKey("PAGEUP", keyData)) // [KEY] [PAGEUP] Posun obrazovky
             {
                 this.shift.y = this.shift.y + this.ClientSize.Height;
                 this.diagram.InvalidateDiagram();
                 return true;
             }
 
-            if (parseKey("PAGEDOWN", keyData)) // [KEY] [PAGEDOWN] Posun obrazovky
+            if (KeyMap.parseKey("PAGEDOWN", keyData)) // [KEY] [PAGEDOWN] Posun obrazovky
             {
                 this.shift.y = this.shift.y - this.ClientSize.Height;
                 this.diagram.InvalidateDiagram();
                 return true;
             }
 
-            if (parseKey("F2", keyData)) // [KEY] [F2] Editovanie
+            if (KeyMap.parseKey("F2", keyData)) // [KEY] [F2] Editovanie
             {
                 if (this.SelectedNodes.Count() == 1)
-                {
-                    this.diagram.EditNode(this.SelectedNodes[0]);
+                {//xxx
+                    Node rec = this.SelectedNodes[0];
+                    Position position = new Position(
+                        (int)((this.shift.x + rec.position.x) / this.scale),
+                        (int)((this.shift.y + rec.position.y) / this.scale)
+                    );
+                    this.editPanel.editNode(position, this.SelectedNodes[0]);
+                    //this.diagram.EditNode(this.SelectedNodes[0]);
                 }
                 return true;
             }
 
-            if (this.nodeNameEdit.Focused)
+            if (this.editPanel.isEditFocused())
             {
                 return false;
             }
 
-            if (parseKey("ENTER", keyData)) // [KEY] [ENTER] Editovanie nody
+            if (KeyMap.parseKey("ENTER", keyData)) // [KEY] [ENTER] Editovanie nody
             {
                 if (this.SelectedNodes.Count() == 1)
                 {
@@ -2858,7 +2810,7 @@ namespace Diagram
                 return true;
             }
 
-            if (parseKey("ESCAPE", keyData)) // [KEY] [ESC] Minimalizovanie okna //KEY Esc
+            if (KeyMap.parseKey("ESCAPE", keyData)) // [KEY] [ESC] Minimalizovanie okna //KEY Esc
             {
                 if (!this.diagram.SavedFile && this.diagram.FileName != "")  //treba overit ci existuje a dat dialg na ulozenie ako
                 {
@@ -2870,19 +2822,19 @@ namespace Diagram
                 return true;
             }
 
-            if (parseKey("BACK", keyData)) // [KEY] [BACK] Editovanie nody
+            if (KeyMap.parseKey("BACK", keyData)) // [KEY] [BACK] Editovanie nody
             {
                 this.LayerOut();
                 return true;
             }
 
-            if (parseKey("DELETE", keyData)) // [KEY] [DELETE] zmazanie nody
+            if (KeyMap.parseKey("DELETE", keyData)) // [KEY] [DELETE] zmazanie nody
             {
                 this.DeleteSelectedNodes(this);
                 return true;
             }
 
-            if (parseKey("LEFT", keyData) || parseKey("SHIFT+LEFT", keyData))  // [KEY] [left] [SHIFT+LEFT] [ARROW] Move node
+            if (KeyMap.parseKey("LEFT", keyData) || KeyMap.parseKey("SHIFT+LEFT", keyData))  // [KEY] [left] [SHIFT+LEFT] [ARROW] Move node
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2903,7 +2855,7 @@ namespace Diagram
                 return true;
             }
 
-            if (parseKey("RIGHT", keyData) || parseKey("SHIFT+RIGHT", keyData))  // [KEY] [right] [SHIFT+RIGHT] [ARROW] Move node
+            if (KeyMap.parseKey("RIGHT", keyData) || KeyMap.parseKey("SHIFT+RIGHT", keyData))  // [KEY] [right] [SHIFT+RIGHT] [ARROW] Move node
             {
 
                 if (this.SelectedNodes.Count() > 0)
@@ -2925,7 +2877,7 @@ namespace Diagram
                 return true;
             }
 
-            if (parseKey("UP", keyData) || parseKey("SHIFT+UP", keyData))  // [KEY] [up] [SHIFT+UP] [ARROW] Move node
+            if (KeyMap.parseKey("UP", keyData) || KeyMap.parseKey("SHIFT+UP", keyData))  // [KEY] [up] [SHIFT+UP] [ARROW] Move node
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2946,7 +2898,7 @@ namespace Diagram
                 return true;
             }
 
-            if (parseKey("DOWN", keyData) || parseKey("SHIFT+DOWN", keyData))  // [KEY] [down] [SHIFT+DOWN] [ARROW] Move node
+            if (KeyMap.parseKey("DOWN", keyData) || KeyMap.parseKey("SHIFT+DOWN", keyData))  // [KEY] [down] [SHIFT+DOWN] [ARROW] Move node
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2967,7 +2919,7 @@ namespace Diagram
                 return true;
             }
 
-            if (parseKey("TAB", keyData)) // [KEY] [TAB] zarovnanie vybranych prvkov dolava
+            if (KeyMap.parseKey("TAB", keyData)) // [KEY] [TAB] zarovnanie vybranych prvkov dolava
             {
                 if (this.SelectedNodes.Count() > 1)
                 {
@@ -2981,7 +2933,7 @@ namespace Diagram
                 }
             }
 
-            if (parseKey("SHIFT+TAB", keyData))  // [KEY] [SHIFT+TAB] Zarovnanie vybranych prvkov doprava //KEY shift+tab
+            if (KeyMap.parseKey("SHIFT+TAB", keyData))  // [KEY] [SHIFT+TAB] Zarovnanie vybranych prvkov doprava //KEY shift+tab
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2997,7 +2949,7 @@ namespace Diagram
         // EVENT Key down
         public void DiagramApp_KeyDown(object sender, KeyEventArgs e)                                  // [KEYBOARD] [DOWN] [EVENT]
         {
-            if (this.nodeNameEdit.Focused || this.searching)
+            if (this.editPanel.isEditFocused()|| this.searching)
             {
                 return;
             }
@@ -3017,7 +2969,7 @@ namespace Diagram
                 this.keyalt = true;
             }
 
-            if (this.nodeNameEdit.Focused)
+            if (this.editPanel.isEditFocused())
             {
                 return;
             }
@@ -3046,7 +2998,7 @@ namespace Diagram
             this.keyctrl = false;
             this.keyalt = false;
 
-            if (this.nodeNameEdit.Focused || this.searching)
+            if (this.editPanel.isEditFocused() || this.searching)
             {
                 return;
             }
@@ -3071,7 +3023,7 @@ namespace Diagram
         // EVENT Keypress
         public void DiagramApp_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (this.nodeNameEdit.Focused || this.searching)
+            if (this.editPanel.isEditFocused() || this.searching)
             {
                 return;
             }
@@ -3096,7 +3048,7 @@ namespace Diagram
                 else
                 if (this.key != ' ' && this.key != '\t' && this.key != '\r' && this.key != '\n' && this.key != '`' && this.key != (char)27) // KEY OTHER Pisanie textu - Vytvorenie novej nody
                 {
-                    this.showNodeNamePanel();
+                    this.editPanel.showEditPanel(this.cursorPosition(), this.key);
                 }
             }
         }                         // [KEYBOARD] [PRESS] [EVENT]
@@ -3448,137 +3400,6 @@ namespace Diagram
 
         public bool isNodeInLayerHistory(Node rec) {
             return ((this.layer != rec.id) && (Layers.IndexOf(rec.id) > -1));
-        }
-
-        /*************************************************************************************************************************/
-
-        // EDITPANEL INICIALIZE                                                                            // EDITPANEL
-        private void inicializeNodeNamePanel()
-        {
-            if (nodeNameEdit == null)
-            {
-                nodeNamePanel = new Panel();
-                nodeNamePanel.Name = "nodeNamePanel";
-                this.Controls.Add(nodeNamePanel);
-                nodeNameEdit = new TextBox();
-                nodeNameEdit.Name = "nodeNameEdit";
-                nodeNameEdit.Font = this.diagram.FontDefault;
-                nodeNameEdit.BorderStyle = BorderStyle.None;
-                nodeNameEdit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nodeNameEdit_KeyDown);
-                nodeNameEdit.TextChanged += new EventHandler(nodeNameEdit_TextChanged);
-                nodeNameEdit.AcceptsReturn = true;
-                nodeNameEdit.AcceptsTab = true;
-                nodeNameEdit.Multiline = true;
-                nodeNameEdit.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFFB8");
-                //nodeNamePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-
-                nodeNamePanel.Hide();
-                nodeNameEdit.Left = 12;
-                nodeNameEdit.Top = 8;
-                nodeNamePanel.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFFB8");
-                SizeF s = this.diagram.MeasureStringWithMargin("TEST", nodeNameEdit.Font);
-                nodeNamePanel.Height = (int)s.Height;
-
-                nodeNamePanel.Controls.Add(nodeNameEdit);
-                nodeNameEdit.Show();
-            }
-        }
-
-        // EDITPANEL SHOW
-        private void showNodeNamePanel()
-        {
-            if (!nodeNameEdit.Visible)
-            {
-                Point ptCursor = Cursor.Position;
-                ptCursor = PointToClient(ptCursor);
-                nodeNamePanel.Left = ptCursor.X;
-                nodeNamePanel.Top = ptCursor.Y;
-                nodeNamePanel.Width = 100;
-                nodeNameEdit.Font = this.diagram.FontDefault;
-                nodeNameEdit.Text = "" + (this.key).ToString(); // add first character
-                nodeNameEdit.SelectionStart = nodeNameEdit.Text.Length; //move cursor to begining
-                editingNodeName = true;
-                SizeF s = this.diagram.MeasureStringWithMargin("TEST", nodeNameEdit.Font);
-                nodeNamePanel.Height = (int)s.Height;
-                nodeNamePanel.Show();
-                nodeNameEdit.Focus();
-            }
-        }
-
-        // EDITPANEL CLOSE
-        private void closeNodeNamePanel()
-        {
-            editingNodeName = false;
-            nodeNamePanel.Hide();
-        }
-
-        // EDITPANEL SAVE
-        private void saveNodeNamePanel()
-        {
-            Node newrec = this.CreateNode(nodeNamePanel.Left, nodeNamePanel.Top);
-            newrec.text = nodeNameEdit.Text;
-            SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-            newrec.width = (int)s.Width;
-            newrec.height = (int)s.Height;
-            nodeNamePanel.Hide();
-            editingNodeName = false;
-
-            if (this.prevSelectedNode != null)
-            {
-                this.diagram.Connect(this.prevSelectedNode, newrec);
-                this.prevSelectedNode = null;
-            }
-
-            this.diagram.unsave();
-            this.diagram.InvalidateDiagram();
-        }
-
-        // EDITPANEL RESIZE zmena velkosti panelu ak sa donho píše
-        void nodeNameEdit_TextChanged(object sender, EventArgs e)
-        {
-            System.Drawing.SizeF mySize = new System.Drawing.SizeF();
-
-            // Use the textbox font
-            System.Drawing.Font myFont = nodeNameEdit.Font;
-
-            using (Graphics g = this.CreateGraphics())
-            {
-                // Get the size given the string and the font
-                mySize = g.MeasureString(nodeNameEdit.Text, myFont);
-            }
-
-            // Resize the textbox
-            this.nodeNameEdit.Width = (int)Math.Round(mySize.Width, 0) + 20;
-            this.nodeNamePanel.Width = this.nodeNameEdit.Width;
-        }
-
-        // EDITPANEL EDIT zachytenie kláves v panely
-        private void nodeNameEdit_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape) // zrusenie editácie v panely
-            {
-                this.saveNodeNamePanel();
-				this.Focus();
-            }
-
-            if (e.KeyCode == Keys.Enter) // zvretie panelu a vytvorenie novej editacie
-            {
-                this.saveNodeNamePanel();
-				this.Focus();
-            }
-
-            if (e.KeyCode == Keys.Tab) // zvretie panelu a vytvorenie novej editacie
-            {
-                this.saveNodeNamePanel();
-                this.Focus();
-                this.addNodeAfterNode();
-            }
-
-            if ((e.KeyCode == Keys.Enter) || (e.KeyCode == Keys.Tab))
-            {
-                e.Handled = e.SuppressKeyPress = true;
-            }
-
         }
 
         /*************************************************************************************************************************/
@@ -4574,7 +4395,7 @@ namespace Diagram
                                         isvisible = true;
                                     }
 
-                    if (isvisible)
+                    if (isvisible && rec.visible)
                     {
                         if (rec.isimage)
                         {
@@ -4826,23 +4647,45 @@ namespace Diagram
         }
 
         // NODE create after
-        private void addNodeAfterNode()
+        public void addNodeAfterNode()
         {
             if (this.SelectedNodes.Count() == 1)
             {
-                if (!nodeNameEdit.Visible)
+                if (!this.editPanel.Visible)
                 {
-                    this.prevSelectedNode = this.SelectedNodes[0];
+                    this.editPanel.prevSelectedNode = this.SelectedNodes[0];
                     Point ptCursor = Cursor.Position;
                     ptCursor = PointToClient(ptCursor);
-                    nodeNamePanel.Left = this.SelectedNodes[0].position.x + this.shift.x + this.SelectedNodes[0].width + 10;
-                    nodeNamePanel.Top = this.SelectedNodes[0].position.y + this.shift.y;
-                    nodeNamePanel.Width = 100;
-                    nodeNameEdit.Text = "";
-                    nodeNameEdit.SelectionStart = nodeNameEdit.Text.Length;
-                    editingNodeName = true;
-                    nodeNamePanel.Show();
-                    nodeNameEdit.Focus();
+                    editPanel.Left = this.SelectedNodes[0].position.x + this.shift.x + this.SelectedNodes[0].width + 10;
+                    editPanel.Top = this.SelectedNodes[0].position.y + this.shift.y;
+                    editPanel.Width = 100;
+                    this.editPanel.edit.Text = "";
+                    this.editPanel.edit.SelectionStart = this.editPanel.edit.Text.Length;
+                    this.editPanel.editing = true;
+                    editPanel.Show();
+                    this.editPanel.edit.Focus();
+                }
+            }
+        }
+
+        // NODE create below
+        public void addNodeBelowNode()
+        {
+            if (this.SelectedNodes.Count() == 1)
+            {
+                if (!this.editPanel.Visible)
+                {
+                    this.editPanel.prevSelectedNode = this.SelectedNodes[0];
+                    Point ptCursor = Cursor.Position;
+                    ptCursor = PointToClient(ptCursor);
+                    editPanel.Left = this.SelectedNodes[0].position.x + this.shift.x;
+                    editPanel.Top = this.SelectedNodes[0].position.y + this.shift.y + this.SelectedNodes[0].height + 10;
+                    editPanel.Width = 100;
+                    this.editPanel.edit.Text = "";
+                    this.editPanel.edit.SelectionStart = this.editPanel.edit.Text.Length;
+                    this.editPanel.editing = true;
+                    editPanel.Show();
+                    this.editPanel.edit.Focus();
                 }
             }
         }

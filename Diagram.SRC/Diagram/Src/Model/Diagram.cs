@@ -1260,7 +1260,7 @@ namespace Diagram
         // DIAGRAM VIEWopen new view on diagram
         public void openDiagramView()
         {
-            DiagramView diagramview = new DiagramView(main);
+            DiagramView diagramview = new DiagramView(main, this);
             diagramview.setDiagram(this);
             this.DiagramViews.Add(diagramview);
             main.DiagramViews.Add(diagramview);
