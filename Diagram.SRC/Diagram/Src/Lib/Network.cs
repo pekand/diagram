@@ -54,7 +54,7 @@ namespace Diagram
         /// download https page and parse title from it </summary>
         public static string GetSecuredWebPageTitle(string url)
         {
-            string title = "";
+            string title = url;
 
             try
             {
@@ -71,10 +71,6 @@ namespace Diagram
                         RegexOptions.IgnoreCase
                     ).Groups["Title"].Value
                 );
-
-                if (title.Trim() == "") title = url;
-
-                
             }
             catch (Exception ex)
             {
