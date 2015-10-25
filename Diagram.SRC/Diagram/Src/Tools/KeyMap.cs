@@ -9,6 +9,56 @@ namespace Diagram
 {
     public class KeyMap
     {
+        public static string selectAllElements = "CTRL+A";
+        public static string alignToLine = "CTRL+L";
+        public static string alignToColumn = "CTRL+H";
+        public static string alignToGroup = "CTRL+K";
+        public static string copy = "CTRL+C";
+        public static string copyLinks = "CTRL+SHIFT+C";
+        public static string copyNotes = "CTRL+ALT+SHIFT+C";
+        public static string paste = "CTRL+V";
+        public static string cut = "CTRL+X";
+        public static string pasteToNote = "CTRL+SHIFT+V";
+        public static string pasteToLink = "CTRL+SHIFT+INS";
+        public static string newDiagram = "CTRL+N";
+        public static string newDiagramView = "CTRL+SHIFT+N";
+        public static string save = "CTRL+S";
+        public static string open = "CTRL+O";
+        public static string search = "CTRL+F";
+        public static string evaluateExpression = "CTRL+G";
+        public static string date = "CTRL+D";
+        public static string promote = "CTRL+P";
+        public static string random = "CTRL+R";
+        public static string hideBackground = "F3";
+        public static string reverseSearch = "SHIFT+F3";
+        public static string home = "HOME";
+        public static string end = "END";
+        public static string setHome = "SHIFT+HOME";
+        public static string setEnd = "SHIFT+END";
+        public static string openDrectory = "F5";
+        public static string console = "F12";
+        public static string moveNodeUp = "CTRL+PAGEUP";
+        public static string moveNodeDown = "CTRL+PAGEDOWN";
+        public static string pageUp = "PAGEUP";
+        public static string pageDown = "PAGEDOWN";
+        public static string editNodeName =  "F2";
+        public static string openEditForm = "CTRL+E";
+        public static string editOrLayerIn = "ENTER";
+        public static string layerOut = "BACK";
+        public static string minimalize = "ESCAPE";
+        public static string delete = "DELETE";
+        public static string moveLeft = "LEFT";
+        public static string moveLeftFast = "SHIFT+LEFT";
+        public static string moveRight = "RIGHT";
+        public static string moveRightFast = "SHIFT+RIGHT";
+        public static string moveUp = "UP";
+        public static string moveUpFast = "SHIFT+UP";
+        public static string moveDown = "DOWN";
+        public static string moveDownFast = "SHIFT+DOWN";
+        public static string alignLeft = "TAB";
+        public static string alignRight = "SHIFT+TAB";
+        public static string editCancel = "ESCAPE";
+
         public static bool parseKey(string key, Keys keyData)
         {
 

@@ -1964,7 +1964,7 @@ namespace Diagram
              * [doc] order : ProcessCmdKey, DiagramApp_KeyDown, DiagramApp_KeyPress, DiagramApp_KeyUp;
              */
 
-            if (KeyMap.parseKey("CTRL+A", keyData) ) // [KEY] [CTRL+A] select all elements
+            if (KeyMap.parseKey(KeyMap.selectAllElements, keyData) ) // [KEY] [CTRL+A]
             {
                 this.ClearSelection();
                 foreach (Node rec in this.diagram.Nodes)
@@ -1976,7 +1976,7 @@ namespace Diagram
                 this.diagram.InvalidateDiagram();
             }
 
-            if (KeyMap.parseKey("CTRL+L", keyData)) // [KEY] [CTRL+L] zarovnanie vybranych prvkov do roviny
+            if (KeyMap.parseKey(KeyMap.alignToLine, keyData)) // [KEY] [CTRL+L] 
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -1986,7 +1986,7 @@ namespace Diagram
                 }
             }
 
-            if (KeyMap.parseKey("CTRL+H", keyData)) // [KEY] [CTRL+H] zarovnanie vybranych prvkov do stlpca
+            if (KeyMap.parseKey(KeyMap.alignToColumn, keyData)) // [KEY] [CTRL+H]
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -1997,7 +1997,7 @@ namespace Diagram
             }
 
 
-            if (KeyMap.parseKey("CTRL+K", keyData)) // [KEY] [CTRL+K] zarovnanie vybranych prvkov s pravidelným odstupom
+            if (KeyMap.parseKey(KeyMap.alignToGroup, keyData)) // [KEY] [CTRL+K]
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2007,9 +2007,9 @@ namespace Diagram
                 }
             }
 
-            if (KeyMap.parseKey("CTRL+C", keyData))  // [KEY] [CTRL+C]
+            if (KeyMap.parseKey(KeyMap.copy, keyData))  // [KEY] [CTRL+C]
             {
-				if (this.SelectedNodes.Count() > 0)  // kopirovanie textu objektu
+				if (this.SelectedNodes.Count() > 0)
                 {
                 	DataObject data = new DataObject();
 
@@ -2035,7 +2035,7 @@ namespace Diagram
                 return false;
             }
 
-            if (KeyMap.parseKey("CTRL+SHIFT+C", keyData))  // [KEY] [CTRL+SHIFT+C] copy links from selected nodes
+            if (KeyMap.parseKey(KeyMap.copyLinks, keyData))  // [KEY] [CTRL+SHIFT+C] copy links from selected nodes
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2056,7 +2056,7 @@ namespace Diagram
                 return true;
             }
 
-			if (KeyMap.parseKey("CTRL+ALT+SHIFT+C", keyData))  // [KEY] [CTRL+ALT+SHIFT+C] copy notes from selected nodes
+			if (KeyMap.parseKey(KeyMap.copyNotes, keyData))  // [KEY] [CTRL+ALT+SHIFT+C] copy notes from selected nodes
 			{
 				if (this.SelectedNodes.Count() > 0)
 				{
@@ -2077,7 +2077,7 @@ namespace Diagram
 				return true;
 			}
 
-            if (KeyMap.parseKey("CTRL+V", keyData))  // [KEY] [CTRL+V] [PASTE] Vozenie textu zo schranky
+            if (KeyMap.parseKey(KeyMap.paste, keyData))  // [KEY] [CTRL+V] [PASTE] Paste text from clipboard
             {
                 DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
 
@@ -2274,7 +2274,7 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey("CTRL+X", keyData))  // [KEY] [CTRL+X] Copy diagram
+            if (KeyMap.parseKey(KeyMap.cut, keyData))  // [KEY] [CTRL+X] Cut diagram
             {
                 DataObject data = new DataObject();
                 if (this.SelectedNodes.Count() > 0)  // kopirovanie textu objektu
@@ -2298,7 +2298,7 @@ namespace Diagram
                 return true;
             }
 
-			if (KeyMap.parseKey("CTRL+SHIFT+V", keyData))  // [KEY] [CTRL+SHIFT+V] vlozenie textu do poznamky
+			if (KeyMap.parseKey(KeyMap.pasteToNote, keyData))  // [KEY] [CTRL+SHIFT+V] paste to note
             {
 				DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
 
@@ -2334,7 +2334,7 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey("CTRL+SHIFT+INS", keyData))  // [KEY] [CTRL+INS] insert text to node link
+            if (KeyMap.parseKey(KeyMap.pasteToLink, keyData))  // [KEY] [CTRL+SHIFT+INS] insert text to node link
             {
                 DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
 
@@ -2366,37 +2366,37 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey("CTRL+N", keyData))  // [KEY] [CTRL+N] New Diagram
+            if (KeyMap.parseKey(KeyMap.newDiagram, keyData))  // [KEY] [CTRL+N] New Diagram
             {
                 main.OpenDiagram();
                 return true;
             }
 
-            if (KeyMap.parseKey("CTRL+SHIFT+N", keyData))  // [KEY] [CTRL+SHIFT+N] New Diagram
+            if (KeyMap.parseKey(KeyMap.newDiagramView, keyData))  // [KEY] [CTRL+SHIFT+N] New Diagram view
             {
                 this.diagram.openDiagramView();
                 return true;
             }
 
-            if (KeyMap.parseKey("CTRL+S", keyData))  // [KEY] [CTRL+S] Uloženie okna
+            if (KeyMap.parseKey(KeyMap.save, keyData))  // [KEY] [CTRL+S] Uloženie okna
             {
                 this.save();
                 return true;
             }
 
-            if (KeyMap.parseKey("CTRL+O", keyData))  // [KEY] [CTRL+O] Otvorenie diagramu
+            if (KeyMap.parseKey(KeyMap.open, keyData))  // [KEY] [CTRL+O] Otvorenie diagramu
             {
                 openToolStripMenuItem_Click(null, null);
                 return true;
             }
 
-            if (KeyMap.parseKey("CTRL+F", keyData))  // [KEY] [CTRL+F] Search form
+            if (KeyMap.parseKey(KeyMap.search, keyData))  // [KEY] [CTRL+F] Search form
             {
                 this.showSearchPanel();
                 return true;
             }
 
-            if (KeyMap.parseKey("CTRL+G", keyData))  // [KEY] [CTRL+G] Evaluate expresion
+            if (KeyMap.parseKey(KeyMap.evaluateExpression, keyData))  // [KEY] [CTRL+G] Evaluate expresion
             {
                 if (this.SelectedNodes.Count()==1)
                 {
@@ -2495,7 +2495,7 @@ namespace Diagram
 
             }
 
-            if (KeyMap.parseKey("CTRL+D", keyData))  // [KEY] [CTRL+D] Vozenie textu zo schranky
+            if (KeyMap.parseKey(KeyMap.date, keyData))  // [KEY] [CTRL+D] date
             {
                 bool insertdate = true;
                 string insertdatestring = "";
@@ -2515,7 +2515,7 @@ namespace Diagram
                         }
                     }
 
-                    if(aretimes) // ak sú všetky označené elementy časové značky tak ich ščíta
+                    if(aretimes) // sum dates
                     {
                         try
                         {
@@ -2534,7 +2534,7 @@ namespace Diagram
                         }
                     }
                     else
-                    // ak sú označené dva dátumi vyráta medzi nimi rozdiel
+                    // count difference between two dates
                     if (
                         this.SelectedNodes.Count() == 2 &&
                         DateTime.TryParse(this.SelectedNodes[0].text, out d1) &&
@@ -2553,7 +2553,7 @@ namespace Diagram
                     }
                 }
 
-                if (insertdate) // vloženie časovej značky na danú pozíciu
+                if (insertdate) // insert date
                 {
                     DateTime dt = DateTime.Now;
                     insertdatestring =
@@ -2579,7 +2579,7 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey("CTRL+P", keyData)) // [KEY] [CTRL+P] Promote node
+            if (KeyMap.parseKey(KeyMap.promote, keyData)) // [KEY] [CTRL+P] Promote node
             {
                 if (this.SelectedNodes.Count() == 1)
                 {
@@ -2632,7 +2632,7 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey("CTRL+R", keyData)) // [KEY] [CTRL+R] Random generator
+            if (KeyMap.parseKey(KeyMap.random, keyData)) // [KEY] [CTRL+R] Random generator
             {
                 Point ptCursor = Cursor.Position;
                 ptCursor = PointToClient(ptCursor);
@@ -2642,7 +2642,7 @@ namespace Diagram
                 this.diagram.InvalidateDiagram();
             }
 
-            if (KeyMap.parseKey("F3", keyData)) // [KEY] [F3] Hide background
+            if (KeyMap.parseKey(KeyMap.hideBackground, keyData)) // [KEY] [F3] Hide background
             {
 
                 bool changed = false;
@@ -2682,29 +2682,29 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey("SHIFT+F3", keyData)) // [KEY] [SHIFT+F3] reverse search
+            if (KeyMap.parseKey(KeyMap.reverseSearch, keyData)) // [KEY] [SHIFT+F3] reverse search
             {
                 this.SearchPrev();
             }
 
-            if (KeyMap.parseKey("HOME", keyData)) // KEY [HOME] Vycentrovanie
+            if (KeyMap.parseKey(KeyMap.home, keyData)) // KEY [HOME] go to home position
             {
                 this.GoToHome();
                 return true;
             }
 
-            if (KeyMap.parseKey("SHIFT+HOME", keyData))  // [KEY] [SHIFT+HOME] Move start point
+            if (KeyMap.parseKey(KeyMap.setHome, keyData))  // [KEY] [SHIFT+HOME] Move start point
             {
                 this.setCurentPositionAsHomePosition();
             }
 
-            if (KeyMap.parseKey("END", keyData)) // KEY [END] Vycentrovanie
+            if (KeyMap.parseKey(KeyMap.end, keyData)) // KEY [END] go to end position
             {
                 this.GoToEnd();
                 return true;
             }
 
-            if (KeyMap.parseKey("SHIFT+END", keyData))  // [KEY] [SHIFT+END] Move start point
+            if (KeyMap.parseKey(KeyMap.setEnd, keyData))  // [KEY] [SHIFT+END] Move end point
             {
                 this.setCurentPositionAsEndPosition();
             }
@@ -2716,18 +2716,18 @@ namespace Diagram
             -prejdu sa vybrane nody a ak je to adresar alebo subor otvori sa adresar
             -ak nie su vybrane ziadne nody otvori sa adresar diagrammu
             */
-            if (KeyMap.parseKey("F5", keyData)) // KEY [F5] Open link directory or diagram directory
+            if (KeyMap.parseKey(KeyMap.openDrectory, keyData)) // KEY [F5] Open link directory or diagram directory
             {
                 openLinkDirectory();
                 return true;
             }
 
-            if (KeyMap.parseKey("F12", keyData)) // [KEY] [F12] show Debug console
+            if (KeyMap.parseKey(KeyMap.console, keyData)) // [KEY] [F12] show Debug console
             {
                 this.showConsole();
             }
 
-            if (KeyMap.parseKey("CTRL+PAGEUP", keyData)) // KEY CTRL+PAGEUP Posun prvku do popredia
+            if (KeyMap.parseKey(KeyMap.moveNodeUp, keyData)) // KEY [CTRL+PAGEUP] move node up to foreground
             {
                 if (this.SelectedNodes.Count() > 0 )
                 {
@@ -2744,7 +2744,7 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey("CTRL+PAGEDOWN", keyData)) // [KEY] [CTRL+PAGEDOWN] Posun prvku do pozadia
+            if (KeyMap.parseKey(KeyMap.moveNodeDown, keyData)) // [KEY] [CTRL+PAGEDOWN] move node down to background
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2760,24 +2760,24 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey("PAGEUP", keyData)) // [KEY] [PAGEUP] Posun obrazovky
+            if (KeyMap.parseKey(KeyMap.pageUp, keyData)) // [KEY] [PAGEUP] page up
             {
                 this.shift.y = this.shift.y + this.ClientSize.Height;
                 this.diagram.InvalidateDiagram();
                 return true;
             }
 
-            if (KeyMap.parseKey("PAGEDOWN", keyData)) // [KEY] [PAGEDOWN] Posun obrazovky
+            if (KeyMap.parseKey(KeyMap.pageDown, keyData)) // [KEY] [PAGEDOWN] Posun obrazovky
             {
                 this.shift.y = this.shift.y - this.ClientSize.Height;
                 this.diagram.InvalidateDiagram();
                 return true;
             }
 
-            if (KeyMap.parseKey("F2", keyData)) // [KEY] [F2] Editovanie
+            if (KeyMap.parseKey(KeyMap.editNodeName, keyData)) // [KEY] [F2] edit node name
             {
                 if (this.SelectedNodes.Count() == 1)
-                {//xxx
+                {
                     Node rec = this.SelectedNodes[0];
                     Position position = new Position(
                         (int)((this.shift.x + rec.position.x) / this.scale),
@@ -2789,12 +2789,22 @@ namespace Diagram
                 return true;
             }
 
+            if (KeyMap.parseKey(KeyMap.openEditForm, keyData)) // [KEY] [CTRL+E] open edit form
+            {
+                if (this.SelectedNodes.Count() == 1)
+                {
+                    Node rec = this.SelectedNodes[0];
+                    this.diagram.EditNode(rec);
+                }
+                return true;
+            }
+
             if (this.editPanel.isEditing())
             {
                 return false;
             }
 
-            if (KeyMap.parseKey("ENTER", keyData)) // [KEY] [ENTER] Editovanie nody
+            if (KeyMap.parseKey(KeyMap.editOrLayerIn, keyData)) // [KEY] [ENTER] open edit form or layer in
             {
                 if (this.SelectedNodes.Count() == 1)
                 {
@@ -2810,7 +2820,13 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey("ESCAPE", keyData)) // [KEY] [ESC] Minimalizovanie okna //KEY Esc
+            if (KeyMap.parseKey(KeyMap.layerOut, keyData)) // [KEY] [BACK] Editovanie nody
+            {
+                this.LayerOut();
+                return true;
+            }
+
+            if (KeyMap.parseKey(KeyMap.minimalize, keyData)) // [KEY] [ESC] minimalize diagram view
             {
                 if (!this.diagram.SavedFile && this.diagram.FileName != "")  //treba overit ci existuje a dat dialg na ulozenie ako
                 {
@@ -2822,19 +2838,13 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey("BACK", keyData)) // [KEY] [BACK] Editovanie nody
-            {
-                this.LayerOut();
-                return true;
-            }
-
-            if (KeyMap.parseKey("DELETE", keyData)) // [KEY] [DELETE] zmazanie nody
+            if (KeyMap.parseKey(KeyMap.delete, keyData)) // [KEY] [DELETE] delete
             {
                 this.DeleteSelectedNodes(this);
                 return true;
             }
 
-            if (KeyMap.parseKey("LEFT", keyData) || KeyMap.parseKey("SHIFT+LEFT", keyData))  // [KEY] [left] [SHIFT+LEFT] [ARROW] Move node
+            if (KeyMap.parseKey(KeyMap.moveLeft, keyData) || KeyMap.parseKey(KeyMap.moveLeftFast, keyData))  // [KEY] [left] [SHIFT+LEFT] [ARROW] Move node
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2855,7 +2865,7 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey("RIGHT", keyData) || KeyMap.parseKey("SHIFT+RIGHT", keyData))  // [KEY] [right] [SHIFT+RIGHT] [ARROW] Move node
+            if (KeyMap.parseKey(KeyMap.moveRight, keyData) || KeyMap.parseKey(KeyMap.moveRightFast, keyData))  // [KEY] [right] [SHIFT+RIGHT] [ARROW] Move node
             {
 
                 if (this.SelectedNodes.Count() > 0)
@@ -2877,7 +2887,7 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey("UP", keyData) || KeyMap.parseKey("SHIFT+UP", keyData))  // [KEY] [up] [SHIFT+UP] [ARROW] Move node
+            if (KeyMap.parseKey(KeyMap.moveUp, keyData) || KeyMap.parseKey(KeyMap.moveUpFast, keyData))  // [KEY] [up] [SHIFT+UP] [ARROW] Move node
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2898,7 +2908,7 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey("DOWN", keyData) || KeyMap.parseKey("SHIFT+DOWN", keyData))  // [KEY] [down] [SHIFT+DOWN] [ARROW] Move node
+            if (KeyMap.parseKey(KeyMap.moveDown, keyData) || KeyMap.parseKey(KeyMap.moveDownFast, keyData))  // [KEY] [down] [SHIFT+DOWN] [ARROW] Move node
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
@@ -2919,7 +2929,7 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey("TAB", keyData)) // [KEY] [TAB] zarovnanie vybranych prvkov dolava
+            if (KeyMap.parseKey(KeyMap.alignLeft, keyData)) // [KEY] [TAB] zarovnanie vybranych prvkov dolava
             {
                 if (this.SelectedNodes.Count() > 1)
                 {
@@ -2933,7 +2943,7 @@ namespace Diagram
                 }
             }
 
-            if (KeyMap.parseKey("SHIFT+TAB", keyData))  // [KEY] [SHIFT+TAB] Zarovnanie vybranych prvkov doprava //KEY shift+tab
+            if (KeyMap.parseKey(KeyMap.alignRight, keyData))  // [KEY] [SHIFT+TAB] Zarovnanie vybranych prvkov doprava //KEY shift+tab
             {
                 if (this.SelectedNodes.Count() > 0)
                 {
