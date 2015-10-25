@@ -1389,7 +1389,7 @@ namespace Diagram
 
 			this.Focus();
 
-            if (this.editPanel.isEditFocused())
+            if (this.editPanel.isEditing())
             {
                 this.ActiveControl = null;
             }
@@ -2789,7 +2789,7 @@ namespace Diagram
                 return true;
             }
 
-            if (this.editPanel.isEditFocused())
+            if (this.editPanel.isEditing())
             {
                 return false;
             }
@@ -2949,7 +2949,7 @@ namespace Diagram
         // EVENT Key down
         public void DiagramApp_KeyDown(object sender, KeyEventArgs e)                                  // [KEYBOARD] [DOWN] [EVENT]
         {
-            if (this.editPanel.isEditFocused()|| this.searching)
+            if (this.editPanel.isEditing()|| this.searching)
             {
                 return;
             }
@@ -2969,7 +2969,7 @@ namespace Diagram
                 this.keyalt = true;
             }
 
-            if (this.editPanel.isEditFocused())
+            if (this.editPanel.isEditing())
             {
                 return;
             }
@@ -2998,7 +2998,7 @@ namespace Diagram
             this.keyctrl = false;
             this.keyalt = false;
 
-            if (this.editPanel.isEditFocused() || this.searching)
+            if (this.editPanel.isEditing() || this.searching)
             {
                 return;
             }
@@ -3023,7 +3023,7 @@ namespace Diagram
         // EVENT Keypress
         public void DiagramApp_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (this.editPanel.isEditFocused() || this.searching)
+            if (this.editPanel.isEditing() || this.searching)
             {
                 return;
             }

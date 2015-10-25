@@ -60,19 +60,7 @@ namespace Diagram
         }
         #endregion
 
-        public void ShowPanel()
-        {
-            this.Show();
-            this.edit.Focus();
-            this.edit.SelectAll();
-        }
-
-        public void HidePanel()
-        {
-            this.Hide();
-        }
-
-        // EDITPANEL SHOW
+        // EDITPANEL SHOW add new node
         public void showEditPanel(Position currentPosition, char FirstKey = ' ')
         {
             if (!this.Visible)
@@ -106,6 +94,7 @@ namespace Diagram
             }
         }
 
+        // EDITPANEL SHOW edit existing node
         public void editNode(Position currentPosition, Node editedNode)
         {
             if (!this.Visible)
@@ -139,13 +128,6 @@ namespace Diagram
             }
         }
 
-        // EDITPANEL CLOSE
-        public void closeNodeNamePanel()
-        {
-            editing = false;
-            this.Hide();
-        }
-
         // EDITPANEL SAVE
         public void saveNodeNamePanel()
         {
@@ -175,9 +157,10 @@ namespace Diagram
             this.editedNode = null;
             editing = false;
             this.diagramView.diagram.InvalidateDiagram();
+            this.diagramView.Focus();
         }
 
-        // EDITPANEL RESIZE zmena velkosti panelu ak sa donho píše
+        // EDITPANEL RESIZE change panel with after text change
         private void nodeNameEdit_TextChanged(object sender, EventArgs e)
         {
             SizeF size = Fonts.MeasureString(edit.Text, edit.Font);
@@ -187,7 +170,7 @@ namespace Diagram
             this.Width = this.edit.Width;
         }
 
-        // EDITPANEL EDIT zachytenie kláves v panely
+        // EDITPANEL EDIT catch keys in edit
         private void nodeNameEdit_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -225,28 +208,9 @@ namespace Diagram
             }
         }
 
-        public bool isEditFocused()
+        public bool isEditing()
         {
-            return this.edit.Focused;
+            return this.editing;
         }
-
-        /// <summary>
-        /// Set current diagramView for context in script
-        /// </summary>
-        /// <param name="diagramView"></param>
-        public void setDiagramView(DiagramView diagramView)
-        {
-            this.diagramView = diagramView;
-        }
-
-        /// <summary>
-        /// Get diagramView in current script context
-        /// </summary>
-        /// <returns></returns>
-        public DiagramView getDiagramView()
-        {
-            return this.diagramView;
-        }
-
     }
 }
