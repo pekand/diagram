@@ -141,6 +141,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Src\Components\Popup.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Src\Components\EditPanel.cs">
       <SubType>Component</SubType>
     </Compile>
