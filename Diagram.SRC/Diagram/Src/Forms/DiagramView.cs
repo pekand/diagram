@@ -93,9 +93,7 @@ namespace Diagram
 
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.PopupMenu = new Popup(this.components, this);
-            this.PopupMenu.SuspendLayout();
+            this.components = new System.ComponentModel.Container();            
             this.DSave = new System.Windows.Forms.SaveFileDialog();
             this.DOpen = new System.Windows.Forms.OpenFileDialog();
             this.CDialog = new System.Windows.Forms.ColorDialog();
@@ -156,7 +154,6 @@ namespace Diagram
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DiagramApp_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DiagramApp_MouseUp);
             this.Resize += new System.EventHandler(this.DiagramApp_Resize);
-            this.PopupMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -169,6 +166,9 @@ namespace Diagram
             this.main = main;
             this.diagram = diagram;
             this.InitializeComponent();
+
+            // inicialize popup menu
+            this.PopupMenu = new Popup(this.components, this);
 
             // inicialize edit panel
             this.editPanel = new EditPanel(this);
@@ -1897,7 +1897,18 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.layerOut, keyData)) // [KEY] [BACK] Editovanie nody
+
+            if (KeyMap.parseKey(KeyMap.layerIn, keyData)) // [KEY] [PLUS] Layer in 
+            {
+                if (this.SelectedNodes.Count() == 1)
+                {
+                    this.LayerIn(this.SelectedNodes[0]);
+                }
+
+                return true;
+            }
+
+            if (KeyMap.parseKey(KeyMap.layerOut, keyData) || KeyMap.parseKey(KeyMap.layerOut2, keyData)) // [KEY] [BACK] Layer out 
             {
                 this.LayerOut();
                 return true;
@@ -1929,6 +1940,12 @@ namespace Diagram
                     foreach (Node rec in this.SelectedNodes)
                     {
                         rec.position.x -= speed;
+
+                        if (rec.haslayer)
+                        {
+                            this.MoveLayer(rec, -speed, 0);
+                            rec.layershiftx += speed;
+                        }
                     }
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
@@ -1951,6 +1968,12 @@ namespace Diagram
                     foreach (Node rec in this.SelectedNodes)
                     {
                         rec.position.x += speed;
+
+                        if (rec.haslayer)
+                        {
+                            this.MoveLayer(rec, speed, 0);
+                            rec.layershiftx -= speed;
+                        }
                     }
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
@@ -1972,6 +1995,12 @@ namespace Diagram
                     foreach (Node rec in this.SelectedNodes)
                     {
                         rec.position.y -= speed;
+
+                        if (rec.haslayer)
+                        {
+                            this.MoveLayer(rec, 0, -speed);
+                            rec.layershifty += speed;
+                        }
                     }
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
@@ -1993,6 +2022,12 @@ namespace Diagram
                     foreach (Node rec in this.SelectedNodes)
                     {
                         rec.position.y += speed;
+
+                        if (rec.haslayer)
+                        {
+                            this.MoveLayer(rec, 0, speed);
+                            rec.layershifty -= speed;
+                        }
                     }
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
@@ -2022,11 +2057,15 @@ namespace Diagram
 
             if (KeyMap.parseKey(KeyMap.alignRight, keyData))  // [KEY] [SHIFT+TAB] Zarovnanie vybranych prvkov doprava //KEY shift+tab
             {
-                if (this.SelectedNodes.Count() > 0)
+                if (this.SelectedNodes.Count() > 1)
                 {
                     this.diagram.AlignRight(this.SelectedNodes);
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
+                }
+                else
+                {
+                    this.addNodeBelowNode();
                 }
             }
 

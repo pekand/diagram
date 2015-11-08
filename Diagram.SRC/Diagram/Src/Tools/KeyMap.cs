@@ -44,7 +44,9 @@ namespace Diagram
         public static string editNodeName =  "F2";
         public static string openEditForm = "CTRL+E";
         public static string editOrLayerIn = "ENTER";
-        public static string layerOut = "BACK";
+        public static string layerIn = "ADD";
+        public static string layerOut = "SUBTRACT";
+        public static string layerOut2 = "BACK";
         public static string minimalize = "ESCAPE";
         public static string delete = "DELETE";
         public static string moveLeft = "LEFT";

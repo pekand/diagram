@@ -872,6 +872,7 @@ namespace Diagram
             return null;
         }
 
+        // NODE delete all nodes which is not in layer history
         public bool canDeleteNode(Node rec)
         {
             if (!rec.haslayer)

@@ -85,6 +85,7 @@ namespace Diagram
         #region Windows Form Designer generated code
         private void InitializeComponent()
         {
+            this.SuspendLayout();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeShortcutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -520,6 +521,10 @@ namespace Diagram
             this.releaseNoteToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.releaseNoteToolStripMenuItem.Text = "Release Note";
             this.releaseNoteToolStripMenuItem.Click += new System.EventHandler(this.releaseNoteToolStripMenuItem_Click);
+            // 
+            // Popup
+            // 
+            this.ResumeLayout(false);
         }
         #endregion
 
