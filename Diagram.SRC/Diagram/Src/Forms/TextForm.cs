@@ -145,6 +145,8 @@ namespace Diagram
             this.TextFormTextBox.Name = "TextFormTextBox";
             this.TextFormTextBox.Size = new System.Drawing.Size(379, 68);
             this.TextFormTextBox.TabIndex = 0;
+            this.TextFormTextBox.DetectUrls = false;
+
             // 
             // TextFormNoteTextBox
             // 
@@ -154,6 +156,8 @@ namespace Diagram
             this.TextFormNoteTextBox.Name = "TextFormNoteTextBox";
             this.TextFormNoteTextBox.Size = new System.Drawing.Size(379, 413);
             this.TextFormNoteTextBox.TabIndex = 0;
+            this.TextFormNoteTextBox.DetectUrls = false;
+
             // 
             // optiontab
             // 

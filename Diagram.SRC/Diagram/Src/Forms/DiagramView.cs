@@ -3353,6 +3353,8 @@ namespace Diagram
             System.Drawing.Pen myPen1 = new System.Drawing.Pen(System.Drawing.Color.Black, 1);
             System.Drawing.Pen myPen2 = new System.Drawing.Pen(System.Drawing.Color.Black, 3);
 
+            int padding = this.diagram.NodePadding;
+
             // DRAW grid
             if (this.diagram.options.grid && !export)
             {
@@ -3687,10 +3689,10 @@ namespace Diagram
 
                                 // DRAW text
                                 RectangleF rect2 = new RectangleF(
-                                    (int)((this.shift.x + cx + rec.position.x + this.diagram.NodePadding) / s),
-                                    (int)((this.shift.y + cy + rec.position.y + this.diagram.NodePadding) / s),
-                                    (int)((rec.width - this.diagram.NodePadding) / s),
-                                    (int)((rec.height - this.diagram.NodePadding) / s)
+                                    (int)((this.shift.x + cx + rec.position.x + padding) / s),
+                                    (int)((this.shift.y + cy + rec.position.y + padding) / s),
+                                    (int)((rec.width - padding) / s),
+                                    (int)((rec.height - padding) / s)
                                 );
                                 gfx.DrawString(rec.text, new Font(rec.font.FontFamily, rec.font.Size / s, rec.font.Style), new SolidBrush(rec.fontcolor), rect2);
                             }

@@ -9,7 +9,7 @@ namespace Diagram
         public DiagramView diagramView = null;       // diagram ktory je previazany z pohladom
 
         public bool editing = false; // panel je zobrazený
-        public TextBox edit = null; // edit pre nove meno nody
+        public RichTextBox edit = null; // edit pre nove meno nody
 
         public Node prevSelectedNode = null;
         public Node editedNode = null;
@@ -30,7 +30,7 @@ namespace Diagram
         #region Windows Form Designer generated code
         private void InitializeComponent()
         {
-            this.edit = new System.Windows.Forms.TextBox();
+            this.edit = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
 
             //
@@ -44,11 +44,12 @@ namespace Diagram
             this.edit.TabIndex = 0;
             this.edit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nodeNameEdit_KeyDown);
             this.edit.TextChanged += new EventHandler(nodeNameEdit_TextChanged);
-            this.edit.AcceptsReturn = true;
             this.edit.AcceptsTab = true;
             this.edit.Multiline = true;
             this.edit.Left = 12;
             this.edit.Top = 8;
+            this.edit.AutoSize = true;
+            this.edit.DetectUrls = false;
 
             //
             // EditPanel
@@ -65,11 +66,12 @@ namespace Diagram
         {
             if (!this.Visible)
             {
+                int padding = this.diagramView.diagram.NodePadding;
                 this.Left = currentPosition.x;
                 this.Top = currentPosition.y;
 
-                
-                Font f = this.diagramView.diagram.FontDefault;
+                this.edit.Left = padding - 1;
+                this.edit.Top = padding;
 
                 Font defaultFont = this.diagramView.diagram.FontDefault;
                 Font font = new Font(defaultFont.FontFamily, defaultFont.Size / this.diagramView.scale, defaultFont.Style);
@@ -78,13 +80,7 @@ namespace Diagram
                 
                 this.edit.Text = "" + (FirstKey).ToString(); // add first character
 
-                SizeF s = Fonts.MeasureString(edit.Text.ToUpper(), edit.Font);
-
-                this.edit.Height = (int)Math.Round(s.Height, 0) + 20;
-                this.Height = this.edit.Height;
-
-                this.edit.Width = (int)Math.Round(s.Width, 0) + 20;
-                this.Width = this.edit.Width;
+                this.setPanelSize();
 
                 this.editing = true;
                 this.Show();
@@ -99,6 +95,8 @@ namespace Diagram
         {
             if (!this.Visible)
             {
+                int padding = this.diagramView.diagram.NodePadding;
+
                 this.editedNode = editedNode;
                 this.editedNode.visible = false;
                 this.diagramView.diagram.InvalidateDiagram();
@@ -106,19 +104,16 @@ namespace Diagram
                 this.Left = currentPosition.x;
                 this.Top = currentPosition.y;
 
+                this.edit.Left = padding - 1;
+                this.edit.Top = padding;
+
                 Font nodeFont = this.editedNode.font;
                 Font font = new Font(nodeFont.FontFamily, nodeFont.Size / this.diagramView.scale, nodeFont.Style);
 
                 this.edit.Font = font;
                 this.edit.Text = this.editedNode.text; // add first character
 
-                SizeF s = Fonts.MeasureString(edit.Text.ToUpper(), edit.Font);
-
-                this.edit.Height = (int)Math.Round(s.Height, 0) + 20;
-                this.Height = this.edit.Height;
-
-                this.edit.Width = (int)Math.Round(s.Width, 0) + 20;
-                this.Width = this.edit.Width;
+                this.setPanelSize();
 
                 this.editing = true;
                 this.Show();
@@ -163,10 +158,19 @@ namespace Diagram
         // EDITPANEL RESIZE change panel with after text change
         private void nodeNameEdit_TextChanged(object sender, EventArgs e)
         {
-            SizeF size = Fonts.MeasureString(edit.Text, edit.Font);
+            this.setPanelSize();
+        }
 
-            // Resize the textbox
-            this.edit.Width = (int)Math.Round(size.Width, 0) + 20;
+        private void setPanelSize() {
+
+            int padding = this.diagramView.diagram.NodePadding;
+
+            SizeF s = Fonts.MeasureString(this.edit.Text, this.edit.Font);
+
+            this.edit.Height = (int)Math.Round(s.Height, 0) + 2 * padding;
+            this.Height = this.edit.Height;
+
+            this.edit.Width = (int)Math.Round(s.Width, 0) + padding;
             this.Width = this.edit.Width;
         }
 
@@ -182,7 +186,7 @@ namespace Diagram
                 this.Focus();
             }
 
-            if (KeyMap.parseKey("ENTER", keyData)) // zvretie panelu a vytvorenie novej editacie
+            if (KeyMap.parseKey("ENTER", keyData) && !e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
                 this.saveNodeNamePanel();
                 this.Focus();
@@ -204,7 +208,10 @@ namespace Diagram
 
             if (KeyMap.parseKey("ENTER", keyData) || KeyMap.parseKey("TAB", keyData))
             {
-                e.Handled = e.SuppressKeyPress = true;
+                if (!e.Shift)
+                {
+                    e.Handled = e.SuppressKeyPress = true;
+                }
             }
         }
 
