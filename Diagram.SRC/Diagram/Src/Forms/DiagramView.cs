@@ -516,7 +516,9 @@ namespace Diagram
                 {
                     this.actualMousePos.x = e.X;
                     this.actualMousePos.y = e.Y;
-                    if (!this.diagram.options.readOnly && this.keyctrl && !this.keyshift && !this.keyalt) // add node by drag
+                    if (!this.diagram.options.readOnly 
+                        && (this.keyctrl || this.keyalt)
+                        && !this.keyshift) // add node by drag
                     {
                         this.addingNode = true;
                         MoveTimer.Enabled = true;
@@ -752,7 +754,7 @@ namespace Diagram
                     && this.SourceNode != null 
                     && TargetNode != this.SourceNode)
                 {
-                    TargetNode.shortcut = this.SourceNode.id;
+                    this.SourceNode.shortcut = TargetNode.id;
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
@@ -817,6 +819,20 @@ namespace Diagram
                     && this.SourceNode == null)
                 {
                     this.diagram.Connect(this.CreateNode( +this.shift.x - startShift.x + this.startMousePos.x, +this.shift.y - startShift.y + this.startMousePos.y), TargetNode, false);
+                    this.diagram.unsave();
+                    this.diagram.InvalidateDiagram();
+                }
+                else
+                // KEY DRAG+ALT create 
+                if (!isreadonly
+                    && keyalt
+                    && !keyctrl
+                    && !keyshift
+                    && TargetNode != null
+                    && this.SourceNode == null)
+                {
+                    Node newrec = this.CreateNode(+this.shift.x - startShift.x + this.startMousePos.x, +this.shift.y - startShift.y + this.startMousePos.y);
+                    newrec.shortcut = TargetNode.id;
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
@@ -2881,26 +2897,6 @@ namespace Diagram
                                     {
                                         isvisible = false;
                                     }
-                                    /*else // tieto vetvy sú neni potrebné nezrýchlia vykreslovanie
-                                    if (0 <= (this.shiftx + rec.x) / s && (this.shiftx + rec.x) / s <= 0 + this.ClientSize.Width && 0 <= (this.shifty + rec.y) / s && (this.shifty + rec.y) / s <= 0 + this.ClientSize.Height)
-                                    {
-                                        isvisible = true;
-                                    }
-                                    else
-                                        if (0 <= (this.shiftx + rec.x) / s && (this.shiftx + rec.x) / s <= 0 + this.ClientSize.Width && 0 <= (this.shifty + rec.y + rec.height) / s && (this.shifty + rec.y + rec.height) / s <= 0 + this.ClientSize.Height)
-                                    {
-                                        isvisible = true;
-                                    }
-                                    else
-                                        if (0 <= (this.shiftx + rec.x + rec.width) / s && (this.shiftx + rec.x + rec.width) / s <= 0 + this.ClientSize.Width && 0 <= (this.shifty + rec.height) / s && (this.shifty + rec.height) / s <= 0 + this.ClientSize.Height)
-                                    {
-                                        isvisible = true;
-                                    }
-                                    else
-                                    if (0 <= (this.shiftx + rec.x + rec.width) / s && (this.shiftx + rec.x + rec.width) / s <= 0 + this.ClientSize.Width && 0 <= (this.shifty + rec.y + rec.height) / s && (this.shifty + rec.y + rec.height) / s <= 0 + this.ClientSize.Height)
-                                    {
-                                        isvisible = true;
-                                    }*/
                                     else
                                     {
                                         isvisible = true;
@@ -2984,19 +2980,6 @@ namespace Diagram
                                         )
                                     );
                                 }
-
-                                if (rec.shortcut > 0 && !export)
-                                {
-                                    gfx.FillEllipse(
-                                        new SolidBrush(rec.color),
-                                        new Rectangle(
-                                            (int)((this.shift.x + cx + rec.position.x - 5) / s),
-                                            (int)((this.shift.y + cy + rec.position.y - 5) / s),
-                                            (int)((5) / s),
-                                            (int)((5) / s)
-                                        )
-                                    );
-                                }
                             }
                             else
                             {
@@ -3032,27 +3015,7 @@ namespace Diagram
                                     );
                                 }
 
-                                if (rec.shortcut > 0 && !export)
-                                {
-                                    gfx.FillEllipse(
-                                        new SolidBrush(rec.color),
-                                        new Rectangle(
-                                            (int)((this.shift.x + cx + rec.position.x - 3) / s),
-                                            (int)((this.shift.y + cy + rec.position.y - 3) / s),
-                                            (int)((6) / s),
-                                            (int)((6) / s)
-                                        )
-                                    );
-                                }
-
                                 // DRAW text
-                                /*RectangleF rect2 = new RectangleF(
-                                    (int)((this.shift.x + cx + rec.position.x + padding) / s),
-                                    (int)((this.shift.y + cy + rec.position.y + padding) / s),
-                                    (int)((rec.width - padding) / s),
-                                    (int)((rec.height - padding) / s)
-                                );*/
-
                                 PointF point = new PointF(
                                     (this.shift.x + cx + rec.position.x + padding) / s, 
                                     (this.shift.y + cy + rec.position.y + padding) / s

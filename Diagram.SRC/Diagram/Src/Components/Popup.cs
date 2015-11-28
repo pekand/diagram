@@ -47,6 +47,8 @@ namespace Diagram
         private System.Windows.Forms.ToolStripSeparator editSeparator; // SEPARATOR
         private System.Windows.Forms.ToolStripMenuItem copyLinkItem;
         private System.Windows.Forms.ToolStripMenuItem copyNoteItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteToLinkItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteToNoteItem;
 
         private System.Windows.Forms.ToolStripMenuItem viewItem; // VIEW
         private System.Windows.Forms.ToolStripMenuItem newViewItem;
@@ -135,6 +137,8 @@ namespace Diagram
             this.editSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.copyLinkItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyNoteItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteToLinkItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteToNoteItem = new System.Windows.Forms.ToolStripMenuItem();
 
             this.viewItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newViewItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -368,7 +372,9 @@ namespace Diagram
             this.pasteItem,
             this.editSeparator,
             this.copyLinkItem,
-            this.copyNoteItem
+            this.copyNoteItem,
+            this.pasteToLinkItem,
+            this.pasteToNoteItem
             });
             this.editMenuItem.Name = "editMenuItem";
             this.editMenuItem.Size = new System.Drawing.Size(164, 22);
@@ -413,6 +419,20 @@ namespace Diagram
             this.copyNoteItem.Size = new System.Drawing.Size(164, 22);
             this.copyNoteItem.Text = "Copy note";
             this.copyNoteItem.Click += new System.EventHandler(this.copyNoteItem_Click);
+            // 
+            // pasteToLinkItem
+            // 
+            this.pasteToLinkItem.Name = "pasteToLinkItem";
+            this.pasteToLinkItem.Size = new System.Drawing.Size(164, 22);
+            this.pasteToLinkItem.Text = "Paste to link";
+            this.pasteToLinkItem.Click += new System.EventHandler(this.pasteToLinkItem_Click);
+            // 
+            // pasteToNoteItem
+            // 
+            this.pasteToNoteItem.Name = "pasteToNoteItem";
+            this.pasteToNoteItem.Size = new System.Drawing.Size(164, 22);
+            this.pasteToNoteItem.Text = "Paste to note";
+            this.pasteToNoteItem.Click += new System.EventHandler(this.pasteToNoteItem_Click);
             // 
             // viewItem
             // 
@@ -874,6 +894,18 @@ namespace Diagram
         public void copyNoteItem_Click(object sender, EventArgs e)
         {
             this.diagramView.copyNote();
+        }
+
+        // MENU Copy link
+        public void pasteToLinkItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.pasteToLink();
+        }
+
+        // MENU Copy note
+        public void pasteToNoteItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.pasteToNote();
         }
 
         // MENU Center
