@@ -13,53 +13,67 @@ namespace Diagram
     {
         public DiagramView diagramView = null;       // diagram ktory je previazany z pohladom
 
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem screenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem centerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem colorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem layerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem inToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem outToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem consoleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem optionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gridToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem coordinatesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem readonlyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem openDirectoryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem linkToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openlinkToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copylinkToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bordersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem defaultFontToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem alignToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem leftToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rightToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toLineToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem inColumnToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem removeShortcutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openDirectoryToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem encryptToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem visitWebsiteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportToPngToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newViewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem resetFontToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem setStartPositionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem groupToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem releaseNoteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem textToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editItem; //EDIT
+        private System.Windows.Forms.ToolStripMenuItem colorItem;
+        private System.Windows.Forms.ToolStripMenuItem removeShortcutItem;
+        private System.Windows.Forms.ToolStripMenuItem linkItem; // LINK
+        private System.Windows.Forms.ToolStripMenuItem openlinkItem;
+        private System.Windows.Forms.ToolStripMenuItem openLinkDirectoryItem;
+
+        private System.Windows.Forms.ToolStripMenuItem alignItem; // ALIGN
+        private System.Windows.Forms.ToolStripMenuItem leftItem;
+        private System.Windows.Forms.ToolStripMenuItem rightItem;
+        private System.Windows.Forms.ToolStripMenuItem toLineItem;
+        private System.Windows.Forms.ToolStripMenuItem inColumnItem;
+        private System.Windows.Forms.ToolStripMenuItem groupItem;
+
+        private System.Windows.Forms.ToolStripSeparator quickActionSeparator; //SEPARATOR
+
+        private System.Windows.Forms.ToolStripMenuItem fileItem; // FILE
+        private System.Windows.Forms.ToolStripMenuItem newItem;
+        private System.Windows.Forms.ToolStripMenuItem saveItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsItem;
+        private System.Windows.Forms.ToolStripMenuItem exportItem; //EXPORT
+        private System.Windows.Forms.ToolStripMenuItem textItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToPngItem;
+        private System.Windows.Forms.ToolStripMenuItem openItem;
+        private System.Windows.Forms.ToolStripMenuItem openDiagramDirectoryItem;
+        private System.Windows.Forms.ToolStripMenuItem exitItem;
+
+        private System.Windows.Forms.ToolStripMenuItem editMenuItem; // EDIT
+        private System.Windows.Forms.ToolStripMenuItem copyItem;
+        private System.Windows.Forms.ToolStripMenuItem cutItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteItem;
+        private System.Windows.Forms.ToolStripSeparator editSeparator; // SEPARATOR
+        private System.Windows.Forms.ToolStripMenuItem copyLinkItem;
+        private System.Windows.Forms.ToolStripMenuItem copyNoteItem;
+
+        private System.Windows.Forms.ToolStripMenuItem viewItem; // VIEW
+        private System.Windows.Forms.ToolStripMenuItem newViewItem;
+        private System.Windows.Forms.ToolStripMenuItem centerItem;
+        private System.Windows.Forms.ToolStripMenuItem setStartPositionItem;
+
+        private System.Windows.Forms.ToolStripMenuItem layerItem;  // LAYER
+        private System.Windows.Forms.ToolStripMenuItem inItem;
+        private System.Windows.Forms.ToolStripMenuItem outItem;
+
+        private System.Windows.Forms.ToolStripSeparator helpSeparator;
+
+        private System.Windows.Forms.ToolStripMenuItem optionItem; // OPTION
+        private System.Windows.Forms.ToolStripMenuItem encryptItem;
+        private System.Windows.Forms.ToolStripMenuItem changePasswordItem;
+        private System.Windows.Forms.ToolStripMenuItem readonlyItem;
+        private System.Windows.Forms.ToolStripMenuItem gridItem;
+        private System.Windows.Forms.ToolStripMenuItem coordinatesItem;
+        private System.Windows.Forms.ToolStripMenuItem bordersItem;
+        private System.Windows.Forms.ToolStripMenuItem defaultFontItem;
+        private System.Windows.Forms.ToolStripMenuItem resetFontItem;
+
+        private System.Windows.Forms.ToolStripMenuItem helpItem; // HELP
+        private System.Windows.Forms.ToolStripMenuItem consoleItem;
+        private System.Windows.Forms.ToolStripMenuItem visitWebsiteItem;
+        private System.Windows.Forms.ToolStripMenuItem releaseNoteItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutItem;
 
         public Popup(System.ComponentModel.IContainer container, DiagramView diagramView) : base(container)
         {
@@ -68,14 +82,14 @@ namespace Diagram
             InitializeComponent();
 
 #if DEBUG
-            this.consoleToolStripMenuItem.Visible = true;
-            this.coordinatesToolStripMenuItem.Visible = true;
+            this.consoleItem.Visible = true;
+            this.coordinatesItem.Visible = true;
 #endif
 
-            this.gridToolStripMenuItem.Checked = this.diagramView.diagram.options.grid;
-            this.bordersToolStripMenuItem.Checked = this.diagramView.diagram.options.borders;
-            this.coordinatesToolStripMenuItem.Checked = this.diagramView.diagram.options.coordinates;
-            this.readonlyToolStripMenuItem.Checked = this.diagramView.diagram.options.readOnly;
+            this.gridItem.Checked = this.diagramView.diagram.options.grid;
+            this.bordersItem.Checked = this.diagramView.diagram.options.borders;
+            this.coordinatesItem.Checked = this.diagramView.diagram.options.coordinates;
+            this.readonlyItem.Checked = this.diagramView.diagram.options.readOnly;
         }
 
         /// <summary>
@@ -86,441 +100,496 @@ namespace Diagram
         private void InitializeComponent()
         {
             this.SuspendLayout();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.colorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeShortcutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.linkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openlinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copylinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openDirectoryToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.alignToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.leftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.inColumnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportToPngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.screenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.centerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setStartPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.layerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.inToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.outToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.encryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.readonlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.coordinatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.defaultFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetFontToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.consoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.visitWebsiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.releaseNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+
+            this.editItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeShortcutItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.linkItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openlinkItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openLinkDirectoryItem = new System.Windows.Forms.ToolStripMenuItem();
+
+            this.alignItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.leftItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toLineItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inColumnItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupItem = new System.Windows.Forms.ToolStripMenuItem();
+
+            this.quickActionSeparator = new System.Windows.Forms.ToolStripSeparator();
+
+            this.fileItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToPngItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openDiagramDirectoryItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitItem = new System.Windows.Forms.ToolStripMenuItem();
+
+            this.editMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cutItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.copyLinkItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyNoteItem = new System.Windows.Forms.ToolStripMenuItem();
+
+            this.viewItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newViewItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.centerItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setStartPositionItem = new System.Windows.Forms.ToolStripMenuItem();
+            
+            this.layerItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.outItem = new System.Windows.Forms.ToolStripMenuItem();
+
+            this.helpSeparator = new System.Windows.Forms.ToolStripSeparator();
+
+            this.optionItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.encryptItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changePasswordItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.readonlyItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.coordinatesItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bordersItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.defaultFontItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetFontItem = new System.Windows.Forms.ToolStripMenuItem();
+
+            this.helpItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consoleItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visitWebsiteItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.releaseNoteItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutItem = new System.Windows.Forms.ToolStripMenuItem();
 
             // 
             // PopupMenu
             // 
             this.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editToolStripMenuItem,
-            this.colorToolStripMenuItem,
-            this.removeShortcutToolStripMenuItem,
-            this.linkToolStripMenuItem,
-            this.alignToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.fileToolStripMenuItem,
-            this.screenToolStripMenuItem,
-            this.viewToolStripMenuItem,
-            this.layerToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.optionToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            this.Name = "contextMenuStrip1";
+            this.editItem,
+            this.colorItem,
+            this.removeShortcutItem,
+            this.linkItem,
+            this.alignItem,
+            this.quickActionSeparator,
+            this.fileItem,
+            this.editMenuItem,
+            this.viewItem,
+            this.layerItem,
+            this.helpSeparator,
+            this.optionItem,
+            this.helpItem});
+            this.Name = "popupMenu";
             this.Size = new System.Drawing.Size(165, 280);
             this.Opening += new System.ComponentModel.CancelEventHandler(this.PopupMenu_Opening);
             // 
-            // editToolStripMenuItem
+            // editItem
             // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            this.editItem.Name = "editItem";
+            this.editItem.Size = new System.Drawing.Size(164, 22);
+            this.editItem.Text = "Edit";
+            this.editItem.Click += new System.EventHandler(this.editItem_Click);
             // 
-            // colorToolStripMenuItem
+            // colorItem
             // 
-            this.colorToolStripMenuItem.Name = "colorToolStripMenuItem";
-            this.colorToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.colorToolStripMenuItem.Text = "Color";
-            this.colorToolStripMenuItem.Click += new System.EventHandler(this.colorToolStripMenuItem_Click);
+            this.colorItem.Name = "colorItem";
+            this.colorItem.Size = new System.Drawing.Size(164, 22);
+            this.colorItem.Text = "Color";
+            this.colorItem.Click += new System.EventHandler(this.colorItem_Click);
             // 
-            // removeShortcutToolStripMenuItem
+            // removeShortcutItem
             // 
-            this.removeShortcutToolStripMenuItem.Name = "removeShortcutToolStripMenuItem";
-            this.removeShortcutToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.removeShortcutToolStripMenuItem.Text = "Remove shortcut";
-            this.removeShortcutToolStripMenuItem.Click += new System.EventHandler(this.removeShortcutToolStripMenuItem_Click);
+            this.removeShortcutItem.Name = "removeShortcutItem";
+            this.removeShortcutItem.Size = new System.Drawing.Size(164, 22);
+            this.removeShortcutItem.Text = "Remove shortcut";
+            this.removeShortcutItem.Click += new System.EventHandler(this.removeShortcutItem_Click);
             // 
-            // linkToolStripMenuItem
+            // linkItem
             // 
-            this.linkToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openlinkToolStripMenuItem,
-            this.copylinkToolStripMenuItem,
-            this.openDirectoryToolStripMenuItem1});
-            this.linkToolStripMenuItem.Name = "linkToolStripMenuItem";
-            this.linkToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.linkToolStripMenuItem.Text = "Link";
+            this.linkItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openlinkItem,
+            this.copyLinkItem,
+            this.openLinkDirectoryItem});
+            this.linkItem.Name = "linkItem";
+            this.linkItem.Size = new System.Drawing.Size(164, 22);
+            this.linkItem.Text = "Link";
             // 
-            // openlinkToolStripMenuItem
+            // openlinkItem
             // 
-            this.openlinkToolStripMenuItem.Name = "openlinkToolStripMenuItem";
-            this.openlinkToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.openlinkToolStripMenuItem.Text = "Open";
-            this.openlinkToolStripMenuItem.Click += new System.EventHandler(this.openlinkToolStripMenuItem1_Click);
+            this.openlinkItem.Name = "openlinkItem";
+            this.openlinkItem.Size = new System.Drawing.Size(153, 22);
+            this.openlinkItem.Text = "Open";
+            this.openlinkItem.Click += new System.EventHandler(this.openlinkItem_Click);
             // 
-            // copylinkToolStripMenuItem
+            // openLinkDirectoryItem
             // 
-            this.copylinkToolStripMenuItem.Name = "copylinkToolStripMenuItem";
-            this.copylinkToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.copylinkToolStripMenuItem.Text = "Copy";
-            this.copylinkToolStripMenuItem.Click += new System.EventHandler(this.copylinkToolStripMenuItem_Click_1);
+            this.openLinkDirectoryItem.Name = "openLinkDirectoryItem";
+            this.openLinkDirectoryItem.Size = new System.Drawing.Size(153, 22);
+            this.openLinkDirectoryItem.Text = "Open directory";
+            this.openLinkDirectoryItem.Click += new System.EventHandler(this.openLinkDirectoryItem_Click);
             // 
-            // openDirectoryToolStripMenuItem1
+            // alignItem
             // 
-            this.openDirectoryToolStripMenuItem1.Name = "openDirectoryToolStripMenuItem1";
-            this.openDirectoryToolStripMenuItem1.Size = new System.Drawing.Size(153, 22);
-            this.openDirectoryToolStripMenuItem1.Text = "Open directory";
-            this.openDirectoryToolStripMenuItem1.Click += new System.EventHandler(this.openDirectoryToolStripMenuItem1_Click);
+            this.alignItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.leftItem,
+            this.rightItem,
+            this.toLineItem,
+            this.inColumnItem,
+            this.groupItem});
+            this.alignItem.Name = "alignItem";
+            this.alignItem.Size = new System.Drawing.Size(164, 22);
+            this.alignItem.Text = "Align";
             // 
-            // alignToolStripMenuItem
+            // leftItem
             // 
-            this.alignToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.leftToolStripMenuItem,
-            this.rightToolStripMenuItem,
-            this.toLineToolStripMenuItem,
-            this.inColumnToolStripMenuItem,
-            this.groupToolStripMenuItem});
-            this.alignToolStripMenuItem.Name = "alignToolStripMenuItem";
-            this.alignToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.alignToolStripMenuItem.Text = "Align";
+            this.leftItem.Name = "leftItem";
+            this.leftItem.Size = new System.Drawing.Size(128, 22);
+            this.leftItem.Text = "Left";
+            this.leftItem.Click += new System.EventHandler(this.leftItem_Click);
             // 
-            // leftToolStripMenuItem
+            // rightItem
             // 
-            this.leftToolStripMenuItem.Name = "leftToolStripMenuItem";
-            this.leftToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.leftToolStripMenuItem.Text = "Left";
-            this.leftToolStripMenuItem.Click += new System.EventHandler(this.leftToolStripMenuItem_Click);
+            this.rightItem.Name = "rightItem";
+            this.rightItem.Size = new System.Drawing.Size(128, 22);
+            this.rightItem.Text = "Right";
+            this.rightItem.Click += new System.EventHandler(this.rightItem_Click);
             // 
-            // rightToolStripMenuItem
+            // toLineItem
             // 
-            this.rightToolStripMenuItem.Name = "rightToolStripMenuItem";
-            this.rightToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.rightToolStripMenuItem.Text = "Right";
-            this.rightToolStripMenuItem.Click += new System.EventHandler(this.rightToolStripMenuItem_Click);
+            this.toLineItem.Name = "toLineItem";
+            this.toLineItem.Size = new System.Drawing.Size(128, 22);
+            this.toLineItem.Text = "To line";
+            this.toLineItem.Click += new System.EventHandler(this.toLineItem_Click);
             // 
-            // toLineToolStripMenuItem
+            // inColumnItem
             // 
-            this.toLineToolStripMenuItem.Name = "toLineToolStripMenuItem";
-            this.toLineToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.toLineToolStripMenuItem.Text = "To line";
-            this.toLineToolStripMenuItem.Click += new System.EventHandler(this.toLineToolStripMenuItem_Click);
+            this.inColumnItem.Name = "inColumnItem";
+            this.inColumnItem.Size = new System.Drawing.Size(128, 22);
+            this.inColumnItem.Text = "In column";
+            this.inColumnItem.Click += new System.EventHandler(this.inColumnItem_Click);
             // 
-            // inColumnToolStripMenuItem
+            // groupItem
             // 
-            this.inColumnToolStripMenuItem.Name = "inColumnToolStripMenuItem";
-            this.inColumnToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.inColumnToolStripMenuItem.Text = "In column";
-            this.inColumnToolStripMenuItem.Click += new System.EventHandler(this.inColumnToolStripMenuItem_Click);
+            this.groupItem.Name = "groupItem";
+            this.groupItem.Size = new System.Drawing.Size(128, 22);
+            this.groupItem.Text = "Group";
+            this.groupItem.Click += new System.EventHandler(this.groupItem_Click);
             // 
-            // groupToolStripMenuItem
+            // quickActionSeparator
             // 
-            this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-            this.groupToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.groupToolStripMenuItem.Text = "Group";
-            this.groupToolStripMenuItem.Click += new System.EventHandler(this.groupToolStripMenuItem_Click);
+            this.quickActionSeparator.Name = "quickActionSeparator";
+            this.quickActionSeparator.Size = new System.Drawing.Size(161, 6);
             // 
-            // toolStripMenuItem2
+            // fileItem
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(161, 6);
+            this.fileItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newItem,
+            this.saveItem,
+            this.saveAsItem,
+            this.exportItem,
+            this.openItem,
+            this.openDiagramDirectoryItem,
+            this.exitItem});
+            this.fileItem.Name = "fileItem";
+            this.fileItem.Size = new System.Drawing.Size(164, 22);
+            this.fileItem.Text = "File";
+            // 
+            // newItem
+            // 
+            this.newItem.Name = "newItem";
+            this.newItem.Size = new System.Drawing.Size(154, 22);
+            this.newItem.Text = "New";
+            this.newItem.Click += new System.EventHandler(this.newItem_Click);
+            // 
+            // saveItem
             // 
-            // fileToolStripMenuItem
+            this.saveItem.Name = "saveItem";
+            this.saveItem.Size = new System.Drawing.Size(154, 22);
+            this.saveItem.Text = "Save";
+            this.saveItem.Click += new System.EventHandler(this.saveItem_Click);
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
-            this.saveToolStripMenuItem,
-            this.saveAsToolStripMenuItem,
-            this.exportToolStripMenuItem,
-            this.openToolStripMenuItem,
-            this.openDirectoryToolStripMenuItem,
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.fileToolStripMenuItem.Text = "File";
+            // saveAsItem
             // 
-            // newToolStripMenuItem
+            this.saveAsItem.Name = "saveAsItem";
+            this.saveAsItem.Size = new System.Drawing.Size(154, 22);
+            this.saveAsItem.Text = "Save As";
+            this.saveAsItem.Click += new System.EventHandler(this.saveAsItem_Click);
             // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.newToolStripMenuItem.Text = "New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            // exportItem
             // 
-            // saveToolStripMenuItem
+            this.exportItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.textItem,
+            this.exportToPngItem});
+            this.exportItem.Name = "exportItem";
+            this.exportItem.Size = new System.Drawing.Size(154, 22);
+            this.exportItem.Text = "Export";
             // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // textItem
             // 
-            // saveAsToolStripMenuItem
+            this.textItem.Name = "textItem";
+            this.textItem.Size = new System.Drawing.Size(145, 22);
+            this.textItem.Text = "Text";
+            this.textItem.Click += new System.EventHandler(this.textItem_Click);
             // 
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.saveAsToolStripMenuItem.Text = "Save As";
-            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
+            // exportToPngItem
             // 
-            // exportToolStripMenuItem
+            this.exportToPngItem.Name = "exportToPngItem";
+            this.exportToPngItem.Size = new System.Drawing.Size(145, 22);
+            this.exportToPngItem.Text = "Export to png";
+            this.exportToPngItem.Click += new System.EventHandler(this.exportToPngItem_Click);
             // 
-            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.textToolStripMenuItem,
-            this.exportToPngToolStripMenuItem});
-            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.exportToolStripMenuItem.Text = "Export";
+            // openItem
             // 
-            // textToolStripMenuItem
+            this.openItem.Name = "openItem";
+            this.openItem.Size = new System.Drawing.Size(154, 22);
+            this.openItem.Text = "Open";
+            this.openItem.Click += new System.EventHandler(this.openItem_Click);
             // 
-            this.textToolStripMenuItem.Name = "textToolStripMenuItem";
-            this.textToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-            this.textToolStripMenuItem.Text = "Text";
-            this.textToolStripMenuItem.Click += new System.EventHandler(this.textToolStripMenuItem_Click);
+            // openDiagramDirectoryItem
             // 
-            // exportToPngToolStripMenuItem
+            this.openDiagramDirectoryItem.Name = "openDiagramDirectoryItem";
+            this.openDiagramDirectoryItem.Size = new System.Drawing.Size(154, 22);
+            this.openDiagramDirectoryItem.Text = "Open Directory";
+            this.openDiagramDirectoryItem.Click += new System.EventHandler(this.openDiagramDirectoryItem_Click);
             // 
-            this.exportToPngToolStripMenuItem.Name = "exportToPngToolStripMenuItem";
-            this.exportToPngToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-            this.exportToPngToolStripMenuItem.Text = "Export to png";
-            this.exportToPngToolStripMenuItem.Click += new System.EventHandler(this.exportToPngToolStripMenuItem_Click);
+            // exitItem
             // 
-            // openToolStripMenuItem
+            this.exitItem.Name = "exitItem";
+            this.exitItem.Size = new System.Drawing.Size(154, 22);
+            this.exitItem.Text = "Exit";
+            this.exitItem.Click += new System.EventHandler(this.exitItem_Click);
             // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // editMenuItem
             // 
-            // openDirectoryToolStripMenuItem
+            this.editMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyItem,
+            this.cutItem,
+            this.pasteItem,
+            this.editSeparator,
+            this.copyLinkItem,
+            this.copyNoteItem
+            });
+            this.editMenuItem.Name = "editMenuItem";
+            this.editMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.editMenuItem.Text = "Edit";
             // 
-            this.openDirectoryToolStripMenuItem.Name = "openDirectoryToolStripMenuItem";
-            this.openDirectoryToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.openDirectoryToolStripMenuItem.Text = "Open Directory";
-            this.openDirectoryToolStripMenuItem.Click += new System.EventHandler(this.openDirectoryToolStripMenuItem_Click);
+            // copyItem
             // 
-            // exitToolStripMenuItem
+            this.copyItem.Name = "editItem";
+            this.copyItem.Size = new System.Drawing.Size(164, 22);
+            this.copyItem.Text = "Copy";
+            this.copyItem.Click += new System.EventHandler(this.copyItem_Click);
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // cutItem
             // 
-            // screenToolStripMenuItem
+            this.cutItem.Name = "editItem";
+            this.cutItem.Size = new System.Drawing.Size(164, 22);
+            this.cutItem.Text = "Cut";
+            this.cutItem.Click += new System.EventHandler(this.cutItem_Click);
+            // 
+            // pasteItem
+            // 
+            this.pasteItem.Name = "editItem";
+            this.pasteItem.Size = new System.Drawing.Size(164, 22);
+            this.pasteItem.Text = "Paste";
+            this.pasteItem.Click += new System.EventHandler(this.pasteItem_Click);
+            // 
+            // editSeparator
             // 
-            this.screenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.centerToolStripMenuItem,
-            this.setStartPositionToolStripMenuItem});
-            this.screenToolStripMenuItem.Name = "screenToolStripMenuItem";
-            this.screenToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.screenToolStripMenuItem.Text = "Screen";
+            this.editSeparator.Name = "editSeparator";
+            this.editSeparator.Size = new System.Drawing.Size(161, 6);
             // 
-            // centerToolStripMenuItem
+            // copyLinkItem
+            // 
+            this.copyLinkItem.Name = "copyLinkItem";
+            this.copyLinkItem.Size = new System.Drawing.Size(164, 22);
+            this.copyLinkItem.Text = "Copy link";
+            this.copyLinkItem.Click += new System.EventHandler(this.copyLinkItem_Click);
             // 
-            this.centerToolStripMenuItem.Name = "centerToolStripMenuItem";
-            this.centerToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.centerToolStripMenuItem.Text = "Center";
-            this.centerToolStripMenuItem.Click += new System.EventHandler(this.centerToolStripMenuItem_Click);
+            // copyNoteItem
             // 
-            // setStartPositionToolStripMenuItem
+            this.copyNoteItem.Name = "copyNoteItem";
+            this.copyNoteItem.Size = new System.Drawing.Size(164, 22);
+            this.copyNoteItem.Text = "Copy note";
+            this.copyNoteItem.Click += new System.EventHandler(this.copyNoteItem_Click);
             // 
-            this.setStartPositionToolStripMenuItem.Name = "setStartPositionToolStripMenuItem";
-            this.setStartPositionToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.setStartPositionToolStripMenuItem.Text = "Set start position";
-            this.setStartPositionToolStripMenuItem.Click += new System.EventHandler(this.setStartPositionToolStripMenuItem_Click);
+            // viewItem
             // 
-            // viewToolStripMenuItem
+            this.viewItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newViewItem,
+            this.centerItem,
+            this.setStartPositionItem});
+            this.viewItem.Name = "viewItem";
+            this.viewItem.Size = new System.Drawing.Size(164, 22);
+            this.viewItem.Text = "View";
             // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newViewToolStripMenuItem});
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.viewToolStripMenuItem.Text = "View";
+            // newViewItem
+            // 
+            this.newViewItem.Name = "newViewItem";
+            this.newViewItem.Size = new System.Drawing.Size(126, 22);
+            this.newViewItem.Text = "New View";
+            this.newViewItem.Click += new System.EventHandler(this.newViewItem_Click);
+            // 
+            // centerItem
             // 
-            // newViewToolStripMenuItem
+            this.centerItem.Name = "centerItem";
+            this.centerItem.Size = new System.Drawing.Size(162, 22);
+            this.centerItem.Text = "Center";
+            this.centerItem.Click += new System.EventHandler(this.centerItem_Click);
+            // 
+            // setStartPositionItem
             // 
-            this.newViewToolStripMenuItem.Name = "newViewToolStripMenuItem";
-            this.newViewToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.newViewToolStripMenuItem.Text = "New View";
-            this.newViewToolStripMenuItem.Click += new System.EventHandler(this.newViewToolStripMenuItem_Click);
+            this.setStartPositionItem.Name = "setStartPositionItem";
+            this.setStartPositionItem.Size = new System.Drawing.Size(162, 22);
+            this.setStartPositionItem.Text = "Set start position";
+            this.setStartPositionItem.Click += new System.EventHandler(this.setStartPositionItem_Click);
             // 
-            // layerToolStripMenuItem
+            // layerItem
             // 
-            this.layerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.inToolStripMenuItem,
-            this.outToolStripMenuItem});
-            this.layerToolStripMenuItem.Name = "layerToolStripMenuItem";
-            this.layerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.layerToolStripMenuItem.Text = "Layer";
+            this.layerItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.inItem,
+            this.outItem});
+            this.layerItem.Name = "layerItem";
+            this.layerItem.Size = new System.Drawing.Size(164, 22);
+            this.layerItem.Text = "Layer";
             // 
-            // inToolStripMenuItem
+            // inItem
             // 
-            this.inToolStripMenuItem.Name = "inToolStripMenuItem";
-            this.inToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
-            this.inToolStripMenuItem.Text = "In";
-            this.inToolStripMenuItem.Click += new System.EventHandler(this.inToolStripMenuItem_Click);
+            this.inItem.Name = "inItem";
+            this.inItem.Size = new System.Drawing.Size(94, 22);
+            this.inItem.Text = "In";
+            this.inItem.Click += new System.EventHandler(this.inItem_Click);
+            // 
+            // outItem
+            // 
+            this.outItem.Name = "outItem";
+            this.outItem.Size = new System.Drawing.Size(94, 22);
+            this.outItem.Text = "Out";
+            this.outItem.Click += new System.EventHandler(this.outItem_Click);
+            // 
+            // helpSeparator
+            // 
+            this.helpSeparator.Name = "helpSeparator";
+            this.helpSeparator.Size = new System.Drawing.Size(161, 6);
             // 
-            // outToolStripMenuItem
+            // optionItem
+            // 
+            this.optionItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.encryptItem,
+            this.changePasswordItem,
+            this.readonlyItem,
+            this.gridItem,
+            this.coordinatesItem,
+            this.bordersItem,
+            this.defaultFontItem,
+            this.resetFontItem});
+            this.optionItem.Name = "optionItem";
+            this.optionItem.Size = new System.Drawing.Size(164, 22);
+            this.optionItem.Text = "Option";
             // 
-            this.outToolStripMenuItem.Name = "outToolStripMenuItem";
-            this.outToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
-            this.outToolStripMenuItem.Text = "Out";
-            this.outToolStripMenuItem.Click += new System.EventHandler(this.outToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(161, 6);
-            // 
-            // optionToolStripMenuItem
-            // 
-            this.optionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.encryptToolStripMenuItem,
-            this.changePasswordToolStripMenuItem,
-            this.readonlyToolStripMenuItem,
-            this.gridToolStripMenuItem,
-            this.coordinatesToolStripMenuItem,
-            this.bordersToolStripMenuItem,
-            this.defaultFontToolStripMenuItem,
-            this.resetFontToolStripMenuItem});
-            this.optionToolStripMenuItem.Name = "optionToolStripMenuItem";
-            this.optionToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.optionToolStripMenuItem.Text = "Option";
-            // 
-            // encryptToolStripMenuItem
-            // 
-            this.encryptToolStripMenuItem.Name = "encryptToolStripMenuItem";
-            this.encryptToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.encryptToolStripMenuItem.Text = "Encrypt";
-            this.encryptToolStripMenuItem.Click += new System.EventHandler(this.encryptToolStripMenuItem_Click);
-            // 
-            // changePasswordToolStripMenuItem
-            // 
-            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.changePasswordToolStripMenuItem.Text = "Change password";
-            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
-            // 
-            // readonlyToolStripMenuItem
-            // 
-            this.readonlyToolStripMenuItem.CheckOnClick = true;
-            this.readonlyToolStripMenuItem.Name = "readonlyToolStripMenuItem";
-            this.readonlyToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.readonlyToolStripMenuItem.Text = "Read only";
-            this.readonlyToolStripMenuItem.Click += new System.EventHandler(this.readonlyToolStripMenuItem_Click);
-            // 
-            // gridToolStripMenuItem
-            // 
-            this.gridToolStripMenuItem.Checked = true;
-            this.gridToolStripMenuItem.CheckOnClick = true;
-            this.gridToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.gridToolStripMenuItem.Name = "gridToolStripMenuItem";
-            this.gridToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.gridToolStripMenuItem.Text = "Grid";
-            this.gridToolStripMenuItem.Click += new System.EventHandler(this.gridToolStripMenuItem_Click);
-            // 
-            // coordinatesToolStripMenuItem
-            // 
-            this.coordinatesToolStripMenuItem.CheckOnClick = true;
-            this.coordinatesToolStripMenuItem.Name = "coordinatesToolStripMenuItem";
-            this.coordinatesToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.coordinatesToolStripMenuItem.Text = "Coordinates";
-            this.coordinatesToolStripMenuItem.Visible = false;
-            this.coordinatesToolStripMenuItem.Click += new System.EventHandler(this.coordinatesToolStripMenuItem_Click);
-            // 
-            // bordersToolStripMenuItem
-            // 
-            this.bordersToolStripMenuItem.CheckOnClick = true;
-            this.bordersToolStripMenuItem.Name = "bordersToolStripMenuItem";
-            this.bordersToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.bordersToolStripMenuItem.Text = "Borders";
-            this.bordersToolStripMenuItem.Click += new System.EventHandler(this.bordersToolStripMenuItem_Click);
-            // 
-            // defaultFontToolStripMenuItem
-            // 
-            this.defaultFontToolStripMenuItem.Name = "defaultFontToolStripMenuItem";
-            this.defaultFontToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.defaultFontToolStripMenuItem.Text = "Default font";
-            this.defaultFontToolStripMenuItem.Click += new System.EventHandler(this.defaultFontToolStripMenuItem_Click);
-            // 
-            // resetFontToolStripMenuItem
-            // 
-            this.resetFontToolStripMenuItem.Name = "resetFontToolStripMenuItem";
-            this.resetFontToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.resetFontToolStripMenuItem.Text = "Reset font";
-            this.resetFontToolStripMenuItem.Click += new System.EventHandler(this.resetFontToolStripMenuItem_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.consoleToolStripMenuItem,
-            this.visitWebsiteToolStripMenuItem,
-            this.releaseNoteToolStripMenuItem,
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // consoleToolStripMenuItem
-            // 
-            this.consoleToolStripMenuItem.Name = "consoleToolStripMenuItem";
-            this.consoleToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.consoleToolStripMenuItem.Text = "Debug Console";
-            this.consoleToolStripMenuItem.Visible = false;
-            this.consoleToolStripMenuItem.Click += new System.EventHandler(this.consoleToolStripMenuItem_Click);
-            // 
-            // visitWebsiteToolStripMenuItem
-            // 
-            this.visitWebsiteToolStripMenuItem.Name = "visitWebsiteToolStripMenuItem";
-            this.visitWebsiteToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.visitWebsiteToolStripMenuItem.Text = "Visit homesite";
-            this.visitWebsiteToolStripMenuItem.Click += new System.EventHandler(this.visitWebsiteToolStripMenuItem_Click);
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // releaseNoteToolStripMenuItem
-            // 
-            this.releaseNoteToolStripMenuItem.Name = "releaseNoteToolStripMenuItem";
-            this.releaseNoteToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.releaseNoteToolStripMenuItem.Text = "Release Note";
-            this.releaseNoteToolStripMenuItem.Click += new System.EventHandler(this.releaseNoteToolStripMenuItem_Click);
+            // encryptItem
+            // 
+            this.encryptItem.Name = "encryptItem";
+            this.encryptItem.Size = new System.Drawing.Size(168, 22);
+            this.encryptItem.Text = "Encrypt";
+            this.encryptItem.Click += new System.EventHandler(this.encryptItem_Click);
+            // 
+            // changePasswordItem
+            // 
+            this.changePasswordItem.Name = "changePasswordItem";
+            this.changePasswordItem.Size = new System.Drawing.Size(168, 22);
+            this.changePasswordItem.Text = "Change password";
+            this.changePasswordItem.Click += new System.EventHandler(this.changePasswordItem_Click);
+            // 
+            // readonlyItem
+            // 
+            this.readonlyItem.CheckOnClick = true;
+            this.readonlyItem.Name = "readonlyItem";
+            this.readonlyItem.Size = new System.Drawing.Size(168, 22);
+            this.readonlyItem.Text = "Read only";
+            this.readonlyItem.Click += new System.EventHandler(this.readonlyItem_Click);
+            // 
+            // gridItem
+            // 
+            this.gridItem.Checked = true;
+            this.gridItem.CheckOnClick = true;
+            this.gridItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.gridItem.Name = "gridItem";
+            this.gridItem.Size = new System.Drawing.Size(168, 22);
+            this.gridItem.Text = "Grid";
+            this.gridItem.Click += new System.EventHandler(this.gridItem_Click);
+            // 
+            // coordinatesItem
+            // 
+            this.coordinatesItem.CheckOnClick = true;
+            this.coordinatesItem.Name = "coordinatesItem";
+            this.coordinatesItem.Size = new System.Drawing.Size(168, 22);
+            this.coordinatesItem.Text = "Coordinates";
+            this.coordinatesItem.Visible = false;
+            this.coordinatesItem.Click += new System.EventHandler(this.coordinatesItem_Click);
+            // 
+            // bordersItem
+            // 
+            this.bordersItem.CheckOnClick = true;
+            this.bordersItem.Name = "bordersItem";
+            this.bordersItem.Size = new System.Drawing.Size(168, 22);
+            this.bordersItem.Text = "Borders";
+            this.bordersItem.Click += new System.EventHandler(this.bordersItem_Click);
+            // 
+            // defaultFontItem
+            // 
+            this.defaultFontItem.Name = "defaultFontItem";
+            this.defaultFontItem.Size = new System.Drawing.Size(168, 22);
+            this.defaultFontItem.Text = "Default font";
+            this.defaultFontItem.Click += new System.EventHandler(this.defaultFontItem_Click);
+            // 
+            // resetFontItem
+            // 
+            this.resetFontItem.Name = "resetFontItem";
+            this.resetFontItem.Size = new System.Drawing.Size(168, 22);
+            this.resetFontItem.Text = "Reset font";
+            this.resetFontItem.Click += new System.EventHandler(this.resetFontItem_Click);
+            // 
+            // helpItem
+            // 
+            this.helpItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.consoleItem,
+            this.visitWebsiteItem,
+            this.releaseNoteItem,
+            this.aboutItem});
+            this.helpItem.Name = "helpItem";
+            this.helpItem.Size = new System.Drawing.Size(164, 22);
+            this.helpItem.Text = "Help";
+            // 
+            // consoleItem
+            // 
+            this.consoleItem.Name = "consoleItem";
+            this.consoleItem.Size = new System.Drawing.Size(155, 22);
+            this.consoleItem.Text = "Debug Console";
+            this.consoleItem.Visible = false;
+            this.consoleItem.Click += new System.EventHandler(this.consoleItem_Click);
+            // 
+            // visitWebsiteItem
+            // 
+            this.visitWebsiteItem.Name = "visitWebsiteItem";
+            this.visitWebsiteItem.Size = new System.Drawing.Size(155, 22);
+            this.visitWebsiteItem.Text = "Visit homesite";
+            this.visitWebsiteItem.Click += new System.EventHandler(this.visitWebsiteItem_Click);
+            // 
+            // releaseNoteItem
+            // 
+            this.releaseNoteItem.Name = "releaseNoteItem";
+            this.releaseNoteItem.Size = new System.Drawing.Size(155, 22);
+            this.releaseNoteItem.Text = "Release Note";
+            this.releaseNoteItem.Click += new System.EventHandler(this.releaseNoteItem_Click);
+            // 
+            // aboutItem
+            // 
+            this.aboutItem.Name = "aboutItem";
+            this.aboutItem.Size = new System.Drawing.Size(155, 22);
+            this.aboutItem.Text = "About";
+            this.aboutItem.Click += new System.EventHandler(this.aboutItem_Click);
             // 
             // Popup
             // 
@@ -533,47 +602,68 @@ namespace Diagram
         // MENU Manage                                                                                // POPUP MENU
         public void PopupMenu_Opening(object sender, CancelEventArgs e)
         {
+            // NEW FILE
+            if (this.diagramView.diagram.isNew())
+            {
+                this.openDiagramDirectoryItem.Enabled = false;
+            }
+            else
+            {
+                this.openDiagramDirectoryItem.Enabled = true;
+            }
+
+            // SELECTION EMPTY
             if (this.diagramView.SelectedNodes.Count() == 0)
             {
-                editToolStripMenuItem.Visible = false;
-                colorToolStripMenuItem.Visible = false;
-                linkToolStripMenuItem.Visible = false;
-                copylinkToolStripMenuItem.Enabled = false;
-                openlinkToolStripMenuItem.Enabled = false;
-                toolStripMenuItem2.Visible = false;//separator
-                alignToolStripMenuItem.Visible = false;
-                removeShortcutToolStripMenuItem.Visible = false;
-                openDirectoryToolStripMenuItem1.Visible = false;
+                editItem.Visible = false;
+                colorItem.Visible = false;
+                linkItem.Visible = false;
+                openlinkItem.Enabled = false;
+                quickActionSeparator.Visible = false;//separator
+                alignItem.Visible = false;
+                removeShortcutItem.Visible = false;
+                openLinkDirectoryItem.Visible = false;
+                copyItem.Enabled = false;
+                cutItem.Enabled = false;
+                copyLinkItem.Enabled = false;
+                copyNoteItem.Enabled = false;
             }
 
+            // SELECTION NOT EMPTY
+            if (this.diagramView.SelectedNodes.Count() > 0)
+            {
+                editItem.Visible = true;
+                colorItem.Visible = true;
+                quickActionSeparator.Visible = true;//separator
+                copyItem.Enabled = true;
+                cutItem.Enabled = true;
+                copyLinkItem.Enabled = true;
+                copyNoteItem.Enabled = true;
+            }
+
+            // SELECTION ONE
             if (this.diagramView.SelectedNodes.Count() == 1)
             {
-                editToolStripMenuItem.Visible = true;
-                colorToolStripMenuItem.Visible = true;
-                linkToolStripMenuItem.Visible = this.diagramView.SelectedNodes[0].link.Trim() != "";
-                copylinkToolStripMenuItem.Enabled = this.diagramView.SelectedNodes[0].link.Trim() != "";
-                openlinkToolStripMenuItem.Enabled = this.diagramView.SelectedNodes[0].link.Trim() != "";
-                toolStripMenuItem2.Visible = true;//separator
-                alignToolStripMenuItem.Visible = false;
-                openDirectoryToolStripMenuItem1.Visible = false;
+                linkItem.Visible = this.diagramView.SelectedNodes[0].link.Trim() != "";
+                copyLinkItem.Enabled = this.diagramView.SelectedNodes[0].link.Trim() != "";
+                openlinkItem.Enabled = this.diagramView.SelectedNodes[0].link.Trim() != "";
+                alignItem.Visible = false;
+                openLinkDirectoryItem.Visible = false;
                 if (this.diagramView.SelectedNodes[0].link.Trim().Length > 0 && File.Exists(this.diagramView.SelectedNodes[0].link))
-                    openDirectoryToolStripMenuItem1.Visible = true;
-
+                    openLinkDirectoryItem.Visible = true;
             }
 
+            // SELECTION MORE THEN ONE
             if (this.diagramView.SelectedNodes.Count() > 1)
             {
-                editToolStripMenuItem.Visible = false;
-                colorToolStripMenuItem.Visible = true;
-                linkToolStripMenuItem.Visible = false;
-                copylinkToolStripMenuItem.Enabled = false;
-                openlinkToolStripMenuItem.Enabled = false;
-                toolStripMenuItem2.Visible = true; //separator
-                alignToolStripMenuItem.Visible = true;
-                removeShortcutToolStripMenuItem.Visible = false;
-                openDirectoryToolStripMenuItem1.Visible = false;
+                linkItem.Visible = false;
+                openlinkItem.Enabled = false;
+                alignItem.Visible = true;
+                removeShortcutItem.Visible = false;
+                openLinkDirectoryItem.Visible = false;
             }
 
+            // REMOVE SHORTCUT
             if (this.diagramView.SelectedNodes.Count() > 0)
             {
                 bool hasShortcut = false;
@@ -588,25 +678,63 @@ namespace Diagram
 
                 if (hasShortcut)
                 {
-                    removeShortcutToolStripMenuItem.Visible = true;
+                    removeShortcutItem.Visible = true;
                 }
             }
 
+            // PASSWORD IS SET 
             if (this.diagramView.diagram.password == "")
             {
-                changePasswordToolStripMenuItem.Visible = false;
-                encryptToolStripMenuItem.Visible = true;
+                changePasswordItem.Visible = false;
+                encryptItem.Visible = true;
             }
             else
             {
-                changePasswordToolStripMenuItem.Visible = true;
-                encryptToolStripMenuItem.Visible = false;
+                changePasswordItem.Visible = true;
+                encryptItem.Visible = false;
             }
 
+            // CLIPBOARD
+            DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
+            if (retrievedData.GetDataPresent("DiagramXml")
+            || retrievedData.GetDataPresent(DataFormats.Text)
+            || Clipboard.ContainsFileDropList()
+            || Clipboard.GetDataObject() != null)
+            {
+                pasteItem.Text = "Paste";
+                pasteItem.Enabled = true;
+
+                if (retrievedData.GetDataPresent("DiagramXml")) {
+                    pasteItem.Text += " diagram";
+                }
+                else
+                if (retrievedData.GetDataPresent(DataFormats.Text))
+                {
+                    pasteItem.Text += " text";
+                }
+                else
+                if (Clipboard.ContainsFileDropList())
+                {
+                    pasteItem.Text += " files";
+                }
+                else
+                if (Clipboard.GetDataObject() != null)
+                {
+                    IDataObject data = Clipboard.GetDataObject();
+                    if (data.GetDataPresent(DataFormats.Bitmap)) {
+                        pasteItem.Text += " image";
+                    }
+                }
+
+            }
+            else
+            {
+                pasteItem.Enabled = false;
+            }
         }
 
         // MENU Edit
-        public void editToolStripMenuItem_Click(object sender, EventArgs e)
+        public void editItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.SelectedNodes.Count() == 1)
             {
@@ -615,7 +743,7 @@ namespace Diagram
         }
 
         // MENU Link Open
-        public void openlinkToolStripMenuItem1_Click(object sender, EventArgs e)
+        public void openlinkItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.SelectedNodes.Count() > 0)
             {
@@ -623,35 +751,26 @@ namespace Diagram
             }
         }
 
-        // MENU Link Copy
-        public void copylinkToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            if (this.diagramView.SelectedNodes.Count() > 0)
-            {
-                this.diagramView.copyLinkToClipboard(this.diagramView.SelectedNodes[0]);
-            }
-        }
-
         // MENU New
-        public void newToolStripMenuItem_Click(object sender, EventArgs e)
+        public void newItem_Click(object sender, EventArgs e)
         {
             this.diagramView.main.OpenDiagram();
         }
 
         // MENU Save
-        public void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        public void saveItem_Click(object sender, EventArgs e)
         {
             this.diagramView.save();
         }
 
         // MENU Save As
-        public void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        public void saveAsItem_Click(object sender, EventArgs e)
         {
             this.diagramView.saveas();
         }
 
         // MENU export to png
-        private void exportToPngToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exportToPngItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.exportFile.ShowDialog() == DialogResult.OK)
             {
@@ -660,7 +779,7 @@ namespace Diagram
         }
 
         // MENU export to txt
-        private void textToolStripMenuItem_Click(object sender, EventArgs e)
+        private void textItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.saveTextFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -669,19 +788,19 @@ namespace Diagram
         }
 
         // MENU Open
-        public void openToolStripMenuItem_Click(object sender, EventArgs e)
+        public void openItem_Click(object sender, EventArgs e)
         {
             this.diagramView.open();
         }
 
         // MENU Open Directory  - otvory adresar v ktorom sa nachadza prave otvreny subor
-        public void openDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        public void openDiagramDirectoryItem_Click(object sender, EventArgs e)
         {
             this.diagramView.openDiagramDirectory();
         }
 
         // MENU Encription
-        private void encryptToolStripMenuItem_Click(object sender, EventArgs e)
+        private void encryptItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.main.newPasswordForm == null)
             {
@@ -698,7 +817,7 @@ namespace Diagram
         }
 
         // MENU Change password
-        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        private void changePasswordItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.main.changePasswordForm == null)
             {
@@ -716,77 +835,107 @@ namespace Diagram
         }
 
         // MENU Console
-        public void consoleToolStripMenuItem_Click(object sender, EventArgs e)
+        public void consoleItem_Click(object sender, EventArgs e)
         {
             this.diagramView.showConsole();
         }
 
         // MENU Exit
-        public void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        public void exitItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        // MENU Copy
+        public void copyItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.copy();
+        }
+
+        // MENU cut
+        public void cutItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.cut();
+        }
+
+        // MENU paste
+        public void pasteItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.paste();
+        }
+
+        // MENU Copy link
+        public void copyLinkItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.copyLink();
+        }
+
+        // MENU Copy note
+        public void copyNoteItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.copyNote();
+        }
+
         // MENU Center
-        public void centerToolStripMenuItem_Click(object sender, EventArgs e)
+        public void centerItem_Click(object sender, EventArgs e)
         {
             this.diagramView.GoToHome();
         }
 
         // MENU set home position
-        private void setStartPositionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void setStartPositionItem_Click(object sender, EventArgs e)
         {
             this.diagramView.setCurentPositionAsHomePosition();
         }
 
         // MENU Read only
-        public void readonlyToolStripMenuItem_Click(object sender, EventArgs e)
+        public void readonlyItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.diagram.options.readOnly = this.readonlyToolStripMenuItem.Checked;
+            this.diagramView.diagram.options.readOnly = this.readonlyItem.Checked;
         }
 
         // MENU Grid check
-        public void gridToolStripMenuItem_Click(object sender, EventArgs e)
+        public void gridItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.diagram.options.grid = this.gridToolStripMenuItem.Checked;
+            this.diagramView.diagram.options.grid = this.gridItem.Checked;
             this.diagramView.diagram.InvalidateDiagram();
         }
 
         // MENU Option Borders
-        public void bordersToolStripMenuItem_Click(object sender, EventArgs e)
+        public void bordersItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.diagram.options.borders = this.bordersToolStripMenuItem.Checked;
+            this.diagramView.diagram.options.borders = this.bordersItem.Checked;
             this.diagramView.diagram.InvalidateDiagram();
         }
 
         // MENU Option Default font
-        public void defaultFontToolStripMenuItem_Click(object sender, EventArgs e)
+        public void defaultFontItem_Click(object sender, EventArgs e)
         {
             this.diagramView.selectDefaultFont();
         }
 
         // MENU coordinates
-        public void coordinatesToolStripMenuItem_Click(object sender, EventArgs e)
+        public void coordinatesItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.diagram.options.coordinates = this.coordinatesToolStripMenuItem.Checked;
+            this.diagramView.diagram.options.coordinates = this.coordinatesItem.Checked;
             this.diagramView.diagram.InvalidateDiagram();
         }
 
         // MENU Change color
-        public void colorToolStripMenuItem_Click(object sender, EventArgs e)
+        public void colorItem_Click(object sender, EventArgs e)
         {
             this.diagramView.selectColor();
         }
 
         // MENU VIEW NEW VIEW
-        private void newViewToolStripMenuItem_Click(object sender, EventArgs e)
+        private void newViewItem_Click(object sender, EventArgs e)
         {
             // otvorenie novej insancie DiagramView
             this.diagramView.diagram.openDiagramView();
         }
 
         // MENU Layer In
-        public void inToolStripMenuItem_Click(object sender, EventArgs e)
+        public void inItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.SelectedNodes.Count() == 1)
             {
@@ -795,13 +944,13 @@ namespace Diagram
         }
 
         // MENU Layer Out
-        public void outToolStripMenuItem_Click(object sender, EventArgs e)
+        public void outItem_Click(object sender, EventArgs e)
         {
             this.diagramView.LayerOut();
         }
 
         // MENU align left
-        private void leftToolStripMenuItem_Click(object sender, EventArgs e)
+        private void leftItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.SelectedNodes.Count() > 0)
             {
@@ -812,7 +961,7 @@ namespace Diagram
         }
 
         // MENU align right
-        private void rightToolStripMenuItem_Click(object sender, EventArgs e)
+        private void rightItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.SelectedNodes.Count() > 0)
             {
@@ -823,7 +972,7 @@ namespace Diagram
         }
 
         // MENU align to line
-        private void toLineToolStripMenuItem_Click(object sender, EventArgs e)
+        private void toLineItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.SelectedNodes.Count() > 0)
             {
@@ -834,7 +983,7 @@ namespace Diagram
         }
 
         // MENU align to column
-        private void inColumnToolStripMenuItem_Click(object sender, EventArgs e)
+        private void inColumnItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.SelectedNodes.Count() > 0)
             {
@@ -845,7 +994,7 @@ namespace Diagram
         }
 
         // MENU align to group to column
-        private void groupToolStripMenuItem_Click(object sender, EventArgs e)
+        private void groupItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.SelectedNodes.Count() > 0)
             {
@@ -856,7 +1005,7 @@ namespace Diagram
         }
 
         // MENU remove shortcut
-        private void removeShortcutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void removeShortcutItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.SelectedNodes.Count() > 0)
             {
@@ -865,13 +1014,13 @@ namespace Diagram
         }
 
         // MENU open directory for file in link
-        private void openDirectoryToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void openLinkDirectoryItem_Click(object sender, EventArgs e)
         {
             this.diagramView.openLinkDirectory();
         }
 
         // MENU reset font
-        private void resetFontToolStripMenuItem_Click(object sender, EventArgs e)
+        private void resetFontItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.SelectedNodes.Count() > 0)
             {
@@ -883,14 +1032,14 @@ namespace Diagram
             }
         }
 
-        // MENU Homepage navštíviť domovskú stránku
-        private void visitWebsiteToolStripMenuItem_Click(object sender, EventArgs e)
+        // MENU visit homepage
+        private void visitWebsiteItem_Click(object sender, EventArgs e)
         {
             Network.openUrl(this.diagramView.main.options.home_page);
         }
 
         // MENU Show release note
-        private void releaseNoteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void releaseNoteItem_Click(object sender, EventArgs e)
         {
             string releasNotePath = Os.getCurrentApplicationDirectory() + Os.getSeparator() + this.diagramView.main.options.release_note;
             if (Os.FileExists(releasNotePath))
@@ -905,8 +1054,8 @@ namespace Diagram
             }
         }
 
-        // MENU About navštíviť domovskú stránku
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        // MENU show About form
+        private void aboutItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.main.aboutForm == null)
             {

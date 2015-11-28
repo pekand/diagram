@@ -365,6 +365,19 @@ namespace Diagram
             return new Position(ptCursor.X, ptCursor.Y);
         }
 
+        // FORM hide
+        public bool formHide()
+        {
+            if (!this.diagram.SavedFile && this.diagram.FileName != "")  //treba overit ci existuje a dat dialg na ulozenie ako
+            {
+                this.diagram.SaveXMLFile(this.diagram.FileName);
+                this.diagram.NewFile = false;
+                this.diagram.SavedFile = true;
+            }
+            this.WindowState = FormWindowState.Minimized;
+            return true;
+        }
+         
         /*************************************************************************************************************************/
 
         // SELECTION Zisti ci je noda vo vybere
@@ -471,9 +484,9 @@ namespace Diagram
                 this.ActiveControl = null;
             }
 
-            this.startMousePos.x = e.X;  // povodna pozicia mysi
+            this.startMousePos.x = e.X;  // starting mouse position
             this.startMousePos.y = e.Y;
-            this.startShift.x = this.shift.x;  //povodne odsadenie
+            this.startShift.x = this.shift.x;  // starting indent
             this.startShift.y = this.shift.y;
 
             if (e.Button == MouseButtons.Left)
@@ -494,7 +507,7 @@ namespace Diagram
                     return;
                 }
                 else
-                if (this.editPanel.editing) // zavretie editačného panelu ak sa klikne mimo
+                if (this.editPanel.editing) // close edit panel after mouse click to form
                 {
                     this.editPanel.saveNodeNamePanel();
                 }
@@ -503,13 +516,13 @@ namespace Diagram
                 {
                     this.actualMousePos.x = e.X;
                     this.actualMousePos.y = e.Y;
-                    if (!this.diagram.options.readOnly && this.keyctrl && !this.keyshift && !this.keyalt) // pridanie nody tahanim
+                    if (!this.diagram.options.readOnly && this.keyctrl && !this.keyshift && !this.keyalt) // add node by drag
                     {
                         this.addingNode = true;
                         MoveTimer.Enabled = true;
                         this.ClearSelection();
                     }
-                    else // multivyber
+                    else // multiselect
                     {
                         this.selecting = true;
                         MoveTimer.Enabled = true;
@@ -517,14 +530,14 @@ namespace Diagram
                 }
                 else if (this.SourceNode != null)
                 {
-                    //informacie potrebne pre tahanie
+                    //informations for draging
                     if (!this.diagram.options.readOnly)
                     {
                         this.drag = true;
                         MoveTimer.Enabled = true;
-                        this.startNodePos.x = this.SourceNode.position.x; // povodna pozicia tahaneho objektu
+                        this.startNodePos.x = this.SourceNode.position.x; // starting position of draging item
                         this.startNodePos.y = this.SourceNode.position.y;
-                        this.vmouse.x = (int)(e.X * this.scale - (this.shift.x + this.SourceNode.position.x)); // pozicia mysi vrámci stvorceku
+                        this.vmouse.x = (int)(e.X * this.scale - (this.shift.x + this.SourceNode.position.x)); // mouse position in node
                         this.vmouse.y = (int)(e.Y * this.scale - (this.shift.y + this.SourceNode.position.y));
 
                         if (!this.keyctrl && !this.isselected(this.SourceNode))
@@ -538,7 +551,7 @@ namespace Diagram
             else
             if (e.Button == MouseButtons.Right)
             {
-                this.move = true; // popupmenu alebo posun obrazovky
+                this.move = true; // popupmenu or view move
             }
             else
             if (e.Button == MouseButtons.Middle)
@@ -547,7 +560,7 @@ namespace Diagram
                 {
                     this.actualMousePos.x = e.X;
                     this.actualMousePos.y = e.Y;
-                    this.addingNode = true;// pridanie nody tahanim
+                    this.addingNode = true;// add node by drag
                     MoveTimer.Enabled = true;
                 }
             }
@@ -608,8 +621,6 @@ namespace Diagram
             bool finishadding = this.addingNode;
             bool finishselecting = mousemove && this.selecting;
 
-            //int s = this.scale;
-
             int vectorx = e.X - this.startMousePos.x;
             int vectory = e.Y - this.startMousePos.y;
 
@@ -621,11 +632,11 @@ namespace Diagram
             }
             else
             // KEY DRAG
-            if (finishdraging) // posunutie objektu
+            if (finishdraging) // drag node
             {
                 if (!this.diagram.options.readOnly)
                 {
-                    if (this.SourceNode != null) // navrat bodu po tom ako sa vytvori spojenie do povodnej pozicie
+                    if (this.SourceNode != null) // return node to starting position after connection is created
                     {
                         this.SourceNode.position.x = this.startNodePos.x;
                         this.SourceNode.position.y = this.startNodePos.y;
@@ -640,7 +651,7 @@ namespace Diagram
                 this.diagram.InvalidateDiagram();
             }
             else
-            // KEY DRAG+MRIGHT výber prvkou ktoré sa nachádzajú vo výbere
+            // KEY DRAG+MRIGHT select nodes in selection rectangle
             if (finishselecting)
             {
                 if (mousemove)
@@ -653,20 +664,28 @@ namespace Diagram
                     if (c < a) { temp = a; a = c; c = temp; }
                     if (d < b) { temp = d; d = b; b = temp; }
                     if (!this.keyshift) this.ClearSelection();
-                    foreach (Node rec in diagram.Nodes) // LOOP through List with foreach
+                    foreach (Node rec in diagram.Nodes)
                     {
                         if (
                             (rec.layer == this.layer || rec.id == this.layer)
                             && -this.shift.x + a <= rec.position.x
                             && rec.position.x + rec.width <= -this.shift.x + c
                             && -this.shift.y + b <= rec.position.y
-                            && rec.position.y + rec.height <= -this.shift.y + d)
+                            && rec.position.y + rec.height <= -this.shift.y + d) // get all nodes in selection rectangle
                         {
-                            if (keyshift && !keyctrl && !keyalt)
+                            if (keyshift && !keyctrl && !keyalt) // KEY SHIFT+MLEFT Invert selection 
                             {
-                                this.RemoveNodeFromSelection(rec);
+                                if (rec.selected)
+                                {
+                                    this.RemoveNodeFromSelection(rec);
+                                }
+                                else
+                                {
+                                    this.SelectNode(rec);
+                                }
                             }
-                            else
+
+                            if (!keyshift && !keyctrl && !keyalt) // KEY MLEFT select nodes
                             {
                                 this.SelectNode(rec);
                             }
@@ -682,27 +701,41 @@ namespace Diagram
             if (buttonleft) // MLEFT
             {
 
-                if (bottomScrollBar != null && rightScrollBar!=null && (bottomScrollBar.MouseUp() || rightScrollBar.MouseUp()))
+                if (bottomScrollBar != null 
+                    && rightScrollBar!=null 
+                    && (bottomScrollBar.MouseUp() || rightScrollBar.MouseUp()))
                 {
                     this.diagram.InvalidateDiagram();
                 }else
                 // KEY MLEFT clear selection
-                if (!mousemove && TargetNode == null && this.SourceNode == null && this.SelectedNodes.Count() > 0 && !keyalt && !keyctrl && !keyshift)
+                if (!mousemove 
+                    && TargetNode == null 
+                    && this.SourceNode == null
+                    && this.SelectedNodes.Count() > 0 
+                    && !keyalt 
+                    && !keyctrl 
+                    && !keyshift)
                 {
                     this.ClearSelection();
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DRAG+CTRL Skopirovanie obdlznika
-                if (!isreadonly && keyctrl && TargetNode == null && this.SourceNode != null)
+                // KEY DRAG+CTRL copy of node
+                if (!isreadonly 
+                    && keyctrl 
+                    && TargetNode == null 
+                    && this.SourceNode != null)
                 {
                     this.AddDiagramPart(GetDiagramPart());
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DRAG+ALT vytvorenie nody a prepojenie s existujucou nodou
-                if (!isreadonly && keyalt && TargetNode == null && this.SourceNode != null)
+                // KEY DRAG+ALT create node and conect with existing node
+                if (!isreadonly 
+                    && keyalt 
+                    && TargetNode == null 
+                    && this.SourceNode != null)
                 {
                     var s = this.SourceNode;
                     var r = this.CreateNode(e.X, e.Y);
@@ -712,27 +745,38 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DRAG+ALT vytvorenie prepojenia(skratky) = odkazu medzi objektami
-                if (!isreadonly && keyalt && TargetNode != null && this.SourceNode != null && TargetNode != this.SourceNode)
+                // KEY DRAG+ALT create shortcut beetwen objects
+                if (!isreadonly 
+                    && keyalt 
+                    && TargetNode != null 
+                    && this.SourceNode != null 
+                    && TargetNode != this.SourceNode)
                 {
                     TargetNode.shortcut = this.SourceNode.id;
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DRAG Posunutie obdlznika
+                // KEY DRAG move node
                 if
                 (
-                    !isreadonly &&
-                    ((TargetNode == null && this.SourceNode != null) ||
-                     (TargetNode != null && this.SourceNode != TargetNode && this.isselected(TargetNode)) ||
-                    (TargetNode != null && this.SourceNode == TargetNode)) &&
-                    Math.Sqrt(vectorx*vectorx+vectory*vectory) > 5
+                    !isreadonly 
+                    && (
+                        (TargetNode == null && this.SourceNode != null) 
+                        || (
+                            TargetNode != null 
+                            && this.SourceNode != TargetNode 
+                            && this.isselected(TargetNode)
+                        ) 
+                        || (TargetNode != null && this.SourceNode == TargetNode)
+                    ) 
+                    && Math.Sqrt(vectorx*vectorx+vectory*vectory) > 5
                 )
                 {
                     this.SourceNode.position.x = (int)(-this.shift.x + (e.X * this.scale - this.vmouse.x));
                     this.SourceNode.position.y = (int)(-this.shift.y + (e.Y * this.scale - this.vmouse.y));
-                    if (this.SourceNode.id != this.layer && this.SourceNode.haslayer)
+                    if (this.SourceNode.id != this.layer 
+                        && this.SourceNode.haslayer)
                     {
                         this.MoveLayer(this.SourceNode, (e.X - this.startMousePos.x), (e.Y - this.startMousePos.y));
                         this.SourceNode.layershiftx -= (e.X - this.startMousePos.x);
@@ -767,7 +811,10 @@ namespace Diagram
                 }
                 else
                 // KEY DRAG+CTRL Vytvorenie noveho obdlznika a spojenie s existujucim
-                if (!isreadonly && keyctrl && TargetNode != null && this.SourceNode == null)
+                if (!isreadonly 
+                    && keyctrl 
+                    && TargetNode != null 
+                    && this.SourceNode == null)
                 {
                     this.diagram.Connect(this.CreateNode( +this.shift.x - startShift.x + this.startMousePos.x, +this.shift.y - startShift.y + this.startMousePos.y), TargetNode, false);
                     this.diagram.unsave();
@@ -775,19 +822,31 @@ namespace Diagram
                 }
                 else
                 // KEY DBLCLICK otvorenie editacie alebo linku [dblclick]
-                if (dblclick && this.SourceNode != null && !keyctrl && !keyalt && !keyshift)
+                if (dblclick 
+                    && this.SourceNode != null 
+                    && !keyctrl 
+                    && !keyalt 
+                    && !keyshift)
                 {
                     this.OpenLinkAsync(this.SourceNode);
                 }
                 else
                 // KEY DBLCLICK+SHIFT otvorenie editacie
-                if (dblclick && this.SourceNode != null && !keyctrl && !keyalt && keyshift)
+                if (dblclick 
+                    && this.SourceNode != null 
+                    && !keyctrl 
+                    && !keyalt 
+                    && keyshift)
                 {
                     this.diagram.EditNode(this.SourceNode);
                 }
                 else
                 // KEY DBLCLICK+CTRL otvorenie adresára ak má noda link na súbor alebo je adresár
-                if (dblclick && this.SourceNode != null && keyctrl && !keyalt && !keyshift)
+                if (dblclick 
+                    && this.SourceNode != null 
+                    && keyctrl 
+                    && !keyalt 
+                    && !keyshift)
                 {
                     if (this.SourceNode.link!="")
                     {
@@ -796,17 +855,31 @@ namespace Diagram
                 }
                 else
                 // KEY DBLCLICK+SPACE presunutie sa v zoomingu na novú pozíciu
-                if (dblclick && this.zooming && !keyctrl && !keyalt && !keyshift)
+                if (dblclick 
+                    && this.zooming 
+                    && !keyctrl 
+                    && !keyalt 
+                    && !keyshift)
                 {
                     this.shift.x = (int)(this.shift.x - (e.X * this.scale) + (this.ClientSize.Width * this.scale) / 2);
                     this.shift.y = (int)(this.shift.y - (e.Y * this.scale) + (this.ClientSize.Height * this.scale) / 2);
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY CTRL+SHIFT+MLEFT Vytvorenie novej nody a prepojenie s existujúcimi
-                if (!isreadonly && keyshift && keyctrl && TargetNode == null && this.SelectedNodes.Count() >0 && this.SourceNode == null && e.X == this.startMousePos.x && e.Y == this.startMousePos.y)
+                // KEY CTRL+SHIFT+MLEFT conect with selected nodes new node or selected node 
+                if (!isreadonly 
+                    && keyshift 
+                    && keyctrl 
+                    && this.SelectedNodes.Count() > 0  
+                    && e.X == this.startMousePos.x 
+                    && e.Y == this.startMousePos.y)
                 {
-                    Node newrec = this.CreateNode(e.X - 10, e.Y - 10, false);
+                    Node newrec = TargetNode;
+                    if (newrec == null)
+                    {
+                        newrec = this.CreateNode(e.X - 10, e.Y - 10, false);
+                    }
+
                     foreach (Node rec in this.SelectedNodes)
                     {
                         this.diagram.Connect(rec, newrec, false);
@@ -818,7 +891,12 @@ namespace Diagram
                 else
                 // KEY CTRL+MLEFT
                 // KEY DBLCLICK Vytvorenie noveho obdlznika
-                if (!isreadonly && (dblclick || keyctrl) && TargetNode == null && this.SourceNode == null && e.X == this.startMousePos.x && e.Y == this.startMousePos.y)
+                if (!isreadonly 
+                    && (dblclick || keyctrl) 
+                    && TargetNode == null 
+                    && this.SourceNode == null 
+                    && e.X == this.startMousePos.x 
+                    && e.Y == this.startMousePos.y)
                 {
                     this.CreateNode(e.X - 10, e.Y - 10, false);
                     this.diagram.unsave();
@@ -826,7 +904,12 @@ namespace Diagram
                 }
                 else
                 // KEY DRAG+CTRL Skopirovanie farby a stylu z jednej nody na druhu
-                if (!isreadonly && !keyshift && keyctrl && TargetNode != null && this.SourceNode != null && this.SourceNode != TargetNode)
+                if (!isreadonly 
+                    && !keyshift 
+                    && keyctrl 
+                    && TargetNode != null 
+                    && this.SourceNode != null 
+                    && this.SourceNode != TargetNode)
                 {
                     if (this.SelectedNodes.Count() > 1)
                     {
@@ -863,7 +946,10 @@ namespace Diagram
                 }
                 else
                 // KEY DRAG Pridanie spojovaciej čiary
-                if (!isreadonly && TargetNode != null && this.SourceNode != null && this.SourceNode != TargetNode)
+                if (!isreadonly 
+                    && TargetNode != null 
+                    && this.SourceNode != null 
+                    && this.SourceNode != TargetNode)
                 {
                     bool arrow = false;
                     if (keyshift)
@@ -896,14 +982,22 @@ namespace Diagram
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
-                // KEY CLICK+CTRL pridanie prvku do vyberu
-                else if (keyctrl && this.SourceNode == TargetNode && TargetNode != null && !this.isselected(TargetNode))
+                // KEY CTRL+MLEFT pridanie prvku do vyberu
+                else 
+                if (keyctrl 
+                    && !keyshift
+                    && this.SourceNode == TargetNode 
+                    && TargetNode != null 
+                    && !this.isselected(TargetNode))
                 {
                     this.SelectNode(TargetNode);
                     this.diagram.InvalidateDiagram();
                 }
                 // KEY CLICK+CTRL odstránenie prvku z vyberu
-                else if (keyctrl && TargetNode != null && (this.SourceNode == TargetNode || this.isselected(TargetNode)))
+                else 
+                if (keyctrl 
+                    && TargetNode != null 
+                    && (this.SourceNode == TargetNode || this.isselected(TargetNode)))
                 {
                     this.RemoveNodeFromSelection(TargetNode);
                     this.diagram.InvalidateDiagram();
@@ -913,8 +1007,11 @@ namespace Diagram
             else
             if (buttonright) // KEY MRIGHT
             {
-                this.move = false; //zobrazenie popum okna
-                if (e.X == this.startMousePos.x && e.Y == this.startMousePos.y && this.startShift.x == this.shift.x && this.startShift.y == this.shift.y)
+                this.move = false; // show popup menu
+                if (e.X == this.startMousePos.x 
+                    && e.Y == this.startMousePos.y 
+                    && this.startShift.x == this.shift.x 
+                    && this.startShift.y == this.shift.y)
                 {
                     Node temp = this.findNodeInMousePosition(e.X, e.Y);
                     if (this.SelectedNodes.Count() > 0 && !this.isselected(temp))
@@ -930,7 +1027,7 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                     PopupMenu.Show(this.Left + e.X, this.Top + e.Y); // [POPUP] show popup
                 }
-                else { // KEY DRAG+MRIGHT presunutie obrazovky
+                else { // KEY DRAG+MRIGHT move view
                     this.shift.x = (int)(this.startShift.x + (e.X - this.startMousePos.x) * this.scale);
                     this.shift.y = (int)(this.startShift.y + (e.Y - this.startMousePos.y) * this.scale);
                     this.diagram.InvalidateDiagram();
@@ -939,7 +1036,7 @@ namespace Diagram
             else
             if (buttonmiddle) // MMIDDLE
             {
-                // KEY DRAG+MMIDDLE Vytvorenie noveho obdlznika a spojenie s existujucim
+                // KEY DRAG+MMIDDLE create new node and conect with existing node
                 if (!isreadonly && TargetNode != null)
                 {
                     this.diagram.Connect(this.CreateNode(+this.shift.x - this.startShift.x + this.startMousePos.x, +this.shift.y - this.startShift.y + this.startMousePos.y), TargetNode);
@@ -1041,406 +1138,60 @@ namespace Diagram
              * [doc] order : ProcessCmdKey, DiagramApp_KeyDown, DiagramApp_KeyPress, DiagramApp_KeyUp;
              */
 
-            if (KeyMap.parseKey(KeyMap.selectAllElements, keyData) ) // [KEY] [CTRL+A]
+            if (KeyMap.parseKey(KeyMap.selectAllElements, keyData) ) // [KEY] [CTRL+A] select all
             {
-                this.ClearSelection();
-                foreach (Node rec in this.diagram.Nodes)
-                {
-                    if(rec.layer == this.layer){
-                        this.SelectNode(rec);
-                    }
-                }
-                this.diagram.InvalidateDiagram();
+                this.selectAll();
             }
 
-            if (KeyMap.parseKey(KeyMap.alignToLine, keyData)) // [KEY] [CTRL+L] 
+            if (KeyMap.parseKey(KeyMap.alignToLine, keyData)) // [KEY] [CTRL+L] align to line
             {
-                if (this.SelectedNodes.Count() > 0)
-                {
-                    this.diagram.AlignToLine(this.SelectedNodes);
-                    this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
-                }
+                this.alignToLine();
             }
 
-            if (KeyMap.parseKey(KeyMap.alignToColumn, keyData)) // [KEY] [CTRL+H]
+            if (KeyMap.parseKey(KeyMap.alignToColumn, keyData)) // [KEY] [CTRL+H] align to column
             {
-                if (this.SelectedNodes.Count() > 0)
-                {
-                    this.diagram.AlignToColumn(this.SelectedNodes);
-                    this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
-                }
+                this.alignToColumn();
             }
 
 
-            if (KeyMap.parseKey(KeyMap.alignToGroup, keyData)) // [KEY] [CTRL+K]
+            if (KeyMap.parseKey(KeyMap.alignToGroup, keyData)) // [KEY] [CTRL+K] align to group
             {
-                if (this.SelectedNodes.Count() > 0)
-                {
-                    this.diagram.AlignCompact(this.SelectedNodes);
-                    this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
-                }
+                this.alignToGroup();
             }
 
             if (KeyMap.parseKey(KeyMap.copy, keyData))  // [KEY] [CTRL+C]
             {
-				if (this.SelectedNodes.Count() > 0)
-                {
-                	DataObject data = new DataObject();
-
-                    string copytext = "";
-                    foreach (Node rec in this.SelectedNodes)
-                    {
-                        copytext = copytext + rec.text;
-
-                        if (this.SelectedNodes.Count() > 1) {
-                            copytext = copytext + "\n";
-                        }
-                    }
-
-                    data.SetData(copytext);
-
-                    data.SetData("DiagramXml", GetDiagramPart());//create and copy xml
-
-					Clipboard.SetDataObject(data);
-
-					return true;
-                }
-
-                return false;
+                return this.copy();
             }
 
             if (KeyMap.parseKey(KeyMap.copyLinks, keyData))  // [KEY] [CTRL+SHIFT+C] copy links from selected nodes
             {
-                if (this.SelectedNodes.Count() > 0)
-                {
-                    string copytext = "";
-                    foreach (Node rec in this.SelectedNodes)
-                    {
-						if (rec.link != null)
-						{
-							copytext = copytext + rec.link;
-
-							if (this.SelectedNodes.Count () > 1) { //separate nodes
-								copytext = copytext + "\n";
-							}
-						}
-                    }
-                    Clipboard.SetText(copytext);
-                }
-                return true;
+                this.copyLink();
             }
 
 			if (KeyMap.parseKey(KeyMap.copyNotes, keyData))  // [KEY] [CTRL+ALT+SHIFT+C] copy notes from selected nodes
 			{
-				if (this.SelectedNodes.Count() > 0)
-				{
-					string copytext = "";
-					foreach (Node rec in this.SelectedNodes)
-					{
-						if (rec.note != null)
-						{
-							copytext = copytext + rec.note;
-
-							if (this.SelectedNodes.Count () > 1) { //separate nodes
-								copytext = copytext + "\n";
-							}
-						}
-					}
-					Clipboard.SetText(copytext);
-				}
-				return true;
-			}
-
-            if (KeyMap.parseKey(KeyMap.paste, keyData))  // [KEY] [CTRL+V] [PASTE] Paste text from clipboard
-            {
-                DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
-
-                if (retrievedData.GetDataPresent("DiagramXml"))  // [PASTE] [DIAGRAM] [CLIPBOARD OBJECT] insert diagram
-                {
-                    this.AddDiagramPart(retrievedData.GetData("DiagramXml") as string);
-                }
-                else
-                if (retrievedData.GetDataPresent(DataFormats.Text))  // [PASTE] [TEXT] insert text
-                {
-                    Point ptCursor = Cursor.Position;
-                    ptCursor = PointToClient(ptCursor);
-                    Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
-
-                    string ClipText = retrievedData.GetData(DataFormats.Text) as string;
-
-                    if (Network.isURL(ClipText))  // [PASTE] [URL] [LINK] Spracovanie linku zo schranky
-                    {
-                        newrec.link = ClipText;
-                        newrec.text = ClipText;
-
-                        if (Network.isHttpsURL(ClipText))
-                        {
-                            Job.doJob(
-                                new DoWorkEventHandler( // do work 
-                                    delegate (object o, DoWorkEventArgs args)
-                                    {
-                                        newrec.text = Network.GetSecuredWebPageTitle(ClipText);
-
-                                    }
-                                ),
-                                new RunWorkerCompletedEventHandler( //do code after work
-                                    delegate (object o, RunWorkerCompletedEventArgs args)
-                                    {
-                                        if (newrec.text == null) newrec.text = "url";
-                                        SizeF s2 = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-                                        newrec.width = (int)s2.Width;
-                                        newrec.height = (int)s2.Height;
-                                        newrec.color = System.Drawing.ColorTranslator.FromHtml("#F2FFCC");
-                                        this.diagram.InvalidateDiagram();
-                                    }
-                                )
-                            );
-                        }
-                        else
-                        {
-                            Job.doJob(
-                                new DoWorkEventHandler( // do work 
-                                    delegate (object o, DoWorkEventArgs args)
-                                    {
-                                        newrec.text = Network.GetWebPageTitle(ClipText);
-                                    }
-                                ),
-                                new RunWorkerCompletedEventHandler( //do code after work
-                                    delegate (object o, RunWorkerCompletedEventArgs args)
-                                    {
-                                        if (newrec.text == null) newrec.text = "url";
-                                        SizeF s2 = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-                                        newrec.width = (int)s2.Width;
-                                        newrec.height = (int)s2.Height;
-                                        newrec.color = System.Drawing.ColorTranslator.FromHtml("#F2FFCC");
-                                        this.diagram.InvalidateDiagram();
-                                    }
-                                )
-                            );
-                        }
-
-                        this.diagram.unsave();
-                        SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-                        newrec.width = (int)s.Width;
-                        newrec.height = (int)s.Height;
-                    }
-                    else
-                    {                                                      // Spracovanie textu zo schranky
-                        newrec.text = ClipText;
-                        this.diagram.unsave();
-
-						if (File.Exists(ClipText))
-                        {
-							newrec.text = Path.GetFileName(ClipText);
-                            SizeF s2 = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-                        	newrec.width = (int)s2.Width;
-                        	newrec.height = (int)s2.Height;
-							newrec.link = Os.makeRelative(ClipText, this.diagram.FileName);
-                            newrec.color = Media.getColor(diagram.options.colorFile);
-						}
-
-                        if (Directory.Exists(ClipText))
-                        {
-                            newrec.text = Path.GetFileName(ClipText);
-                            SizeF s2 = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-                            newrec.width = (int)s2.Width;
-                            newrec.height = (int)s2.Height;
-							newrec.link = Os.makeRelative(ClipText, this.diagram.FileName);
-                            newrec.color = Media.getColor(diagram.options.colorDirectory);
-                        }
-
-                        SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-                        newrec.width = (int)s.Width;
-                        newrec.height = (int)s.Height;
-                    }
-
-                    this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
-                }
-                else
-                if (Clipboard.ContainsFileDropList()) // [FILES] [PASTE] insert files from clipboard
-                {
-                    System.Collections.Specialized.StringCollection returnList = Clipboard.GetFileDropList();
-                    foreach (string file in returnList)
-                    {
-                        Point ptCursor = Cursor.Position;
-                        ptCursor = PointToClient(ptCursor);
-                        Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
-                        newrec.text = Path.GetFileNameWithoutExtension(file); ;
-
-                        SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-                        newrec.width = (int)s.Width;
-                        newrec.height = (int)s.Height;
-
-                        // odstranenie absolutnej cesty
-                        string ext = "";
-                        if (file != "" && File.Exists(file))
-                        {
-                            ext = Path.GetExtension(file).ToLower();
-                        }
-
-                        if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // [PASTE] [IMAGE] [FILE NAME] skratenie cesty k suboru
-                        {
-                            newrec.isimage = true;
-                            newrec.imagepath = file;
-                            if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName) && file.IndexOf(new FileInfo(this.diagram.FileName).DirectoryName) == 0)
-                            {
-                                int start = new FileInfo(this.diagram.FileName).DirectoryName.Length;
-                                int finish = file.Length - start;
-                                newrec.imagepath = "." + file.Substring(start, finish);
-                            }
-                            newrec.image = new Bitmap(newrec.imagepath);
-                            if (ext != ".ico") newrec.image.MakeTransparent(Color.White);
-                            newrec.height = newrec.image.Height;
-                            newrec.width = newrec.image.Width;
-                        }
-                        else
-                            if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName) && file.IndexOf(new FileInfo(this.diagram.FileName).DirectoryName) == 0) // [PASTE] [FILE] - skratenie cesty k suboru
-                        {
-                            int start = new FileInfo(this.diagram.FileName).DirectoryName.Length;
-                            int finish = file.Length - start;
-                            newrec.link = "." + file.Substring(start, finish);
-                        }
-                        else
-                                if (this.diagram.FileName != "" && Directory.Exists(this.diagram.FileName)) // [PASTE] [DIRECTORY] - skatenie cesty k adresaru
-                        {
-                            int start = new FileInfo(this.diagram.FileName).DirectoryName.Length;
-                            int finish = file.Length - start;
-                            newrec.link = "." + file.Substring(start, finish);
-                        }
-                        else
-                        {
-                            newrec.link = file;
-                        }
-                    }
-                    this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
-                }
-                else if (Clipboard.GetDataObject() != null)  // [PASTE] [IMAGE] [CLIPBOARD OBJECT] image
-                {
-                    IDataObject data = Clipboard.GetDataObject();
-
-                    if (data.GetDataPresent(DataFormats.Bitmap))
-                    {
-                        // paste image end embedded
-                        try
-                        {
-                            Point ptCursor = Cursor.Position;
-                            ptCursor = PointToClient(ptCursor);
-                            Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
-
-                            newrec.image = (Bitmap)data.GetData(DataFormats.Bitmap, true);
-                            newrec.height = newrec.image.Height;
-                            newrec.width = newrec.image.Width;
-                            newrec.isimage = true;
-                            newrec.embeddedimage = true;
-                        }
-                        catch (Exception e)
-                        {
-                            Program.log.write("paste immage error: " + e.Message);
-                        }
-
-                        this.diagram.unsave();
-                        this.diagram.InvalidateDiagram();
-                    }
-
-                }
-                return true;
+                this.copyNote();
             }
 
             if (KeyMap.parseKey(KeyMap.cut, keyData))  // [KEY] [CTRL+X] Cut diagram
             {
-                DataObject data = new DataObject();
-                if (this.SelectedNodes.Count() > 0)  // kopirovanie textu objektu
-                {
-                    string copytext = "";
-                    foreach (Node rec in this.SelectedNodes)
-                    {
-                        copytext = copytext + rec.text + "\n";
-                    }
-
-                    data.SetData(copytext);
-
-                    data.SetData("DiagramXml", GetDiagramPart());//create and copy xml
-                    this.DeleteSelectedNodes(this);
-                    this.ClearSelection();
-                    this.diagram.InvalidateDiagram();
-                }
-
-                Clipboard.SetDataObject(data);
-
-                return true;
+                this.cut();
             }
 
-			if (KeyMap.parseKey(KeyMap.pasteToNote, keyData))  // [KEY] [CTRL+SHIFT+V] paste to note
+            if (KeyMap.parseKey(KeyMap.paste, keyData))  // [KEY] [CTRL+V] [PASTE] Paste text from clipboard
             {
-				DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
-
-				if (retrievedData.GetDataPresent(DataFormats.Text))
-				{
-					string ClipText = retrievedData.GetData(DataFormats.Text) as string;
-
-	                if (this.SelectedNodes.Count() == 0)
-	                {
-	                    Point ptCursor = Cursor.Position;
-	                    ptCursor = PointToClient(ptCursor);
-                        Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
-
-						newrec.note = ClipText;
-                        this.diagram.unsave();
-	                }
-					else
-					{
-                        foreach (Node rec in this.SelectedNodes)            
-                        {
-                            if(rec.note!="") // apend to node note
-                            {
-                                rec.note += "\n";
-                            }
-
-                            rec.note += ClipText;
-                        }
-						
-					}
-				}
-
-                this.diagram.InvalidateDiagram();
-                return true;
+                this.paste();
             }
 
-            if (KeyMap.parseKey(KeyMap.pasteToLink, keyData))  // [KEY] [CTRL+SHIFT+INS] insert text to node link
+            if (KeyMap.parseKey(KeyMap.pasteToNote, keyData))  // [KEY] [CTRL+SHIFT+V] paste to note
             {
-                DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
+                this.pasteToNote();
+            }
 
-                if (retrievedData.GetDataPresent(DataFormats.Text))
-                {
-                    string ClipText = retrievedData.GetData(DataFormats.Text) as string;
-
-                    if (this.SelectedNodes.Count() == 0)
-                    {
-                        Point ptCursor = Cursor.Position;
-                        ptCursor = PointToClient(ptCursor);
-                        Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
-
-                        newrec.link = ClipText;
-                        this.diagram.unsave();
-                    }
-                    else
-                    {
-                        foreach (Node rec in this.SelectedNodes)            
-                        {
-
-                            rec.link += ClipText;
-                        }
-                        
-                    }
-                }
-
-                this.diagram.InvalidateDiagram();
-                return true;
+            if (KeyMap.parseKey(KeyMap.pasteToLink, keyData))  // [KEY] [CTRL+SHIFT+INS] paste to node link
+            {
+                this.pasteToLink();
             }
 
             if (KeyMap.parseKey(KeyMap.newDiagram, keyData))  // [KEY] [CTRL+N] New Diagram
@@ -1475,288 +1226,27 @@ namespace Diagram
 
             if (KeyMap.parseKey(KeyMap.evaluateExpression, keyData))  // [KEY] [CTRL+G] Evaluate expresion
             {
-                if (this.SelectedNodes.Count()==1)
-                {
-                    /*string result = null;
-
-                    try
-                    {
-
-                        Script macro = new Script();
-                        result = macro.runScript(this.SelectedNodes[0].text);
-                    }
-                    catch(Exception ex)
-                    {
-                        Program.log.write("evaluation error: " + ex.Message);
-                    }
-
-					if (result != null) {
-	                    Point ptCursor = Cursor.Position;
-	                    ptCursor = PointToClient(ptCursor);
-	                    Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
-
-	                    newrec.text = result;
-	                    SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-	                    newrec.width = (int)s.Width;
-	                    newrec.height = (int)s.Height;
-	                    newrec.color = System.Drawing.ColorTranslator.FromHtml("#8AC5FF");
-
-	                    this.diagram.InvalidateDiagram();
-					}*/
-
-                    string expression = this.SelectedNodes[0].text;
-                    string expressionResult = "";
-
-                    if (Regex.IsMatch(expression, @"^\d+$"))
-                    {
-                        expression = expression + "+1";
-                    }
-
-                    try
-                    {
-                        // NCALC
-                        Expression e = new Expression(expression);
-                        expressionResult = e.Evaluate().ToString();
-
-                    }
-                    catch (Exception ex)
-                    {
-                        Program.log.write("evaluation error: " + ex.Message);
-                    }
-
-                    if (expressionResult != "")
-                    {
-                        Point ptCursor = Cursor.Position;
-                        ptCursor = PointToClient(ptCursor);
-                        Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
-
-                        newrec.text = expressionResult;
-                        SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-                        newrec.width = (int)s.Width;
-                        newrec.height = (int)s.Height;
-                        newrec.color = System.Drawing.ColorTranslator.FromHtml("#8AC5FF");
-
-                        this.diagram.InvalidateDiagram();
-                    }
-
-
-                    return true;
-                }
-                else
-                if (this.SelectedNodes.Count() >1)  // SUM vypocet sumy viacerich nod ktore obsahuju cisla
-                {
-                    float sum = 0;
-                    Match match = null;
-                    foreach (Node rec in this.SelectedNodes)
-                    {
-                        match = Regex.Match(rec.text, @"([-]{0,1}\d+[\.,]{0,1}\d*)", RegexOptions.IgnoreCase);
-                        if (match.Success)
-                        {
-                            sum = sum + float.Parse(match.Groups[1].Value.Replace(",", "."), CultureInfo.InvariantCulture);
-                        }
-                    }
-
-                    Point ptCursor = Cursor.Position;
-                    ptCursor = PointToClient(ptCursor);
-                    Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
-
-                    newrec.text = sum.ToString();
-                    SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-                    newrec.width = (int)s.Width;
-                    newrec.height = (int)s.Height;
-                    newrec.color = System.Drawing.ColorTranslator.FromHtml("#8AC5FF");
-
-                    this.diagram.InvalidateDiagram();
-                    return true;
-                }
-
+                this.evaluateExpression();
             }
 
             if (KeyMap.parseKey(KeyMap.date, keyData))  // [KEY] [CTRL+D] date
             {
-                bool insertdate = true;
-                string insertdatestring = "";
-
-                if(this.SelectedNodes.Count()>0)
-                {
-                    DateTime d1;
-                    DateTime d2;
-
-                    bool aretimes = true;
-                    foreach (Node rec in this.SelectedNodes) // Loop through List with foreach
-                    {
-                        if (!Regex.Match(rec.text, @"^[0-9]{2}:[0-9]{2}:[0-9]{2}$", RegexOptions.IgnoreCase).Success)
-                        {
-                            aretimes = false;
-                            break;
-                        }
-                    }
-
-                    if(aretimes) // sum dates
-                    {
-                        try
-                        {
-                            TimeSpan timesum = TimeSpan.Parse("00:00:00");
-                            foreach (Node rec in this.SelectedNodes)
-                            {
-                                timesum = timesum.Add(TimeSpan.Parse(rec.text));
-                                insertdate = false;
-                            }
-                            insertdatestring = timesum.ToString();
-                            insertdate = false;
-                        }
-                        catch (Exception ex)
-                        {
-                            Program.log.write("time span error: " + ex.Message);
-                        }
-                    }
-                    else
-                    // count difference between two dates
-                    if (
-                        this.SelectedNodes.Count() == 2 &&
-                        DateTime.TryParse(this.SelectedNodes[0].text, out d1) &&
-                        DateTime.TryParse(this.SelectedNodes[1].text, out d2)
-                    )
-                    {
-                        try
-                        {
-                            insertdatestring = ((d1<d2)?d2 - d1:d1-d2).ToString();
-                            insertdate = false;
-                        }
-                        catch (Exception ex)
-                        {
-                            Program.log.write("time diff error: " + ex.Message);
-                        }
-                    }
-                }
-
-                if (insertdate) // insert date
-                {
-                    DateTime dt = DateTime.Now;
-                    insertdatestring =
-                        dt.Year + "-" +
-                        ((dt.Month < 10) ? "0" : "") + dt.Month + "-" +
-                        ((dt.Day < 10) ? "0" : "") + dt.Day + " " +
-                        ((dt.Hour < 10) ? "0" : "") + dt.Hour + ":" +
-                        ((dt.Minute < 10) ? "0" : "") + dt.Minute + ":" +
-                        ((dt.Second < 10) ? "0" : "") + dt.Second;
-                }
-
-                Point ptCursor = Cursor.Position;
-                ptCursor = PointToClient(ptCursor);
-                Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
-
-                newrec.text = insertdatestring;
-                SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-                newrec.width = (int)s.Width;
-                newrec.height = (int)s.Height;
-                newrec.color = System.Drawing.ColorTranslator.FromHtml("#8AC5FF");
-
-                this.diagram.InvalidateDiagram();
-                return true;
+                this.evaluateDate();
             }
 
             if (KeyMap.parseKey(KeyMap.promote, keyData)) // [KEY] [CTRL+P] Promote node
             {
-                if (this.SelectedNodes.Count() == 1)
-                {
-                    Point ptCursor = Cursor.Position;
-                    ptCursor = PointToClient(ptCursor);
-                    Node selectedNode = this.SelectedNodes[0];
-                    Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
-                    newrec.copyNode(selectedNode, true, true);
-
-                    string expression = newrec.text;
-                    string[] days = { "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" };
-                    int dayPosition = Array.IndexOf(days, newrec.text);
-
-                    var matchesFloat = Regex.Matches(expression, @"(\d+(?:\.\d+)?)");
-                    var matchesDate = Regex.Matches(expression, @"^(\d{4}-\d{2}-\d{2})$");
-
-                    if (dayPosition != -1) { //get next day
-                        dayPosition += 1;
-                        if (dayPosition == 7) {
-                            dayPosition = 0;
-                        }
-
-                        newrec.text = days[dayPosition];
-                    }
-                    else if (matchesDate.Count > 0) // add day to date
-                    {
-                        DateTime theDate;
-                        DateTime.TryParseExact(expression, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out theDate);
-                        theDate = theDate.AddDays(1);
-                        string dateValue = matchesFloat[0].Groups[1].Value;
-                        string newnDateValue = String.Format("{0:yyyy-MM-dd}", theDate);
-                        newrec.text = newnDateValue;
-                    }
-                    else if (matchesFloat.Count > 0) //add to number
-                    {
-                        string number = matchesFloat[0].Groups[1].Value;
-                        string newnumber = (float.Parse(number) + 1).ToString();
-                        newrec.text = expression.Replace(number, newnumber);
-                    }
-
-
-                    SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-                    newrec.width = (int)s.Width;
-                    newrec.height = (int)s.Height;
-
-                    this.diagram.InvalidateDiagram();
-                    return true;
-
-                }
-                return true;
+                this.promote();
             }
 
             if (KeyMap.parseKey(KeyMap.random, keyData)) // [KEY] [CTRL+R] Random generator
             {
-                Point ptCursor = Cursor.Position;
-                ptCursor = PointToClient(ptCursor);
-                this.CreateNode(ptCursor.X, ptCursor.Y, true, Encrypt.GetRandomString());
-
-                this.diagram.unsave();
-                this.diagram.InvalidateDiagram();
+                this.random();
             }
 
             if (KeyMap.parseKey(KeyMap.hideBackground, keyData)) // [KEY] [F3] Hide background
             {
-
-                bool changed = false;
-
-                if (this.SelectedNodes.Count > 0)
-                {
-                    //first all hide then show
-                    bool allHidden = true;
-                    foreach (Node rec in this.SelectedNodes)
-                    {
-                        if (!rec.transparent)
-                        {
-                            allHidden = false;
-                            break;
-                        }
-                    }
-
-                    foreach (Node rec in this.SelectedNodes)
-                    {
-
-                        if (allHidden)
-                        {
-                            rec.transparent = true;
-                        }
-                        else
-                        {
-                            rec.transparent = false;
-                        }
-
-                        rec.transparent = !rec.transparent;
-                        changed = true;
-                    }
-                }
-                if(changed)this.diagram.unsave();
-                this.diagram.InvalidateDiagram();
-
-                return true;
+                return this.hideBackground();
             }
 
             if (KeyMap.parseKey(KeyMap.reverseSearch, keyData)) // [KEY] [SHIFT+F3] reverse search
@@ -1806,76 +1296,41 @@ namespace Diagram
 
             if (KeyMap.parseKey(KeyMap.moveNodeUp, keyData)) // KEY [CTRL+PAGEUP] move node up to foreground
             {
-                if (this.SelectedNodes.Count() > 0 )
-                {
-                    foreach (Node rec in this.SelectedNodes)
-                    {
-                        var item = rec;
-                        int pos = diagram.GetIndexByID(rec.id);
-                        this.diagram.Nodes.RemoveAt(pos);
-                        this.diagram.Nodes.Insert(this.diagram.Nodes.Count(), item);
-                    }
-                    this.diagram.InvalidateDiagram();
-                }
-
+                this.moveNodesToForeground();
                 return true;
             }
 
             if (KeyMap.parseKey(KeyMap.moveNodeDown, keyData)) // [KEY] [CTRL+PAGEDOWN] move node down to background
             {
-                if (this.SelectedNodes.Count() > 0)
-                {
-                    foreach (Node rec in this.SelectedNodes)
-                    {
-                        var item = rec;
-                        int pos = diagram.GetIndexByID(rec.id);
-                        this.diagram.Nodes.RemoveAt(pos);
-                        this.diagram.Nodes.Insert(0, item);
-                    }
-                    this.diagram.InvalidateDiagram();
-                }
+                this.moveNodesToBackground();
                 return true;
             }
 
             if (KeyMap.parseKey(KeyMap.pageUp, keyData)) // [KEY] [PAGEUP] page up
             {
-                this.shift.y = this.shift.y + this.ClientSize.Height;
-                this.diagram.InvalidateDiagram();
+                this.pageUp();
                 return true;
             }
 
             if (KeyMap.parseKey(KeyMap.pageDown, keyData)) // [KEY] [PAGEDOWN] Posun obrazovky
             {
-                this.shift.y = this.shift.y - this.ClientSize.Height;
-                this.diagram.InvalidateDiagram();
+                this.pageDown();
                 return true;
             }
 
             if (KeyMap.parseKey(KeyMap.editNodeName, keyData)) // [KEY] [F2] edit node name
             {
-                if (this.SelectedNodes.Count() == 1)
-                {
-                    Node rec = this.SelectedNodes[0];
-                    Position position = new Position(
-                        (int)((this.shift.x + rec.position.x) / this.scale),
-                        (int)((this.shift.y + rec.position.y) / this.scale)
-                    );
-                    this.editPanel.editNode(position, this.SelectedNodes[0]);
-                    //this.diagram.EditNode(this.SelectedNodes[0]);
-                }
+                this.rename();
                 return true;
             }
 
             if (KeyMap.parseKey(KeyMap.openEditForm, keyData)) // [KEY] [CTRL+E] open edit form
             {
-                if (this.SelectedNodes.Count() == 1)
-                {
-                    Node rec = this.SelectedNodes[0];
-                    this.diagram.EditNode(rec);
-                }
+                this.edit();
                 return true;
             }
 
+            // prevent catch keys while node is creating or renaming
             if (this.editPanel.isEditing())
             {
                 return false;
@@ -1883,28 +1338,14 @@ namespace Diagram
 
             if (KeyMap.parseKey(KeyMap.editOrLayerIn, keyData)) // [KEY] [ENTER] open edit form or layer in
             {
-                if (this.SelectedNodes.Count() == 1)
-                {
-                    if (this.SelectedNodes[0].haslayer)
-                    {
-                        this.LayerIn(this.SelectedNodes[0]);
-                    }
-                    else
-                    {
-                        this.diagram.EditNode(this.SelectedNodes[0]);
-                    }
-                }
+                this.layerInOrEdit();
                 return true;
             }
 
 
             if (KeyMap.parseKey(KeyMap.layerIn, keyData)) // [KEY] [PLUS] Layer in 
             {
-                if (this.SelectedNodes.Count() == 1)
-                {
-                    this.LayerIn(this.SelectedNodes[0]);
-                }
-
+                this.layerIn();
                 return true;
             }
 
@@ -1916,14 +1357,7 @@ namespace Diagram
 
             if (KeyMap.parseKey(KeyMap.minimalize, keyData)) // [KEY] [ESC] minimalize diagram view
             {
-                if (!this.diagram.SavedFile && this.diagram.FileName != "")  //treba overit ci existuje a dat dialg na ulozenie ako
-                {
-                    this.diagram.SaveXMLFile(this.diagram.FileName);
-                    this.diagram.NewFile = false;
-                    this.diagram.SavedFile = true;
-                }
-                this.WindowState = FormWindowState.Minimized;
-                return true;
+                return this.formHide();
             }
 
             if (KeyMap.parseKey(KeyMap.delete, keyData)) // [KEY] [DELETE] delete
@@ -1934,139 +1368,37 @@ namespace Diagram
 
             if (KeyMap.parseKey(KeyMap.moveLeft, keyData) || KeyMap.parseKey(KeyMap.moveLeftFast, keyData))  // [KEY] [left] [SHIFT+LEFT] [ARROW] Move node
             {
-                if (this.SelectedNodes.Count() > 0)
-                {
-                    int speed = (keyData == Keys.Left)?this.diagram.options.keyArrowSlowSpeed:this.diagram.options.keyArrowFastSpeed;
-                    foreach (Node rec in this.SelectedNodes)
-                    {
-                        rec.position.x -= speed;
 
-                        if (rec.haslayer)
-                        {
-                            this.MoveLayer(rec, -speed, 0);
-                            rec.layershiftx += speed;
-                        }
-                    }
-                    this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
-                }
-                else // MOVE SCREEN
-                {
-                    this.shift.x = this.shift.x + 50;
-                    this.diagram.InvalidateDiagram();
-                }
-
+                this.moveNodesToLeft(keyData == Keys.Left);
                 return true;
             }
 
             if (KeyMap.parseKey(KeyMap.moveRight, keyData) || KeyMap.parseKey(KeyMap.moveRightFast, keyData))  // [KEY] [right] [SHIFT+RIGHT] [ARROW] Move node
             {
-
-                if (this.SelectedNodes.Count() > 0)
-                {
-                    int speed = (keyData == Keys.Right) ? this.diagram.options.keyArrowSlowSpeed : this.diagram.options.keyArrowFastSpeed;
-                    foreach (Node rec in this.SelectedNodes)
-                    {
-                        rec.position.x += speed;
-
-                        if (rec.haslayer)
-                        {
-                            this.MoveLayer(rec, speed, 0);
-                            rec.layershiftx -= speed;
-                        }
-                    }
-                    this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
-                }
-                else // MOVE SCREEN
-                {
-                    this.shift.x = this.shift.x - 50;
-                    this.diagram.InvalidateDiagram();
-                }
-
+                this.moveNodesToRight(keyData == Keys.Right);
                 return true;
             }
 
             if (KeyMap.parseKey(KeyMap.moveUp, keyData) || KeyMap.parseKey(KeyMap.moveUpFast, keyData))  // [KEY] [up] [SHIFT+UP] [ARROW] Move node
             {
-                if (this.SelectedNodes.Count() > 0)
-                {
-                    int speed = (keyData == Keys.Up) ? this.diagram.options.keyArrowSlowSpeed : this.diagram.options.keyArrowFastSpeed;
-                    foreach (Node rec in this.SelectedNodes)
-                    {
-                        rec.position.y -= speed;
-
-                        if (rec.haslayer)
-                        {
-                            this.MoveLayer(rec, 0, -speed);
-                            rec.layershifty += speed;
-                        }
-                    }
-                    this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
-                }
-                else // MOVE SCREEN
-                {
-                    this.shift.y = this.shift.y + 50;
-                    this.diagram.InvalidateDiagram();
-                }
-
+                this.moveNodesUp(keyData == Keys.Up);
                 return true;
             }
 
             if (KeyMap.parseKey(KeyMap.moveDown, keyData) || KeyMap.parseKey(KeyMap.moveDownFast, keyData))  // [KEY] [down] [SHIFT+DOWN] [ARROW] Move node
             {
-                if (this.SelectedNodes.Count() > 0)
-                {
-                    int speed = (keyData == Keys.Down) ? this.diagram.options.keyArrowSlowSpeed : this.diagram.options.keyArrowFastSpeed;
-                    foreach (Node rec in this.SelectedNodes)
-                    {
-                        rec.position.y += speed;
-
-                        if (rec.haslayer)
-                        {
-                            this.MoveLayer(rec, 0, speed);
-                            rec.layershifty -= speed;
-                        }
-                    }
-                    this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
-                }
-                else // MOVE SCREEN
-                {
-                    this.shift.y = this.shift.y - 50;
-                    this.diagram.InvalidateDiagram();
-                }
-
+                this.moveNodesDown(keyData == Keys.Down);
                 return true;
             }
 
             if (KeyMap.parseKey(KeyMap.alignLeft, keyData)) // [KEY] [TAB] zarovnanie vybranych prvkov dolava
             {
-                if (this.SelectedNodes.Count() > 1)
-                {
-                    this.diagram.AlignLeft(this.SelectedNodes);
-                    this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
-                }
-                else
-                {
-                    this.addNodeAfterNode();
-                }
+                this.alignLeft();
             }
 
             if (KeyMap.parseKey(KeyMap.alignRight, keyData))  // [KEY] [SHIFT+TAB] Zarovnanie vybranych prvkov doprava //KEY shift+tab
             {
-                if (this.SelectedNodes.Count() > 1)
-                {
-                    this.diagram.AlignRight(this.SelectedNodes);
-                    this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
-                }
-                else
-                {
-                    this.addNodeBelowNode();
-                }
+                this.alignRight();
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
@@ -2524,8 +1856,34 @@ namespace Diagram
             }
         }
 
+        // LAYER check if node is parent trought layer history
         public bool isNodeInLayerHistory(Node rec) {
             return ((this.layer != rec.id) && (Layers.IndexOf(rec.id) > -1));
+        }
+
+        // LAYER layer in
+        public void layerIn()
+        {
+            if (this.SelectedNodes.Count() == 1)
+            {
+                this.LayerIn(this.SelectedNodes[0]);
+            }
+        }
+
+        // LAYER layer in or open edit form
+        public void layerInOrEdit()
+        {
+            if (this.SelectedNodes.Count() == 1)
+            {
+                if (this.SelectedNodes[0].haslayer)
+                {
+                    this.LayerIn(this.SelectedNodes[0]);
+                }
+                else
+                {
+                    this.diagram.EditNode(this.SelectedNodes[0]);
+                }
+            }
         }
 
         /*************************************************************************************************************************/
@@ -3688,13 +3046,18 @@ namespace Diagram
                                 }
 
                                 // DRAW text
-                                RectangleF rect2 = new RectangleF(
+                                /*RectangleF rect2 = new RectangleF(
                                     (int)((this.shift.x + cx + rec.position.x + padding) / s),
                                     (int)((this.shift.y + cy + rec.position.y + padding) / s),
                                     (int)((rec.width - padding) / s),
                                     (int)((rec.height - padding) / s)
+                                );*/
+
+                                PointF point = new PointF(
+                                    (this.shift.x + cx + rec.position.x + padding) / s, 
+                                    (this.shift.y + cy + rec.position.y + padding) / s
                                 );
-                                gfx.DrawString(rec.text, new Font(rec.font.FontFamily, rec.font.Size / s, rec.font.Style), new SolidBrush(rec.fontcolor), rect2);
+                                gfx.DrawString(rec.text, rec.font, new SolidBrush(rec.fontcolor), point);
                             }
                         }
                     }
@@ -3786,6 +3149,19 @@ namespace Diagram
             this.Focus();
         }
 
+        // VIEW page up
+        public void pageUp()
+        {
+            this.shift.y = this.shift.y + this.ClientSize.Height;
+            this.diagram.InvalidateDiagram();
+        }
+
+        // VIEW page down
+        public void pageDown()
+        {
+            this.shift.y = this.shift.y - this.ClientSize.Height;
+            this.diagram.InvalidateDiagram();
+        }
         /*************************************************************************************************************************/
 
         // NODE create
@@ -3910,7 +3286,7 @@ namespace Diagram
             }
         }
 
-        // NODE Go to node
+        // NODE Go to node position
         public void GoToNode(Node rec)
         {
             if (rec != null)
@@ -3922,6 +3298,7 @@ namespace Diagram
             }
         }
 
+        // NODE Go to node layer
         public void GoToLayer(Node rec)
         {
             if (this.layer != rec.layer) 
@@ -3931,7 +3308,6 @@ namespace Diagram
                     this.BuildLayerHistory(rec.id);
             }
         }
-
 
         // NODE Najdenie nody podla pozicie myši
         public Node findNodeInMousePosition(int x, int y)
@@ -4163,6 +3539,916 @@ namespace Diagram
                 {
                     this.diagram.FontDefault = this.defaultfontDialog.Font;
                 }
+            }
+        }
+
+        // NODE copy
+        public bool copy()
+        {
+            if (this.SelectedNodes.Count() > 0)
+            {
+                DataObject data = new DataObject();
+
+                string copytext = "";
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    copytext = copytext + rec.text;
+
+                    if (this.SelectedNodes.Count() > 1)
+                    {
+                        copytext = copytext + "\n";
+                    }
+                }
+
+                data.SetData(copytext);
+
+                data.SetData("DiagramXml", GetDiagramPart());//create and copy xml
+
+                Clipboard.SetDataObject(data);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        // NODE cut
+        public bool cut()
+        {
+            DataObject data = new DataObject();
+            if (this.SelectedNodes.Count() > 0)  // kopirovanie textu objektu
+            {
+                string copytext = "";
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    copytext = copytext + rec.text + "\n";
+                }
+
+                data.SetData(copytext);
+
+                data.SetData("DiagramXml", GetDiagramPart());//create and copy xml
+                this.DeleteSelectedNodes(this);
+                this.ClearSelection();
+                this.diagram.InvalidateDiagram();
+            }
+
+            Clipboard.SetDataObject(data);
+
+            return true;
+        }
+
+        // NODE paste
+        public bool paste()
+        {
+            DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
+
+            if (retrievedData.GetDataPresent("DiagramXml"))  // [PASTE] [DIAGRAM] [CLIPBOARD OBJECT] insert diagram
+            {
+                this.AddDiagramPart(retrievedData.GetData("DiagramXml") as string);
+            }
+            else
+            if (retrievedData.GetDataPresent(DataFormats.Text))  // [PASTE] [TEXT] insert text
+            {
+                Point ptCursor = Cursor.Position;
+                ptCursor = PointToClient(ptCursor);
+                Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
+
+                string ClipText = retrievedData.GetData(DataFormats.Text) as string;
+
+                if (Network.isURL(ClipText))  // [PASTE] [URL] [LINK] Spracovanie linku zo schranky
+                {
+                    newrec.link = ClipText;
+                    newrec.text = ClipText;
+
+                    if (Network.isHttpsURL(ClipText))
+                    {
+                        Job.doJob(
+                            new DoWorkEventHandler( // do work 
+                                delegate (object o, DoWorkEventArgs args)
+                                {
+                                    newrec.text = Network.GetSecuredWebPageTitle(ClipText);
+
+                                }
+                            ),
+                            new RunWorkerCompletedEventHandler( //do code after work
+                                delegate (object o, RunWorkerCompletedEventArgs args)
+                                {
+                                    if (newrec.text == null) newrec.text = "url";
+                                    SizeF s2 = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
+                                    newrec.width = (int)s2.Width;
+                                    newrec.height = (int)s2.Height;
+                                    newrec.color = System.Drawing.ColorTranslator.FromHtml("#F2FFCC");
+                                    this.diagram.InvalidateDiagram();
+                                }
+                            )
+                        );
+                    }
+                    else
+                    {
+                        Job.doJob(
+                            new DoWorkEventHandler( // do work 
+                                delegate (object o, DoWorkEventArgs args)
+                                {
+                                    newrec.text = Network.GetWebPageTitle(ClipText);
+                                }
+                            ),
+                            new RunWorkerCompletedEventHandler( //do code after work
+                                delegate (object o, RunWorkerCompletedEventArgs args)
+                                {
+                                    if (newrec.text == null) newrec.text = "url";
+                                    SizeF s2 = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
+                                    newrec.width = (int)s2.Width;
+                                    newrec.height = (int)s2.Height;
+                                    newrec.color = System.Drawing.ColorTranslator.FromHtml("#F2FFCC");
+                                    this.diagram.InvalidateDiagram();
+                                }
+                            )
+                        );
+                    }
+
+                    this.diagram.unsave();
+                    SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
+                    newrec.width = (int)s.Width;
+                    newrec.height = (int)s.Height;
+                }
+                else
+                {                                                      // Spracovanie textu zo schranky
+                    newrec.text = ClipText;
+                    this.diagram.unsave();
+
+                    if (File.Exists(ClipText))
+                    {
+                        newrec.text = Path.GetFileName(ClipText);
+                        SizeF s2 = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
+                        newrec.width = (int)s2.Width;
+                        newrec.height = (int)s2.Height;
+                        newrec.link = Os.makeRelative(ClipText, this.diagram.FileName);
+                        newrec.color = Media.getColor(diagram.options.colorFile);
+                    }
+
+                    if (Directory.Exists(ClipText))
+                    {
+                        newrec.text = Path.GetFileName(ClipText);
+                        SizeF s2 = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
+                        newrec.width = (int)s2.Width;
+                        newrec.height = (int)s2.Height;
+                        newrec.link = Os.makeRelative(ClipText, this.diagram.FileName);
+                        newrec.color = Media.getColor(diagram.options.colorDirectory);
+                    }
+
+                    SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
+                    newrec.width = (int)s.Width;
+                    newrec.height = (int)s.Height;
+                }
+
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+            else
+            if (Clipboard.ContainsFileDropList()) // [FILES] [PASTE] insert files from clipboard
+            {
+                System.Collections.Specialized.StringCollection returnList = Clipboard.GetFileDropList();
+                foreach (string file in returnList)
+                {
+                    Point ptCursor = Cursor.Position;
+                    ptCursor = PointToClient(ptCursor);
+                    Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
+                    newrec.text = Path.GetFileNameWithoutExtension(file); ;
+
+                    SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
+                    newrec.width = (int)s.Width;
+                    newrec.height = (int)s.Height;
+
+                    // odstranenie absolutnej cesty
+                    string ext = "";
+                    if (file != "" && File.Exists(file))
+                    {
+                        ext = Path.GetExtension(file).ToLower();
+                    }
+
+                    if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // [PASTE] [IMAGE] [FILE NAME] skratenie cesty k suboru
+                    {
+                        newrec.isimage = true;
+                        newrec.imagepath = file;
+                        if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName) && file.IndexOf(new FileInfo(this.diagram.FileName).DirectoryName) == 0)
+                        {
+                            int start = new FileInfo(this.diagram.FileName).DirectoryName.Length;
+                            int finish = file.Length - start;
+                            newrec.imagepath = "." + file.Substring(start, finish);
+                        }
+                        newrec.image = new Bitmap(newrec.imagepath);
+                        if (ext != ".ico") newrec.image.MakeTransparent(Color.White);
+                        newrec.height = newrec.image.Height;
+                        newrec.width = newrec.image.Width;
+                    }
+                    else
+                        if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName) && file.IndexOf(new FileInfo(this.diagram.FileName).DirectoryName) == 0) // [PASTE] [FILE] - skratenie cesty k suboru
+                    {
+                        int start = new FileInfo(this.diagram.FileName).DirectoryName.Length;
+                        int finish = file.Length - start;
+                        newrec.link = "." + file.Substring(start, finish);
+                    }
+                    else
+                            if (this.diagram.FileName != "" && Directory.Exists(this.diagram.FileName)) // [PASTE] [DIRECTORY] - skatenie cesty k adresaru
+                    {
+                        int start = new FileInfo(this.diagram.FileName).DirectoryName.Length;
+                        int finish = file.Length - start;
+                        newrec.link = "." + file.Substring(start, finish);
+                    }
+                    else
+                    {
+                        newrec.link = file;
+                    }
+                }
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+            else if (Clipboard.GetDataObject() != null)  // [PASTE] [IMAGE] [CLIPBOARD OBJECT] image
+            {
+                IDataObject data = Clipboard.GetDataObject();
+
+                if (data.GetDataPresent(DataFormats.Bitmap))
+                {
+                    // paste image end embedded
+                    try
+                    {
+                        Point ptCursor = Cursor.Position;
+                        ptCursor = PointToClient(ptCursor);
+                        Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
+
+                        newrec.image = (Bitmap)data.GetData(DataFormats.Bitmap, true);
+                        newrec.height = newrec.image.Height;
+                        newrec.width = newrec.image.Width;
+                        newrec.isimage = true;
+                        newrec.embeddedimage = true;
+                    }
+                    catch (Exception e)
+                    {
+                        Program.log.write("paste immage error: " + e.Message);
+                    }
+
+                    this.diagram.unsave();
+                    this.diagram.InvalidateDiagram();
+                }
+
+            }
+
+            return true;
+        }
+
+        // NODE paste to note
+        public bool pasteToNote()
+        {
+            DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
+
+            if (retrievedData.GetDataPresent(DataFormats.Text))
+            {
+                string ClipText = retrievedData.GetData(DataFormats.Text) as string;
+
+                if (this.SelectedNodes.Count() == 0)
+                {
+                    Point ptCursor = Cursor.Position;
+                    ptCursor = PointToClient(ptCursor);
+                    Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
+
+                    newrec.note = ClipText;
+                    this.diagram.unsave();
+                }
+                else
+                {
+                    foreach (Node rec in this.SelectedNodes)
+                    {
+                        if (rec.note != "") // apend to node note
+                        {
+                            rec.note += "\n";
+                        }
+
+                        rec.note += ClipText;
+                    }
+
+                }
+            }
+
+            this.diagram.InvalidateDiagram();
+            return true;
+        }
+
+        // NODE paste to link
+        public bool pasteToLink()
+        {
+            DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
+
+            if (retrievedData.GetDataPresent(DataFormats.Text))
+            {
+                string ClipText = retrievedData.GetData(DataFormats.Text) as string;
+
+                if (this.SelectedNodes.Count() == 0)
+                {
+                    Point ptCursor = Cursor.Position;
+                    ptCursor = PointToClient(ptCursor);
+                    Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
+
+                    newrec.link = ClipText;
+                    this.diagram.unsave();
+                }
+                else
+                {
+                    foreach (Node rec in this.SelectedNodes)
+                    {
+
+                        rec.link += ClipText;
+                    }
+
+                }
+            }
+
+            this.diagram.InvalidateDiagram();
+            return true;
+        }
+
+        // NODE selsect all
+        public void selectAll()
+        {
+            this.ClearSelection();
+            foreach (Node rec in this.diagram.Nodes)
+            {
+                if (rec.layer == this.layer)
+                {
+                    this.SelectNode(rec);
+                }
+            }
+            this.diagram.InvalidateDiagram();
+        }
+
+        // NODE align to line
+        public void alignToLine()
+        {
+            if (this.SelectedNodes.Count() > 0)
+            {
+                this.diagram.AlignToLine(this.SelectedNodes);
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // NODE align to column
+        public void alignToColumn()
+        {
+            if (this.SelectedNodes.Count() > 0)
+            {
+                this.diagram.AlignToColumn(this.SelectedNodes);
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // NODE align to group
+        public void alignToGroup()
+        {
+            if (this.SelectedNodes.Count() > 0)
+            {
+                this.diagram.AlignCompact(this.SelectedNodes);
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // NODE align left
+        public void alignLeft()
+        {
+            if (this.SelectedNodes.Count() > 1)
+            {
+                this.diagram.AlignLeft(this.SelectedNodes);
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+            else
+            {
+                this.addNodeAfterNode();
+            }
+        }
+
+        // NODE align right
+        public void alignRight()
+        {
+            if (this.SelectedNodes.Count() > 1)
+            {
+                this.diagram.AlignRight(this.SelectedNodes);
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+            else
+            {
+                this.addNodeBelowNode();
+            }
+        }
+
+        // NODE copy node link
+        public bool copyLink()
+        {
+            if (this.SelectedNodes.Count() > 0)
+            {
+                string copytext = "";
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    if (rec.link != null)
+                    {
+                        copytext = copytext + rec.link;
+
+                        if (this.SelectedNodes.Count() > 1)
+                        { //separate nodes
+                            copytext = copytext + "\n";
+                        }
+                    }
+                }
+
+                if (copytext != "")
+                {
+                    Clipboard.SetText(copytext);
+                }
+            }
+
+            return true;
+        }
+
+        // NODE copy note
+        public bool copyNote()
+        {
+            if (this.SelectedNodes.Count() > 0)
+            {
+                string copytext = "";
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    if (rec.note != null)
+                    {
+                        copytext = copytext + rec.note;
+
+                        if (this.SelectedNodes.Count() > 1)
+                        { //separate nodes
+                            copytext = copytext + "\n";
+                        }
+                    }
+                }
+
+                if (copytext != "")
+                {
+                    Clipboard.SetText(copytext);
+                }
+            }
+
+            return true;
+        }
+
+        // NODE evaluate masth expression
+        public bool evaluateExpression()
+        {
+            if (this.SelectedNodes.Count() == 1)
+            {
+                /*string result = null;
+
+                try
+                {
+
+                    Script macro = new Script();
+                    result = macro.runScript(this.SelectedNodes[0].text);
+                }
+                catch(Exception ex)
+                {
+                    Program.log.write("evaluation error: " + ex.Message);
+                }
+
+                if (result != null) {
+                    Point ptCursor = Cursor.Position;
+                    ptCursor = PointToClient(ptCursor);
+                    Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
+
+                    newrec.text = result;
+                    SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
+                    newrec.width = (int)s.Width;
+                    newrec.height = (int)s.Height;
+                    newrec.color = System.Drawing.ColorTranslator.FromHtml("#8AC5FF");
+
+                    this.diagram.InvalidateDiagram();
+                }*/
+
+                string expression = this.SelectedNodes[0].text;
+                string expressionResult = "";
+
+                if (Regex.IsMatch(expression, @"^\d+$"))
+                {
+                    expression = expression + "+1";
+                }
+
+                try
+                {
+                    // NCALC
+                    Expression e = new Expression(expression);
+                    expressionResult = e.Evaluate().ToString();
+
+                }
+                catch (Exception ex)
+                {
+                    Program.log.write("evaluation error: " + ex.Message);
+                }
+
+                if (expressionResult != "")
+                {
+                    Point ptCursor = Cursor.Position;
+                    ptCursor = PointToClient(ptCursor);
+                    Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
+
+                    newrec.text = expressionResult;
+                    SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
+                    newrec.width = (int)s.Width;
+                    newrec.height = (int)s.Height;
+                    newrec.color = System.Drawing.ColorTranslator.FromHtml("#8AC5FF");
+
+                    this.diagram.InvalidateDiagram();
+                }
+
+
+                return true;
+            }
+            else
+            if (this.SelectedNodes.Count() > 1)  // SUM vypocet sumy viacerich nod ktore obsahuju cisla
+            {
+                float sum = 0;
+                Match match = null;
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    match = Regex.Match(rec.text, @"([-]{0,1}\d+[\.,]{0,1}\d*)", RegexOptions.IgnoreCase);
+                    if (match.Success)
+                    {
+                        sum = sum + float.Parse(match.Groups[1].Value.Replace(",", "."), CultureInfo.InvariantCulture);
+                    }
+                }
+
+                Point ptCursor = Cursor.Position;
+                ptCursor = PointToClient(ptCursor);
+                Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
+
+                newrec.text = sum.ToString();
+                SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
+                newrec.width = (int)s.Width;
+                newrec.height = (int)s.Height;
+                newrec.color = System.Drawing.ColorTranslator.FromHtml("#8AC5FF");
+
+                this.diagram.InvalidateDiagram();
+                return true;
+            }
+
+            return false;
+        }
+
+        // NODE evaluate date
+        public bool evaluateDate()
+        {
+            bool insertdate = true;
+            string insertdatestring = "";
+
+            if (this.SelectedNodes.Count() > 0)
+            {
+                DateTime d1;
+                DateTime d2;
+
+                bool aretimes = true;
+                foreach (Node rec in this.SelectedNodes) // Loop through List with foreach
+                {
+                    if (!Regex.Match(rec.text, @"^[0-9]{2}:[0-9]{2}:[0-9]{2}$", RegexOptions.IgnoreCase).Success)
+                    {
+                        aretimes = false;
+                        break;
+                    }
+                }
+
+                if (aretimes) // sum dates
+                {
+                    try
+                    {
+                        TimeSpan timesum = TimeSpan.Parse("00:00:00");
+                        foreach (Node rec in this.SelectedNodes)
+                        {
+                            timesum = timesum.Add(TimeSpan.Parse(rec.text));
+                            insertdate = false;
+                        }
+                        insertdatestring = timesum.ToString();
+                        insertdate = false;
+                    }
+                    catch (Exception ex)
+                    {
+                        Program.log.write("time span error: " + ex.Message);
+                    }
+                }
+                else
+                // count difference between two dates
+                if (
+                    this.SelectedNodes.Count() == 2 &&
+                    DateTime.TryParse(this.SelectedNodes[0].text, out d1) &&
+                    DateTime.TryParse(this.SelectedNodes[1].text, out d2)
+                )
+                {
+                    try
+                    {
+                        insertdatestring = ((d1 < d2) ? d2 - d1 : d1 - d2).ToString();
+                        insertdate = false;
+                    }
+                    catch (Exception ex)
+                    {
+                        Program.log.write("time diff error: " + ex.Message);
+                    }
+                }
+            }
+
+            if (insertdate) // insert date
+            {
+                DateTime dt = DateTime.Now;
+                insertdatestring =
+                    dt.Year + "-" +
+                    ((dt.Month < 10) ? "0" : "") + dt.Month + "-" +
+                    ((dt.Day < 10) ? "0" : "") + dt.Day + " " +
+                    ((dt.Hour < 10) ? "0" : "") + dt.Hour + ":" +
+                    ((dt.Minute < 10) ? "0" : "") + dt.Minute + ":" +
+                    ((dt.Second < 10) ? "0" : "") + dt.Second;
+            }
+
+            Point ptCursor = Cursor.Position;
+            ptCursor = PointToClient(ptCursor);
+            Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
+
+            newrec.text = insertdatestring;
+            SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
+            newrec.width = (int)s.Width;
+            newrec.height = (int)s.Height;
+            newrec.color = System.Drawing.ColorTranslator.FromHtml("#8AC5FF");
+
+            this.diagram.InvalidateDiagram();
+            return true;
+        }
+
+        // NODE promote
+        public bool promote()
+        {
+            if (this.SelectedNodes.Count() == 1)
+            {
+                Point ptCursor = Cursor.Position;
+                ptCursor = PointToClient(ptCursor);
+                Node selectedNode = this.SelectedNodes[0];
+                Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
+                newrec.copyNode(selectedNode, true, true);
+
+                string expression = newrec.text;
+                string[] days = { "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" };
+                int dayPosition = Array.IndexOf(days, newrec.text);
+
+                var matchesFloat = Regex.Matches(expression, @"(\d+(?:\.\d+)?)");
+                var matchesDate = Regex.Matches(expression, @"^(\d{4}-\d{2}-\d{2})$");
+
+                if (dayPosition != -1)
+                { //get next day
+                    dayPosition += 1;
+                    if (dayPosition == 7)
+                    {
+                        dayPosition = 0;
+                    }
+
+                    newrec.text = days[dayPosition];
+                }
+                else if (matchesDate.Count > 0) // add day to date
+                {
+                    DateTime theDate;
+                    DateTime.TryParseExact(expression, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out theDate);
+                    theDate = theDate.AddDays(1);
+                    string dateValue = matchesFloat[0].Groups[1].Value;
+                    string newnDateValue = String.Format("{0:yyyy-MM-dd}", theDate);
+                    newrec.text = newnDateValue;
+                }
+                else if (matchesFloat.Count > 0) //add to number
+                {
+                    string number = matchesFloat[0].Groups[1].Value;
+                    string newnumber = (float.Parse(number) + 1).ToString();
+                    newrec.text = expression.Replace(number, newnumber);
+                }
+
+
+                SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
+                newrec.width = (int)s.Width;
+                newrec.height = (int)s.Height;
+
+                this.diagram.InvalidateDiagram();
+                return true;
+
+            }
+            return true;
+        }
+
+        // NODE random
+        public void random()
+        {
+            Point ptCursor = Cursor.Position;
+            ptCursor = PointToClient(ptCursor);
+            this.CreateNode(ptCursor.X, ptCursor.Y, true, Encrypt.GetRandomString());
+
+            this.diagram.unsave();
+            this.diagram.InvalidateDiagram();
+        }
+
+        // NODE hide background
+        public bool hideBackground()
+        {
+            bool changed = false;
+
+            if (this.SelectedNodes.Count > 0)
+            {
+                //first all hide then show
+                bool allHidden = true;
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    if (!rec.transparent)
+                    {
+                        allHidden = false;
+                        break;
+                    }
+                }
+
+                foreach (Node rec in this.SelectedNodes)
+                {
+
+                    if (allHidden)
+                    {
+                        rec.transparent = true;
+                    }
+                    else
+                    {
+                        rec.transparent = false;
+                    }
+
+                    rec.transparent = !rec.transparent;
+                    changed = true;
+                }
+            }
+            if (changed) this.diagram.unsave();
+            this.diagram.InvalidateDiagram();
+
+            return true;
+        }
+
+        // NODE open edit form
+        public void edit()
+        {
+            if (this.SelectedNodes.Count() == 1)
+            {
+                Node rec = this.SelectedNodes[0];
+                this.diagram.EditNode(rec);
+            }
+        }
+
+        // NODE rename
+        public void rename()
+        {
+            if (this.SelectedNodes.Count() == 1)
+            {
+                Node rec = this.SelectedNodes[0];
+                Position position = new Position(
+                    (int)((this.shift.x + rec.position.x) / this.scale),
+                    (int)((this.shift.y + rec.position.y) / this.scale)
+                );
+                this.editPanel.editNode(position, this.SelectedNodes[0]);
+            }
+        }
+
+        // NODE move nodes to foreground
+        public void moveNodesToForeground()
+        {
+            if (this.SelectedNodes.Count() > 0)
+            {
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    var item = rec;
+                    int pos = diagram.GetIndexByID(rec.id);
+                    this.diagram.Nodes.RemoveAt(pos);
+                    this.diagram.Nodes.Insert(this.diagram.Nodes.Count(), item);
+                }
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // NODE move nodes to background
+        public void moveNodesToBackground()
+        {
+            if (this.SelectedNodes.Count() > 0)
+            {
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    var item = rec;
+                    int pos = diagram.GetIndexByID(rec.id);
+                    this.diagram.Nodes.RemoveAt(pos);
+                    this.diagram.Nodes.Insert(0, item);
+                }
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // NODE move nodes to left
+        public void moveNodesToLeft(bool quick = false)
+        {
+            if (this.SelectedNodes.Count() > 0)
+            {
+                int speed = (quick) ? this.diagram.options.keyArrowSlowSpeed : this.diagram.options.keyArrowFastSpeed;
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    rec.position.x -= speed;
+
+                    if (rec.haslayer)
+                    {
+                        this.MoveLayer(rec, -speed, 0);
+                        rec.layershiftx += speed;
+                    }
+                }
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+            else // MOVE SCREEN
+            {
+                this.shift.x = this.shift.x + 50;
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // NODE move nodes to right
+        public void moveNodesToRight(bool quick = false)
+        {
+            if (this.SelectedNodes.Count() > 0)
+            {
+                int speed = (quick) ? this.diagram.options.keyArrowSlowSpeed : this.diagram.options.keyArrowFastSpeed;
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    rec.position.x += speed;
+
+                    if (rec.haslayer)
+                    {
+                        this.MoveLayer(rec, speed, 0);
+                        rec.layershiftx -= speed;
+                    }
+                }
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+            else // MOVE SCREEN
+            {
+                this.shift.x = this.shift.x - 50;
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // NODE move nodes to up
+        public void moveNodesUp(bool quick = false)
+        {
+            if (this.SelectedNodes.Count() > 0)
+            {
+                int speed = (quick) ? this.diagram.options.keyArrowSlowSpeed : this.diagram.options.keyArrowFastSpeed;
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    rec.position.y -= speed;
+
+                    if (rec.haslayer)
+                    {
+                        this.MoveLayer(rec, 0, -speed);
+                        rec.layershifty += speed;
+                    }
+                }
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+            else // MOVE SCREEN
+            {
+                this.shift.y = this.shift.y + 50;
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // NODE move nodes to up
+        public void moveNodesDown(bool quick = false)
+        {
+            if (this.SelectedNodes.Count() > 0)
+            {
+                int speed = (quick) ? this.diagram.options.keyArrowSlowSpeed : this.diagram.options.keyArrowFastSpeed;
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    rec.position.y += speed;
+
+                    if (rec.haslayer)
+                    {
+                        this.MoveLayer(rec, 0, speed);
+                        rec.layershifty -= speed;
+                    }
+                }
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+            else // MOVE SCREEN
+            {
+                this.shift.y = this.shift.y - 50;
+                this.diagram.InvalidateDiagram();
             }
         }
 

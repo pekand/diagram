@@ -70,8 +70,8 @@ namespace Diagram
                 this.Left = currentPosition.x;
                 this.Top = currentPosition.y;
 
-                this.edit.Left = padding - 1;
-                this.edit.Top = padding;
+                this.edit.Left = padding + 1;
+                this.edit.Top = padding + 0;
 
                 Font defaultFont = this.diagramView.diagram.FontDefault;
                 Font font = new Font(defaultFont.FontFamily, defaultFont.Size / this.diagramView.scale, defaultFont.Style);
@@ -82,6 +82,8 @@ namespace Diagram
 
                 this.setPanelSize();
 
+                this.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFFB8");
+                this.edit.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFFB8");
                 this.editing = true;
                 this.Show();
                 this.edit.Show();
@@ -104,8 +106,8 @@ namespace Diagram
                 this.Left = currentPosition.x;
                 this.Top = currentPosition.y;
 
-                this.edit.Left = padding - 1;
-                this.edit.Top = padding;
+                this.edit.Left = padding + 1;
+                this.edit.Top = padding + 0;
 
                 Font nodeFont = this.editedNode.font;
                 Font font = new Font(nodeFont.FontFamily, nodeFont.Size / this.diagramView.scale, nodeFont.Style);
@@ -115,6 +117,8 @@ namespace Diagram
 
                 this.setPanelSize();
 
+                this.BackColor = this.editedNode.color;
+                this.edit.BackColor = this.editedNode.color;
                 this.editing = true;
                 this.Show();
                 this.edit.Show();
@@ -133,7 +137,6 @@ namespace Diagram
                 }
 
                 this.editedNode.text = edit.Text;
-                this.editedNode.font = this.diagramView.diagram.FontDefault;
                 SizeF s = this.diagramView.diagram.MeasureStringWithMargin(this.editedNode.text, this.editedNode.font);
                 this.editedNode.width = (int)s.Width;
                 this.editedNode.height = (int)s.Height;
