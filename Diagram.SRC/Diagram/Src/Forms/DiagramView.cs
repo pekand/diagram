@@ -3322,8 +3322,8 @@ namespace Diagram
         {
             if (rec != null)
             {
-                this.shift.x = -rec.position.x + this.ClientSize.Width / 2;
-                this.shift.y = -rec.position.y + this.ClientSize.Height / 2;
+                this.shift.x = (int)(-rec.position.x + this.ClientSize.Width / 2 * this.scale);
+                this.shift.y = (int)(-rec.position.y + this.ClientSize.Height / 2 * this.scale);
 
                 this.GoToLayer(rec);
             }

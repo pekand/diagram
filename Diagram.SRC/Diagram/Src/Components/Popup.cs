@@ -696,6 +696,7 @@ namespace Diagram
                     }
                 }
 
+                removeShortcutItem.Visible = false;
                 if (hasShortcut)
                 {
                     removeShortcutItem.Visible = true;
