@@ -1491,7 +1491,6 @@ namespace Diagram
                     (int)(-(this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / this.scale) * this.scale)
                 );
 
-
                 this.currentScale = this.scale;
                 this.scale = this.zoomingScale;
 
@@ -1530,8 +1529,8 @@ namespace Diagram
                 this.zooming = false; // KEY SPACE cancel space zoom and restore prev zoom 
 
                 shift.add(
-                    (int)( -(this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / this.scale) * this.scale),
-                    (int)( -(this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / this.scale) * this.scale)
+                    (int)(-(this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / this.scale) * this.scale),
+                    (int)(-(this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / this.scale) * this.scale)
                 );
 
                 this.scale = this.currentScale;
@@ -3214,16 +3213,11 @@ namespace Diagram
                 if (!this.editPanel.Visible)
                 {
                     this.editPanel.prevSelectedNode = this.SelectedNodes[0];
-                    Point ptCursor = Cursor.Position;
-                    ptCursor = PointToClient(ptCursor);
-                    editPanel.Left = this.SelectedNodes[0].position.x + this.shift.x + this.SelectedNodes[0].width + 10;
-                    editPanel.Top = this.SelectedNodes[0].position.y + this.shift.y;
-                    editPanel.Width = 100;
-                    this.editPanel.edit.Text = "";
-                    this.editPanel.edit.SelectionStart = this.editPanel.edit.Text.Length;
-                    this.editPanel.editing = true;
-                    editPanel.Show();
-                    this.editPanel.edit.Focus();
+                    Position position = new Position(
+                        this.SelectedNodes[0].position.x + this.shift.x + this.SelectedNodes[0].width + 10,
+                        this.SelectedNodes[0].position.y + this.shift.y
+                    );
+                    this.editPanel.showEditPanel(position, ' ', false);
                 }
             }
         }
@@ -3236,16 +3230,11 @@ namespace Diagram
                 if (!this.editPanel.Visible)
                 {
                     this.editPanel.prevSelectedNode = this.SelectedNodes[0];
-                    Point ptCursor = Cursor.Position;
-                    ptCursor = PointToClient(ptCursor);
-                    editPanel.Left = this.SelectedNodes[0].position.x + this.shift.x;
-                    editPanel.Top = this.SelectedNodes[0].position.y + this.shift.y + this.SelectedNodes[0].height + 10;
-                    editPanel.Width = 100;
-                    this.editPanel.edit.Text = "";
-                    this.editPanel.edit.SelectionStart = this.editPanel.edit.Text.Length;
-                    this.editPanel.editing = true;
-                    editPanel.Show();
-                    this.editPanel.edit.Focus();
+                    Position position = new Position(
+                        this.SelectedNodes[0].position.x + this.shift.x,
+                        this.SelectedNodes[0].position.y + this.shift.y + this.SelectedNodes[0].height + 10
+                    );
+                    this.editPanel.showEditPanel(position, ' ', false);
                 }
             }
         }

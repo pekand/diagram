@@ -62,7 +62,7 @@ namespace Diagram
         #endregion
 
         // EDITPANEL SHOW add new node
-        public void showEditPanel(Position currentPosition, char FirstKey = ' ')
+        public void showEditPanel(Position currentPosition, char FirstKey = ' ', bool addKey = true)
         {
             if (!this.Visible)
             {
@@ -77,13 +77,18 @@ namespace Diagram
                 Font font = new Font(defaultFont.FontFamily, defaultFont.Size / this.diagramView.scale, defaultFont.Style);
 
                 this.edit.Font = font;
-                
-                this.edit.Text = "" + (FirstKey).ToString(); // add first character
+
+                this.edit.Text = "";
+                if (addKey)
+                {
+                    this.edit.Text += (FirstKey).ToString(); // add first character
+                }
 
                 this.setPanelSize();
 
                 this.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFFB8");
                 this.edit.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFFB8");
+
                 this.editing = true;
                 this.Show();
                 this.edit.Show();
@@ -168,7 +173,7 @@ namespace Diagram
 
             int padding = this.diagramView.diagram.NodePadding;
 
-            SizeF s = Fonts.MeasureString(this.edit.Text, this.edit.Font);
+            SizeF s = Fonts.MeasureString(this.edit.Text == "" ? "X" : this.edit.Text, this.edit.Font);
 
             this.edit.Height = (int)Math.Round(s.Height, 0) + 2 * padding;
             this.Height = this.edit.Height;
