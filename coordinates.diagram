@@ -11,7 +11,7 @@
     <grid>true</grid>
     <borders>false</borders>
     <defaultfont type="font">
-      <name>Microsoft Sans Serif</name>
+      <name>Open Sans</name>
       <size>10</size>
       <bold>false</bold>
       <italic>false</italic>
@@ -27,113 +27,464 @@
   </option>
   <rectangles>
     <rectangle>
-      <id>6</id>
+      <id>1</id>
       <fontcolor>Black</fontcolor>
+      <text>1</text>
+      <layer>0</layer>
+      <x>-100</x>
+      <y>0</y>
+      <width>32</width>
+      <height>39</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-11-30 16:05:28</timecreate>
+      <timemodify>2015-11-30 16:05:28</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2</id>
+      <fontcolor>Black</fontcolor>
+      <text>2</text>
+      <layer>0</layer>
+      <x>100</x>
+      <y>0</y>
+      <width>32</width>
+      <height>39</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-11-30 16:05:30</timecreate>
+      <timemodify>2015-11-30 16:05:30</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>3</id>
+      <fontcolor>Black</fontcolor>
+      <text>3</text>
       <layer>0</layer>
       <x>0</x>
-      <y>0</y>
-      <width>20</width>
-      <height>20</height>
+      <y>100</y>
+      <width>32</width>
+      <height>39</height>
       <color>#FFFFB8</color>
-      <timecreate>2015-9-28 23:21:39</timecreate>
-      <timemodify>2015-9-28 23:21:39</timemodify>
+      <timecreate>2015-11-30 16:05:31</timecreate>
+      <timemodify>2015-11-30 16:05:31</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>4</id>
+      <fontcolor>Black</fontcolor>
+      <text>4</text>
+      <layer>0</layer>
+      <x>0</x>
+      <y>-100</y>
+      <width>32</width>
+      <height>39</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-11-30 16:05:32</timecreate>
+      <timemodify>2015-11-30 16:05:32</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>5</id>
+      <fontcolor>Black</fontcolor>
+      <text>-100,0</text>
+      <layer>0</layer>
+      <x>-179</x>
+      <y>0</y>
+      <width>63</width>
+      <height>39</height>
+      <color>#80FFFF</color>
+      <timecreate>2015-11-30 16:09:11</timecreate>
+      <timemodify>2015-11-30 16:09:11</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>6</id>
+      <fontcolor>Black</fontcolor>
+      <text>100,0</text>
+      <layer>0</layer>
+      <x>152</x>
+      <y>0</y>
+      <width>59</width>
+      <height>39</height>
+      <color>#80FFFF</color>
+      <timecreate>2015-11-30 16:09:24</timecreate>
+      <timemodify>2015-11-30 16:09:24</timemodify>
     </rectangle>
     <rectangle>
       <id>7</id>
       <fontcolor>Black</fontcolor>
+      <text>0,100</text>
       <layer>0</layer>
-      <x>200</x>
-      <y>0</y>
-      <width>20</width>
-      <height>20</height>
-      <color>#FFFFB8</color>
-      <timecreate>2015-9-28 23:21:39</timecreate>
-      <timemodify>2015-9-28 23:21:39</timemodify>
+      <x>-17</x>
+      <y>155</y>
+      <width>59</width>
+      <height>39</height>
+      <color>#80FFFF</color>
+      <timecreate>2015-11-30 16:09:38</timecreate>
+      <timemodify>2015-11-30 16:09:38</timemodify>
     </rectangle>
     <rectangle>
       <id>8</id>
       <fontcolor>Black</fontcolor>
+      <text>0,-100</text>
       <layer>0</layer>
-      <x>200</x>
-      <y>200</y>
-      <width>20</width>
-      <height>20</height>
-      <color>#FFFFB8</color>
-      <timecreate>2015-9-28 23:21:39</timecreate>
-      <timemodify>2015-9-28 23:21:39</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>9</id>
-      <fontcolor>Black</fontcolor>
-      <layer>0</layer>
-      <x>-200</x>
-      <y>200</y>
-      <width>20</width>
-      <height>20</height>
-      <color>#FFFFB8</color>
-      <timecreate>2015-9-28 23:21:39</timecreate>
-      <timemodify>2015-9-28 23:21:39</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>10</id>
-      <fontcolor>Black</fontcolor>
-      <layer>0</layer>
-      <x>-200</x>
-      <y>0</y>
-      <width>20</width>
-      <height>20</height>
-      <color>#FFFFB8</color>
-      <timecreate>2015-9-28 23:21:39</timecreate>
-      <timemodify>2015-9-28 23:21:39</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>11</id>
-      <fontcolor>Black</fontcolor>
-      <layer>0</layer>
-      <x>-200</x>
-      <y>-200</y>
-      <width>20</width>
-      <height>20</height>
-      <color>#FFFFB8</color>
-      <timecreate>2015-9-28 23:21:39</timecreate>
-      <timemodify>2015-9-28 23:21:39</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>12</id>
-      <fontcolor>Black</fontcolor>
-      <layer>0</layer>
-      <x>0</x>
-      <y>-200</y>
-      <width>20</width>
-      <height>20</height>
-      <color>#FFFFB8</color>
-      <timecreate>2015-9-28 23:21:39</timecreate>
-      <timemodify>2015-9-28 23:21:39</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>13</id>
-      <fontcolor>Black</fontcolor>
-      <layer>0</layer>
-      <x>200</x>
-      <y>-201</y>
-      <width>20</width>
-      <height>20</height>
-      <color>#FFFFB8</color>
-      <timecreate>2015-9-28 23:21:39</timecreate>
-      <timemodify>2015-9-28 23:21:39</timemodify>
+      <x>-10</x>
+      <y>-166</y>
+      <width>63</width>
+      <height>39</height>
+      <color>#80FFFF</color>
+      <timecreate>2015-11-30 16:09:54</timecreate>
+      <timemodify>2015-11-30 16:09:54</timemodify>
     </rectangle>
     <rectangle>
       <id>14</id>
       <fontcolor>Black</fontcolor>
+      <text>file</text>
       <layer>0</layer>
-      <x>0</x>
-      <y>200</y>
-      <width>20</width>
-      <height>20</height>
+      <x>97</x>
+      <y>-232</y>
+      <width>43</width>
+      <height>39</height>
+      <color>#80FFFF</color>
+      <timecreate>2015-11-30 16:15:39</timecreate>
+      <timemodify>2015-11-30 16:15:39</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>16</id>
+      <fontcolor>Black</fontcolor>
+      <text>app</text>
+      <layer>0</layer>
+      <x>150</x>
+      <y>-232</y>
+      <width>48</width>
+      <height>39</height>
+      <color>#80FFFF</color>
+      <timecreate>2015-11-30 16:26:51</timecreate>
+      <timemodify>2015-11-30 16:26:51</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>21</id>
+      <fontcolor>Black</fontcolor>
+      <text>-x,-y</text>
+      <layer>0</layer>
+      <x>-179</x>
+      <y>-100</y>
+      <width>50</width>
+      <height>39</height>
+      <color>#80FFFF</color>
+      <timecreate>2015-11-30 16:29:22</timecreate>
+      <timemodify>2015-11-30 16:29:22</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>22</id>
+      <fontcolor>Black</fontcolor>
+      <text>x,-y</text>
+      <layer>0</layer>
+      <x>166</x>
+      <y>-100</y>
+      <width>46</width>
+      <height>39</height>
+      <color>#80FFFF</color>
+      <timecreate>2015-11-30 16:29:45</timecreate>
+      <timemodify>2015-11-30 16:29:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>23</id>
+      <fontcolor>Black</fontcolor>
+      <text>-x,y</text>
+      <layer>0</layer>
+      <x>-179</x>
+      <y>155</y>
+      <width>46</width>
+      <height>39</height>
+      <color>#80FFFF</color>
+      <timecreate>2015-11-30 16:30:07</timecreate>
+      <timemodify>2015-11-30 16:30:07</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>24</id>
+      <fontcolor>Black</fontcolor>
+      <text>x,y</text>
+      <layer>0</layer>
+      <x>170</x>
+      <y>155</y>
+      <width>41</width>
+      <height>39</height>
+      <color>#80FFFF</color>
+      <timecreate>2015-11-30 16:09:24</timecreate>
+      <timemodify>2015-11-30 16:09:24</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>27</id>
+      <fontcolor>Black</fontcolor>
+      <text>x,y</text>
+      <layer>0</layer>
+      <x>-400</x>
+      <y>-300</y>
+      <width>41</width>
+      <height>39</height>
+      <color>#FF8040</color>
+      <timecreate>2015-11-30 16:53:13</timecreate>
+      <timemodify>2015-11-30 16:53:13</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>31</id>
+      <fontcolor>Black</fontcolor>
+      <text>x,-y</text>
+      <layer>0</layer>
+      <x>-400</x>
+      <y>300</y>
+      <width>46</width>
+      <height>39</height>
+      <color>#FF8040</color>
+      <timecreate>2015-11-30 16:55:22</timecreate>
+      <timemodify>2015-11-30 16:55:22</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>32</id>
+      <fontcolor>Black</fontcolor>
+      <text>-x,-y</text>
+      <layer>0</layer>
+      <x>500</x>
+      <y>300</y>
+      <width>50</width>
+      <height>39</height>
+      <color>#FF8040</color>
+      <timecreate>2015-11-30 16:55:56</timecreate>
+      <timemodify>2015-11-30 16:55:56</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>33</id>
+      <fontcolor>Black</fontcolor>
+      <text>-x,y</text>
+      <layer>0</layer>
+      <x>500</x>
+      <y>-300</y>
+      <width>46</width>
+      <height>39</height>
+      <color>#FF8040</color>
+      <timecreate>2015-11-30 16:56:12</timecreate>
+      <timemodify>2015-11-30 16:56:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>35</id>
+      <fontcolor>Black</fontcolor>
+      <text>reality</text>
+      <layer>0</layer>
+      <x>208</x>
+      <y>-232</y>
+      <width>64</width>
+      <height>39</height>
+      <color>#80FFFF</color>
+      <timecreate>2015-11-30 16:56:32</timecreate>
+      <timemodify>2015-11-30 16:56:32</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>36</id>
+      <fontcolor>Black</fontcolor>
+      <text>reality</text>
+      <layer>0</layer>
+      <x>389</x>
+      <y>-300</y>
+      <width>64</width>
+      <height>39</height>
+      <color>#80FFFF</color>
+      <timecreate>2015-11-30 16:56:32</timecreate>
+      <timemodify>2015-11-30 16:56:32</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>37</id>
+      <fontcolor>Black</fontcolor>
+      <text>400,300</text>
+      <layer>0</layer>
+      <x>-336</x>
+      <y>-300</y>
+      <width>74</width>
+      <height>39</height>
+      <color>#FF8040</color>
+      <timecreate>2015-11-30 17:01:12</timecreate>
+      <timemodify>2015-11-30 17:01:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>38</id>
+      <fontcolor>Black</fontcolor>
+      <text>400,-300</text>
+      <layer>0</layer>
+      <x>-300</x>
+      <y>300</y>
+      <width>79</width>
+      <height>39</height>
+      <color>#FF8040</color>
+      <timecreate>2015-11-30 17:01:57</timecreate>
+      <timemodify>2015-11-30 17:01:57</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>39</id>
+      <fontcolor>Black</fontcolor>
+      <text>-500,-300</text>
+      <layer>0</layer>
+      <x>571</x>
+      <y>300</y>
+      <width>83</width>
+      <height>39</height>
+      <color>#FF8040</color>
+      <timecreate>2015-11-30 17:02:21</timecreate>
+      <timemodify>2015-11-30 17:02:21</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>40</id>
+      <fontcolor>Black</fontcolor>
+      <text>-500,300</text>
+      <layer>0</layer>
+      <x>565</x>
+      <y>-300</y>
+      <width>79</width>
+      <height>39</height>
+      <color>#FF8040</color>
+      <timecreate>2015-11-30 17:02:59</timecreate>
+      <timemodify>2015-11-30 17:02:59</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>42</id>
+      <fontcolor>Black</fontcolor>
+      <text>100,100</text>
+      <layer>0</layer>
+      <x>100</x>
+      <y>100</y>
+      <width>74</width>
+      <height>39</height>
+      <color>Fuchsia</color>
+      <timecreate>2015-11-30 17:19:00</timecreate>
+      <timemodify>2015-11-30 17:19:00</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>46</id>
+      <fontcolor>Black</fontcolor>
+      <text>sx = -x</text>
+      <layer>0</layer>
+      <x>518</x>
+      <y>-72</y>
+      <width>64</width>
+      <height>39</height>
       <color>#FFFFB8</color>
-      <timecreate>2015-9-28 23:21:39</timecreate>
-      <timemodify>2015-9-28 23:21:39</timemodify>
+      <timecreate>2015-11-30 17:21:19</timecreate>
+      <timemodify>2015-11-30 17:21:19</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>47</id>
+      <fontcolor>Black</fontcolor>
+      <text>sy = -y</text>
+      <layer>0</layer>
+      <x>518</x>
+      <y>-8</y>
+      <width>64</width>
+      <height>39</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-11-30 17:21:29</timecreate>
+      <timemodify>2015-11-30 17:21:29</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>48</id>
+      <fontcolor>Black</fontcolor>
+      <text>200 + 100 = 300</text>
+      <layer>0</layer>
+      <x>-169</x>
+      <y>-413</y>
+      <width>125</width>
+      <height>39</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-11-30 17:23:13</timecreate>
+      <timemodify>2015-11-30 17:23:13</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>49</id>
+      <fontcolor>Black</fontcolor>
+      <text>200 + 100 = 300</text>
+      <layer>0</layer>
+      <x>-169</x>
+      <y>-354</y>
+      <width>125</width>
+      <height>39</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-11-30 17:23:18</timecreate>
+      <timemodify>2015-11-30 17:23:18</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>50</id>
+      <fontcolor>Black</fontcolor>
+      <text>(sift + point)  / s= real</text>
+      <layer>0</layer>
+      <x>-169</x>
+      <y>-473</y>
+      <width>158</width>
+      <height>39</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-11-30 17:23:32</timecreate>
+      <timemodify>2015-11-30 17:23:32</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>51</id>
+      <fontcolor>Black</fontcolor>
+      <text>shif</text>
+      <layer>0</layer>
+      <x>-424</x>
+      <y>-388</y>
+      <width>47</width>
+      <height>39</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-11-30 17:49:50</timecreate>
+      <timemodify>2015-11-30 17:49:50</timemodify>
     </rectangle>
   </rectangles>
-  <lines />
+  <lines>
+    <line>
+      <start>4</start>
+      <end>3</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>2</start>
+      <end>1</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>14</start>
+      <end>16</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>16</start>
+      <end>35</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>33</start>
+      <end>36</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>14</start>
+      <end>8</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>37</start>
+      <end>27</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>38</start>
+      <end>31</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>39</start>
+      <end>32</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>40</start>
+      <end>33</end>
+      <arrow>0</arrow>
+    </line>
+    <line>
+      <start>51</start>
+      <end>27</end>
+      <arrow>0</arrow>
+    </line>
+  </lines>
 </diagram>

@@ -60,6 +60,7 @@ namespace Diagram
         public static string alignLeft = "TAB";
         public static string alignRight = "SHIFT+TAB";
         public static string editCancel = "ESCAPE";
+        public static string resetZoom = "CTRL+0";
 
         public static bool parseKey(string key, Keys keyData)
         {
@@ -109,6 +110,66 @@ namespace Diagram
                 if (part == "DEL")
                 {
                     keyCode = Keys.Delete | keyCode;
+                    continue;
+                }
+
+                if (part == "0")
+                {
+                    keyCode = Keys.D0 | keyCode;
+                    continue;
+                }
+
+                if (part == "1")
+                {
+                    keyCode = Keys.D1 | keyCode;
+                    continue;
+                }
+
+                if (part == "2")
+                {
+                    keyCode = Keys.D2 | keyCode;
+                    continue;
+                }
+
+                if (part == "3")
+                {
+                    keyCode = Keys.D3 | keyCode;
+                    continue;
+                }
+
+                if (part == "4")
+                {
+                    keyCode = Keys.D4 | keyCode;
+                    continue;
+                }
+
+                if (part == "5")
+                {
+                    keyCode = Keys.D5 | keyCode;
+                    continue;
+                }
+
+                if (part == "6")
+                {
+                    keyCode = Keys.D6 | keyCode;
+                    continue;
+                }
+
+                if (part == "7")
+                {
+                    keyCode = Keys.D7 | keyCode;
+                    continue;
+                }
+
+                if (part == "8")
+                {
+                    keyCode = Keys.D8 | keyCode;
+                    continue;
+                }
+
+                if (part == "9")
+                {
+                    keyCode = Keys.D9 | keyCode;
                     continue;
                 }
 

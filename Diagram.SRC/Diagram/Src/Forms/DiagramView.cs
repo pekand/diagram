@@ -31,66 +31,69 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // ATRIBUTES SCREEN
-        public Position shift = new Position();                   //poun horneho rohu obrazovky;
+        public Position shift = new Position();                   // left corner position
 
-        public Position startShift = new Position();              //docasne ulozenie pozicie obrazovky pred zmenou
+        public Position startShift = new Position();              // temporary left corner position before change in diagram
 
         // ATTRIBUTES MOUSE
-        public Position startMousePos = new Position();           //docasne ulozenie pozicie mysi
-        public Position startNodePos = new Position();            //docasne ulozenie pozicie zaciatocnej nody
-        public Position vmouse = new Position();                  //vektor posunutia mysi vo vybranom obdlzniku
-        public Position actualMousePos = new Position();          //priebezna pozicia mysi vo forme pri tahani
+        public Position startMousePos = new Position();           // start movse position before change
+        public Position startNodePos = new Position();            // start node position before change
+        public Position vmouse = new Position();                  // vector position in selected node before change
+        public Position actualMousePos = new Position();          // actual mouse position in form in drag process
 
         // ATTRIBUTES KEYBOARD
-        public char key = ' ';                   // posledne zachytene pismenko
-        public bool keyshift = false;            // detekovanie klavesovich modifikatorov pri mysi
-        public bool keyctrl = false;
-        public bool keyalt = false;
+        public char key = ' ';                   // last key character - for new node add
+        public bool keyshift = false;            // actual shift key state
+        public bool keyctrl = false;             // actual ctrl key state
+        public bool keyalt = false;              // actual alt key state
 
         // ATTRIBUTES STATES
-        public bool drag = false;                // psuvanie nody
-        public bool move = false;                // posunutie objektu
-        public bool selecting = false;           // vytvorenie nody tahanim alebo vyber viacerich prvkov
-        public bool addingNode = false;          // pidavanie nody tahanim
-        public bool dblclick = false;            // dvojklik na plochu
-        public bool zooming = false;             // zmensenie plochy
-        public bool searching = false;           // search panel is show and focused
+        public bool drag = false;                // actual drag status
+        public bool move = false;                // actual move node status
+        public bool selecting = false;           // actual selecting node status or creating node by drag
+        public bool addingNode = false;          // actual adding node by drag
+        public bool dblclick = false;            // actual dblclick status
+        public bool zooming = false;             // actual zooming by space status
+        public bool searching = false;           // actual search edit form status
 
         // ATTRIBUTES ZOOMING
-        public float zoomingDefaultScale = 1;      // zmensenie plochy - normalne zvetsenie
-        public float zoomingScale = 4;             // zmensenie plochy - zvetsenie nahlad
-        public float scale = 1;                    // zmensenie plochy - aktualne zvetsenie
+        public Position zoomShift = new Position();// zoom view - left corner position before zoom space press
+        public float zoomingDefaultScale = 1;      // zoom view - normal scale
+        public float zoomingScale = 4;             // zoom view - scale in space preview
+        public float currentScale = 1;             // zoom viev - scale before space zoom
+        public float scale = 1;                    // zoom view - actual scale
 
         // ATTRIBUTES Diagram
-        public Diagram diagram = null;       // diagram ktory je previazany z pohladom
+        public Diagram diagram = null;             // diagram assigned to current view
 
-        public Node SourceNode = null;                             // Vybrata noda - obdlznik s ktorou sa robi operacia pomocou mysy
-        public List<Node> SelectedNodes = new List<Node>();  // Zoznam vybratych nod (Zatial sa nepouziva)
+        public Node SourceNode = null;             // selected node by mouse
+        public List<Node> SelectedNodes = new List<Node>();  // all selected nodes by mouse
 
         // ATTRIBUTES Layers
         public int layer = 0;                      // current layer (0 is top layer)
-        public Node LayerNode = null;        // current mayn layer node
-        public Position firstLayereShift = new Position();          // poun horneho rohu obrazovky v najvrchnejsom layery
-        public List<int> Layers = new List<int>(); // zoznam vnorenich layerov, na konci je posledny zobrazeny layer    ;
+        public Node LayerNode = null;              // current mayn layer node
+        public Position firstLayereShift = new Position();          // left corner position in zero top layer
+        public List<int> Layers = new List<int>(); // layer history - last layer is current selected layer 
 
         // COMPONENTS
-        public ScrollBar bottomScrollBar = null;
-        public ScrollBar rightScrollBar = null;
+        public ScrollBar bottomScrollBar = null;  // bottom scroll bar
+        public ScrollBar rightScrollBar = null;   // right scroll bar
 
         // EDITPANEL
-        public EditPanel editPanel = null; // panel margin for edit form
+        public EditPanel editPanel = null; // edit panel for add new node name
 
         // SEARCHPANEL
-        public int lastFound = -1;
-        public string searchFor = "";
-        public SearchPanel searhPanel = null;
+        public int lastFound = -1;  // id of last node found by search panel
+        public string searchFor = ""; // string selected by search panel
+        public SearchPanel searhPanel = null; // search panel
         Position currentPosition = new Position();
 
-        public List<int> NodesSearchResult = new List<int>();
+        public List<int> NodesSearchResult = new List<int>(); // all nodes found by search panel
 
         // OTHER
         private IContainer components;
 
+        // INIT COMPONENTS
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();            
@@ -1085,7 +1088,7 @@ namespace Diagram
                             if (this.scale < 1)
                                 this.scale = this.scale + 0.1f;
 
-                        this.zoomingScale = this.scale;
+                        //this.zoomingScale = this.scale;
                         this.shift.x = (int)((a + (this.ClientSize.Width / 2 * this.scale)));
                         this.shift.y = (int)((b + (this.ClientSize.Height / 2 * this.scale)));
                     }
@@ -1117,10 +1120,10 @@ namespace Diagram
                         if (this.scale > 0.1f)
                             this.scale = this.scale - 0.1f;
 
-                        if (this.scale>1)
+                        /*if (this.scale>1)
                             this.zoomingScale = this.scale;
                         else
-                            this.zoomingScale = 4;
+                            this.zoomingScale = 4;*/
                         this.shift.x = (int)((a + (this.ClientSize.Width / 2 * this.scale)));
                         this.shift.y = (int)((b + (this.ClientSize.Height / 2 * this.scale)));
 
@@ -1157,57 +1160,68 @@ namespace Diagram
             if (KeyMap.parseKey(KeyMap.selectAllElements, keyData) ) // [KEY] [CTRL+A] select all
             {
                 this.selectAll();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.alignToLine, keyData)) // [KEY] [CTRL+L] align to line
             {
                 this.alignToLine();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.alignToColumn, keyData)) // [KEY] [CTRL+H] align to column
             {
                 this.alignToColumn();
+                return true;
             }
 
 
             if (KeyMap.parseKey(KeyMap.alignToGroup, keyData)) // [KEY] [CTRL+K] align to group
             {
                 this.alignToGroup();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.copy, keyData))  // [KEY] [CTRL+C]
             {
-                return this.copy();
+                this.copy();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.copyLinks, keyData))  // [KEY] [CTRL+SHIFT+C] copy links from selected nodes
             {
                 this.copyLink();
+                return true;
             }
 
 			if (KeyMap.parseKey(KeyMap.copyNotes, keyData))  // [KEY] [CTRL+ALT+SHIFT+C] copy notes from selected nodes
 			{
                 this.copyNote();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.cut, keyData))  // [KEY] [CTRL+X] Cut diagram
             {
                 this.cut();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.paste, keyData))  // [KEY] [CTRL+V] [PASTE] Paste text from clipboard
             {
                 this.paste();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.pasteToNote, keyData))  // [KEY] [CTRL+SHIFT+V] paste to note
             {
                 this.pasteToNote();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.pasteToLink, keyData))  // [KEY] [CTRL+SHIFT+INS] paste to node link
             {
                 this.pasteToLink();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.newDiagram, keyData))  // [KEY] [CTRL+N] New Diagram
@@ -1248,26 +1262,31 @@ namespace Diagram
             if (KeyMap.parseKey(KeyMap.date, keyData))  // [KEY] [CTRL+D] date
             {
                 this.evaluateDate();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.promote, keyData)) // [KEY] [CTRL+P] Promote node
             {
                 this.promote();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.random, keyData)) // [KEY] [CTRL+R] Random generator
             {
                 this.random();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.hideBackground, keyData)) // [KEY] [F3] Hide background
             {
-                return this.hideBackground();
+                this.hideBackground();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.reverseSearch, keyData)) // [KEY] [SHIFT+F3] reverse search
             {
                 this.SearchPrev();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.home, keyData)) // KEY [HOME] go to home position
@@ -1279,6 +1298,7 @@ namespace Diagram
             if (KeyMap.parseKey(KeyMap.setHome, keyData))  // [KEY] [SHIFT+HOME] Move start point
             {
                 this.setCurentPositionAsHomePosition();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.end, keyData)) // KEY [END] go to end position
@@ -1290,6 +1310,7 @@ namespace Diagram
             if (KeyMap.parseKey(KeyMap.setEnd, keyData))  // [KEY] [SHIFT+END] Move end point
             {
                 this.setCurentPositionAsEndPosition();
+                return true;
             }
 
             /*
@@ -1308,6 +1329,7 @@ namespace Diagram
             if (KeyMap.parseKey(KeyMap.console, keyData)) // [KEY] [F12] show Debug console
             {
                 this.showConsole();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.moveNodeUp, keyData)) // KEY [CTRL+PAGEUP] move node up to foreground
@@ -1410,11 +1432,19 @@ namespace Diagram
             if (KeyMap.parseKey(KeyMap.alignLeft, keyData)) // [KEY] [TAB] zarovnanie vybranych prvkov dolava
             {
                 this.alignLeft();
+                return true;
             }
 
             if (KeyMap.parseKey(KeyMap.alignRight, keyData))  // [KEY] [SHIFT+TAB] Zarovnanie vybranych prvkov doprava //KEY shift+tab
             {
                 this.alignRight();
+                return true;
+            }
+
+            if (KeyMap.parseKey(KeyMap.resetZoom, keyData))  // [KEY] [CTRL+0] Otvorenie diagramu
+            {
+                this.resetZoom();
+                return true;
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
@@ -1454,11 +1484,23 @@ namespace Diagram
                 MoveTimer.Enabled = false;
 
                 this.zooming = true;
-                int a = (int)((this.shift.x - (this.ClientSize.Width / 2 * this.scale)));
-                int b = (int)((this.shift.y - (this.ClientSize.Height / 2 * this.scale)));
+                Position tmp = new Position(this.shift);
+
+                tmp.add(
+                    (int)(-(this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / this.scale) * this.scale),
+                    (int)(-(this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / this.scale) * this.scale)
+                );
+
+
+                this.currentScale = this.scale;
                 this.scale = this.zoomingScale;
-                this.shift.x = (int)((a + (this.ClientSize.Width / 2 * this.scale)));
-                this.shift.y = (int)((b + (this.ClientSize.Height / 2 * this.scale)));
+
+                tmp.add(
+                    (int)(+(this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / this.scale) * this.scale),
+                    (int)(+(this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / this.scale) * this.scale)
+                );
+
+                this.shift.set(tmp);
 
                 this.diagram.InvalidateDiagram();
             }
@@ -1479,17 +1521,26 @@ namespace Diagram
 
             if (this.zooming)
             {
-                this.zooming = false;
-
                 MoveTimer.Enabled = false;  // zrusenie prebiehajucich operácii
                 this.move = false;
                 this.addingNode = false;
                 this.drag = false;
                 this.selecting = false;
 
-                this.shift.x = (int)((this.shift.x + (this.ClientSize.Width / 2) - (this.ClientSize.Width / 2 * this.scale)));
-                this.shift.y = (int)((this.shift.y + (this.ClientSize.Height / 2) - (this.ClientSize.Height / 2 * this.scale)));
-                this.scale = this.zoomingDefaultScale;
+                this.zooming = false; // KEY SPACE cancel space zoom and restore prev zoom 
+
+                shift.add(
+                    (int)( -(this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / this.scale) * this.scale),
+                    (int)( -(this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / this.scale) * this.scale)
+                );
+
+                this.scale = this.currentScale;
+
+                shift.add(
+                    (int)(+(this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / this.scale) * this.scale),
+                    (int)(+(this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / this.scale) * this.scale)
+                );
+
                 this.diagram.InvalidateDiagram();
             }
         }                                 // [KEYBOARD] [UP] [EVENT]
@@ -2936,7 +2987,7 @@ namespace Diagram
                             {
                                 Font drawFont = new Font("Arial", 10 / s);
                                 SolidBrush drawBrush = new SolidBrush(Color.Black);
-                                gfx.DrawString((rec.position.x).ToString() + "," + (-rec.position.y).ToString(), drawFont, drawBrush, (this.shift.x + rec.position.x) / s, (this.shift.y + rec.position.y - 20) / s);
+                                gfx.DrawString((rec.position.x).ToString() + "," + (rec.position.y).ToString(), drawFont, drawBrush, (this.shift.x + rec.position.x) / s, (this.shift.y + rec.position.y - 20) / s);
                             }
 
                             // DRAW rectangle
@@ -3015,12 +3066,15 @@ namespace Diagram
                                     );
                                 }
 
+                                
                                 // DRAW text
-                                PointF point = new PointF(
-                                    (this.shift.x + cx + rec.position.x + padding) / s, 
-                                    (this.shift.y + cy + rec.position.y + padding) / s
+                                RectangleF rect2 = new RectangleF(
+                                    (int)((this.shift.x + cx + rec.position.x + this.diagram.NodePadding) / s),
+                                    (int)((this.shift.y + cy + rec.position.y + this.diagram.NodePadding) / s),
+                                    (int)((rec.width - this.diagram.NodePadding) / s),
+                                    (int)((rec.height - this.diagram.NodePadding) / s)
                                 );
-                                gfx.DrawString(rec.text, rec.font, new SolidBrush(rec.fontcolor), point);
+                                gfx.DrawString(rec.text, new Font(rec.font.FontFamily, rec.font.Size / s, rec.font.Style), new SolidBrush(rec.fontcolor), rect2);
                             }
                         }
                     }
@@ -3044,17 +3098,17 @@ namespace Diagram
                 gfx.FillRectangle(new SolidBrush(Color.FromArgb(100, 10, 200, 200)), new Rectangle((int)(a / this.scale), (int)(b / this.scale), (int)((c - a) / this.scale), (int)((d - b) / this.scale)));
             }
 
-            // ZOOMING draw mini screen
+            // PREVIEW draw zoom mini screen
             if (!export && this.zooming)
             {
                 myPen = new System.Drawing.Pen(System.Drawing.Color.Gray, 1);
                 gfx.DrawRectangle(
                     myPen,
                     new Rectangle(
-                        (int)(this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / s),
-                        (int)(this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / s),
-                        (int)(this.ClientSize.Width / s),
-                        (int)(this.ClientSize.Height / s)
+                        (int)((this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / s * this.currentScale)),
+                        (int)((this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / s * this.currentScale)),
+                        (int)(this.ClientSize.Width / s * this.currentScale),
+                        (int)(this.ClientSize.Height / s * this.currentScale)
                     )
                 );
             }
@@ -3064,7 +3118,12 @@ namespace Diagram
             {
                 Font drawFont = new Font("Arial", 10);
                 SolidBrush drawBrush = new SolidBrush(Color.Black);
-                gfx.DrawString((-this.shift.x).ToString() + "," + this.shift.y.ToString() + " (" + this.ClientSize.Width.ToString() + "x" + this.ClientSize.Height.ToString() + ")", drawFont, drawBrush, 10, 10);
+                gfx.DrawString(
+                    (this.shift.x).ToString() + "," + 
+                    this.shift.y.ToString() + 
+                    " (" + this.ClientSize.Width.ToString() + "x" + this.ClientSize.Height.ToString() + ") " +
+                    "scl:" + s.ToString() + "," + this.currentScale.ToString(), 
+                    drawFont, drawBrush, 10, 10);
             }
 
             // vykreslenie scrollbarov
@@ -3125,6 +3184,15 @@ namespace Diagram
             this.shift.y = this.shift.y - this.ClientSize.Height;
             this.diagram.InvalidateDiagram();
         }
+
+        // VIEW reset zoom
+        public void resetZoom()
+        {
+            this.currentScale = this.zoomingDefaultScale;
+            this.scale = this.zoomingDefaultScale;
+            this.diagram.InvalidateDiagram();
+        }
+
         /*************************************************************************************************************************/
 
         // NODE create
@@ -4426,6 +4494,5 @@ namespace Diagram
             }
             main.console.Show();
         }
-
     }
 }
