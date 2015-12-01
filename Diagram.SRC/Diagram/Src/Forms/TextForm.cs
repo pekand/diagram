@@ -172,6 +172,17 @@ namespace Diagram
                 this.DColor.Color = this.rec.color;
             }
 
+            if (this.diagram.isReadOnly())
+            {
+                this.TextFormTextBox.ReadOnly = true;
+                this.TextFormNoteTextBox.ReadOnly = true;
+            }
+            else
+            {
+                this.TextFormTextBox.ReadOnly = false;
+                this.TextFormNoteTextBox.ReadOnly = false;
+            }
+
         }
 
         public void setDiagram(Diagram diagram)

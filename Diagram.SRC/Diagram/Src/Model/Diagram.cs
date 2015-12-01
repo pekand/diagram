@@ -63,6 +63,12 @@ namespace Diagram
             return (this.FileName == "" && this.NewFile && this.SavedFile);
         }
 
+        // [FILE] IS NEW - check if file is empty
+        public bool isReadOnly()
+        {
+            return this.options.readOnly;
+        }
+
         // [FILE] [OPEN] Otvorenie xml súboru
         public bool OpenFile(string FileName)
         {
