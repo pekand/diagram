@@ -141,6 +141,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Src\Components\EditLinkPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Src\Components\Popup.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -152,9 +155,6 @@
     </Compile>
     <Compile Include="Src\Components\Server.cs" />
     <Compile Include="Src\Components\Script.cs" />
-    <Compile Include="Src\Forms\OptionsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Src\Lib\Job.cs" />
     <Compile Include="Src\Lib\Encrypt.cs" />
     <Compile Include="Src\Lib\Fonts.cs" />
@@ -263,6 +263,9 @@
     <None Include="Resources\diagramico_forms.ico" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Src\Components\EditLinkPanel.resx">
+      <DependentUpon>EditLinkPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Src\Components\EditPanel.resx">
       <DependentUpon>EditPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -287,9 +290,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\NewPasswordForm.resx">
       <DependentUpon>NewPasswordForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Src\Forms\OptionsForm.resx">
-      <DependentUpon>OptionsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\PasswordForm.resx">
       <DependentUpon>PasswordForm.cs</DependentUpon>

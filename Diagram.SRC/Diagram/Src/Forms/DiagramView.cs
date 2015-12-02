@@ -22,12 +22,15 @@ namespace Diagram
         public Popup PopupMenu;
         public System.Windows.Forms.SaveFileDialog DSave;
         public System.Windows.Forms.OpenFileDialog DOpen;
-        public System.Windows.Forms.ColorDialog CDialog;
+        public System.Windows.Forms.ColorDialog DColor;
+        public System.Windows.Forms.ColorDialog DFontColor;
+        public System.Windows.Forms.FontDialog DFont;
+        public System.Windows.Forms.OpenFileDialog DImage;
         public System.Windows.Forms.Timer MoveTimer;
         public System.Windows.Forms.FontDialog defaultfontDialog;
         public System.Windows.Forms.SaveFileDialog exportFile;
         public System.Windows.Forms.SaveFileDialog saveTextFileDialog;
-
+        
         /*************************************************************************************************************************/
 
         // ATRIBUTES SCREEN
@@ -81,6 +84,7 @@ namespace Diagram
 
         // EDITPANEL
         public EditPanel editPanel = null; // edit panel for add new node name
+        public EditLinkPanel editLinkPanel = null; // edit panel for node link
 
         // SEARCHPANEL
         public int lastFound = -1;  // id of last node found by search panel
@@ -96,27 +100,36 @@ namespace Diagram
         // INIT COMPONENTS
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();            
+            this.components = new System.ComponentModel.Container();
             this.DSave = new System.Windows.Forms.SaveFileDialog();
             this.DOpen = new System.Windows.Forms.OpenFileDialog();
-            this.CDialog = new System.Windows.Forms.ColorDialog();
+            this.DColor = new System.Windows.Forms.ColorDialog();
+            this.DFontColor = new System.Windows.Forms.ColorDialog();
+            this.DFont = new System.Windows.Forms.FontDialog();
+            this.DImage = new System.Windows.Forms.OpenFileDialog();
             this.MoveTimer = new System.Windows.Forms.Timer(this.components);
             this.defaultfontDialog = new System.Windows.Forms.FontDialog();
             this.exportFile = new System.Windows.Forms.SaveFileDialog();
             this.saveTextFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
-            
             // 
             // DSave
             // 
             this.DSave.DefaultExt = "*.diagram";
-
             this.DSave.Filter = "Diagram (*.diagram)|*.diagram";
             // 
             // DOpen
             // 
             this.DOpen.DefaultExt = "*.diagram";
             this.DOpen.Filter = "Diagram (*.diagram)|*.diagram";
+            // 
+            // DFont
+            // 
+            this.DFont.Color = System.Drawing.SystemColors.ControlText;
+            // 
+            // DImage
+            // 
+            this.DImage.Filter = "All|*.bmp;*.jpg;*.jpeg;*.png;*.ico|Bmp|*.bmp|Jpg|*.jpg;*.jpeg|Png|*.png|Ico|*.ico";
             // 
             // MoveTimer
             // 
@@ -176,6 +189,10 @@ namespace Diagram
             // inicialize edit panel
             this.editPanel = new EditPanel(this);
             this.Controls.Add(this.editPanel);
+
+            // inicialize edit link panel
+            this.editLinkPanel = new EditLinkPanel(this);
+            this.Controls.Add(this.editLinkPanel);
         }
 
         // FORM Load event -
@@ -482,7 +499,7 @@ namespace Diagram
 
 			this.Focus();
 
-            if (this.editPanel.isEditing())
+            if (this.isEditing())
             {
                 this.ActiveControl = null;
             }
@@ -821,7 +838,14 @@ namespace Diagram
                     && TargetNode != null 
                     && this.SourceNode == null)
                 {
-                    this.diagram.Connect(this.CreateNode( +this.shift.x - startShift.x + this.startMousePos.x, +this.shift.y - startShift.y + this.startMousePos.y), TargetNode, false);
+                    this.diagram.Connect(
+                        this.CreateNode( 
+                            +this.shift.x - startShift.x + this.startMousePos.x,
+                            +this.shift.y - startShift.y + this.startMousePos.y
+                        ), 
+                        TargetNode, 
+                        false
+                    );
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
@@ -834,7 +858,11 @@ namespace Diagram
                     && TargetNode != null
                     && this.SourceNode == null)
                 {
-                    Node newrec = this.CreateNode(+this.shift.x - startShift.x + this.startMousePos.x, +this.shift.y - startShift.y + this.startMousePos.y);
+                    Node newrec = this.CreateNode(
+                        +this.shift.x - startShift.x + this.startMousePos.x, 
+                        +this.shift.y - startShift.y + this.startMousePos.y
+                    );
+
                     newrec.shortcut = TargetNode.id;
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
@@ -944,7 +972,8 @@ namespace Diagram
                         }
                     }
 
-                    if (this.SelectedNodes.Count() == 1 || (this.SelectedNodes.Count() == 0 && this.SourceNode != null))
+                    if (this.SelectedNodes.Count() == 1 
+                        || (this.SelectedNodes.Count() == 0 && this.SourceNode != null))
                     {
                         TargetNode.color = this.SourceNode.color;
                         TargetNode.font = this.SourceNode.font;
@@ -1058,7 +1087,14 @@ namespace Diagram
                 // KEY DRAG+MMIDDLE create new node and conect with existing node
                 if (!isreadonly && TargetNode != null)
                 {
-                    this.diagram.Connect(this.CreateNode(+this.shift.x - this.startShift.x + this.startMousePos.x, +this.shift.y - this.startShift.y + this.startMousePos.y), TargetNode);
+                    this.diagram.Connect(
+                        this.CreateNode(
+                            +this.shift.x - this.startShift.x + this.startMousePos.x, 
+                            +this.shift.y - this.startShift.y + this.startMousePos.y
+                        ), 
+                        TargetNode
+                    );
+
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
@@ -1145,8 +1181,8 @@ namespace Diagram
             }
         }
 
-        // EVENT Shortcuts                                                                             // [KEYBOARD] [EVENT]
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        // EVENT Shortcuts                                                                             
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)                           // [KEYBOARD] [EVENT]
         {
             if (this.editPanel.edit.Focused || this.searching)
             {
@@ -1362,6 +1398,12 @@ namespace Diagram
                 return true;
             }
 
+            if (KeyMap.parseKey(KeyMap.editNodeLink, keyData)) // [KEY] [F4] edit node name
+            {
+                this.editLink();
+                return true;
+            }
+
             if (KeyMap.parseKey(KeyMap.openEditForm, keyData)) // [KEY] [CTRL+E] open edit form
             {
                 this.edit();
@@ -1369,7 +1411,7 @@ namespace Diagram
             }
 
             // prevent catch keys while node is creating or renaming
-            if (this.editPanel.isEditing())
+            if (this.isEditing())
             {
                 return false;
             }
@@ -1453,7 +1495,7 @@ namespace Diagram
         // EVENT Key down
         public void DiagramApp_KeyDown(object sender, KeyEventArgs e)                                  // [KEYBOARD] [DOWN] [EVENT]
         {
-            if (this.editPanel.isEditing()|| this.searching)
+            if (this.isEditing() || this.searching)
             {
                 return;
             }
@@ -1473,7 +1515,7 @@ namespace Diagram
                 this.keyalt = true;
             }
 
-            if (this.editPanel.isEditing())
+            if (this.isEditing())
             {
                 return;
             }
@@ -1513,7 +1555,7 @@ namespace Diagram
             this.keyctrl = false;
             this.keyalt = false;
 
-            if (this.editPanel.isEditing() || this.searching)
+            if (this.isEditing() || this.searching)
             {
                 return;
             }
@@ -1547,7 +1589,7 @@ namespace Diagram
         // EVENT Keypress
         public void DiagramApp_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (this.editPanel.isEditing() || this.searching)
+            if (this.isEditing() || this.searching)
             {
                 return;
             }
@@ -1570,7 +1612,12 @@ namespace Diagram
                     this.LayerOut();
                 }
                 else
-                if (this.key != ' ' && this.key != '\t' && this.key != '\r' && this.key != '\n' && this.key != '`' && this.key != (char)27) // KEY OTHER Pisanie textu - Vytvorenie novej nody
+                if (this.key != ' ' 
+                    && this.key != '\t' 
+                    && this.key != '\r' 
+                    && this.key != '\n' 
+                    && this.key != '`' 
+                    && this.key != (char)27) // KEY OTHER Pisanie textu - Vytvorenie novej nody
                 {
                     this.editPanel.showEditPanel(this.cursorPosition(), this.key);
                 }
@@ -1687,8 +1734,8 @@ namespace Diagram
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
 
-        // EVENT Resize                                                                                // [RESIZE] [EVENT]
-        public void DiagramApp_Resize(object sender, EventArgs e)
+        // EVENT Resize                                                                                
+        public void DiagramApp_Resize(object sender, EventArgs e)                                      // [RESIZE] [EVENT]
         {
             if (this.zooming)
             {
@@ -2121,10 +2168,6 @@ namespace Diagram
             if (searhPanel == null)
             {
                 searhPanel = new SearchPanel(this);
-                this.searhPanel.Location = new System.Drawing.Point(10, 10);
-                this.searhPanel.Name = "panel2";
-                this.searhPanel.Size = new System.Drawing.Size(106, 25);
-                this.searhPanel.TabIndex = 0;
                 this.searhPanel.SearchpanelStateChanged += this.SearchPanelChanged;
                 this.Controls.Add(this.searhPanel);
             }
@@ -3073,7 +3116,20 @@ namespace Diagram
                                     (int)((rec.width - this.diagram.NodePadding) / s),
                                     (int)((rec.height - this.diagram.NodePadding) / s)
                                 );
-                                gfx.DrawString(rec.text, new Font(rec.font.FontFamily, rec.font.Size / s, rec.font.Style), new SolidBrush(rec.fontcolor), rect2);
+
+
+                                gfx.DrawString(
+                                    rec.text,
+                                    new System.Drawing.Font(
+                                       rec.font.FontFamily,
+                                       rec.font.Size / s,
+                                       rec.font.Style,
+                                       System.Drawing.GraphicsUnit.Point,
+                                       ((byte)(0))
+                                    ),
+                                    new SolidBrush(rec.fontcolor), 
+                                    rect2
+                                );
                             }
                         }
                     }
@@ -3197,7 +3253,13 @@ namespace Diagram
         // NODE create
         public Node CreateNode(int x, int y, bool SelectAfterCreate = true, string text = "")
         {
-            var rec = this.diagram.CreateNode((int)(x * this.scale - this.shift.x), (int)(y * this.scale - this.shift.y), this.layer, text);
+            var rec = this.diagram.CreateNode(
+                (int)(x * this.scale - this.shift.x), 
+                (int)(y * this.scale - this.shift.y), 
+                this.layer, 
+                text
+            );
+
             if (rec != null)
             {
                 if (SelectAfterCreate) this.SelectOnlyOneNode(rec);
@@ -3527,11 +3589,11 @@ namespace Diagram
         // NODE Select node color
         public void selectColor()
         {
-            if (SelectedNodes.Count() > 0)
+            if (SelectedNodes.Count() > 0 && !this.diagram.options.readOnly)
             {
-                CDialog.Color = this.SelectedNodes[0].color;
+                DColor.Color = this.SelectedNodes[0].color;
 
-                if (CDialog.ShowDialog() == DialogResult.OK)
+                if (DColor.ShowDialog() == DialogResult.OK)
                 {
                     if (!this.diagram.options.readOnly)
                     {
@@ -3539,13 +3601,103 @@ namespace Diagram
                         {
                             foreach (Node rec in this.SelectedNodes)
                             {
-                                rec.color = CDialog.Color;
+                                rec.color = DColor.Color;
                             }
                         }
                     }
 
                     this.diagram.InvalidateDiagram();
                 }
+            }
+        }
+
+        // NODE Select node font color
+        public void selectFontColor()
+        {
+            if (SelectedNodes.Count() > 0 && !this.diagram.options.readOnly)
+            {
+                DFontColor.Color = this.SelectedNodes[0].color;
+
+                if (DColor.ShowDialog() == DialogResult.OK)
+                {
+                    if (!this.diagram.options.readOnly)
+                    {
+                        if (SelectedNodes.Count() > 0)
+                        {
+                            foreach (Node rec in this.SelectedNodes)
+                            {
+                                rec.fontcolor = DColor.Color;
+                            }
+                        }
+                    }
+
+                    this.diagram.InvalidateDiagram();
+                }
+            }
+        }
+
+        // NODE Select node font
+        public void selectFont()
+        {
+            if (SelectedNodes.Count() > 0 && !this.diagram.options.readOnly)
+            {
+                DFont.Font = this.SelectedNodes[0].font;
+
+                if (DFont.ShowDialog() == DialogResult.OK)
+                {
+                    if (!this.diagram.options.readOnly)
+                    {
+                        if (SelectedNodes.Count() > 0)
+                        {
+                            foreach (Node rec in this.SelectedNodes)
+                            {
+                                rec.font = DFont.Font;
+                                SizeF s = this.diagram.MeasureStringWithMargin(rec.text, rec.font);
+                                rec.width = (int)s.Width;
+                                rec.height = (int)s.Height;
+                            }
+                        }
+                    }
+
+                    this.diagram.InvalidateDiagram();
+                }
+            }
+        }
+
+        // NODE Check if selected nodes are transparent
+        public bool isSelectionTransparent()
+        {
+            bool isTransparent = false;
+
+            if (SelectedNodes.Count() > 0)
+            {
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    if (rec.transparent)
+                    {
+                        isTransparent = true;
+                        break;
+                    }
+                }
+            }
+
+            return isTransparent;
+        }
+
+        // NODE Make selected node transparent
+        public void makeSelectionTransparent()
+        {
+            if (SelectedNodes.Count() > 0 && !this.diagram.options.readOnly)
+            {
+                bool isTransparent = this.isSelectionTransparent();
+
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    rec.transparent = !isTransparent;
+                }
+
+                this.diagram.InvalidateDiagram();
+
             }
         }
 
@@ -3559,6 +3711,105 @@ namespace Diagram
                 {
                     this.diagram.FontDefault = this.defaultfontDialog.Font;
                 }
+            }
+        }
+
+        // NODE Select node image
+        public void selectImage()
+        {
+            if (SelectedNodes.Count() > 0 && !this.diagram.options.readOnly)
+            {
+                if (this.DImage.ShowDialog() == DialogResult.OK && Os.FileExists(this.DImage.FileName))
+                {
+                    foreach (Node rec in this.SelectedNodes)
+                    {
+                        this.diagram.setImage(rec, this.DImage.FileName);
+                    }
+
+                    this.diagram.unsave();
+                }
+
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // NODE Select node image
+        public void removeImagesFromSelection()
+        {
+            if (SelectedNodes.Count() > 0 && !this.diagram.options.readOnly)
+            {
+                
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    if (rec.isimage)
+                    {
+                        this.diagram.removeImage(rec);
+                    }
+                }
+
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // NODE Check if selected nodes are transparent
+        public bool hasSelectionImage()
+        {
+            bool hasImage = false;
+
+            if (SelectedNodes.Count() > 0)
+            {
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    if (rec.isimage)
+                    {
+                        hasImage = true;
+                        break;
+                    }
+                }
+            }
+
+            return hasImage;
+        }
+
+        // NODE Check if selected nodes are transparent
+        public bool hasSelectionNotEmbeddedImage()
+        {
+            bool hasImage = false;
+
+            if (SelectedNodes.Count() > 0)
+            {
+                foreach (Node rec in this.SelectedNodes)
+                {
+                    if (rec.isimage && !rec.embeddedimage)
+                    {
+                        hasImage = true;
+                        break;
+                    }
+                }
+            }
+
+            return hasImage;
+        }
+
+        // NODE Make selected node transparent
+        public void makeImagesEmbedded()
+        {
+            if (SelectedNodes.Count() > 0 && !this.diagram.options.readOnly)
+            {
+                bool hasImage = this.hasSelectionNotEmbeddedImage();
+
+                if (hasImage) { 
+                    foreach (Node rec in this.SelectedNodes)
+                    {
+                        this.diagram.setImageEmbedded(rec);
+                    }
+
+                    this.diagram.unsave();
+                }
+
+                
+                this.diagram.InvalidateDiagram();
             }
         }
 
@@ -3606,7 +3857,7 @@ namespace Diagram
 
                 data.SetData(copytext);
 
-                data.SetData("DiagramXml", GetDiagramPart());//create and copy xml
+                data.SetData("DiagramXml", GetDiagramPart()); //create and copy xml
                 this.DeleteSelectedNodes(this);
                 this.ClearSelection();
                 this.diagram.InvalidateDiagram();
@@ -3740,26 +3991,11 @@ namespace Diagram
                     newrec.height = (int)s.Height;
 
                     // odstranenie absolutnej cesty
-                    string ext = "";
-                    if (file != "" && File.Exists(file))
-                    {
-                        ext = Path.GetExtension(file).ToLower();
-                    }
+                    string ext = Os.getExtension(file);
 
                     if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // [PASTE] [IMAGE] [FILE NAME] skratenie cesty k suboru
                     {
-                        newrec.isimage = true;
-                        newrec.imagepath = file;
-                        if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName) && file.IndexOf(new FileInfo(this.diagram.FileName).DirectoryName) == 0)
-                        {
-                            int start = new FileInfo(this.diagram.FileName).DirectoryName.Length;
-                            int finish = file.Length - start;
-                            newrec.imagepath = "." + file.Substring(start, finish);
-                        }
-                        newrec.image = new Bitmap(newrec.imagepath);
-                        if (ext != ".ico") newrec.image.MakeTransparent(Color.White);
-                        newrec.height = newrec.image.Height;
-                        newrec.width = newrec.image.Width;
+                        this.diagram.setImage(newrec, file);
                     }
                     else
                         if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName) && file.IndexOf(new FileInfo(this.diagram.FileName).DirectoryName) == 0) // [PASTE] [FILE] - skratenie cesty k suboru
@@ -4336,6 +4572,20 @@ namespace Diagram
             }
         }
 
+        // NODE edit link
+        public void editLink()
+        {
+            if (this.SelectedNodes.Count() == 1)
+            {
+                Node rec = this.SelectedNodes[0];
+                Position position = new Position(
+                    (int)((this.shift.x + rec.position.x) / this.scale),
+                    (int)((this.shift.y + rec.position.y) / this.scale)
+                );
+                this.editLinkPanel.editNode(position, this.SelectedNodes[0]);
+            }
+        }
+
         // NODE move nodes to foreground
         public void moveNodesToForeground()
         {
@@ -4469,6 +4719,32 @@ namespace Diagram
             {
                 this.shift.y = this.shift.y - 50;
                 this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // NODE node is editet with edit panel
+        public bool isEditing()
+        {
+            if (this.editPanel.isEditing()
+                || this.editLinkPanel.isEditing())
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        // NODE node is editet with edit panel
+        public void cancelEditing()
+        {
+            if (this.editPanel.isEditing())
+            {
+                this.editPanel.closePanel();
+            }
+
+            if (this.editLinkPanel.isEditing())
+            {
+                this.editPanel.closePanel();
             }
         }
 

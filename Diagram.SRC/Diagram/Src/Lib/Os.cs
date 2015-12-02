@@ -335,5 +335,16 @@ namespace Diagram
             return Path.DirectorySeparatorChar.ToString();
         }
 
+
+        public static string getExtension(string file)
+        {
+            string ext = "";
+            if (file != "" && Os.FileExists(file))
+            {
+                ext = Path.GetExtension(file).ToLower();
+            }
+
+            return ext;
+        }
     }
 }

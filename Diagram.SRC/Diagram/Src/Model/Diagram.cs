@@ -1262,6 +1262,50 @@ namespace Diagram
             }
             return null;
         }
+
+        // NODE set image
+        public void setImage(Node rec, string file)
+        {
+            string ext = Os.getExtension(file);
+
+            rec.isimage = true;
+            rec.imagepath = file;
+            if (this.FileName != ""
+                && File.Exists(this.FileName)
+                && file.IndexOf(new FileInfo(this.FileName).DirectoryName) == 0)
+            {
+                int start = new FileInfo(this.FileName).DirectoryName.Length;
+                int finish = file.Length - start;
+                rec.imagepath = "." + file.Substring(start, finish);
+            }
+            rec.image = new Bitmap(rec.imagepath);
+            if (ext != ".ico") rec.image.MakeTransparent(Color.White);
+            rec.height = rec.image.Height;
+            rec.width = rec.image.Width;
+        }
+
+        // NODE remove image
+        public void removeImage(Node rec)
+        {
+            rec.isimage = false;
+            rec.imagepath = "";
+            rec.image = null;
+            rec.embeddedimage = false;
+
+            SizeF s = this.MeasureStringWithMargin(rec.text, rec.font);
+            rec.width = (int)s.Width;
+            rec.height = (int)s.Height;
+        }
+
+        // NODE set image embedded
+        public void setImageEmbedded(Node rec)
+        {
+            if (rec.isimage)
+            {
+                rec.embeddedimage = true;
+            }
+        }
+
         /*************************************************************************************************************************/
 
         // DIAGRAM VIEWopen new view on diagram

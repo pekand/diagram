@@ -42,6 +42,7 @@ namespace Diagram
         public static string pageUp = "PAGEUP";
         public static string pageDown = "PAGEDOWN";
         public static string editNodeName =  "F2";
+        public static string editNodeLink = "F4";
         public static string openEditForm = "CTRL+E";
         public static string editOrLayerIn = "ENTER";
         public static string layerIn = "ADD";
