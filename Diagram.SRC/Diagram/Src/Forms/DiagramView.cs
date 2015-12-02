@@ -513,7 +513,7 @@ namespace Diagram
             {
                 this.SourceNode = this.findNodeInMousePosition(e.X, e.Y);
 
-                if (bottomScrollBar!=null && bottomScrollBar.MouseDown(e.X, e.Y))
+                if (bottomScrollBar != null && bottomScrollBar.MouseDown(e.X, e.Y))
                 {
                     moveScreenHorizontal(bottomScrollBar.position);
                     this.diagram.InvalidateDiagram();
@@ -536,7 +536,7 @@ namespace Diagram
                 {
                     this.actualMousePos.x = e.X;
                     this.actualMousePos.y = e.Y;
-                    if (!this.diagram.options.readOnly 
+                    if (!this.diagram.options.readOnly
                         && (this.keyctrl || this.keyalt)
                         && !this.keyshift) // add node by drag
                     {
@@ -552,13 +552,13 @@ namespace Diagram
                 }
                 else if (this.SourceNode != null)
                 {
-                    if (this.keyshift && !this.keyctrl && !this.keyalt )
+                    if (this.keyshift && !this.keyctrl && !this.keyalt 
+                        && this.SourceNode.link.Trim() != "" 
+                        && (Os.FileExists(this.SourceNode.link) || Os.DirectoryExists(this.SourceNode.link)))
                     {
-                        System.Windows.Forms.ListBox listBox = new System.Windows.Forms.ListBox();
-
                         string[] array = { this.SourceNode.link };
                         var data = new DataObject(DataFormats.FileDrop, array);
-                        listBox.DoDragDrop(data, DragDropEffects.Copy);
+                        this.DoDragDrop(data, DragDropEffects.Copy);
                     }
                     else
                     if (!this.diagram.options.readOnly)  //informations for draging
