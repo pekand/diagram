@@ -38,6 +38,13 @@ namespace Diagram
             //
             // textBoxSearch
             //
+            this.textBoxSearch.Font = new System.Drawing.Font(
+                "Microsoft Sans Serif",
+                16F, 
+                System.Drawing.FontStyle.Regular, 
+                System.Drawing.GraphicsUnit.Point, 
+                ((byte)(0))
+            );
             this.textBoxSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.textBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxSearch.Location = new System.Drawing.Point(4, 4);
@@ -69,7 +76,7 @@ namespace Diagram
 
             System.Drawing.Size size = TextRenderer.MeasureText("Text", textBoxSearch.Font);
             textBoxSearch.Height = size.Height;
-            this.Height = size.Height + 2;
+            this.Height = size.Height + 5;
 
             this.centerPanel();
         }

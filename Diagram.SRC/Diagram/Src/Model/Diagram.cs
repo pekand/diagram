@@ -63,6 +63,12 @@ namespace Diagram
             return (this.FileName == "" && this.NewFile && this.SavedFile);
         }
 
+        // [FILE] IS NEW - check if file is empty
+        public bool isReadOnly()
+        {
+            return this.options.readOnly;
+        }
+
         // [FILE] [OPEN] Otvorenie xml súboru
         public bool OpenFile(string FileName)
         {
@@ -872,6 +878,7 @@ namespace Diagram
             return null;
         }
 
+        // NODE delete all nodes which is not in layer history
         public bool canDeleteNode(Node rec)
         {
             if (!rec.haslayer)
@@ -1255,6 +1262,50 @@ namespace Diagram
             }
             return null;
         }
+
+        // NODE set image
+        public void setImage(Node rec, string file)
+        {
+            string ext = Os.getExtension(file);
+
+            rec.isimage = true;
+            rec.imagepath = file;
+            if (this.FileName != ""
+                && File.Exists(this.FileName)
+                && file.IndexOf(new FileInfo(this.FileName).DirectoryName) == 0)
+            {
+                int start = new FileInfo(this.FileName).DirectoryName.Length;
+                int finish = file.Length - start;
+                rec.imagepath = "." + file.Substring(start, finish);
+            }
+            rec.image = new Bitmap(rec.imagepath);
+            if (ext != ".ico") rec.image.MakeTransparent(Color.White);
+            rec.height = rec.image.Height;
+            rec.width = rec.image.Width;
+        }
+
+        // NODE remove image
+        public void removeImage(Node rec)
+        {
+            rec.isimage = false;
+            rec.imagepath = "";
+            rec.image = null;
+            rec.embeddedimage = false;
+
+            SizeF s = this.MeasureStringWithMargin(rec.text, rec.font);
+            rec.width = (int)s.Width;
+            rec.height = (int)s.Height;
+        }
+
+        // NODE set image embedded
+        public void setImageEmbedded(Node rec)
+        {
+            if (rec.isimage)
+            {
+                rec.embeddedimage = true;
+            }
+        }
+
         /*************************************************************************************************************************/
 
         // DIAGRAM VIEWopen new view on diagram

@@ -2739,6 +2739,22 @@ f.close()</text>
       <timecreate>2015-8-23 22:32:01</timecreate>
       <timemodify>2015-8-23 22:32:01</timemodify>
     </rectangle>
+    <rectangle>
+      <id>257</id>
+      <fontcolor>Black</fontcolor>
+      <text>import clr
+import System
+Tools.log("test")
+Diagram.CreateNode(0,0,0,"aaa")</text>
+      <layer>0</layer>
+      <x>-1566</x>
+      <y>715</y>
+      <width>230</width>
+      <height>82</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-10-29 21:25:15</timecreate>
+      <timemodify>2015-10-29 21:25:15</timemodify>
+    </rectangle>
   </rectangles>
   <lines>
     <line>
