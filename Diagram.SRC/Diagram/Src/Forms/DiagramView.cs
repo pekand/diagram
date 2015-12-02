@@ -552,8 +552,16 @@ namespace Diagram
                 }
                 else if (this.SourceNode != null)
                 {
-                    //informations for draging
-                    if (!this.diagram.options.readOnly)
+                    if (this.keyshift && !this.keyctrl && !this.keyalt )
+                    {
+                        System.Windows.Forms.ListBox listBox = new System.Windows.Forms.ListBox();
+
+                        string[] array = { this.SourceNode.link };
+                        var data = new DataObject(DataFormats.FileDrop, array);
+                        listBox.DoDragDrop(data, DragDropEffects.Copy);
+                    }
+                    else
+                    if (!this.diagram.options.readOnly)  //informations for draging
                     {
                         this.drag = true;
                         MoveTimer.Enabled = true;
