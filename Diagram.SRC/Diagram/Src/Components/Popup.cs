@@ -50,6 +50,17 @@ namespace Diagram
         private System.Windows.Forms.ToolStripMenuItem pasteToLinkItem;
         private System.Windows.Forms.ToolStripMenuItem pasteToNoteItem;
 
+        private System.Windows.Forms.ToolStripMenuItem nodeItem; // NODE
+        private System.Windows.Forms.ToolStripMenuItem transparentItem;
+        private System.Windows.Forms.ToolStripMenuItem fontItem;
+        private System.Windows.Forms.ToolStripMenuItem fontColorItem;
+        private System.Windows.Forms.ToolStripMenuItem editLinkItem;
+
+        private System.Windows.Forms.ToolStripMenuItem imageItem; // NODE
+        private System.Windows.Forms.ToolStripMenuItem imageAddItem; 
+        private System.Windows.Forms.ToolStripMenuItem imageRemoveItem;
+        private System.Windows.Forms.ToolStripMenuItem imageEmbeddedItem;
+
         private System.Windows.Forms.ToolStripMenuItem viewItem; // VIEW
         private System.Windows.Forms.ToolStripMenuItem newViewItem;
         private System.Windows.Forms.ToolStripMenuItem centerItem;
@@ -140,6 +151,17 @@ namespace Diagram
             this.pasteToLinkItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToNoteItem = new System.Windows.Forms.ToolStripMenuItem();
 
+            this.nodeItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.transparentItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fontItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fontColorItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editLinkItem = new System.Windows.Forms.ToolStripMenuItem();
+
+            this.imageItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageAddItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageRemoveItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageEmbeddedItem = new System.Windows.Forms.ToolStripMenuItem();
+
             this.viewItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newViewItem = new System.Windows.Forms.ToolStripMenuItem();
             this.centerItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -179,6 +201,8 @@ namespace Diagram
             this.quickActionSeparator,
             this.fileItem,
             this.editMenuItem,
+            this.nodeItem,
+            this.imageItem,
             this.viewItem,
             this.layerItem,
             this.helpSeparator,
@@ -434,6 +458,76 @@ namespace Diagram
             this.pasteToNoteItem.Text = "Paste to note";
             this.pasteToNoteItem.Click += new System.EventHandler(this.pasteToNoteItem_Click);
             // 
+            // nodeItem
+            // 
+            this.nodeItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            transparentItem,
+            fontItem,
+            fontColorItem,
+            editLinkItem});
+            this.nodeItem.Name = "nodeItem";
+            this.nodeItem.Size = new System.Drawing.Size(164, 22);
+            this.nodeItem.Text = "Node";
+            // 
+            // transparentItem
+            // 
+            this.transparentItem.Name = "transparentItem";
+            this.transparentItem.Size = new System.Drawing.Size(126, 22);
+            this.transparentItem.Text = "Transparent";
+            this.transparentItem.Click += new System.EventHandler(this.transparentItem_Click);
+            // 
+            // fontItem
+            // 
+            this.fontItem.Name = "fontItem";
+            this.fontItem.Size = new System.Drawing.Size(126, 22);
+            this.fontItem.Text = "Font";
+            this.fontItem.Click += new System.EventHandler(this.fontItem_Click);
+            // 
+            // fontColorItem
+            // 
+            this.fontColorItem.Name = "fontColorItem";
+            this.fontColorItem.Size = new System.Drawing.Size(126, 22);
+            this.fontColorItem.Text = "Font color";
+            this.fontColorItem.Click += new System.EventHandler(this.fontColorItem_Click);
+            // 
+            // editLinkItem
+            // 
+            this.editLinkItem.Name = "editLinkItem";
+            this.editLinkItem.Size = new System.Drawing.Size(126, 22);
+            this.editLinkItem.Text = "Edit link";
+            this.editLinkItem.Click += new System.EventHandler(this.editLinkItem_Click);
+            // 
+            // imageItem
+            // 
+            this.imageItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            imageAddItem,
+            imageRemoveItem,
+            imageEmbeddedItem});
+            this.imageItem.Name = "imageItem";
+            this.imageItem.Size = new System.Drawing.Size(126, 22);
+            this.imageItem.Text = "Image";
+            // 
+            // imageAddItem
+            // 
+            this.imageAddItem.Name = "imageAddItem";
+            this.imageAddItem.Size = new System.Drawing.Size(126, 22);
+            this.imageAddItem.Text = "Add";
+            this.imageAddItem.Click += new System.EventHandler(this.imageAddItem_Click);
+            // 
+            // imageRemoveItem
+            // 
+            this.imageRemoveItem.Name = "imageRemoveItem";
+            this.imageRemoveItem.Size = new System.Drawing.Size(126, 22);
+            this.imageRemoveItem.Text = "Remove";
+            this.imageRemoveItem.Click += new System.EventHandler(this.imageRemoveItem_Click);
+            // 
+            // imageEmbeddedItem
+            // 
+            this.imageEmbeddedItem.Name = "imageEmbeddedItem";
+            this.imageEmbeddedItem.Size = new System.Drawing.Size(126, 22);
+            this.imageEmbeddedItem.Text = "Embedded";
+            this.imageEmbeddedItem.Click += new System.EventHandler(this.imageEmbeddedItem_Click);
+            // 
             // viewItem
             // 
             this.viewItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -622,6 +716,44 @@ namespace Diagram
         // MENU Manage                                                                                // POPUP MENU
         public void PopupMenu_Opening(object sender, CancelEventArgs e)
         {
+            bool readOnly = this.diagramView.diagram.isReadOnly();
+
+            editItem.Visible = !readOnly;
+            colorItem.Visible = !readOnly;
+            linkItem.Visible = !readOnly;
+            openlinkItem.Enabled = !readOnly;
+            quickActionSeparator.Visible = !readOnly;
+            alignItem.Visible = !readOnly;
+            removeShortcutItem.Visible = !readOnly;
+            openLinkDirectoryItem.Visible = !readOnly;
+            copyItem.Enabled = !readOnly;
+            cutItem.Enabled = !readOnly;
+            pasteItem.Enabled = !readOnly;
+            pasteToLinkItem.Enabled = !readOnly;
+            pasteToNoteItem.Enabled = !readOnly;
+            setStartPositionItem.Enabled = !readOnly;
+            copyLinkItem.Enabled = !readOnly;
+            copyNoteItem.Enabled = !readOnly;
+            encryptItem.Enabled = !readOnly;
+            changePasswordItem.Enabled = !readOnly;
+            defaultFontItem.Enabled = !readOnly;
+            resetFontItem.Enabled = !readOnly;
+            gridItem.Enabled = !readOnly;
+            coordinatesItem.Enabled = !readOnly;
+            bordersItem.Enabled = !readOnly;
+            transparentItem.Checked = false;
+            transparentItem.Enabled = !readOnly;
+            imageAddItem.Enabled = false;
+            imageRemoveItem.Enabled = false;
+            imageEmbeddedItem.Enabled = false;
+            fontItem.Enabled = false;
+            fontColorItem.Enabled = false;
+            editLinkItem.Enabled = false;
+
+            if (readOnly) { 
+                return;
+            }
+
             // NEW FILE
             if (this.diagramView.diagram.isNew())
             {
@@ -631,6 +763,7 @@ namespace Diagram
             {
                 this.openDiagramDirectoryItem.Enabled = true;
             }
+
 
             // SELECTION EMPTY
             if (this.diagramView.SelectedNodes.Count() == 0)
@@ -647,6 +780,14 @@ namespace Diagram
                 cutItem.Enabled = false;
                 copyLinkItem.Enabled = false;
                 copyNoteItem.Enabled = false;
+                transparentItem.Checked = false;
+                transparentItem.Enabled = false;
+                imageAddItem.Enabled = false;
+                imageRemoveItem.Enabled = false;
+                imageEmbeddedItem.Enabled = false;
+                fontItem.Enabled = false;
+                fontColorItem.Enabled = false;
+                editLinkItem.Enabled = false;
             }
 
             // SELECTION NOT EMPTY
@@ -659,6 +800,14 @@ namespace Diagram
                 cutItem.Enabled = true;
                 copyLinkItem.Enabled = true;
                 copyNoteItem.Enabled = true;
+                transparentItem.Checked = this.diagramView.isSelectionTransparent();
+                transparentItem.Enabled = true;
+                imageAddItem.Enabled = true;
+                imageRemoveItem.Enabled = this.diagramView.hasSelectionImage();
+                imageEmbeddedItem.Enabled = this.diagramView.hasSelectionNotEmbeddedImage();
+                fontItem.Enabled = true;
+                fontColorItem.Enabled = true;
+                editLinkItem.Enabled = false;
             }
 
             // SELECTION ONE
@@ -671,6 +820,7 @@ namespace Diagram
                 openLinkDirectoryItem.Visible = false;
                 if (this.diagramView.SelectedNodes[0].link.Trim().Length > 0 && File.Exists(this.diagramView.SelectedNodes[0].link))
                     openLinkDirectoryItem.Visible = true;
+                editLinkItem.Enabled = true;
             }
 
             // SELECTION MORE THEN ONE
@@ -1098,5 +1248,46 @@ namespace Diagram
             this.diagramView.main.aboutForm.Show();
         }
 
+        // MENU NODE transparent
+        private void transparentItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.makeSelectionTransparent();
+        }
+
+        // MENU NODE set font
+        private void fontItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.selectFont();
+        }
+
+        // MENU NODE set font color
+        private void fontColorItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.selectFontColor();
+        }
+
+        // MENU NODE edit node link
+        private void editLinkItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.editLink();
+        }
+
+        // MENU NODE set image
+        private void imageAddItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.selectImage();
+        }
+
+        // MENU NODE image remove from diagram
+        private void imageRemoveItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.removeImagesFromSelection();
+        }
+
+        // MENU NODE image embedded to diagram
+        private void imageEmbeddedItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.makeImagesEmbedded();
+        }
     }
 }
