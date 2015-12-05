@@ -56,10 +56,15 @@ namespace Diagram
         private System.Windows.Forms.ToolStripMenuItem fontColorItem;
         private System.Windows.Forms.ToolStripMenuItem editLinkItem;
 
-        private System.Windows.Forms.ToolStripMenuItem imageItem; // NODE
+        private System.Windows.Forms.ToolStripMenuItem attachmentItem; // ATTACHMENT
         private System.Windows.Forms.ToolStripMenuItem imageAddItem; 
         private System.Windows.Forms.ToolStripMenuItem imageRemoveItem;
         private System.Windows.Forms.ToolStripMenuItem imageEmbeddedItem;
+        private System.Windows.Forms.ToolStripSeparator includeSeparator; //SEPARATOR
+        private System.Windows.Forms.ToolStripMenuItem deploayAttachmentItem;
+        private System.Windows.Forms.ToolStripMenuItem includeFileItem;
+        private System.Windows.Forms.ToolStripMenuItem includeDirectoryItem;
+        private System.Windows.Forms.ToolStripMenuItem removeFileItem;
 
         private System.Windows.Forms.ToolStripMenuItem viewItem; // VIEW
         private System.Windows.Forms.ToolStripMenuItem newViewItem;
@@ -157,10 +162,15 @@ namespace Diagram
             this.fontColorItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editLinkItem = new System.Windows.Forms.ToolStripMenuItem();
 
-            this.imageItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.attachmentItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageAddItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageRemoveItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageEmbeddedItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.includeSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.deploayAttachmentItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.includeFileItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.includeDirectoryItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeFileItem = new System.Windows.Forms.ToolStripMenuItem();
 
             this.viewItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newViewItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -202,7 +212,7 @@ namespace Diagram
             this.fileItem,
             this.editMenuItem,
             this.nodeItem,
-            this.imageItem,
+            this.attachmentItem,
             this.viewItem,
             this.layerItem,
             this.helpSeparator,
@@ -497,15 +507,20 @@ namespace Diagram
             this.editLinkItem.Text = "Edit link";
             this.editLinkItem.Click += new System.EventHandler(this.editLinkItem_Click);
             // 
-            // imageItem
+            // attachmentItem
             // 
-            this.imageItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.attachmentItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             imageAddItem,
             imageRemoveItem,
-            imageEmbeddedItem});
-            this.imageItem.Name = "imageItem";
-            this.imageItem.Size = new System.Drawing.Size(126, 22);
-            this.imageItem.Text = "Image";
+            imageEmbeddedItem,
+            includeSeparator,
+            deploayAttachmentItem,
+            includeFileItem,
+            includeDirectoryItem,
+            removeFileItem});
+            this.attachmentItem.Name = "attachmentItem";
+            this.attachmentItem.Size = new System.Drawing.Size(126, 22);
+            this.attachmentItem.Text = "Attachment";
             // 
             // imageAddItem
             // 
@@ -527,6 +542,40 @@ namespace Diagram
             this.imageEmbeddedItem.Size = new System.Drawing.Size(126, 22);
             this.imageEmbeddedItem.Text = "Embedded";
             this.imageEmbeddedItem.Click += new System.EventHandler(this.imageEmbeddedItem_Click);
+            // 
+            // includeSeparator
+            // 
+            this.includeSeparator.Name = "includeSeparator";
+            this.includeSeparator.Size = new System.Drawing.Size(161, 6);
+            // 
+            // deploayAttachmentItem
+            // 
+            this.deploayAttachmentItem.Name = "deploayAttachmentItem";
+            this.deploayAttachmentItem.Size = new System.Drawing.Size(126, 22);
+            this.deploayAttachmentItem.Text = "Deploy attachment";
+            this.deploayAttachmentItem.Click += new System.EventHandler(this.deploayAttachmentItem_Click);
+            // 
+            // includeFileItem
+            // 
+            this.includeFileItem.Name = "includeFileItem";
+            this.includeFileItem.Size = new System.Drawing.Size(126, 22);
+            this.includeFileItem.Text = "Add file";
+            this.includeFileItem.Click += new System.EventHandler(this.includeFileItem_Click);
+            // 
+            // includeDirectoryItem
+            // 
+            this.includeDirectoryItem.Name = "includeDirectoryItem";
+            this.includeDirectoryItem.Size = new System.Drawing.Size(126, 22);
+            this.includeDirectoryItem.Text = "Add directory";
+            this.includeDirectoryItem.Click += new System.EventHandler(this.includeDirectoryItem_Click);
+            // 
+            // removeFileItem
+            // 
+            this.removeFileItem.Name = "removeFileItem";
+            this.removeFileItem.Size = new System.Drawing.Size(126, 22);
+            this.removeFileItem.Text = "Remove";
+            this.removeFileItem.Click += new System.EventHandler(this.removeFileItem_Click);
+
             // 
             // viewItem
             // 
@@ -748,11 +797,7 @@ namespace Diagram
             imageEmbeddedItem.Enabled = false;
             fontItem.Enabled = false;
             fontColorItem.Enabled = false;
-            editLinkItem.Enabled = false;
-
-            if (readOnly) { 
-                return;
-            }
+            editLinkItem.Enabled = false;          
 
             // NEW FILE
             if (this.diagramView.diagram.isNew())
@@ -764,6 +809,12 @@ namespace Diagram
                 this.openDiagramDirectoryItem.Enabled = true;
             }
 
+            if (readOnly)
+            {
+                return;
+            }
+
+            imageAddItem.Enabled = true;
 
             // SELECTION EMPTY
             if (this.diagramView.SelectedNodes.Count() == 0)
@@ -782,7 +833,6 @@ namespace Diagram
                 copyNoteItem.Enabled = false;
                 transparentItem.Checked = false;
                 transparentItem.Enabled = false;
-                imageAddItem.Enabled = false;
                 imageRemoveItem.Enabled = false;
                 imageEmbeddedItem.Enabled = false;
                 fontItem.Enabled = false;
@@ -1031,8 +1081,8 @@ namespace Diagram
 
         // MENU paste
         public void pasteItem_Click(object sender, EventArgs e)
-        {
-            this.diagramView.paste();
+        {  
+            this.diagramView.paste(new Position(this.diagramView.startMousePos.x, this.diagramView.startMousePos.y));
         }
 
         // MENU Copy link
@@ -1272,10 +1322,10 @@ namespace Diagram
             this.diagramView.editLink();
         }
 
-        // MENU NODE set image
+        // MENU NODE add image
         private void imageAddItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.selectImage();
+            this.diagramView.addImage();
         }
 
         // MENU NODE image remove from diagram
@@ -1288,6 +1338,30 @@ namespace Diagram
         private void imageEmbeddedItem_Click(object sender, EventArgs e)
         {
             this.diagramView.makeImagesEmbedded();
+        }
+
+        // MENU NODE deploy attachment to system
+        private void deploayAttachmentItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.attachmentDeploy();
+        }
+
+        // MENU NODE add file attachment to diagram
+        private void includeFileItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.attachmentAddFile(new Position(this.diagramView.startMousePos.x, this.diagramView.startMousePos.y));
+        }
+
+        // MENU NODE add directory attachment to diagram
+        private void includeDirectoryItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.attachmentAddDirectory(new Position(this.diagramView.startMousePos.x, this.diagramView.startMousePos.y));
+        }
+        
+        // MENU NODE remove included data
+        private void removeFileItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.attachmentRemove();
         }
     }
 }

@@ -26,8 +26,8 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>7</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>0.3.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -88,7 +88,7 @@
     <ManifestKeyFile>Diagram_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>false</GenerateManifests>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -155,6 +155,7 @@
     </Compile>
     <Compile Include="Src\Components\Server.cs" />
     <Compile Include="Src\Components\Script.cs" />
+    <Compile Include="Src\Lib\Compress.cs" />
     <Compile Include="Src\Lib\Job.cs" />
     <Compile Include="Src\Lib\Encrypt.cs" />
     <Compile Include="Src\Lib\Fonts.cs" />

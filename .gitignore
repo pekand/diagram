@@ -7,3 +7,4 @@ install-windows/Output
 install-windows/files
 Documentation/Doxygen/html
 .vs
+/Diagram.SRC/Diagram/publish

@@ -1185,8 +1185,8 @@
       <text>Server.cs</text>
       <link>Diagram.SRC/Diagram/Src/Components/Server.cs</link>
       <layer>0</layer>
-      <x>4325</x>
-      <y>-446</y>
+      <x>4180</x>
+      <y>-449</y>
       <width>82</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -1199,8 +1199,8 @@
       <text>ParseCommandLineArguments</text>
       <link>Diagram.SRC/Diagram/Src/Main.cs#ParseCommandLineArguments</link>
       <layer>0</layer>
-      <x>4685</x>
-      <y>-334</y>
+      <x>4540</x>
+      <y>-337</y>
       <width>216</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -1280,8 +1280,8 @@
       <fontcolor>Black</fontcolor>
       <text>create server</text>
       <layer>0</layer>
-      <x>4314</x>
-      <y>-334</y>
+      <x>4169</x>
+      <y>-337</y>
       <width>104</width>
       <height>36</height>
       <color>Yellow</color>
@@ -1294,8 +1294,8 @@
       <text>constructor:Server.cs</text>
       <link>Diagram.SRC/Diagram/Src/Components/Server.cs#public Server(</link>
       <layer>0</layer>
-      <x>4431</x>
-      <y>-446</y>
+      <x>4286</x>
+      <y>-449</y>
       <width>154</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -1307,8 +1307,8 @@
       <fontcolor>Black</fontcolor>
       <text>send ping</text>
       <layer>0</layer>
-      <x>4596</x>
-      <y>-446</y>
+      <x>4451</x>
+      <y>-449</y>
       <width>83</width>
       <height>36</height>
       <color>Yellow</color>
@@ -1320,8 +1320,8 @@
       <fontcolor>Black</fontcolor>
       <text>server not exist</text>
       <layer>0</layer>
-      <x>4687</x>
-      <y>-446</y>
+      <x>4542</x>
+      <y>-449</y>
       <width>117</width>
       <height>36</height>
       <color>Yellow</color>
@@ -1333,8 +1333,8 @@
       <fontcolor>Black</fontcolor>
       <text>server exist</text>
       <layer>0</layer>
-      <x>4692</x>
-      <y>-392</y>
+      <x>4547</x>
+      <y>-395</y>
       <width>94</width>
       <height>36</height>
       <color>Yellow</color>
@@ -1346,8 +1346,8 @@
       <fontcolor>Black</fontcolor>
       <text>create server</text>
       <layer>0</layer>
-      <x>4814</x>
-      <y>-446</y>
+      <x>4669</x>
+      <y>-449</y>
       <width>104</width>
       <height>36</height>
       <color>Yellow</color>
@@ -1359,8 +1359,8 @@
       <fontcolor>Black</fontcolor>
       <text>new thread</text>
       <layer>0</layer>
-      <x>4928</x>
-      <y>-446</y>
+      <x>4783</x>
+      <y>-449</y>
       <width>92</width>
       <height>36</height>
       <color>Yellow</color>
@@ -1373,8 +1373,8 @@
       <text>ListenForClients</text>
       <link>Diagram.SRC/Diagram/Src/Components/Server.cs#public void ListenForClients(</link>
       <layer>0</layer>
-      <x>5053</x>
-      <y>-446</y>
+      <x>4908</x>
+      <y>-449</y>
       <width>123</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -1386,8 +1386,8 @@
       <fontcolor>Black</fontcolor>
       <text>parse command line arguments</text>
       <layer>0</layer>
-      <x>4438</x>
-      <y>-334</y>
+      <x>4293</x>
+      <y>-337</y>
       <width>216</width>
       <height>36</height>
       <color>Yellow</color>
@@ -1399,8 +1399,8 @@
       <fontcolor>Black</fontcolor>
       <text>Open empty diagram</text>
       <layer>0</layer>
-      <x>4911</x>
-      <y>-334</y>
+      <x>4766</x>
+      <y>-337</y>
       <width>152</width>
       <height>36</height>
       <color>Yellow</color>
@@ -1413,8 +1413,8 @@
       <text>OpenDiagram</text>
       <link>Diagram.SRC/Diagram/Src/Main.cs#public void OpenDiagram(</link>
       <layer>0</layer>
-      <x>5083</x>
-      <y>-334</y>
+      <x>4938</x>
+      <y>-337</y>
       <width>110</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -1426,8 +1426,8 @@
       <fontcolor>Black</fontcolor>
       <text>Open diagram from command line</text>
       <layer>0</layer>
-      <x>4911</x>
-      <y>-271</y>
+      <x>4766</x>
+      <y>-274</y>
       <width>231</width>
       <height>36</height>
       <color>Yellow</color>
