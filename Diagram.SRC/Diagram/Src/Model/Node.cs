@@ -39,6 +39,8 @@ namespace Diagram
         public int iwidth = 0; //image size
         public int iheight = 0;
 
+        public string attachment = ""; // compressed file attachment
+
         public string timecreate = ""; // node creation time
         public string timemodify = "";// node modification time
 

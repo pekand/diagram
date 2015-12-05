@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 #if !MONO
 using Shell32;
@@ -289,6 +290,13 @@ namespace Diagram
         }
 
         /// <summary>
+        /// check if directory or file exist independent on os </summary>
+        public static bool Exists(string path)
+        {
+            return FileExists(path) || DirectoryExists(path);
+        }
+
+        /// <summary>
         /// get current running application executable directory </summary>
         public static string getCurrentApplicationDirectory()
         {
@@ -335,7 +343,8 @@ namespace Diagram
             return Path.DirectorySeparatorChar.ToString();
         }
 
-
+        /// <summary>
+        /// get file extension</summary>
         public static string getExtension(string file)
         {
             string ext = "";
@@ -345,6 +354,44 @@ namespace Diagram
             }
 
             return ext;
+        }
+
+        public static bool isDirectory(string path)
+        {
+            return Os.DirectoryExists(path);
+        }
+
+        public static bool isFile(string path)
+        {
+            return Os.FileExists(path);
+        }
+
+        /// <summary>
+        /// Scans a folder and all of its subfolders recursively, and updates the List of files
+        /// </summary>
+        /// <param name="path">Full path for scened directory</param>
+        /// <param name="files">out - file list</param>
+        /// <param name="directories">out - directories list</param>
+        public static void search(string path, List<string> files, List<string> directories)
+        {
+            try
+            {
+                foreach (string f in Directory.GetFiles(path))
+                {
+                    files.Add(f);
+                }
+
+                foreach (string d in Directory.GetDirectories(path))
+                {
+                    directories.Add(d);
+                    search(d, files, directories);
+                }
+
+            }
+            catch (System.Exception ex)
+            {
+                Program.log.write(ex.Message);
+            }
         }
     }
 }

@@ -137,7 +137,7 @@ namespace Diagram
         {
 
             if (this.editedNode == null) {
-                this.editedNode = this.diagramView.CreateNode(this.Left, this.Top);
+                this.editedNode = this.diagramView.CreateNode(new Position(this.Left, this.Top));
             }
 
             this.editedNode.text = edit.Text;

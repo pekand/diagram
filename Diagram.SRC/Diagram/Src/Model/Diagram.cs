@@ -403,6 +403,11 @@ namespace Diagram
                                                     R.shortcut = Int32.Parse(el.Value);
                                                 }
 
+                                                if (el.Name.ToString() == "attachment")
+                                                {
+                                                    R.attachment = el.Value;
+                                                }
+
                                                 if (el.Name.ToString() == "layer")
                                                 {
                                                     R.layer = Int32.Parse(el.Value);
@@ -732,6 +737,7 @@ namespace Diagram
                     if (rec.link != "") rectangle.Add(new XElement("link", rec.link));
                     if (rec.scriptid != "") rectangle.Add(new XElement("scriptid", rec.scriptid));
                     if (rec.shortcut != 0) rectangle.Add(new XElement("shortcut", rec.shortcut));
+                    if (rec.attachment != "") rectangle.Add(new XElement("attachment", rec.attachment));
 
                     rectangle.Add(new XElement("layer", rec.layer));
 
@@ -1244,7 +1250,7 @@ namespace Diagram
         }
 
         // NODE Najdenie nody podla pozicie myši
-        public Node findNodeInPosition(int x, int y, int layer)
+        public Node findNodeInPosition(Position position, int layer)
         {
             for (int i = this.Nodes.Count() - 1; i >= 0; i--) // Loop through List with foreach
             {
@@ -1252,8 +1258,8 @@ namespace Diagram
                 {
                     if
                     (
-                        this.Nodes[i].position.x <= x && x <= this.Nodes[i].position.x + this.Nodes[i].width &&
-                        this.Nodes[i].position.y <= y && y <= this.Nodes[i].position.y + this.Nodes[i].height
+                        this.Nodes[i].position.x <= position.x && position.x <= this.Nodes[i].position.x + this.Nodes[i].width &&
+                        this.Nodes[i].position.y <= position.y && position.y <= this.Nodes[i].position.y + this.Nodes[i].height
                     )
                     {
                         return this.Nodes[i];
@@ -1308,7 +1314,7 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // DIAGRAM VIEWopen new view on diagram
+        // DIAGRAM VIEW open new view on diagram
         public void openDiagramView()
         {
             DiagramView diagramview = new DiagramView(main, this);
