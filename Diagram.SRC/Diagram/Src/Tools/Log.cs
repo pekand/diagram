@@ -50,12 +50,12 @@ namespace Diagram
         public void saveLogToFile(string logPath = "")
         {
             if (logPath == "") {
-                string tempDir = System.IO.Path.GetTempPath();
+                string tempDir = Os.getTempPath();
                 string tempFile = "infinite-diagram-crash-log.txt";
-                logPath = Path.Combine(tempDir, tempFile);
+                logPath = Os.combine(tempDir, tempFile);
             }
 
-            File.WriteAllText(logPath, this.log);
+            Os.writeAllText(logPath, this.log);
         }
     }
 }

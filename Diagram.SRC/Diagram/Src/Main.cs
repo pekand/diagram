@@ -163,9 +163,9 @@ namespace Diagram
             // open existing diagram file
             else
             {
-                if (File.Exists(FilePath))
+                if (Os.FileExists(FilePath))
                 {
-                    FilePath = Path.GetFullPath(FilePath);
+                    FilePath = Os.getFullPath(FilePath);
 
                     // if server already exist in system, send him message whitch open diagram file
                     if (server.serverAlreadyExist)
@@ -242,7 +242,7 @@ namespace Diagram
                 else
                 {
                     // [COMAND LINE] [OPEN] check if argument is diagram file
-                    if (Path.GetExtension(arg).ToLower() == ".diagram")
+                    if (Os.getExtension(arg).ToLower() == ".diagram")
                     {
                         CommandLineOpen.Add(arg);
                     }
@@ -261,11 +261,11 @@ namespace Diagram
                     string file = CommandLineOpen[i];
 
                     // tray create diagram file if command line option is set
-                    if (CommandLineCreateIfNotExistFile && !File.Exists(file))
+                    if (CommandLineCreateIfNotExistFile && !Os.FileExists(file))
                     {
                         try
                         {
-                            File.Create(file).Dispose();
+                            Os.createEmptyFile(file);
                         }
                         catch (Exception ex)
                         {
@@ -273,7 +273,7 @@ namespace Diagram
                         }
                     }
 
-                    if (File.Exists(file))
+                    if (Os.FileExists(file))
                     {
                         this.OpenDiagram(file);
                     }

@@ -30,7 +30,7 @@ namespace Diagram
 
             this.optionsFilePath = this.getPortableConfigFilePath();
 
-            if (File.Exists(this.optionsFilePath))
+            if (Os.FileExists(this.optionsFilePath))
             {
 
             }
@@ -38,15 +38,15 @@ namespace Diagram
             {
                 this.optionsFilePath = this.getGlobalConfigFilePath();
 
-                if (File.Exists(this.optionsFilePath))
+                if (Os.FileExists(this.optionsFilePath))
                 {
                     this.loadConfigFile();
                 }
                 else
                 {
-                    if (!Directory.Exists(this.getGlobalConfigFileDirectory()))
+                    if (!Os.DirectoryExists(this.getGlobalConfigFileDirectory()))
                     {
-                        Directory.CreateDirectory(this.getGlobalConfigFileDirectory());
+                        Os.createDirectory(this.getGlobalConfigFileDirectory());
                     }
 
                     this.saveConfigFile();
@@ -61,7 +61,7 @@ namespace Diagram
             try
             {
                 Program.log.write("loadConfigFile: path:" + this.optionsFilePath);
-                string inputJSON = File.ReadAllText(this.optionsFilePath);
+                string inputJSON = Os.readAllText(this.optionsFilePath);
                 this.parameters = JsonConvert.DeserializeObject<ProgramOptions>(inputJSON);
             }
             catch (Exception ex)
@@ -75,7 +75,7 @@ namespace Diagram
             try
             {
                 string outputJSON = JsonConvert.SerializeObject(this.parameters);
-                File.WriteAllText(this.optionsFilePath, outputJSON);
+                Os.writeAllText(this.optionsFilePath, outputJSON);
             }
             catch (Exception ex)
             {
@@ -85,8 +85,8 @@ namespace Diagram
 
         public String getPortableConfigFilePath() 
         {
-            return Path.Combine(
-                Path.GetDirectoryName(Application.ExecutablePath),
+            return Os.combine(
+                Os.getDirectoryName(Application.ExecutablePath),
                 this.configFileName
             );
 
@@ -94,7 +94,7 @@ namespace Diagram
 
         private string getGlobalConfigFileDirectory()
         {
-            return Path.Combine(
+            return Os.combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                 this.configFileDirectory
             );
@@ -102,7 +102,7 @@ namespace Diagram
 
         private string getGlobalConfigFilePath()
         {
-            return Path.Combine(
+            return Os.combine(
                 this.getGlobalConfigFileDirectory(),
                 this.configFileName
             );

@@ -238,13 +238,13 @@ namespace Diagram
                     rec.isimage = true;
                 }
                 else
-                if (File.Exists(rec.imagepath))
+                if (Os.FileExists(rec.imagepath))
                 {
                     rec.isimage = true;
                     rec.image = new Bitmap(rec.imagepath);
                     rec.height = rec.image.Height;
                     string ext = "";
-                    ext = Path.GetExtension(rec.imagepath).ToLower();
+                    ext = Os.getExtension(rec.imagepath).ToLower();
                     if (ext != ".ico") rec.image.MakeTransparent(Color.White);
                     rec.width = rec.image.Width;
                 }
