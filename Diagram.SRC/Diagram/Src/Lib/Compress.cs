@@ -69,9 +69,9 @@ namespace Diagram
 
             if (Os.isFile(path)) {
                 EFile eFile = new EFile();
-                eFile.name = Path.GetFileName(path);
+                eFile.name = Os.getFileName(path);
                 eFile.data = Convert.ToBase64String(
-                    File.ReadAllBytes(path)
+                    Os.readAllBytes(path)
                 );
                 files.Add(eFile);
             }
@@ -263,18 +263,18 @@ namespace Diagram
 
             foreach (EDirectory directory in directories)
             {
-                string newDirPath = Path.Combine(destinationPath, directory.name);
+                string newDirPath = Os.combine(destinationPath, directory.name);
                 if (!Os.Exists(newDirPath))
                 {
-                    Directory.CreateDirectory(newDirPath);
+                    Os.createDirectory(newDirPath);
                 }
             }
 
             foreach (EFile file in files)
             {
-                string newFilePath = Path.Combine(destinationPath, file.name);
+                string newFilePath = Os.combine(destinationPath, file.name);
                 if (!Os.Exists(newFilePath)) {
-                    File.WriteAllBytes(
+                    Os.writeAllBytes(
                         newFilePath,
                         Convert.FromBase64String(
                             file.data

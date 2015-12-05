@@ -72,10 +72,9 @@ namespace Diagram
         // [FILE] [OPEN] Otvorenie xml súboru
         public bool OpenFile(string FileName)
         {
-
-            if (File.Exists(FileName))
+            if (Os.FileExists(FileName))
             {
-                Directory.SetCurrentDirectory(new FileInfo(FileName).DirectoryName);
+                Os.setCurrentDirectory(Os.getFileDirectory(FileName));
 
                 this.CloseFile();
                 this.FileName = FileName;
@@ -474,13 +473,12 @@ namespace Diagram
                                                 if (el.Name.ToString() == "image")
                                                 {
                                                     R.imagepath = el.Value.ToString();
-                                                    if (File.Exists(R.imagepath))
+                                                    if (Os.FileExists(R.imagepath))
                                                     {
                                                         try
                                                         {
                                                             string ext = "";
-                                                            ext = Path.GetExtension(R.imagepath).ToLower();
-
+                                                            ext = Os.getExtension(R.imagepath).ToLower();
 
                                                             if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // skratenie cesty k suboru
                                                             {
@@ -550,6 +548,12 @@ namespace Diagram
                                                 {
                                                     L.arrow = el.Value == "1" ? true : false;
                                                 }
+
+                                                if (el.Name.ToString() == "color")
+                                                {
+                                                    L.color = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
+                                                }
+
                                             }
                                             catch (Exception ex)
                                             {
@@ -612,7 +616,7 @@ namespace Diagram
         // [FILE] Save - Ulozit súbor
         public bool save()
         {
-            if (this.FileName != "" && File.Exists(this.FileName))
+            if (this.FileName != "" && Os.FileExists(this.FileName))
             {
                 this.SaveXMLFile(this.FileName);
                 this.NewFile = false;
@@ -780,6 +784,7 @@ namespace Diagram
                     line.Add(new XElement("start", lin.start));
                     line.Add(new XElement("end", lin.end));
                     line.Add(new XElement("arrow", (lin.arrow) ? "1" : "0"));
+                    line.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(lin.color)));
                     lines.Add(line);
                 }
 
@@ -1277,7 +1282,7 @@ namespace Diagram
             rec.isimage = true;
             rec.imagepath = file;
             if (this.FileName != ""
-                && File.Exists(this.FileName)
+                && Os.FileExists(this.FileName)
                 && file.IndexOf(new FileInfo(this.FileName).DirectoryName) == 0)
             {
                 int start = new FileInfo(this.FileName).DirectoryName.Length;

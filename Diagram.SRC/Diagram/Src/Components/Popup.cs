@@ -56,6 +56,9 @@ namespace Diagram
         private System.Windows.Forms.ToolStripMenuItem fontColorItem;
         private System.Windows.Forms.ToolStripMenuItem editLinkItem;
 
+        private System.Windows.Forms.ToolStripMenuItem lineItem; // LINE
+        private System.Windows.Forms.ToolStripMenuItem lineColorItem;
+
         private System.Windows.Forms.ToolStripMenuItem attachmentItem; // ATTACHMENT
         private System.Windows.Forms.ToolStripMenuItem imageAddItem; 
         private System.Windows.Forms.ToolStripMenuItem imageRemoveItem;
@@ -64,7 +67,7 @@ namespace Diagram
         private System.Windows.Forms.ToolStripMenuItem deploayAttachmentItem;
         private System.Windows.Forms.ToolStripMenuItem includeFileItem;
         private System.Windows.Forms.ToolStripMenuItem includeDirectoryItem;
-        private System.Windows.Forms.ToolStripMenuItem removeFileItem;
+        private System.Windows.Forms.ToolStripMenuItem removeAttachmentItem;
 
         private System.Windows.Forms.ToolStripMenuItem viewItem; // VIEW
         private System.Windows.Forms.ToolStripMenuItem newViewItem;
@@ -162,6 +165,9 @@ namespace Diagram
             this.fontColorItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editLinkItem = new System.Windows.Forms.ToolStripMenuItem();
 
+            this.lineItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lineColorItem = new System.Windows.Forms.ToolStripMenuItem();
+
             this.attachmentItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageAddItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageRemoveItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -170,7 +176,7 @@ namespace Diagram
             this.deploayAttachmentItem = new System.Windows.Forms.ToolStripMenuItem();
             this.includeFileItem = new System.Windows.Forms.ToolStripMenuItem();
             this.includeDirectoryItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeFileItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeAttachmentItem = new System.Windows.Forms.ToolStripMenuItem();
 
             this.viewItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newViewItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -212,6 +218,7 @@ namespace Diagram
             this.fileItem,
             this.editMenuItem,
             this.nodeItem,
+            this.lineItem,
             this.attachmentItem,
             this.viewItem,
             this.layerItem,
@@ -507,6 +514,21 @@ namespace Diagram
             this.editLinkItem.Text = "Edit link";
             this.editLinkItem.Click += new System.EventHandler(this.editLinkItem_Click);
             // 
+            // lineItem
+            // 
+            this.lineItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            lineColorItem});
+            this.lineItem.Name = "lineItem";
+            this.lineItem.Size = new System.Drawing.Size(164, 22);
+            this.lineItem.Text = "Line";
+            // 
+            // lineColorItem
+            // 
+            this.lineColorItem.Name = "lineColorItem";
+            this.lineColorItem.Size = new System.Drawing.Size(126, 22);
+            this.lineColorItem.Text = "Color";
+            this.lineColorItem.Click += new System.EventHandler(this.lineColorItem_Click);
+            // 
             // attachmentItem
             // 
             this.attachmentItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -517,7 +539,7 @@ namespace Diagram
             deploayAttachmentItem,
             includeFileItem,
             includeDirectoryItem,
-            removeFileItem});
+            removeAttachmentItem});
             this.attachmentItem.Name = "attachmentItem";
             this.attachmentItem.Size = new System.Drawing.Size(126, 22);
             this.attachmentItem.Text = "Attachment";
@@ -526,21 +548,21 @@ namespace Diagram
             // 
             this.imageAddItem.Name = "imageAddItem";
             this.imageAddItem.Size = new System.Drawing.Size(126, 22);
-            this.imageAddItem.Text = "Add";
+            this.imageAddItem.Text = "Add image";
             this.imageAddItem.Click += new System.EventHandler(this.imageAddItem_Click);
             // 
             // imageRemoveItem
             // 
             this.imageRemoveItem.Name = "imageRemoveItem";
             this.imageRemoveItem.Size = new System.Drawing.Size(126, 22);
-            this.imageRemoveItem.Text = "Remove";
+            this.imageRemoveItem.Text = "Remove image";
             this.imageRemoveItem.Click += new System.EventHandler(this.imageRemoveItem_Click);
             // 
             // imageEmbeddedItem
             // 
             this.imageEmbeddedItem.Name = "imageEmbeddedItem";
             this.imageEmbeddedItem.Size = new System.Drawing.Size(126, 22);
-            this.imageEmbeddedItem.Text = "Embedded";
+            this.imageEmbeddedItem.Text = "Embed image";
             this.imageEmbeddedItem.Click += new System.EventHandler(this.imageEmbeddedItem_Click);
             // 
             // includeSeparator
@@ -569,12 +591,12 @@ namespace Diagram
             this.includeDirectoryItem.Text = "Add directory";
             this.includeDirectoryItem.Click += new System.EventHandler(this.includeDirectoryItem_Click);
             // 
-            // removeFileItem
+            // removeAttachmentItem
             // 
-            this.removeFileItem.Name = "removeFileItem";
-            this.removeFileItem.Size = new System.Drawing.Size(126, 22);
-            this.removeFileItem.Text = "Remove";
-            this.removeFileItem.Click += new System.EventHandler(this.removeFileItem_Click);
+            this.removeAttachmentItem.Name = "removeAttachmentItem";
+            this.removeAttachmentItem.Size = new System.Drawing.Size(126, 22);
+            this.removeAttachmentItem.Text = "Remove";
+            this.removeAttachmentItem.Click += new System.EventHandler(this.removeFileItem_Click);
 
             // 
             // viewItem
@@ -790,14 +812,18 @@ namespace Diagram
             gridItem.Enabled = !readOnly;
             coordinatesItem.Enabled = !readOnly;
             bordersItem.Enabled = !readOnly;
-            transparentItem.Checked = false;
+            transparentItem.Checked = !readOnly;
             transparentItem.Enabled = !readOnly;
-            imageAddItem.Enabled = false;
-            imageRemoveItem.Enabled = false;
-            imageEmbeddedItem.Enabled = false;
-            fontItem.Enabled = false;
-            fontColorItem.Enabled = false;
-            editLinkItem.Enabled = false;          
+            imageAddItem.Enabled = !readOnly;
+            imageRemoveItem.Enabled = !readOnly;
+            imageEmbeddedItem.Enabled = !readOnly;
+            fontItem.Enabled = !readOnly;
+            fontColorItem.Enabled = !readOnly;
+            editLinkItem.Enabled = !readOnly;
+            lineColorItem.Enabled = !readOnly;
+            includeFileItem.Enabled = !readOnly;
+            includeDirectoryItem.Enabled = !readOnly;
+            removeAttachmentItem.Enabled = !readOnly;
 
             // NEW FILE
             if (this.diagramView.diagram.isNew())
@@ -838,6 +864,7 @@ namespace Diagram
                 fontItem.Enabled = false;
                 fontColorItem.Enabled = false;
                 editLinkItem.Enabled = false;
+                lineColorItem.Enabled = false;
             }
 
             // SELECTION NOT EMPTY
@@ -868,7 +895,7 @@ namespace Diagram
                 openlinkItem.Enabled = this.diagramView.SelectedNodes[0].link.Trim() != "";
                 alignItem.Visible = false;
                 openLinkDirectoryItem.Visible = false;
-                if (this.diagramView.SelectedNodes[0].link.Trim().Length > 0 && File.Exists(this.diagramView.SelectedNodes[0].link))
+                if (this.diagramView.SelectedNodes[0].link.Trim().Length > 0 && Os.FileExists(this.diagramView.SelectedNodes[0].link))
                     openLinkDirectoryItem.Visible = true;
                 editLinkItem.Enabled = true;
             }
@@ -881,6 +908,7 @@ namespace Diagram
                 alignItem.Visible = true;
                 removeShortcutItem.Visible = false;
                 openLinkDirectoryItem.Visible = false;
+                lineColorItem.Enabled = true;
             }
 
             // REMOVE SHORTCUT
@@ -913,6 +941,18 @@ namespace Diagram
             {
                 changePasswordItem.Visible = true;
                 encryptItem.Visible = false;
+            }
+
+            // ATTACHMENT
+            if (this.diagramView.hasSelectionAttachment())
+            {
+                deploayAttachmentItem.Enabled = true;
+                removeAttachmentItem.Enabled = true;
+            }
+            else
+            {
+                deploayAttachmentItem.Enabled = false;
+                removeAttachmentItem.Enabled = false;
             }
 
             // CLIPBOARD
@@ -1320,6 +1360,12 @@ namespace Diagram
         private void editLinkItem_Click(object sender, EventArgs e)
         {
             this.diagramView.editLink();
+        }
+
+        // MENU LINE select line color
+        private void lineColorItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.selectLineColor();
         }
 
         // MENU NODE add image

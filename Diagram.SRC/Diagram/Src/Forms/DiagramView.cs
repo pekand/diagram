@@ -262,7 +262,7 @@ namespace Diagram
         public void DiagramApp_FormClosing(object sender, FormClosingEventArgs e)
         {
             bool close = true;
-            if (!this.diagram.SavedFile && (this.diagram.FileName == "" || !File.Exists(this.diagram.FileName))) // Ulozi ako novy subor
+            if (!this.diagram.SavedFile && (this.diagram.FileName == "" || !Os.FileExists(this.diagram.FileName))) // Ulozi ako novy subor
             {
 
                 if (this.diagram.DiagramViews.Count() == 1) // can close if other views alredy opened
@@ -295,7 +295,7 @@ namespace Diagram
                     close = true;
                 }
             }
-            else if (!this.diagram.SavedFile && this.diagram.FileName != "" && File.Exists(this.diagram.FileName)) //ulozenie do aktualne otvoreneho suboru
+            else if (!this.diagram.SavedFile && this.diagram.FileName != "" && Os.FileExists(this.diagram.FileName)) //ulozenie do aktualne otvoreneho suboru
             {
                 if (this.diagram.DiagramViews.Count() == 1) // can close if other views alredy opened
                 {
@@ -331,7 +331,7 @@ namespace Diagram
         public void SetTitle()
         {
             if (this.diagram.FileName.Trim() != "")
-                this.Text = Path.GetFileNameWithoutExtension(this.diagram.FileName);
+                this.Text = Os.getFileNameWithoutExtension(this.diagram.FileName);
             else
                 this.Text = "Diagram";
             if (this.LayerNode != null && this.LayerNode.text.Trim() != "")
@@ -1653,7 +1653,7 @@ namespace Diagram
                 foreach (string file in files)
                 {
                     Node newrec = this.CreateNode(this.getMousePosition());
-                    newrec.text = Path.GetFileName(file);
+                    newrec.text = Os.getFileName(file);
 
                     SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
                     newrec.width = (int)s.Width;
@@ -1670,13 +1670,13 @@ namespace Diagram
                     {
                         newrec.color = Media.getColor(diagram.options.colorFile);
 
-                        if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName)) // DROP FILE - skratenie cesty k suboru
+                        if (this.diagram.FileName != "" && Os.FileExists(this.diagram.FileName)) // DROP FILE - skratenie cesty k suboru
                         {
                             newrec.link = Os.makeRelative(file, this.diagram.FileName);
                         }
 
                         string ext = "";
-                        ext = Path.GetExtension(file).ToLower();
+                        ext = Os.getExtension(file).ToLower();
 
                         if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // DROP IMAGE skratenie cesty k suboru
                         {
@@ -2355,6 +2355,11 @@ namespace Diagram
                                                     R.timemodify = el.Value;
                                                 }
 
+                                                if (el.Name.ToString() == "attachment")
+                                                {
+                                                    R.attachment = el.Value;
+                                                }
+
                                             }
                                             catch (Exception ex)
                                             {
@@ -2392,6 +2397,11 @@ namespace Diagram
                                                 {
                                                     L.arrow = el.Value == "1" ? true : false;
                                                 }
+
+                                                if (el.Name.ToString() == "color")
+                                                {
+                                                    L.color = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
+                                                }
                                             }
                                             catch (Exception ex)
                                             {
@@ -2419,7 +2429,7 @@ namespace Diagram
             foreach (Node rec in NewNodes)
             {
 
-                Node newrec = this.CreateNode(position.add(rec.position.x, rec.position.y), false);
+                Node newrec = this.CreateNode(rec.position.add(position), false);
                 newrec.text = rec.text;
                 newrec.font = rec.font;
                 SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
@@ -2499,7 +2509,8 @@ namespace Diagram
                     rectangle.Add(new XElement("transparent", rec.transparent));
                     rectangle.Add(new XElement("timecreate", rec.timecreate));
                     rectangle.Add(new XElement("timemodify", rec.timemodify));
-
+                    rectangle.Add(new XElement("attachment", rec.attachment));
+                    
                     rectangles.Add(rectangle);
                 }
 
@@ -2517,6 +2528,7 @@ namespace Diagram
                                     line.Add(new XElement("start", li.start - minid));
                                     line.Add(new XElement("end", li.end - minid));
                                     line.Add(new XElement("arrow", (li.arrow) ? "1" : "0"));
+                                    line.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(li.color)));
                                     lines.Add(line);
                                 }
 
@@ -2712,15 +2724,14 @@ namespace Diagram
             }
         }
 
-
         // FILE Open - Ulozit súbor
         public void open()
         {
             if (DOpen.ShowDialog() == DialogResult.OK)
             {
-                if (File.Exists(DOpen.FileName))
+                if (Os.FileExists(DOpen.FileName))
                 {
-                    if (Path.GetExtension(DOpen.FileName).ToLower() == ".diagram")
+                    if (Os.getExtension(DOpen.FileName).ToLower() == ".diagram")
                     {
                         main.OpenDiagram(DOpen.FileName);
 
@@ -2740,11 +2751,11 @@ namespace Diagram
         // FILE Open diagram directory
         public void openDiagramDirectory()
         {
-            if (!this.diagram.NewFile && File.Exists(this.diagram.FileName))
+            if (!this.diagram.NewFile && Os.FileExists(this.diagram.FileName))
             {
                 try
                 {
-                    System.Diagnostics.Process.Start(Path.GetDirectoryName(this.diagram.FileName));
+                    System.Diagnostics.Process.Start(Os.getDirectoryName(this.diagram.FileName));
                 }
                 catch (Exception ex)
                 {
@@ -2815,7 +2826,7 @@ namespace Diagram
                 {
                     outtext += rec.text + "\n" + (rec.link != "" ? rec.link + "\n" : "") + "\n" + rec.note + "\n---\n";
                 }
-                System.IO.File.WriteAllText(filePath, outtext);
+                Os.writeAllText(filePath, outtext);
             }
         }
 
@@ -2910,9 +2921,8 @@ namespace Diagram
                     if (isvisible)
                     {
 
-                        if (lin.arrow)
+                        if (lin.arrow) // draw line as arrow
                         {
-                            SolidBrush blueBrush = new SolidBrush(Color.DarkGray);
                             float x1 = (this.shift.x + cx + r1.position.x + r1.width / 2) / s;
                             float y1 = (this.shift.y + cy + r1.position.y + r1.height / 2) / s;
                             float x2 = (this.shift.x + cx + r2.position.x + r2.width / 2) / s;
@@ -2937,12 +2947,17 @@ namespace Diagram
                             FillMode newFillMode = FillMode.Winding;
 
                             // Fill polygon to screen.
-                            gfx.FillPolygon(blueBrush, curvePoints, newFillMode);
+                            gfx.FillPolygon(
+                                new SolidBrush(lin.color), 
+                                curvePoints, 
+                                newFillMode
+                            );
                         }
                         else
-                        {
+                        { 
+                            // draw line
                             gfx.DrawLine(
-                                myPen1,
+                                new System.Drawing.Pen(lin.color, 1),
                                 (this.shift.x + cx + r1.position.x + r1.width / 2) / s,
                                 (this.shift.y + cy + r1.position.y + r1.height / 2) / s,
                                 (this.shift.x + cx + r2.position.x + r2.width / 2) / s,
@@ -3100,13 +3115,15 @@ namespace Diagram
                             }
                             else
                             {
-                                if (!rec.transparent) // draw fill node
+                                // draw filled node rectangle
+                                if (!rec.transparent) 
                                 {
                                     gfx.FillRectangle(new SolidBrush(rec.color), rect1);
                                     if (this.diagram.options.borders) gfx.DrawRectangle(myPen1, rect1);
                                 }
 
-                                if (rec.haslayer && !export) // draw layer indicator
+                                // draw layer indicator
+                                if (rec.haslayer && !export) 
                                 {
                                     gfx.DrawRectangle(
                                         myPen1,
@@ -3119,6 +3136,7 @@ namespace Diagram
                                     );
                                 }
 
+                                // draw selected node border
                                 if (rec.selected && !export)
                                 {
                                     gfx.DrawRectangle(
@@ -3296,6 +3314,7 @@ namespace Diagram
             {
                 if (SelectAfterCreate) this.SelectOnlyOneNode(rec);
             }
+
             return rec;
         }
 
@@ -3342,7 +3361,7 @@ namespace Diagram
                 {
                     if (node.link.Trim().Length > 0)
                     {
-                        if (Directory.Exists(node.link)) // open directory of selected nods
+                        if (Os.DirectoryExists(node.link)) // open directory of selected nods
                         {
                             try
                             {
@@ -3354,11 +3373,11 @@ namespace Diagram
                             }
                         }
                         else
-                            if (File.Exists(node.link)) // open directory of selected files
+                            if (Os.FileExists(node.link)) // open directory of selected files
                             {
                                 try
                                 {
-                                    string parent_diectory = new FileInfo(this.SelectedNodes[0].link).Directory.FullName;
+                                    string parent_diectory = Os.getFileDirectory(this.SelectedNodes[0].link);
                                     System.Diagnostics.Process.Start(parent_diectory);
                                 }
                                 catch (Exception ex)
@@ -3489,16 +3508,16 @@ namespace Diagram
                 if (rec.link.Length > 0)
                 {
                     // set current directory to current diagrm file destination
-                    if (File.Exists(this.diagram.FileName))
+                    if (Os.FileExists(this.diagram.FileName))
                     {
-                        Directory.SetCurrentDirectory(new FileInfo(this.diagram.FileName).DirectoryName);
+                        Os.setCurrentDirectory(Os.getFileDirectory(this.diagram.FileName));
                     }
 
                     Match matchFileOpenOnPosition = (new Regex("^([^#]+)#(.*)$")).Match(rec.link.Trim());
 
 
                     //- ak je link nastaveny na "script" po dvojkliku sa vyhodnoti telo nody ako macro
-                    if (matchFileOpenOnPosition.Success && File.Exists(Path.GetFullPath(matchFileOpenOnPosition.Groups[1].Value)))       // OPEN FILE ON POSITION
+                    if (matchFileOpenOnPosition.Success && Os.FileExists(Os.normalizedFullPath(matchFileOpenOnPosition.Groups[1].Value)))       // OPEN FILE ON POSITION
                     {
                         try
                         {
@@ -4000,9 +4019,9 @@ namespace Diagram
                     newrec.text = ClipText;
                     this.diagram.unsave();
 
-                    if (File.Exists(ClipText))
+                    if (Os.FileExists(ClipText))
                     {
-                        newrec.text = Path.GetFileName(ClipText);
+                        newrec.text = Os.getFileName(ClipText);
                         SizeF s2 = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
                         newrec.width = (int)s2.Width;
                         newrec.height = (int)s2.Height;
@@ -4010,9 +4029,9 @@ namespace Diagram
                         newrec.color = Media.getColor(diagram.options.colorFile);
                     }
 
-                    if (Directory.Exists(ClipText))
+                    if (Os.DirectoryExists(ClipText))
                     {
-                        newrec.text = Path.GetFileName(ClipText);
+                        newrec.text = Os.getFileName(ClipText);
                         SizeF s2 = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
                         newrec.width = (int)s2.Width;
                         newrec.height = (int)s2.Height;
@@ -4035,7 +4054,7 @@ namespace Diagram
                 foreach (string file in returnList)
                 {
                     Node newrec = this.CreateNode(position);
-                    newrec.text = Path.GetFileNameWithoutExtension(file); ;
+                    newrec.text = Os.getFileNameWithoutExtension(file);
 
                     SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
                     newrec.width = (int)s.Width;
@@ -4049,14 +4068,14 @@ namespace Diagram
                         this.diagram.setImage(newrec, file);
                     }
                     else
-                        if (this.diagram.FileName != "" && File.Exists(this.diagram.FileName) && file.IndexOf(new FileInfo(this.diagram.FileName).DirectoryName) == 0) // [PASTE] [FILE] - skratenie cesty k suboru
+                        if (this.diagram.FileName != "" && Os.FileExists(this.diagram.FileName) && file.IndexOf(new FileInfo(this.diagram.FileName).DirectoryName) == 0) // [PASTE] [FILE] - skratenie cesty k suboru
                     {
                         int start = new FileInfo(this.diagram.FileName).DirectoryName.Length;
                         int finish = file.Length - start;
                         newrec.link = "." + file.Substring(start, finish);
                     }
                     else
-                            if (this.diagram.FileName != "" && Directory.Exists(this.diagram.FileName)) // [PASTE] [DIRECTORY] - skatenie cesty k adresaru
+                            if (this.diagram.FileName != "" && Os.DirectoryExists(this.diagram.FileName)) // [PASTE] [DIRECTORY] - skatenie cesty k adresaru
                     {
                         int start = new FileInfo(this.diagram.FileName).DirectoryName.Length;
                         int finish = file.Length - start;
@@ -4833,8 +4852,9 @@ namespace Diagram
                 }
                 else
                 {
-                    Node newrec = this.CreateNode(position);
+                    Node newrec = this.CreateNode(position, true, Os.getFileName(this.DSelectFileAttachment.FileName));
                     newrec.attachment = data;
+                    newrec.color = Media.getColor(diagram.options.colorAttachment);
                 }
 
                 this.diagram.unsave();
@@ -4858,8 +4878,9 @@ namespace Diagram
                 }
                 else
                 {
-                    Node newrec = this.CreateNode(position);
+                    Node newrec = this.CreateNode(position, true, Os.getFileName(this.DSelectDirectoryAttachment.SelectedPath));
                     newrec.attachment = data;
+                    newrec.color = Media.getColor(diagram.options.colorAttachment);
                 }
 
                 this.diagram.unsave();
@@ -4879,6 +4900,62 @@ namespace Diagram
             }
         }
 
+        public List<Line> getSelectedLines()
+        {
+            List<Line> SelectedLinesTemp = new List<Line>();
+            int id = 0;
+
+            foreach (Node srec in this.SelectedNodes) {
+                id = srec.id;
+                foreach (Line lin in this.diagram.Lines) {
+                    if (lin.start == id) {
+                        SelectedLinesTemp.Add(lin);
+                    }
+                }
+            }
+
+            List<Line> SelectedLines = new List<Line>();
+
+            foreach (Line lin in SelectedLinesTemp)
+            {
+                id = lin.end;
+                foreach (Node srec in this.SelectedNodes)
+                {
+                    if (id == srec.id)
+                    {
+                        SelectedLines.Add(lin);
+                    }
+                }
+            }
+
+            return SelectedLines;
+        }
+
+        // LINE selectcolor
+        public void selectLineColor()
+        {
+            if (!this.diagram.options.readOnly)
+            {
+                if (this.SelectedNodes.Count() > 0)
+                {
+                    //DColor.Color = this.SelectedNodes[0].color;
+
+                    if (DColor.ShowDialog() == DialogResult.OK)
+                    {
+
+                        List<Line> SelectedLines = getSelectedLines();
+
+                        foreach (Line lin in SelectedLines)
+                        {
+                            lin.color = DColor.Color;
+                        }
+
+
+                        this.diagram.InvalidateDiagram();
+                    }
+                }
+            }
+        }
         /*************************************************************************************************************************/
 
         // DEBUG Show console
