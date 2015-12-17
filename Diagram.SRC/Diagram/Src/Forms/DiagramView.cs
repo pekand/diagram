@@ -2203,8 +2203,14 @@ namespace Diagram
             this.shift.x = currentPosition.x;
             this.shift.y = currentPosition.y;
 
-            this.searching = false;
+            this.SearchClose();
+        }
 
+        // SEARCHPANEL Close - close search panel
+        private void SearchClose()
+        {
+            this.Focus();
+            this.searching = false;
             this.diagram.InvalidateDiagram();
         }
 
@@ -2229,6 +2235,11 @@ namespace Diagram
             if (action == "cancel")
             {
                 this.SearchCancel();
+            }
+
+            if (action == "close")
+            {
+                this.SearchClose();
             }
         }
 
