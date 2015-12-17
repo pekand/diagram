@@ -3610,15 +3610,19 @@ namespace Diagram
                         [DOCUMENTATION]
                         - po dvojkliku na nodu sa spusti link
                         - v linku sa nahradia klucove vyrazi
-                            %TEXT%     - aktualny text nody
-                            %NOTE%     - poznamka v node
-                            %ID%       - text v id nody
-                            %FILENAME% - meno diagramu
+                            %TEXT%     - name of node
+                            %NAME%     - name of node
+                            %LINK%     - link in node
+                            %NOTE%     - note in node
+                            %ID%       - id of actual node
+                            %FILENAME% - file name  of diagram
+                            %DIRECTORY% - current diagram directory
                         */
 
                         string cmd = rec.link;                     // replace variables in link
                         cmd = cmd.Replace("%TEXT%", rec.text);
                         cmd = cmd.Replace("%NAME%", rec.text);
+                        cmd = cmd.Replace("%LINK%", rec.link);
                         cmd = cmd.Replace("%NOTE%", rec.note);
                         cmd = cmd.Replace("%ID%", rec.id.ToString());
                         cmd = cmd.Replace("%FILENAME%", this.diagram.FileName);

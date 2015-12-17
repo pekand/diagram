@@ -132,9 +132,14 @@ namespace Diagram
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
                 System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
                 startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+
 #if !MONO
-                startInfo.FileName = "cmd.exe";
-                startInfo.Arguments = "/c " + "\"" + cmd + "\"";
+                string[] parts = Patterns.splitCommand(cmd);
+                startInfo.FileName = parts[0];
+                startInfo.Arguments = parts[1];
+
+                /*startInfo.FileName = "cmd.exe";
+                startInfo.Arguments = "/c " + "\"" + cmd + "\"";*/
 #else
 				startInfo.FileName = "/bin/bash";
                 startInfo.Arguments = "-c " + cmd;
