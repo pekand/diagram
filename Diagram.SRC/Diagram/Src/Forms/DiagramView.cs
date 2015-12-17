@@ -1202,7 +1202,7 @@ namespace Diagram
         // EVENT Shortcuts                                                                             
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)                           // [KEYBOARD] [EVENT]
         {
-            if (this.editPanel.edit.Focused || this.searching)
+            if (this.isEditing() || this.searching)
             {
                 return false;
             }
@@ -3618,9 +3618,11 @@ namespace Diagram
 
                         string cmd = rec.link;                     // replace variables in link
                         cmd = cmd.Replace("%TEXT%", rec.text);
+                        cmd = cmd.Replace("%NAME%", rec.text);
                         cmd = cmd.Replace("%NOTE%", rec.note);
                         cmd = cmd.Replace("%ID%", rec.id.ToString());
                         cmd = cmd.Replace("%FILENAME%", this.diagram.FileName);
+                        cmd = cmd.Replace("%DIRECTORY%", Os.getFileDirectory(this.diagram.FileName));
 
                         Program.log.write("diagram: openlink: run command: " + cmd);
                         Os.runCommand(cmd, Os.getFileDirectory(this.diagram.FileName)); // RUN COMMAND
