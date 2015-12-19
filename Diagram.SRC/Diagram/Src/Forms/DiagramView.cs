@@ -3248,7 +3248,7 @@ namespace Diagram
                     Match matchFileOpenOnPosition = (new Regex("^([^#]+)#(.*)$")).Match(rec.link.Trim());
 
 
-                    //- ak je link nastaveny na "script" po dvojkliku sa vyhodnoti telo nody ako macro
+                    // node with link "script" is executed as script
                     if (matchFileOpenOnPosition.Success && Os.FileExists(Os.normalizedFullPath(matchFileOpenOnPosition.Groups[1].Value)))       // OPEN FILE ON POSITION
                     {
                         try

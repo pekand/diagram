@@ -14,41 +14,39 @@ namespace Diagram
 {
     public class Diagram
     {
-        public Main main = null;
+        public Main main = null;                 // reference to main form
 
-        public List<Node> Nodes = new List<Node>();          // zoznam nod
-        public List<Line> Lines = new List<Line>();          // zoznam spojovacich ciar
+        public List<Node> Nodes = new List<Node>();          // all diagram nodes
+        public List<Line> Lines = new List<Line>();          // all lines between diagram nodes
 
-        public List<DiagramView> DiagramViews = new List<DiagramView>(); // zoznam otvorenych pohladov do diagramou
+        public List<DiagramView> DiagramViews = new List<DiagramView>(); // all views forms to diagram
 
         // ATTRIBUTES DRAW
-        public int NodePadding = 10;              // CONST okraj stvorca
-        public int EmptyNodePadding = 20;         // CONST okraj stvorca
+        public int NodePadding = 10;             // CONST node padding around node name text 
+        public int EmptyNodePadding = 20;        // CONST node padding for empty node circle
 
         // RESOURCES
-        public PrivateFontCollection fonts = null;
-        public FontFamily family = null;
-        public Font FontDefault = null;
+        public Font FontDefault = null;          // 
 
         // ATTRIBUTES File
-        public bool NewFile = true;              //súbor je nový ešte neuložený(nemá meno)
-        public bool SavedFile = true;            //súbor bol uložený na disk(má svoje meno)
-        public string FileName = "";             //názov otvoreného súboru
+        public bool NewFile = true;              // flag for new unsaved file without name
+        public bool SavedFile = true;            // flag for saved diagram with name
+        public string FileName = "";             // path to diagram file
 
         // ATRIBUTES OBJECTS
-        public int maxid = 0;                    // največšie vložené id objektu
+        public int maxid = 0;                    // last used node id
 
         // ATTRIBUTES ENCRYPTION
-        public bool encrypted = false;           // pri ukladaní súbor zašifrovať
-        public string password = "";             // heslo
-		private byte[] salt = null;
+        public bool encrypted = false;           // flag for encrypted file
+        public string password = "";             // password for encrypted file
+		private byte[] salt = null;              // salt
 
 
         // ATTRIBUTES TextForm
-        public List<TextForm> TextWindows = new List<TextForm>();   // Zoznam otvorenych okien
+        public List<TextForm> TextWindows = new List<TextForm>();   // opened text textforms for this diagram
 
         // ATTRIBUTES OPTIONS
-        public Options options = new Options();
+        public Options options = new Options();  // diagram options saved to xml file
 
         public Diagram(Main main)
         {
@@ -1378,7 +1376,7 @@ namespace Diagram
         }
         /*************************************************************************************************************************/
 
-        // CLIPBOARD PASTE vloží časť zo schranky do otvoreneho diagramu                                   // CLIPBOARD
+        // CLIPBOARD PASTE paste part of diagram from clipboard                                   // CLIPBOARD
         public List<Node> AddDiagramPart(string DiagramXml, Position position, int layer)
         {
             List<Node> NewNodes = new List<Node>();
@@ -1609,7 +1607,7 @@ namespace Diagram
             return NewNodes;
         }
 
-        // CLIPBOARD COPY vloží vybratu časť do schranky
+        // CLIPBOARD COPY copy part of diagram to text xml string
         public string GetDiagramPart(List<Node> nodes)
         {
             string copyxml = "";

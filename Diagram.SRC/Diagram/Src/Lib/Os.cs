@@ -231,11 +231,6 @@ namespace Diagram
         /// if currentPath is parent of filePath</summary>
 		public static string makeRelative(string filePath, string currentPath, bool inCurrentDir = true)
 		{
-#if !MONO
-            // in windows lovercase path character for path comparison
-            filePath = filePath.ToLower();
-            currentPath = currentPath.ToLower();
-#endif
             filePath = filePath.Trim();
 			currentPath = currentPath.Trim();
 
@@ -271,13 +266,17 @@ namespace Diagram
 			}
 
 			int pos = filePath.ToLower().IndexOf(currentPath.ToLower());
-			if( inCurrentDir &&  pos != 0) // skip files outside of currentPath
+			if( inCurrentDir && pos != 0) // skip files outside of currentPath
 			{
 				return filePath;
 			}
 
 			Uri folderUri = new Uri(currentPath);
-			return Uri.UnescapeDataString(folderUri.MakeRelativeUri(pathUri).ToString().Replace('/', Path.DirectorySeparatorChar));
+			return Uri.UnescapeDataString(
+                folderUri.MakeRelativeUri(pathUri)
+                .ToString()
+                .Replace('/', Path.DirectorySeparatorChar)
+            );
 		}
 
         /// <summary>

@@ -7,7 +7,7 @@ namespace Diagram
     /// global program parmeters</summary>
     public class ProgramOptions
     {
-        
+
         [JsonIgnore]
         /// <summary>
         /// home page url</summary>
