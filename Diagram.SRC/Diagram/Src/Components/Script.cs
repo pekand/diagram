@@ -45,6 +45,18 @@ namespace Diagram
 
     }
 
+    /// <example>
+    /// try
+    /// {
+    /// 
+    ///     Script macro = new Script();
+    ///     result = macro.runScript(this.SelectedNodes[0].text);
+    /// }
+    /// catch(Exception ex)
+    /// {
+    ///     Program.log.write("evaluation error: " + ex.Message);
+    /// }
+    /// </example>
     class Script
     {
         private ScriptEngine pyEngine = null;

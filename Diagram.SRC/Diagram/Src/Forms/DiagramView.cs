@@ -480,10 +480,30 @@ namespace Diagram
             }
         }
 
+        // SELECTION Clear Selection and Select nodes
+        public void SelectNodes(List<Node> nodes)
+        {
+            this.ClearSelection();
+            foreach (Node rec in nodes)
+            {
+                if (rec.layer == this.layer)
+                {
+                    this.SelectNode(rec);
+                }
+            }
+            this.diagram.InvalidateDiagram();
+        }
+
+        // SELECTION selsect all
+        public void selectAll()
+        {
+            this.SelectNodes(this.diagram.Nodes);
+        }
+
         /*************************************************************************************************************************/
 
         // EVENTS
-        
+
         // EVENT Paint                                                                                 // [PAINT] [EVENT]
         public void DiagramApp_Paint(object sender, PaintEventArgs e)
         {
@@ -765,7 +785,13 @@ namespace Diagram
                     && TargetNode == null 
                     && this.SourceNode != null)
                 {
-                    this.AddDiagramPart(this.getMousePosition(), GetDiagramPart());
+                    this.SelectNodes(
+                        this.diagram.AddDiagramPart(
+                            this.diagram.GetDiagramPart(this.SelectedNodes),
+                            this.getMousePosition(), 
+                            this.layer
+                        )
+                    );
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
@@ -2063,8 +2089,8 @@ namespace Diagram
 
             foundNodes.Sort((first, second) =>
             {
-                double d1 = first.position.convertTostandard().distance(middle);
-                double d2 = second.position.convertTostandard().distance(middle);
+                double d1 = first.position.convertToStandard().distance(middle);
+                double d2 = second.position.convertToStandard().distance(middle);
 
                 if (d1 < d2)
                 {
@@ -2245,317 +2271,6 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // CLIPBOARD PASTE vloží časť zo schranky do otvoreneho diagramu                                   // CLIPBOARD
-        public void AddDiagramPart(Position position, string DiagramXml)
-        {
-            //OBSOLATE
-            //string FontDefaultString = TypeDescriptor.GetConverter(typeof(Font)).ConvertToString(this.diagram.FontDefault);
-
-            List<Node> NewNodes = new List<Node>();
-            List<Line> NewLines = new List<Line>();
-
-            XmlReaderSettings xws = new XmlReaderSettings();
-            xws.CheckCharacters = false;
-
-            string xml = DiagramXml;
-
-            try
-            {
-                using (XmlReader xr = XmlReader.Create(new StringReader(xml), xws))
-                {
-
-                    XElement root = XElement.Load(xr);
-                    foreach (XElement diagram in root.Elements())
-                    {
-                        if (diagram.HasElements)
-                        {
-
-                            if (diagram.Name.ToString() == "rectangles")
-                            {
-                                foreach (XElement block in diagram.Descendants())
-                                {
-
-                                    if (block.Name.ToString() == "rectangle")
-                                    {
-                                        Node R = new Node();
-                                        R.font = this.diagram.FontDefault;
-
-                                        foreach (XElement el in block.Descendants())
-                                        {
-                                            try
-                                            {
-                                                if (el.Name.ToString() == "id")
-                                                {
-                                                    R.id = Int32.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "text")
-                                                {
-                                                    R.text = el.Value;
-                                                }
-
-
-                                                if (el.Name.ToString() == "note")
-                                                {
-                                                    R.note = el.Value;
-                                                }
-
-                                                if (el.Name.ToString() == "x")
-                                                {
-                                                    R.position.x = Int32.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "y")
-                                                {
-                                                    R.position.y = Int32.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "color")
-                                                {
-                                                    R.color = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
-                                                }
-
-
-                                                if (el.Name.ToString() == "timecreate")
-                                                {
-                                                    R.timecreate = el.Value;
-                                                }
-
-
-                                                if (el.Name.ToString() == "timemodify")
-                                                {
-                                                    R.timemodify = el.Value;
-                                                }
-
-
-                                                if (el.Name.ToString() == "font")
-                                                {
-                                                    R.font = Fonts.XmlToFont(el);
-                                                }
-
-
-                                                if (el.Name.ToString() == "fontcolor")
-                                                {
-                                                    R.fontcolor = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
-                                                }
-
-                                                if (el.Name.ToString() == "link")
-                                                {
-                                                    R.link = el.Value;
-                                                }
-
-                                                if (el.Name.ToString() == "shortcut")
-                                                {
-                                                    R.shortcut = Int32.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "transparent")
-                                                {
-                                                    R.transparent = bool.Parse(el.Value);
-                                                }
-
-
-                                                if (el.Name.ToString() == "timecreate")
-                                                {
-                                                    R.timecreate = el.Value;
-                                                }
-
-
-                                                if (el.Name.ToString() == "timemodify")
-                                                {
-                                                    R.timemodify = el.Value;
-                                                }
-
-                                                if (el.Name.ToString() == "attachment")
-                                                {
-                                                    R.attachment = el.Value;
-                                                }
-
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                Program.log.write(main.translations.dataHasWrongStructure + ": error: " + ex.Message);
-                                            }
-                                        }
-
-                                        NewNodes.Add(R);
-                                    }
-                                }
-                            }
-
-                            if (diagram.Name.ToString() == "lines")
-                            {
-                                foreach (XElement block in diagram.Descendants())
-                                {
-                                    if (block.Name.ToString() == "line")
-                                    {
-                                        Line L = new Line();
-                                        foreach (XElement el in block.Descendants())
-                                        {
-                                            try
-                                            {
-                                                if (el.Name.ToString() == "start")
-                                                {
-                                                    L.start = Int32.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "end")
-                                                {
-                                                    L.end = Int32.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "arrow")
-                                                {
-                                                    L.arrow = el.Value == "1" ? true : false;
-                                                }
-
-                                                if (el.Name.ToString() == "color")
-                                                {
-                                                    L.color = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
-                                                }
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                Program.log.write(main.translations.dataHasWrongStructure + ": error: " + ex.Message);
-                                            }
-                                        }
-                                        NewLines.Add(L);
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Program.log.write(main.translations.dataHasWrongStructure + ": error: " + ex.Message);
-            }
-
-
-            List<Node[]> maps = new List<Node[]>();
-
-            this.ClearSelection();
-            foreach (Node rec in NewNodes)
-            {
-
-                Node newrec = this.CreateNode(rec.position.add(position), false);
-                newrec.text = rec.text;
-                newrec.font = rec.font;
-                SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-                newrec.width = (int)s.Width;
-                newrec.height = (int)s.Height;
-                newrec.note = rec.note;
-                newrec.color = rec.color;
-                newrec.fontcolor = rec.fontcolor;
-                newrec.link = rec.link;
-                newrec.shortcut = rec.shortcut;
-                newrec.transparent = rec.transparent;
-                newrec.transparent = rec.transparent;
-                newrec.timecreate = rec.timecreate;
-                newrec.timemodify = rec.timemodify;
-
-                maps.Add(new Node[2] { rec, newrec });
-
-                this.SelectNode(newrec);
-            }
-
-            foreach(Line line in NewLines)
-            {
-                foreach (Node[] mapbegin in maps)
-                {
-                    if (line.start == mapbegin[0].id)
-                    {
-                        foreach (Node[] mapend in maps)
-                        {
-                            if (line.end == mapend[0].id)
-                            {
-                                this.diagram.Connect(mapbegin[1], mapend[1], line.arrow);
-                            }
-                        }
-                    }
-                }
-            }
-
-            this.diagram.unsave();
-            this.diagram.InvalidateDiagram();
-        }
-
-        // CLIPBOARD COPY vloží vybratu časť do schranky
-        public string GetDiagramPart()
-        {
-            string copyxml = "";
-
-            if (this.SelectedNodes.Count() > 0)
-            {
-                XElement root = new XElement("diagram");
-                XElement rectangles = new XElement("rectangles");
-                XElement lines = new XElement("lines");
-
-                int minx = this.SelectedNodes[0].position.x;
-                int miny = this.SelectedNodes[0].position.y;
-                int minid = this.SelectedNodes[0].id;
-
-                foreach (Node rec in this.SelectedNodes)
-                {
-                    if (rec.position.x < minx) minx = rec.position.x;
-                    if (rec.position.y < miny) miny = rec.position.y;
-                    if (rec.id < minid) minid = rec.id;
-                }
-
-                foreach (Node rec in this.SelectedNodes)
-                {
-                    XElement rectangle = new XElement("rectangle");
-                    rectangle.Add(new XElement("id", rec.id - minid));
-                    rectangle.Add(new XElement("x", rec.position.x - minx));
-                    rectangle.Add(new XElement("y", rec.position.y - miny));
-                    rectangle.Add(new XElement("text", rec.text));
-                    rectangle.Add(new XElement("note", rec.note));
-                    rectangle.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(rec.color)));
-                    rectangle.Add(Fonts.FontToXml(rec.font));
-                    rectangle.Add(new XElement("fontcolor", System.Drawing.ColorTranslator.ToHtml(rec.fontcolor)));
-                    if (rec.link != "") rectangle.Add(new XElement("link", rec.link));
-                    if (rec.shortcut != 0) rectangle.Add(new XElement("shortcut", rec.shortcut));
-                    rectangle.Add(new XElement("transparent", rec.transparent));
-                    rectangle.Add(new XElement("timecreate", rec.timecreate));
-                    rectangle.Add(new XElement("timemodify", rec.timemodify));
-                    rectangle.Add(new XElement("attachment", rec.attachment));
-                    
-                    rectangles.Add(rectangle);
-                }
-
-                foreach (Line li in this.diagram.Lines)
-                {
-                    foreach (Node recstart in this.SelectedNodes)
-                    {
-                        if (li.start == recstart.id)
-                        {
-                            foreach (Node recend in this.SelectedNodes)
-                            {
-                                if (li.end == recend.id)
-                                {
-                                    XElement line = new XElement("line");
-                                    line.Add(new XElement("start", li.start - minid));
-                                    line.Add(new XElement("end", li.end - minid));
-                                    line.Add(new XElement("arrow", (li.arrow) ? "1" : "0"));
-                                    line.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(li.color)));
-                                    lines.Add(line);
-                                }
-
-                            }
-                        }
-                    }
-                }
-
-                root.Add(rectangles);
-                root.Add(lines);
-                copyxml = root.ToString();
-            }
-
-            return copyxml;
-        }
-
         // CLIPBOARD Copy link to clipboard
         public void copyLinkToClipboard(Node node)
         {
@@ -2691,7 +2406,6 @@ namespace Diagram
         {
             moveScreenVertical(e.GetPosition());
         }
-
 
         /*************************************************************************************************************************/
 
@@ -3315,10 +3029,9 @@ namespace Diagram
         public Node CreateNode(Position position, bool SelectAfterCreate = true, string text = "")
         {
             var rec = this.diagram.CreateNode(
-                (int)(position.x * this.scale - this.shift.x), 
-                (int)(position.y * this.scale - this.shift.y), 
-                this.layer, 
-                text
+                position.clone().scale(this.scale).subtract(this.shift), 
+                text,
+                this.layer
             );
 
             if (rec != null)
@@ -3337,11 +3050,15 @@ namespace Diagram
                 if (!this.editPanel.Visible)
                 {
                     this.editPanel.prevSelectedNode = this.SelectedNodes[0];
-                    Position position = new Position(
-                        this.SelectedNodes[0].position.x + this.shift.x + this.SelectedNodes[0].width + 10,
-                        this.SelectedNodes[0].position.y + this.shift.y
+                    this.editPanel.showEditPanel(
+                        this.SelectedNodes[0]
+                            .position
+                            .clone()
+                            .add(this.shift)
+                            .add(this.SelectedNodes[0].width + 10, 0),
+                        ' ', 
+                        false
                     );
-                    this.editPanel.showEditPanel(position, ' ', false);
                 }
             }
         }
@@ -3354,11 +3071,15 @@ namespace Diagram
                 if (!this.editPanel.Visible)
                 {
                     this.editPanel.prevSelectedNode = this.SelectedNodes[0];
-                    Position position = new Position(
-                        this.SelectedNodes[0].position.x + this.shift.x,
-                        this.SelectedNodes[0].position.y + this.shift.y + this.SelectedNodes[0].height + 10
+                    this.editPanel.showEditPanel(
+                        this.SelectedNodes[0]
+                            .position
+                            .clone()
+                            .add(this.shift)
+                            .add(0, this.SelectedNodes[0].height + 10), 
+                        ' ', 
+                        false
                     );
-                    this.editPanel.showEditPanel(position, ' ', false);
                 }
             }
         }
@@ -3815,7 +3536,7 @@ namespace Diagram
                 if (this.DImage.ShowDialog() == DialogResult.OK && Os.FileExists(this.DImage.FileName))
                 {
                     
-                    Node newrec = this.CreateNode(new Position(this.startMousePos.x, this.startMousePos.y));
+                    Node newrec = this.CreateNode(this.startMousePos);
                     this.diagram.setImage(newrec, this.DImage.FileName);
                     this.diagram.unsave();
                 }
@@ -3924,7 +3645,7 @@ namespace Diagram
 
                 data.SetData(copytext);
 
-                data.SetData("DiagramXml", GetDiagramPart());//create and copy xml
+                data.SetData("DiagramXml", this.diagram.GetDiagramPart(this.SelectedNodes));//create and copy xml
 
                 Clipboard.SetDataObject(data);
 
@@ -3948,7 +3669,7 @@ namespace Diagram
 
                 data.SetData(copytext);
 
-                data.SetData("DiagramXml", GetDiagramPart()); //create and copy xml
+                data.SetData("DiagramXml", this.diagram.GetDiagramPart(this.SelectedNodes)); //create and copy xml
                 this.DeleteSelectedNodes(this);
                 this.ClearSelection();
                 this.diagram.InvalidateDiagram();
@@ -3966,7 +3687,15 @@ namespace Diagram
 
             if (retrievedData.GetDataPresent("DiagramXml"))  // [PASTE] [DIAGRAM] [CLIPBOARD OBJECT] insert diagram
             {
-                this.AddDiagramPart(position, retrievedData.GetData("DiagramXml") as string);
+                this.SelectNodes(
+                    this.diagram.AddDiagramPart(
+                        retrievedData.GetData("DiagramXml") as string, 
+                        position, 
+                        this.layer
+                    )
+                );
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
             }
             else
             if (retrievedData.GetDataPresent(DataFormats.Text))  // [PASTE] [TEXT] insert text
@@ -4203,20 +3932,6 @@ namespace Diagram
             return true;
         }
 
-        // NODE selsect all
-        public void selectAll()
-        {
-            this.ClearSelection();
-            foreach (Node rec in this.diagram.Nodes)
-            {
-                if (rec.layer == this.layer)
-                {
-                    this.SelectNode(rec);
-                }
-            }
-            this.diagram.InvalidateDiagram();
-        }
-
         // NODE align to line
         public void alignToLine()
         {
@@ -4341,33 +4056,6 @@ namespace Diagram
         {
             if (this.SelectedNodes.Count() == 1)
             {
-                /*string result = null;
-
-                try
-                {
-
-                    Script macro = new Script();
-                    result = macro.runScript(this.SelectedNodes[0].text);
-                }
-                catch(Exception ex)
-                {
-                    Program.log.write("evaluation error: " + ex.Message);
-                }
-
-                if (result != null) {
-                    Point ptCursor = Cursor.Position;
-                    ptCursor = PointToClient(ptCursor);
-                    Node newrec = this.CreateNode(ptCursor.X, ptCursor.Y);
-
-                    newrec.text = result;
-                    SizeF s = this.diagram.MeasureStringWithMargin(newrec.text, newrec.font);
-                    newrec.width = (int)s.Width;
-                    newrec.height = (int)s.Height;
-                    newrec.color = System.Drawing.ColorTranslator.FromHtml("#8AC5FF");
-
-                    this.diagram.InvalidateDiagram();
-                }*/
-
                 string expression = this.SelectedNodes[0].text;
                 string expressionResult = "";
 
@@ -4405,7 +4093,7 @@ namespace Diagram
                 return true;
             }
             else
-            if (this.SelectedNodes.Count() > 1)  // SUM vypocet sumy viacerich nod ktore obsahuju cisla
+            if (this.SelectedNodes.Count() > 1)  // SUM sum nodes with numbers
             {
                 float sum = 0;
                 Match match = null;
@@ -4917,6 +4605,7 @@ namespace Diagram
             }
         }
 
+        // NODE get lines which are connected with current selected nodes
         public List<Line> getSelectedLines()
         {
             List<Line> SelectedLinesTemp = new List<Line>();

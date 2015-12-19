@@ -27,5 +27,6 @@
         public string colorFile = "#D9CCFF"; // color for node linked with file
         public string colorLink = "#FFCCCC"; // color for node linked with url
         public string colorAttachment = "#C495DB"; // color for node linked with url
+        public string colorNode = "#FFFFB8";
     }
 }

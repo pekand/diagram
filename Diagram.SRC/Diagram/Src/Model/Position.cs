@@ -26,6 +26,13 @@ namespace Diagram
             this.y = p.y;
         }
 
+        /// <summary>
+        /// Clone</summary>
+        public Position clone()
+        {
+            return new Position(this);
+        }
+
         // <summary>
         /// set </summary>
         public Position set(int x, int y)
@@ -70,6 +77,24 @@ namespace Diagram
         }
 
         // <summary>
+        /// subtract vector</summary>
+        public Position subtract(Position p)
+        {
+            this.x += -p.x;
+            this.y += -p.y;
+            return this;
+        }
+
+        // <summary>
+        /// scale vector</summary>
+        public Position scale(float scale)
+        {
+            this.x = (int)(this.x * scale);
+            this.y = (int)(this.y * scale);
+            return this;
+        }
+
+        // <summary>
         /// Copy position to current position</summary>
         public Position copy(Position b)
         {
@@ -80,7 +105,7 @@ namespace Diagram
 
         // <summary>
         /// Convert position to cartesian coordinate</summary>
-        public Position convertTostandard()
+        public Position convertToStandard()
         {
             return new Position(this.x, -this.y);
         }
