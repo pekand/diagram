@@ -1568,7 +1568,7 @@ namespace Diagram
             {
 
                 Node newrec = this.CreateNode(
-                    rec.position.add(position), 
+                    rec.position.clone().add(position), 
                     rec.text, 
                     layer, 
                     null, 

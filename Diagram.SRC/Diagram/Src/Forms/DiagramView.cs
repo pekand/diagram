@@ -788,7 +788,7 @@ namespace Diagram
                     this.SelectNodes(
                         this.diagram.AddDiagramPart(
                             this.diagram.GetDiagramPart(this.SelectedNodes),
-                            this.getMousePosition(), 
+                            this.getMousePosition().clone().scale(this.scale).subtract(this.shift),
                             this.layer
                         )
                     );
@@ -3689,8 +3689,8 @@ namespace Diagram
             {
                 this.SelectNodes(
                     this.diagram.AddDiagramPart(
-                        retrievedData.GetData("DiagramXml") as string, 
-                        position, 
+                        retrievedData.GetData("DiagramXml") as string,
+                        position.clone().scale(this.scale).subtract(this.shift), 
                         this.layer
                     )
                 );

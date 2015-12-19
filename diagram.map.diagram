@@ -145,7 +145,7 @@
       <link>Diagram.SRC/Diagram/Src/Model</link>
       <layer>0</layer>
       <x>1334</x>
-      <y>-650</y>
+      <y>-651</y>
       <width>61</width>
       <height>36</height>
       <color>#FFCCF2</color>
@@ -165,62 +165,6 @@
       <color>#FFCCF2</color>
       <timecreate>2015-8-31 15:41:12</timecreate>
       <timemodify>2015-8-31 15:41:12</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>13</id>
-      <fontcolor>Black</fontcolor>
-      <text>Script.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Components/Script.cs</link>
-      <layer>0</layer>
-      <x>705</x>
-      <y>-462</y>
-      <width>77</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:41:31</timecreate>
-      <timemodify>2015-8-31 15:41:31</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>14</id>
-      <fontcolor>Black</fontcolor>
-      <text>ScrollBar.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Components/ScrollBar.cs</link>
-      <layer>0</layer>
-      <x>705</x>
-      <y>-603</y>
-      <width>97</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:41:31</timecreate>
-      <timemodify>2015-8-31 15:41:31</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>15</id>
-      <fontcolor>Black</fontcolor>
-      <text>SearchPanel.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Components/SearchPanel.cs</link>
-      <layer>0</layer>
-      <x>705</x>
-      <y>-556</y>
-      <width>120</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:41:31</timecreate>
-      <timemodify>2015-8-31 15:41:31</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>16</id>
-      <fontcolor>Black</fontcolor>
-      <text>Server.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Components/Server.cs</link>
-      <layer>0</layer>
-      <x>705</x>
-      <y>-509</y>
-      <width>82</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:41:31</timecreate>
-      <timemodify>2015-8-31 15:41:31</timemodify>
     </rectangle>
     <rectangle>
       <id>17</id>
@@ -263,300 +207,6 @@
       <color>#D9CCFF</color>
       <timecreate>2015-8-31 15:42:04</timecreate>
       <timemodify>2015-8-31 15:42:04</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>20</id>
-      <fontcolor>Black</fontcolor>
-      <text>AboutForm.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Forms/AboutForm.cs</link>
-      <layer>0</layer>
-      <x>925</x>
-      <y>-282</y>
-      <width>109</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:42:52</timecreate>
-      <timemodify>2015-8-31 15:42:52</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>21</id>
-      <fontcolor>Black</fontcolor>
-      <text>ChangePasswordForm.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Forms/ChangePasswordForm.cs</link>
-      <layer>0</layer>
-      <x>925</x>
-      <y>-374</y>
-      <width>182</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:42:52</timecreate>
-      <timemodify>2015-8-31 15:42:52</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>22</id>
-      <fontcolor>Black</fontcolor>
-      <text>ConsoleLog.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Forms/ConsoleLog.cs</link>
-      <layer>0</layer>
-      <x>925</x>
-      <y>-328</y>
-      <width>115</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:42:52</timecreate>
-      <timemodify>2015-8-31 15:42:52</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>23</id>
-      <fontcolor>Black</fontcolor>
-      <text>DiagramView.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs</link>
-      <layer>0</layer>
-      <x>925</x>
-      <y>-604</y>
-      <width>123</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:42:52</timecreate>
-      <timemodify>2015-8-31 15:42:52</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>24</id>
-      <fontcolor>Black</fontcolor>
-      <text>MainForm.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Forms/MainForm.cs</link>
-      <layer>0</layer>
-      <x>925</x>
-      <y>-512</y>
-      <width>103</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:42:52</timecreate>
-      <timemodify>2015-8-31 15:42:52</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>25</id>
-      <fontcolor>Black</fontcolor>
-      <text>NewPasswordForm.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Forms/NewPasswordForm.cs</link>
-      <layer>0</layer>
-      <x>925</x>
-      <y>-420</y>
-      <width>161</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:42:52</timecreate>
-      <timemodify>2015-8-31 15:42:52</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>26</id>
-      <fontcolor>Black</fontcolor>
-      <text>PasswordForm.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Forms/PasswordForm.cs</link>
-      <layer>0</layer>
-      <x>925</x>
-      <y>-466</y>
-      <width>134</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:42:52</timecreate>
-      <timemodify>2015-8-31 15:42:52</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>27</id>
-      <fontcolor>Black</fontcolor>
-      <text>TextForm.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Forms/TextForm.cs</link>
-      <layer>0</layer>
-      <x>925</x>
-      <y>-558</y>
-      <width>100</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:42:52</timecreate>
-      <timemodify>2015-8-31 15:42:52</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>28</id>
-      <fontcolor>Black</fontcolor>
-      <text>Encrypt.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Lib/Encrypt.cs</link>
-      <layer>0</layer>
-      <x>1153</x>
-      <y>-420</y>
-      <width>88</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:43:14</timecreate>
-      <timemodify>2015-8-31 15:43:14</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>29</id>
-      <fontcolor>Black</fontcolor>
-      <text>Fonts.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Lib/Fonts.cs</link>
-      <layer>0</layer>
-      <x>1153</x>
-      <y>-466</y>
-      <width>76</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:43:14</timecreate>
-      <timemodify>2015-8-31 15:43:14</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>30</id>
-      <fontcolor>Black</fontcolor>
-      <text>Media.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Lib/Media.cs</link>
-      <layer>0</layer>
-      <x>1153</x>
-      <y>-512</y>
-      <width>79</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:43:14</timecreate>
-      <timemodify>2015-8-31 15:43:14</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>31</id>
-      <fontcolor>Black</fontcolor>
-      <text>Network.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Lib/Network.cs</link>
-      <layer>0</layer>
-      <x>1153</x>
-      <y>-558</y>
-      <width>92</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:43:14</timecreate>
-      <timemodify>2015-8-31 15:43:14</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>32</id>
-      <fontcolor>Black</fontcolor>
-      <text>Os.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Lib/Os.cs</link>
-      <layer>0</layer>
-      <x>1153</x>
-      <y>-604</y>
-      <width>59</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:43:14</timecreate>
-      <timemodify>2015-8-31 15:43:14</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>33</id>
-      <fontcolor>Black</fontcolor>
-      <text>Diagram.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs</link>
-      <layer>0</layer>
-      <x>1334</x>
-      <y>-512</y>
-      <width>93</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:43:36</timecreate>
-      <timemodify>2015-8-31 15:43:36</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>34</id>
-      <fontcolor>Black</fontcolor>
-      <text>Line.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Model/Line.cs</link>
-      <layer>0</layer>
-      <x>1334</x>
-      <y>-558</y>
-      <width>68</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:43:36</timecreate>
-      <timemodify>2015-8-31 15:43:36</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>35</id>
-      <fontcolor>Black</fontcolor>
-      <text>Node.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Model/Node.cs</link>
-      <layer>0</layer>
-      <x>1334</x>
-      <y>-604</y>
-      <width>74</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:43:36</timecreate>
-      <timemodify>2015-8-31 15:43:36</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>36</id>
-      <fontcolor>Black</fontcolor>
-      <text>Options.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Model/Options.cs</link>
-      <layer>0</layer>
-      <x>1334</x>
-      <y>-420</y>
-      <width>89</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:43:36</timecreate>
-      <timemodify>2015-8-31 15:43:36</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>37</id>
-      <fontcolor>Black</fontcolor>
-      <text>Position.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Model/Position.cs</link>
-      <layer>0</layer>
-      <x>1334</x>
-      <y>-466</y>
-      <width>91</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:43:36</timecreate>
-      <timemodify>2015-8-31 15:43:36</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>38</id>
-      <fontcolor>Black</fontcolor>
-      <text>Log.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Tools/Log.cs</link>
-      <layer>0</layer>
-      <x>1492</x>
-      <y>-604</y>
-      <width>64</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:43:51</timecreate>
-      <timemodify>2015-8-31 15:43:51</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>39</id>
-      <fontcolor>Black</fontcolor>
-      <text>OptionsFile.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Tools/OptionsFile.cs</link>
-      <layer>0</layer>
-      <x>1492</x>
-      <y>-558</y>
-      <width>111</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:43:51</timecreate>
-      <timemodify>2015-8-31 15:43:51</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>41</id>
-      <fontcolor>Black</fontcolor>
-      <text>Translations.cs</text>
-      <link>Diagram.SRC/Diagram/Src/Tools/Translations.cs</link>
-      <layer>0</layer>
-      <x>1492</x>
-      <y>-512</y>
-      <width>116</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-8-31 15:43:51</timecreate>
-      <timemodify>2015-8-31 15:43:51</timemodify>
     </rectangle>
     <rectangle>
       <id>42</id>
@@ -716,7 +366,7 @@
       <text>Documentation</text>
       <link>documentation</link>
       <layer>0</layer>
-      <x>443</x>
+      <x>617</x>
       <y>-1065</y>
       <width>116</width>
       <height>36</height>
@@ -730,7 +380,7 @@
       <text>Doxygen</text>
       <link>documentation\doxygen</link>
       <layer>0</layer>
-      <x>443</x>
+      <x>617</x>
       <y>-1019</y>
       <width>78</width>
       <height>36</height>
@@ -744,7 +394,7 @@
       <text>ReleaseNote</text>
       <link>documentation\releasenote</link>
       <layer>0</layer>
-      <x>443</x>
+      <x>617</x>
       <y>-973</y>
       <width>103</width>
       <height>36</height>
@@ -758,7 +408,7 @@
       <text>icons</text>
       <link>icons</link>
       <layer>0</layer>
-      <x>596</x>
+      <x>796</x>
       <y>-1065</y>
       <width>56</width>
       <height>36</height>
@@ -772,7 +422,7 @@
       <text>install-linux</text>
       <link>install-linux</link>
       <layer>0</layer>
-      <x>1156</x>
+      <x>1356</x>
       <y>-1065</y>
       <width>92</width>
       <height>36</height>
@@ -786,7 +436,7 @@
       <text>install-windows</text>
       <link>install-windows</link>
       <layer>0</layer>
-      <x>687</x>
+      <x>887</x>
       <y>-1065</y>
       <width>117</width>
       <height>36</height>
@@ -797,12 +447,12 @@
     <rectangle>
       <id>77</id>
       <fontcolor>Black</fontcolor>
-      <text>Scripts</text>
+      <text>test  programs</text>
       <link>scripts</link>
       <layer>0</layer>
-      <x>1548</x>
+      <x>1552</x>
       <y>-1122</y>
-      <width>66</width>
+      <width>111</width>
       <height>36</height>
       <color>#AF92FF</color>
       <timecreate>2015-10-11 13:55:55</timecreate>
@@ -812,7 +462,7 @@
       <id>78</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>1571</x>
+      <x>1597</x>
       <y>-1052</y>
       <width>20</width>
       <height>20</height>
@@ -909,7 +559,7 @@
       <id>93</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>1571</x>
+      <x>1597</x>
       <y>-996</y>
       <width>20</width>
       <height>20</height>
@@ -922,7 +572,7 @@
       <id>94</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>1571</x>
+      <x>1597</x>
       <y>-948</y>
       <width>20</width>
       <height>20</height>
@@ -935,7 +585,7 @@
       <id>95</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>1571</x>
+      <x>1597</x>
       <y>-905</y>
       <width>20</width>
       <height>20</height>
@@ -948,7 +598,7 @@
       <id>96</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>1571</x>
+      <x>1597</x>
       <y>-860</y>
       <width>20</width>
       <height>20</height>
@@ -961,7 +611,7 @@
       <id>97</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>1571</x>
+      <x>1597</x>
       <y>-819</y>
       <width>20</width>
       <height>20</height>
@@ -990,7 +640,7 @@
       <text>build-package.bat</text>
       <link>install-windows\build-package.bat</link>
       <layer>0</layer>
-      <x>679</x>
+      <x>879</x>
       <y>-1006</y>
       <width>133</width>
       <height>36</height>
@@ -1004,7 +654,7 @@
       <text>create installation package.iss</text>
       <link>install-windows\create installation package.iss</link>
       <layer>0</layer>
-      <x>849</x>
+      <x>1049</x>
       <y>-1006</y>
       <width>207</width>
       <height>36</height>
@@ -1018,7 +668,7 @@
       <text>inno.url</text>
       <link>install-windows\inno.url</link>
       <layer>0</layer>
-      <x>965</x>
+      <x>1165</x>
       <y>-951</y>
       <width>69</width>
       <height>36</height>
@@ -1087,7 +737,7 @@
       <text>install-package.sh</text>
       <link>install-linux\install-package.sh</link>
       <layer>0</layer>
-      <x>1135</x>
+      <x>1335</x>
       <y>-997</y>
       <width>134</width>
       <height>36</height>
@@ -1101,7 +751,7 @@
       <text>make-package.sh</text>
       <link>install-linux\make-package.sh</link>
       <layer>0</layer>
-      <x>1136</x>
+      <x>1336</x>
       <y>-951</y>
       <width>132</width>
       <height>36</height>
@@ -1115,7 +765,7 @@
       <text>Doxyfile.doxygen</text>
       <link>doxyfile.doxygen</link>
       <layer>0</layer>
-      <x>443</x>
+      <x>617</x>
       <y>-927</y>
       <width>129</width>
       <height>36</height>
@@ -1129,7 +779,7 @@
       <text>LICENSE.md</text>
       <link>license.md</link>
       <layer>0</layer>
-      <x>443</x>
+      <x>617</x>
       <y>-881</y>
       <width>106</width>
       <height>36</height>
@@ -1143,7 +793,7 @@
       <text>README.md</text>
       <link>readme.md</link>
       <layer>0</layer>
-      <x>443</x>
+      <x>617</x>
       <y>-835</y>
       <width>106</width>
       <height>36</height>
@@ -2521,20 +2171,6 @@
       <color>#0080FF</color>
       <timecreate>2015-10-11 21:39:22</timecreate>
       <timemodify>2015-10-11 21:39:22</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>813</id>
-      <fontcolor>Black</fontcolor>
-      <text>Job.cs</text>
-      <link>diagram.src\diagram\src\lib\job.cs</link>
-      <layer>0</layer>
-      <x>1153</x>
-      <y>-374</y>
-      <width>64</width>
-      <height>36</height>
-      <color>#D9CCFF</color>
-      <timecreate>2015-10-19 22:58:32</timecreate>
-      <timemodify>2015-10-19 22:58:32</timemodify>
     </rectangle>
     <rectangle>
       <id>814</id>
@@ -9352,6 +8988,467 @@
       <timecreate>2015-10-19 23:09:12</timecreate>
       <timemodify>2015-10-19 23:09:37</timemodify>
     </rectangle>
+    <rectangle>
+      <id>1314</id>
+      <fontcolor>Black</fontcolor>
+      <text>EditLinkPanel.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Components\EditLinkPanel.cs</link>
+      <layer>0</layer>
+      <x>705</x>
+      <y>-604</y>
+      <width>126</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:23:26</timecreate>
+      <timemodify>2015-12-19 22:23:26</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1315</id>
+      <fontcolor>Black</fontcolor>
+      <text>EditPanel.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Components\EditPanel.cs</link>
+      <layer>0</layer>
+      <x>705</x>
+      <y>-558</y>
+      <width>100</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:23:26</timecreate>
+      <timemodify>2015-12-19 22:23:26</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1316</id>
+      <fontcolor>Black</fontcolor>
+      <text>Popup.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Components\Popup.cs</link>
+      <layer>0</layer>
+      <x>705</x>
+      <y>-512</y>
+      <width>81</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:23:26</timecreate>
+      <timemodify>2015-12-19 22:23:26</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1317</id>
+      <fontcolor>Black</fontcolor>
+      <text>Script.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Components\Script.cs</link>
+      <layer>0</layer>
+      <x>705</x>
+      <y>-466</y>
+      <width>77</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:23:26</timecreate>
+      <timemodify>2015-12-19 22:23:26</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1318</id>
+      <fontcolor>Black</fontcolor>
+      <text>ScrollBar.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Components\ScrollBar.cs</link>
+      <layer>0</layer>
+      <x>705</x>
+      <y>-420</y>
+      <width>97</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:23:26</timecreate>
+      <timemodify>2015-12-19 22:23:26</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1319</id>
+      <fontcolor>Black</fontcolor>
+      <text>SearchPanel.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Components\SearchPanel.cs</link>
+      <layer>0</layer>
+      <x>705</x>
+      <y>-374</y>
+      <width>120</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:23:26</timecreate>
+      <timemodify>2015-12-19 22:23:26</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1320</id>
+      <fontcolor>Black</fontcolor>
+      <text>Server.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Components\Server.cs</link>
+      <layer>0</layer>
+      <x>705</x>
+      <y>-328</y>
+      <width>82</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:23:26</timecreate>
+      <timemodify>2015-12-19 22:23:26</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1321</id>
+      <fontcolor>Black</fontcolor>
+      <text>AboutForm.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Forms\AboutForm.cs</link>
+      <layer>0</layer>
+      <x>925</x>
+      <y>-604</y>
+      <width>109</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:23:54</timecreate>
+      <timemodify>2015-12-19 22:23:54</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1322</id>
+      <fontcolor>Black</fontcolor>
+      <text>ChangePasswordForm.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Forms\ChangePasswordForm.cs</link>
+      <layer>0</layer>
+      <x>925</x>
+      <y>-558</y>
+      <width>182</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:23:54</timecreate>
+      <timemodify>2015-12-19 22:23:54</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1323</id>
+      <fontcolor>Black</fontcolor>
+      <text>ConsoleLog.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Forms\ConsoleLog.cs</link>
+      <layer>0</layer>
+      <x>925</x>
+      <y>-512</y>
+      <width>115</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:23:54</timecreate>
+      <timemodify>2015-12-19 22:23:54</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1324</id>
+      <fontcolor>Black</fontcolor>
+      <text>DiagramView.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Forms\DiagramView.cs</link>
+      <layer>0</layer>
+      <x>925</x>
+      <y>-466</y>
+      <width>123</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:23:54</timecreate>
+      <timemodify>2015-12-19 22:23:54</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1325</id>
+      <fontcolor>Black</fontcolor>
+      <text>MainForm.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Forms\MainForm.cs</link>
+      <layer>0</layer>
+      <x>925</x>
+      <y>-420</y>
+      <width>103</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:23:54</timecreate>
+      <timemodify>2015-12-19 22:23:54</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1326</id>
+      <fontcolor>Black</fontcolor>
+      <text>NewPasswordForm.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Forms\NewPasswordForm.cs</link>
+      <layer>0</layer>
+      <x>925</x>
+      <y>-374</y>
+      <width>161</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:23:54</timecreate>
+      <timemodify>2015-12-19 22:23:54</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1327</id>
+      <fontcolor>Black</fontcolor>
+      <text>PasswordForm.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Forms\PasswordForm.cs</link>
+      <layer>0</layer>
+      <x>925</x>
+      <y>-328</y>
+      <width>134</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:23:54</timecreate>
+      <timemodify>2015-12-19 22:23:54</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1328</id>
+      <fontcolor>Black</fontcolor>
+      <text>TextForm.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Forms\TextForm.cs</link>
+      <layer>0</layer>
+      <x>925</x>
+      <y>-282</y>
+      <width>100</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:23:54</timecreate>
+      <timemodify>2015-12-19 22:23:54</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1329</id>
+      <fontcolor>Black</fontcolor>
+      <text>Compress.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Lib\Compress.cs</link>
+      <layer>0</layer>
+      <x>1153</x>
+      <y>-604</y>
+      <width>104</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:12</timecreate>
+      <timemodify>2015-12-19 22:24:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1330</id>
+      <fontcolor>Black</fontcolor>
+      <text>Encrypt.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Lib\Encrypt.cs</link>
+      <layer>0</layer>
+      <x>1153</x>
+      <y>-558</y>
+      <width>88</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:12</timecreate>
+      <timemodify>2015-12-19 22:24:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1331</id>
+      <fontcolor>Black</fontcolor>
+      <text>Fonts.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Lib\Fonts.cs</link>
+      <layer>0</layer>
+      <x>1153</x>
+      <y>-512</y>
+      <width>76</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:12</timecreate>
+      <timemodify>2015-12-19 22:24:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1332</id>
+      <fontcolor>Black</fontcolor>
+      <text>Job.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Lib\Job.cs</link>
+      <layer>0</layer>
+      <x>1153</x>
+      <y>-466</y>
+      <width>64</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:12</timecreate>
+      <timemodify>2015-12-19 22:24:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1333</id>
+      <fontcolor>Black</fontcolor>
+      <text>Media.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Lib\Media.cs</link>
+      <layer>0</layer>
+      <x>1153</x>
+      <y>-420</y>
+      <width>79</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:12</timecreate>
+      <timemodify>2015-12-19 22:24:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1334</id>
+      <fontcolor>Black</fontcolor>
+      <text>Network.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Lib\Network.cs</link>
+      <layer>0</layer>
+      <x>1153</x>
+      <y>-374</y>
+      <width>92</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:12</timecreate>
+      <timemodify>2015-12-19 22:24:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1335</id>
+      <fontcolor>Black</fontcolor>
+      <text>Os.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Lib\Os.cs</link>
+      <layer>0</layer>
+      <x>1153</x>
+      <y>-328</y>
+      <width>59</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:12</timecreate>
+      <timemodify>2015-12-19 22:24:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1336</id>
+      <fontcolor>Black</fontcolor>
+      <text>Patterns.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Lib\Patterns.cs</link>
+      <layer>0</layer>
+      <x>1153</x>
+      <y>-282</y>
+      <width>93</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:12</timecreate>
+      <timemodify>2015-12-19 22:24:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1337</id>
+      <fontcolor>Black</fontcolor>
+      <text>Diagram.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Model\Diagram.cs</link>
+      <layer>0</layer>
+      <x>1334</x>
+      <y>-605</y>
+      <width>93</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:28</timecreate>
+      <timemodify>2015-12-19 22:24:28</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1338</id>
+      <fontcolor>Black</fontcolor>
+      <text>Line.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Model\Line.cs</link>
+      <layer>0</layer>
+      <x>1334</x>
+      <y>-559</y>
+      <width>68</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:28</timecreate>
+      <timemodify>2015-12-19 22:24:28</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1339</id>
+      <fontcolor>Black</fontcolor>
+      <text>Node.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Model\Node.cs</link>
+      <layer>0</layer>
+      <x>1334</x>
+      <y>-513</y>
+      <width>74</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:28</timecreate>
+      <timemodify>2015-12-19 22:24:28</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1340</id>
+      <fontcolor>Black</fontcolor>
+      <text>Options.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Model\Options.cs</link>
+      <layer>0</layer>
+      <x>1334</x>
+      <y>-467</y>
+      <width>89</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:28</timecreate>
+      <timemodify>2015-12-19 22:24:28</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1341</id>
+      <fontcolor>Black</fontcolor>
+      <text>Position.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Model\Position.cs</link>
+      <layer>0</layer>
+      <x>1334</x>
+      <y>-421</y>
+      <width>91</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:28</timecreate>
+      <timemodify>2015-12-19 22:24:28</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1342</id>
+      <fontcolor>Black</fontcolor>
+      <text>KeyMap.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Tools\KeyMap.cs</link>
+      <layer>0</layer>
+      <x>1492</x>
+      <y>-604</y>
+      <width>92</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:42</timecreate>
+      <timemodify>2015-12-19 22:24:42</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1343</id>
+      <fontcolor>Black</fontcolor>
+      <text>Log.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Tools\Log.cs</link>
+      <layer>0</layer>
+      <x>1492</x>
+      <y>-558</y>
+      <width>64</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:42</timecreate>
+      <timemodify>2015-12-19 22:24:42</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1344</id>
+      <fontcolor>Black</fontcolor>
+      <text>OptionsFile.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Tools\OptionsFile.cs</link>
+      <layer>0</layer>
+      <x>1492</x>
+      <y>-512</y>
+      <width>111</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:42</timecreate>
+      <timemodify>2015-12-19 22:24:42</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1345</id>
+      <fontcolor>Black</fontcolor>
+      <text>Translations.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Tools\Translations.cs</link>
+      <layer>0</layer>
+      <x>1492</x>
+      <y>-466</y>
+      <width>116</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2015-12-19 22:24:42</timecreate>
+      <timemodify>2015-12-19 22:24:42</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1348</id>
+      <fontcolor>Black</fontcolor>
+      <text>bash commands</text>
+      <layer>0</layer>
+      <x>422</x>
+      <y>-1016</y>
+      <width>125</width>
+      <height>36</height>
+      <color>Silver</color>
+      <timecreate>2015-12-19 22:26:26</timecreate>
+      <timemodify>2015-12-19 22:26:26</timemodify>
+    </rectangle>
   </rectangles>
   <lines>
     <line>
@@ -11069,6 +11166,12 @@
       <end>845</end>
       <arrow>0</arrow>
       <color>#000000</color>
+    </line>
+    <line>
+      <start>1348</start>
+      <end>98</end>
+      <arrow>0</arrow>
+      <color>Black</color>
     </line>
   </lines>
 </diagram>

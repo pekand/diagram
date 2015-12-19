@@ -1122,7 +1122,7 @@ namespace Diagram
         // MENU paste
         public void pasteItem_Click(object sender, EventArgs e)
         {  
-            this.diagramView.paste(new Position(this.diagramView.startMousePos.x, this.diagramView.startMousePos.y));
+            this.diagramView.paste(new Position(this.diagramView.startMousePos));
         }
 
         // MENU Copy link
