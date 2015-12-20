@@ -60,7 +60,7 @@ namespace Diagram
         private System.Windows.Forms.ToolStripMenuItem lineColorItem;
 
         private System.Windows.Forms.ToolStripMenuItem attachmentItem; // ATTACHMENT
-        private System.Windows.Forms.ToolStripMenuItem imageAddItem; 
+        private System.Windows.Forms.ToolStripMenuItem imageAddItem;
         private System.Windows.Forms.ToolStripMenuItem imageRemoveItem;
         private System.Windows.Forms.ToolStripMenuItem imageEmbeddedItem;
         private System.Windows.Forms.ToolStripSeparator includeSeparator; //SEPARATOR
@@ -182,7 +182,7 @@ namespace Diagram
             this.newViewItem = new System.Windows.Forms.ToolStripMenuItem();
             this.centerItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setStartPositionItem = new System.Windows.Forms.ToolStripMenuItem();
-            
+
             this.layerItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -205,9 +205,9 @@ namespace Diagram
             this.releaseNoteItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutItem = new System.Windows.Forms.ToolStripMenuItem();
 
-            // 
+            //
             // PopupMenu
-            // 
+            //
             this.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editItem,
             this.colorItem,
@@ -228,30 +228,30 @@ namespace Diagram
             this.Name = "popupMenu";
             this.Size = new System.Drawing.Size(165, 280);
             this.Opening += new System.ComponentModel.CancelEventHandler(this.PopupMenu_Opening);
-            // 
+            //
             // editItem
-            // 
+            //
             this.editItem.Name = "editItem";
             this.editItem.Size = new System.Drawing.Size(164, 22);
             this.editItem.Text = "Edit";
             this.editItem.Click += new System.EventHandler(this.editItem_Click);
-            // 
+            //
             // colorItem
-            // 
+            //
             this.colorItem.Name = "colorItem";
             this.colorItem.Size = new System.Drawing.Size(164, 22);
             this.colorItem.Text = "Color";
             this.colorItem.Click += new System.EventHandler(this.colorItem_Click);
-            // 
+            //
             // removeShortcutItem
-            // 
+            //
             this.removeShortcutItem.Name = "removeShortcutItem";
             this.removeShortcutItem.Size = new System.Drawing.Size(164, 22);
             this.removeShortcutItem.Text = "Remove shortcut";
             this.removeShortcutItem.Click += new System.EventHandler(this.removeShortcutItem_Click);
-            // 
+            //
             // linkItem
-            // 
+            //
             this.linkItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openlinkItem,
             this.copyLinkItem,
@@ -259,23 +259,23 @@ namespace Diagram
             this.linkItem.Name = "linkItem";
             this.linkItem.Size = new System.Drawing.Size(164, 22);
             this.linkItem.Text = "Link";
-            // 
+            //
             // openlinkItem
-            // 
+            //
             this.openlinkItem.Name = "openlinkItem";
             this.openlinkItem.Size = new System.Drawing.Size(153, 22);
             this.openlinkItem.Text = "Open";
             this.openlinkItem.Click += new System.EventHandler(this.openlinkItem_Click);
-            // 
+            //
             // openLinkDirectoryItem
-            // 
+            //
             this.openLinkDirectoryItem.Name = "openLinkDirectoryItem";
             this.openLinkDirectoryItem.Size = new System.Drawing.Size(153, 22);
             this.openLinkDirectoryItem.Text = "Open directory";
             this.openLinkDirectoryItem.Click += new System.EventHandler(this.openLinkDirectoryItem_Click);
-            // 
+            //
             // alignItem
-            // 
+            //
             this.alignItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.leftItem,
             this.rightItem,
@@ -285,49 +285,49 @@ namespace Diagram
             this.alignItem.Name = "alignItem";
             this.alignItem.Size = new System.Drawing.Size(164, 22);
             this.alignItem.Text = "Align";
-            // 
+            //
             // leftItem
-            // 
+            //
             this.leftItem.Name = "leftItem";
             this.leftItem.Size = new System.Drawing.Size(128, 22);
             this.leftItem.Text = "Left";
             this.leftItem.Click += new System.EventHandler(this.leftItem_Click);
-            // 
+            //
             // rightItem
-            // 
+            //
             this.rightItem.Name = "rightItem";
             this.rightItem.Size = new System.Drawing.Size(128, 22);
             this.rightItem.Text = "Right";
             this.rightItem.Click += new System.EventHandler(this.rightItem_Click);
-            // 
+            //
             // toLineItem
-            // 
+            //
             this.toLineItem.Name = "toLineItem";
             this.toLineItem.Size = new System.Drawing.Size(128, 22);
             this.toLineItem.Text = "To line";
             this.toLineItem.Click += new System.EventHandler(this.toLineItem_Click);
-            // 
+            //
             // inColumnItem
-            // 
+            //
             this.inColumnItem.Name = "inColumnItem";
             this.inColumnItem.Size = new System.Drawing.Size(128, 22);
             this.inColumnItem.Text = "In column";
             this.inColumnItem.Click += new System.EventHandler(this.inColumnItem_Click);
-            // 
+            //
             // groupItem
-            // 
+            //
             this.groupItem.Name = "groupItem";
             this.groupItem.Size = new System.Drawing.Size(128, 22);
             this.groupItem.Text = "Group";
             this.groupItem.Click += new System.EventHandler(this.groupItem_Click);
-            // 
+            //
             // quickActionSeparator
-            // 
+            //
             this.quickActionSeparator.Name = "quickActionSeparator";
             this.quickActionSeparator.Size = new System.Drawing.Size(161, 6);
-            // 
+            //
             // fileItem
-            // 
+            //
             this.fileItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newItem,
             this.saveItem,
@@ -339,74 +339,74 @@ namespace Diagram
             this.fileItem.Name = "fileItem";
             this.fileItem.Size = new System.Drawing.Size(164, 22);
             this.fileItem.Text = "File";
-            // 
+            //
             // newItem
-            // 
+            //
             this.newItem.Name = "newItem";
             this.newItem.Size = new System.Drawing.Size(154, 22);
             this.newItem.Text = "New";
             this.newItem.Click += new System.EventHandler(this.newItem_Click);
-            // 
+            //
             // saveItem
-            // 
+            //
             this.saveItem.Name = "saveItem";
             this.saveItem.Size = new System.Drawing.Size(154, 22);
             this.saveItem.Text = "Save";
             this.saveItem.Click += new System.EventHandler(this.saveItem_Click);
-            // 
+            //
             // saveAsItem
-            // 
+            //
             this.saveAsItem.Name = "saveAsItem";
             this.saveAsItem.Size = new System.Drawing.Size(154, 22);
             this.saveAsItem.Text = "Save As";
             this.saveAsItem.Click += new System.EventHandler(this.saveAsItem_Click);
-            // 
+            //
             // exportItem
-            // 
+            //
             this.exportItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.textItem,
             this.exportToPngItem});
             this.exportItem.Name = "exportItem";
             this.exportItem.Size = new System.Drawing.Size(154, 22);
             this.exportItem.Text = "Export";
-            // 
+            //
             // textItem
-            // 
+            //
             this.textItem.Name = "textItem";
             this.textItem.Size = new System.Drawing.Size(145, 22);
             this.textItem.Text = "Text";
             this.textItem.Click += new System.EventHandler(this.textItem_Click);
-            // 
+            //
             // exportToPngItem
-            // 
+            //
             this.exportToPngItem.Name = "exportToPngItem";
             this.exportToPngItem.Size = new System.Drawing.Size(145, 22);
             this.exportToPngItem.Text = "Export to png";
             this.exportToPngItem.Click += new System.EventHandler(this.exportToPngItem_Click);
-            // 
+            //
             // openItem
-            // 
+            //
             this.openItem.Name = "openItem";
             this.openItem.Size = new System.Drawing.Size(154, 22);
             this.openItem.Text = "Open";
             this.openItem.Click += new System.EventHandler(this.openItem_Click);
-            // 
+            //
             // openDiagramDirectoryItem
-            // 
+            //
             this.openDiagramDirectoryItem.Name = "openDiagramDirectoryItem";
             this.openDiagramDirectoryItem.Size = new System.Drawing.Size(154, 22);
             this.openDiagramDirectoryItem.Text = "Open Directory";
             this.openDiagramDirectoryItem.Click += new System.EventHandler(this.openDiagramDirectoryItem_Click);
-            // 
+            //
             // exitItem
-            // 
+            //
             this.exitItem.Name = "exitItem";
             this.exitItem.Size = new System.Drawing.Size(154, 22);
             this.exitItem.Text = "Exit";
             this.exitItem.Click += new System.EventHandler(this.exitItem_Click);
-            // 
+            //
             // editMenuItem
-            // 
+            //
             this.editMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyItem,
             this.cutItem,
@@ -420,63 +420,63 @@ namespace Diagram
             this.editMenuItem.Name = "editMenuItem";
             this.editMenuItem.Size = new System.Drawing.Size(164, 22);
             this.editMenuItem.Text = "Edit";
-            // 
+            //
             // copyItem
-            // 
+            //
             this.copyItem.Name = "editItem";
             this.copyItem.Size = new System.Drawing.Size(164, 22);
             this.copyItem.Text = "Copy";
             this.copyItem.Click += new System.EventHandler(this.copyItem_Click);
-            // 
+            //
             // cutItem
-            // 
+            //
             this.cutItem.Name = "editItem";
             this.cutItem.Size = new System.Drawing.Size(164, 22);
             this.cutItem.Text = "Cut";
             this.cutItem.Click += new System.EventHandler(this.cutItem_Click);
-            // 
+            //
             // pasteItem
-            // 
+            //
             this.pasteItem.Name = "editItem";
             this.pasteItem.Size = new System.Drawing.Size(164, 22);
             this.pasteItem.Text = "Paste";
             this.pasteItem.Click += new System.EventHandler(this.pasteItem_Click);
-            // 
+            //
             // editSeparator
-            // 
+            //
             this.editSeparator.Name = "editSeparator";
             this.editSeparator.Size = new System.Drawing.Size(161, 6);
-            // 
+            //
             // copyLinkItem
-            // 
+            //
             this.copyLinkItem.Name = "copyLinkItem";
             this.copyLinkItem.Size = new System.Drawing.Size(164, 22);
             this.copyLinkItem.Text = "Copy link";
             this.copyLinkItem.Click += new System.EventHandler(this.copyLinkItem_Click);
-            // 
+            //
             // copyNoteItem
-            // 
+            //
             this.copyNoteItem.Name = "copyNoteItem";
             this.copyNoteItem.Size = new System.Drawing.Size(164, 22);
             this.copyNoteItem.Text = "Copy note";
             this.copyNoteItem.Click += new System.EventHandler(this.copyNoteItem_Click);
-            // 
+            //
             // pasteToLinkItem
-            // 
+            //
             this.pasteToLinkItem.Name = "pasteToLinkItem";
             this.pasteToLinkItem.Size = new System.Drawing.Size(164, 22);
             this.pasteToLinkItem.Text = "Paste to link";
             this.pasteToLinkItem.Click += new System.EventHandler(this.pasteToLinkItem_Click);
-            // 
+            //
             // pasteToNoteItem
-            // 
+            //
             this.pasteToNoteItem.Name = "pasteToNoteItem";
             this.pasteToNoteItem.Size = new System.Drawing.Size(164, 22);
             this.pasteToNoteItem.Text = "Paste to note";
             this.pasteToNoteItem.Click += new System.EventHandler(this.pasteToNoteItem_Click);
-            // 
+            //
             // nodeItem
-            // 
+            //
             this.nodeItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             transparentItem,
             fontItem,
@@ -485,52 +485,52 @@ namespace Diagram
             this.nodeItem.Name = "nodeItem";
             this.nodeItem.Size = new System.Drawing.Size(164, 22);
             this.nodeItem.Text = "Node";
-            // 
+            //
             // transparentItem
-            // 
+            //
             this.transparentItem.Name = "transparentItem";
             this.transparentItem.Size = new System.Drawing.Size(126, 22);
             this.transparentItem.Text = "Transparent";
             this.transparentItem.Click += new System.EventHandler(this.transparentItem_Click);
-            // 
+            //
             // fontItem
-            // 
+            //
             this.fontItem.Name = "fontItem";
             this.fontItem.Size = new System.Drawing.Size(126, 22);
             this.fontItem.Text = "Font";
             this.fontItem.Click += new System.EventHandler(this.fontItem_Click);
-            // 
+            //
             // fontColorItem
-            // 
+            //
             this.fontColorItem.Name = "fontColorItem";
             this.fontColorItem.Size = new System.Drawing.Size(126, 22);
             this.fontColorItem.Text = "Font color";
             this.fontColorItem.Click += new System.EventHandler(this.fontColorItem_Click);
-            // 
+            //
             // editLinkItem
-            // 
+            //
             this.editLinkItem.Name = "editLinkItem";
             this.editLinkItem.Size = new System.Drawing.Size(126, 22);
             this.editLinkItem.Text = "Edit link";
             this.editLinkItem.Click += new System.EventHandler(this.editLinkItem_Click);
-            // 
+            //
             // lineItem
-            // 
+            //
             this.lineItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             lineColorItem});
             this.lineItem.Name = "lineItem";
             this.lineItem.Size = new System.Drawing.Size(164, 22);
             this.lineItem.Text = "Line";
-            // 
+            //
             // lineColorItem
-            // 
+            //
             this.lineColorItem.Name = "lineColorItem";
             this.lineColorItem.Size = new System.Drawing.Size(126, 22);
             this.lineColorItem.Text = "Color";
             this.lineColorItem.Click += new System.EventHandler(this.lineColorItem_Click);
-            // 
+            //
             // attachmentItem
-            // 
+            //
             this.attachmentItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             imageAddItem,
             imageRemoveItem,
@@ -543,64 +543,64 @@ namespace Diagram
             this.attachmentItem.Name = "attachmentItem";
             this.attachmentItem.Size = new System.Drawing.Size(126, 22);
             this.attachmentItem.Text = "Attachment";
-            // 
+            //
             // imageAddItem
-            // 
+            //
             this.imageAddItem.Name = "imageAddItem";
             this.imageAddItem.Size = new System.Drawing.Size(126, 22);
             this.imageAddItem.Text = "Add image";
             this.imageAddItem.Click += new System.EventHandler(this.imageAddItem_Click);
-            // 
+            //
             // imageRemoveItem
-            // 
+            //
             this.imageRemoveItem.Name = "imageRemoveItem";
             this.imageRemoveItem.Size = new System.Drawing.Size(126, 22);
             this.imageRemoveItem.Text = "Remove image";
             this.imageRemoveItem.Click += new System.EventHandler(this.imageRemoveItem_Click);
-            // 
+            //
             // imageEmbeddedItem
-            // 
+            //
             this.imageEmbeddedItem.Name = "imageEmbeddedItem";
             this.imageEmbeddedItem.Size = new System.Drawing.Size(126, 22);
             this.imageEmbeddedItem.Text = "Embed image";
             this.imageEmbeddedItem.Click += new System.EventHandler(this.imageEmbeddedItem_Click);
-            // 
+            //
             // includeSeparator
-            // 
+            //
             this.includeSeparator.Name = "includeSeparator";
             this.includeSeparator.Size = new System.Drawing.Size(161, 6);
-            // 
+            //
             // deploayAttachmentItem
-            // 
+            //
             this.deploayAttachmentItem.Name = "deploayAttachmentItem";
             this.deploayAttachmentItem.Size = new System.Drawing.Size(126, 22);
             this.deploayAttachmentItem.Text = "Deploy attachment";
             this.deploayAttachmentItem.Click += new System.EventHandler(this.deploayAttachmentItem_Click);
-            // 
+            //
             // includeFileItem
-            // 
+            //
             this.includeFileItem.Name = "includeFileItem";
             this.includeFileItem.Size = new System.Drawing.Size(126, 22);
             this.includeFileItem.Text = "Add file";
             this.includeFileItem.Click += new System.EventHandler(this.includeFileItem_Click);
-            // 
+            //
             // includeDirectoryItem
-            // 
+            //
             this.includeDirectoryItem.Name = "includeDirectoryItem";
             this.includeDirectoryItem.Size = new System.Drawing.Size(126, 22);
             this.includeDirectoryItem.Text = "Add directory";
             this.includeDirectoryItem.Click += new System.EventHandler(this.includeDirectoryItem_Click);
-            // 
+            //
             // removeAttachmentItem
-            // 
+            //
             this.removeAttachmentItem.Name = "removeAttachmentItem";
             this.removeAttachmentItem.Size = new System.Drawing.Size(126, 22);
             this.removeAttachmentItem.Text = "Remove";
             this.removeAttachmentItem.Click += new System.EventHandler(this.removeFileItem_Click);
 
-            // 
+            //
             // viewItem
-            // 
+            //
             this.viewItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newViewItem,
             this.centerItem,
@@ -608,58 +608,58 @@ namespace Diagram
             this.viewItem.Name = "viewItem";
             this.viewItem.Size = new System.Drawing.Size(164, 22);
             this.viewItem.Text = "View";
-            // 
+            //
             // newViewItem
-            // 
+            //
             this.newViewItem.Name = "newViewItem";
             this.newViewItem.Size = new System.Drawing.Size(126, 22);
             this.newViewItem.Text = "New View";
             this.newViewItem.Click += new System.EventHandler(this.newViewItem_Click);
-            // 
+            //
             // centerItem
-            // 
+            //
             this.centerItem.Name = "centerItem";
             this.centerItem.Size = new System.Drawing.Size(162, 22);
             this.centerItem.Text = "Center";
             this.centerItem.Click += new System.EventHandler(this.centerItem_Click);
-            // 
+            //
             // setStartPositionItem
-            // 
+            //
             this.setStartPositionItem.Name = "setStartPositionItem";
             this.setStartPositionItem.Size = new System.Drawing.Size(162, 22);
             this.setStartPositionItem.Text = "Set start position";
             this.setStartPositionItem.Click += new System.EventHandler(this.setStartPositionItem_Click);
-            // 
+            //
             // layerItem
-            // 
+            //
             this.layerItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inItem,
             this.outItem});
             this.layerItem.Name = "layerItem";
             this.layerItem.Size = new System.Drawing.Size(164, 22);
             this.layerItem.Text = "Layer";
-            // 
+            //
             // inItem
-            // 
+            //
             this.inItem.Name = "inItem";
             this.inItem.Size = new System.Drawing.Size(94, 22);
             this.inItem.Text = "In";
             this.inItem.Click += new System.EventHandler(this.inItem_Click);
-            // 
+            //
             // outItem
-            // 
+            //
             this.outItem.Name = "outItem";
             this.outItem.Size = new System.Drawing.Size(94, 22);
             this.outItem.Text = "Out";
             this.outItem.Click += new System.EventHandler(this.outItem_Click);
-            // 
+            //
             // helpSeparator
-            // 
+            //
             this.helpSeparator.Name = "helpSeparator";
             this.helpSeparator.Size = new System.Drawing.Size(161, 6);
-            // 
+            //
             // optionItem
-            // 
+            //
             this.optionItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.encryptItem,
             this.changePasswordItem,
@@ -672,31 +672,31 @@ namespace Diagram
             this.optionItem.Name = "optionItem";
             this.optionItem.Size = new System.Drawing.Size(164, 22);
             this.optionItem.Text = "Option";
-            // 
+            //
             // encryptItem
-            // 
+            //
             this.encryptItem.Name = "encryptItem";
             this.encryptItem.Size = new System.Drawing.Size(168, 22);
             this.encryptItem.Text = "Encrypt";
             this.encryptItem.Click += new System.EventHandler(this.encryptItem_Click);
-            // 
+            //
             // changePasswordItem
-            // 
+            //
             this.changePasswordItem.Name = "changePasswordItem";
             this.changePasswordItem.Size = new System.Drawing.Size(168, 22);
             this.changePasswordItem.Text = "Change password";
             this.changePasswordItem.Click += new System.EventHandler(this.changePasswordItem_Click);
-            // 
+            //
             // readonlyItem
-            // 
+            //
             this.readonlyItem.CheckOnClick = true;
             this.readonlyItem.Name = "readonlyItem";
             this.readonlyItem.Size = new System.Drawing.Size(168, 22);
             this.readonlyItem.Text = "Read only";
             this.readonlyItem.Click += new System.EventHandler(this.readonlyItem_Click);
-            // 
+            //
             // gridItem
-            // 
+            //
             this.gridItem.Checked = true;
             this.gridItem.CheckOnClick = true;
             this.gridItem.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -704,40 +704,40 @@ namespace Diagram
             this.gridItem.Size = new System.Drawing.Size(168, 22);
             this.gridItem.Text = "Grid";
             this.gridItem.Click += new System.EventHandler(this.gridItem_Click);
-            // 
+            //
             // coordinatesItem
-            // 
+            //
             this.coordinatesItem.CheckOnClick = true;
             this.coordinatesItem.Name = "coordinatesItem";
             this.coordinatesItem.Size = new System.Drawing.Size(168, 22);
             this.coordinatesItem.Text = "Coordinates";
             this.coordinatesItem.Visible = false;
             this.coordinatesItem.Click += new System.EventHandler(this.coordinatesItem_Click);
-            // 
+            //
             // bordersItem
-            // 
+            //
             this.bordersItem.CheckOnClick = true;
             this.bordersItem.Name = "bordersItem";
             this.bordersItem.Size = new System.Drawing.Size(168, 22);
             this.bordersItem.Text = "Borders";
             this.bordersItem.Click += new System.EventHandler(this.bordersItem_Click);
-            // 
+            //
             // defaultFontItem
-            // 
+            //
             this.defaultFontItem.Name = "defaultFontItem";
             this.defaultFontItem.Size = new System.Drawing.Size(168, 22);
             this.defaultFontItem.Text = "Default font";
             this.defaultFontItem.Click += new System.EventHandler(this.defaultFontItem_Click);
-            // 
+            //
             // resetFontItem
-            // 
+            //
             this.resetFontItem.Name = "resetFontItem";
             this.resetFontItem.Size = new System.Drawing.Size(168, 22);
             this.resetFontItem.Text = "Reset font";
             this.resetFontItem.Click += new System.EventHandler(this.resetFontItem_Click);
-            // 
+            //
             // helpItem
-            // 
+            //
             this.helpItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.consoleItem,
             this.visitWebsiteItem,
@@ -746,38 +746,38 @@ namespace Diagram
             this.helpItem.Name = "helpItem";
             this.helpItem.Size = new System.Drawing.Size(164, 22);
             this.helpItem.Text = "Help";
-            // 
+            //
             // consoleItem
-            // 
+            //
             this.consoleItem.Name = "consoleItem";
             this.consoleItem.Size = new System.Drawing.Size(155, 22);
             this.consoleItem.Text = "Debug Console";
             this.consoleItem.Visible = false;
             this.consoleItem.Click += new System.EventHandler(this.consoleItem_Click);
-            // 
+            //
             // visitWebsiteItem
-            // 
+            //
             this.visitWebsiteItem.Name = "visitWebsiteItem";
             this.visitWebsiteItem.Size = new System.Drawing.Size(155, 22);
             this.visitWebsiteItem.Text = "Visit homesite";
             this.visitWebsiteItem.Click += new System.EventHandler(this.visitWebsiteItem_Click);
-            // 
+            //
             // releaseNoteItem
-            // 
+            //
             this.releaseNoteItem.Name = "releaseNoteItem";
             this.releaseNoteItem.Size = new System.Drawing.Size(155, 22);
             this.releaseNoteItem.Text = "Release Note";
             this.releaseNoteItem.Click += new System.EventHandler(this.releaseNoteItem_Click);
-            // 
+            //
             // aboutItem
-            // 
+            //
             this.aboutItem.Name = "aboutItem";
             this.aboutItem.Size = new System.Drawing.Size(155, 22);
             this.aboutItem.Text = "About";
             this.aboutItem.Click += new System.EventHandler(this.aboutItem_Click);
-            // 
+            //
             // Popup
-            // 
+            //
             this.ResumeLayout(false);
         }
         #endregion
@@ -931,7 +931,7 @@ namespace Diagram
                 }
             }
 
-            // PASSWORD IS SET 
+            // PASSWORD IS SET
             if (this.diagramView.diagram.password == "")
             {
                 changePasswordItem.Visible = false;
@@ -1104,7 +1104,7 @@ namespace Diagram
         // MENU Exit
         public void exitItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.diagramView.Close();
         }
 
         // MENU Copy
@@ -1121,8 +1121,8 @@ namespace Diagram
 
         // MENU paste
         public void pasteItem_Click(object sender, EventArgs e)
-        {  
-            this.diagramView.paste(new Position(this.diagramView.startMousePos.x, this.diagramView.startMousePos.y));
+        {
+            this.diagramView.paste(new Position(this.diagramView.startMousePos));
         }
 
         // MENU Copy link
@@ -1403,7 +1403,7 @@ namespace Diagram
         {
             this.diagramView.attachmentAddDirectory(new Position(this.diagramView.startMousePos.x, this.diagramView.startMousePos.y));
         }
-        
+
         // MENU NODE remove included data
         private void removeFileItem_Click(object sender, EventArgs e)
         {
