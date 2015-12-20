@@ -16,7 +16,7 @@ namespace Diagram
 #if DEBUG
         public String configFileName = "diagram.debug.json";
 #else
-        public String configFileName = "diagram.json";  
+        public String configFileName = "diagram.json";
 #endif
 
 
@@ -34,7 +34,7 @@ namespace Diagram
             {
 
             }
-            else 
+            else
             {
                 this.optionsFilePath = this.getGlobalConfigFilePath();
 
@@ -52,8 +52,6 @@ namespace Diagram
                     this.saveConfigFile();
                 }
             }
-
-
         }
 
         private void loadConfigFile()
@@ -83,7 +81,7 @@ namespace Diagram
             }
         }
 
-        public String getPortableConfigFilePath() 
+        public String getPortableConfigFilePath()
         {
             return Os.combine(
                 Os.getDirectoryName(Application.ExecutablePath),

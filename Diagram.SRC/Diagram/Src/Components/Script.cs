@@ -48,7 +48,7 @@ namespace Diagram
     /// <example>
     /// try
     /// {
-    /// 
+    ///
     ///     Script macro = new Script();
     ///     result = macro.runScript(this.SelectedNodes[0].text);
     /// }
@@ -70,7 +70,7 @@ namespace Diagram
         public string script = "";
 
         /// <summary>
-        /// Set current diagram for context in script 
+        /// Set current diagram for context in script
         /// </summary>
         /// <param name="diagram"></param>
         public void setDiagram(Diagram diagram)
@@ -136,7 +136,7 @@ namespace Diagram
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="script">Script with pys=thon code</param>
         /// <returns>Return script string result</returns>

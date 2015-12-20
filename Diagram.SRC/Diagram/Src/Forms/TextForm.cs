@@ -50,11 +50,11 @@ namespace Diagram
             this.SplitContainer1.Panel1.SuspendLayout();
             this.SplitContainer1.Panel2.SuspendLayout();
             this.SplitContainer1.SuspendLayout();
-            
+
             this.SuspendLayout();
-            // 
+            //
             // textformtabs
-            // 
+            //
             this.textformtabs.Controls.Add(this.mainTab);
             this.textformtabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textformtabs.Location = new System.Drawing.Point(0, 0);
@@ -62,9 +62,9 @@ namespace Diagram
             this.textformtabs.SelectedIndex = 0;
             this.textformtabs.Size = new System.Drawing.Size(393, 517);
             this.textformtabs.TabIndex = 0;
-            // 
+            //
             // mainTab
-            // 
+            //
             this.mainTab.Controls.Add(this.SplitContainer1);
             this.mainTab.Location = new System.Drawing.Point(4, 22);
             this.mainTab.Name = "mainTab";
@@ -73,27 +73,27 @@ namespace Diagram
             this.mainTab.TabIndex = 0;
             this.mainTab.Text = "Main";
             this.mainTab.UseVisualStyleBackColor = true;
-            // 
+            //
             // SplitContainer1
-            // 
+            //
             this.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SplitContainer1.Location = new System.Drawing.Point(3, 3);
             this.SplitContainer1.Name = "SplitContainer1";
             this.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
+            //
             // SplitContainer1.Panel1
-            // 
+            //
             this.SplitContainer1.Panel1.Controls.Add(this.TextFormTextBox);
-            // 
+            //
             // SplitContainer1.Panel2
-            // 
+            //
             this.SplitContainer1.Panel2.Controls.Add(this.TextFormNoteTextBox);
             this.SplitContainer1.Size = new System.Drawing.Size(379, 485);
             this.SplitContainer1.SplitterDistance = 68;
             this.SplitContainer1.TabIndex = 0;
-            // 
+            //
             // TextFormTextBox
-            // 
+            //
             this.TextFormTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextFormTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.TextFormTextBox.Location = new System.Drawing.Point(0, 0);
@@ -102,9 +102,9 @@ namespace Diagram
             this.TextFormTextBox.TabIndex = 0;
             this.TextFormTextBox.DetectUrls = false;
 
-            // 
+            //
             // TextFormNoteTextBox
-            // 
+            //
             this.TextFormNoteTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TextFormNoteTextBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.TextFormNoteTextBox.Location = new System.Drawing.Point(0, 0);
@@ -112,9 +112,9 @@ namespace Diagram
             this.TextFormNoteTextBox.Size = new System.Drawing.Size(379, 413);
             this.TextFormNoteTextBox.TabIndex = 0;
             this.TextFormNoteTextBox.DetectUrls = false;
-            // 
+            //
             // labelScriptId
-            // 
+            //
             this.labelScriptId.AutoSize = true;
             this.labelScriptId.Location = new System.Drawing.Point(17, 14);
             this.labelScriptId.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -122,22 +122,22 @@ namespace Diagram
             this.labelScriptId.Size = new System.Drawing.Size(19, 13);
             this.labelScriptId.TabIndex = 2;
             this.labelScriptId.Text = "Id:";
-            // 
+            //
             // textBoxScriptId
-            // 
+            //
             this.textBoxScriptId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBoxScriptId.Location = new System.Drawing.Point(52, 6);
             this.textBoxScriptId.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxScriptId.Name = "textBoxScriptId";
             this.textBoxScriptId.Size = new System.Drawing.Size(304, 26);
             this.textBoxScriptId.TabIndex = 0;
-            // 
+            //
             // DFont
-            // 
+            //
             this.DFont.Color = System.Drawing.SystemColors.ControlText;
-            // 
+            //
             // TextForm
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(393, 517);

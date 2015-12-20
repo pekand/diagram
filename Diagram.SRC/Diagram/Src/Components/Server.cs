@@ -37,7 +37,7 @@ namespace Diagram
 					this.serverCurrent = true;
                     Program.log.write("Server: start on " + main.options.server_default_ip + ":" + main.options.server_default_port);
                 }
-                else 
+                else
                 {
 					Program.log.write("Server: already exist");
                     serverAlreadyExist = true;
@@ -60,7 +60,7 @@ namespace Diagram
                     //blocks until a client has connected to the server
                     TcpClient client = this.tcpListener.AcceptTcpClient();
 
-                    //create a thread to handle communication 
+                    //create a thread to handle communication
                     //with connected client
                     Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientComm));
                     clientThread.Start(client);
@@ -78,7 +78,6 @@ namespace Diagram
         {
            _shouldStop = true;
            SendMessage("close");
-           //System.Threading.Thread.Sleep(1000);
         }
 
         private void HandleClientComm(object client)

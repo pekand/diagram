@@ -13,7 +13,6 @@ namespace Diagram
         /// home page url</summary>
         public String home_page = "https://www.infinite-diagram.com";
 
-
         [JsonIgnore]
         /// <summary>
         /// release note</summary>

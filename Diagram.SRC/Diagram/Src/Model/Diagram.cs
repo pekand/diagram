@@ -22,11 +22,11 @@ namespace Diagram
         public List<DiagramView> DiagramViews = new List<DiagramView>(); // all views forms to diagram
 
         // ATTRIBUTES DRAW
-        public int NodePadding = 10;             // CONST node padding around node name text 
+        public int NodePadding = 10;             // CONST node padding around node name text
         public int EmptyNodePadding = 20;        // CONST node padding for empty node circle
 
         // RESOURCES
-        public Font FontDefault = null;          // 
+        public Font FontDefault = null;          // default font
 
         // ATTRIBUTES File
         public bool NewFile = true;              // flag for new unsaved file without name
@@ -846,8 +846,6 @@ namespace Diagram
             this.Lines.Clear();
             this.Nodes.Clear();
 
-
-
             this.options.readOnly = false;
             this.options.grid = true;
             this.options.coordinates = false;
@@ -1016,7 +1014,7 @@ namespace Diagram
                 {
                     rec.font = font;
                 }
-                
+
                 rec.text = text;
                 rec.note = "";
                 rec.link = "";
@@ -1047,7 +1045,7 @@ namespace Diagram
                 bool found = false;
                 for (int i = this.Lines.Count() - 1; i >= 0; i--) // odstranenie spojenia
                 {
-                    if ((this.Lines[i].start == a.id && this.Lines[i].end == b.id) 
+                    if ((this.Lines[i].start == a.id && this.Lines[i].end == b.id)
                         || (this.Lines[i].start == b.id && this.Lines[i].end == a.id)
                     )
                     {
@@ -1568,10 +1566,10 @@ namespace Diagram
             {
 
                 Node newrec = this.CreateNode(
-                    rec.position.clone().add(position), 
-                    rec.text, 
-                    layer, 
-                    null, 
+                    rec.position.clone().add(position),
+                    rec.text,
+                    layer,
+                    null,
                     rec.font
                 );
                 newrec.note = rec.note;
