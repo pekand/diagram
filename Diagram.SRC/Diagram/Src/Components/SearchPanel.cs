@@ -52,6 +52,7 @@ namespace Diagram
             this.textBoxSearch.Size = new System.Drawing.Size(100, 13);
             this.textBoxSearch.TabIndex = 0;
             this.textBoxSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_KeyUp);
+            this.textBoxSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_KeyDown);
             //
             // SearchPanel
             //
@@ -86,8 +87,7 @@ namespace Diagram
             string action = "";
             string currentText = textBoxSearch.Text;
 
-            if (e.KeyCode == Keys.Enter
-                || oldText != currentText)
+            if (oldText != currentText)
             {
                 action = "search";
                 oldText = currentText;
@@ -102,6 +102,11 @@ namespace Diagram
             {
                 action = "searchPrev";
             }
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.Hide();
+                action = "close";
+            }
 
             if (e.KeyCode == Keys.Escape)
             {
@@ -113,6 +118,16 @@ namespace Diagram
                 this.SearchpanelStateChanged(action, currentText);
 
             this.centerPanel();
+        }
+
+        private void textBoxSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            // remove ding sound
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
         }
 
         public void centerPanel()

@@ -161,6 +161,7 @@
     <Compile Include="Src\Lib\Fonts.cs" />
     <Compile Include="Src\Lib\Media.cs" />
     <Compile Include="Src\Lib\Os.cs" />
+    <Compile Include="Src\Lib\Patterns.cs" />
     <Compile Include="Src\Main.cs" />
     <Compile Include="Src\Model\Position.cs" />
     <Compile Include="Src\ProgramOptions.cs" />
@@ -181,7 +182,7 @@
     <Compile Include="Src\Tools\OptionsFile.cs" />
     <Compile Include="Src\Tools\Log.cs" />
     <Compile Include="Src\Components\ScrollBar.cs" />
-    <Compile Include="Src\Forms\ConsoleLog.cs">
+    <Compile Include="Src\Forms\Console.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Src\Lib\Network.cs" />
@@ -279,8 +280,8 @@
     <EmbeddedResource Include="Src\Forms\ChangePasswordForm.resx">
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Src\Forms\ConsoleLog.resx">
-      <DependentUpon>ConsoleLog.cs</DependentUpon>
+    <EmbeddedResource Include="Src\Forms\Console.resx">
+      <DependentUpon>Console.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\DiagramView.resx">
       <DependentUpon>DiagramView.cs</DependentUpon>

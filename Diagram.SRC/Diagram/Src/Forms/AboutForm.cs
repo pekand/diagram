@@ -29,9 +29,9 @@ namespace Diagram
             this.linkLabelMe = new System.Windows.Forms.LinkLabel();
             this.labelLicenceType = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // labelProgramName
-            // 
+            //
             this.labelProgramName.AutoSize = true;
             this.labelProgramName.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelProgramName.Location = new System.Drawing.Point(16, 16);
@@ -40,9 +40,9 @@ namespace Diagram
             this.labelProgramName.Size = new System.Drawing.Size(241, 37);
             this.labelProgramName.TabIndex = 0;
             this.labelProgramName.Text = "Infinite Diagram";
-            // 
+            //
             // buttonOk
-            // 
+            //
             this.buttonOk.Location = new System.Drawing.Point(182, 107);
             this.buttonOk.Margin = new System.Windows.Forms.Padding(2);
             this.buttonOk.Name = "buttonOk";
@@ -51,9 +51,9 @@ namespace Diagram
             this.buttonOk.Text = "OK";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
-            // 
+            //
             // labelLicence
-            // 
+            //
             this.labelLicence.AutoSize = true;
             this.labelLicence.Location = new System.Drawing.Point(28, 70);
             this.labelLicence.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -61,9 +61,9 @@ namespace Diagram
             this.labelLicence.Size = new System.Drawing.Size(44, 13);
             this.labelLicence.TabIndex = 3;
             this.labelLicence.Text = "licence:";
-            // 
+            //
             // labelAuthor
-            // 
+            //
             this.labelAuthor.AutoSize = true;
             this.labelAuthor.Location = new System.Drawing.Point(28, 53);
             this.labelAuthor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -71,9 +71,9 @@ namespace Diagram
             this.labelAuthor.Size = new System.Drawing.Size(40, 13);
             this.labelAuthor.TabIndex = 4;
             this.labelAuthor.Text = "author:";
-            // 
+            //
             // linkLabelMe
-            // 
+            //
             this.linkLabelMe.AutoSize = true;
             this.linkLabelMe.Location = new System.Drawing.Point(114, 53);
             this.linkLabelMe.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -83,9 +83,9 @@ namespace Diagram
             this.linkLabelMe.TabStop = true;
             this.linkLabelMe.Text = "Andrej Pekar";
             this.linkLabelMe.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMe_LinkClicked);
-            // 
+            //
             // labelLicenceType
-            // 
+            //
             this.labelLicenceType.AutoSize = true;
             this.labelLicenceType.Location = new System.Drawing.Point(114, 70);
             this.labelLicenceType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -93,9 +93,9 @@ namespace Diagram
             this.labelLicenceType.Size = new System.Drawing.Size(48, 13);
             this.labelLicenceType.TabIndex = 6;
             this.labelLicenceType.Text = "freeware";
-            // 
+            //
             // AboutForm
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(248, 143);

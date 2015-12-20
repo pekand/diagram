@@ -132,9 +132,14 @@ namespace Diagram
                 System.Diagnostics.Process process = new System.Diagnostics.Process();
                 System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
                 startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+
 #if !MONO
-                startInfo.FileName = "cmd.exe";
-                startInfo.Arguments = "/c " + "\"" + cmd + "\"";
+                string[] parts = Patterns.splitCommand(cmd);
+                startInfo.FileName = parts[0];
+                startInfo.Arguments = parts[1];
+
+                /*startInfo.FileName = "cmd.exe";
+                startInfo.Arguments = "/c " + "\"" + cmd + "\"";*/
 #else
 				startInfo.FileName = "/bin/bash";
                 startInfo.Arguments = "-c " + cmd;
@@ -226,11 +231,6 @@ namespace Diagram
         /// if currentPath is parent of filePath</summary>
 		public static string makeRelative(string filePath, string currentPath, bool inCurrentDir = true)
 		{
-#if !MONO
-            // in windows lovercase path character for path comparison
-            filePath = filePath.ToLower();
-            currentPath = currentPath.ToLower();
-#endif
             filePath = filePath.Trim();
 			currentPath = currentPath.Trim();
 
@@ -266,13 +266,17 @@ namespace Diagram
 			}
 
 			int pos = filePath.ToLower().IndexOf(currentPath.ToLower());
-			if( inCurrentDir &&  pos != 0) // skip files outside of currentPath
+			if( inCurrentDir && pos != 0) // skip files outside of currentPath
 			{
 				return filePath;
 			}
 
 			Uri folderUri = new Uri(currentPath);
-			return Uri.UnescapeDataString(folderUri.MakeRelativeUri(pathUri).ToString().Replace('/', Path.DirectorySeparatorChar));
+			return Uri.UnescapeDataString(
+                folderUri.MakeRelativeUri(pathUri)
+                .ToString()
+                .Replace('/', Path.DirectorySeparatorChar)
+            );
 		}
 
         /// <summary>

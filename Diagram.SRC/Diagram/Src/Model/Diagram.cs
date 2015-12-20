@@ -14,41 +14,39 @@ namespace Diagram
 {
     public class Diagram
     {
-        public Main main = null;
+        public Main main = null;                 // reference to main form
 
-        public List<Node> Nodes = new List<Node>();          // zoznam nod
-        public List<Line> Lines = new List<Line>();          // zoznam spojovacich ciar
+        public List<Node> Nodes = new List<Node>();          // all diagram nodes
+        public List<Line> Lines = new List<Line>();          // all lines between diagram nodes
 
-        public List<DiagramView> DiagramViews = new List<DiagramView>(); // zoznam otvorenych pohladov do diagramou
+        public List<DiagramView> DiagramViews = new List<DiagramView>(); // all views forms to diagram
 
         // ATTRIBUTES DRAW
-        public int NodePadding = 10;              // CONST okraj stvorca
-        public int EmptyNodePadding = 20;         // CONST okraj stvorca
+        public int NodePadding = 10;             // CONST node padding around node name text
+        public int EmptyNodePadding = 20;        // CONST node padding for empty node circle
 
         // RESOURCES
-        public PrivateFontCollection fonts = null;
-        public FontFamily family = null;
-        public Font FontDefault = null;
+        public Font FontDefault = null;          // default font
 
         // ATTRIBUTES File
-        public bool NewFile = true;              //súbor je nový ešte neuložený(nemá meno)
-        public bool SavedFile = true;            //súbor bol uložený na disk(má svoje meno)
-        public string FileName = "";             //názov otvoreného súboru
+        public bool NewFile = true;              // flag for new unsaved file without name
+        public bool SavedFile = true;            // flag for saved diagram with name
+        public string FileName = "";             // path to diagram file
 
         // ATRIBUTES OBJECTS
-        public int maxid = 0;                    // največšie vložené id objektu
+        public int maxid = 0;                    // last used node id
 
         // ATTRIBUTES ENCRYPTION
-        public bool encrypted = false;           // pri ukladaní súbor zašifrovať
-        public string password = "";             // heslo
-		private byte[] salt = null;
+        public bool encrypted = false;           // flag for encrypted file
+        public string password = "";             // password for encrypted file
+		private byte[] salt = null;              // salt
 
 
         // ATTRIBUTES TextForm
-        public List<TextForm> TextWindows = new List<TextForm>();   // Zoznam otvorenych okien
+        public List<TextForm> TextWindows = new List<TextForm>();   // opened text textforms for this diagram
 
         // ATTRIBUTES OPTIONS
-        public Options options = new Options();
+        public Options options = new Options();  // diagram options saved to xml file
 
         public Diagram(Main main)
         {
@@ -848,8 +846,6 @@ namespace Diagram
             this.Lines.Clear();
             this.Nodes.Clear();
 
-
-
             this.options.readOnly = false;
             this.options.grid = true;
             this.options.coordinates = false;
@@ -1005,25 +1001,30 @@ namespace Diagram
         }
 
         // NODE Create Rectangle on point
-        public Node CreateNode(int x, int y, int layer, string text = "", string  color = null)
+        public Node CreateNode(Position position, string text = "", int layer = 0, Color? color = null, Font font = null)
         {
             if (!this.options.readOnly)
             {
                 var rec = new Node();
-                rec.font = this.FontDefault;
+                if (font == null)
+                {
+                    rec.font = this.FontDefault;
+                }
+                else
+                {
+                    rec.font = font;
+                }
+
                 rec.text = text;
                 rec.note = "";
                 rec.link = "";
-                rec.position.x = x;
-                rec.position.y = y;
+                rec.position.set(position);
                 SizeF s = this.MeasureStringWithMargin(text, rec.font);
                 rec.id = ++maxid;
                 rec.width = (int)s.Width;
                 rec.height = (int)s.Height;
                 rec.layer = layer;
-                if (color != null) {
-                    rec.color = Media.getColor(color);
-                }
+                rec.color = color ?? Media.getColor(this.options.colorNode);
                 DateTime dt = DateTime.Now;
                 rec.timecreate =  String.Format("{0:yyyy-M-d HH:mm:ss}", dt);
                 rec.timemodify =  rec.timecreate;
@@ -1037,14 +1038,16 @@ namespace Diagram
         }
 
         // NODE CONNECT Spojenie dvoch nod
-        public void Connect(Node a, Node b, bool arrow = false)
+        public void Connect(Node a, Node b, bool arrow = false, Color? color = null)
         {
             if (!this.options.readOnly)
             {
                 bool found = false;
                 for (int i = this.Lines.Count() - 1; i >= 0; i--) // odstranenie spojenia
                 {
-                    if ((this.Lines[i].start == a.id && this.Lines[i].end == b.id) || (this.Lines[i].start == b.id && this.Lines[i].end == a.id))
+                    if ((this.Lines[i].start == a.id && this.Lines[i].end == b.id)
+                        || (this.Lines[i].start == b.id && this.Lines[i].end == a.id)
+                    )
                     {
                         this.Lines.RemoveAt(i); ;
                         this.InvalidateDiagram();
@@ -1061,6 +1064,7 @@ namespace Diagram
                     L.startNode = this.GetNodeByID(L.start);
                     L.endNode = this.GetNodeByID(L.end);
                     L.arrow = arrow;
+                    L.color = color ?? Color.Black;
                     this.Lines.Add(L);
                     this.unsave();
                     this.InvalidateDiagram();
@@ -1127,23 +1131,23 @@ namespace Diagram
                 int miny = Nodes[0].position.y;
                 foreach (Node rec in Nodes)
                 {
-                    if (rec.position.x <= minx) // najdi najlavejsi bod
+                    if (rec.position.x <= minx) // find top left element
                     {
                         minx = rec.position.x;
                     }
 
-                    if (rec.position.y <= miny) // najdi najvrchnejsi bod
+                    if (rec.position.y <= miny) // find most top element
                     {
                         miny = rec.position.y;
                     }
                 }
 
-                foreach (Node rec in Nodes) // zarovnaj dolava
+                foreach (Node rec in Nodes) // align to left
                 {
                     rec.position.x = minx;
                 }
 
-                // zotriedenie prvkov podla y velkosti
+                // sort elements by y coordinate
                 List<Node> SortedList = Nodes.OrderBy(o => o.position.y).ToList();
 
                 int posy = miny;
@@ -1369,5 +1373,310 @@ namespace Diagram
             }
         }
         /*************************************************************************************************************************/
+
+        // CLIPBOARD PASTE paste part of diagram from clipboard                                   // CLIPBOARD
+        public List<Node> AddDiagramPart(string DiagramXml, Position position, int layer)
+        {
+            List<Node> NewNodes = new List<Node>();
+            List<Line> NewLines = new List<Line>();
+
+            XmlReaderSettings xws = new XmlReaderSettings();
+            xws.CheckCharacters = false;
+
+            string xml = DiagramXml;
+
+            try
+            {
+                using (XmlReader xr = XmlReader.Create(new StringReader(xml), xws))
+                {
+
+                    XElement root = XElement.Load(xr);
+                    foreach (XElement diagram in root.Elements())
+                    {
+                        if (diagram.HasElements)
+                        {
+
+                            if (diagram.Name.ToString() == "rectangles")
+                            {
+                                foreach (XElement block in diagram.Descendants())
+                                {
+
+                                    if (block.Name.ToString() == "rectangle")
+                                    {
+                                        Node R = new Node();
+                                        R.font = this.FontDefault;
+
+                                        foreach (XElement el in block.Descendants())
+                                        {
+                                            try
+                                            {
+                                                if (el.Name.ToString() == "id")
+                                                {
+                                                    R.id = Int32.Parse(el.Value);
+                                                }
+
+                                                if (el.Name.ToString() == "text")
+                                                {
+                                                    R.text = el.Value;
+                                                }
+
+
+                                                if (el.Name.ToString() == "note")
+                                                {
+                                                    R.note = el.Value;
+                                                }
+
+                                                if (el.Name.ToString() == "x")
+                                                {
+                                                    R.position.x = Int32.Parse(el.Value);
+                                                }
+
+                                                if (el.Name.ToString() == "y")
+                                                {
+                                                    R.position.y = Int32.Parse(el.Value);
+                                                }
+
+                                                if (el.Name.ToString() == "color")
+                                                {
+                                                    R.color = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
+                                                }
+
+
+                                                if (el.Name.ToString() == "timecreate")
+                                                {
+                                                    R.timecreate = el.Value;
+                                                }
+
+
+                                                if (el.Name.ToString() == "timemodify")
+                                                {
+                                                    R.timemodify = el.Value;
+                                                }
+
+
+                                                if (el.Name.ToString() == "font")
+                                                {
+                                                    R.font = Fonts.XmlToFont(el);
+                                                }
+
+
+                                                if (el.Name.ToString() == "fontcolor")
+                                                {
+                                                    R.fontcolor = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
+                                                }
+
+                                                if (el.Name.ToString() == "link")
+                                                {
+                                                    R.link = el.Value;
+                                                }
+
+                                                if (el.Name.ToString() == "shortcut")
+                                                {
+                                                    R.shortcut = Int32.Parse(el.Value);
+                                                }
+
+                                                if (el.Name.ToString() == "transparent")
+                                                {
+                                                    R.transparent = bool.Parse(el.Value);
+                                                }
+
+
+                                                if (el.Name.ToString() == "timecreate")
+                                                {
+                                                    R.timecreate = el.Value;
+                                                }
+
+
+                                                if (el.Name.ToString() == "timemodify")
+                                                {
+                                                    R.timemodify = el.Value;
+                                                }
+
+                                                if (el.Name.ToString() == "attachment")
+                                                {
+                                                    R.attachment = el.Value;
+                                                }
+
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                Program.log.write(main.translations.dataHasWrongStructure + ": error: " + ex.Message);
+                                            }
+                                        }
+
+                                        NewNodes.Add(R);
+                                    }
+                                }
+                            }
+
+                            if (diagram.Name.ToString() == "lines")
+                            {
+                                foreach (XElement block in diagram.Descendants())
+                                {
+                                    if (block.Name.ToString() == "line")
+                                    {
+                                        Line L = new Line();
+                                        foreach (XElement el in block.Descendants())
+                                        {
+                                            try
+                                            {
+                                                if (el.Name.ToString() == "start")
+                                                {
+                                                    L.start = Int32.Parse(el.Value);
+                                                }
+
+                                                if (el.Name.ToString() == "end")
+                                                {
+                                                    L.end = Int32.Parse(el.Value);
+                                                }
+
+                                                if (el.Name.ToString() == "arrow")
+                                                {
+                                                    L.arrow = el.Value == "1" ? true : false;
+                                                }
+
+                                                if (el.Name.ToString() == "color")
+                                                {
+                                                    L.color = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
+                                                }
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                Program.log.write(main.translations.dataHasWrongStructure + ": error: " + ex.Message);
+                                            }
+                                        }
+                                        NewLines.Add(L);
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Program.log.write(main.translations.dataHasWrongStructure + ": error: " + ex.Message);
+            }
+
+
+            List<Node[]> maps = new List<Node[]>();
+
+            foreach (Node rec in NewNodes)
+            {
+
+                Node newrec = this.CreateNode(
+                    rec.position.clone().add(position),
+                    rec.text,
+                    layer,
+                    null,
+                    rec.font
+                );
+                newrec.note = rec.note;
+                newrec.color = rec.color;
+                newrec.fontcolor = rec.fontcolor;
+                newrec.link = rec.link;
+                newrec.shortcut = rec.shortcut;
+                newrec.transparent = rec.transparent;
+                newrec.transparent = rec.transparent;
+                newrec.timecreate = rec.timecreate;
+                newrec.timemodify = rec.timemodify;
+
+                maps.Add(new Node[2] { rec, newrec });
+            }
+
+            foreach (Line line in NewLines)
+            {
+                foreach (Node[] mapbegin in maps)
+                {
+                    if (line.start == mapbegin[0].id)
+                    {
+                        foreach (Node[] mapend in maps)
+                        {
+                            if (line.end == mapend[0].id)
+                            {
+                                this.Connect(mapbegin[1], mapend[1], line.arrow, line.color);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return NewNodes;
+        }
+
+        // CLIPBOARD COPY copy part of diagram to text xml string
+        public string GetDiagramPart(List<Node> nodes)
+        {
+            string copyxml = "";
+
+            if (nodes.Count() > 0)
+            {
+                XElement root = new XElement("diagram");
+                XElement rectangles = new XElement("rectangles");
+                XElement lines = new XElement("lines");
+
+                int minx = nodes[0].position.x;
+                int miny = nodes[0].position.y;
+                int minid = nodes[0].id;
+
+                foreach (Node rec in nodes)
+                {
+                    if (rec.position.x < minx) minx = rec.position.x;
+                    if (rec.position.y < miny) miny = rec.position.y;
+                    if (rec.id < minid) minid = rec.id;
+                }
+
+                foreach (Node rec in nodes)
+                {
+                    XElement rectangle = new XElement("rectangle");
+                    rectangle.Add(new XElement("id", rec.id - minid));
+                    rectangle.Add(new XElement("x", rec.position.x - minx));
+                    rectangle.Add(new XElement("y", rec.position.y - miny));
+                    rectangle.Add(new XElement("text", rec.text));
+                    rectangle.Add(new XElement("note", rec.note));
+                    rectangle.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(rec.color)));
+                    rectangle.Add(Fonts.FontToXml(rec.font));
+                    rectangle.Add(new XElement("fontcolor", System.Drawing.ColorTranslator.ToHtml(rec.fontcolor)));
+                    if (rec.link != "") rectangle.Add(new XElement("link", rec.link));
+                    if (rec.shortcut != 0) rectangle.Add(new XElement("shortcut", rec.shortcut));
+                    rectangle.Add(new XElement("transparent", rec.transparent));
+                    rectangle.Add(new XElement("timecreate", rec.timecreate));
+                    rectangle.Add(new XElement("timemodify", rec.timemodify));
+                    rectangle.Add(new XElement("attachment", rec.attachment));
+
+                    rectangles.Add(rectangle);
+                }
+
+                foreach (Line li in this.Lines)
+                {
+                    foreach (Node recstart in nodes)
+                    {
+                        if (li.start == recstart.id)
+                        {
+                            foreach (Node recend in nodes)
+                            {
+                                if (li.end == recend.id)
+                                {
+                                    XElement line = new XElement("line");
+                                    line.Add(new XElement("start", li.start - minid));
+                                    line.Add(new XElement("end", li.end - minid));
+                                    line.Add(new XElement("arrow", (li.arrow) ? "1" : "0"));
+                                    line.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(li.color)));
+                                    lines.Add(line);
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+                root.Add(rectangles);
+                root.Add(lines);
+                copyxml = root.ToString();
+            }
+
+            return copyxml;
+        }
     }
 }

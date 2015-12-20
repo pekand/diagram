@@ -38,7 +38,7 @@ namespace Diagram
                 Application.Exit();
             }
             catch (Exception e) // global exception handling
-            {  
+            {
                 log.write("Application crash: message:" + e.Message);
                 log.saveLogToFile();
 

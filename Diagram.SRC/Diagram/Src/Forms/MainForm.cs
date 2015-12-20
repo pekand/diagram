@@ -5,7 +5,7 @@ namespace Diagram
 {
     public partial class MainForm : Form
     {
-        // parent 
+        // parent
         public Main main = null;
 
         public MainForm(Main main)
@@ -16,9 +16,9 @@ namespace Diagram
 
         private void InitializeComponent()
         {
-            // 
+            //
             // MainForm
-            // 
+            //
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(10, 10);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
