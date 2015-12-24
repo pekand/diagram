@@ -630,7 +630,6 @@ namespace Diagram
         // [FILE] SAVEAS - Uložiť súbor ako
         public void saveas(String FileName)
         {
-
             this.SaveXMLFile(FileName);
             this.FileName = FileName;
             this.SavedFile = true;
@@ -833,7 +832,7 @@ namespace Diagram
             this.SetTitle();
         }
 
-        // [FILE] [CLOSE] - Vycisti  nastavenie do východzieho tavu a prekresli obrazovku
+        // [FILE] [CLOSE] - Vycisti  nastavenie do  východzieho tavu a prekresli obrazovku
         public void CloseFile()
         {
             // Prednadstavenie atributov
