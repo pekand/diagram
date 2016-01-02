@@ -26,8 +26,7 @@ namespace Diagram
 
         public int layer = 0; // cislo vrstvy v ktorej sa noda nachádza
         public bool haslayer = false;
-        public int layershiftx = 0; // zaciatocna pozícia vrstvy
-        public int layershifty = 0;
+        public Position layerShift = new Position(); // zaciatocna pozícia vrstvy
 
         public Color color = System.Drawing.ColorTranslator.FromHtml("#FFFFB8"); // node color
         public bool transparent = false; // node is transparent, color is turn off

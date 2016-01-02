@@ -3030,8 +3030,8 @@
       <fontcolor>Black</fontcolor>
       <text>layer</text>
       <layer>1471</layer>
-      <x>437</x>
-      <y>1107</y>
+      <x>446</x>
+      <y>2068</y>
       <width>54</width>
       <height>36</height>
       <color>Yellow</color>
@@ -3045,8 +3045,8 @@
       <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs# public bool canDeleteNode(
 </link>
       <layer>1471</layer>
-      <x>699</x>
-      <y>1129</y>
+      <x>1242</x>
+      <y>2084</y>
       <width>119</width>
       <height>36</height>
       <color>#FFFFB8</color>
@@ -3059,8 +3059,8 @@
       <text>Diagram.cs</text>
       <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public Diagram(</link>
       <layer>1471</layer>
-      <x>548</x>
-      <y>1106</y>
+      <x>557</x>
+      <y>2067</y>
       <width>93</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -3073,52 +3073,13 @@
       <text>CreateNode</text>
       <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public Node CreateNode(</link>
       <layer>1471</layer>
-      <x>701</x>
-      <y>1071</y>
+      <x>1242</x>
+      <y>2026</y>
       <width>98</width>
       <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2015-12-20 22:32:49</timecreate>
       <timemodify>2015-12-20 22:32:49</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1556</id>
-      <fontcolor>Black</fontcolor>
-      <text>public void LoadInnerXML(</text>
-      <layer>1471</layer>
-      <x>927</x>
-      <y>1056</y>
-      <width>187</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2015-12-20 22:36:48</timecreate>
-      <timemodify>2015-12-20 22:36:48</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1557</id>
-      <fontcolor>Black</fontcolor>
-      <text>firstLayereShift</text>
-      <layer>1471</layer>
-      <x>1144</x>
-      <y>1101</y>
-      <width>116</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2015-12-20 22:37:02</timecreate>
-      <timemodify>2015-12-20 22:37:02</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1558</id>
-      <fontcolor>Black</fontcolor>
-      <text>public string SaveInnerXMLFile(</text>
-      <layer>1471</layer>
-      <x>1149</x>
-      <y>1156</y>
-      <width>219</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2015-12-20 22:37:48</timecreate>
-      <timemodify>2015-12-20 22:37:48</timemodify>
     </rectangle>
     <rectangle>
       <id>1559</id>
@@ -3368,6 +3329,224 @@
       <color>#FFFFB8</color>
       <timecreate>2015-12-20 23:10:42</timecreate>
       <timemodify>2015-12-20 23:10:42</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1581</id>
+      <fontcolor>Black</fontcolor>
+      <text>DiagramView. layer atributes</text>
+      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#ATTRIBUTES Layers</link>
+      <layer>1471</layer>
+      <x>765</x>
+      <y>2066</y>
+      <width>199</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:42:52</timecreate>
+      <timemodify>2015-8-31 15:42:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1583</id>
+      <fontcolor>Black</fontcolor>
+      <text>layers</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public Layers layers</link>
+      <layer>1471</layer>
+      <x>683</x>
+      <y>2066</y>
+      <width>61</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:43:36</timecreate>
+      <timemodify>2015-8-31 15:43:36</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1584</id>
+      <fontcolor>Black</fontcolor>
+      <text>Layer.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Model\Layer.cs</link>
+      <layer>1471</layer>
+      <x>815</x>
+      <y>2003</y>
+      <width>76</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2016-1-1 21:07:21</timecreate>
+      <timemodify>2016-1-1 21:07:21</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1585</id>
+      <fontcolor>Black</fontcolor>
+      <text>Layers.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Model\Layers.cs</link>
+      <layer>1471</layer>
+      <x>706</x>
+      <y>2005</y>
+      <width>83</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2016-1-1 21:07:21</timecreate>
+      <timemodify>2016-1-1 21:07:21</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1586</id>
+      <fontcolor>Black</fontcolor>
+      <text>build history</text>
+      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#LAYER history build</link>
+      <layer>1471</layer>
+      <x>982</x>
+      <y>2021</y>
+      <width>97</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:42:52</timecreate>
+      <timemodify>2015-8-31 15:42:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1587</id>
+      <fontcolor>Black</fontcolor>
+      <text>key plus minus</text>
+      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#[KEY] [PLUS]</link>
+      <layer>1471</layer>
+      <x>843</x>
+      <y>2144</y>
+      <width>115</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:42:52</timecreate>
+      <timemodify>2015-8-31 15:42:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1588</id>
+      <fontcolor>Black</fontcolor>
+      <text>layer in</text>
+      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#LAYER IN</link>
+      <layer>1471</layer>
+      <x>982</x>
+      <y>2074</y>
+      <width>68</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:42:52</timecreate>
+      <timemodify>2015-8-31 15:42:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1589</id>
+      <fontcolor>Black</fontcolor>
+      <text>layer out</text>
+      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#LAYER OUT</link>
+      <layer>1471</layer>
+      <x>982</x>
+      <y>2124</y>
+      <width>77</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:42:52</timecreate>
+      <timemodify>2015-8-31 15:42:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1590</id>
+      <fontcolor>Black</fontcolor>
+      <text>layer move</text>
+      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#LAYER MOVE</link>
+      <layer>1471</layer>
+      <x>982</x>
+      <y>2167</y>
+      <width>91</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:42:52</timecreate>
+      <timemodify>2015-8-31 15:42:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1592</id>
+      <fontcolor>Black</fontcolor>
+      <text>layer history</text>
+      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#LAYER HISTORY</link>
+      <layer>1471</layer>
+      <x>982</x>
+      <y>2224</y>
+      <width>98</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:42:52</timecreate>
+      <timemodify>2015-8-31 15:42:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1593</id>
+      <fontcolor>Black</fontcolor>
+      <text>isNodeInLayerHistory</text>
+      <layer>1471</layer>
+      <x>1242</x>
+      <y>2300</y>
+      <width>155</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2016-1-1 21:13:52</timecreate>
+      <timemodify>2016-1-1 21:13:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1594</id>
+      <fontcolor>Black</fontcolor>
+      <text>layerIn</text>
+      <layer>1471</layer>
+      <x>1242</x>
+      <y>2189</y>
+      <width>65</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2016-1-1 21:13:57</timecreate>
+      <timemodify>2016-1-1 21:13:57</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1595</id>
+      <fontcolor>Black</fontcolor>
+      <text>layerInOrEdit</text>
+      <layer>1471</layer>
+      <x>1242</x>
+      <y>2251</y>
+      <width>104</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2016-1-1 21:14:04</timecreate>
+      <timemodify>2016-1-1 21:14:04</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1596</id>
+      <fontcolor>Black</fontcolor>
+      <text>layers</text>
+      <layer>1471</layer>
+      <x>711</x>
+      <y>2444</y>
+      <width>61</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2016-1-1 21:45:04</timecreate>
+      <timemodify>2016-1-1 21:45:04</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1597</id>
+      <fontcolor>Black</fontcolor>
+      <text>layer</text>
+      <layer>1471</layer>
+      <x>834</x>
+      <y>2465</y>
+      <width>54</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2016-1-1 21:45:06</timecreate>
+      <timemodify>2016-1-1 21:45:06</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1598</id>
+      <fontcolor>Black</fontcolor>
+      <text>layerHistory</text>
+      <layer>1471</layer>
+      <x>699</x>
+      <y>2523</y>
+      <width>97</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2016-1-1 21:45:14</timecreate>
+      <timemodify>2016-1-1 21:45:14</timemodify>
     </rectangle>
   </rectangles>
   <lines>
@@ -4356,26 +4535,8 @@
       <color>Black</color>
     </line>
     <line>
-      <start>1553</start>
-      <end>1554</end>
-      <arrow>0</arrow>
-      <color>Black</color>
-    </line>
-    <line>
       <start>1554</start>
       <end>1552</end>
-      <arrow>0</arrow>
-      <color>Black</color>
-    </line>
-    <line>
-      <start>1555</start>
-      <end>1554</end>
-      <arrow>0</arrow>
-      <color>Black</color>
-    </line>
-    <line>
-      <start>1557</start>
-      <end>1556</end>
       <arrow>0</arrow>
       <color>Black</color>
     </line>
@@ -4466,6 +4627,78 @@
     <line>
       <start>1560</start>
       <end>1559</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1583</start>
+      <end>1554</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1581</start>
+      <end>1583</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1584</start>
+      <end>1585</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1585</start>
+      <end>1583</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1586</start>
+      <end>1581</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1587</start>
+      <end>1581</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1588</start>
+      <end>1581</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1589</start>
+      <end>1581</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1590</start>
+      <end>1581</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1592</start>
+      <end>1581</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1596</start>
+      <end>1597</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1598</start>
+      <end>1597</end>
       <arrow>0</arrow>
       <color>Black</color>
     </line>

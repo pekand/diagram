@@ -843,7 +843,7 @@ namespace Diagram
             imageAddItem.Enabled = true;
 
             // SELECTION EMPTY
-            if (this.diagramView.SelectedNodes.Count() == 0)
+            if (this.diagramView.selectedNodes.Count() == 0)
             {
                 editItem.Visible = false;
                 colorItem.Visible = false;
@@ -868,7 +868,7 @@ namespace Diagram
             }
 
             // SELECTION NOT EMPTY
-            if (this.diagramView.SelectedNodes.Count() > 0)
+            if (this.diagramView.selectedNodes.Count() > 0)
             {
                 editItem.Visible = true;
                 colorItem.Visible = true;
@@ -888,20 +888,20 @@ namespace Diagram
             }
 
             // SELECTION ONE
-            if (this.diagramView.SelectedNodes.Count() == 1)
+            if (this.diagramView.selectedNodes.Count() == 1)
             {
-                linkItem.Visible = this.diagramView.SelectedNodes[0].link.Trim() != "";
-                copyLinkItem.Enabled = this.diagramView.SelectedNodes[0].link.Trim() != "";
-                openlinkItem.Enabled = this.diagramView.SelectedNodes[0].link.Trim() != "";
+                linkItem.Visible = this.diagramView.selectedNodes[0].link.Trim() != "";
+                copyLinkItem.Enabled = this.diagramView.selectedNodes[0].link.Trim() != "";
+                openlinkItem.Enabled = this.diagramView.selectedNodes[0].link.Trim() != "";
                 alignItem.Visible = false;
                 openLinkDirectoryItem.Visible = false;
-                if (this.diagramView.SelectedNodes[0].link.Trim().Length > 0 && Os.FileExists(this.diagramView.SelectedNodes[0].link))
+                if (this.diagramView.selectedNodes[0].link.Trim().Length > 0 && Os.FileExists(this.diagramView.selectedNodes[0].link))
                     openLinkDirectoryItem.Visible = true;
                 editLinkItem.Enabled = true;
             }
 
             // SELECTION MORE THEN ONE
-            if (this.diagramView.SelectedNodes.Count() > 1)
+            if (this.diagramView.selectedNodes.Count() > 1)
             {
                 linkItem.Visible = false;
                 openlinkItem.Enabled = false;
@@ -912,10 +912,10 @@ namespace Diagram
             }
 
             // REMOVE SHORTCUT
-            if (this.diagramView.SelectedNodes.Count() > 0)
+            if (this.diagramView.selectedNodes.Count() > 0)
             {
                 bool hasShortcut = false;
-                foreach (Node node in this.diagramView.SelectedNodes)
+                foreach (Node node in this.diagramView.selectedNodes)
                 {
                     if (node.shortcut > 0)
                     {
@@ -999,9 +999,9 @@ namespace Diagram
         // MENU Edit
         public void editItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.SelectedNodes.Count() == 1)
+            if (this.diagramView.selectedNodes.Count() == 1)
             {
-                this.diagramView.diagram.EditNode(this.diagramView.SelectedNodes[0]);
+                this.diagramView.diagram.EditNode(this.diagramView.selectedNodes[0]);
             }
         }
 
@@ -1014,9 +1014,9 @@ namespace Diagram
         // MENU remove shortcut
         private void removeShortcutItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.SelectedNodes.Count() > 0)
+            if (this.diagramView.selectedNodes.Count() > 0)
             {
-                this.diagramView.removeShortcuts(this.diagramView.SelectedNodes);
+                this.diagramView.removeShortcuts(this.diagramView.selectedNodes);
             }
         }
 
@@ -1025,9 +1025,9 @@ namespace Diagram
         // MENU Link Open
         public void openlinkItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.SelectedNodes.Count() > 0)
+            if (this.diagramView.selectedNodes.Count() > 0)
             {
-                this.diagramView.OpenLinkAsync(this.diagramView.SelectedNodes[0]);
+                this.diagramView.OpenLinkAsync(this.diagramView.selectedNodes[0]);
             }
         }
 
@@ -1042,9 +1042,9 @@ namespace Diagram
         // MENU align right
         private void rightItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.SelectedNodes.Count() > 0)
+            if (this.diagramView.selectedNodes.Count() > 0)
             {
-                this.diagramView.diagram.AlignRight(this.diagramView.SelectedNodes);
+                this.diagramView.diagram.AlignRight(this.diagramView.selectedNodes);
                 this.diagramView.diagram.unsave();
                 this.diagramView.diagram.InvalidateDiagram();
             }
@@ -1053,9 +1053,9 @@ namespace Diagram
         // MENU align to line
         private void toLineItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.SelectedNodes.Count() > 0)
+            if (this.diagramView.selectedNodes.Count() > 0)
             {
-                this.diagramView.diagram.AlignToLine(this.diagramView.SelectedNodes);
+                this.diagramView.diagram.AlignToLine(this.diagramView.selectedNodes);
                 this.diagramView.diagram.unsave();
                 this.diagramView.diagram.InvalidateDiagram();
             }
@@ -1064,9 +1064,9 @@ namespace Diagram
         // MENU align to column
         private void inColumnItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.SelectedNodes.Count() > 0)
+            if (this.diagramView.selectedNodes.Count() > 0)
             {
-                this.diagramView.diagram.AlignToColumn(this.diagramView.SelectedNodes);
+                this.diagramView.diagram.AlignToColumn(this.diagramView.selectedNodes);
                 this.diagramView.diagram.unsave();
                 this.diagramView.diagram.InvalidateDiagram();
             }
@@ -1075,9 +1075,9 @@ namespace Diagram
         // MENU align to group to column
         private void groupItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.SelectedNodes.Count() > 0)
+            if (this.diagramView.selectedNodes.Count() > 0)
             {
-                this.diagramView.diagram.AlignCompact(this.diagramView.SelectedNodes);
+                this.diagramView.diagram.AlignCompact(this.diagramView.selectedNodes);
                 this.diagramView.diagram.unsave();
                 this.diagramView.diagram.InvalidateDiagram();
             }
@@ -1086,9 +1086,9 @@ namespace Diagram
         // MENU align left
         private void leftItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.SelectedNodes.Count() > 0)
+            if (this.diagramView.selectedNodes.Count() > 0)
             {
-                this.diagramView.diagram.AlignLeft(this.diagramView.SelectedNodes);
+                this.diagramView.diagram.AlignLeft(this.diagramView.selectedNodes);
                 this.diagramView.diagram.unsave();
                 this.diagramView.diagram.InvalidateDiagram();
             }
@@ -1296,9 +1296,9 @@ namespace Diagram
         // MENU Layer In
         public void inItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.SelectedNodes.Count() == 1)
+            if (this.diagramView.selectedNodes.Count() == 1)
             {
-                this.diagramView.LayerIn(this.diagramView.SelectedNodes[0]);
+                this.diagramView.LayerIn(this.diagramView.selectedNodes[0]);
             }
         }
 
@@ -1381,9 +1381,9 @@ namespace Diagram
         // MENU reset font
         private void resetFontItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.SelectedNodes.Count() > 0)
+            if (this.diagramView.selectedNodes.Count() > 0)
             {
-                this.diagramView.diagram.ResetFont(this.diagramView.SelectedNodes);
+                this.diagramView.diagram.ResetFont(this.diagramView.selectedNodes);
             }
             else
             {
