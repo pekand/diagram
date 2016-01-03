@@ -49,6 +49,25 @@ namespace Diagram
             return null;
         }
 
+        public Layer getLayer(Node node)
+        {
+            if (node.layer == 0) {
+                return getLayer(0);
+            }
+
+            foreach (Layer l in this.layers)
+            {
+
+                if (l.parentNode != null && l.parentNode.id == node.layer)
+                {
+                    return l;
+                }
+
+            }
+
+            return null;
+        }
+
         public bool hasLayer(int id = 0)
         {
             foreach (Layer l in this.layers)
@@ -246,6 +265,29 @@ namespace Diagram
                 inLayer.nodes.Remove(node);
 
                 node.layer = layer;
+            }
+        }
+
+        // NODE move nodes to foreground
+        public void moveToForeground(Node node)
+        {
+            Layer layer = getLayer(node);
+            if (layer != null) { 
+                var item = node;
+                layer.nodes.Remove(item);
+                layer.nodes.Insert(layer.nodes.Count(), item);
+            }
+        }
+
+        // NODE move nodes to background
+        public void moveToBackground(Node node)
+        {
+            Layer layer = getLayer(node);
+            if (layer != null)
+            {
+                var item = node;
+                layer.nodes.Remove(node);
+                layer.nodes.Insert(0, item);
             }
         }
     }

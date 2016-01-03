@@ -65,7 +65,7 @@ namespace Diagram
         {
             if (!this.Visible)
             {
-                int padding = this.diagramView.diagram.NodePadding;
+                int padding = Node.NodePadding;
                 this.Left = currentPosition.x;
                 this.Top = currentPosition.y;
 
@@ -101,7 +101,7 @@ namespace Diagram
         {
             if (!this.Visible)
             {
-                int padding = this.diagramView.diagram.NodePadding;
+                int padding = Node.NodePadding;
 
                 this.editedNode = editedNode;
                 this.editedNode.visible = false;
@@ -154,7 +154,7 @@ namespace Diagram
 
         private void setPanelSize() {
 
-            int padding = this.diagramView.diagram.NodePadding;
+            int padding = Node.NodePadding;
 
             SizeF s = Fonts.MeasureString(this.edit.Text == "" ? "X" : this.edit.Text, this.edit.Font);
 

@@ -20,10 +20,6 @@ namespace Diagram
 
         public List<DiagramView> DiagramViews = new List<DiagramView>(); // all views forms to diagram
 
-        // ATTRIBUTES DRAW
-        public int NodePadding = 10;             // CONST node padding around node name text
-        public int EmptyNodePadding = 20;        // CONST node padding for empty node circle
-
         // RESOURCES
         public Font FontDefault = null;          // default font
 
@@ -100,11 +96,11 @@ namespace Diagram
 
                     this.SetTitle();
 
-                    return true; // subor sa otvoril v poriadku
+                    return true;
                 }
             }
 
-            return false; // subor sa nepodarilo otvorit
+            return false;
         }
 
         // FILE LOAD XML
@@ -378,7 +374,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "text")
                                                 {
-                                                    R.text = el.Value;
+                                                    R.name = el.Value;
                                                 }
 
 
@@ -592,7 +588,7 @@ namespace Diagram
             {
                 if (!rec.isimage)
                 {
-                    SizeF s = this.MeasureStringWithMargin(rec.text, rec.font);
+                    SizeF s = rec.measure();
                     newWidth = (int)s.Width;
                     newHeight = (int)s.Height;
 
@@ -771,7 +767,7 @@ namespace Diagram
                         rectangle.Add(Fonts.FontToXml(rec.font));
                     }
                     rectangle.Add(new XElement("fontcolor", System.Drawing.ColorTranslator.ToHtml(rec.fontcolor)));
-                    if (rec.text != "") rectangle.Add(new XElement("text", rec.text));
+                    if (rec.name != "") rectangle.Add(new XElement("text", rec.name));
                     if (rec.note != "") rectangle.Add(new XElement("note", rec.note));
                     if (rec.link != "") rectangle.Add(new XElement("link", rec.link));
                     if (rec.scriptid != "") rectangle.Add(new XElement("scriptid", rec.scriptid));
@@ -992,7 +988,7 @@ namespace Diagram
                 TextForm textf = new TextForm(main);
                 textf.setDiagram(this);
                 textf.rec = rec;
-                string[] lines = rec.text.Split(Environment.NewLine.ToCharArray()).ToArray();
+                string[] lines = rec.name.Split(Environment.NewLine.ToCharArray()).ToArray();
                 if(lines.Count()>0)
                     textf.Text = lines[0];
 
@@ -1035,15 +1031,11 @@ namespace Diagram
                 rec.id = ++maxid;
                 rec.layer = layer;
 
-                rec.text = text;
+                rec.setName(text);
                 rec.note = "";
                 rec.link = "";
 
                 rec.position.set(position);
-
-                SizeF s = this.MeasureStringWithMargin(text, rec.font);              
-                rec.width = (int)s.Width;
-                rec.height = (int)s.Height;
 
                 rec.color = color ?? Media.getColor(this.options.colorNode);
 
@@ -1059,8 +1051,8 @@ namespace Diagram
             return null;
         }
 
-        // NODE CONNECT Spojenie dvoch nod
-        public void Connect(Node a, Node b, bool arrow = false, Color? color = null, int layer = 0)
+        // NODE CONNECT connect two nodes
+        public Line Connect(Node a, Node b, int layer = 0)
         {
             if (!this.options.readOnly && a != null && b != null)
             {
@@ -1073,16 +1065,31 @@ namespace Diagram
                     line.end = b.id;
                     line.startNode = this.GetNodeByID(line.start);
                     line.endNode = this.GetNodeByID(line.end);
-                    line.arrow = arrow;
-                    line.color = color ?? Color.Black;
                     line.layer = layer;
                     this.layers.addLine(line);
+
+                    return line;
                 }
                 else
                 {
                     this.layers.removeLine(line);
                 }
             }
+
+            return null;
+        }
+
+        public Line Connect(Node a, Node b, bool arrow = false, Color? color = null, int layer = 0)
+        {
+            Line line = this.Connect(a, b, layer);
+
+            if (line != null)
+            {
+                line.arrow = arrow;
+                line.color = color ?? Color.Black;
+            }
+
+            return line;
         }
 
         // NODES ALIGN to column
@@ -1222,33 +1229,13 @@ namespace Diagram
             if (node.shortcut > 0) node.shortcut = 0;
         }
 
-        // NODE Zmeranie velosti textu a prida margin
-        public SizeF MeasureStringWithMargin(string s, Font font)
-        {
-            SizeF result;
-            if (s != "")
-            {
-                result = Fonts.MeasureString(s, font);
-                result.Height += 2 * this.NodePadding;
-                result.Width += 2 * this.NodePadding;
-            }
-            else
-            {
-                result = new SizeF(this.EmptyNodePadding, this.EmptyNodePadding);
-            }
-
-            return result;
-        }
-
         // NODE Reset font to default font for all nodes
         public void ResetFont()
         {
             foreach (Node rec in this.getAllNodes()) // Loop through List with foreach
             {
                 rec.font = this.FontDefault;
-                SizeF s = this.MeasureStringWithMargin(rec.text, rec.font);
-                rec.width = (int)s.Width;
-                rec.height = (int)s.Height;
+                rec.resize();
             }
 
             this.unsave();
@@ -1262,9 +1249,7 @@ namespace Diagram
                 foreach (Node rec in Nodes) // Loop through List with foreach
                 {
                     rec.font = this.FontDefault;
-                    SizeF s = this.MeasureStringWithMargin(rec.text, rec.font);
-                    rec.width = (int)s.Width;
-                    rec.height = (int)s.Height;
+                    rec.resize();
                 }
                 this.unsave();
                 this.InvalidateDiagram();
@@ -1320,10 +1305,7 @@ namespace Diagram
             rec.imagepath = "";
             rec.image = null;
             rec.embeddedimage = false;
-
-            SizeF s = this.MeasureStringWithMargin(rec.text, rec.font);
-            rec.width = (int)s.Width;
-            rec.height = (int)s.Height;
+            rec.resize();
         }
 
         // NODE set image embedded
@@ -1455,7 +1437,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "text")
                                                 {
-                                                    R.text = el.Value;
+                                                    R.name = el.Value;
                                                 }
 
 
@@ -1636,7 +1618,7 @@ namespace Diagram
 
                 Node newrec = this.createNode(
                     rec.position.clone().add(position),
-                    rec.text,
+                    rec.name,
                     layerParent,
                     null,
                     rec.font
@@ -1678,6 +1660,19 @@ namespace Diagram
                     {
                         foreach (Node[] mapend in maps)
                         {
+                            int lineLayer = layer;
+
+                            if (line.layer != 0) {
+                                foreach (Node[] maplayer in maps)
+                                {
+                                    if (line.layer == maplayer[0].id)
+                                    {
+                                        lineLayer = maplayer[1].id;
+                                        break;
+                                    }
+                                }
+                            }
+
                             if (line.end == mapend[0].id)
                             {
                                 this.Connect(
@@ -1685,7 +1680,7 @@ namespace Diagram
                                     mapend[1],
                                     line.arrow,
                                     line.color,
-                                    layer
+                                    lineLayer
                                 );
                             }
                         }
@@ -1768,7 +1763,7 @@ namespace Diagram
                     rectangle.Add(new XElement("id", rec.id - minid + 1));
                     rectangle.Add(new XElement("x", rec.position.x - minx));
                     rectangle.Add(new XElement("y", rec.position.y - miny));
-                    rectangle.Add(new XElement("text", rec.text));
+                    rectangle.Add(new XElement("text", rec.name));
                     rectangle.Add(new XElement("note", rec.note));
                     rectangle.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(rec.color)));
                     rectangle.Add(Fonts.FontToXml(rec.font));

@@ -55,6 +55,8 @@ namespace Diagram
         private System.Windows.Forms.ToolStripMenuItem fontItem;
         private System.Windows.Forms.ToolStripMenuItem fontColorItem;
         private System.Windows.Forms.ToolStripMenuItem editLinkItem;
+        private System.Windows.Forms.ToolStripMenuItem bringTopItem;
+        private System.Windows.Forms.ToolStripMenuItem bringBottomItem;
 
         private System.Windows.Forms.ToolStripMenuItem lineItem; // LINE
         private System.Windows.Forms.ToolStripMenuItem lineColorItem;
@@ -164,6 +166,8 @@ namespace Diagram
             this.fontItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fontColorItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editLinkItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bringTopItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bringBottomItem = new System.Windows.Forms.ToolStripMenuItem();
             // LINE
             this.lineItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lineColorItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -481,7 +485,9 @@ namespace Diagram
             transparentItem,
             fontItem,
             fontColorItem,
-            editLinkItem});
+            editLinkItem,
+            bringTopItem,
+            bringBottomItem});
             this.nodeItem.Name = "nodeItem";
             this.nodeItem.Size = new System.Drawing.Size(164, 22);
             this.nodeItem.Text = "Node";
@@ -513,6 +519,20 @@ namespace Diagram
             this.editLinkItem.Size = new System.Drawing.Size(126, 22);
             this.editLinkItem.Text = "Edit link";
             this.editLinkItem.Click += new System.EventHandler(this.editLinkItem_Click);
+            //
+            // bringTopItem
+            //
+            this.bringTopItem.Name = "bringTopItem";
+            this.bringTopItem.Size = new System.Drawing.Size(126, 22);
+            this.bringTopItem.Text = "Bring to top";
+            this.bringTopItem.Click += new System.EventHandler(this.bringTopItem_Click);
+            //
+            // bringBottomItem
+            //
+            this.bringBottomItem.Name = "bringBottomItem";
+            this.bringBottomItem.Size = new System.Drawing.Size(126, 22);
+            this.bringBottomItem.Text = "Bring to bottom";
+            this.bringBottomItem.Click += new System.EventHandler(this.bringBottomItem_Click);
             //
             // lineItem
             //
@@ -820,6 +840,8 @@ namespace Diagram
             fontItem.Enabled = !readOnly;
             fontColorItem.Enabled = !readOnly;
             editLinkItem.Enabled = !readOnly;
+            bringTopItem.Enabled = !readOnly;
+            bringBottomItem.Enabled = !readOnly;
             lineColorItem.Enabled = !readOnly;
             includeFileItem.Enabled = !readOnly;
             includeDirectoryItem.Enabled = !readOnly;
@@ -864,6 +886,8 @@ namespace Diagram
                 fontItem.Enabled = false;
                 fontColorItem.Enabled = false;
                 editLinkItem.Enabled = false;
+                bringTopItem.Enabled = false;
+                bringBottomItem.Enabled = false;
                 lineColorItem.Enabled = false;
             }
 
@@ -885,6 +909,8 @@ namespace Diagram
                 fontItem.Enabled = true;
                 fontColorItem.Enabled = true;
                 editLinkItem.Enabled = false;
+                bringTopItem.Enabled = true;
+                bringBottomItem.Enabled = true;
             }
 
             // SELECTION ONE
@@ -898,6 +924,7 @@ namespace Diagram
                 if (this.diagramView.selectedNodes[0].link.Trim().Length > 0 && Os.FileExists(this.diagramView.selectedNodes[0].link))
                     openLinkDirectoryItem.Visible = true;
                 editLinkItem.Enabled = true;
+                lineColorItem.Enabled = false;
             }
 
             // SELECTION MORE THEN ONE
@@ -1218,6 +1245,18 @@ namespace Diagram
         private void editLinkItem_Click(object sender, EventArgs e)
         {
             this.diagramView.editLink();
+        }
+
+        // MENU NODE edit node link
+        private void bringTopItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.moveNodesToForeground();
+        }
+
+        // MENU NODE edit node link
+        private void bringBottomItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.moveNodesToBackground();
         }
 
         // MENU LINE select line color
