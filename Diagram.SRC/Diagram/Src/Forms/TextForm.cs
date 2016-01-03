@@ -162,7 +162,7 @@ namespace Diagram
         {
             if (this.rec != null)
             {
-                this.TextFormTextBox.Text = this.rec.text;
+                this.TextFormTextBox.Text = this.rec.name;
                 this.TextFormNoteTextBox.Text = this.rec.note;
                 this.Left = Screen.PrimaryScreen.Bounds.Width / 2 - this.Width / 2;
                 this.Top = Screen.PrimaryScreen.Bounds.Height / 2 - this.Height / 2;
@@ -220,7 +220,7 @@ namespace Diagram
                 bool changed = false;
                 if
                 (
-                    rec.text != this.TextFormTextBox.Text ||
+                    rec.name != this.TextFormTextBox.Text ||
                     rec.note != this.TextFormNoteTextBox.Text ||
                     rec.scriptid != this.textBoxScriptId.Text
                 )
@@ -230,7 +230,7 @@ namespace Diagram
                     rec.timemodify = String.Format("{0:yyyy-M-d HH:mm:ss}", dt);
                 }
 
-                rec.text = this.TextFormTextBox.Text;
+                rec.name = this.TextFormTextBox.Text;
                 rec.note = this.TextFormNoteTextBox.Text;
                 rec.scriptid = this.textBoxScriptId.Text;
                 if (rec.embeddedimage && rec.image!=null)
@@ -254,9 +254,7 @@ namespace Diagram
                 }
                 if (!rec.isimage)
                 {
-                    SizeF s = this.diagram.MeasureStringWithMargin(rec.text, rec.font);
-                    rec.height = (int)s.Height;
-                    rec.width = (int)s.Width;
+                    rec.resize();
                 }
 
                 if(changed)

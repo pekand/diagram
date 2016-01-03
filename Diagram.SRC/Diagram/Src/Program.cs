@@ -29,13 +29,19 @@ namespace Diagram
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+// prevent catch global exception in debug mode
+#if !DEBUG
+
+
             try
             {
-                main = new Main();
+#endif
+            main = new Main();
                 if (main.mainform != null) {
                     Application.Run(main.mainform);
                 }
                 Application.Exit();
+#if !DEBUG
             }
             catch (Exception e) // global exception handling
             {
@@ -46,6 +52,7 @@ namespace Diagram
 
                 System.Environment.Exit(1); //close application with error code 1
             }
+#endif
         }
     }
 }

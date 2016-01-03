@@ -2109,10 +2109,10 @@
       <text>process</text>
       <layer>0</layer>
       <haslayer>true</haslayer>
-      <layershiftx>303</layershiftx>
-      <layershifty>295</layershifty>
-      <x>197</x>
-      <y>-188</y>
+      <layershiftx>-25</layershiftx>
+      <layershifty>227</layershifty>
+      <x>290</x>
+      <y>-213</y>
       <width>72</width>
       <height>36</height>
       <color>Yellow</color>
@@ -2125,8 +2125,8 @@
       <text>Main.cs</text>
       <link>Diagram.SRC/Diagram/Src/Main.cs</link>
       <layer>1471</layer>
-      <x>1002</x>
-      <y>1</y>
+      <x>929</x>
+      <y>-135</y>
       <width>71</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2139,8 +2139,8 @@
       <text>Program.cs</text>
       <link>Diagram.SRC/Diagram/Src/Program.cs</link>
       <layer>1471</layer>
-      <x>549</x>
-      <y>1</y>
+      <x>476</x>
+      <y>-135</y>
       <width>94</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2153,8 +2153,8 @@
       <text>Server.cs</text>
       <link>Diagram.SRC/Diagram/Src/Components/Server.cs</link>
       <layer>1471</layer>
-      <x>1395</x>
-      <y>266</y>
+      <x>1322</x>
+      <y>130</y>
       <width>82</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2167,8 +2167,8 @@
       <text>ParseCommandLineArguments</text>
       <link>Diagram.SRC/Diagram/Src/Main.cs#ParseCommandLineArguments</link>
       <layer>1471</layer>
-      <x>1462</x>
-      <y>353</y>
+      <x>1389</x>
+      <y>217</y>
       <width>216</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2181,8 +2181,8 @@
       <text>static void Main</text>
       <link>Diagram.SRC/Diagram/Src/Program.cs#static void Main</link>
       <layer>1471</layer>
-      <x>671</x>
-      <y>1</y>
+      <x>598</x>
+      <y>-135</y>
       <width>118</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2196,8 +2196,8 @@
       <link>Diagram.SRC/Diagram/Src/Main.cs#public Main(
 </link>
       <layer>1471</layer>
-      <x>1092</x>
-      <y>1</y>
+      <x>1019</x>
+      <y>-135</y>
       <width>93</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2209,8 +2209,8 @@
       <fontcolor>Black</fontcolor>
       <text>create main class</text>
       <layer>1471</layer>
-      <x>833</x>
-      <y>1</y>
+      <x>760</x>
+      <y>-135</y>
       <width>131</width>
       <height>36</height>
       <color>Yellow</color>
@@ -2222,8 +2222,8 @@
       <fontcolor>Black</fontcolor>
       <text>start app</text>
       <layer>1471</layer>
-      <x>440</x>
-      <y>2</y>
+      <x>367</x>
+      <y>-134</y>
       <width>77</width>
       <height>36</height>
       <color>Yellow</color>
@@ -2236,8 +2236,8 @@
       <text>Server</text>
       <link>Diagram.SRC/Diagram/Src/Components/Server.cs#public Server(</link>
       <layer>1471</layer>
-      <x>1533</x>
-      <y>266</y>
+      <x>1460</x>
+      <y>130</y>
       <width>64</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2249,8 +2249,8 @@
       <fontcolor>Black</fontcolor>
       <text>server not exist</text>
       <layer>1471</layer>
-      <x>1757</x>
-      <y>266</y>
+      <x>1684</x>
+      <y>130</y>
       <width>117</width>
       <height>36</height>
       <color>Yellow</color>
@@ -2262,8 +2262,8 @@
       <fontcolor>Black</fontcolor>
       <text>server exist</text>
       <layer>1471</layer>
-      <x>1762</x>
-      <y>312</y>
+      <x>1689</x>
+      <y>176</y>
       <width>94</width>
       <height>36</height>
       <color>Yellow</color>
@@ -2275,8 +2275,8 @@
       <fontcolor>Black</fontcolor>
       <text>create server</text>
       <layer>1471</layer>
-      <x>1884</x>
-      <y>266</y>
+      <x>1811</x>
+      <y>130</y>
       <width>104</width>
       <height>36</height>
       <color>Yellow</color>
@@ -2288,8 +2288,8 @@
       <fontcolor>Black</fontcolor>
       <text>new thread</text>
       <layer>1471</layer>
-      <x>1998</x>
-      <y>266</y>
+      <x>1925</x>
+      <y>130</y>
       <width>92</width>
       <height>36</height>
       <color>Yellow</color>
@@ -2302,8 +2302,8 @@
       <text>ListenForClients</text>
       <link>Diagram.SRC/Diagram/Src/Components/Server.cs#public void ListenForClients(</link>
       <layer>1471</layer>
-      <x>2123</x>
-      <y>266</y>
+      <x>2050</x>
+      <y>130</y>
       <width>123</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2316,8 +2316,8 @@
       <text>OpenDiagram</text>
       <link>Diagram.SRC/Diagram/Src/Main.cs#public void OpenDiagram(</link>
       <layer>1471</layer>
-      <x>1790</x>
-      <y>553</y>
+      <x>1717</x>
+      <y>417</y>
       <width>110</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2329,8 +2329,8 @@
       <fontcolor>Black</fontcolor>
       <text>init log</text>
       <layer>1471</layer>
-      <x>698</x>
-      <y>71</y>
+      <x>625</x>
+      <y>-65</y>
       <width>64</width>
       <height>36</height>
       <color>Silver</color>
@@ -2342,8 +2342,8 @@
       <fontcolor>Black</fontcolor>
       <text>form options</text>
       <layer>1471</layer>
-      <x>681</x>
-      <y>117</y>
+      <x>608</x>
+      <y>-19</y>
       <width>99</width>
       <height>36</height>
       <color>Silver</color>
@@ -2355,8 +2355,8 @@
       <fontcolor>Black</fontcolor>
       <text>create main</text>
       <layer>1471</layer>
-      <x>682</x>
-      <y>163</y>
+      <x>609</x>
+      <y>27</y>
       <width>96</width>
       <height>36</height>
       <color>Silver</color>
@@ -2368,8 +2368,8 @@
       <fontcolor>Black</fontcolor>
       <text>finish application</text>
       <layer>1471</layer>
-      <x>667</x>
-      <y>255</y>
+      <x>594</x>
+      <y>119</y>
       <width>126</width>
       <height>36</height>
       <color>Silver</color>
@@ -2381,8 +2381,8 @@
       <fontcolor>Black</fontcolor>
       <text>catch global exceptions</text>
       <layer>1471</layer>
-      <x>647</x>
-      <y>209</y>
+      <x>574</x>
+      <y>73</y>
       <width>167</width>
       <height>36</height>
       <color>Silver</color>
@@ -2394,8 +2394,8 @@
       <fontcolor>Black</fontcolor>
       <text>run main constructor</text>
       <layer>1471</layer>
-      <x>1064</x>
-      <y>65</y>
+      <x>991</x>
+      <y>-71</y>
       <width>149</width>
       <height>36</height>
       <color>Silver</color>
@@ -2407,8 +2407,8 @@
       <fontcolor>Black</fontcolor>
       <text>create translations</text>
       <layer>1471</layer>
-      <x>1070</x>
-      <y>117</y>
+      <x>997</x>
+      <y>-19</y>
       <width>136</width>
       <height>36</height>
       <color>Silver</color>
@@ -2420,8 +2420,8 @@
       <fontcolor>Black</fontcolor>
       <text>create global options class</text>
       <layer>1471</layer>
-      <x>1045</x>
-      <y>167</y>
+      <x>972</x>
+      <y>31</y>
       <width>186</width>
       <height>36</height>
       <color>Silver</color>
@@ -2433,8 +2433,8 @@
       <fontcolor>Black</fontcolor>
       <text>load options file</text>
       <layer>1471</layer>
-      <x>1079</x>
-      <y>222</y>
+      <x>1006</x>
+      <y>86</y>
       <width>119</width>
       <height>36</height>
       <color>Silver</color>
@@ -2446,8 +2446,8 @@
       <fontcolor>Black</fontcolor>
       <text>run server</text>
       <layer>1471</layer>
-      <x>1097</x>
-      <y>266</y>
+      <x>1024</x>
+      <y>130</y>
       <width>86</width>
       <height>36</height>
       <color>Silver</color>
@@ -2459,8 +2459,8 @@
       <fontcolor>Black</fontcolor>
       <text>process comand line</text>
       <layer>1471</layer>
-      <x>1069</x>
-      <y>353</y>
+      <x>996</x>
+      <y>217</y>
       <width>150</width>
       <height>36</height>
       <color>Silver</color>
@@ -2472,8 +2472,8 @@
       <fontcolor>Black</fontcolor>
       <text>create main form</text>
       <layer>1471</layer>
-      <x>1078</x>
-      <y>397</y>
+      <x>1005</x>
+      <y>261</y>
       <width>127</width>
       <height>36</height>
       <color>Silver</color>
@@ -2485,8 +2485,8 @@
       <fontcolor>Black</fontcolor>
       <text>if server  is open in current app</text>
       <layer>1471</layer>
-      <x>1215</x>
-      <y>397</y>
+      <x>1142</x>
+      <y>261</y>
       <width>212</width>
       <height>36</height>
       <color>Silver</color>
@@ -2498,8 +2498,8 @@
       <fontcolor>Black</fontcolor>
       <text>-e</text>
       <layer>1471</layer>
-      <x>1552</x>
-      <y>432</y>
+      <x>1479</x>
+      <y>296</y>
       <width>36</width>
       <height>36</height>
       <color>Silver</color>
@@ -2511,8 +2511,8 @@
       <fontcolor>Black</fontcolor>
       <text>create new file with given name if not exist</text>
       <layer>1471</layer>
-      <x>1693</x>
-      <y>432</y>
+      <x>1620</x>
+      <y>296</y>
       <width>280</width>
       <height>36</height>
       <color>Silver</color>
@@ -2524,8 +2524,8 @@
       <fontcolor>Black</fontcolor>
       <text>open files from command line parameters</text>
       <layer>1471</layer>
-      <x>1432</x>
-      <y>504</y>
+      <x>1359</x>
+      <y>368</y>
       <width>276</width>
       <height>36</height>
       <color>Yellow</color>
@@ -2537,8 +2537,8 @@
       <fontcolor>Black</fontcolor>
       <text>or close app if file is invalid</text>
       <layer>1471</layer>
-      <x>1739</x>
-      <y>503</y>
+      <x>1666</x>
+      <y>367</y>
       <width>187</width>
       <height>36</height>
       <color>Silver</color>
@@ -2550,8 +2550,8 @@
       <fontcolor>Black</fontcolor>
       <text>open normal empty diagram</text>
       <layer>1471</layer>
-      <x>1473</x>
-      <y>608</y>
+      <x>1400</x>
+      <y>472</y>
       <width>195</width>
       <height>36</height>
       <color>Yellow</color>
@@ -2563,8 +2563,8 @@
       <fontcolor>Black</fontcolor>
       <text>or</text>
       <layer>1471</layer>
-      <x>1552</x>
-      <y>553</y>
+      <x>1479</x>
+      <y>417</y>
       <width>36</width>
       <height>36</height>
       <color>Silver</color>
@@ -2576,8 +2576,8 @@
       <fontcolor>Black</fontcolor>
       <text>send open message</text>
       <layer>1471</layer>
-      <x>1770</x>
-      <y>613</y>
+      <x>1697</x>
+      <y>477</y>
       <width>147</width>
       <height>36</height>
       <color>Silver</color>
@@ -2589,8 +2589,8 @@
       <fontcolor>Black</fontcolor>
       <text>close server</text>
       <layer>1471</layer>
-      <x>1866</x>
-      <y>312</y>
+      <x>1793</x>
+      <y>176</y>
       <width>98</width>
       <height>36</height>
       <color>Silver</color>
@@ -2603,8 +2603,8 @@
       <text>SendMessage</text>
       <link>Diagram.SRC/Diagram/Src/Components/Server.cs#public bool SendMessage(</link>
       <layer>1471</layer>
-      <x>1959</x>
-      <y>552</y>
+      <x>1886</x>
+      <y>416</y>
       <width>112</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2617,8 +2617,8 @@
       <text>ListenForClients</text>
       <link>Diagram.SRC/Diagram/Src/Components/Server.cs#public void ListenForClients(</link>
       <layer>1471</layer>
-      <x>2003</x>
-      <y>607</y>
+      <x>1930</x>
+      <y>471</y>
       <width>123</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2631,8 +2631,8 @@
       <text>HandleClientComm</text>
       <link>Diagram.SRC/Diagram/Src/Components/Server.cs#private void HandleClientComm(</link>
       <layer>1471</layer>
-      <x>1993</x>
-      <y>655</y>
+      <x>1920</x>
+      <y>519</y>
       <width>143</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2646,8 +2646,8 @@
       <link>Diagram.SRC/Diagram/Src/Components/Server.cs#public string ParseMessage(
 </link>
       <layer>1471</layer>
-      <x>2006</x>
-      <y>706</y>
+      <x>1933</x>
+      <y>570</y>
       <width>116</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2660,8 +2660,8 @@
       <text>OpenDiagram</text>
       <link>Diagram.SRC/Diagram/Src/Main.cs#public void OpenDiagram(</link>
       <layer>1471</layer>
-      <x>2009</x>
-      <y>756</y>
+      <x>1936</x>
+      <y>620</y>
       <width>110</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2674,8 +2674,8 @@
       <text>Diagram.cs</text>
       <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public Diagram(</link>
       <layer>1471</layer>
-      <x>2018</x>
-      <y>804</y>
+      <x>1945</x>
+      <y>668</y>
       <width>93</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2688,8 +2688,8 @@
       <text>openDiagramView</text>
       <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public void openDiagramView(</link>
       <layer>1471</layer>
-      <x>1996</x>
-      <y>856</y>
+      <x>1923</x>
+      <y>720</y>
       <width>136</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2702,8 +2702,8 @@
       <text>DiagramView.cs</text>
       <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs</link>
       <layer>1471</layer>
-      <x>2003</x>
-      <y>912</y>
+      <x>1930</x>
+      <y>776</y>
       <width>123</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2716,8 +2716,8 @@
       <text>DiagramView</text>
       <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs# public DiagramView(</link>
       <layer>1471</layer>
-      <x>2011</x>
-      <y>958</y>
+      <x>1938</x>
+      <y>822</y>
       <width>106</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2729,8 +2729,8 @@
       <fontcolor>Black</fontcolor>
       <text>exit app</text>
       <layer>1471</layer>
-      <x>499</x>
-      <y>830</y>
+      <x>426</x>
+      <y>694</y>
       <width>72</width>
       <height>36</height>
       <color>Yellow</color>
@@ -2743,8 +2743,8 @@
       <text>DiagramView_FormClosed</text>
       <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#private void DiagramView_FormClosed(</link>
       <layer>1471</layer>
-      <x>737</x>
-      <y>832</y>
+      <x>664</x>
+      <y>696</y>
       <width>188</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2757,8 +2757,8 @@
       <text>Diagram.cs</text>
       <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public Diagram(</link>
       <layer>1471</layer>
-      <x>784</x>
-      <y>890</y>
+      <x>711</x>
+      <y>754</y>
       <width>93</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2771,8 +2771,8 @@
       <text>DiagramView.cs</text>
       <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs</link>
       <layer>1471</layer>
-      <x>594</x>
-      <y>828</y>
+      <x>521</x>
+      <y>692</y>
       <width>123</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2785,8 +2785,8 @@
       <text>CloseDiagram</text>
       <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public void CloseDiagram(</link>
       <layer>1471</layer>
-      <x>917</x>
-      <y>890</y>
+      <x>844</x>
+      <y>754</y>
       <width>111</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2799,8 +2799,8 @@
       <text>CloseFile</text>
       <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public void CloseFile(</link>
       <layer>1471</layer>
-      <x>1064</x>
-      <y>891</y>
+      <x>991</x>
+      <y>755</y>
       <width>81</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2813,8 +2813,8 @@
       <text>Main.cs</text>
       <link>Diagram.SRC/Diagram/Src/Main.cs</link>
       <layer>1471</layer>
-      <x>1069</x>
-      <y>945</y>
+      <x>996</x>
+      <y>809</y>
       <width>71</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2827,8 +2827,8 @@
       <text>CloseEmptyApplication</text>
       <link>Diagram.SRC/Diagram/Src/Main.cs#public void CloseEmptyApplication(</link>
       <layer>1471</layer>
-      <x>1170</x>
-      <y>945</y>
+      <x>1097</x>
+      <y>809</y>
       <width>165</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2841,8 +2841,8 @@
       <text>Server.cs</text>
       <link>Diagram.SRC/Diagram/Src/Components/Server.cs</link>
       <layer>1471</layer>
-      <x>1211</x>
-      <y>999</y>
+      <x>1138</x>
+      <y>863</y>
       <width>82</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2855,8 +2855,8 @@
       <text>RequestStop</text>
       <link>Diagram.SRC/Diagram/Src/Components/Server.cs#RequestStop</link>
       <layer>1471</layer>
-      <x>1329</x>
-      <y>1000</y>
+      <x>1256</x>
+      <y>864</y>
       <width>103</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2868,8 +2868,8 @@
       <fontcolor>Black</fontcolor>
       <text>open:</text>
       <layer>1471</layer>
-      <x>2096</x>
-      <y>508</y>
+      <x>2023</x>
+      <y>372</y>
       <width>58</width>
       <height>36</height>
       <color>Silver</color>
@@ -2882,8 +2882,8 @@
       <text>SendMessage</text>
       <link>Diagram.SRC/Diagram/Src/Components/Server.cs#public bool SendMessage(</link>
       <layer>1471</layer>
-      <x>1448</x>
-      <y>1002</y>
+      <x>1375</x>
+      <y>866</y>
       <width>112</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2895,8 +2895,8 @@
       <fontcolor>Black</fontcolor>
       <text>close</text>
       <layer>1471</layer>
-      <x>1472</x>
-      <y>951</y>
+      <x>1399</x>
+      <y>815</y>
       <width>56</width>
       <height>36</height>
       <color>Silver</color>
@@ -2910,8 +2910,8 @@
       <link>Diagram.SRC/Diagram/Src/Components/Server.cs#public string ParseMessage(
 </link>
       <layer>1471</layer>
-      <x>1577</x>
-      <y>1001</y>
+      <x>1504</x>
+      <y>865</y>
       <width>116</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2924,8 +2924,8 @@
       <text>Main.cs</text>
       <link>Diagram.SRC/Diagram/Src/Main.cs</link>
       <layer>1471</layer>
-      <x>1597</x>
-      <y>1054</y>
+      <x>1524</x>
+      <y>918</y>
       <width>71</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2938,8 +2938,8 @@
       <text>ExitApplication</text>
       <link>Diagram.SRC/Diagram/Src/Main.cs#ExitApplication</link>
       <layer>1471</layer>
-      <x>1701</x>
-      <y>1054</y>
+      <x>1628</x>
+      <y>918</y>
       <width>114</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2951,8 +2951,8 @@
       <fontcolor>Black</fontcolor>
       <text>close forms</text>
       <layer>1471</layer>
-      <x>1834</x>
-      <y>1054</y>
+      <x>1761</x>
+      <y>918</y>
       <width>94</width>
       <height>36</height>
       <color>Yellow</color>
@@ -2964,8 +2964,8 @@
       <fontcolor>Black</fontcolor>
       <text>terminate</text>
       <layer>1471</layer>
-      <x>1938</x>
-      <y>1054</y>
+      <x>1865</x>
+      <y>918</y>
       <width>81</width>
       <height>36</height>
       <color>Yellow</color>
@@ -2978,8 +2978,8 @@
       <text>SendMessage</text>
       <link>Diagram.SRC/Diagram/Src/Components/Server.cs#public bool SendMessage(</link>
       <layer>1471</layer>
-      <x>1618</x>
-      <y>270</y>
+      <x>1545</x>
+      <y>134</y>
       <width>112</width>
       <height>36</height>
       <color>#CAFFFF</color>
@@ -2991,8 +2991,8 @@
       <fontcolor>Black</fontcolor>
       <text>ping</text>
       <layer>1471</layer>
-      <x>1661</x>
-      <y>218</y>
+      <x>1588</x>
+      <y>82</y>
       <width>50</width>
       <height>36</height>
       <color>Silver</color>
@@ -3004,8 +3004,8 @@
       <fontcolor>Black</fontcolor>
       <text>open:filename</text>
       <layer>1471</layer>
-      <x>2096</x>
-      <y>554</y>
+      <x>2023</x>
+      <y>418</y>
       <width>110</width>
       <height>36</height>
       <color>Silver</color>
@@ -3017,13 +3017,536 @@
       <fontcolor>Black</fontcolor>
       <text>open new</text>
       <layer>1471</layer>
-      <x>2164</x>
-      <y>508</y>
+      <x>2091</x>
+      <y>372</y>
       <width>83</width>
       <height>36</height>
       <color>Silver</color>
       <timecreate>2015-12-20 15:52:15</timecreate>
       <timemodify>2015-12-20 15:52:15</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1552</id>
+      <fontcolor>Black</fontcolor>
+      <text>layer</text>
+      <layer>1471</layer>
+      <x>446</x>
+      <y>2068</y>
+      <width>54</width>
+      <height>36</height>
+      <color>Yellow</color>
+      <timecreate>2015-12-20 22:31:09</timecreate>
+      <timemodify>2015-12-20 22:31:09</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1553</id>
+      <fontcolor>Black</fontcolor>
+      <text>canDeleteNode</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs# public bool canDeleteNode(
+</link>
+      <layer>1471</layer>
+      <x>1242</x>
+      <y>2084</y>
+      <width>119</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-12-20 22:31:56</timecreate>
+      <timemodify>2015-12-20 22:31:56</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1554</id>
+      <fontcolor>Black</fontcolor>
+      <text>Diagram.cs</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public Diagram(</link>
+      <layer>1471</layer>
+      <x>557</x>
+      <y>2067</y>
+      <width>93</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:43:36</timecreate>
+      <timemodify>2015-8-31 15:43:36</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1555</id>
+      <fontcolor>Black</fontcolor>
+      <text>CreateNode</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public Node CreateNode(</link>
+      <layer>1471</layer>
+      <x>1242</x>
+      <y>2026</y>
+      <width>98</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-12-20 22:32:49</timecreate>
+      <timemodify>2015-12-20 22:32:49</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1559</id>
+      <fontcolor>Black</fontcolor>
+      <text>file open</text>
+      <layer>1471</layer>
+      <x>437</x>
+      <y>1246</y>
+      <width>76</width>
+      <height>36</height>
+      <color>Yellow</color>
+      <timecreate>2015-12-20 22:37:56</timecreate>
+      <timemodify>2015-12-20 22:37:56</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1560</id>
+      <fontcolor>Black</fontcolor>
+      <text>OpenFile</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public bool OpenFile(</link>
+      <layer>1471</layer>
+      <x>573</x>
+      <y>1246</y>
+      <width>80</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-12-20 22:38:26</timecreate>
+      <timemodify>2015-12-20 22:38:26</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1561</id>
+      <fontcolor>Black</fontcolor>
+      <text>LoadXML</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public void LoadXML(</link>
+      <layer>1471</layer>
+      <x>701</x>
+      <y>1246</y>
+      <width>83</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-12-20 22:38:36</timecreate>
+      <timemodify>2015-12-20 22:38:36</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1562</id>
+      <fontcolor>Black</fontcolor>
+      <text>LoadInnerXML</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public void LoadInnerXML(</link>
+      <layer>1471</layer>
+      <x>828</x>
+      <y>1246</y>
+      <width>114</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-12-20 22:38:48</timecreate>
+      <timemodify>2015-12-20 22:38:48</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1563</id>
+      <fontcolor>Black</fontcolor>
+      <text>public bool save(</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#
+</link>
+      <layer>1471</layer>
+      <x>552</x>
+      <y>1353</y>
+      <width>127</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-12-20 22:38:59</timecreate>
+      <timemodify>2015-12-20 22:38:59</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1564</id>
+      <fontcolor>Black</fontcolor>
+      <text>public void saveas(</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#</link>
+      <layer>1471</layer>
+      <x>541</x>
+      <y>1410</y>
+      <width>141</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-12-20 22:39:06</timecreate>
+      <timemodify>2015-12-20 22:39:06</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1565</id>
+      <fontcolor>Black</fontcolor>
+      <text>public string SaveInnerXMLFile(</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#</link>
+      <layer>1471</layer>
+      <x>934</x>
+      <y>1377</y>
+      <width>219</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-12-20 22:39:13</timecreate>
+      <timemodify>2015-12-20 22:39:13</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1566</id>
+      <fontcolor>Black</fontcolor>
+      <text>public void unsave(</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#</link>
+      <layer>1471</layer>
+      <x>541</x>
+      <y>1475</y>
+      <width>141</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-12-20 22:39:20</timecreate>
+      <timemodify>2015-12-20 22:39:20</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1568</id>
+      <fontcolor>Black</fontcolor>
+      <text>file save</text>
+      <layer>1471</layer>
+      <x>437</x>
+      <y>1362</y>
+      <width>74</width>
+      <height>36</height>
+      <color>Yellow</color>
+      <timecreate>2015-12-20 22:43:34</timecreate>
+      <timemodify>2015-12-20 22:43:34</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1569</id>
+      <fontcolor>Black</fontcolor>
+      <text> public void SaveXMLFile(</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#</link>
+      <layer>1471</layer>
+      <x>727</x>
+      <y>1377</y>
+      <width>183</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-12-20 22:44:36</timecreate>
+      <timemodify>2015-12-20 22:44:36</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1570</id>
+      <fontcolor>Black</fontcolor>
+      <text> public void SetTitle(</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#</link>
+      <layer>1471</layer>
+      <x>727</x>
+      <y>1475</y>
+      <width>147</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-12-20 22:45:34</timecreate>
+      <timemodify>2015-12-20 22:45:34</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1571</id>
+      <fontcolor>Black</fontcolor>
+      <text>clipboard</text>
+      <layer>1471</layer>
+      <x>437</x>
+      <y>1669</y>
+      <width>80</width>
+      <height>36</height>
+      <color>Yellow</color>
+      <timecreate>2015-12-20 22:46:28</timecreate>
+      <timemodify>2015-12-20 22:46:28</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1572</id>
+      <fontcolor>Black</fontcolor>
+      <text>AddDiagramPart</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public List&lt;Node&gt; AddDiagramPart(</link>
+      <layer>1471</layer>
+      <x>565</x>
+      <y>1644</y>
+      <width>126</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-12-20 22:46:59</timecreate>
+      <timemodify>2015-12-20 22:46:59</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1573</id>
+      <fontcolor>Black</fontcolor>
+      <text>GetDiagramPart</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public string GetDiagramPart(</link>
+      <layer>1471</layer>
+      <x>565</x>
+      <y>1700</y>
+      <width>123</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-12-20 22:47:14</timecreate>
+      <timemodify>2015-12-20 22:47:14</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1574</id>
+      <fontcolor>Black</fontcolor>
+      <text>paint</text>
+      <layer>1471</layer>
+      <x>437</x>
+      <y>1891</y>
+      <width>54</width>
+      <height>36</height>
+      <color>Yellow</color>
+      <timecreate>2015-12-20 22:49:53</timecreate>
+      <timemodify>2015-12-20 22:49:53</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1575</id>
+      <fontcolor>Black</fontcolor>
+      <text>InvalidateDiagram</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public void InvalidateDiagram(</link>
+      <layer>1471</layer>
+      <x>562</x>
+      <y>1892</y>
+      <width>135</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-12-20 22:50:07</timecreate>
+      <timemodify>2015-12-20 22:50:07</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1578</id>
+      <fontcolor>Black</fontcolor>
+      <text>PaintDiagram</text>
+      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#void PaintDiagram(</link>
+      <layer>1471</layer>
+      <x>904</x>
+      <y>1891</y>
+      <width>107</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-8-31 15:42:52</timecreate>
+      <timemodify>2015-8-31 15:42:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1579</id>
+      <fontcolor>Black</fontcolor>
+      <text>DiagramApp_Paint</text>
+      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#public void DiagramApp_Paint(</link>
+      <layer>1471</layer>
+      <x>742</x>
+      <y>1890</y>
+      <width>139</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2015-12-20 23:10:42</timecreate>
+      <timemodify>2015-12-20 23:10:42</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1581</id>
+      <fontcolor>Black</fontcolor>
+      <text>DiagramView. layer atributes</text>
+      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#ATTRIBUTES Layers</link>
+      <layer>1471</layer>
+      <x>765</x>
+      <y>2066</y>
+      <width>199</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:42:52</timecreate>
+      <timemodify>2015-8-31 15:42:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1583</id>
+      <fontcolor>Black</fontcolor>
+      <text>layers</text>
+      <link>Diagram.SRC/Diagram/Src/Model/Diagram.cs#public Layers layers</link>
+      <layer>1471</layer>
+      <x>683</x>
+      <y>2066</y>
+      <width>61</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:43:36</timecreate>
+      <timemodify>2015-8-31 15:43:36</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1584</id>
+      <fontcolor>Black</fontcolor>
+      <text>Layer.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Model\Layer.cs</link>
+      <layer>1471</layer>
+      <x>815</x>
+      <y>2003</y>
+      <width>76</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2016-1-1 21:07:21</timecreate>
+      <timemodify>2016-1-1 21:07:21</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1585</id>
+      <fontcolor>Black</fontcolor>
+      <text>Layers.cs</text>
+      <link>Diagram.SRC\Diagram\Src\Model\Layers.cs</link>
+      <layer>1471</layer>
+      <x>706</x>
+      <y>2005</y>
+      <width>83</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2016-1-1 21:07:21</timecreate>
+      <timemodify>2016-1-1 21:07:21</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1586</id>
+      <fontcolor>Black</fontcolor>
+      <text>build history</text>
+      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#LAYER history build</link>
+      <layer>1471</layer>
+      <x>982</x>
+      <y>2021</y>
+      <width>97</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:42:52</timecreate>
+      <timemodify>2015-8-31 15:42:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1587</id>
+      <fontcolor>Black</fontcolor>
+      <text>key plus minus</text>
+      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#[KEY] [PLUS]</link>
+      <layer>1471</layer>
+      <x>843</x>
+      <y>2144</y>
+      <width>115</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:42:52</timecreate>
+      <timemodify>2015-8-31 15:42:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1588</id>
+      <fontcolor>Black</fontcolor>
+      <text>layer in</text>
+      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#LAYER IN</link>
+      <layer>1471</layer>
+      <x>982</x>
+      <y>2074</y>
+      <width>68</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:42:52</timecreate>
+      <timemodify>2015-8-31 15:42:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1589</id>
+      <fontcolor>Black</fontcolor>
+      <text>layer out</text>
+      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#LAYER OUT</link>
+      <layer>1471</layer>
+      <x>982</x>
+      <y>2124</y>
+      <width>77</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:42:52</timecreate>
+      <timemodify>2015-8-31 15:42:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1590</id>
+      <fontcolor>Black</fontcolor>
+      <text>layer move</text>
+      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#LAYER MOVE</link>
+      <layer>1471</layer>
+      <x>982</x>
+      <y>2167</y>
+      <width>91</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:42:52</timecreate>
+      <timemodify>2015-8-31 15:42:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1592</id>
+      <fontcolor>Black</fontcolor>
+      <text>layer history</text>
+      <link>Diagram.SRC/Diagram/Src/Forms/DiagramView.cs#LAYER HISTORY</link>
+      <layer>1471</layer>
+      <x>982</x>
+      <y>2224</y>
+      <width>98</width>
+      <height>36</height>
+      <color>#CAFFFF</color>
+      <timecreate>2015-8-31 15:42:52</timecreate>
+      <timemodify>2015-8-31 15:42:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1593</id>
+      <fontcolor>Black</fontcolor>
+      <text>isNodeInLayerHistory</text>
+      <layer>1471</layer>
+      <x>1242</x>
+      <y>2300</y>
+      <width>155</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2016-1-1 21:13:52</timecreate>
+      <timemodify>2016-1-1 21:13:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1594</id>
+      <fontcolor>Black</fontcolor>
+      <text>layerIn</text>
+      <layer>1471</layer>
+      <x>1242</x>
+      <y>2189</y>
+      <width>65</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2016-1-1 21:13:57</timecreate>
+      <timemodify>2016-1-1 21:13:57</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1595</id>
+      <fontcolor>Black</fontcolor>
+      <text>layerInOrEdit</text>
+      <layer>1471</layer>
+      <x>1242</x>
+      <y>2251</y>
+      <width>104</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2016-1-1 21:14:04</timecreate>
+      <timemodify>2016-1-1 21:14:04</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1596</id>
+      <fontcolor>Black</fontcolor>
+      <text>layers</text>
+      <layer>1471</layer>
+      <x>711</x>
+      <y>2444</y>
+      <width>61</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2016-1-1 21:45:04</timecreate>
+      <timemodify>2016-1-1 21:45:04</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1597</id>
+      <fontcolor>Black</fontcolor>
+      <text>layer</text>
+      <layer>1471</layer>
+      <x>834</x>
+      <y>2465</y>
+      <width>54</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2016-1-1 21:45:06</timecreate>
+      <timemodify>2016-1-1 21:45:06</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1598</id>
+      <fontcolor>Black</fontcolor>
+      <text>layerHistory</text>
+      <layer>1471</layer>
+      <x>699</x>
+      <y>2523</y>
+      <width>97</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2016-1-1 21:45:14</timecreate>
+      <timemodify>2016-1-1 21:45:14</timemodify>
     </rectangle>
   </rectangles>
   <lines>
@@ -4008,6 +4531,174 @@
     <line>
       <start>1540</start>
       <end>1551</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1554</start>
+      <end>1552</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1561</start>
+      <end>1560</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1562</start>
+      <end>1561</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1563</start>
+      <end>1568</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1564</start>
+      <end>1568</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1569</start>
+      <end>1563</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1569</start>
+      <end>1564</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1565</start>
+      <end>1569</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1566</start>
+      <end>1568</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1570</start>
+      <end>1566</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1572</start>
+      <end>1571</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1573</start>
+      <end>1571</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1575</start>
+      <end>1574</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1578</start>
+      <end>1579</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1579</start>
+      <end>1575</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1560</start>
+      <end>1559</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1583</start>
+      <end>1554</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1581</start>
+      <end>1583</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1584</start>
+      <end>1585</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1585</start>
+      <end>1583</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1586</start>
+      <end>1581</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1587</start>
+      <end>1581</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1588</start>
+      <end>1581</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1589</start>
+      <end>1581</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1590</start>
+      <end>1581</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1592</start>
+      <end>1581</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1596</start>
+      <end>1597</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+    </line>
+    <line>
+      <start>1598</start>
+      <end>1597</end>
       <arrow>0</arrow>
       <color>Black</color>
     </line>
