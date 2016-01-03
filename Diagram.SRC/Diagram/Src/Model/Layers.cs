@@ -15,13 +15,20 @@ namespace Diagram
             this.createLayer();
         }
 
-        public Layer createLayer(Node parent = null, Layer parentLayer = null)
+        public Layer createLayer(Node parent = null)
         {
             Layer layer = getLayer((parent == null) ? 0 : parent.id);
 
             // create new layer if not exist
             if (layer == null)
             {
+                Layer parentLayer = null;
+
+                if (parent != null)
+                {
+                    parentLayer = this.getLayer(parent.layer);
+                }
+
                 layer = new Layer(parent, parentLayer);
                 this.layers.Add(layer);
             }
@@ -40,6 +47,19 @@ namespace Diagram
             }
 
             return null;
+        }
+
+        public bool hasLayer(int id = 0)
+        {
+            foreach (Layer l in this.layers)
+            {
+                if (l.id == id)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public List<Node> getAllNodes()
@@ -66,20 +86,15 @@ namespace Diagram
             return lines;
         }
 
-        public Layer addNode(Node node, Layer parentLayer = null)
+        public Layer addNode(Node node)
         {
             Layer layer = this.getLayer(node.layer);
 
             if (layer == null)
             {
-                if (parentLayer != null)
-                {
-                    layer = this.createLayer(this.getNode(node.layer), parentLayer);
-                }
-                else
-                {
-                    return null;
-                }
+                Node parentNode = this.getNode(node.layer);
+                layer = this.createLayer(parentNode);
+                parentNode.haslayer = true;
             }
 
             layer.nodes.Add(node);

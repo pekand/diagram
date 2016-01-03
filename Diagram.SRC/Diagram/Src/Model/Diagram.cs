@@ -195,7 +195,7 @@ namespace Diagram
 
         }
 
-        // FILE LOAD XML vnutorna cast
+        // FILE LOAD XML inner part of diagram file
         public void LoadInnerXML(string xml)
         {
             string FontDefaultString = TypeDescriptor.GetConverter(typeof(Font)).ConvertToString(this.FontDefault);
@@ -1048,10 +1048,10 @@ namespace Diagram
                 rec.color = color ?? Media.getColor(this.options.colorNode);
 
                 DateTime dt = DateTime.Now;
-                rec.timecreate =  String.Format("{0:yyyy-M-d HH:mm:ss}", dt);
-                rec.timemodify =  rec.timecreate;
+                rec.timecreate = String.Format("{0:yyyy-M-d HH:mm:ss}", dt);
+                rec.timemodify = rec.timecreate;
 
-                this.layers.addNode(rec, parentLayer);
+                this.layers.addNode(rec);
 
                 return rec;
             }
@@ -1610,13 +1610,34 @@ namespace Diagram
 
             List<Node[]> maps = new List<Node[]>();
 
-            foreach (Node rec in NewNodes)
+            List<Node> NewReorderedNodes = new List<Node>();
+            this.nodesReorderNodes(0, null, NewNodes, NewReorderedNodes);
+
+            int layerParent = 0;
+
+            foreach (Node rec in NewReorderedNodes)
             {
+                layerParent = 0;
+                if (rec.layer == 0)
+                {
+                    layerParent = layer;
+                }
+                else
+                { 
+                    foreach (Node[] mapednode in maps)
+                    {
+                        if (rec.layer == mapednode[0].id)
+                        {
+                            layerParent = mapednode[1].id;
+                            break;
+                        }
+                    }
+                }
 
                 Node newrec = this.createNode(
                     rec.position.clone().add(position),
                     rec.text,
-                    layer,
+                    layerParent,
                     null,
                     rec.font
                 );
@@ -1676,6 +1697,24 @@ namespace Diagram
         }
 
         // CLIPBOARD Get all layers nodes
+        private void nodesReorderNodes(int layer, Node parent, List<Node> nodesIn, List<Node> nodesOut)
+        {
+            foreach (Node node in nodesIn)
+            {
+                if (node.layer == layer)
+                {
+                    if (parent != null) {
+                        parent.haslayer = true;
+                    }
+
+                    nodesOut.Add(node);
+
+                    nodesReorderNodes(node.id, node, nodesIn, nodesOut);
+                }
+            }
+        }
+
+        // CLIPBOARD Get all layers nodes
         public void getLayerNodes(Node node, List<Node> nodes)
         {
             if (node.haslayer) {
@@ -1726,7 +1765,7 @@ namespace Diagram
                 foreach (Node rec in nodes)
                 {
                     XElement rectangle = new XElement("rectangle");
-                    rectangle.Add(new XElement("id", rec.id - minid));
+                    rectangle.Add(new XElement("id", rec.id - minid + 1));
                     rectangle.Add(new XElement("x", rec.position.x - minx));
                     rectangle.Add(new XElement("y", rec.position.y - miny));
                     rectangle.Add(new XElement("text", rec.text));
@@ -1735,12 +1774,12 @@ namespace Diagram
                     rectangle.Add(Fonts.FontToXml(rec.font));
                     rectangle.Add(new XElement("fontcolor", System.Drawing.ColorTranslator.ToHtml(rec.fontcolor)));
                     if (rec.link != "") rectangle.Add(new XElement("link", rec.link));
-                    if (rec.shortcut != 0 && rec.shortcut - minid >= 0) rectangle.Add(new XElement("shortcut", rec.shortcut));
+                    if (rec.shortcut != 0 && rec.shortcut - minid + 1 > 0) rectangle.Add(new XElement("shortcut", rec.shortcut + 1));
                     rectangle.Add(new XElement("transparent", rec.transparent));
                     rectangle.Add(new XElement("timecreate", rec.timecreate));
                     rectangle.Add(new XElement("timemodify", rec.timemodify));
                     rectangle.Add(new XElement("attachment", rec.attachment));
-                    rectangle.Add(new XElement("layer", rec.id - minid));
+                    if (rec.layer != 0 && rec.layer - minid + 1 > 0)  rectangle.Add(new XElement("layer", rec.layer - minid + 1));
 
                     rectangles.Add(rectangle);
                 }
@@ -1756,12 +1795,12 @@ namespace Diagram
                                 if (li.end == recend.id)
                                 {
                                     XElement line = new XElement("line");
-                                    line.Add(new XElement("start", li.start - minid));
-                                    line.Add(new XElement("end", li.end - minid));
+                                    line.Add(new XElement("start", li.start - minid + 1));
+                                    line.Add(new XElement("end", li.end - minid + 1));
                                     line.Add(new XElement("arrow", (li.arrow) ? "1" : "0"));
                                     line.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(li.color)));
-                                    if (li.layer - minid >= 0) {
-                                        line.Add(new XElement("layer", li.layer - minid));
+                                    if (li.layer - minid +1 > 0) {
+                                        line.Add(new XElement("layer", li.layer - minid + 1));
                                     }
                                     lines.Add(line);
                                 }

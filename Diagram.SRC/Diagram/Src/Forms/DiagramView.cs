@@ -75,9 +75,7 @@ namespace Diagram
         public List<Node> selectedNodes = new List<Node>();  // all selected nodes by mouse
 
         // ATTRIBUTES Layers
-        public int layer = 0;                              // current layer (0 is top layer)
         public Layer currentLayer = null;
-        public Node layerNode = null;                      // current mayn layer node
         public Position firstLayereShift = new Position(); // left corner position in zero top layer
         public List<Layer> layersHistory = new List<Layer>();  // layer history - last layer is current selected layer
 
@@ -341,8 +339,8 @@ namespace Diagram
                 this.Text = Os.getFileNameWithoutExtension(this.diagram.FileName);
             else
                 this.Text = "Diagram";
-            if (this.layerNode != null && this.layerNode.text.Trim() != "")
-                this.Text += " - " + this.layerNode.text.Trim();
+            if (this.currentLayer.parentNode != null && this.currentLayer.parentNode.text.Trim() != "")
+                this.Text += " - " + this.currentLayer.parentNode.text.Trim();
             if (!this.diagram.SavedFile)
                 this.Text = "*" + this.Text;
         }
@@ -360,7 +358,7 @@ namespace Diagram
         {
             diagram.options.homePosition.x = this.shift.x;
             diagram.options.homePosition.y = this.shift.y;
-            diagram.options.homeLayer = this.layer;
+            diagram.options.homeLayer = this.currentLayer.id;
         }
 
         // FORM go to end position - senter window to second remembered position
@@ -376,7 +374,7 @@ namespace Diagram
         {
             diagram.options.endPosition.x = this.shift.x;
             diagram.options.endPosition.y = this.shift.y;
-            diagram.options.endLayer = this.layer;
+            diagram.options.endLayer = this.currentLayer.id;
         }
 
         // FORM cursor position
@@ -479,7 +477,7 @@ namespace Diagram
             this.ClearSelection();
             foreach (Node rec in nodes)
             {
-                if (rec.layer == this.layer)
+                if (rec.layer == this.currentLayer.id)
                 {
                     this.SelectNode(rec);
                 }
@@ -719,7 +717,7 @@ namespace Diagram
                     foreach (Node rec in this.currentLayer.nodes)
                     {
                         if (
-                            (rec.layer == this.layer || rec.id == this.layer)
+                            (rec.layer == this.currentLayer.id || rec.id == this.currentLayer.id)
                             && -this.shift.x + a <= rec.position.x
                             && rec.position.x + rec.width <= -this.shift.x + c
                             && -this.shift.y + b <= rec.position.y
@@ -782,7 +780,7 @@ namespace Diagram
                         this.diagram.AddDiagramPart(
                             this.diagram.GetDiagramPart(this.selectedNodes),
                             this.getMousePosition().clone().scale(this.scale).subtract(this.shift),
-                            this.layer
+                            this.currentLayer.id
                         )
                     );
                     this.diagram.unsave();
@@ -798,7 +796,7 @@ namespace Diagram
                     var s = this.sourceNode;
                     var r = this.CreateNode(new Position(e.X, e.Y));
                     r.shortcut = s.id;
-                    this.diagram.Connect(s,r,false,null,this.layer);
+                    this.diagram.Connect(s, r, false, null, this.currentLayer.id);
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
@@ -833,7 +831,7 @@ namespace Diagram
                 {
                     this.sourceNode.position.x = (int)(-this.shift.x + (e.X * this.scale - this.vmouse.x));
                     this.sourceNode.position.y = (int)(-this.shift.y + (e.Y * this.scale - this.vmouse.y));
-                    if (this.sourceNode.id != this.layer
+                    if (this.sourceNode.id != this.currentLayer.id
                         && this.sourceNode.haslayer)
                     {
                         this.sourceNode.layerShift.x -= (e.X - this.startMousePos.x);
@@ -852,7 +850,7 @@ namespace Diagram
                                 rec.position.x = rec.position.x + vx;
                                 rec.position.y = rec.position.y + vy;
 
-                                if (rec.id != this.layer && rec.haslayer)
+                                if (rec.id != this.currentLayer.id && rec.haslayer)
                                 {
                                     rec.layerShift.x -= vx;
                                     rec.layerShift.y -= vy;
@@ -882,7 +880,7 @@ namespace Diagram
                         TargetNode,
                         false,
                         null,
-                        this.layer
+                        this.currentLayer.id
                     );
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
@@ -969,7 +967,7 @@ namespace Diagram
 
                     foreach (Node rec in this.selectedNodes)
                     {
-                        this.diagram.Connect(rec, newrec, false, null, this.layer);
+                        this.diagram.Connect(rec, newrec, false, null, this.currentLayer.id);
                     }
                     this.SelectOnlyOneNode(newrec);
                     this.diagram.unsave();
@@ -1053,18 +1051,18 @@ namespace Diagram
                             {
                                 if (keyctrl)
                                 {
-                                    this.diagram.Connect(TargetNode, rec, arrow, null, this.layer);        // spojenie viacerich nody
+                                    this.diagram.Connect(TargetNode, rec, arrow, null, this.currentLayer.id);        // spojenie viacerich nody
                                 }
                                 else
                                 {
-                                    this.diagram.Connect(rec, TargetNode, arrow, null, this.layer);        // spojenie viacerich nody
+                                    this.diagram.Connect(rec, TargetNode, arrow, null, this.currentLayer.id);        // spojenie viacerich nody
                                 }
                             }
                         }
                     }
                     else
                     {
-                        this.diagram.Connect(sourceNode, TargetNode, arrow, null, this.layer);  // spojenie jednej vybratej nody
+                        this.diagram.Connect(sourceNode, TargetNode, arrow, null, this.currentLayer.id);  // spojenie jednej vybratej nody
                     }
 
                     this.diagram.unsave();
@@ -1134,7 +1132,7 @@ namespace Diagram
                         TargetNode,
                         false,
                         null,
-                        this.layer
+                        this.currentLayer.id
                     );
 
                     this.diagram.unsave();
@@ -1863,10 +1861,8 @@ namespace Diagram
                 this.currentLayer.parentNode.layerShift.set(this.shift);
             }
 
-            this.layer = node.id;
-            this.layerNode = node;
-            this.layerNode.haslayer = true;
-            this.currentLayer = this.diagram.layers.createLayer(node, this.currentLayer);
+            this.currentLayer = this.diagram.layers.createLayer(node);
+            this.currentLayer.parentNode.haslayer = true;
             this.layersHistory.Add(this.currentLayer);
             this.shift.set(this.currentLayer.parentNode.layerShift);
 
@@ -1877,24 +1873,16 @@ namespace Diagram
         // LAYER OUT
         public void LayerOut()
         {
-            if (this.currentLayer.id != 0) { //this layer is not top layer
+            if (this.currentLayer.parentLayer != null) { //this layer is not top layer
 
                 this.currentLayer.parentNode.layerShift.set(this.shift);
 
                 if (this.currentLayer.nodes.Count() == 0) {
-                    this.layerNode.haslayer = false;
+                    this.currentLayer.parentNode.haslayer = false;
                 }
 
                 this.currentLayer = this.currentLayer.parentLayer;
-                this.layerNode = this.currentLayer.parentNode;
-                if (this.layerNode != null)
-                {
-                    this.layer = this.layerNode.id;
-                }
-                else
-                {
-                    this.layer = 0;
-                }
+
                 layersHistory.RemoveAt(layersHistory.Count() - 1);
 
                 if (this.currentLayer.parentNode == null)
@@ -1916,8 +1904,6 @@ namespace Diagram
         {
             layersHistory.Clear();
 
-            this.layer = id;
-            this.layerNode = this.diagram.GetNodeByID(id);
             this.currentLayer = this.diagram.layers.getLayer(id);
 
             List<Node> nodes = this.diagram.getAllNodes();
@@ -2213,7 +2199,7 @@ namespace Diagram
             int maxx = int.MinValue;
             foreach (Node rec in this.diagram.getAllNodes())
             {
-                if (rec.layer == this.layer || rec.id == this.layer)
+                if (rec.layer == this.currentLayer.id || rec.id == this.currentLayer.id)
                 {
                     if (rec.position.x < minx) minx = rec.position.x;
                     if (maxx < rec.position.x + rec.width) maxx = rec.position.x + rec.width;
@@ -2241,7 +2227,7 @@ namespace Diagram
             int maxx = int.MinValue;
             foreach (Node rec in this.diagram.getAllNodes())
             {
-                if (rec.layer == this.layer || rec.id == this.layer)
+                if (rec.layer == this.currentLayer.id || rec.id == this.currentLayer.id)
                 {
                     if (rec.position.x < minx) minx = rec.position.x;
                     if (maxx < rec.position.x + rec.width) maxx = rec.position.x + rec.width;
@@ -2271,7 +2257,7 @@ namespace Diagram
             int maxy = int.MinValue;
             foreach (Node rec in this.diagram.getAllNodes())
             {
-                if (rec.layer == this.layer || rec.id == this.layer)
+                if (rec.layer == this.currentLayer.id || rec.id == this.currentLayer.id)
                 {
                     if (rec.position.y < miny) miny = rec.position.y;
                     if (maxy < rec.position.y + rec.height) maxy = rec.position.y + rec.height;
@@ -2299,7 +2285,7 @@ namespace Diagram
             int maxy = int.MinValue;
             foreach (Node rec in this.diagram.getAllNodes())
             {
-                if (rec.layer == this.layer || rec.id == this.layer)
+                if (rec.layer == this.currentLayer.id || rec.id == this.currentLayer.id)
                 {
                     if (rec.position.y < miny) miny = rec.position.y;
                     if (maxy < rec.position.y + rec.height) maxy = rec.position.y + rec.height;
@@ -2344,8 +2330,7 @@ namespace Diagram
             this.shift.y = 0;
             this.ClearSelection();
 
-            this.layer = 0;
-            this.layerNode = null;
+            this.currentLayer = null;
             this.layersHistory.Clear();
 
             this.diagram.CloseDiagram();
@@ -2655,11 +2640,11 @@ namespace Diagram
             // DRAW nodes
             foreach (Node rec in this.currentLayer.nodes) // Loop through List with foreach
             {
-                if (rec.layer == this.layer || rec.id == this.layer)
+                if (rec.layer == this.currentLayer.id || rec.id == this.currentLayer.id)
                 {
                     // vylucenie moznosti ktore netreba vykreslovat
                     isvisible = false;
-                    if (export && this.layer == rec.layer)
+                    if (export && this.currentLayer.id == rec.layer)
                     {
                         isvisible = true;
                     }
@@ -2854,10 +2839,10 @@ namespace Diagram
 
                 Node r1 = lin.startNode;
                 Node r2 = lin.endNode;
-                if (lin.layer == this.layer)
+                if (lin.layer == this.currentLayer.id)
                 {
                     isvisible = false;
-                    if (export && (this.layer == lin.startNode.layer || this.layer == lin.endNode.layer))
+                    if (export && (this.currentLayer.id == lin.startNode.layer || this.currentLayer.id == lin.endNode.layer))
                     {
                         isvisible = true;
                     }
@@ -3014,7 +2999,7 @@ namespace Diagram
             var rec = this.diagram.createNode(
                 position.clone().scale(this.scale).subtract(this.shift),
                 text,
-                this.layer
+                this.currentLayer.id
             );
 
             if (rec != null)
@@ -3157,9 +3142,7 @@ namespace Diagram
         // NODE Go to node layer
         public void goToLayer(int layer = 0)
         {
-            this.layer = layer;
             this.currentLayer = this.diagram.layers.getLayer(layer);
-            this.layerNode = this.currentLayer.parentNode;
             this.BuildLayerHistory(layer);
         }
 
@@ -3171,7 +3154,7 @@ namespace Diagram
                     (int)(position.x * this.scale - this.shift.x),
                     (int)(position.y * this.scale - this.shift.y)
                 ),
-                this.layer
+                this.currentLayer.id
             );
         }
 
@@ -3680,7 +3663,7 @@ namespace Diagram
                     this.diagram.AddDiagramPart(
                         retrievedData.GetData("DiagramXml") as string,
                         position.clone().scale(this.scale).subtract(this.shift),
-                        this.layer
+                        this.currentLayer.id
                     )
                 );
                 this.diagram.unsave();
