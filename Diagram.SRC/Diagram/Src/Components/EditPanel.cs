@@ -146,7 +146,7 @@ namespace Diagram
 
             if (this.prevSelectedNode != null)
             {
-                this.diagramView.diagram.Connect(this.prevSelectedNode, this.editedNode, this.diagramView.currentLayer.id);
+                this.diagramView.diagram.Connect(this.prevSelectedNode, this.editedNode);
                 this.prevSelectedNode = null;
             }
 

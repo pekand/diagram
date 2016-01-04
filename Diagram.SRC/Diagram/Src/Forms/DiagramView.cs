@@ -789,7 +789,7 @@ namespace Diagram
                     var s = this.sourceNode;
                     var r = this.CreateNode(new Position(e.X, e.Y));
                     r.shortcut = s.id;
-                    this.diagram.Connect(s, r, this.currentLayer.id);
+                    this.diagram.Connect(s, r);
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
@@ -870,8 +870,7 @@ namespace Diagram
                                 +this.shift.y - startShift.y + this.startMousePos.y
                             )
                         ),
-                        TargetNode,
-                        this.currentLayer.id
+                        TargetNode
                     );
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
@@ -958,7 +957,7 @@ namespace Diagram
 
                     foreach (Node rec in this.selectedNodes)
                     {
-                        this.diagram.Connect(rec, newrec, this.currentLayer.id);
+                        this.diagram.Connect(rec, newrec);
                     }
                     this.SelectOnlyOneNode(newrec);
                     this.diagram.unsave();
@@ -1038,18 +1037,18 @@ namespace Diagram
                             {
                                 if (keyctrl)
                                 {
-                                    this.diagram.Connect(TargetNode, rec, arrow, null, this.currentLayer.id);
+                                    this.diagram.Connect(TargetNode, rec, arrow, null);
                                 }
                                 else
                                 {
-                                    this.diagram.Connect(rec, TargetNode, arrow, null, this.currentLayer.id); 
+                                    this.diagram.Connect(rec, TargetNode, arrow, null); 
                                 }
                             }
                         }
                     }
                     else
                     {
-                        this.diagram.Connect(sourceNode, TargetNode, arrow, null, this.currentLayer.id);
+                        this.diagram.Connect(sourceNode, TargetNode, arrow, null);
                     }
 
                     this.diagram.unsave();
@@ -1116,8 +1115,7 @@ namespace Diagram
                         this.CreateNode(
                             (new Position(this.shift)).subtract(this.startShift).add(this.startMousePos)
                         ),
-                        TargetNode,
-                        this.currentLayer.id
+                        TargetNode
                     );
 
                     this.diagram.unsave();

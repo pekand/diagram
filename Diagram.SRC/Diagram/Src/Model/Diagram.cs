@@ -584,7 +584,10 @@ namespace Diagram
             int newWidth = 0;
             int newHeight = 0;
 
-            foreach (Node rec in nodes) // Loop through List with foreach
+            List<Node> nodesReordered = new List<Node>(); // order nodes parent first (layer must exist when sub node is created)
+            this.nodesReorderNodes(0, null, nodes, nodesReordered);
+
+            foreach (Node rec in nodesReordered) // Loop through List with foreach
             {
                 if (!rec.isimage)
                 {
@@ -612,35 +615,11 @@ namespace Diagram
 
             foreach (Line line in lines)
             {
-                if (line.layer == -1) {
-
-                    if (line.startNode.layer == line.endNode.layer)
-                    {
-                        line.layer = line.startNode.layer;
-                    }
-                    else
-                    if (line.startNode.layer == line.endNode.id)
-                    {
-                        line.layer = line.startNode.layer;
-                    }
-                    else
-                    if (line.endNode.layer == line.startNode.id)
-                    {
-                        line.layer = line.endNode.layer;
-                    }
-                    else
-                    {
-                        line.layer = 0;
-                    }
-
-                }
-
-                this.Connect(
+                Line l = this.Connect(
                     this.layers.getNode(line.start),
                     this.layers.getNode(line.end),
                     line.arrow,
-                    line.color,
-                    line.layer
+                    line.color
                 );
             }
         }
@@ -1014,7 +993,7 @@ namespace Diagram
         }
 
         // NODE Create Rectangle on point
-        public Node createNode(Position position, string text = "", int layer = 0, Color? color = null, Font font = null, Layer parentLayer = null)
+        public Node createNode(Position position, string name = "", int layer = 0, Color? color = null, Font font = null, Layer parentLayer = null)
         {
             if (!this.options.readOnly)
             {
@@ -1031,7 +1010,7 @@ namespace Diagram
                 rec.id = ++maxid;
                 rec.layer = layer;
 
-                rec.setName(text);
+                rec.setName(name);
                 rec.note = "";
                 rec.link = "";
 
@@ -1052,7 +1031,7 @@ namespace Diagram
         }
 
         // NODE CONNECT connect two nodes
-        public Line Connect(Node a, Node b, int layer = 0)
+        public Line Connect(Node a, Node b)
         {
             if (!this.options.readOnly && a != null && b != null)
             {
@@ -1060,6 +1039,28 @@ namespace Diagram
 
                 if (line == null)
                 {
+
+                    // calculate line layer from node layers
+                    int layer = 0;
+                    if (a.layer == b.layer) // nodes are in same layer
+                    {
+                        layer = a.layer;
+                    }
+                    else
+                    if (a.layer == b.id) // b is perent of a 
+                    {
+                        layer = a.layer;
+                    }
+                    else
+                    if (b.layer == a.id) // a is perent of b
+                    {
+                        layer = b.layer;
+                    }
+                    else
+                    {
+                        return null; // invalid connection (nodes are not related or in same layer)
+                    }
+
                     line = new Line();
                     line.start = a.id;
                     line.end = b.id;
@@ -1072,6 +1073,7 @@ namespace Diagram
                 }
                 else
                 {
+                    // if connection already exists remove connection instead
                     this.layers.removeLine(line);
                 }
             }
@@ -1079,9 +1081,10 @@ namespace Diagram
             return null;
         }
 
-        public Line Connect(Node a, Node b, bool arrow = false, Color? color = null, int layer = 0)
+        // NODE CONNECT connect two nodes and add arrow or set color
+        public Line Connect(Node a, Node b, bool arrow = false, Color? color = null)
         {
-            Line line = this.Connect(a, b, layer);
+            Line line = this.Connect(a, b);
 
             if (line != null)
             {
@@ -1592,7 +1595,7 @@ namespace Diagram
 
             List<Node[]> maps = new List<Node[]>();
 
-            List<Node> NewReorderedNodes = new List<Node>();
+            List<Node> NewReorderedNodes = new List<Node>(); // order nodes parent first (layer must exist when sub node is created)
             this.nodesReorderNodes(0, null, NewNodes, NewReorderedNodes);
 
             int layerParent = 0;
@@ -1660,27 +1663,13 @@ namespace Diagram
                     {
                         foreach (Node[] mapend in maps)
                         {
-                            int lineLayer = layer;
-
-                            if (line.layer != 0) {
-                                foreach (Node[] maplayer in maps)
-                                {
-                                    if (line.layer == maplayer[0].id)
-                                    {
-                                        lineLayer = maplayer[1].id;
-                                        break;
-                                    }
-                                }
-                            }
-
                             if (line.end == mapend[0].id)
                             {
                                 this.Connect(
                                     mapbegin[1],
                                     mapend[1],
                                     line.arrow,
-                                    line.color,
-                                    lineLayer
+                                    line.color
                                 );
                             }
                         }
@@ -1799,7 +1788,6 @@ namespace Diagram
                                     }
                                     lines.Add(line);
                                 }
-
                             }
                         }
                     }
