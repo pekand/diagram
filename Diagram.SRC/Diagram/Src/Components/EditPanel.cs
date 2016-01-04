@@ -66,7 +66,7 @@ namespace Diagram
         {
             if (!this.Visible)
             {
-                int padding = this.diagramView.diagram.NodePadding;
+                int padding = Node.NodePadding;
                 this.Left = currentPosition.x;
                 this.Top = currentPosition.y;
 
@@ -102,7 +102,7 @@ namespace Diagram
         {
             if (!this.Visible)
             {
-                int padding = this.diagramView.diagram.NodePadding;
+                int padding = Node.NodePadding;
 
                 this.editedNode = editedNode;
                 this.editedNode.visible = false;
@@ -118,7 +118,7 @@ namespace Diagram
                 Font font = new Font(nodeFont.FontFamily, nodeFont.Size / this.diagramView.scale, nodeFont.Style);
 
                 this.edit.Font = font;
-                this.edit.Text = this.editedNode.text; // add first character
+                this.edit.Text = this.editedNode.name; // add first character
 
                 this.setPanelSize();
 
@@ -140,10 +140,8 @@ namespace Diagram
                 this.editedNode = this.diagramView.CreateNode(new Position(this.Left, this.Top));
             }
 
-            this.editedNode.text = edit.Text;
-            SizeF s = this.diagramView.diagram.MeasureStringWithMargin(this.editedNode.text, this.editedNode.font);
-            this.editedNode.width = (int)s.Width;
-            this.editedNode.height = (int)s.Height;
+            this.editedNode.setName(edit.Text);
+
             this.editedNode.visible = true;
 
             if (this.prevSelectedNode != null)
@@ -169,7 +167,7 @@ namespace Diagram
 
         private void setPanelSize() {
 
-            int padding = this.diagramView.diagram.NodePadding;
+            int padding = Node.NodePadding;
 
             SizeF s = Fonts.MeasureString(this.edit.Text == "" ? "X" : this.edit.Text, this.edit.Font);
 

@@ -163,6 +163,8 @@
     <Compile Include="Src\Lib\Os.cs" />
     <Compile Include="Src\Lib\Patterns.cs" />
     <Compile Include="Src\Main.cs" />
+    <Compile Include="Src\Model\Layer.cs" />
+    <Compile Include="Src\Model\Layers.cs" />
     <Compile Include="Src\Model\Position.cs" />
     <Compile Include="Src\ProgramOptions.cs" />
     <Compile Include="Src\Forms\AboutForm.cs">
