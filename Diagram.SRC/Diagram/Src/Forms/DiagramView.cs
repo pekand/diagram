@@ -1038,18 +1038,18 @@ namespace Diagram
                             {
                                 if (keyctrl)
                                 {
-                                    this.diagram.Connect(TargetNode, rec, arrow, null, this.currentLayer.id);
+                                    this.diagram.Connect(TargetNode, rec, arrow, null);
                                 }
                                 else
                                 {
-                                    this.diagram.Connect(rec, TargetNode, arrow, null, this.currentLayer.id); 
+                                    this.diagram.Connect(rec, TargetNode, arrow, null); 
                                 }
                             }
                         }
                     }
                     else
                     {
-                        this.diagram.Connect(sourceNode, TargetNode, arrow, null, this.currentLayer.id);
+                        this.diagram.Connect(sourceNode, TargetNode, arrow, null);
                     }
 
                     this.diagram.unsave();

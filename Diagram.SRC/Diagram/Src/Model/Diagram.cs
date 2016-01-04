@@ -612,35 +612,12 @@ namespace Diagram
 
             foreach (Line line in lines)
             {
-                if (line.layer == -1) {
 
-                    if (line.startNode.layer == line.endNode.layer)
-                    {
-                        line.layer = line.startNode.layer;
-                    }
-                    else
-                    if (line.startNode.layer == line.endNode.id)
-                    {
-                        line.layer = line.startNode.layer;
-                    }
-                    else
-                    if (line.endNode.layer == line.startNode.id)
-                    {
-                        line.layer = line.endNode.layer;
-                    }
-                    else
-                    {
-                        line.layer = 0;
-                    }
-
-                }
-
-                this.Connect(
+                Line l = this.Connect(
                     this.layers.getNode(line.start),
                     this.layers.getNode(line.end),
                     line.arrow,
-                    line.color,
-                    line.layer
+                    line.color
                 );
             }
         }
@@ -1014,7 +991,7 @@ namespace Diagram
         }
 
         // NODE Create Rectangle on point
-        public Node createNode(Position position, string text = "", int layer = 0, Color? color = null, Font font = null, Layer parentLayer = null)
+        public Node createNode(Position position, string name = "", int layer = 0, Color? color = null, Font font = null, Layer parentLayer = null)
         {
             if (!this.options.readOnly)
             {
@@ -1031,7 +1008,7 @@ namespace Diagram
                 rec.id = ++maxid;
                 rec.layer = layer;
 
-                rec.setName(text);
+                rec.setName(name);
                 rec.note = "";
                 rec.link = "";
 
@@ -1079,8 +1056,25 @@ namespace Diagram
             return null;
         }
 
-        public Line Connect(Node a, Node b, bool arrow = false, Color? color = null, int layer = 0)
+        public Line Connect(Node a, Node b, bool arrow = false, Color? color = null)
         {
+            int layer = 0;
+
+            if (a.layer == b.layer)
+            {
+                layer = a.layer;
+            }
+            else
+            if (a.layer == b.id)
+            {
+                layer = a.layer;
+            }
+            else
+            if (b.layer == a.id)
+            {
+                layer = b.layer;
+            }
+
             Line line = this.Connect(a, b, layer);
 
             if (line != null)
@@ -1660,27 +1654,13 @@ namespace Diagram
                     {
                         foreach (Node[] mapend in maps)
                         {
-                            int lineLayer = layer;
-
-                            if (line.layer != 0) {
-                                foreach (Node[] maplayer in maps)
-                                {
-                                    if (line.layer == maplayer[0].id)
-                                    {
-                                        lineLayer = maplayer[1].id;
-                                        break;
-                                    }
-                                }
-                            }
-
                             if (line.end == mapend[0].id)
                             {
                                 this.Connect(
                                     mapbegin[1],
                                     mapend[1],
                                     line.arrow,
-                                    line.color,
-                                    lineLayer
+                                    line.color
                                 );
                             }
                         }
