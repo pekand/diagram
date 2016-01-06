@@ -141,6 +141,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Src\Components\Breadcrumbs.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Src\Components\EditLinkPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -165,6 +168,8 @@
     <Compile Include="Src\Main.cs" />
     <Compile Include="Src\Model\Layer.cs" />
     <Compile Include="Src\Model\Layers.cs" />
+    <Compile Include="Src\Model\Lines.cs" />
+    <Compile Include="Src\Model\Nodes.cs" />
     <Compile Include="Src\Model\Position.cs" />
     <Compile Include="Src\ProgramOptions.cs" />
     <Compile Include="Src\Forms\AboutForm.cs">
@@ -267,6 +272,9 @@
     <None Include="Resources\diagramico_forms.ico" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Src\Components\Breadcrumbs.resx">
+      <DependentUpon>Breadcrumbs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Src\Components\EditLinkPanel.resx">
       <DependentUpon>EditLinkPanel.cs</DependentUpon>
     </EmbeddedResource>

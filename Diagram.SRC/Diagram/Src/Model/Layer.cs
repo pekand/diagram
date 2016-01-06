@@ -13,8 +13,8 @@ namespace Diagram
         public Node parentNode = null;
         public Layer parentLayer = null; // up layer in layer hierarchy
 
-        public List<Node> nodes = new List<Node>();          // all layer nodes
-        public List<Line> lines = new List<Line>();          // all layer lines
+        public Nodes nodes = new Nodes();          // all layer nodes
+        public Lines lines = new Lines();          // all layer lines
 
         // LAYER construct - parentNode is node in upper layer - parentLayer is layer whitch has parentNode
         public Layer(Node parentNode = null, Layer parentLayer = null)
