@@ -81,9 +81,9 @@ namespace Diagram
             return false;
         }
 
-        public List<Node> getAllNodes()
+        public Nodes getAllNodes()
         {
-            List<Node> nodes = new List<Node>();
+            Nodes nodes = new Nodes();
 
             foreach (Layer l in this.layers)
             {
@@ -93,9 +93,9 @@ namespace Diagram
             return nodes;
         }
 
-        public List<Line> getAllLines()
+        public Lines getAllLines()
         {
-            List<Line> lines = new List<Line>();
+            Lines lines = new Lines();
 
             foreach (Layer l in this.layers)
             {

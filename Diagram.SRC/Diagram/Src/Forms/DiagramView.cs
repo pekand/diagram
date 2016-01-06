@@ -73,7 +73,7 @@ namespace Diagram
 
         // ATTRIBUTES selected nodes
         public Node sourceNode = null;             // selected node by mouse
-        public List<Node> selectedNodes = new List<Node>();  // all selected nodes by mouse
+        public Nodes selectedNodes = new Nodes();  // all selected nodes by mouse
 
         // ATTRIBUTES Layers
         public Layer currentLayer = null;
@@ -352,6 +352,7 @@ namespace Diagram
             diagram.options.homePosition.x = this.shift.x;
             diagram.options.homePosition.y = this.shift.y;
             diagram.options.homeLayer = this.currentLayer.id;
+            this.diagram.unsave();
         }
 
         // FORM go to end position - center window to second remembered position
@@ -368,6 +369,7 @@ namespace Diagram
             diagram.options.endPosition.x = this.shift.x;
             diagram.options.endPosition.y = this.shift.y;
             diagram.options.endLayer = this.currentLayer.id;
+            this.diagram.unsave();
         }
 
         // FORM cursor position
@@ -465,7 +467,7 @@ namespace Diagram
         }
 
         // SELECTION Clear Selection and Select nodes
-        public void SelectNodes(List<Node> nodes)
+        public void SelectNodes(Nodes nodes)
         {
             this.ClearSelection();
             foreach (Node rec in nodes)
@@ -1424,6 +1426,13 @@ namespace Diagram
                 return true;
             }
 
+            if (KeyMap.parseKey(KeyMap.evaluateNodes, keyData)) // [KEY] [F9] edit node name
+            {
+                this.evaluate();
+                return true;
+            }
+           
+
             if (KeyMap.parseKey(KeyMap.openEditForm, keyData)) // [KEY] [CTRL+E] open edit form
             {
                 this.edit();
@@ -1885,7 +1894,7 @@ namespace Diagram
 
             this.currentLayer = this.diagram.layers.getLayer(id);
 
-            List<Node> nodes = this.diagram.getAllNodes();
+            Nodes nodes = this.diagram.getAllNodes();
 
             Layer temp = this.currentLayer;
             while (temp != null)
@@ -1956,7 +1965,7 @@ namespace Diagram
         public void SearchFirst(string find)
         {
 
-            List<Node> foundNodes = new List<Node>();
+            Nodes foundNodes = new Nodes();
 
             this.lastFound = -1;
             this.searchFor = find;
@@ -2368,7 +2377,7 @@ namespace Diagram
         // EXPORT Export diagram to png
         public void exportDiagramToPng()
         {
-            List<Node> nodes = this.diagram.getAllNodes();
+            Nodes nodes = this.diagram.getAllNodes();
 
             if (nodes.Count > 0)
             {
@@ -3216,15 +3225,9 @@ namespace Diagram
                             Program.log.write("open link as file error: " + ex.Message);
                         }
                     }
-                    else if (rec.link.Trim() == "script")  // OPEN SCRIPT
+                    else if (rec.link.Trim() == "script" || rec.link.Trim() == "macro" || rec.link.Trim() == "$")  // OPEN SCRIPT
                     {
-                        // run macro
-                        Program.log.write("diagram: openlink: run macro");
-                        Script script = new Script();
-                        script.setDiagram(this.diagram);
-                        script.setDiagramView(this);
-                        script.setClipboard(clipboard);
-                        script.runScript(rec.note);
+                        this.evaluate(rec, clipboard);
                     }
                     else if (Os.DirectoryExists(rec.link))  // OPEN DIRECTORY
                     {
@@ -3311,7 +3314,7 @@ namespace Diagram
         }
 
         // NODE Remove shortcuts
-        public void removeShortcuts(List<Node> Nodes)
+        public void removeShortcuts(Nodes Nodes)
         {
             foreach (Node rec in Nodes) // Loop through List with foreach
             {
@@ -4494,9 +4497,9 @@ namespace Diagram
         }
 
         // NODE get lines which are connected with current selected nodes
-        public List<Line> getSelectedLines()
+        public Lines getSelectedLines()
         {
-            List<Line> SelectedLinesTemp = new List<Line>();
+            Lines SelectedLinesTemp = new Lines();
             int id = 0;
 
             foreach (Node srec in this.selectedNodes) {
@@ -4508,7 +4511,7 @@ namespace Diagram
                 }
             }
 
-            List<Line> SelectedLines = new List<Line>();
+            Lines SelectedLines = new Lines();
 
             foreach (Line lin in SelectedLinesTemp)
             {
@@ -4537,7 +4540,7 @@ namespace Diagram
                     if (DColor.ShowDialog() == DialogResult.OK)
                     {
 
-                        List<Line> SelectedLines = getSelectedLines();
+                        Lines SelectedLines = getSelectedLines();
 
                         foreach (Line lin in SelectedLines)
                         {
@@ -4560,6 +4563,69 @@ namespace Diagram
                 main.console = new Console(main);
             }
             main.console.Show();
+        }
+
+        void evaluate()
+        {
+            Nodes nodes = null;
+
+            if (this.selectedNodes.Count() > 0) {
+                nodes = new Nodes(this.selectedNodes);
+            } else {
+                nodes = new Nodes(this.diagram.getAllNodes());
+            }
+            // remove nodes whit link other then [ ! | eval | evaluate | !#num_order | eval#num_order |  evaluate#num_order]
+            // higest number is executed first  
+            Regex regex = new Regex(@"^\s*(eval(uate)|!){1}(#\w+){0,1}\s*$");
+            nodes.RemoveAll(n => !regex.Match(n.link).Success);
+
+            nodes.OrderByLink();
+            nodes.Reverse();
+
+            String clipboard = Os.getTextFormClipboard();
+
+#if !DEBUG
+            var worker = new BackgroundWorker();
+            worker.WorkerSupportsCancellation = true;
+            worker.DoWork += (sender, e) =>
+            {
+#endif
+            this.evaluate(nodes, clipboard);
+#if !DEBUG
+            };
+            worker.RunWorkerAsync();
+#endif
+
+        }
+
+        // SCRIPT evaluate nodes
+        void evaluate(Nodes nodes, string clipboard = "")
+        {
+            Program.log.write("diagram: openlink: run macro");
+            Script script = new Script();
+            script.setDiagram(this.diagram);
+            script.setDiagramView(this);
+            script.setClipboard(clipboard);
+            string body = "";
+
+            foreach (Node node in nodes)
+            {
+                body = node.note.Trim() != "" ? node.note : node.name;
+                script.runScript(body);
+            }
+        }
+
+        // SCRIPT evaluate node
+        void evaluate(Node node, string clipboard = "")
+        {
+            // run macro
+            Program.log.write("diagram: openlink: run macro");
+            Script script = new Script();
+            script.setDiagram(this.diagram);
+            script.setDiagramView(this);
+            script.setClipboard(clipboard);
+            string body = node.note.Trim() != "" ? node.note : node.name;
+            script.runScript(body);
         }
     }
 }

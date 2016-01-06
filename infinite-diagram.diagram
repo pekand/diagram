@@ -6,7 +6,7 @@
     <endPositiony>0</endPositiony>
     <firstLayereShift.x>0</firstLayereShift.x>
     <firstLayereShift.y>0</firstLayereShift.y>
-    <layer>0</layer>
+    <homelayer>0</homelayer>
     <diagramreadonly>false</diagramreadonly>
     <grid>true</grid>
     <borders>false</borders>
@@ -2761,786 +2761,1100 @@ Diagram.CreateNode(0,0,0,"aaa")</text>
       <start>5</start>
       <end>4</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>7</start>
       <end>6</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>11</start>
       <end>6</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>22</start>
       <end>21</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>25</start>
       <end>24</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>37</start>
       <end>36</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>38</start>
       <end>37</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>40</start>
       <end>39</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>29</start>
       <end>36</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>46</start>
       <end>43</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>52</start>
       <end>51</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>50</start>
       <end>51</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>57</start>
       <end>53</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>54</start>
       <end>53</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>55</start>
       <end>54</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>56</start>
       <end>57</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>58</start>
       <end>57</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>59</start>
       <end>38</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>60</start>
       <end>59</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>65</start>
       <end>64</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>84</start>
       <end>64</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>85</start>
       <end>84</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>92</start>
       <end>91</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>93</start>
       <end>92</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>94</start>
       <end>93</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>101</start>
       <end>100</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>103</start>
       <end>102</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>105</start>
       <end>104</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>106</start>
       <end>104</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>41</start>
       <end>111</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>20</start>
       <end>24</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>23</start>
       <end>24</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>26</start>
       <end>24</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>113</start>
       <end>2</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>114</start>
       <end>56</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>119</start>
       <end>84</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>74</start>
       <end>64</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>132</start>
       <end>126</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>133</start>
       <end>128</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>134</start>
       <end>120</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>135</start>
       <end>74</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>134</start>
       <end>135</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>132</start>
       <end>135</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>133</start>
       <end>132</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>127</start>
       <end>126</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>121</start>
       <end>120</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>122</start>
       <end>121</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>123</start>
       <end>122</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>124</start>
       <end>123</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>125</start>
       <end>124</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>136</start>
       <end>91</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>145</start>
       <end>62</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>146</start>
       <end>6</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>148</start>
       <end>147</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>150</start>
       <end>151</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>150</start>
       <end>149</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>152</start>
       <end>150</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>154</start>
       <end>153</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>155</start>
       <end>154</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>156</start>
       <end>154</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>157</start>
       <end>154</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>158</start>
       <end>154</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>159</start>
       <end>147</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>160</start>
       <end>152</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>160</start>
       <end>161</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>148</start>
       <end>149</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>163</start>
       <end>162</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>164</start>
       <end>162</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>166</start>
       <end>165</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>167</start>
       <end>168</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>170</start>
       <end>168</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>171</start>
       <end>167</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>176</start>
       <end>175</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>177</start>
       <end>178</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>179</start>
       <end>178</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>181</start>
       <end>180</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>182</start>
       <end>180</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>184</start>
       <end>186</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>187</start>
       <end>154</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>184</start>
       <end>185</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>189</start>
       <end>188</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>192</start>
       <end>191</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>172</start>
       <end>174</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>193</start>
       <end>146</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>36</start>
       <end>33</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>194</start>
       <end>59</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>195</start>
       <end>35</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>195</start>
       <end>2</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>145</start>
       <end>115</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>197</start>
       <end>196</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>196</start>
       <end>63</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>63</start>
       <end>86</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>86</start>
       <end>87</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>87</start>
       <end>88</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>88</start>
       <end>89</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>89</start>
       <end>90</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>198</start>
       <end>188</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>200</start>
       <end>31</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>201</start>
       <end>41</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>202</start>
       <end>18</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>203</start>
       <end>30</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>201</start>
       <end>199</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>202</start>
       <end>199</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>203</start>
       <end>199</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>200</start>
       <end>199</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>204</start>
       <end>19</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>205</start>
       <end>17</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>206</start>
       <end>14</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>208</start>
       <end>48</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>209</start>
       <end>48</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>210</start>
       <end>47</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>211</start>
       <end>13</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>212</start>
       <end>14</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>213</start>
       <end>16</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>214</start>
       <end>32</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>215</start>
       <end>43</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>216</start>
       <end>44</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>217</start>
       <end>47</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>218</start>
       <end>49</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>219</start>
       <end>61</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>220</start>
       <end>99</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>221</start>
       <end>10</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>222</start>
       <end>12</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>211</start>
       <end>107</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>212</start>
       <end>107</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>213</start>
       <end>107</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>214</start>
       <end>107</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>215</start>
       <end>107</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>216</start>
       <end>107</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>217</start>
       <end>107</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>218</start>
       <end>107</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>219</start>
       <end>107</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>220</start>
       <end>107</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>221</start>
       <end>107</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>222</start>
       <end>107</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>223</start>
       <end>107</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>225</start>
       <end>224</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>227</start>
       <end>226</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>228</start>
       <end>226</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>229</start>
       <end>228</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>231</start>
       <end>230</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>233</start>
       <end>232</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>236</start>
       <end>145</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>237</start>
       <end>238</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>238</start>
       <end>239</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>239</start>
       <end>240</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>241</start>
       <end>239</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>241</start>
       <end>242</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>242</start>
       <end>243</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>243</start>
       <end>244</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>245</start>
       <end>243</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>246</start>
       <end>243</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>247</start>
       <end>245</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>249</start>
       <end>237</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>253</start>
       <end>252</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>255</start>
       <end>254</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
     <line>
       <start>256</start>
       <end>254</end>
       <arrow>0</arrow>
+      <color>#000000</color>
+      <layer>0</layer>
     </line>
   </lines>
 </diagram>

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
-using System.Linq; // using
-using System.Xml.Linq; // using
+using System.Linq;
+using System.Xml.Linq;
 using System.Xml;
 using System.IO;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing.Text;
+using System.Text.RegularExpressions;
 
 namespace Diagram
 {
@@ -199,8 +200,8 @@ namespace Diagram
             XmlReaderSettings xws = new XmlReaderSettings();
             xws.CheckCharacters = false;
 
-            List<Node> nodes = new List<Node>();
-            List<Line> lines = new List<Line>();
+            Nodes nodes = new Nodes();
+            Lines lines = new Lines();
 
             try
             {
@@ -584,7 +585,7 @@ namespace Diagram
             int newWidth = 0;
             int newHeight = 0;
 
-            List<Node> nodesReordered = new List<Node>(); // order nodes parent first (layer must exist when sub node is created)
+            Nodes nodesReordered = new Nodes(); // order nodes parent first (layer must exist when sub node is created)
             this.nodesReorderNodes(0, null, nodes, nodesReordered);
 
             foreach (Node rec in nodesReordered) // Loop through List with foreach
@@ -867,17 +868,17 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        public List<Node> getAllNodes()
+        public Nodes getAllNodes()
         {
             return this.layers.getAllNodes();
         }
 
-        public List<Line> getAllLines()
+        public Lines getAllLines()
         {
             return this.layers.getAllLines();
         }
 
-        // NODE Najdenie nody podla id
+        // NODE find node by id
         public Node GetNodeByID(int id)
         {
             return this.layers.getNode(id);
@@ -886,9 +887,13 @@ namespace Diagram
         // NODE Najdenie nody podla scriptid
         public Node getNodeByScriptID(string id)
         {
+            Regex regex = new Regex(@"^\s*@(\w+){1}\s*$");
+            Match match = null;
+
             foreach (Node rec in this.getAllNodes()) // Loop through List with foreach
             {
-                if (rec.scriptid == id) return rec;
+                match = regex.Match(rec.link);
+                if (match.Success && match.Groups[1].Value == id) return rec;
             }
 
             return null;
@@ -993,8 +998,14 @@ namespace Diagram
         }
 
         // NODE Create Rectangle on point
-        public Node createNode(Position position, string name = "", int layer = 0, Color? color = null, Font font = null, Layer parentLayer = null)
-        {
+        public Node createNode(
+            Position position, 
+            string name = "", 
+            int layer = 0, 
+            Color? color = null, 
+            Font font = null, 
+            Layer parentLayer = null
+        ) {
             if (!this.options.readOnly)
             {
                 var rec = new Node();
@@ -1096,7 +1107,7 @@ namespace Diagram
         }
 
         // NODES ALIGN to column
-        public void AlignToColumn(List<Node> Nodes)
+        public void AlignToColumn(Nodes Nodes)
         {
             if (Nodes.Count() > 0)
             {
@@ -1119,7 +1130,7 @@ namespace Diagram
         }
 
         // NODES ALIGN to line
-        public void AlignToLine(List<Node> Nodes)
+        public void AlignToLine(Nodes Nodes)
         {
             if (Nodes.Count() > 0)
             {
@@ -1142,17 +1153,17 @@ namespace Diagram
         }
 
         // NODES ALIGN compact
-        public void AlignCompact(List<Node> Nodes)
+        public void AlignCompact(Nodes nodes)
         {
             // vyratanie ci je mensi profil na sirku alebo na vysku a potom ich zarovnat
             // po zarovnani by sa nemali prekrivat
             // ked su zarovnané pozmensovat medzery medzi nimi na nejaku konstantnu vzdialenost
 
-            if (Nodes.Count() > 0)
+            if (nodes.Count() > 0)
             {
-                int minx = Nodes[0].position.x;
-                int miny = Nodes[0].position.y;
-                foreach (Node rec in Nodes)
+                int minx = nodes[0].position.x;
+                int miny = nodes[0].position.y;
+                foreach (Node rec in nodes)
                 {
                     if (rec.position.x <= minx) // find top left element
                     {
@@ -1165,16 +1176,16 @@ namespace Diagram
                     }
                 }
 
-                foreach (Node rec in Nodes) // align to left
+                foreach (Node rec in nodes) // align to left
                 {
                     rec.position.x = minx;
                 }
 
                 // sort elements by y coordinate
-                List<Node> SortedList = Nodes.OrderBy(o => o.position.y).ToList();
+                nodes.OrderByPositionY();
 
                 int posy = miny;
-                foreach (Node rec in SortedList) // zmensit medzeru medzi objektami
+                foreach (Node rec in nodes) // zmensit medzeru medzi objektami
                 {
                     rec.position.y = posy;
                     posy = posy + rec.height + 10;
@@ -1183,7 +1194,7 @@ namespace Diagram
         }
 
         // NODES ALIGN left
-        public void AlignRight(List<Node> Nodes)
+        public void AlignRight(Nodes Nodes)
         {
             if (Nodes.Count() > 0)
             {
@@ -1206,7 +1217,7 @@ namespace Diagram
         }
 
         // NODES ALIGN left
-        public void AlignLeft(List<Node> Nodes)
+        public void AlignLeft(Nodes Nodes)
         {
             if (Nodes.Count() > 0)
             {
@@ -1246,7 +1257,7 @@ namespace Diagram
         }
 
         // NODE Reset font to default font for group of nodes
-        public void ResetFont(List<Node> Nodes)
+        public void ResetFont(Nodes Nodes)
         {
             if (Nodes.Count>0) {
                 foreach (Node rec in Nodes) // Loop through List with foreach
@@ -1327,7 +1338,7 @@ namespace Diagram
         {
             if (rec != null)
             {
-                List<Node> nodes = this.layers.getLayer(rec.id).nodes;
+                Nodes nodes = this.layers.getLayer(rec.id).nodes;
                 foreach (Node node in nodes) // Loop through List with foreach
                 {
                     if (node.layer == rec.id)
@@ -1398,10 +1409,10 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // CLIPBOARD PASTE paste part of diagram from clipboard                                   // CLIPBOARD
-        public List<Node> AddDiagramPart(string DiagramXml, Position position, int layer)
+        public Nodes AddDiagramPart(string DiagramXml, Position position, int layer)
         {
-            List<Node> NewNodes = new List<Node>();
-            List<Line> NewLines = new List<Line>();
+            Nodes NewNodes = new Nodes();
+            Lines NewLines = new Lines();
 
             XmlReaderSettings xws = new XmlReaderSettings();
             xws.CheckCharacters = false;
@@ -1595,7 +1606,7 @@ namespace Diagram
 
             List<Node[]> maps = new List<Node[]>();
 
-            List<Node> NewReorderedNodes = new List<Node>(); // order nodes parent first (layer must exist when sub node is created)
+            Nodes NewReorderedNodes = new Nodes(); // order nodes parent first (layer must exist when sub node is created)
             this.nodesReorderNodes(0, null, NewNodes, NewReorderedNodes);
 
             int layerParent = 0;
@@ -1681,7 +1692,7 @@ namespace Diagram
         }
 
         // CLIPBOARD Get all layers nodes
-        private void nodesReorderNodes(int layer, Node parent, List<Node> nodesIn, List<Node> nodesOut)
+        private void nodesReorderNodes(int layer, Node parent, Nodes nodesIn, Nodes nodesOut)
         {
             foreach (Node node in nodesIn)
             {
@@ -1699,7 +1710,7 @@ namespace Diagram
         }
 
         // CLIPBOARD Get all layers nodes
-        public void getLayerNodes(Node node, List<Node> nodes)
+        public void getLayerNodes(Node node, Nodes nodes)
         {
             if (node.haslayer) {
                 foreach(Node subnode in this.layers.getLayer(node.id).nodes) {
@@ -1713,7 +1724,7 @@ namespace Diagram
         }
 
         // CLIPBOARD COPY copy part of diagram to text xml string
-        public string GetDiagramPart(List<Node> nodes)
+        public string GetDiagramPart(Nodes nodes)
         {
             string copyxml = "";
 
@@ -1727,7 +1738,7 @@ namespace Diagram
                 int miny = nodes[0].position.y;
                 int minid = nodes[0].id;
 
-                List<Node> subnodes = new List<Node>();
+                Nodes subnodes = new Nodes();
 
                 foreach (Node node in nodes)
                 {
