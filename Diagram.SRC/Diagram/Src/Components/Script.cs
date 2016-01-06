@@ -6,6 +6,88 @@ using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
 using System.IO;
 
+/*
+    ! | eval | evaluate
+    script executed by F9
+    evaluate selected nodes or all nodes globaly 
+
+    !#1 | eval#1 | evaluate#1
+    script evaluated by priority
+    
+    $ | script | macro
+    evaluate node only by double click
+    
+    @id
+    get node by diagram.getNoteBySciptId  
+*/
+
+/*
+    #Tools
+
+    F.log('text') # write to console F12
+    F.show(string message) # show message dialog
+    F.setClipboard() # set clipboard content to value after script finish
+    F.getClipboard() # get clipboard content before script run
+    F.get('scriptId') # get node by scriptId
+    F.id(1) # get node by id
+    F.layer() #current layer id
+    F.create(100, 100, "name", [layerId]) #create node id
+    F.connect(nodeA, nodeB)
+    F.remove(node)
+    F.delete(node)
+    F.go(node) #go to node position
+    F.go(x, y, [layerId])
+    F.position() # return current position in diagram
+    F.refresh() # refres diagram views
+    F.val('123') # convert str to int
+*/
+
+/*
+    # example of python script:
+    # 
+    # create circle from nodes in current layer
+
+    import clr
+    import math
+    clr.AddReference('Diagram')
+    from Diagram import Position
+
+    a = (2 * math.pi) / 100
+    l = DiagramView.currentLayer.id
+    prev = None
+    for i in range(100):
+        x = int(500 * math.cos(a*i))
+        y = int(500 * math.sin(a*i))
+        rec = Diagram.createNode(Position(x, y), "", l)
+        rec.transparent = True
+        if prev != None:
+            Diagram.Connect(rec, prev)
+        prev = rec
+    DiagramView.Invalidate();
+
+*/
+
+/*
+    # short example of python script using Tools:
+    # 
+    # create circle from nodes in current layer
+
+    import math
+
+    a = (2 * math.pi) / 100
+    l = F.layer()
+    prev = None
+    for i in range(100):
+        x = int(500 * math.cos(a*i))
+        y = int(500 * math.sin(a*i))
+        rec = F.create(x, y, "", l)
+        rec.transparent = True
+        if prev != None:
+            F.connect(rec, prev)
+        prev = rec
+    F.refresh()
+*/
+
 namespace Diagram
 {
 
@@ -20,15 +102,21 @@ namespace Diagram
     /// </example>
     public class Tools
     {
+        private Script script = null;
 
         public string clipboard = "";
+
+        public Tools(Script script)
+        {
+            this.script = script;
+        }
 
         public void log(String text)
         {
             Program.log.write(text);
         }
 
-        public void ShowMessage(string message)
+        public void show(string message)
         {
             MessageBox.Show(message);
         }
@@ -43,6 +131,86 @@ namespace Diagram
             return this.clipboard;
         }
 
+        public Node get(string nodeScriptId)
+        {
+            return this.script.diagram.getNodeByScriptID(nodeScriptId);
+        }
+
+        public Node id(int id)
+        {
+            return this.script.diagram.GetNodeByID(id);
+        }
+
+        public int layer()
+        {
+            return this.script.diagramView.currentLayer.id;
+        }
+
+        public Node create(int x, int y, string name = "", int layer = -1)
+        {
+            if (layer < 0) {
+                layer = this.layer();
+            }
+
+            return this.script.diagram.createNode(new Position(x,y), name, layer);
+        }
+
+        public Line connect(Node a, Node b)
+        {
+            return this.script.diagram.Connect(a, b);
+        }
+
+        public void remove(Node n)
+        {
+            this.script.diagram.DeleteNode(n);
+        }
+
+        public void delete(Node n)
+        {
+            this.script.diagram.DeleteNode(n);
+        }
+
+        public void go(Node n)
+        {
+            this.script.diagramView.goToNode(n);
+        }
+
+        public void go(int x, int y, int layer = -1)
+        {
+            if (layer >= 0)
+            {
+                this.script.diagramView.goToLayer(layer);
+            }
+            
+            this.script.diagramView.goToPosition(new Position(x, y));
+        }
+
+        public Position position()
+        {
+            return this.script.diagramView.shift;
+        }
+
+        public void refresh()
+        {
+            this.script.diagramView.Invalidate();
+        }
+
+        public int val(string s)
+        {
+            int x = 0;
+
+            if (Int32.TryParse(s, out x))
+            {
+                return x;
+            }
+
+            return 0;
+        }
+
+        public string val(int v)
+        {
+            return v.ToString();
+        }
     }
 
     /// <example>
@@ -57,7 +225,7 @@ namespace Diagram
     ///     Program.log.write("evaluation error: " + ex.Message);
     /// }
     /// </example>
-    class Script
+    public class Script
     {
         private ScriptEngine pyEngine = null;
         private dynamic pyScope = null;
@@ -65,9 +233,14 @@ namespace Diagram
         // ATTRIBUTES Diagram
         public Diagram diagram = null;       // diagram ktory je previazany z pohladom
         public DiagramView diagramView = null;       // diagram ktory je previazany z pohladom
-        public Tools tools = new Tools();
+        public Tools tools = null;
 
         public string script = "";
+
+        public Script()
+        {
+            this.tools = new Tools(this);
+        }
 
         /// <summary>
         /// Set current diagram for context in script
@@ -138,7 +311,18 @@ namespace Diagram
         /// <summary>
         ///
         /// </summary>
-        /// <param name="script">Script with pys=thon code</param>
+        /// <param name="script">Script with python code</param>
+        /// <example>
+        /// import clr
+        /// clr.AddReference('Diagram')
+        /// from Diagram import Position
+        /// DiagramView.CreateNode(Position(0,0))
+        /// </example>
+        /// <example>
+        /// Tools.log("test")
+        /// Tools.ShowMessage("test")
+        /// Tools.setClipboard("test")
+        /// clp = Tools.getClipboard()
         /// <returns>Return script string result</returns>
         public string runScript(String script)
         {
@@ -150,6 +334,7 @@ namespace Diagram
                 /// add items to scope
                 pyScope.Diagram = this.diagram;
                 pyScope.Tools = this.tools;
+                pyScope.F = this.tools;
                 pyScope.DiagramView = this.diagramView;
             }
 
