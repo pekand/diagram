@@ -4564,6 +4564,7 @@ namespace Diagram
             }
             main.console.Show();
         }
+
         void evaluate()
         {
             Nodes nodes = null;
@@ -4575,8 +4576,10 @@ namespace Diagram
             }
             // remove nodes whit link other then [ ! | eval | evaluate | !#num_order | eval#num_order |  evaluate#num_order]
             // higest number is executed first  
+            Regex regex = new Regex(@"^\s*(eval(uate)|!){1}(#\w+){0,1}\s*$");
             nodes.RemoveAll(n => !regex.Match(n.link).Success);
 
+            nodes.OrderByLink();
             nodes.Reverse();
 
             String clipboard = Os.getTextFormClipboard();
