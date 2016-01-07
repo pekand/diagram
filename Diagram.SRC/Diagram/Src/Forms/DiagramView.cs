@@ -18,6 +18,7 @@ namespace Diagram
     public partial class DiagramView : Form
     {
         public Main main = null;
+        public DiagramView parentView = null;
 
         public Popup PopupMenu;
         public System.Windows.Forms.SaveFileDialog DSave;
@@ -60,6 +61,7 @@ namespace Diagram
         public bool dblclick = false;            // actual dblclick status
         public bool zooming = false;             // actual zooming by space status
         public bool searching = false;           // actual search edit form status
+        public bool skipMouseUp = false;         // prevent event execution
 
         // ATTRIBUTES ZOOMING
         public Position zoomShift = new Position();// zoom view - left corner position before zoom space press
@@ -185,7 +187,7 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // FORM Constructor
-        public DiagramView(Main main, Diagram diagram)
+        public DiagramView(Main main, Diagram diagram, DiagramView parentView = null)
         {
             this.main = main;
             this.diagram = diagram;
@@ -206,6 +208,8 @@ namespace Diagram
             // initialize edit link panel
             this.editLinkPanel = new EditLinkPanel(this);
             this.Controls.Add(this.editLinkPanel);
+
+            this.parentView = parentView;
         }
 
         // FORM Load event -
@@ -252,12 +256,21 @@ namespace Diagram
             rightScrollBar.OnChangePosition += new PositionChangeEventHandler(positionChangeRight);
 
             // set startup position 
-            if (this.diagram.options.homeLayer != 0)
+            if (this.parentView != null)
+            {
+                this.shift.set(this.parentView.shift);
+                this.goToLayer(this.parentView.currentLayer.id);
+                this.Width = this.parentView.Width;
+                this.Height = this.parentView.Height;
+                this.Top = this.parentView.Top;
+                this.Left = this.parentView.Left;
+                this.WindowState = this.parentView.WindowState;
+            }
+            else
             {
                 this.goToLayer(this.diagram.options.homeLayer);
-                this.goToPosition(this.diagram.options.homePosition);
+                this.shift.set(diagram.options.homePosition);
             }
-            this.shift.set(diagram.options.homePosition);
         }
 
         // FORM Quit Close
@@ -346,6 +359,14 @@ namespace Diagram
             this.diagram.InvalidateDiagram();
         }
 
+        // FORM open view and go to home position
+        public void OpenViewAndGoToHome()
+        {
+            DiagramView child = this.diagram.openDiagramView(this);
+            child.GoToHome();
+            child.Invalidate();
+        }
+
         // FORM set home position
         public void setCurentPositionAsHomePosition()
         {
@@ -361,6 +382,14 @@ namespace Diagram
             this.shift.set(diagram.options.endPosition);
             this.goToLayer(diagram.options.endLayer);
             this.diagram.InvalidateDiagram();
+        }
+
+        // FORM open view and go to home position
+        public void OpenViewAndGoToEnd()
+        {
+            DiagramView child = this.diagram.openDiagramView(this);
+            child.GoToEnd();
+            child.Invalidate();
         }
 
         // FORM set end position
@@ -518,6 +547,18 @@ namespace Diagram
                 this.ActiveControl = null;
             }
 
+            if (this.editPanel.editing) // close edit panel after mouse click to form
+            {
+                bool selectNode = false;
+                this.editPanel.saveNodeNamePanel(selectNode);
+            }
+            else
+            if (this.editLinkPanel.editing) // close link edit panel after mouse click to form
+            {
+                bool selectNode = false;
+                this.editLinkPanel.saveNodeLinkPanel(selectNode);
+            }
+
             this.startMousePos.x = e.X;  // starting mouse position
             this.startMousePos.y = e.Y;
 
@@ -540,11 +581,6 @@ namespace Diagram
                     moveScreenVertical(rightScrollBar.position);
                     this.diagram.InvalidateDiagram();
                     return;
-                }
-                else
-                if (this.editPanel.editing) // close edit panel after mouse click to form
-                {
-                    this.editPanel.saveNodeNamePanel();
                 }
                 else
                 if (this.sourceNode == null)
@@ -1288,9 +1324,9 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.newDiagramView, keyData))  // [KEY] [CTRL+SHIFT+N] New Diagram view
+            if (KeyMap.parseKey(KeyMap.newDiagramView, keyData))  // [KEY] [F7] New Diagram view
             {
-                this.diagram.openDiagramView();
+                this.diagram.openDiagramView(this);
                 return true;
             }
 
@@ -1353,6 +1389,12 @@ namespace Diagram
                 return true;
             }
 
+            if (KeyMap.parseKey(KeyMap.openViewHome, keyData)) // KEY [CTRL+HOME] open view and go to home position
+            {
+                this.OpenViewAndGoToHome();
+                return true;
+            }
+
             if (KeyMap.parseKey(KeyMap.setHome, keyData))  // [KEY] [SHIFT+HOME] Move start point
             {
                 this.setCurentPositionAsHomePosition();
@@ -1368,6 +1410,12 @@ namespace Diagram
             if (KeyMap.parseKey(KeyMap.setEnd, keyData))  // [KEY] [SHIFT+END] Move end point
             {
                 this.setCurentPositionAsEndPosition();
+                return true;
+            }
+
+            if (KeyMap.parseKey(KeyMap.openViewEnd, keyData)) // KEY [CTRL+END] open view and go to home position
+            {
+                this.OpenViewAndGoToEnd();
                 return true;
             }
 
@@ -2915,9 +2963,7 @@ namespace Diagram
         // VIEW CLOSE
         private void DiagramView_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.diagram.DiagramViews.Remove(this);
-            main.DiagramViews.Remove(this);
-            this.diagram.CloseDiagram();
+            this.diagram.CloseView(this);
         }
 
         // VIEW REFRESH

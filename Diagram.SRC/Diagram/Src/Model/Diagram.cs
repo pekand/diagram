@@ -1357,14 +1357,15 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // DIAGRAM VIEW open new view on diagram
-        public void openDiagramView()
+        public DiagramView openDiagramView(DiagramView parent = null)
         {
-            DiagramView diagramview = new DiagramView(main, this);
+            DiagramView diagramview = new DiagramView(main, this, parent);
             diagramview.setDiagram(this);
             this.DiagramViews.Add(diagramview);
             main.DiagramViews.Add(diagramview);
 			this.SetTitle();
             diagramview.Show();
+            return diagramview;
         }
 
         // DIAGRAM VIEW invalidate all opened views
@@ -1377,6 +1378,21 @@ namespace Diagram
                     DiagramView.Invalidate();
                 }
             }
+        }
+
+        // DIAGRAM close diagram
+        public void CloseView(DiagramView view)
+        {
+            this.DiagramViews.Remove(view);
+            main.DiagramViews.Remove(view);
+
+            foreach (DiagramView diagramView in this.DiagramViews) {
+                if (diagramView.parentView == view) {
+                    diagramView.parentView = null;
+                }
+            }
+
+            this.CloseDiagram();
         }
 
         // DIAGRAM close diagram

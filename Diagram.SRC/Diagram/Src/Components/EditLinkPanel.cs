@@ -132,7 +132,7 @@ namespace Diagram
         }
 
         // EDITPANEL SAVE
-        public void saveNodeNamePanel()
+        public void saveNodeLinkPanel(bool selectNode = true)
         {
             this.editedNode.link = edit.Text;
             this.editedNode.visible = true;
@@ -144,6 +144,10 @@ namespace Diagram
             editing = false;
             this.diagramView.diagram.InvalidateDiagram();
             this.diagramView.Focus();
+
+            if (!selectNode) {
+                this.diagramView.ClearSelection();
+            }
         }
 
         // EDITPANEL RESIZE change panel with after text change
@@ -173,26 +177,26 @@ namespace Diagram
 
             if (KeyMap.parseKey("ESCAPE", keyData)) // zrusenie editácie v panely
             {
-                this.saveNodeNamePanel();
+                this.saveNodeLinkPanel();
                 this.Focus();
             }
 
             if (KeyMap.parseKey("ENTER", keyData) && !e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
-                this.saveNodeNamePanel();
+                this.saveNodeLinkPanel();
                 this.Focus();
             }
 
             if (KeyMap.parseKey("TAB", keyData) && !e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
-                this.saveNodeNamePanel();
+                this.saveNodeLinkPanel();
                 this.Focus();
                 this.diagramView.addNodeAfterNode();
             }
 
             if (KeyMap.parseKey("TAB", keyData) && e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
-                this.saveNodeNamePanel();
+                this.saveNodeLinkPanel();
                 this.Focus();
                 this.diagramView.addNodeBelowNode();
             }
@@ -213,7 +217,7 @@ namespace Diagram
 
         public void closePanel()
         {
-            this.saveNodeNamePanel();
+            this.saveNodeLinkPanel();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Diagram
         public static string pasteToNote = "CTRL+SHIFT+V";
         public static string pasteToLink = "CTRL+SHIFT+INS";
         public static string newDiagram = "CTRL+N";
-        public static string newDiagramView = "CTRL+SHIFT+N";
+        public static string newDiagramView = "F7";
         public static string save = "CTRL+S";
         public static string open = "CTRL+O";
         public static string search = "CTRL+F";
@@ -32,7 +32,9 @@ namespace Diagram
         public static string hideBackground = "F3";
         public static string reverseSearch = "SHIFT+F3";
         public static string home = "HOME";
+        public static string openViewHome = "CTRL+HOME";
         public static string end = "END";
+        public static string openViewEnd = "CTRL+END";
         public static string setHome = "SHIFT+HOME";
         public static string setEnd = "SHIFT+END";
         public static string openDrectory = "F5";
