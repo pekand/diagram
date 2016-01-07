@@ -21,7 +21,7 @@ namespace Diagram
         public static string pasteToNote = "CTRL+SHIFT+V";
         public static string pasteToLink = "CTRL+SHIFT+INS";
         public static string newDiagram = "CTRL+N";
-        public static string newDiagramView = "CTRL+SHIFT+N";
+        public static string newDiagramView = "F7";
         public static string save = "CTRL+S";
         public static string open = "CTRL+O";
         public static string search = "CTRL+F";

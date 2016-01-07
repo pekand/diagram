@@ -18,6 +18,7 @@ namespace Diagram
     public partial class DiagramView : Form
     {
         public Main main = null;
+        public DiagramView parentView = null;
 
         public Popup PopupMenu;
         public System.Windows.Forms.SaveFileDialog DSave;
@@ -185,7 +186,7 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // FORM Constructor
-        public DiagramView(Main main, Diagram diagram)
+        public DiagramView(Main main, Diagram diagram, DiagramView parentView = null)
         {
             this.main = main;
             this.diagram = diagram;
@@ -206,6 +207,8 @@ namespace Diagram
             // initialize edit link panel
             this.editLinkPanel = new EditLinkPanel(this);
             this.Controls.Add(this.editLinkPanel);
+
+            this.parentView = parentView;
         }
 
         // FORM Load event -
@@ -252,12 +255,21 @@ namespace Diagram
             rightScrollBar.OnChangePosition += new PositionChangeEventHandler(positionChangeRight);
 
             // set startup position 
-            if (this.diagram.options.homeLayer != 0)
+            if (this.parentView != null)
+            {
+                this.shift.set(this.parentView.shift);
+                this.goToLayer(this.parentView.currentLayer.id);
+                this.Width = this.parentView.Width;
+                this.Height = this.parentView.Height;
+                this.Top = this.parentView.Top;
+                this.Left = this.parentView.Left;
+                this.WindowState = this.parentView.WindowState;
+            }
+            else
             {
                 this.goToLayer(this.diagram.options.homeLayer);
-                this.goToPosition(this.diagram.options.homePosition);
+                this.shift.set(diagram.options.homePosition);
             }
-            this.shift.set(diagram.options.homePosition);
         }
 
         // FORM Quit Close
@@ -1288,9 +1300,9 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.newDiagramView, keyData))  // [KEY] [CTRL+SHIFT+N] New Diagram view
+            if (KeyMap.parseKey(KeyMap.newDiagramView, keyData))  // [KEY] [F7] New Diagram view
             {
-                this.diagram.openDiagramView();
+                this.diagram.openDiagramView(this);
                 return true;
             }
 
@@ -2915,9 +2927,7 @@ namespace Diagram
         // VIEW CLOSE
         private void DiagramView_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.diagram.DiagramViews.Remove(this);
-            main.DiagramViews.Remove(this);
-            this.diagram.CloseDiagram();
+            this.diagram.CloseView(this);
         }
 
         // VIEW REFRESH
