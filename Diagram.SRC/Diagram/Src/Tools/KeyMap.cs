@@ -32,7 +32,9 @@ namespace Diagram
         public static string hideBackground = "F3";
         public static string reverseSearch = "SHIFT+F3";
         public static string home = "HOME";
+        public static string openViewHome = "CTRL+HOME";
         public static string end = "END";
+        public static string openViewEnd = "CTRL+END";
         public static string setHome = "SHIFT+HOME";
         public static string setEnd = "SHIFT+END";
         public static string openDrectory = "F5";

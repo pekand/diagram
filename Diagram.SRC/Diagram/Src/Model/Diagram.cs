@@ -1357,7 +1357,7 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // DIAGRAM VIEW open new view on diagram
-        public void openDiagramView(DiagramView parent = null)
+        public DiagramView openDiagramView(DiagramView parent = null)
         {
             DiagramView diagramview = new DiagramView(main, this, parent);
             diagramview.setDiagram(this);
@@ -1365,6 +1365,7 @@ namespace Diagram
             main.DiagramViews.Add(diagramview);
 			this.SetTitle();
             diagramview.Show();
+            return diagramview;
         }
 
         // DIAGRAM VIEW invalidate all opened views

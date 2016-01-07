@@ -358,6 +358,14 @@ namespace Diagram
             this.diagram.InvalidateDiagram();
         }
 
+        // FORM open view and go to home position
+        public void OpenViewAndGoToHome()
+        {
+            DiagramView child = this.diagram.openDiagramView(this);
+            child.GoToHome();
+            child.Invalidate();
+        }
+
         // FORM set home position
         public void setCurentPositionAsHomePosition()
         {
@@ -373,6 +381,14 @@ namespace Diagram
             this.shift.set(diagram.options.endPosition);
             this.goToLayer(diagram.options.endLayer);
             this.diagram.InvalidateDiagram();
+        }
+
+        // FORM open view and go to home position
+        public void OpenViewAndGoToEnd()
+        {
+            DiagramView child = this.diagram.openDiagramView(this);
+            child.GoToEnd();
+            child.Invalidate();
         }
 
         // FORM set end position
@@ -1365,6 +1381,12 @@ namespace Diagram
                 return true;
             }
 
+            if (KeyMap.parseKey(KeyMap.openViewHome, keyData)) // KEY [CTRL+HOME] open view and go to home position
+            {
+                this.OpenViewAndGoToHome();
+                return true;
+            }
+
             if (KeyMap.parseKey(KeyMap.setHome, keyData))  // [KEY] [SHIFT+HOME] Move start point
             {
                 this.setCurentPositionAsHomePosition();
@@ -1380,6 +1402,12 @@ namespace Diagram
             if (KeyMap.parseKey(KeyMap.setEnd, keyData))  // [KEY] [SHIFT+END] Move end point
             {
                 this.setCurentPositionAsEndPosition();
+                return true;
+            }
+
+            if (KeyMap.parseKey(KeyMap.openViewEnd, keyData)) // KEY [CTRL+END] open view and go to home position
+            {
+                this.OpenViewAndGoToEnd();
                 return true;
             }
 
