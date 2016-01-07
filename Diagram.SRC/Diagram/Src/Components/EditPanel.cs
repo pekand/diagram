@@ -133,14 +133,18 @@ namespace Diagram
         }
 
         // EDITPANEL SAVE
-        public void saveNodeNamePanel()
+        public void saveNodeNamePanel(bool selectNode = true)
         {
 
             if (this.editedNode == null) {
                 this.editedNode = this.diagramView.CreateNode(new Position(this.Left, this.Top));
             }
 
-            this.editedNode.setName(edit.Text);
+            this.editedNode.name = edit.Text;
+
+            if (!this.editedNode.isimage) {
+                this.editedNode.resize();
+            }
 
             this.editedNode.visible = true;
 
@@ -157,6 +161,11 @@ namespace Diagram
             editing = false;
             this.diagramView.diagram.InvalidateDiagram();
             this.diagramView.Focus();
+
+            if (!selectNode)
+            {
+                this.diagramView.ClearSelection();
+            }
         }
 
         // EDITPANEL RESIZE change panel with after text change

@@ -61,6 +61,7 @@ namespace Diagram
         public bool dblclick = false;            // actual dblclick status
         public bool zooming = false;             // actual zooming by space status
         public bool searching = false;           // actual search edit form status
+        public bool skipMouseUp = false;         // prevent event execution
 
         // ATTRIBUTES ZOOMING
         public Position zoomShift = new Position();// zoom view - left corner position before zoom space press
@@ -546,6 +547,18 @@ namespace Diagram
                 this.ActiveControl = null;
             }
 
+            if (this.editPanel.editing) // close edit panel after mouse click to form
+            {
+                bool selectNode = false;
+                this.editPanel.saveNodeNamePanel(selectNode);
+            }
+            else
+            if (this.editLinkPanel.editing) // close link edit panel after mouse click to form
+            {
+                bool selectNode = false;
+                this.editLinkPanel.saveNodeLinkPanel(selectNode);
+            }
+
             this.startMousePos.x = e.X;  // starting mouse position
             this.startMousePos.y = e.Y;
 
@@ -568,11 +581,6 @@ namespace Diagram
                     moveScreenVertical(rightScrollBar.position);
                     this.diagram.InvalidateDiagram();
                     return;
-                }
-                else
-                if (this.editPanel.editing) // close edit panel after mouse click to form
-                {
-                    this.editPanel.saveNodeNamePanel();
                 }
                 else
                 if (this.sourceNode == null)
