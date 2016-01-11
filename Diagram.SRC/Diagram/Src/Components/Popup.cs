@@ -856,6 +856,7 @@ namespace Diagram
             includeFileItem.Enabled = !readOnly;
             includeDirectoryItem.Enabled = !readOnly;
             removeAttachmentItem.Enabled = !readOnly;
+            protectItem.Enabled = !readOnly;
 
             // NEW FILE
             if (this.diagramView.diagram.isNew())
@@ -899,6 +900,7 @@ namespace Diagram
                 bringTopItem.Enabled = false;
                 bringBottomItem.Enabled = false;
                 lineColorItem.Enabled = false;
+                protectItem.Enabled = false;
             }
 
             // SELECTION NOT EMPTY
@@ -921,6 +923,7 @@ namespace Diagram
                 editLinkItem.Enabled = false;
                 bringTopItem.Enabled = true;
                 bringBottomItem.Enabled = true;
+                protectItem.Enabled = true;
             }
 
             // SELECTION ONE
@@ -1023,7 +1026,6 @@ namespace Diagram
                         pasteItem.Text += " image";
                     }
                 }
-
             }
             else
             {
