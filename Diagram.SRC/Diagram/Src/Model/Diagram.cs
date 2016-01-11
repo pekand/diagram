@@ -12,7 +12,14 @@ using System.Drawing.Text;
 using System.Text.RegularExpressions;
 
 namespace Diagram
-{
+
+    // map node structure for copy paste operation
+    public struct MappedNode
+    {
+        public int oldId;
+        public Node newNode;
+    }
+
     public class Diagram
     {
         public Main main = null;                 // reference to main form
@@ -1656,12 +1663,14 @@ namespace Diagram
             }
 
 
-            List<Node[]> maps = new List<Node[]>();
+            List<MappedNode> maps = new List<MappedNode>();
 
             Nodes NewReorderedNodes = new Nodes(); // order nodes parent first (layer must exist when sub node is created)
             this.nodesReorderNodes(0, null, NewNodes, NewReorderedNodes);
 
             int layerParent = 0;
+
+            MappedNode mappedNode;
 
             foreach (Node rec in NewReorderedNodes)
             {
@@ -1672,11 +1681,11 @@ namespace Diagram
                 }
                 else
                 {
-                    foreach (Node[] mapednode in maps)
+                    foreach (MappedNode mapednode in maps)
                     {
-                        if (rec.layer == mapednode[0].id)
+                        if (rec.layer == mapednode.oldId)
                         {
-                            layerParent = mapednode[1].id;
+                            layerParent = mapednode.newNode.id;
                             break;
                         }
                     }
@@ -1686,10 +1695,12 @@ namespace Diagram
                 rec.position.add(position);
                 rec.resize();
 
-                Node newrec = this.createNode(rec);
+                mappedNode = new MappedNode();
+                mappedNode.oldId = rec.id;
+                mappedNode.newNode = this.createNode(rec);
 
-                if (newrec != null) { 
-                    maps.Add(new Node[2] { rec, newrec });
+                if (mappedNode.newNode != null) { 
+                    maps.Add(mappedNode);
                 }
             }
 
@@ -1698,11 +1709,11 @@ namespace Diagram
             {
                 if (rec.shortcut != 0)
                 { 
-                    foreach (Node[] mapednode in maps)
+                    foreach (MappedNode mapednode in maps)
                     {
-                        if (rec.shortcut == mapednode[0].id)
+                        if (rec.shortcut == mapednode.oldId)
                         {
-                            rec.shortcut = mapednode[1].id;
+                            rec.shortcut = mapednode.newNode.id;
                             break;
                         }
                     }
@@ -1711,17 +1722,17 @@ namespace Diagram
 
             foreach (Line line in NewLines)
             {
-                foreach (Node[] mapbegin in maps)
+                foreach (MappedNode mapbegin in maps)
                 {
-                    if (line.start == mapbegin[0].id)
+                    if (line.start == mapbegin.oldId)
                     {
-                        foreach (Node[] mapend in maps)
+                        foreach (MappedNode mapend in maps)
                         {
-                            if (line.end == mapend[0].id)
+                            if (line.end == mapend.oldId)
                             {
                                 this.Connect(
-                                    mapbegin[1],
-                                    mapend[1],
+                                    mapbegin.newNode,
+                                    mapend.newNode,
                                     line.arrow,
                                     line.color
                                 );
