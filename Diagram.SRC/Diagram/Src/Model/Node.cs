@@ -54,10 +54,13 @@ namespace Diagram
         // Script
         public string scriptid = ""; // node text id for in script search
 
-
         // Padding
-        public const int NodePadding = 10;             // CONST node padding around node name text
-        public const int EmptyNodePadding = 20;        // CONST node padding for empty node circle
+        public const int NodePadding = 10;             // node padding around node name text
+        public const int EmptyNodePadding = 20;        // node padding for empty node circle
+        public const string protectedName = "*****";   // name for protected node
+
+        // Protect
+        public bool protect = false; // protect sensitive data like pasword in node name (show asterisk instead of name)
 
         /// <summary>
         /// node copy from another node to current node</summary>
@@ -100,7 +103,7 @@ namespace Diagram
 
             if (name != "")
             {
-                s = Fonts.MeasureString(this.name, this.font);
+                s = Fonts.MeasureString((this.protect) ? Node.protectedName : this.name, this.font);
                 s.Height += 2 * Node.NodePadding;
                 s.Width += 2 * Node.NodePadding;
             }
@@ -114,7 +117,20 @@ namespace Diagram
 
         public void resize()
         {
-            SizeF s = measure();
+            if (!this.isimage)
+            {
+                SizeF s = measure();
+
+                this.width = (int)s.Width;
+                this.height = (int)s.Height;
+            }
+        }
+
+        public void resizeProtect()
+        {
+            SizeF s = Fonts.MeasureString(Node.protectedName, this.font);
+            s.Height += 2 * Node.NodePadding;
+            s.Width += 2 * Node.NodePadding;
 
             this.width = (int)s.Width;
             this.height = (int)s.Height;
@@ -123,7 +139,29 @@ namespace Diagram
         public void setName(string name)
         {
             this.name = name;
-            this.resize();
+
+            if (this.protect)
+            {
+                this.resizeProtect();
+            }
+            else
+            {
+                this.resize();
+            }
+        }
+
+        public void setProtect(bool protect)
+        {
+            this.protect = protect;
+
+            if (this.protect)
+            {
+                this.resizeProtect();
+            }
+            else
+            {
+                this.resize();
+            }
         }
     }
 }

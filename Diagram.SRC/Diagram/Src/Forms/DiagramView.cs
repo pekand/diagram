@@ -61,7 +61,6 @@ namespace Diagram
         public bool dblclick = false;            // actual dblclick status
         public bool zooming = false;             // actual zooming by space status
         public bool searching = false;           // actual search edit form status
-        public bool skipMouseUp = false;         // prevent event execution
 
         // ATTRIBUTES ZOOMING
         public Position zoomShift = new Position();// zoom view - left corner position before zoom space press
@@ -2820,7 +2819,7 @@ namespace Diagram
 
 
                                 gfx.DrawString(
-                                    rec.name,
+                                    (rec.protect) ? Node.protectedName : rec.name,
                                     new System.Drawing.Font(
                                        rec.font.FontFamily,
                                        rec.font.Size / s,
@@ -4312,6 +4311,29 @@ namespace Diagram
                 {
                     this.diagram.layers.moveToBackground(rec);
                 }
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // NODE protect sesitive data in node name
+        public void protectNodes()
+        {
+            if (this.selectedNodes.Count() > 0)
+            {
+                bool allProtected = true;
+                foreach (Node rec in this.selectedNodes)
+                {
+                    if (rec.protect == false) {
+                        allProtected = false;
+                        break;
+                    }
+                }
+
+                foreach (Node rec in this.selectedNodes)
+                {
+                    rec.setProtect(!allProtected);
+                }
+
                 this.diagram.InvalidateDiagram();
             }
         }
