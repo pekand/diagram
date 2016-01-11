@@ -254,7 +254,7 @@ namespace Diagram
             bottomScrollBar.OnChangePosition += new PositionChangeEventHandler(positionChangeBottom);
             rightScrollBar.OnChangePosition += new PositionChangeEventHandler(positionChangeRight);
 
-            // set startup position 
+            // set startup position
             if (this.parentView != null)
             {
                 this.shift.set(this.parentView.shift);
@@ -423,7 +423,7 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // SELECTION check if node is in current window selecton 
+        // SELECTION check if node is in current window selecton
         public bool isSelected(Node a)
         {
             if (a == null) return false;
@@ -521,7 +521,7 @@ namespace Diagram
         // EVENT Paint                                                                                 // [PAINT] [EVENT]
         public void DiagramApp_Paint(object sender, PaintEventArgs e)
         {
-            this.PaintDiagram(e.Graphics);
+            this.DrawDiagram(e.Graphics);
         }
 
         // EVENT Mouse DoubleClick
@@ -1078,7 +1078,7 @@ namespace Diagram
                                 }
                                 else
                                 {
-                                    this.diagram.Connect(rec, TargetNode, arrow, null); 
+                                    this.diagram.Connect(rec, TargetNode, arrow, null);
                                 }
                             }
                         }
@@ -1478,7 +1478,7 @@ namespace Diagram
                 this.evaluate();
                 return true;
             }
-           
+
 
             if (KeyMap.parseKey(KeyMap.openEditForm, keyData)) // [KEY] [CTRL+E] open edit form
             {
@@ -1700,7 +1700,7 @@ namespace Diagram
             }
         }                         // [KEYBOARD] [PRESS] [EVENT]
 
-        // EVENT File Drop; DROP file
+        // EVENT DROP file
         public void DiagramApp_DragDrop(object sender, DragEventArgs e)                                // [DROP] [EVENT]
         {
             try
@@ -1798,7 +1798,7 @@ namespace Diagram
             }
         }
 
-        // EVENT File Drop
+        // EVENT DROP drag enter
         public void DiagramApp_DragEnter(object sender, DragEventArgs e)                               // [DRAG] [EVENT]
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
@@ -1863,8 +1863,8 @@ namespace Diagram
             }
         }                                      // [MOVE] [TIMER] [EVENT]
 
-        // EVENT Focus - lost focus
-        public void DiagramApp_Deactivate(object sender, EventArgs e)
+        // EVENT Deactivate - lost focus
+        public void DiagramApp_Deactivate(object sender, EventArgs e)                              // [FOCUS]
         {
             this.keyctrl = false;
             this.keyalt = false;
@@ -1928,7 +1928,7 @@ namespace Diagram
                 {
                     this.shift.set(this.currentLayer.parentNode.layerShift);
                 }
-            
+
                 this.SetTitle();
                 this.diagram.InvalidateDiagram();
             }
@@ -2465,7 +2465,7 @@ namespace Diagram
                 Bitmap bmp = new Bitmap(maxx - minx, maxy - miny);
                 Graphics g = Graphics.FromImage(bmp);
                 g.Clear(this.BackColor);
-                this.PaintDiagram(g, new Position(-this.shift.x - minx, -this.shift.y - miny), true);
+                this.DrawDiagram(g, new Position(-this.shift.x - minx, -this.shift.y - miny), true);
                 g.Dispose();
                 bmp.Save(exportFile.FileName, System.Drawing.Imaging.ImageFormat.Png);
                 bmp.Dispose();
@@ -2489,54 +2489,47 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // PAINT                                                                                      // [PAINT]
-        void PaintDiagram(Graphics gfx, Position correction = null, bool export = false)
+        // DRAW                                                                                      // [DRAW]
+        void DrawDiagram(Graphics gfx, Position correction = null, bool export = false)
         {
             gfx.SmoothingMode = SmoothingMode.AntiAlias;
 
             if (this.diagram.options.grid && !export)
             {
-                this.PaintGrid(gfx);
+                this.DrawGrid(gfx);
             }
 
-            this.PaintLines(gfx, correction, export);
+            this.DrawLines(gfx, correction, export);
 
             // DRAW addingnode
             if (!export && this.addingNode && !this.zooming && (this.actualMousePos.x != this.startMousePos.x || this.actualMousePos.y != this.startMousePos.y))
             {
-                this.PaintAddNode(gfx);
+                this.DrawAddNode(gfx);
             }
 
-            this.PaintNodes(gfx, correction, export);
+            this.DrawNodes(gfx, correction, export);
 
-
-            // DRAW select - zvyraznenie výberu viacerich elementov (multiselect)
+            // DRAW select - select nodes by mouse drag (blue rectangle - multiselect)
             if (!export && this.selecting && (this.actualMousePos.x != this.startMousePos.x || this.actualMousePos.y != this.startMousePos.y))
             {
-                this.PaintSelectedNodes(gfx);
+                this.DrawSelectNodes(gfx);
             }
 
             // PREVIEW draw zoom mini screen
             if (!export && this.zooming)
             {
-                this.PaintMiniScreen(gfx);
+                this.DrawMiniScreen(gfx);
             }
 
             // DRAW coordinates
             if (this.diagram.options.coordinates)
             {
-                this.PaintCoordinates(gfx);
-            }
-
-            // vykreslenie scrollbarov
-            if (!export && bottomScrollBar != null && rightScrollBar != null)
-            {
-                bottomScrollBar.Paint(gfx);
-                rightScrollBar.Paint(gfx);
+                this.DrawCoordinates(gfx);
             }
         }
 
-        void PaintGrid(Graphics gfx)
+        // DRAW grid
+        void DrawGrid(Graphics gfx)
         {
             float s = this.scale;
             System.Drawing.Pen myPen = new System.Drawing.Pen(Color.FromArgb(201, 201, 201), 1);
@@ -2560,7 +2553,8 @@ namespace Diagram
             }
         }
 
-        void PaintMiniScreen(Graphics gfx)
+        // DRAW diagram mini screen in zoom mode
+        void DrawMiniScreen(Graphics gfx)
         {
             float s = this.scale;
             System.Drawing.Pen myPen = new System.Drawing.Pen(Color.FromArgb(201, 201, 201), 1);
@@ -2577,7 +2571,8 @@ namespace Diagram
             );
         }
 
-        void PaintCoordinates(Graphics gfx)
+        // DRAW coordinates for debuging
+        void DrawCoordinates(Graphics gfx)
         {
             float s = this.scale;
             System.Drawing.Pen myPen = new System.Drawing.Pen(Color.FromArgb(201, 201, 201), 1);
@@ -2592,7 +2587,8 @@ namespace Diagram
                         drawFont, drawBrush, 10, 10);
         }
 
-        void PaintSelectedNodes(Graphics gfx)
+        // DRAW select node by mouse drag (blue rectangle)
+        void DrawSelectNodes(Graphics gfx)
         {
             float s = this.scale;
             System.Drawing.Pen myPen = new System.Drawing.Pen(System.Drawing.Color.Black, 1);
@@ -2608,7 +2604,8 @@ namespace Diagram
             gfx.FillRectangle(new SolidBrush(Color.FromArgb(100, 10, 200, 200)), new Rectangle((int)(a / this.scale), (int)(b / this.scale), (int)((c - a) / this.scale), (int)((d - b) / this.scale)));
         }
 
-        void PaintAddNode(Graphics gfx)
+        // DRAW add new node by drag
+        void DrawAddNode(Graphics gfx)
         {
             float s = this.scale;
             System.Drawing.Pen myPen = new System.Drawing.Pen(System.Drawing.Color.Black, 1);
@@ -2639,7 +2636,8 @@ namespace Diagram
             );
         }
 
-        void PaintNodes(Graphics gfx, Position correction = null, bool export = false)
+        // DRAW nodes
+        void DrawNodes(Graphics gfx, Position correction = null, bool export = false)
         {
             bool isvisible = false; // drawonly visible elements
             float s = this.scale;
@@ -2838,7 +2836,8 @@ namespace Diagram
             }
         }
 
-        void PaintLines(Graphics gfx, Position correction = null, bool export = false)
+        // DRAW lines
+        void DrawLines(Graphics gfx, Position correction = null, bool export = false)
         {
             bool isvisible = false; // drawonly visible elements
             float s = this.scale;
@@ -3735,7 +3734,7 @@ namespace Diagram
                 else
                 {                                                      // Spracovanie textu zo schranky
                     newrec.setName(ClipText);
-                    
+
 
                     if (Os.FileExists(ClipText))
                     {
@@ -4293,7 +4292,7 @@ namespace Diagram
         public void moveNodesToForeground()
         {
             if (this.selectedNodes.Count() > 0)
-            {  
+            {
                 foreach (Node rec in this.selectedNodes)
                 {
                     this.diagram.layers.moveToForeground(rec);
@@ -4643,7 +4642,7 @@ namespace Diagram
                 nodes = new Nodes(this.diagram.getAllNodes());
             }
             // remove nodes whit link other then [ ! | eval | evaluate | !#num_order | eval#num_order |  evaluate#num_order]
-            // higest number is executed first  
+            // higest number is executed first
             Regex regex = new Regex(@"^\s*(eval(uate)|!){1}(#\w+){0,1}\s*$");
             nodes.RemoveAll(n => !regex.Match(n.link).Success);
 

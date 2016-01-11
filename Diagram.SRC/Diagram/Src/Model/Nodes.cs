@@ -27,7 +27,7 @@ namespace Diagram
 
         public void OrderByPositionY()
         {
-            this.Sort((x, y) => y.position.y.CompareTo(x.position.y));
+            this.Sort((x, y) => x.position.y.CompareTo(y.position.y));
         }
     }
 }
