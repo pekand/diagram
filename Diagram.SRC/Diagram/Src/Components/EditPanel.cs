@@ -140,11 +140,7 @@ namespace Diagram
                 this.editedNode = this.diagramView.CreateNode(new Position(this.Left, this.Top));
             }
 
-            this.editedNode.name = edit.Text;
-
-            if (!this.editedNode.isimage) {
-                this.editedNode.resize();
-            }
+            this.editedNode.setName(edit.Text);
 
             this.editedNode.visible = true;
 

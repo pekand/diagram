@@ -57,6 +57,7 @@ namespace Diagram
         private System.Windows.Forms.ToolStripMenuItem editLinkItem;
         private System.Windows.Forms.ToolStripMenuItem bringTopItem;
         private System.Windows.Forms.ToolStripMenuItem bringBottomItem;
+        private System.Windows.Forms.ToolStripMenuItem protectItem;
 
         private System.Windows.Forms.ToolStripMenuItem lineItem; // LINE
         private System.Windows.Forms.ToolStripMenuItem lineColorItem;
@@ -168,6 +169,7 @@ namespace Diagram
             this.editLinkItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bringTopItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bringBottomItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.protectItem = new System.Windows.Forms.ToolStripMenuItem();
             // LINE
             this.lineItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lineColorItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -487,7 +489,8 @@ namespace Diagram
             fontColorItem,
             editLinkItem,
             bringTopItem,
-            bringBottomItem});
+            bringBottomItem,
+            protectItem});
             this.nodeItem.Name = "nodeItem";
             this.nodeItem.Size = new System.Drawing.Size(164, 22);
             this.nodeItem.Text = "Node";
@@ -533,6 +536,13 @@ namespace Diagram
             this.bringBottomItem.Size = new System.Drawing.Size(126, 22);
             this.bringBottomItem.Text = "Bring to bottom";
             this.bringBottomItem.Click += new System.EventHandler(this.bringBottomItem_Click);
+            //
+            // protectItem
+            //
+            this.protectItem.Name = "protectItem";
+            this.protectItem.Size = new System.Drawing.Size(126, 22);
+            this.protectItem.Text = "Protect";
+            this.protectItem.Click += new System.EventHandler(this.protectItem_Click);
             //
             // lineItem
             //
@@ -1257,6 +1267,12 @@ namespace Diagram
         private void bringBottomItem_Click(object sender, EventArgs e)
         {
             this.diagramView.moveNodesToBackground();
+        }
+
+        // MENU NODE protect sesitive data in node name
+        private void protectItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.protectNodes();
         }
 
         // MENU LINE select line color

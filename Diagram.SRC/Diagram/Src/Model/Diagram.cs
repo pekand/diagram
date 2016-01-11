@@ -510,6 +510,11 @@ namespace Diagram
                                                     R.timemodify = el.Value;
                                                 }
 
+                                                if (el.Name.ToString() == "protect")
+                                                {
+                                                    R.protect = bool.Parse(el.Value);
+                                                }
+
                                             }
                                             catch (Exception ex)
                                             {
@@ -605,8 +610,8 @@ namespace Diagram
                        rec.position.y += (rec.height - newHeight) / 2;
                     }
 
-                    rec.width = newWidth;
-                    rec.height = newHeight;
+                    rec.resize();
+
                 }
 
                 this.layers.addNode(rec);
@@ -779,7 +784,10 @@ namespace Diagram
                     else if (rec.imagepath != "")
                     {
                         rectangle.Add(new XElement("image", rec.imagepath));
+
                     }
+
+                    if (rec.protect) rectangle.Add(new XElement("protect", rec.protect));
 
                     rectangle.Add(new XElement("timecreate", rec.timecreate));
                     rectangle.Add(new XElement("timemodify", rec.timemodify));
@@ -1003,8 +1011,7 @@ namespace Diagram
             string name = "", 
             int layer = 0, 
             Color? color = null, 
-            Font font = null, 
-            Layer parentLayer = null
+            Font font = null
         ) {
             if (!this.options.readOnly)
             {
@@ -1036,6 +1043,30 @@ namespace Diagram
                 this.layers.addNode(rec);
 
                 return rec;
+            }
+
+            return null;
+        }
+
+        // NODE Create Rectangle on point
+        public Node createNode(
+            Node node
+        )
+        {
+            if (!this.options.readOnly)
+            {
+                node.id = ++maxid;
+
+                DateTime dt = DateTime.Now;
+                node.timecreate = String.Format("{0:yyyy-M-d HH:mm:ss}", dt);
+                node.timemodify = node.timecreate;
+
+                Layer layer = this.layers.addNode(node);
+
+                if (layer != null)
+                {
+                    return node;
+                }
             }
 
             return null;
@@ -1552,6 +1583,11 @@ namespace Diagram
                                                     R.layer = Int32.Parse(el.Value);
                                                 }
 
+                                                if (el.Name.ToString() == "protect")
+                                                {
+                                                    R.protect = bool.Parse(el.Value);
+                                                }
+
                                             }
                                             catch (Exception ex)
                                             {
@@ -1635,7 +1671,7 @@ namespace Diagram
                     layerParent = layer;
                 }
                 else
-                { 
+                {
                     foreach (Node[] mapednode in maps)
                     {
                         if (rec.layer == mapednode[0].id)
@@ -1646,24 +1682,15 @@ namespace Diagram
                     }
                 }
 
-                Node newrec = this.createNode(
-                    rec.position.clone().add(position),
-                    rec.name,
-                    layerParent,
-                    null,
-                    rec.font
-                );
+                rec.layer = layerParent;
+                rec.position.add(position);
+                rec.resize();
 
-                newrec.note = rec.note;
-                newrec.color = rec.color;
-                newrec.fontcolor = rec.fontcolor;
-                newrec.link = rec.link;
-                newrec.shortcut = rec.shortcut;
-                newrec.transparent = rec.transparent;
-                newrec.timecreate = rec.timecreate;
-                newrec.timemodify = rec.timemodify;
+                Node newrec = this.createNode(rec);
 
-                maps.Add(new Node[2] { rec, newrec });
+                if (newrec != null) { 
+                    maps.Add(new Node[2] { rec, newrec });
+                }
             }
 
             // fix layers and shortcuts
@@ -1791,6 +1818,7 @@ namespace Diagram
                     rectangle.Add(new XElement("timemodify", rec.timemodify));
                     rectangle.Add(new XElement("attachment", rec.attachment));
                     if (rec.layer != 0 && rec.layer - minid + 1 > 0)  rectangle.Add(new XElement("layer", rec.layer - minid + 1));
+                    if (rec.protect) rectangle.Add(new XElement("protect", rec.protect));
 
                     rectangles.Add(rectangle);
                 }
