@@ -26,8 +26,8 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>7</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>0.3.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -88,7 +88,7 @@
     <ManifestKeyFile>Diagram_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>false</GenerateManifests>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -141,6 +141,15 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Src\Components\Breadcrumbs.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Src\Components\EditLinkPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Src\Components\Popup.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Src\Components\EditPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -149,12 +158,18 @@
     </Compile>
     <Compile Include="Src\Components\Server.cs" />
     <Compile Include="Src\Components\Script.cs" />
+    <Compile Include="Src\Lib\Compress.cs" />
     <Compile Include="Src\Lib\Job.cs" />
     <Compile Include="Src\Lib\Encrypt.cs" />
     <Compile Include="Src\Lib\Fonts.cs" />
     <Compile Include="Src\Lib\Media.cs" />
     <Compile Include="Src\Lib\Os.cs" />
+    <Compile Include="Src\Lib\Patterns.cs" />
     <Compile Include="Src\Main.cs" />
+    <Compile Include="Src\Model\Layer.cs" />
+    <Compile Include="Src\Model\Layers.cs" />
+    <Compile Include="Src\Model\Lines.cs" />
+    <Compile Include="Src\Model\Nodes.cs" />
     <Compile Include="Src\Model\Position.cs" />
     <Compile Include="Src\ProgramOptions.cs" />
     <Compile Include="Src\Forms\AboutForm.cs">
@@ -174,7 +189,7 @@
     <Compile Include="Src\Tools\OptionsFile.cs" />
     <Compile Include="Src\Tools\Log.cs" />
     <Compile Include="Src\Components\ScrollBar.cs" />
-    <Compile Include="Src\Forms\ConsoleLog.cs">
+    <Compile Include="Src\Forms\Console.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Src\Lib\Network.cs" />
@@ -257,6 +272,12 @@
     <None Include="Resources\diagramico_forms.ico" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Src\Components\Breadcrumbs.resx">
+      <DependentUpon>Breadcrumbs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Components\EditLinkPanel.resx">
+      <DependentUpon>EditLinkPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Src\Components\EditPanel.resx">
       <DependentUpon>EditPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -269,8 +290,8 @@
     <EmbeddedResource Include="Src\Forms\ChangePasswordForm.resx">
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Src\Forms\ConsoleLog.resx">
-      <DependentUpon>ConsoleLog.cs</DependentUpon>
+    <EmbeddedResource Include="Src\Forms\Console.resx">
+      <DependentUpon>Console.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\DiagramView.resx">
       <DependentUpon>DiagramView.cs</DependentUpon>

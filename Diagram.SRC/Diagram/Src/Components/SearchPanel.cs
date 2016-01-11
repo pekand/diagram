@@ -38,6 +38,13 @@ namespace Diagram
             //
             // textBoxSearch
             //
+            this.textBoxSearch.Font = new System.Drawing.Font(
+                "Microsoft Sans Serif",
+                16F, 
+                System.Drawing.FontStyle.Regular, 
+                System.Drawing.GraphicsUnit.Point, 
+                ((byte)(0))
+            );
             this.textBoxSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.textBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxSearch.Location = new System.Drawing.Point(4, 4);
@@ -45,6 +52,7 @@ namespace Diagram
             this.textBoxSearch.Size = new System.Drawing.Size(100, 13);
             this.textBoxSearch.TabIndex = 0;
             this.textBoxSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_KeyUp);
+            this.textBoxSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_KeyDown);
             //
             // SearchPanel
             //
@@ -69,7 +77,7 @@ namespace Diagram
 
             System.Drawing.Size size = TextRenderer.MeasureText("Text", textBoxSearch.Font);
             textBoxSearch.Height = size.Height;
-            this.Height = size.Height + 2;
+            this.Height = size.Height + 5;
 
             this.centerPanel();
         }
@@ -79,8 +87,7 @@ namespace Diagram
             string action = "";
             string currentText = textBoxSearch.Text;
 
-            if (e.KeyCode == Keys.Enter
-                || oldText != currentText)
+            if (oldText != currentText)
             {
                 action = "search";
                 oldText = currentText;
@@ -95,6 +102,11 @@ namespace Diagram
             {
                 action = "searchPrev";
             }
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.Hide();
+                action = "close";
+            }
 
             if (e.KeyCode == Keys.Escape)
             {
@@ -106,6 +118,16 @@ namespace Diagram
                 this.SearchpanelStateChanged(action, currentText);
 
             this.centerPanel();
+        }
+
+        private void textBoxSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            // remove ding sound
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
         }
 
         public void centerPanel()

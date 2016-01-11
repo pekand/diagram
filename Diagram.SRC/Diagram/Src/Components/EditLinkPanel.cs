@@ -4,17 +4,16 @@ using System.Windows.Forms;
 
 namespace Diagram
 {
-    public class EditPanel : Panel
+    public class EditLinkPanel : Panel
     {
         public DiagramView diagramView = null;       // diagram ktory je previazany z pohladom
 
         public bool editing = false; // panel je zobrazený
         public RichTextBox edit = null; // edit pre nove meno nody
 
-        public Node prevSelectedNode = null;
         public Node editedNode = null;
 
-        public EditPanel(DiagramView diagramView)
+        public EditLinkPanel(DiagramView diagramView)
         {
             this.diagramView = diagramView;
 
@@ -39,7 +38,7 @@ namespace Diagram
             this.edit.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFFB8");
             this.edit.BorderStyle = BorderStyle.None;
             this.edit.Location = new System.Drawing.Point(4, 4);
-            this.edit.Name = "edit";
+            this.edit.Name = "editLink";
             this.edit.Size = new System.Drawing.Size(100, 13);
             this.edit.TabIndex = 0;
             this.edit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nodeNameEdit_KeyDown);
@@ -118,7 +117,7 @@ namespace Diagram
                 Font font = new Font(nodeFont.FontFamily, nodeFont.Size / this.diagramView.scale, nodeFont.Style);
 
                 this.edit.Font = font;
-                this.edit.Text = this.editedNode.name; // add first character
+                this.edit.Text = this.editedNode.link; // add first character
 
                 this.setPanelSize();
 
@@ -133,26 +132,10 @@ namespace Diagram
         }
 
         // EDITPANEL SAVE
-        public void saveNodeNamePanel(bool selectNode = true)
+        public void saveNodeLinkPanel(bool selectNode = true)
         {
-
-            if (this.editedNode == null) {
-                this.editedNode = this.diagramView.CreateNode(new Position(this.Left, this.Top));
-            }
-
-            this.editedNode.name = edit.Text;
-
-            if (!this.editedNode.isimage) {
-                this.editedNode.resize();
-            }
-
+            this.editedNode.link = edit.Text;
             this.editedNode.visible = true;
-
-            if (this.prevSelectedNode != null)
-            {
-                this.diagramView.diagram.Connect(this.prevSelectedNode, this.editedNode);
-                this.prevSelectedNode = null;
-            }
 
             this.diagramView.diagram.unsave();
 
@@ -162,8 +145,7 @@ namespace Diagram
             this.diagramView.diagram.InvalidateDiagram();
             this.diagramView.Focus();
 
-            if (!selectNode)
-            {
+            if (!selectNode) {
                 this.diagramView.ClearSelection();
             }
         }
@@ -195,26 +177,26 @@ namespace Diagram
 
             if (KeyMap.parseKey("ESCAPE", keyData)) // zrusenie editácie v panely
             {
-                this.saveNodeNamePanel();
+                this.saveNodeLinkPanel();
                 this.Focus();
             }
 
             if (KeyMap.parseKey("ENTER", keyData) && !e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
-                this.saveNodeNamePanel();
+                this.saveNodeLinkPanel();
                 this.Focus();
             }
 
             if (KeyMap.parseKey("TAB", keyData) && !e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
-                this.saveNodeNamePanel();
+                this.saveNodeLinkPanel();
                 this.Focus();
                 this.diagramView.addNodeAfterNode();
             }
 
             if (KeyMap.parseKey("TAB", keyData) && e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
-                this.saveNodeNamePanel();
+                this.saveNodeLinkPanel();
                 this.Focus();
                 this.diagramView.addNodeBelowNode();
             }
@@ -235,7 +217,7 @@ namespace Diagram
 
         public void closePanel()
         {
-            this.saveNodeNamePanel();
+            this.saveNodeLinkPanel();
         }
     }
 }

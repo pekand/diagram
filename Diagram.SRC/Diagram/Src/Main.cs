@@ -136,7 +136,7 @@ namespace Diagram
         }
 
         /// <summary>
-        /// open existing diagram or create new empty diagram 
+        /// open existing diagram or create new empty diagram
         /// Create diagram model and then open diagram view on this model</summary>
         public void OpenDiagram(String FilePath = "")
         {
@@ -163,9 +163,9 @@ namespace Diagram
             // open existing diagram file
             else
             {
-                if (File.Exists(FilePath))
+                if (Os.FileExists(FilePath))
                 {
-                    FilePath = Path.GetFullPath(FilePath);
+                    FilePath = Os.getFullPath(FilePath);
 
                     // if server already exist in system, send him message whitch open diagram file
                     if (server.serverAlreadyExist)
@@ -182,7 +182,7 @@ namespace Diagram
                         {
                             if (diagram.FileName == FilePath)
                             {
-                                //focus
+                                // focus
                                 if (diagram.DiagramViews.Count() > 0)
                                 {
                                     diagram.DiagramViews[0].setFocus();
@@ -207,7 +207,6 @@ namespace Diagram
                     }
                 }
             }
-
         }
 
         /// <summary>
@@ -226,7 +225,7 @@ namespace Diagram
             {
 
                 //skip application name
-                if (i == 0) 
+                if (i == 0)
                 {
                     continue;
                 }
@@ -242,7 +241,7 @@ namespace Diagram
                 else
                 {
                     // [COMAND LINE] [OPEN] check if argument is diagram file
-                    if (Path.GetExtension(arg).ToLower() == ".diagram")
+                    if (Os.getExtension(arg).ToLower() == ".diagram")
                     {
                         CommandLineOpen.Add(arg);
                     }
@@ -261,11 +260,11 @@ namespace Diagram
                     string file = CommandLineOpen[i];
 
                     // tray create diagram file if command line option is set
-                    if (CommandLineCreateIfNotExistFile && !File.Exists(file))
+                    if (CommandLineCreateIfNotExistFile && !Os.FileExists(file))
                     {
                         try
                         {
-                            File.Create(file).Dispose();
+                            Os.createEmptyFile(file);
                         }
                         catch (Exception ex)
                         {
@@ -273,14 +272,14 @@ namespace Diagram
                         }
                     }
 
-                    if (File.Exists(file))
+                    if (Os.FileExists(file))
                     {
                         this.OpenDiagram(file);
                     }
                 }
 
                 // cose application if is not diagram model opened
-                this.CloseEmptyApplication(); 
+                this.CloseEmptyApplication();
             }
             else
             {
@@ -297,7 +296,7 @@ namespace Diagram
             translations = new Translations();
             options = new ProgramOptions();
             optionsFile = new OptionsFile(options);
-            
+
             // create local server for comunication between local instances
             server = new Server(this);
 
@@ -321,7 +320,7 @@ namespace Diagram
             /*if (this.args.Length == 1) // if not argument is added from system ad some testing arguments
             {
                 // comand line arguments testing
-                this.args = new string[] { 
+                this.args = new string[] {
                     System.Reflection.Assembly.GetExecutingAssembly().Location
                     ,"c:\\Users\\root\\Desktop\\test.diagram"
                 };

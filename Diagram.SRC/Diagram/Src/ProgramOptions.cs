@@ -7,12 +7,11 @@ namespace Diagram
     /// global program parmeters</summary>
     public class ProgramOptions
     {
-        
+
         [JsonIgnore]
         /// <summary>
         /// home page url</summary>
         public String home_page = "https://www.infinite-diagram.com";
-
 
         [JsonIgnore]
         /// <summary>

@@ -54,9 +54,9 @@ elif [ "$1" = "build" ]; then
 elif [ "$1" = "install" ]; then
 	cd ./install-linux/
 	chmod 775 make-package.sh
-        ./make-package.sh
-        chmod 775 install-package.sh
-        ./install-package.sh
+    ./make-package.sh
+    chmod 775 install-package.sh
+    ./install-package.sh
 
 elif [ "$1" = "clean" ]; then
 

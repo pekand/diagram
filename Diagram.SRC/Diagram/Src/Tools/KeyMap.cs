@@ -21,7 +21,7 @@ namespace Diagram
         public static string pasteToNote = "CTRL+SHIFT+V";
         public static string pasteToLink = "CTRL+SHIFT+INS";
         public static string newDiagram = "CTRL+N";
-        public static string newDiagramView = "CTRL+SHIFT+N";
+        public static string newDiagramView = "F7";
         public static string save = "CTRL+S";
         public static string open = "CTRL+O";
         public static string search = "CTRL+F";
@@ -32,7 +32,9 @@ namespace Diagram
         public static string hideBackground = "F3";
         public static string reverseSearch = "SHIFT+F3";
         public static string home = "HOME";
+        public static string openViewHome = "CTRL+HOME";
         public static string end = "END";
+        public static string openViewEnd = "CTRL+END";
         public static string setHome = "SHIFT+HOME";
         public static string setEnd = "SHIFT+END";
         public static string openDrectory = "F5";
@@ -42,9 +44,13 @@ namespace Diagram
         public static string pageUp = "PAGEUP";
         public static string pageDown = "PAGEDOWN";
         public static string editNodeName =  "F2";
+        public static string editNodeLink = "F4";
+        public static string evaluateNodes = "F9";
         public static string openEditForm = "CTRL+E";
         public static string editOrLayerIn = "ENTER";
-        public static string layerOut = "BACK";
+        public static string layerIn = "ADD";
+        public static string layerOut = "SUBTRACT";
+        public static string layerOut2 = "BACK";
         public static string minimalize = "ESCAPE";
         public static string delete = "DELETE";
         public static string moveLeft = "LEFT";
@@ -58,6 +64,7 @@ namespace Diagram
         public static string alignLeft = "TAB";
         public static string alignRight = "SHIFT+TAB";
         public static string editCancel = "ESCAPE";
+        public static string resetZoom = "CTRL+0";
 
         public static bool parseKey(string key, Keys keyData)
         {
@@ -107,6 +114,66 @@ namespace Diagram
                 if (part == "DEL")
                 {
                     keyCode = Keys.Delete | keyCode;
+                    continue;
+                }
+
+                if (part == "0")
+                {
+                    keyCode = Keys.D0 | keyCode;
+                    continue;
+                }
+
+                if (part == "1")
+                {
+                    keyCode = Keys.D1 | keyCode;
+                    continue;
+                }
+
+                if (part == "2")
+                {
+                    keyCode = Keys.D2 | keyCode;
+                    continue;
+                }
+
+                if (part == "3")
+                {
+                    keyCode = Keys.D3 | keyCode;
+                    continue;
+                }
+
+                if (part == "4")
+                {
+                    keyCode = Keys.D4 | keyCode;
+                    continue;
+                }
+
+                if (part == "5")
+                {
+                    keyCode = Keys.D5 | keyCode;
+                    continue;
+                }
+
+                if (part == "6")
+                {
+                    keyCode = Keys.D6 | keyCode;
+                    continue;
+                }
+
+                if (part == "7")
+                {
+                    keyCode = Keys.D7 | keyCode;
+                    continue;
+                }
+
+                if (part == "8")
+                {
+                    keyCode = Keys.D8 | keyCode;
+                    continue;
+                }
+
+                if (part == "9")
+                {
+                    keyCode = Keys.D9 | keyCode;
                     continue;
                 }
 
