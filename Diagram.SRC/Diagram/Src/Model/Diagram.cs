@@ -12,7 +12,7 @@ using System.Drawing.Text;
 using System.Text.RegularExpressions;
 
 namespace Diagram
-
+{
     // map node structure for copy paste operation
     public struct MappedNode
     {
@@ -1014,10 +1014,10 @@ namespace Diagram
 
         // NODE Create Rectangle on point
         public Node createNode(
-            Position position, 
-            string name = "", 
-            int layer = 0, 
-            Color? color = null, 
+            Position position,
+            string name = "",
+            int layer = 0,
+            Color? color = null,
             Font font = null
         ) {
             if (!this.options.readOnly)
@@ -1096,7 +1096,7 @@ namespace Diagram
                         layer = a.layer;
                     }
                     else
-                    if (a.layer == b.id) // b is perent of a 
+                    if (a.layer == b.id) // b is perent of a
                     {
                         layer = a.layer;
                     }
@@ -1191,12 +1191,9 @@ namespace Diagram
         }
 
         // NODES ALIGN compact
+        // align node to left and create constant space between nodes
         public void AlignCompact(Nodes nodes)
         {
-            // vyratanie ci je mensi profil na sirku alebo na vysku a potom ich zarovnat
-            // po zarovnani by sa nemali prekrivat
-            // ked su zarovnané pozmensovat medzery medzi nimi na nejaku konstantnu vzdialenost
-
             if (nodes.Count() > 0)
             {
                 int minx = nodes[0].position.x;
@@ -1699,7 +1696,7 @@ namespace Diagram
                 mappedNode.oldId = rec.id;
                 mappedNode.newNode = this.createNode(rec);
 
-                if (mappedNode.newNode != null) { 
+                if (mappedNode.newNode != null) {
                     maps.Add(mappedNode);
                 }
             }
@@ -1708,7 +1705,7 @@ namespace Diagram
             foreach (Node rec in NewNodes)
             {
                 if (rec.shortcut != 0)
-                { 
+                {
                     foreach (MappedNode mapednode in maps)
                     {
                         if (rec.shortcut == mapednode.oldId)

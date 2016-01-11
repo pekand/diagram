@@ -4,7 +4,7 @@
 #define MyAppName "Infinite Diagram"
 #define MyAppVersion "0.2"
 #define MyAppPublisher "pekand@gmail.com"
-#define MyAppURL "http://www.pekand.com"
+#define MyAppURL "http://www.infinite-diagram.com"
 #define MyAppExeName "Diagram.exe"
 
 
