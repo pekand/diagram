@@ -9,16 +9,16 @@ using System.IO;
 /*
     ! | eval | evaluate
     script executed by F9
-    evaluate selected nodes or all nodes globaly 
+    evaluate selected nodes or all nodes globaly
 
     !#1 | eval#1 | evaluate#1
     script evaluated by priority
-    
+
     $ | script | macro
     evaluate node only by double click
-    
+
     @id
-    get node by diagram.getNoteBySciptId  
+    get node by diagram.getNoteBySciptId
 */
 
 /*
@@ -44,7 +44,7 @@ using System.IO;
 
 /*
     # example of python script:
-    # 
+    #
     # create circle from nodes in current layer
 
     import clr
@@ -69,7 +69,7 @@ using System.IO;
 
 /*
     # short example of python script using Tools:
-    # 
+    #
     # create circle from nodes in current layer
 
     import math
@@ -181,7 +181,7 @@ namespace Diagram
             {
                 this.script.diagramView.goToLayer(layer);
             }
-            
+
             this.script.diagramView.goToPosition(new Position(x, y));
         }
 

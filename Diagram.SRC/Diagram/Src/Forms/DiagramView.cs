@@ -2509,8 +2509,7 @@ namespace Diagram
 
             this.DrawNodes(gfx, correction, export);
 
-
-            // DRAW select - zvyraznenie výberu viacerich elementov (multiselect)
+            // DRAW select - select nodes by mouse drag (blue rectangle - multiselect)
             if (!export && this.selecting && (this.actualMousePos.x != this.startMousePos.x || this.actualMousePos.y != this.startMousePos.y))
             {
                 this.DrawSelectNodes(gfx);
@@ -2526,13 +2525,6 @@ namespace Diagram
             if (this.diagram.options.coordinates)
             {
                 this.DrawCoordinates(gfx);
-            }
-
-            // vykreslenie scrollbarov
-            if (!export && bottomScrollBar != null && rightScrollBar != null)
-            {
-                bottomScrollBar.Paint(gfx);
-                rightScrollBar.Paint(gfx);
             }
         }
 

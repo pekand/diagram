@@ -63,6 +63,8 @@ namespace Diagram
         {
             this.parent = parent;
 
+            ((Form)this.parent).Paint += new System.Windows.Forms.PaintEventHandler(this.PaintEvent);
+
             vertical = !horizontalOrientation;
             horizontal = horizontalOrientation;
 
@@ -107,6 +109,12 @@ namespace Diagram
             }
 
             return true;
+        }
+
+        // EVENT Paint                                                                                 // [PAINT] [EVENT]
+        public void PaintEvent(object sender, PaintEventArgs e)
+        {
+            this.Paint(e.Graphics);
         }
 
         public void Paint(Graphics g)
@@ -258,12 +266,11 @@ namespace Diagram
                         OnChangePosition(this, new PositionEventArgs(position));
                     }
 
-
                     return true;
                 }
 
             }
-            else // ak sa len prehádz ponad scrollbar mišou 
+            else // ak sa len prehádz ponad scrollbar mišou
             {
                 if (barx <= mx && mx <= barx + barwidth && bary <= my && my <= bary + barheight)
                 {
@@ -364,8 +371,6 @@ namespace Diagram
             }
 
             ((Form)this.parent).Invalidate();
-
-		
 		}
 
         public void setPosition(float per)
