@@ -9,68 +9,63 @@ namespace Diagram
     {
 
         /// <summary>
-        /// download http page and parse title from it </summary>
-        public static string GetWebPageTitle(string url)
-        {
-            string title = url;
-
-            try
-            {
-                WebClient x = new WebClient();
-                x.Encoding = System.Text.Encoding.UTF8;
-                string source = x.DownloadString(url);
-
-                string encoding = Regex.Match(
-                    source, 
-                    "<meta.*?charset=['\"]?(?<Encoding>[^\"']+)['\"]?", 
-                    RegexOptions.IgnoreCase
-                ).Groups["Encoding"].Value;
-
-                if (encoding.Trim() != "" && encoding != "utf-8")
-                {
-                    x.Encoding = System.Text.Encoding.GetEncoding(encoding);
-                    source = x.DownloadString(url);
-                }
-
-                title = WebUtility.HtmlDecode(
-                    Regex.Match(
-                        source, 
-                        "<title\\b[^>]*>\\s*(?<Title>[\\s\\S]*?)</title>", 
-                        RegexOptions.IgnoreCase
-                    ).Groups["Title"].Value
-                );
-
-                if (title.Trim() == "") title = url;
-            }
-            catch (Exception ex)
-            {
-                Program.log.write("get web page title error: " + ex.Message);
-            }
-            return title;
-        }
-
-
-        /// <summary>
         /// download https page and parse title from it </summary>
-        public static string GetSecuredWebPageTitle(string url)
+        public static string GetWebPageTitle(string url, int level = 0)
         {
             string title = url;
 
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.AllowAutoRedirect = true;
+                request.MaximumAutomaticRedirections = 3;
+                request.UseDefaultCredentials = true;
+                request.Proxy = WebRequest.GetSystemWebProxy();
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 Stream resStream = response.GetResponseStream();
-                StreamReader reader = new StreamReader(resStream);
+
+                MemoryStream memoryStream = new MemoryStream();
+                resStream.CopyTo(memoryStream);
+
+                // read stream with utf8
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                StreamReader reader = new StreamReader(memoryStream);
                 string page = reader.ReadToEnd();
 
-                title = WebUtility.HtmlDecode(
-                    Regex.Match(
-                        page, 
-                        "<title\\b[^>]*>\\s*(?<Title>[\\s\\S]*?)</title>", 
+                string encoding = Regex.Match(
+                    page,
+                    "<meta.*?charset=['\"]?(?<Encoding>[^\"']+)['\"]?",
+                    RegexOptions.IgnoreCase
+                ).Groups["Encoding"].Value;
+
+                // try redirect 
+                if (level < 3) {
+                    string redirect = Regex.Match(
+                    page,
+                    "<meta.*?http-equiv=\"refresh\".*?(CONTENT|content)=[\"']\\d;\\s?(URL|url)=(?<url>.*?)([\"']\\s*\\/?>)",
+                    RegexOptions.IgnoreCase
+                    ).Groups["url"].Value;
+
+                    Uri result = null;
+                    Uri.TryCreate(new Uri(url), redirect, out result);
+                    return GetWebPageTitle(result.ToString(), level+1);
+                }
+
+                // use different encoding
+                if (encoding.Trim() != "" && encoding.ToLower() != "utf-8")
+                {
+                    memoryStream.Seek(0, SeekOrigin.Begin);
+                    StreamReader reader2 = new StreamReader(memoryStream, System.Text.Encoding.GetEncoding(encoding));
+                    page = reader2.ReadToEnd();
+                }
+
+                title = Regex.Match(
+                        page,
+                        "<title>(?<Title>.*?)</title>",
                         RegexOptions.IgnoreCase
-                    ).Groups["Title"].Value
-                );
+                    ).Groups["Title"].Value;
+
+                title = WebUtility.HtmlDecode(title);
             }
             catch (Exception ex)
             {

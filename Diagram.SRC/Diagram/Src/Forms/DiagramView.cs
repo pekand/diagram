@@ -3701,7 +3701,7 @@ namespace Diagram
                             new DoWorkEventHandler( // do work
                                 delegate (object o, DoWorkEventArgs args)
                                 {
-                                    newrec.setName(Network.GetSecuredWebPageTitle(ClipText));
+                                    newrec.setName(Network.GetWebPageTitle(ClipText));
 
                                 }
                             ),
@@ -3721,7 +3721,8 @@ namespace Diagram
                             new DoWorkEventHandler( // do work
                                 delegate (object o, DoWorkEventArgs args)
                                 {
-                                    newrec.name = Network.GetWebPageTitle(ClipText);
+                                    string title = Network.GetWebPageTitle(ClipText);
+                                    newrec.setName(title);
                                 }
                             ),
                             new RunWorkerCompletedEventHandler( //do code after work
