@@ -25,7 +25,9 @@ namespace Diagram
         private System.Windows.Forms.ToolStripMenuItem rightItem;
         private System.Windows.Forms.ToolStripMenuItem toLineItem;
         private System.Windows.Forms.ToolStripMenuItem inColumnItem;
-        private System.Windows.Forms.ToolStripMenuItem groupItem;
+        private System.Windows.Forms.ToolStripMenuItem groupVericalItem;
+        private System.Windows.Forms.ToolStripMenuItem groupHorizontalItem;
+        //private System.Windows.Forms.ToolStripMenuItem groupItem;
 
         private System.Windows.Forms.ToolStripSeparator quickActionSeparator; //SEPARATOR
 
@@ -137,7 +139,8 @@ namespace Diagram
             this.rightItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toLineItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inColumnItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupVericalItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupHorizontalItem = new System.Windows.Forms.ToolStripMenuItem();
 
             this.quickActionSeparator = new System.Windows.Forms.ToolStripSeparator();
             // FILE
@@ -287,7 +290,8 @@ namespace Diagram
             this.rightItem,
             this.toLineItem,
             this.inColumnItem,
-            this.groupItem});
+            this.groupVericalItem,
+            this.groupHorizontalItem});
             this.alignItem.Name = "alignItem";
             this.alignItem.Size = new System.Drawing.Size(164, 22);
             this.alignItem.Text = "Align";
@@ -320,12 +324,19 @@ namespace Diagram
             this.inColumnItem.Text = "In column";
             this.inColumnItem.Click += new System.EventHandler(this.inColumnItem_Click);
             //
-            // groupItem
+            // groupVericalItem
             //
-            this.groupItem.Name = "groupItem";
-            this.groupItem.Size = new System.Drawing.Size(128, 22);
-            this.groupItem.Text = "Group";
-            this.groupItem.Click += new System.EventHandler(this.groupItem_Click);
+            this.groupVericalItem.Name = "groupVericalItem";
+            this.groupVericalItem.Size = new System.Drawing.Size(128, 22);
+            this.groupVericalItem.Text = "Group vertical";
+            this.groupVericalItem.Click += new System.EventHandler(this.groupVericalItem_Click);
+            //
+            // groupHorizontalItem
+            //
+            this.groupHorizontalItem.Name = "groupHorizontalItem";
+            this.groupHorizontalItem.Size = new System.Drawing.Size(128, 22);
+            this.groupHorizontalItem.Text = "Group horizontal";
+            this.groupHorizontalItem.Click += new System.EventHandler(this.groupHorizontalItem_Click);
             //
             // quickActionSeparator
             //
@@ -1112,11 +1123,22 @@ namespace Diagram
         }
 
         // MENU align to group to column
-        private void groupItem_Click(object sender, EventArgs e)
+        private void groupVericalItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.selectedNodes.Count() > 0)
             {
                 this.diagramView.diagram.AlignCompact(this.diagramView.selectedNodes);
+                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.InvalidateDiagram();
+            }
+        }
+
+        // MENU align to group to column
+        private void groupHorizontalItem_Click(object sender, EventArgs e)
+        {
+            if (this.diagramView.selectedNodes.Count() > 0)
+            {
+                this.diagramView.diagram.AlignCompactLine(this.diagramView.selectedNodes);
                 this.diagramView.diagram.unsave();
                 this.diagramView.diagram.InvalidateDiagram();
             }
@@ -1312,13 +1334,13 @@ namespace Diagram
         // MENU NODE add file attachment to diagram
         private void includeFileItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.attachmentAddFile(new Position(this.diagramView.startMousePos.x, this.diagramView.startMousePos.y));
+            this.diagramView.attachmentAddFile(new Position(this.diagramView.startMousePos));
         }
 
         // MENU NODE add directory attachment to diagram
         private void includeDirectoryItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.attachmentAddDirectory(new Position(this.diagramView.startMousePos.x, this.diagramView.startMousePos.y));
+            this.diagramView.attachmentAddDirectory(new Position(this.diagramView.startMousePos));
         }
 
         // MENU NODE remove included data

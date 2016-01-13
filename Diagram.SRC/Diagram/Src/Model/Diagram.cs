@@ -1228,6 +1228,44 @@ namespace Diagram
             }
         }
 
+        // NODES ALIGN compact
+        // align node to left and create constant space between nodes
+        public void AlignCompactLine(Nodes nodes)
+        {
+            if (nodes.Count() > 0)
+            {
+                int minx = nodes[0].position.x;
+                int miny = nodes[0].position.y;
+                foreach (Node rec in nodes)
+                {
+                    if (rec.position.x <= minx) // find top left element
+                    {
+                        minx = rec.position.x;
+                    }
+
+                    if (rec.position.y <= miny) // find most top element
+                    {
+                        miny = rec.position.y;
+                    }
+                }
+
+                foreach (Node rec in nodes) // align to top
+                {
+                    rec.position.y = miny;
+                }
+
+                // sort elements by y coordinate
+                nodes.OrderByPositionX();
+
+                int posx = minx;
+                foreach (Node rec in nodes) // zmensit medzeru medzi objektami
+                {
+                    rec.position.x = posx;
+                    posx = posx + rec.width + 10;
+                }
+            }
+        }
+
         // NODES ALIGN left
         public void AlignRight(Nodes Nodes)
         {

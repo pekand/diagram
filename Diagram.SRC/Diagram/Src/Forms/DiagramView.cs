@@ -1273,6 +1273,12 @@ namespace Diagram
                 return true;
             }
 
+            if (KeyMap.parseKey(KeyMap.alignToLineGroup, keyData)) // [KEY] [CTRL+SHIFT+K] align to group
+            {
+                this.alignToLineGroup();
+                return true;
+            }
+
             if (KeyMap.parseKey(KeyMap.copy, keyData))  // [KEY] [CTRL+C]
             {
                 this.copy();
@@ -3919,6 +3925,17 @@ namespace Diagram
             if (this.selectedNodes.Count() > 0)
             {
                 this.diagram.AlignCompact(this.selectedNodes);
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // NODE align to group
+        public void alignToLineGroup()
+        {
+            if (this.selectedNodes.Count() > 0)
+            {
+                this.diagram.AlignCompactLine(this.selectedNodes);
                 this.diagram.unsave();
                 this.diagram.InvalidateDiagram();
             }
