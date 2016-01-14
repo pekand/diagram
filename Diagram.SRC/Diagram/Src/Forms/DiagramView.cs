@@ -3690,59 +3690,37 @@ namespace Diagram
 
                 string ClipText = retrievedData.GetData(DataFormats.Text) as string;
 
-                if (Network.isURL(ClipText))  // [PASTE] [URL] [LINK] Spracovanie linku zo schranky
+                if (Network.isURL(ClipText))  // [PASTE] [URL] [LINK] paste link from clipboard
                 {
                     newrec.link = ClipText;
                     newrec.setName(ClipText);
 
-                    if (Network.isHttpsURL(ClipText))
-                    {
-                        Job.doJob(
-                            new DoWorkEventHandler( // do work
-                                delegate (object o, DoWorkEventArgs args)
-                                {
-                                    newrec.setName(Network.GetWebPageTitle(ClipText));
+                    // get page title async in thread
+                    Job.doJob(
+                        new DoWorkEventHandler(
+                            delegate (object o, DoWorkEventArgs args)
+                            {
+                                newrec.setName(Network.GetWebPageTitle(ClipText));
 
-                                }
-                            ),
-                            new RunWorkerCompletedEventHandler( //do code after work
-                                delegate (object o, RunWorkerCompletedEventArgs args)
-                                {
-                                    if (newrec.name == null) newrec.setName("url");
-                                    newrec.color = System.Drawing.ColorTranslator.FromHtml("#F2FFCC");
-                                    this.diagram.InvalidateDiagram();
-                                }
-                            )
-                        );
-                    }
-                    else
-                    {
-                        Job.doJob(
-                            new DoWorkEventHandler( // do work
-                                delegate (object o, DoWorkEventArgs args)
-                                {
-                                    string title = Network.GetWebPageTitle(ClipText);
-                                    newrec.setName(title);
-                                }
-                            ),
-                            new RunWorkerCompletedEventHandler( //do code after work
-                                delegate (object o, RunWorkerCompletedEventArgs args)
-                                {
-                                    if (newrec.name == null) newrec.setName("url");
-                                    newrec.color = System.Drawing.ColorTranslator.FromHtml("#F2FFCC");
-                                    this.diagram.InvalidateDiagram();
-                                }
-                            )
-                        );
-                    }
-
+                            }
+                        ),
+                        new RunWorkerCompletedEventHandler(
+                            delegate (object o, RunWorkerCompletedEventArgs args)
+                            {
+                                if (newrec.name == null) newrec.setName("url");
+                                newrec.color = System.Drawing.ColorTranslator.FromHtml("#F2FFCC");
+                                this.diagram.InvalidateDiagram();
+                            }
+                        )
+                    );
+                    
                     this.diagram.unsave();
                 }
                 else
-                {                                                      // Spracovanie textu zo schranky
+                {                                                      
                     newrec.setName(ClipText);
 
-
+                    // set link to node as path to file
                     if (Os.FileExists(ClipText))
                     {
                         newrec.setName(Os.getFileName(ClipText));
@@ -3750,6 +3728,7 @@ namespace Diagram
                         newrec.color = Media.getColor(diagram.options.colorFile);
                     }
 
+                    // set link to node as path to directory
                     if (Os.DirectoryExists(ClipText))
                     {
                         newrec.setName(Os.getFileName(ClipText));
@@ -3772,24 +3751,29 @@ namespace Diagram
                     Node newrec = this.CreateNode(position);
                     newrec.setName(Os.getFileNameWithoutExtension(file));
 
-                    // odstranenie absolutnej cesty
                     string ext = Os.getExtension(file);
 
-                    if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // [PASTE] [IMAGE] [FILE NAME] skratenie cesty k suboru
+                    if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // paste image file direct to diagram as image instead of link
                     {
                         this.diagram.setImage(newrec, file);
                     }
                     else
-                        if (this.diagram.FileName != "" && Os.FileExists(this.diagram.FileName) && file.IndexOf(new FileInfo(this.diagram.FileName).DirectoryName) == 0) // [PASTE] [FILE] - skratenie cesty k suboru
+                    if (
+                        this.diagram.FileName != "" 
+                        && Os.FileExists(this.diagram.FileName) 
+                        && file.IndexOf(Os.getDirectoryName(this.diagram.FileName)) == 0
+                    ) // [PASTE] [FILE]
                     {
-                        int start = new FileInfo(this.diagram.FileName).DirectoryName.Length;
+                        // make path relative to saved diagram path
+                        int start = Os.getDirectoryName(this.diagram.FileName).Length;
                         int finish = file.Length - start;
                         newrec.link = "." + file.Substring(start, finish);
                     }
                     else
-                            if (this.diagram.FileName != "" && Os.DirectoryExists(this.diagram.FileName)) // [PASTE] [DIRECTORY] - skatenie cesty k adresaru
+                    if (this.diagram.FileName != "" && Os.DirectoryExists(this.diagram.FileName)) // [PASTE] [DIRECTORY]
                     {
-                        int start = new FileInfo(this.diagram.FileName).DirectoryName.Length;
+                        // make path relative to saved diagram path
+                        int start = Os.getDirectoryName(this.diagram.FileName).Length;
                         int finish = file.Length - start;
                         newrec.link = "." + file.Substring(start, finish);
                     }
@@ -3801,13 +3785,13 @@ namespace Diagram
                 this.diagram.unsave();
                 this.diagram.InvalidateDiagram();
             }
-            else if (Clipboard.GetDataObject() != null)  // [PASTE] [IMAGE] [CLIPBOARD OBJECT] image
+            else if (Clipboard.GetDataObject() != null)  // [PASTE] [IMAGE] [CLIPBOARD OBJECT] paste image
             {
                 IDataObject data = Clipboard.GetDataObject();
 
                 if (data.GetDataPresent(DataFormats.Bitmap))
                 {
-                    // paste image end embedded
+                    // paste image as embedded data direct inside diagram 
                     try
                     {
                         Node newrec = this.CreateNode(position);
@@ -3843,6 +3827,7 @@ namespace Diagram
 
                 if (this.selectedNodes.Count() == 0)
                 {
+                    // paste text as new node
                     Node newrec = this.CreateNode(this.getMousePosition());
 
                     newrec.note = ClipText;
@@ -3850,9 +3835,10 @@ namespace Diagram
                 }
                 else
                 {
+                    // append text to all selected nodes
                     foreach (Node rec in this.selectedNodes)
                     {
-                        if (rec.note != "") // apend to node note
+                        if (rec.note != "") // append to end of note
                         {
                             rec.note += "\n";
                         }
