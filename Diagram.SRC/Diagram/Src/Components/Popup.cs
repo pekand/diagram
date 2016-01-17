@@ -89,6 +89,7 @@ namespace Diagram
         private System.Windows.Forms.ToolStripMenuItem encryptItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordItem;
         private System.Windows.Forms.ToolStripMenuItem readonlyItem;
+        private System.Windows.Forms.ToolStripMenuItem restoreWindowItem;
         private System.Windows.Forms.ToolStripMenuItem gridItem;
         private System.Windows.Forms.ToolStripMenuItem coordinatesItem;
         private System.Windows.Forms.ToolStripMenuItem bordersItem;
@@ -111,7 +112,7 @@ namespace Diagram
             this.consoleItem.Visible = true;
             this.coordinatesItem.Visible = true;
 #endif
-
+            this.restoreWindowItem.Checked = this.diagramView.diagram.options.restoreWindow;
             this.gridItem.Checked = this.diagramView.diagram.options.grid;
             this.bordersItem.Checked = this.diagramView.diagram.options.borders;
             this.coordinatesItem.Checked = this.diagramView.diagram.options.coordinates;
@@ -202,6 +203,7 @@ namespace Diagram
             this.encryptItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readonlyItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restoreWindowItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridItem = new System.Windows.Forms.ToolStripMenuItem();
             this.coordinatesItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bordersItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -705,6 +707,7 @@ namespace Diagram
             this.encryptItem,
             this.changePasswordItem,
             this.readonlyItem,
+            this.restoreWindowItem,
             this.gridItem,
             this.coordinatesItem,
             this.bordersItem,
@@ -735,6 +738,16 @@ namespace Diagram
             this.readonlyItem.Size = new System.Drawing.Size(168, 22);
             this.readonlyItem.Text = "Read only";
             this.readonlyItem.Click += new System.EventHandler(this.readonlyItem_Click);
+            //
+            // restoreWindowItem
+            //
+            this.restoreWindowItem.Checked = true;
+            this.restoreWindowItem.CheckOnClick = true;
+            this.restoreWindowItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.restoreWindowItem.Name = "restoreWindowItem";
+            this.restoreWindowItem.Size = new System.Drawing.Size(168, 22);
+            this.restoreWindowItem.Text = "Restore window";
+            this.restoreWindowItem.Click += new System.EventHandler(this.restoreWindowItem_Click);
             //
             // gridItem
             //
@@ -850,6 +863,7 @@ namespace Diagram
             changePasswordItem.Enabled = !readOnly;
             defaultFontItem.Enabled = !readOnly;
             resetFontItem.Enabled = !readOnly;
+            restoreWindowItem.Enabled = !readOnly;
             gridItem.Enabled = !readOnly;
             coordinatesItem.Enabled = !readOnly;
             bordersItem.Enabled = !readOnly;
@@ -1428,6 +1442,12 @@ namespace Diagram
         public void readonlyItem_Click(object sender, EventArgs e)
         {
             this.diagramView.diagram.options.readOnly = this.readonlyItem.Checked;
+        }
+
+        // MENU restore window position
+        public void restoreWindowItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.rememberPosition(this.restoreWindowItem.Checked);
         }
 
         // MENU Grid check

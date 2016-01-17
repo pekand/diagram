@@ -82,30 +82,20 @@ namespace Diagram
                 this.FileName = FileName;
                 this.NewFile = false;
                 this.SavedFile = true;
-                if (new FileInfo(FileName).Length != 0)
-                {
 
-                    try
-                    {
-                        string xml;
-                        using (StreamReader streamReader = new StreamReader(FileName, Encoding.UTF8))
-                        {
-                            xml = streamReader.ReadToEnd();
-                        }
-                        this.LoadXML(xml);
+                string xml = Os.getFileContent(FileName);
 
-                    }
-                    catch (System.IO.IOException ex)
-                    {
-                        Program.log.write(ex.Message);
-                        MessageBox.Show(main.translations.fileIsLocked);
-                        this.CloseFile();
-                    }
+                if (xml == null) {
 
-                    this.SetTitle();
-
-                    return true;
+                    this.CloseFile();
+                    return false;
                 }
+
+                this.LoadXML(xml);
+                this.SetTitle();
+
+                return true;
+
             }
 
             return false;
@@ -305,6 +295,11 @@ namespace Diagram
                                         if (el.Name.ToString() == "firstLayereShift.y")
                                         {
                                             this.options.firstLayereShift.y = Int32.Parse(el.Value);
+                                        }
+
+                                        if (el.Name.ToString() == "window.position.restore")
+                                        {
+                                            this.options.restoreWindow = bool.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "window.position.x")
@@ -637,7 +632,7 @@ namespace Diagram
             }
         }
 
-        // FILE Save - Ulozit súbor
+        // FILE Save - save diagram
         public bool save()
         {
             if (this.FileName != "" && Os.FileExists(this.FileName))
@@ -653,7 +648,7 @@ namespace Diagram
             return false;
         }
 
-        // FILE SAVEAS - Uložiť súbor ako
+        // FILE SAVEAS - save diagram as
         public void saveas(String FileName)
         {
             this.SaveXMLFile(FileName);
@@ -664,7 +659,7 @@ namespace Diagram
             this.SetTitle();
         }
 
-        // FILE SAVE Ulozenie xml súboru
+        // FILE SAVE save xml file or encrypted file
         public void SaveXMLFile(string FileName)
         {
             string diagraxml = "";
@@ -683,7 +678,10 @@ namespace Diagram
                     try
                     {
                         root.Add(new XElement("version", "1"));
+
+                        // encrypted file is saved allways as different string
                         this.salt = Encrypt.CreateSalt(14);
+
                         root.Add(new XElement("encrypted", Encrypt.EncryptStringAES(diagraxml, this.password, this.salt)));
                         root.Add(new XElement("salt", Encrypt.GetSalt(this.salt)));
 
@@ -721,7 +719,7 @@ namespace Diagram
             }
         }
 
-        // FILE SAVE XML
+        // FILE SAVE XML create xml from current diagram file state
         public string SaveInnerXMLFile()
         {
             bool checkpoint = false;
@@ -742,6 +740,7 @@ namespace Diagram
                 option.Add(new XElement("borders", this.options.borders));
                 option.Add(Fonts.FontToXml(this.FontDefault, "defaultfont"));
                 option.Add(new XElement("coordinates", this.options.coordinates));
+                option.Add(new XElement("window.position.restore", this.options.restoreWindow));
                 option.Add(new XElement("window.position.x", this.options.Left));
                 option.Add(new XElement("window.position.y", this.options.Top));
                 option.Add(new XElement("window.position.width", this.options.Width));
@@ -1367,19 +1366,10 @@ namespace Diagram
         // NODE set image
         public void setImage(Node rec, string file)
         {
-            string ext = Os.getExtension(file);
-
             rec.isimage = true;
-            rec.imagepath = file;
-            if (this.FileName != ""
-                && Os.FileExists(this.FileName)
-                && file.IndexOf(new FileInfo(this.FileName).DirectoryName) == 0)
-            {
-                int start = new FileInfo(this.FileName).DirectoryName.Length;
-                int finish = file.Length - start;
-                rec.imagepath = "." + file.Substring(start, finish);
-            }
+            rec.imagepath = Os.makeRelative(file, this.FileName);
             rec.image = new Bitmap(rec.imagepath);
+            string ext = Os.getExtension(file);
             if (ext != ".ico") rec.image.MakeTransparent(Color.White);
             rec.height = rec.image.Height;
             rec.width = rec.image.Width;

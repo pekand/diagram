@@ -11,6 +11,8 @@
         public bool coordinates = false;                   // show coordinates for debuging purpose
         public Position shift = new Position();            // startup position in diagram
         public Position firstLayereShift = new Position(); // position in layer
+
+        public bool restoreWindow = false;                 // restore last window position and state 
         public int Left = 0;                               // diagram view position 
         public int Top = 0;                                // diagram view position 
         public int Width = 100;                            // diagram view position 

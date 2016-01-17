@@ -214,30 +214,23 @@ namespace Diagram
         // FORM Load event -
         public void DiagramViewLoad(object sender, EventArgs e)
         {
-            this.Left = 50;
-            this.Top = 40;
-            this.Width = Media.screenWidth(this) - 100;
-            this.Height = Media.screenHeight(this) - 100;
-
+            
             // Preddefinovana pozicia okna
-            if (this.diagram != null)
+            if (this.diagram.options.restoreWindow)
             {
-
-                if (this.diagram.options.WindowState == 1)
-                {
-                   this.WindowState = FormWindowState.Maximized;
-                }
-
-                if (this.diagram.options.WindowState == 2)
-                {
-                    this.WindowState = FormWindowState.Normal;
-                }
-
-
-                if (this.diagram.options.WindowState == 3)
-                {
-                    this.WindowState = FormWindowState.Minimized;
-                }
+                this.Left = this.diagram.options.Left;
+                this.Top = this.diagram.options.Top;
+                this.Width = this.diagram.options.Width;
+                this.Height = this.diagram.options.Height;
+                this.setWindowsStateCode(this.diagram.options.WindowState);
+            }
+            else
+            {
+                this.Left = 50;
+                this.Top = 40;
+                this.Width = Media.screenWidth(this) - 100;
+                this.Height = Media.screenHeight(this) - 100;
+                this.WindowState = FormWindowState.Normal;
             }
 
             //Load Events
@@ -419,6 +412,61 @@ namespace Diagram
             }
             this.WindowState = FormWindowState.Minimized;
             return true;
+        }
+
+        // FORM remember current window position an restore when diagram is opened
+        public void rememberPosition(bool state = true)
+        {
+            this.diagram.options.restoreWindow = state;
+
+            this.diagram.options.Left = this.Left;
+            this.diagram.options.Top = this.Top;
+            this.diagram.options.Width = this.Width;
+            this.diagram.options.Height = this.Height;
+
+            this.diagram.options.WindowState = this.getWindowsStateCode();
+        }
+
+        // FORM get window state role
+        public int getWindowsStateCode()
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                return 1;
+            }
+
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                return 2;
+            }
+
+
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                return 3;
+            }
+
+            return 0;
+        }
+
+        // FORM get window state role
+        public void setWindowsStateCode(int code = 0)
+        {
+            if (this.diagram.options.WindowState == 1)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+
+            if (this.diagram.options.WindowState == 2)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+
+
+            if (this.diagram.options.WindowState == 3)
+            {
+                this.WindowState = FormWindowState.Minimized;
+            }
         }
 
         /*************************************************************************************************************************/
@@ -2979,7 +3027,11 @@ namespace Diagram
         // VIEW FOCUS
         public void setFocus()
         {
-			this.WindowState = FormWindowState.Normal;
+            //diagram bring to top hack in windows
+            this.WindowState = FormWindowState.Minimized;
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+
             this.Focus();
         }
 
@@ -3233,36 +3285,30 @@ namespace Diagram
                 else
                 if (rec.link.Length > 0)
                 {
-                    // set current directory to current diagrm file destination
-                    if (Os.FileExists(this.diagram.FileName))
-                    {
-                        Os.setCurrentDirectory(Os.getFileDirectory(this.diagram.FileName));
-                    }
 
-                    Match matchFileOpenOnPosition = (new Regex("^([^#]+)#(.*)$")).Match(rec.link.Trim());
-
+                    string fileName = "";
+                    string searchString = "";
 
                     // node with link "script" is executed as script
-                    if (matchFileOpenOnPosition.Success && Os.FileExists(Os.normalizedFullPath(matchFileOpenOnPosition.Groups[1].Value)))       // OPEN FILE ON POSITION
+                    if (!Network.isURL(rec.link)
+                        && Patterns.hasHastag(rec.link.Trim(), ref fileName, ref searchString)
+                        && Os.FileExists(Os.normalizedFullPath(fileName)))       // OPEN FILE ON POSITION
                     {
                         try
                         {
-
-                            String fileName = matchFileOpenOnPosition.Groups[1].Value;
-                            String searchString = matchFileOpenOnPosition.Groups[2].Value.Trim();
-
+                            // if is not set search strin, only hastag after link then use node name as string for search 
                             if(searchString.Trim() == "")
                             {
                                 searchString = rec.name;
                             }
 
-                            Match matchNumber = (new Regex("^(\\d+)$")).Match(searchString);
-
-                            if (!matchNumber.Success)
+                            // if search string is not number then search for first line with search string
+                            if (!Patterns.isNumber(searchString))
                             {
                                 searchString = Os.fndLineNumber(fileName, searchString).ToString();
                             }
 
+                            // get external editor path from global configuration saved in user configuration directory
                             String editFileCmd = this.main.options.texteditor;
                             editFileCmd = editFileCmd.Replace("%FILENAME%", Os.normalizedFullPath(fileName));
                             editFileCmd = editFileCmd.Replace("%LINE%", searchString);
@@ -3323,13 +3369,17 @@ namespace Diagram
                             Program.log.write("open link as url error: " + ex.Message);
                         }
                     }
-                    else
+                    else // run as command
                     {
 
+                        // set current directory to current diagrm file destination
+                        if (Os.FileExists(this.diagram.FileName))
+                        {
+                            Os.setCurrentDirectory(Os.getFileDirectory(this.diagram.FileName));
+                        }
+
                         /*
-                        [DOCUMENTATION]
-                        - po dvojkliku na nodu sa spusti link
-                        - v linku sa nahradia klucove vyrazi
+                        - stamps in command
                             %TEXT%     - name of node
                             %NAME%     - name of node
                             %LINK%     - link in node
@@ -3339,14 +3389,15 @@ namespace Diagram
                             %DIRECTORY% - current diagram directory
                         */
 
-                        string cmd = rec.link;                     // replace variables in link
-                        cmd = cmd.Replace("%TEXT%", rec.name);
-                        cmd = cmd.Replace("%NAME%", rec.name);
-                        cmd = cmd.Replace("%LINK%", rec.link);
-                        cmd = cmd.Replace("%NOTE%", rec.note);
-                        cmd = cmd.Replace("%ID%", rec.id.ToString());
-                        cmd = cmd.Replace("%FILENAME%", this.diagram.FileName);
-                        cmd = cmd.Replace("%DIRECTORY%", Os.getFileDirectory(this.diagram.FileName));
+                        // replace stamps in link
+                        string cmd = rec.link
+                        .Replace("%TEXT%", rec.name)
+                        .Replace("%NAME%", rec.name)
+                        .Replace("%LINK%", rec.link)
+                        .Replace("%NOTE%", rec.note)
+                        .Replace("%ID%", rec.id.ToString())
+                        .Replace("%FILENAME%", this.diagram.FileName)
+                        .Replace("%DIRECTORY%", Os.getFileDirectory(this.diagram.FileName));
 
                         Program.log.write("diagram: openlink: run command: " + cmd);
                         Os.runCommand(cmd, Os.getFileDirectory(this.diagram.FileName)); // RUN COMMAND

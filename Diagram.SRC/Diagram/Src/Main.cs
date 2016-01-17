@@ -185,6 +185,7 @@ namespace Diagram
                                 // focus
                                 if (diagram.DiagramViews.Count() > 0)
                                 {
+                                    Program.log.write("window get focus");
                                     diagram.DiagramViews[0].setFocus();
                                 }
                                 alreadyOpen = true;
