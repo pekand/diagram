@@ -96,6 +96,9 @@ namespace Diagram
         Position currentPosition = new Position();
         public List<int> nodesSearchResult = new List<int>(); // all nodes found by search panel
 
+        // Breadcrumbs
+        public Breadcrumbs breadcrumbs = null;
+
         // COMPONENTS
         private IContainer components;
 
@@ -190,6 +193,7 @@ namespace Diagram
         {
             this.main = main;
             this.diagram = diagram;
+            this.parentView = parentView;
 
             // initialize layer history
             this.currentLayer = this.diagram.layers.getLayer(0);
@@ -208,7 +212,8 @@ namespace Diagram
             this.editLinkPanel = new EditLinkPanel(this);
             this.Controls.Add(this.editLinkPanel);
 
-            this.parentView = parentView;
+            // initialize breadcrumbs
+            this.breadcrumbs = new Breadcrumbs(this);
         }
 
         // FORM Load event -
@@ -1956,6 +1961,7 @@ namespace Diagram
             this.shift.set(this.currentLayer.parentNode.layerShift);
 
             this.SetTitle();
+            this.breadcrumbs.Update();
             this.diagram.InvalidateDiagram();
         }
 
@@ -1984,6 +1990,7 @@ namespace Diagram
                 }
 
                 this.SetTitle();
+                this.breadcrumbs.Update();
                 this.diagram.InvalidateDiagram();
             }
         }
@@ -2005,6 +2012,8 @@ namespace Diagram
             }
 
             layersHistory.Reverse(0, layersHistory.Count());
+
+            this.breadcrumbs.Update();
         }
 
         // LAYER check if node is parent trought layer history
@@ -2580,6 +2589,9 @@ namespace Diagram
             {
                 this.DrawCoordinates(gfx);
             }
+
+            // DRAW addingnode
+            this.breadcrumbs.Draw(gfx);
         }
 
         // DRAW grid
