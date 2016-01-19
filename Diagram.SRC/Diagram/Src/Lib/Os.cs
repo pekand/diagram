@@ -455,9 +455,18 @@ namespace Diagram
 
         /// <summary>
         /// create directory</summary>
-        public static void createDirectory(string path)
+        public static bool createDirectory(string path)
         {
-            Os.createDirectory(path);
+			try{
+				Directory.CreateDirectory(path);
+
+				return true;
+			}
+			catch (Exception e) 
+			{
+				Program.log.write("os.createDirectory fail: " + path + ": " + e.ToString());
+			}
+			return false;
         }
 
         /// <summary>
@@ -494,7 +503,6 @@ namespace Diagram
         {
             return File.ReadAllBytes(path);
         }
-
 
         /// <summary>
         /// get file content as string</summary>

@@ -2002,8 +2002,6 @@ namespace Diagram
 
             this.currentLayer = this.diagram.layers.getLayer(id);
 
-            Nodes nodes = this.diagram.getAllNodes();
-
             Layer temp = this.currentLayer;
             while (temp != null)
             {
@@ -2641,7 +2639,6 @@ namespace Diagram
         void DrawCoordinates(Graphics gfx)
         {
             float s = this.scale;
-            System.Drawing.Pen myPen = new System.Drawing.Pen(Color.FromArgb(201, 201, 201), 1);
 
             Font drawFont = new Font("Arial", 10);
             SolidBrush drawBrush = new SolidBrush(Color.Black);
@@ -2656,8 +2653,6 @@ namespace Diagram
         // DRAW select node by mouse drag (blue rectangle)
         void DrawSelectNodes(Graphics gfx)
         {
-            float s = this.scale;
-            System.Drawing.Pen myPen = new System.Drawing.Pen(System.Drawing.Color.Black, 1);
 
             int a = (int)(+this.shift.x - this.startShift.x + this.startMousePos.x * this.scale);
             int b = (int)(+this.shift.y - this.startShift.y + this.startMousePos.y * this.scale);
@@ -2673,7 +2668,6 @@ namespace Diagram
         // DRAW add new node by drag
         void DrawAddNode(Graphics gfx)
         {
-            float s = this.scale;
             System.Drawing.Pen myPen = new System.Drawing.Pen(System.Drawing.Color.Black, 1);
 
             gfx.DrawLine(

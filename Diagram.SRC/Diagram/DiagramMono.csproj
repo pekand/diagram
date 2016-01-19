@@ -85,9 +85,6 @@
     <Compile Include="Src\Forms\ChangePasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Src\Forms\ConsoleLog.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Src\Forms\DiagramView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +118,17 @@
     <Compile Include="Src\Main.cs" />
     <Compile Include="Src\ProgramOptions.cs" />
     <Compile Include="Src\Lib\Job.cs" />
+    <Compile Include="Src\Forms\Console.cs" />
+    <Compile Include="Src\Components\Popup.cs" />
+    <Compile Include="Src\Model\Layer.cs" />
+    <Compile Include="Src\Model\Layers.cs" />
+    <Compile Include="Src\Model\Lines.cs" />
+    <Compile Include="Src\Model\Nodes.cs" />
+    <Compile Include="Src\Components\EditLinkPanel.cs" />
+    <Compile Include="Src\Components\EditPanel.cs" />
+    <Compile Include="Src\Tools\KeyMap.cs" />
+    <Compile Include="Src\Lib\Compress.cs" />
+    <Compile Include="Src\Lib\Patterns.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -168,11 +176,11 @@
     <None Include="Resources\diagramico_forms.ico" />
     <None Include="Src\Forms\AboutForm.resx" />
     <None Include="Src\Forms\ChangePasswordForm.resx" />
-    <None Include="Src\Forms\ConsoleLog.resx" />
     <None Include="Src\Forms\DiagramView.resx" />
     <None Include="Src\Forms\NewPasswordForm.resx" />
     <None Include="Src\Forms\PasswordForm.resx" />
     <None Include="Src\Forms\TextForm.resx" />
+    <None Include="Src\Forms\Console.resx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

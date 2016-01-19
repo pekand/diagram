@@ -623,7 +623,7 @@ namespace Diagram
 
             foreach (Line line in lines)
             {
-                Line l = this.Connect(
+                this.Connect(
                     this.layers.getNode(line.start),
                     this.layers.getNode(line.end),
                     line.arrow,
