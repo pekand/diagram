@@ -27,7 +27,6 @@ namespace Diagram
         private System.Windows.Forms.ToolStripMenuItem inColumnItem;
         private System.Windows.Forms.ToolStripMenuItem groupVericalItem;
         private System.Windows.Forms.ToolStripMenuItem groupHorizontalItem;
-        //private System.Windows.Forms.ToolStripMenuItem groupItem;
 
         private System.Windows.Forms.ToolStripSeparator quickActionSeparator; //SEPARATOR
 
@@ -1063,9 +1062,12 @@ namespace Diagram
         // MENU Edit
         public void editItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.selectedNodes.Count() == 1)
+            if (this.diagramView.selectedNodes.Count() > 0)
             {
-                this.diagramView.diagram.EditNode(this.diagramView.selectedNodes[0]);
+                foreach (Node node in this.diagramView.selectedNodes)
+                {
+                    this.diagramView.diagram.EditNode(node);
+                }
             }
         }
 

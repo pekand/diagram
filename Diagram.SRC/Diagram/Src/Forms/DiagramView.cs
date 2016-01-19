@@ -1188,13 +1188,10 @@ namespace Diagram
                     && this.startShift.y == this.shift.y)
                 {
                     Node temp = this.findNodeInMousePosition(new Position(e.X, e.Y));
-                    if (this.selectedNodes.Count() > 0 && !this.isSelected(temp))
+
+                    if (this.sourceNode != temp && !this.isSelected(temp))
                     {
                         this.ClearSelection();
-                    }
-
-                    if (this.selectedNodes.Count() == 0 && this.sourceNode != temp)
-                    {
                         this.SelectOnlyOneNode(temp);
                     }
 
