@@ -86,6 +86,15 @@ namespace Diagram
         }
 
         // <summary>
+        /// subtract vector</summary>
+        public Position invert()
+        {
+            this.x = -this.x;
+            this.y = -this.y;
+            return this;
+        }
+
+        // <summary>
         /// scale vector</summary>
         public Position scale(float scale)
         {

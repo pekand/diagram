@@ -704,6 +704,9 @@ namespace Diagram
         // EVENT Mouse move                                                                            // [MOUSE] [MOVE] [EVENT]
         public void DiagramApp_MouseMove(object sender, MouseEventArgs e)
         {
+            Position mouse = new Position(e.X, e.Y);
+            Position vector = new Position();
+
             if (this.selecting || this.addingNode)
             {
                 this.actualMousePos.x = e.X;
@@ -715,8 +718,20 @@ namespace Diagram
             {
                 if (this.sourceNode != null)
                 {
-                    this.sourceNode.position.x = (int)(-this.shift.x + (e.X * this.scale - this.vmouse.x));
-                    this.sourceNode.position.y = (int)(-this.shift.y + (e.Y * this.scale - this.vmouse.y));
+                    // calculate shift between start node position and current sourceNode position
+                    vector
+                        .set(mouse)
+                        .scale(this.scale)
+                        .subtract(this.vmouse)
+                        .subtract(this.shift)
+                        .subtract(this.sourceNode.position);
+
+                    if (this.selectedNodes.Count > 0) {
+                        foreach (Node node in this.selectedNodes)
+                        {
+                            node.position.add(vector);
+                        }
+                    }
 
                     this.diagram.InvalidateDiagram();
                 }
@@ -740,6 +755,9 @@ namespace Diagram
         // EVENT Mouse Up                                                                              // [MOUSE] [UP] [EVENT]
         public void DiagramApp_MouseUp(object sender, MouseEventArgs e)
         {
+            Position mouse = new Position(e.X, e.Y);
+            Position vector = new Position();
+
             // States
             bool mousemove = ((this.actualMousePos.x != this.startMousePos.x) || (this.actualMousePos.y != this.startMousePos.y)); // mouse change position
             bool buttonleft = e.Button == MouseButtons.Left;
@@ -771,8 +789,18 @@ namespace Diagram
                 {
                     if (this.sourceNode != null) // return node to starting position after connection is created
                     {
-                        this.sourceNode.position.x = this.startNodePos.x;
-                        this.sourceNode.position.y = this.startNodePos.y;
+                        vector
+                        .set(this.startNodePos)
+                        .subtract(sourceNode.position);
+
+                        if (this.selectedNodes.Count > 0)
+                        {
+                            foreach (Node node in this.selectedNodes)
+                            {
+                                node.position.add(vector);
+                            }
+                        }
+
                         this.diagram.InvalidateDiagram();
                     }
                 }
@@ -784,27 +812,27 @@ namespace Diagram
                 this.diagram.InvalidateDiagram();
             }
             else
-            // KEY DRAG+MRIGHT select nodes in selection rectangle
+            // KEY DRAG+MLEFT select nodes with selection rectangle
             if (finishselecting)
             {
                 if (mousemove)
                 {
-                    int a = (int)(+this.shift.x - this.startShift.x + this.startMousePos.x * this.scale);
-                    int b = (int)(+this.shift.y - this.startShift.y + this.startMousePos.y * this.scale);
-                    int c = (int)(this.actualMousePos.x * this.scale);
-                    int d = (int)(this.actualMousePos.y * this.scale);
+                    Position a = new Position().set(this.startMousePos).scale(this.scale).add(this.shift).subtract(this.startShift);
+                    Position b = new Position().set(this.actualMousePos).scale(this.scale);
+
                     int temp;
-                    if (c < a) { temp = a; a = c; c = temp; }
-                    if (d < b) { temp = d; d = b; b = temp; }
+                    if (b.x < a.x) { temp = a.x; a.x = b.x; b.x = temp; }
+                    if (b.y < a.y) { temp = b.y; b.y = a.y; a.y = temp; }
+
                     if (!this.keyshift) this.ClearSelection();
                     foreach (Node rec in this.currentLayer.nodes)
                     {
                         if (
                             (rec.layer == this.currentLayer.id || rec.id == this.currentLayer.id)
-                            && -this.shift.x + a <= rec.position.x
-                            && rec.position.x + rec.width <= -this.shift.x + c
-                            && -this.shift.y + b <= rec.position.y
-                            && rec.position.y + rec.height <= -this.shift.y + d) // get all nodes in selection rectangle
+                            && -this.shift.x + a.x <= rec.position.x
+                            && rec.position.x + rec.width <= -this.shift.x + b.x
+                            && -this.shift.y + a.y <= rec.position.y
+                            && rec.position.y + rec.height <= -this.shift.y + b.y) // get all nodes in selection rectangle
                         {
                             if (keyshift && !keyctrl && !keyalt) // KEY SHIFT+MLEFT Invert selection
                             {
@@ -912,38 +940,22 @@ namespace Diagram
                     && Math.Sqrt(vectorx*vectorx+vectory*vectory) > 5
                 )
                 {
-                    this.sourceNode.position.x = (int)(-this.shift.x + (e.X * this.scale - this.vmouse.x));
-                    this.sourceNode.position.y = (int)(-this.shift.y + (e.Y * this.scale - this.vmouse.y));
-                    if (this.sourceNode.id != this.currentLayer.id
-                        && this.sourceNode.haslayer)
-                    {
-                        this.sourceNode.layerShift.x -= (e.X - this.startMousePos.x);
-                        this.sourceNode.layerShift.y -= (e.Y - this.startMousePos.y);
-                    }
+                    vector
+                        .set(mouse)
+                        .scale(this.scale)
+                        .subtract(this.vmouse)
+                        .subtract(this.shift)
+                        .subtract(this.sourceNode.position);
 
-                    if (this.selectedNodes.Count() > 0)
+                    if (this.selectedNodes.Count > 0)
                     {
-                        var vx = this.sourceNode.position.x - this.startNodePos.x;
-                        var vy = this.sourceNode.position.y - this.startNodePos.y;
-
-                        foreach (Node rec in this.selectedNodes) // Loop through List with foreach
+                        foreach (Node node in this.selectedNodes)
                         {
-                            if (rec != this.sourceNode)
-                            {
-                                rec.position.x = rec.position.x + vx;
-                                rec.position.y = rec.position.y + vy;
-
-                                if (rec.id != this.currentLayer.id && rec.haslayer)
-                                {
-                                    rec.layerShift.x -= vx;
-                                    rec.layerShift.y -= vy;
-                                }
-                            }
+                            node.position.add(vector);
                         }
                     }
 
                     this.diagram.unsave();
-
                     this.diagram.InvalidateDiagram();
                 }
                 else

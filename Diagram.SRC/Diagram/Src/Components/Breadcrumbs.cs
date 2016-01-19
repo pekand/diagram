@@ -120,13 +120,22 @@ namespace Diagram
             // logo
             int logopadding = (this.height > 10) ? this.height / 10 : 1;
 
+            // draw bar
+            g.FillRectangle(
+                this.barBrash,
+                this.left + this.height + 2,
+                this.top,
+                this.width - this.height - 2,
+                this.height
+            );
+
             //logo background
             g.FillRectangle(
-                this.logoBlackBrash,
-                this.left, 
-                this.top, 
-                this.height, 
-                this.height
+                this.barBrash,
+                this.left - 2, 
+                this.top - 2, 
+                this.height + 4, 
+                this.height + 4
             );
 
             //logo top left
@@ -163,15 +172,6 @@ namespace Diagram
                 this.top + logopadding, 
                 this.height - this.height / 2 - 2 * logopadding, 
                 this.height - this.height / 2 - 2 * logopadding
-            );
-
-            // draw bar
-            g.FillRectangle(
-                this.barBrash,
-                this.left, 
-                this.top, 
-                this.width, 
-                this.height
             );
 
             // Draw node names
