@@ -6,8 +6,9 @@ using System.Windows.Forms;
 namespace Diagram
 {
     // map node structure for copy paste operation
-    public struct BreadcrumbItem
+    public class BreadcrumbItem
     {
+        public int layerId;
         public int left;
         public int top;
         public int width;
@@ -23,8 +24,14 @@ namespace Diagram
 
         List<BreadcrumbItem> items = new List<BreadcrumbItem>();
 
-        Font font = null;
+        // resources
+        Font font = new Font("Arial", 12);
         SolidBrush brush = new SolidBrush(Color.Gray);
+        SolidBrush logoBlackBrash = new SolidBrush(Color.FromArgb(80, 0, 0, 0));
+        SolidBrush redBrash = new SolidBrush(Color.FromArgb(200, 255, 102, 0));
+        SolidBrush yellowBrash = new SolidBrush(Color.FromArgb(200, 255, 255, 0));
+        SolidBrush barBrash =  new SolidBrush(Color.FromArgb(50, 0, 0, 0));
+        SolidBrush separatorBrash = new SolidBrush(Color.FromArgb(100, 0, 0, 0));
 
         int left = 10;
         int top = 10;
@@ -35,7 +42,6 @@ namespace Diagram
         public Breadcrumbs(DiagramView diagramView)
         {
             this.diagramView = diagramView;
-            this.font = new Font("Arial", 12);
         }
 
         public void Update()
@@ -49,8 +55,12 @@ namespace Diagram
             {
                 this.items.Clear();
 
+                int i = 0;
                 foreach (Layer layer in this.diagramView.layersHistory)
                 {
+                    //skip first top layer because logo is showed insted
+                    if (i++ == 0) continue;
+
                     BreadcrumbItem item = new BreadcrumbItem();
 
                     if (layer.parentNode != null)
@@ -78,7 +88,18 @@ namespace Diagram
                         this.height = item.height;
                     }
 
+                    item.layerId = layer.id; // for restore layer after click
+
                     this.items.Add(item);
+                }
+
+                // add logo width
+                this.width += this.height;
+
+                // add logo width to items
+                foreach (BreadcrumbItem item in items)
+                {
+                    item.left += this.height;
                 }
 
                 this.isVisible = true;
@@ -96,19 +117,87 @@ namespace Diagram
             this.left = this.diagramView.ClientSize.Width - this.width - 10;
             this.top = 10;
 
+            // logo
+            int logopadding = (this.height > 10) ? this.height / 10 : 1;
+
+            //logo background
+            g.FillRectangle(
+                this.logoBlackBrash,
+                this.left, 
+                this.top, 
+                this.height, 
+                this.height
+            );
+
+            //logo top left
+            g.FillRectangle(
+                this.yellowBrash,
+                this.left + logopadding, 
+                this.top + logopadding, 
+                this.height - this.height/2 - 2 * logopadding, 
+                this.height - this.height / 2 - 2 * logopadding
+            );
+
+            //logo bottom right
+            g.FillRectangle(
+                this.yellowBrash,
+                this.left + this.height / 2 + logopadding, 
+                this.top + this.height / 2 + logopadding, 
+                this.height - this.height / 2 - 2 * logopadding, 
+                this.height - this.height / 2 - 2 * logopadding
+            );
+
+            //logo bottom left
+           g.FillRectangle(
+                this.redBrash,
+                this.left + logopadding, 
+                this.top + this.height / 2 + logopadding, 
+                this.height - this.height / 2 - 2 * logopadding, 
+                this.height - this.height / 2 - 2 * logopadding
+            );
+
+            //logo top right
+            g.FillRectangle(
+                this.redBrash,
+                this.left + this.height / 2 + logopadding, 
+                this.top + logopadding, 
+                this.height - this.height / 2 - 2 * logopadding, 
+                this.height - this.height / 2 - 2 * logopadding
+            );
+
             // draw bar
-            Rectangle bar = new Rectangle(this.left, this.top, this.width, this.height);
-            g.FillRectangle(new SolidBrush(Color.FromArgb(50, 0, 0, 0)), bar);
+            g.FillRectangle(
+                this.barBrash,
+                this.left, 
+                this.top, 
+                this.width, 
+                this.height
+            );
 
             // Draw node names
+            int i = items.Count;
             foreach (BreadcrumbItem item in items)
             {
+                // layer name
                 g.DrawString(
                     item.name,
                     this.font,
                     this.brush,
-                    new PointF(this.left + item.left, this.top)
+                    this.left + item.left, 
+                    this.top
                 );
+
+                // draw separator
+                if (i-- > 1)
+                {
+                    g.FillEllipse(
+                        this.separatorBrash,
+                        this.left + item.left + item.width ,
+                        this.top + item.top + item.height/2,
+                        item.height / 5,
+                        item.height / 5
+                    );
+                }
             }
         }
     }
