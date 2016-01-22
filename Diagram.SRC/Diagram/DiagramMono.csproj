@@ -129,6 +129,7 @@
     <Compile Include="Src\Tools\KeyMap.cs" />
     <Compile Include="Src\Lib\Compress.cs" />
     <Compile Include="Src\Lib\Patterns.cs" />
+    <Compile Include="Src\Components\Breadcrumbs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
