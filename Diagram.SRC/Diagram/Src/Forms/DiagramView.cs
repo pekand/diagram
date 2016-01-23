@@ -1,15 +1,14 @@
 ﻿using System;
-using System.IO;
 using System.Text.RegularExpressions;
 using System.Linq;
-using System.Xml.Linq;
-using System.Xml;
 using System.Drawing;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using System.Globalization;
+using System.Drawing.Imaging;
+using System.Collections.Specialized;
 using NCalc;
 
 namespace Diagram
@@ -21,18 +20,18 @@ namespace Diagram
         public DiagramView parentView = null;
 
         public Popup PopupMenu;
-        public System.Windows.Forms.SaveFileDialog DSave;
-        public System.Windows.Forms.OpenFileDialog DOpen;
-        public System.Windows.Forms.ColorDialog DColor;
-        public System.Windows.Forms.ColorDialog DFontColor;
-        public System.Windows.Forms.FontDialog DFont;
-        public System.Windows.Forms.OpenFileDialog DImage;
-        public System.Windows.Forms.Timer MoveTimer;
-        public System.Windows.Forms.FontDialog defaultfontDialog;
-        public System.Windows.Forms.SaveFileDialog exportFile;
-        public System.Windows.Forms.SaveFileDialog saveTextFileDialog;
-        public System.Windows.Forms.FolderBrowserDialog DSelectDirectoryAttachment;
-        public System.Windows.Forms.OpenFileDialog DSelectFileAttachment;
+        public SaveFileDialog DSave;
+        public OpenFileDialog DOpen;
+        public ColorDialog DColor;
+        public ColorDialog DFontColor;
+        public FontDialog DFont;
+        public OpenFileDialog DImage;
+        public Timer MoveTimer;
+        public FontDialog defaultfontDialog;
+        public SaveFileDialog exportFile;
+        public SaveFileDialog saveTextFileDialog;
+        public FolderBrowserDialog DSelectDirectoryAttachment;
+        public OpenFileDialog DSelectFileAttachment;
 
         /*************************************************************************************************************************/
 
@@ -106,19 +105,19 @@ namespace Diagram
         // INIT COMPONENTS
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.DSave = new System.Windows.Forms.SaveFileDialog();
-            this.DOpen = new System.Windows.Forms.OpenFileDialog();
-            this.DColor = new System.Windows.Forms.ColorDialog();
-            this.DFontColor = new System.Windows.Forms.ColorDialog();
-            this.DFont = new System.Windows.Forms.FontDialog();
-            this.DImage = new System.Windows.Forms.OpenFileDialog();
-            this.MoveTimer = new System.Windows.Forms.Timer(this.components);
-            this.defaultfontDialog = new System.Windows.Forms.FontDialog();
-            this.exportFile = new System.Windows.Forms.SaveFileDialog();
-            this.saveTextFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.DSelectDirectoryAttachment = new System.Windows.Forms.FolderBrowserDialog();
-            this.DSelectFileAttachment = new System.Windows.Forms.OpenFileDialog();
+            this.components = new Container();
+            this.DSave = new SaveFileDialog();
+            this.DOpen = new OpenFileDialog();
+            this.DColor = new ColorDialog();
+            this.DFontColor = new ColorDialog();
+            this.DFont = new FontDialog();
+            this.DImage = new OpenFileDialog();
+            this.MoveTimer = new Timer(this.components);
+            this.defaultfontDialog = new FontDialog();
+            this.exportFile = new SaveFileDialog();
+            this.saveTextFileDialog = new SaveFileDialog();
+            this.DSelectDirectoryAttachment = new FolderBrowserDialog();
+            this.DSelectFileAttachment = new OpenFileDialog();
             this.SuspendLayout();
             //
             // DSave
@@ -133,7 +132,7 @@ namespace Diagram
             //
             // DFont
             //
-            this.DFont.Color = System.Drawing.SystemColors.ControlText;
+            this.DFont.Color = SystemColors.ControlText;
             //
             // DImage
             //
@@ -142,7 +141,7 @@ namespace Diagram
             // MoveTimer
             //
             this.MoveTimer.Interval = 10;
-            this.MoveTimer.Tick += new System.EventHandler(this.MoveTimer_Tick);
+            this.MoveTimer.Tick += new EventHandler(this.MoveTimer_Tick);
             //
             // exportFile
             //
@@ -161,29 +160,29 @@ namespace Diagram
             //
             // DiagramView
             //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(383, 341);
+            this.AutoScaleDimensions = new SizeF(6F, 13F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.BackColor = SystemColors.Control;
+            this.ClientSize = new Size(383, 341);
             this.DoubleBuffered = true;
             this.Icon = global::Diagram.Properties.Resources.ico_diagram;
             this.KeyPreview = true;
             this.Name = "DiagramView";
             this.Text = "Diagram";
-            this.Activated += new System.EventHandler(this.DiagramView_Activated);
-            this.Deactivate += new System.EventHandler(this.DiagramApp_Deactivate);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DiagramApp_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DiagramView_FormClosed);
-            this.Load += new System.EventHandler(this.DiagramViewLoad);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.DiagramApp_Paint);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DiagramApp_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DiagramApp_KeyPress);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DiagramApp_KeyUp);
-            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.DiagramApp_MouseDoubleClick);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DiagramApp_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DiagramApp_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DiagramApp_MouseUp);
-            this.Resize += new System.EventHandler(this.DiagramApp_Resize);
+            this.Activated += new EventHandler(this.DiagramView_Activated);
+            this.Deactivate += new EventHandler(this.DiagramApp_Deactivate);
+            this.FormClosing += new FormClosingEventHandler(this.DiagramApp_FormClosing);
+            this.FormClosed += new FormClosedEventHandler(this.DiagramView_FormClosed);
+            this.Load += new EventHandler(this.DiagramViewLoad);
+            this.Paint += new PaintEventHandler(this.DiagramApp_Paint);
+            this.KeyDown += new KeyEventHandler(this.DiagramApp_KeyDown);
+            this.KeyPress += new KeyPressEventHandler(this.DiagramApp_KeyPress);
+            this.KeyUp += new KeyEventHandler(this.DiagramApp_KeyUp);
+            this.MouseDoubleClick += new MouseEventHandler(this.DiagramApp_MouseDoubleClick);
+            this.MouseDown += new MouseEventHandler(this.DiagramApp_MouseDown);
+            this.MouseMove += new MouseEventHandler(this.DiagramApp_MouseMove);
+            this.MouseUp += new MouseEventHandler(this.DiagramApp_MouseUp);
+            this.Resize += new EventHandler(this.DiagramApp_Resize);
             this.ResumeLayout(false);
 
         }
@@ -719,8 +718,9 @@ namespace Diagram
         // EVENT Mouse Up                                                                              // [MOUSE] [UP] [EVENT]
         public void DiagramApp_MouseUp(object sender, MouseEventArgs e)
         {
-            Position mouse = new Position(e.X, e.Y);
-            
+            this.actualMousePos.set(e.X, e.Y);
+            Position mouseTranslation = new Position(this.actualMousePos).subtract(this.startMousePos);
+
             // States
             bool mousemove = ((this.actualMousePos.x != this.startMousePos.x) || (this.actualMousePos.y != this.startMousePos.y)); // mouse change position
             bool buttonleft = e.Button == MouseButtons.Left;
@@ -734,8 +734,6 @@ namespace Diagram
             bool finishdraging = this.stateDragSelection;
             bool finishadding = this.stateAddingNode;
             bool finishselecting = mousemove && this.stateSelectingNodes;
-
-            Position mouseTranslation = new Position(mouse).subtract(this.startMousePos);
 
             MoveTimer.Enabled = false;
 
@@ -906,7 +904,7 @@ namespace Diagram
                     && Math.Sqrt(mouseTranslation.x* mouseTranslation.x + mouseTranslation.y * mouseTranslation.y) > 5
                 )
                 {
-                    Position vector = new Position(mouse)
+                    Position vector = new Position(this.actualMousePos)
                         .scale(this.scale)
                         .subtract(this.vmouse)
                         .subtract(this.shift)
@@ -924,7 +922,7 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DRAG+CTRL Vytvorenie noveho obdlznika a spojenie s existujucim
+                // KEY DRAG+CTRL create node and conect with existing node
                 if (!isreadonly
                     && keyctrl
                     && TargetNode != null
@@ -952,10 +950,7 @@ namespace Diagram
                     && this.sourceNode == null)
                 {
                     Node newrec = this.CreateNode(
-                        new Position(
-                            +this.shift.x - startShift.x + this.startMousePos.x,
-                            +this.shift.y - startShift.y + this.startMousePos.y
-                        )
+                        new Position(this.shift).subtract(startShift).add(this.startMousePos)
                     );
 
                     newrec.shortcut = TargetNode.id;
@@ -1003,8 +998,18 @@ namespace Diagram
                     && !keyalt
                     && !keyshift)
                 {
-                    this.shift.x = (int)(this.shift.x - (e.X * this.scale) + (this.ClientSize.Width * this.scale) / 2);
-                    this.shift.y = (int)(this.shift.y - (e.Y * this.scale) + (this.ClientSize.Height * this.scale) / 2);
+                    this.shift
+                        .subtract(
+                            this.actualMousePos
+                            .clone()
+                            .scale(this.scale)
+                            )
+                        .subtract(
+                            (this.ClientSize.Width * this.scale) / 2, 
+                            (this.ClientSize.Height * this.scale) / 2
+                        );
+                    this.shift.x = (int)(this.shift.x - (this.actualMousePos.x * this.scale) + (this.ClientSize.Width * this.scale) / 2);
+                    this.shift.y = (int)(this.shift.y - (this.actualMousePos.y * this.scale) + (this.ClientSize.Height * this.scale) / 2);
                     this.diagram.InvalidateDiagram();
                 }
                 else
@@ -1512,7 +1517,7 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.evaluateNodes, keyData)) // [KEY] [F9] edit node name
+            if (KeyMap.parseKey(KeyMap.evaluateNodes, keyData)) // [KEY] [F9] evaluate python script for selected nodes by stamp in link
             {
                 this.evaluate();
                 return true;
@@ -2474,14 +2479,7 @@ namespace Diagram
         {
             if (!this.diagram.NewFile && Os.FileExists(this.diagram.FileName))
             {
-                try
-                {
-                    System.Diagnostics.Process.Start(Os.getDirectoryName(this.diagram.FileName));
-                }
-                catch (Exception ex)
-                {
-                    Program.log.write("open diagram directory error: " + ex.Message);
-                }
+                Os.openDirectory(Os.getDirectoryName(this.diagram.FileName));
             }
         }
 
@@ -2533,7 +2531,7 @@ namespace Diagram
                 g.Clear(this.BackColor);
                 this.DrawDiagram(g, new Position(-this.shift.x - minx, -this.shift.y - miny), true);
                 g.Dispose();
-                bmp.Save(exportFile.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                bmp.Save(exportFile.FileName, ImageFormat.Png);
                 bmp.Dispose();
             }
         }
@@ -2601,7 +2599,7 @@ namespace Diagram
         void DrawGrid(Graphics gfx)
         {
             float s = this.scale;
-            System.Drawing.Pen myPen = new System.Drawing.Pen(Color.FromArgb(201, 201, 201), 1);
+            Pen myPen = new Pen(Color.FromArgb(201, 201, 201), 1);
 
             float m = 100 / s;
             float sw = this.ClientSize.Width;
@@ -2626,9 +2624,9 @@ namespace Diagram
         void DrawMiniScreen(Graphics gfx)
         {
             float s = this.scale;
-            System.Drawing.Pen myPen = new System.Drawing.Pen(Color.FromArgb(201, 201, 201), 1);
+            Pen myPen = new Pen(Color.FromArgb(201, 201, 201), 1);
 
-            myPen = new System.Drawing.Pen(System.Drawing.Color.Gray, 1);
+            myPen = new Pen(Color.Gray, 1);
             gfx.DrawRectangle(
                 myPen,
                 new Rectangle(
@@ -2673,7 +2671,7 @@ namespace Diagram
         // DRAW add new node by drag
         void DrawAddNode(Graphics gfx)
         {
-            System.Drawing.Pen myPen = new System.Drawing.Pen(System.Drawing.Color.Black, 1);
+            Pen myPen = new Pen(Color.Black, 1);
 
             gfx.DrawLine(
                     myPen,
@@ -2683,7 +2681,7 @@ namespace Diagram
                     this.actualMousePos.y
                 );
             gfx.FillEllipse(
-                new SolidBrush(System.Drawing.ColorTranslator.FromHtml("#FFFFB8")),
+                new SolidBrush(ColorTranslator.FromHtml("#FFFFB8")),
                 new Rectangle(
                     this.shift.x - this.startShift.x + this.startMousePos.x,
                     this.shift.y - this.startShift.y + this.startMousePos.y,
@@ -2707,8 +2705,8 @@ namespace Diagram
             bool isvisible = false; // drawonly visible elements
             float s = this.scale;
 
-            System.Drawing.Pen myPen1 = new System.Drawing.Pen(System.Drawing.Color.Black, 1);
-            System.Drawing.Pen myPen2 = new System.Drawing.Pen(System.Drawing.Color.Black, 3);
+            Pen myPen1 = new Pen(Color.Black, 1);
+            Pen myPen2 = new Pen(Color.Black, 3);
 
             // fix position for image file export
             int cx = 0;
@@ -2883,11 +2881,11 @@ namespace Diagram
 
                                 gfx.DrawString(
                                     (rec.protect) ? Node.protectedName : rec.name,
-                                    new System.Drawing.Font(
+                                    new Font(
                                        rec.font.FontFamily,
                                        rec.font.Size / s,
                                        rec.font.Style,
-                                       System.Drawing.GraphicsUnit.Point,
+                                       GraphicsUnit.Point,
                                        ((byte)(0))
                                     ),
                                     new SolidBrush(rec.fontcolor),
@@ -2994,7 +2992,7 @@ namespace Diagram
                         {
                             // draw line
                             gfx.DrawLine(
-                                new System.Drawing.Pen(lin.color, 1),
+                                new Pen(lin.color, 1),
                                 (this.shift.x + cx + r1.position.x + r1.width / 2) / s,
                                 (this.shift.y + cy + r1.position.y + r1.height / 2) / s,
                                 (this.shift.x + cx + r2.position.x + r2.width / 2) / s,
@@ -3148,28 +3146,14 @@ namespace Diagram
                     {
                         if (Os.DirectoryExists(node.link)) // open directory of selected nods
                         {
-                            try
-                            {
-                                System.Diagnostics.Process.Start(node.link);
-                            }
-                            catch (Exception ex)
-                            {
-                                Program.log.write("open node link directory error: " + ex.Message);
-                            }
+                            Os.openDirectory(node.link);
                         }
                         else
-                            if (Os.FileExists(node.link)) // open directory of selected files
-                            {
-                                try
-                                {
-                                    string parent_diectory = Os.getFileDirectory(this.selectedNodes[0].link);
-                                    System.Diagnostics.Process.Start(parent_diectory);
-                                }
-                                catch (Exception ex)
-                                {
-                                    Program.log.write("open node link directory error: " + ex.Message);
-                                }
-                            }
+                        if (Os.FileExists(node.link)) // open directory of selected files
+                        {
+                            string parent_diectory = Os.getFileDirectory(this.selectedNodes[0].link);
+                            Os.openDirectory(parent_diectory);
+                        }
                     }
                 }
             }
@@ -3770,7 +3754,7 @@ namespace Diagram
                             delegate (object o, RunWorkerCompletedEventArgs args)
                             {
                                 if (newrec.name == null) newrec.setName("url");
-                                newrec.color = System.Drawing.ColorTranslator.FromHtml("#F2FFCC");
+                                newrec.color = ColorTranslator.FromHtml("#F2FFCC");
                                 this.diagram.InvalidateDiagram();
                             }
                         )
@@ -3807,7 +3791,7 @@ namespace Diagram
             else
             if (Clipboard.ContainsFileDropList()) // [FILES] [PASTE] insert files from clipboard
             {
-                System.Collections.Specialized.StringCollection returnList = Clipboard.GetFileDropList();
+                StringCollection returnList = Clipboard.GetFileDropList();
                 foreach (string file in returnList)
                 {
                     Node newrec = this.CreateNode(position);
@@ -4105,7 +4089,7 @@ namespace Diagram
                 {
                     Node newrec = this.CreateNode(this.getMousePosition());
                     newrec.setName(expressionResult);
-                    newrec.color = System.Drawing.ColorTranslator.FromHtml("#8AC5FF");
+                    newrec.color = ColorTranslator.FromHtml("#8AC5FF");
 
                     this.diagram.InvalidateDiagram();
                 }
@@ -4129,7 +4113,7 @@ namespace Diagram
 
                 Node newrec = this.CreateNode(this.getMousePosition());
                 newrec.setName(sum.ToString());
-                newrec.color = System.Drawing.ColorTranslator.FromHtml("#8AC5FF");
+                newrec.color = ColorTranslator.FromHtml("#8AC5FF");
 
                 this.diagram.InvalidateDiagram();
                 return true;
@@ -4211,7 +4195,7 @@ namespace Diagram
 
             Node newrec = this.CreateNode(this.getMousePosition());
             newrec.setName(insertdatestring);
-            newrec.color = System.Drawing.ColorTranslator.FromHtml("#8AC5FF");
+            newrec.color = ColorTranslator.FromHtml("#8AC5FF");
 
             this.diagram.InvalidateDiagram();
             return true;
@@ -4332,7 +4316,7 @@ namespace Diagram
             if (this.selectedNodes.Count() == 1)
             {
                 Node rec = this.selectedNodes[0];
-                Position position = new Position(this.shift).add(rec.position).zoom(this.scale);
+                Position position = new Position(this.shift).add(rec.position).split(this.scale);
                 this.editPanel.editNode(position, this.selectedNodes[0]);
             }
         }
@@ -4409,11 +4393,6 @@ namespace Diagram
                 foreach (Node rec in this.selectedNodes)
                 {
                     rec.position.x -= speed;
-
-                    if (rec.haslayer)
-                    {
-                        rec.layerShift.x += speed;
-                    }
                 }
                 this.diagram.unsave();
                 this.diagram.InvalidateDiagram();
@@ -4434,11 +4413,6 @@ namespace Diagram
                 foreach (Node rec in this.selectedNodes)
                 {
                     rec.position.x += speed;
-
-                    if (rec.haslayer)
-                    {
-                        rec.layerShift.x -= speed;
-                    }
                 }
                 this.diagram.unsave();
                 this.diagram.InvalidateDiagram();
@@ -4459,11 +4433,6 @@ namespace Diagram
                 foreach (Node rec in this.selectedNodes)
                 {
                     rec.position.y -= speed;
-
-                    if (rec.haslayer)
-                    {
-                        rec.layerShift.y += speed;
-                    }
                 }
                 this.diagram.unsave();
                 this.diagram.InvalidateDiagram();
@@ -4484,11 +4453,6 @@ namespace Diagram
                 foreach (Node rec in this.selectedNodes)
                 {
                     rec.position.y += speed;
-
-                    if (rec.haslayer)
-                    {
-                        rec.layerShift.y -= speed;
-                    }
                 }
                 this.diagram.unsave();
                 this.diagram.InvalidateDiagram();
@@ -4695,6 +4659,7 @@ namespace Diagram
             main.console.Show();
         }
 
+        // SCRIPT evaluate python script in nodes signed with stamp in node link [F9]
         void evaluate()
         {
             Nodes nodes = null;
@@ -4728,7 +4693,7 @@ namespace Diagram
 
         }
 
-        // SCRIPT evaluate nodes
+        // SCRIPT evaluate python script in node name or in node note in nodes
         void evaluate(Nodes nodes, string clipboard = "")
         {
             Program.log.write("diagram: openlink: run macro");
@@ -4745,7 +4710,7 @@ namespace Diagram
             }
         }
 
-        // SCRIPT evaluate node
+        // SCRIPT evaluate python script in node name or in node note in node
         void evaluate(Node node, string clipboard = "")
         {
             // run macro

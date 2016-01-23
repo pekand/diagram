@@ -113,6 +113,20 @@ namespace Diagram
         }
 
         /// <summary>
+        /// open directory in system</summary>
+        public static void openDirectory(string path)
+        {
+            try
+            {
+                Process.Start(path);
+            }
+            catch (Exception ex)
+            {
+                Program.log.write("open directory: " + path + ": error: " + ex.Message);
+            }
+        }
+
+        /// <summary>
         /// get parent directory of FileName path </summary>
         public static string getFileDirectory(string FileName)
         {
