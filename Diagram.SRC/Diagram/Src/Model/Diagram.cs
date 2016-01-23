@@ -71,7 +71,7 @@ namespace Diagram
             return this.options.readOnly;
         }
 
-        // FILE OPEN Otvorenie xml súboru
+        // FILE OPEN Open xml file. If file is invalid return false
         public bool OpenFile(string FileName)
         {
             if (Os.FileExists(FileName))
@@ -86,23 +86,22 @@ namespace Diagram
                 string xml = Os.getFileContent(FileName);
 
                 if (xml == null) {
-
                     this.CloseFile();
                     return false;
                 }
 
-                this.LoadXML(xml);
+                bool opened = this.LoadXML(xml);
                 this.SetTitle();
 
-                return true;
+                return opened;
 
             }
 
             return false;
         }
 
-        // FILE LOAD XML
-        public void LoadXML(string xml)
+        // FILE LOAD XML. If file is invalid return false
+        public bool LoadXML(string xml)
         {
 
             XmlReaderSettings xws = new XmlReaderSettings();
@@ -169,28 +168,31 @@ namespace Diagram
                         }
                         catch(Exception e)
                         {
-                            Program.log.write(e.Message);
+                            // probably invalid password
+                            Program.log.write("LoadXML: Password or file is invalid: " + e.Message);
                             error = true;
                         }
                     }
                     else
                     {
+                        main.passwordForm.CloseForm();
                         this.CloseFile();
-                        return;
+                        return false;
                     }
 
-                    main.passwordForm.CloseForm();
                 } while (error);
+
+                main.passwordForm.CloseForm();
+                return true;
             }
             else
             {
-                LoadInnerXML(xml);
+                return LoadInnerXML(xml);
             }
-
         }
 
-        // FILE LOAD XML inner part of diagram file
-        public void LoadInnerXML(string xml)
+        // FILE LOAD XML inner part of diagram file. If file is invalid return false
+        public bool LoadInnerXML(string xml)
         {
             string FontDefaultString = TypeDescriptor.GetConverter(typeof(Font)).ConvertToString(this.FontDefault);
 
@@ -587,6 +589,7 @@ namespace Diagram
                 MessageBox.Show(main.translations.fileHasWrongFormat);
                 Program.log.write("load xml error: " + ex.Message);
                 this.CloseFile();
+                return false;
             }
 
             int newWidth = 0;
@@ -630,6 +633,8 @@ namespace Diagram
                     line.color
                 );
             }
+
+            return true;
         }
 
         // FILE Save - save diagram
