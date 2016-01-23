@@ -140,7 +140,11 @@ namespace Diagram
                 this.editedNode = this.diagramView.CreateNode(new Position(this.Left, this.Top));
             }
 
-            this.editedNode.setName(edit.Text);
+            if (this.editedNode.name != edit.Text)
+            {
+                this.editedNode.setName(edit.Text);
+                this.diagramView.diagram.unsave();
+            }
 
             this.editedNode.visible = true;
 
@@ -149,8 +153,6 @@ namespace Diagram
                 this.diagramView.diagram.Connect(this.prevSelectedNode, this.editedNode);
                 this.prevSelectedNode = null;
             }
-
-            this.diagramView.diagram.unsave();
 
             this.Hide();
             this.editedNode = null;

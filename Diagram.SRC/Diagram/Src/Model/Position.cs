@@ -76,6 +76,11 @@ namespace Diagram
             return this;
         }
 
+        public static Position operator +(Position a, Position b)
+        {
+            return new Position(a).add(b);
+        }
+
         // <summary>
         /// subtract vector</summary>
         public Position subtract(Position p)
@@ -83,6 +88,20 @@ namespace Diagram
             this.x += -p.x;
             this.y += -p.y;
             return this;
+        }
+
+        // <summary>
+        /// subtract constant</summary>
+        public Position subtract(int c)
+        {
+            this.x += -c;
+            this.y += -c;
+            return this;
+        }
+
+        public static Position operator -(Position a, Position b)
+        {
+            return new Position(a).subtract(b);
         }
 
         // <summary>
@@ -101,6 +120,20 @@ namespace Diagram
             this.x = (int)(this.x * scale);
             this.y = (int)(this.y * scale);
             return this;
+        }
+
+        // <summary>
+        /// zoom vector</summary>
+        public Position zoom(float scale)
+        {
+            this.x = (int)(this.x / scale);
+            this.y = (int)(this.y / scale);
+            return this;
+        }
+
+        public static Position operator *(Position a, int c)
+        {
+            return new Position(a).scale(c);
         }
 
         // <summary>

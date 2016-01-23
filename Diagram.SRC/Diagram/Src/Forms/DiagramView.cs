@@ -54,13 +54,14 @@ namespace Diagram
         public bool keyalt = false;              // actual alt key state
 
         // ATTRIBUTES STATES
-        public bool stateDragSelection = false;       // actual drag status
-        public bool stateMoveView = false;            // actual move node status
-        public bool stateSelectingNodes = false;      // actual selecting node status or creating node by drag
-        public bool stateAddingNode = false;          // actual adding node by drag
-        public bool stateDblclick = false;            // actual dblclick status
-        public bool stateZooming = false;             // actual zooming by space status
-        public bool stateSearching = false;           // actual search edit form status
+        public bool stateDragSelection = false;         // actual drag status
+        public bool stateMoveView = false;              // actual move node status
+        public bool stateSelectingNodes = false;        // actual selecting node status or creating node by drag
+        public bool stateAddingNode = false;            // actual adding node by drag
+        public bool stateDblclick = false;              // actual dblclick status
+        public bool stateZooming = false;               // actual zooming by space status
+        public bool stateSearching = false;             // actual search edit form status
+        public bool stateSourceNodeAlreadySelected = false; // actual check if is clicket two time in same node for rename node
 
         // ATTRIBUTES ZOOMING
         public Position zoomShift = new Position();// zoom view - left corner position before zoom space press
@@ -480,24 +481,7 @@ namespace Diagram
         // SELECTION check if node is in current window selecton
         public bool isSelected(Node a)
         {
-            if (a == null) return false;
-
-            bool found = false;
-
-            if (this.selectedNodes.Count() > 0)
-            {
-                foreach (Node rec in this.selectedNodes) // Loop through List with foreach
-                {
-
-                    if (rec == a)
-                    {
-                        found = true;
-                        break;
-                    }
-                }
-            }
-
-            return found;
+            return a.selected;
         }
 
         // SELECTION Clear selection
@@ -614,15 +598,14 @@ namespace Diagram
                 this.editLinkPanel.saveNodeLinkPanel(selectNode);
             }
 
-            this.startMousePos.x = e.X;  // starting mouse position
-            this.startMousePos.y = e.Y;
-
-            this.startShift.x = this.shift.x;  // starting indent
-            this.startShift.y = this.shift.y;
+            this.startMousePos.set(this.actualMousePos);  // starting mouse position
+            this.startShift.set(this.shift);  // starting indent
 
             if (e.Button == MouseButtons.Left)
             {
                 this.sourceNode = this.findNodeInMousePosition(new Position(e.X, e.Y));
+
+                this.stateSourceNodeAlreadySelected = this.sourceNode != null && this.sourceNode.selected;
 
                 if (bottomScrollBar != null && bottomScrollBar.MouseDown(e.X, e.Y))
                 {
@@ -669,10 +652,13 @@ namespace Diagram
                     {
                         this.stateDragSelection = true;
                         MoveTimer.Enabled = true;
-                        this.startNodePos.x = this.sourceNode.position.x; // starting position of draging item
-                        this.startNodePos.y = this.sourceNode.position.y;
-                        this.vmouse.x = (int)(e.X * this.scale - (this.shift.x + this.sourceNode.position.x)); // mouse position in node
-                        this.vmouse.y = (int)(e.Y * this.scale - (this.shift.y + this.sourceNode.position.y));
+                        this.startNodePos.set(this.sourceNode.position); // starting position of draging item
+
+                        this.vmouse
+                            .set(this.actualMousePos)
+                            .scale(this.scale)
+                            .subtract(this.shift)
+                            .subtract(this.sourceNode.position); // mouse position in node
 
                         if (!this.keyctrl && !this.isSelected(this.sourceNode))
                         {
@@ -734,8 +720,7 @@ namespace Diagram
         public void DiagramApp_MouseUp(object sender, MouseEventArgs e)
         {
             Position mouse = new Position(e.X, e.Y);
-            Position vector = new Position();
-
+            
             // States
             bool mousemove = ((this.actualMousePos.x != this.startMousePos.x) || (this.actualMousePos.y != this.startMousePos.y)); // mouse change position
             bool buttonleft = e.Button == MouseButtons.Left;
@@ -750,8 +735,7 @@ namespace Diagram
             bool finishadding = this.stateAddingNode;
             bool finishselecting = mousemove && this.stateSelectingNodes;
 
-            int vectorx = e.X - this.startMousePos.x;
-            int vectory = e.Y - this.startMousePos.y;
+            Position mouseTranslation = new Position(mouse).subtract(this.startMousePos);
 
             MoveTimer.Enabled = false;
 
@@ -767,15 +751,14 @@ namespace Diagram
                 {
                     if (this.sourceNode != null) // return node to starting position after connection is created
                     {
-                        vector
-                        .set(this.startNodePos)
-                        .subtract(sourceNode.position);
+                        Position translation = new Position(this.startNodePos)
+                            .subtract(sourceNode.position);
 
                         if (this.selectedNodes.Count > 0)
                         {
                             foreach (Node node in this.selectedNodes)
                             {
-                                node.position.add(vector);
+                                node.position.add(translation);
                             }
                         }
 
@@ -795,8 +778,13 @@ namespace Diagram
             {
                 if (mousemove)
                 {
-                    Position a = new Position().set(this.startMousePos).scale(this.scale).add(this.shift).subtract(this.startShift);
-                    Position b = new Position().set(this.actualMousePos).scale(this.scale);
+                    Position a = new Position(this.startMousePos)
+                        .scale(this.scale)
+                        .add(this.shift)
+                        .subtract(this.startShift);
+
+                    Position b = new Position(this.actualMousePos)
+                        .scale(this.scale);
 
                     int temp;
                     if (b.x < a.x) { temp = a.x; a.x = b.x; b.x = temp; }
@@ -830,9 +818,9 @@ namespace Diagram
                             }
                         }
                     }
-                }
 
-                this.diagram.InvalidateDiagram();
+                    this.diagram.InvalidateDiagram();
+                }
             }
 
 
@@ -915,11 +903,10 @@ namespace Diagram
                         )
                         || (TargetNode != null && this.sourceNode == TargetNode)
                     )
-                    && Math.Sqrt(vectorx*vectorx+vectory*vectory) > 5
+                    && Math.Sqrt(mouseTranslation.x* mouseTranslation.x + mouseTranslation.y * mouseTranslation.y) > 5
                 )
                 {
-                    vector
-                        .set(mouse)
+                    Position vector = new Position(mouse)
                         .scale(this.scale)
                         .subtract(this.vmouse)
                         .subtract(this.shift)
@@ -986,7 +973,7 @@ namespace Diagram
                     this.OpenLinkAsync(this.sourceNode);
                 }
                 else
-                // KEY DBLCLICK+SHIFT otvorenie editacie
+                // KEY DBLCLICK+SHIFT open node edit form
                 if (dblclick
                     && this.sourceNode != null
                     && !keyctrl
@@ -996,7 +983,7 @@ namespace Diagram
                     this.diagram.EditNode(this.sourceNode);
                 }
                 else
-                // KEY DBLCLICK+CTRL otvorenie adresára ak má noda link na súbor alebo je adresár
+                // KEY DBLCLICK+CTRL open link in node
                 if (dblclick
                     && this.sourceNode != null
                     && keyctrl
@@ -1009,9 +996,9 @@ namespace Diagram
                     }
                 }
                 else
-                // KEY DBLCLICK+SPACE presunutie sa v zoomingu na novú pozíciu
-                if (dblclick
-                    && this.stateZooming
+                // KEY DBLCLICK+SPACE change position in zoom view mode
+                if (this.stateZooming
+                    && dblclick
                     && !keyctrl
                     && !keyalt
                     && !keyshift)
@@ -1032,7 +1019,7 @@ namespace Diagram
                     Node newrec = TargetNode;
                     if (newrec == null)
                     {
-                        newrec = this.CreateNode(new Position(e.X - 10, e.Y - 10), false);
+                        newrec = this.CreateNode(this.actualMousePos.clone().subtract(10), false);
                     }
 
                     foreach (Node rec in this.selectedNodes)
@@ -1153,6 +1140,12 @@ namespace Diagram
                 {
                     this.RemoveNodeFromSelection(TargetNode);
                     this.diagram.InvalidateDiagram();
+                }
+                else
+                if (this.sourceNode == TargetNode
+                    && this.stateSourceNodeAlreadySelected)
+                {
+                    this.rename();
                 }
 
             }
@@ -4339,10 +4332,7 @@ namespace Diagram
             if (this.selectedNodes.Count() == 1)
             {
                 Node rec = this.selectedNodes[0];
-                Position position = new Position(
-                    (int)((this.shift.x + rec.position.x) / this.scale),
-                    (int)((this.shift.y + rec.position.y) / this.scale)
-                );
+                Position position = new Position(this.shift).add(rec.position).zoom(this.scale);
                 this.editPanel.editNode(position, this.selectedNodes[0]);
             }
         }
