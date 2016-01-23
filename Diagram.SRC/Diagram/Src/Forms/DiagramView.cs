@@ -47,20 +47,20 @@ namespace Diagram
         public Position vmouse = new Position();                  // vector position in selected node before change
         public Position actualMousePos = new Position();          // actual mouse position in form in drag process
 
-        // ATTRIBUTES KEYBOARD
+        // ATTRIBUTES KEYBOARDSTATES
         public char key = ' ';                   // last key character - for new node add
         public bool keyshift = false;            // actual shift key state
         public bool keyctrl = false;             // actual ctrl key state
         public bool keyalt = false;              // actual alt key state
 
         // ATTRIBUTES STATES
-        public bool drag = false;                // actual drag status
-        public bool move = false;                // actual move node status
-        public bool selecting = false;           // actual selecting node status or creating node by drag
-        public bool addingNode = false;          // actual adding node by drag
-        public bool dblclick = false;            // actual dblclick status
-        public bool zooming = false;             // actual zooming by space status
-        public bool searching = false;           // actual search edit form status
+        public bool stateDragSelection = false;       // actual drag status
+        public bool stateMoveView = false;            // actual move node status
+        public bool stateSelectingNodes = false;      // actual selecting node status or creating node by drag
+        public bool stateAddingNode = false;          // actual adding node by drag
+        public bool stateDblclick = false;            // actual dblclick status
+        public bool stateZooming = false;             // actual zooming by space status
+        public bool stateSearching = false;           // actual search edit form status
 
         // ATTRIBUTES ZOOMING
         public Position zoomShift = new Position();// zoom view - left corner position before zoom space press
@@ -140,6 +140,7 @@ namespace Diagram
             //
             // MoveTimer
             //
+            this.MoveTimer.Interval = 10;
             this.MoveTimer.Tick += new System.EventHandler(this.MoveTimer_Tick);
             //
             // exportFile
@@ -580,15 +581,17 @@ namespace Diagram
         // EVENT Mouse DoubleClick
         public void DiagramApp_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.dblclick = true;
+            this.stateDblclick = true;
         }
 
         // EVENT Mouse Down                                                                            // [MOUSE] [DOWN] [EVENT]
         public void DiagramApp_MouseDown(object sender, MouseEventArgs e)
         {
-            if (this.searching)
+            this.actualMousePos.set(e.X, e.Y);
+
+            if (this.stateSearching)
             {
-                this.searching = false;
+                this.stateSearching = false;
                 this.searhPanel.HidePanel();
             }
 
@@ -637,19 +640,17 @@ namespace Diagram
                 else
                 if (this.sourceNode == null)
                 {
-                    this.actualMousePos.x = e.X;
-                    this.actualMousePos.y = e.Y;
                     if (!this.diagram.options.readOnly
                         && (this.keyctrl || this.keyalt)
                         && !this.keyshift) // add node by drag
                     {
-                        this.addingNode = true;
+                        this.stateAddingNode = true;
                         MoveTimer.Enabled = true;
                         this.ClearSelection();
                     }
                     else // multiselect
                     {
-                        this.selecting = true;
+                        this.stateSelectingNodes = true;
                         MoveTimer.Enabled = true;
                     }
                 }
@@ -664,9 +665,9 @@ namespace Diagram
                         this.DoDragDrop(data, DragDropEffects.Copy);
                     }
                     else
-                    if (!this.diagram.options.readOnly)  //informations for draging
+                    if (!this.diagram.options.readOnly && !this.stateDblclick)  //informations for draging
                     {
-                        this.drag = true;
+                        this.stateDragSelection = true;
                         MoveTimer.Enabled = true;
                         this.startNodePos.x = this.sourceNode.position.x; // starting position of draging item
                         this.startNodePos.y = this.sourceNode.position.y;
@@ -684,16 +685,14 @@ namespace Diagram
             else
             if (e.Button == MouseButtons.Right)
             {
-                this.move = true; // popupmenu or view move
+                this.stateMoveView = true; // popupmenu or view move
             }
             else
             if (e.Button == MouseButtons.Middle)
             {
                 if (!this.diagram.options.readOnly)
                 {
-                    this.actualMousePos.x = e.X;
-                    this.actualMousePos.y = e.Y;
-                    this.addingNode = true;// add node by drag
+                    this.stateAddingNode = true;// add node by drag
                     MoveTimer.Enabled = true;
                 }
             }
@@ -704,40 +703,19 @@ namespace Diagram
         // EVENT Mouse move                                                                            // [MOUSE] [MOVE] [EVENT]
         public void DiagramApp_MouseMove(object sender, MouseEventArgs e)
         {
-            Position mouse = new Position(e.X, e.Y);
-            Position vector = new Position();
-
-            if (this.selecting || this.addingNode)
+            
+            if (this.stateSelectingNodes || this.stateAddingNode)
             {
-                this.actualMousePos.x = e.X;
-                this.actualMousePos.y = e.Y;
+                this.actualMousePos.set(e.X, e.Y);
                 this.diagram.InvalidateDiagram();
             }
             else
-            if (!this.diagram.options.readOnly && this.drag && !this.dblclick) // posunutie objektu
+            if (this.stateDragSelection || this.stateAddingNode || this.stateSelectingNodes) // posunutie objektu
             {
-                if (this.sourceNode != null)
-                {
-                    // calculate shift between start node position and current sourceNode position
-                    vector
-                        .set(mouse)
-                        .scale(this.scale)
-                        .subtract(this.vmouse)
-                        .subtract(this.shift)
-                        .subtract(this.sourceNode.position);
-
-                    if (this.selectedNodes.Count > 0) {
-                        foreach (Node node in this.selectedNodes)
-                        {
-                            node.position.add(vector);
-                        }
-                    }
-
-                    this.diagram.InvalidateDiagram();
-                }
+                this.actualMousePos.set(e.X, e.Y);
             }
             else
-            if (this.move) // posunutie obrazovky
+            if (this.stateMoveView) // posunutie obrazovky
             {
                 this.shift.x = (int)(this.startShift.x + (e.X - this.startMousePos.x) * this.scale);
                 this.shift.y = (int)(this.startShift.y + (e.Y - this.startMousePos.y) * this.scale);
@@ -767,10 +745,10 @@ namespace Diagram
             bool keyalt = this.keyalt;
             bool keyctrl = this.keyctrl;
             bool keyshift = this.keyshift;
-            bool dblclick = this.dblclick;
-            bool finishdraging = this.drag;
-            bool finishadding = this.addingNode;
-            bool finishselecting = mousemove && this.selecting;
+            bool dblclick = this.stateDblclick;
+            bool finishdraging = this.stateDragSelection;
+            bool finishadding = this.stateAddingNode;
+            bool finishselecting = mousemove && this.stateSelectingNodes;
 
             int vectorx = e.X - this.startMousePos.x;
             int vectory = e.Y - this.startMousePos.y;
@@ -779,7 +757,7 @@ namespace Diagram
 
             if(dblclick)
             {
-                this.selecting = false;
+                this.stateSelectingNodes = false;
             }
             else
             // KEY DRAG
@@ -1033,7 +1011,7 @@ namespace Diagram
                 else
                 // KEY DBLCLICK+SPACE presunutie sa v zoomingu na novú pozíciu
                 if (dblclick
-                    && this.zooming
+                    && this.stateZooming
                     && !keyctrl
                     && !keyalt
                     && !keyshift)
@@ -1181,7 +1159,7 @@ namespace Diagram
             else
             if (buttonright) // KEY MRIGHT
             {
-                this.move = false; // show popup menu
+                this.stateMoveView = false; // show popup menu
                 if (e.X == this.startMousePos.x
                     && e.Y == this.startMousePos.y
                     && this.startShift.x == this.shift.x
@@ -1222,10 +1200,10 @@ namespace Diagram
                 }
             }
 
-            this.dblclick = false;
-            this.drag = false;
-            this.addingNode = false;
-            this.selecting = false;
+            this.stateDblclick = false;
+            this.stateDragSelection = false;
+            this.stateAddingNode = false;
+            this.stateSelectingNodes = false;
         }
 
         // EVENT Mouse Whell
@@ -1301,7 +1279,7 @@ namespace Diagram
         // EVENT Shortcuts
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)                           // [KEYBOARD] [EVENT]
         {
-            if (this.isEditing() || this.searching)
+            if (this.isEditing() || this.stateSearching)
             {
                 return false;
             }
@@ -1639,7 +1617,7 @@ namespace Diagram
         // EVENT Key down
         public void DiagramApp_KeyDown(object sender, KeyEventArgs e)                                  // [KEYBOARD] [DOWN] [EVENT]
         {
-            if (this.isEditing() || this.searching)
+            if (this.isEditing() || this.stateSearching)
             {
                 return;
             }
@@ -1664,12 +1642,12 @@ namespace Diagram
                 return;
             }
 
-            if (e.KeyCode == Keys.Space && !this.zooming) // KEY SPACE
+            if (e.KeyCode == Keys.Space && !this.stateZooming) // KEY SPACE
             {
-                this.selecting = false;
+                this.stateSelectingNodes = false;
                 MoveTimer.Enabled = false;
 
-                this.zooming = true;
+                this.stateZooming = true;
                 Position tmp = new Position(this.shift);
 
                 tmp.add(
@@ -1699,20 +1677,20 @@ namespace Diagram
             this.keyctrl = false;
             this.keyalt = false;
 
-            if (this.isEditing() || this.searching)
+            if (this.isEditing() || this.stateSearching)
             {
                 return;
             }
 
-            if (this.zooming)
+            if (this.stateZooming)
             {
                 MoveTimer.Enabled = false;  // zrusenie prebiehajucich operácii
-                this.move = false;
-                this.addingNode = false;
-                this.drag = false;
-                this.selecting = false;
+                this.stateMoveView = false;
+                this.stateAddingNode = false;
+                this.stateDragSelection = false;
+                this.stateSelectingNodes = false;
 
-                this.zooming = false; // KEY SPACE cancel space zoom and restore prev zoom
+                this.stateZooming = false; // KEY SPACE cancel space zoom and restore prev zoom
 
                 shift.add(
                     (int)(-(this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / this.scale) * this.scale),
@@ -1733,7 +1711,7 @@ namespace Diagram
         // EVENT Keypress
         public void DiagramApp_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (this.isEditing() || this.searching)
+            if (this.isEditing() || this.stateSearching)
             {
                 return;
             }
@@ -1875,9 +1853,9 @@ namespace Diagram
         // EVENT Resize
         public void DiagramApp_Resize(object sender, EventArgs e)                                      // [RESIZE] [EVENT]
         {
-            if (this.zooming)
+            if (this.stateZooming)
             {
-                this.zooming = false;
+                this.stateZooming = false;
                 this.scale = this.zoomingDefaultScale;
                 this.diagram.InvalidateDiagram();
             }
@@ -1898,35 +1876,60 @@ namespace Diagram
         // EVENT MOVE TIMER for move view when node is draged to window edge
         public void MoveTimer_Tick(object sender, EventArgs e)
         {
-            if (this.drag || this.selecting || this.addingNode)
+            if (this.stateDragSelection || this.stateSelectingNodes || this.stateAddingNode)
             {
-                Point ptCursor = Cursor.Position;
-                ptCursor = PointToClient(ptCursor);
                 bool changed = false;
-                if (this.ClientSize.Width - 20 < ptCursor.X)
+
+                if (this.ClientSize.Width - 20 < this.actualMousePos.x)
                 {
-                    this.shift.x -= (int)(50 * this.scale);
+                    this.shift.x -= (int)(10 * this.scale);
                     changed = true;
                 }
 
-                if (ptCursor.X < 20)
+                if (this.actualMousePos.x < 20)
                 {
-                    this.shift.x += (int)(50 * this.scale);
+                    this.shift.x += (int)(10 * this.scale);
                     changed = true;
                 }
 
-                if (this.ClientSize.Height - 50 < ptCursor.Y)
+                if (this.ClientSize.Height - 50 < this.actualMousePos.y)
                 {
-                    this.shift.y -= (int)(50 * this.scale);
+                    this.shift.y -= (int)(10 * this.scale);
                     changed = true;
                 }
 
-                if (ptCursor.Y < 10)
+                if (this.actualMousePos.y < 10)
                 {
-                    this.shift.y += (int)(50 * this.scale);
+                    this.shift.y += (int)(10 * this.scale);
                     changed = true;
                 }
-                //c.add("shiftx=" + this.shiftx.ToString() + " shifty=" + this.shifty.ToString());
+
+                if (this.stateDragSelection) // drag selected  nodes
+                {
+                    if (this.sourceNode != null)
+                    {
+                        Position vector = new Position();
+
+                        // calculate shift between start node position and current sourceNode position
+                        vector
+                            .set(this.actualMousePos)
+                            .scale(this.scale)
+                            .subtract(this.vmouse)
+                            .subtract(this.shift)
+                            .subtract(this.sourceNode.position);
+
+                        if (this.selectedNodes.Count > 0)
+                        {
+                            foreach (Node node in this.selectedNodes)
+                            {
+                                node.position.add(vector);
+                            }
+                        }
+
+                        changed = true;
+                    }
+                }
+
                 if (changed) this.diagram.InvalidateDiagram();
             }
         }                                      // [MOVE] [TIMER] [EVENT]
@@ -1937,15 +1940,15 @@ namespace Diagram
             this.keyctrl = false;
             this.keyalt = false;
             this.keyshift = false;
-            if (this.zooming)
+            if (this.stateZooming)
             {
-                this.zooming = false;
+                this.stateZooming = false;
                 this.scale = this.zoomingDefaultScale;
             }
-            this.drag = false;
-            this.addingNode = false;
-            this.selecting = false;
-            this.move = false;
+            this.stateDragSelection = false;
+            this.stateAddingNode = false;
+            this.stateSelectingNodes = false;
+            this.stateMoveView = false;
 
             this.diagram.InvalidateDiagram();
         }
@@ -2237,7 +2240,7 @@ namespace Diagram
             currentPosition.y = this.shift.y;
 
             searhPanel.ShowPanel();
-            this.searching = true;
+            this.stateSearching = true;
         }
 
         // SEARCHPANEL CANCEL - restore beggining search position
@@ -2253,7 +2256,7 @@ namespace Diagram
         private void SearchClose()
         {
             this.Focus();
-            this.searching = false;
+            this.stateSearching = false;
             this.diagram.InvalidateDiagram();
         }
 
@@ -2572,7 +2575,7 @@ namespace Diagram
             this.DrawLines(gfx, correction, export);
 
             // DRAW addingnode
-            if (!export && this.addingNode && !this.zooming && (this.actualMousePos.x != this.startMousePos.x || this.actualMousePos.y != this.startMousePos.y))
+            if (!export && this.stateAddingNode && !this.stateZooming && (this.actualMousePos.x != this.startMousePos.x || this.actualMousePos.y != this.startMousePos.y))
             {
                 this.DrawAddNode(gfx);
             }
@@ -2580,13 +2583,13 @@ namespace Diagram
             this.DrawNodes(gfx, correction, export);
 
             // DRAW select - select nodes by mouse drag (blue rectangle - multiselect)
-            if (!export && this.selecting && (this.actualMousePos.x != this.startMousePos.x || this.actualMousePos.y != this.startMousePos.y))
+            if (!export && this.stateSelectingNodes && (this.actualMousePos.x != this.startMousePos.x || this.actualMousePos.y != this.startMousePos.y))
             {
                 this.DrawSelectNodes(gfx);
             }
 
             // PREVIEW draw zoom mini screen
-            if (!export && this.zooming)
+            if (!export && this.stateZooming)
             {
                 this.DrawMiniScreen(gfx);
             }
