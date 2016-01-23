@@ -25,7 +25,8 @@ namespace Diagram
         private System.Windows.Forms.ToolStripMenuItem rightItem;
         private System.Windows.Forms.ToolStripMenuItem toLineItem;
         private System.Windows.Forms.ToolStripMenuItem inColumnItem;
-        private System.Windows.Forms.ToolStripMenuItem groupItem;
+        private System.Windows.Forms.ToolStripMenuItem groupVericalItem;
+        private System.Windows.Forms.ToolStripMenuItem groupHorizontalItem;
 
         private System.Windows.Forms.ToolStripSeparator quickActionSeparator; //SEPARATOR
 
@@ -87,6 +88,7 @@ namespace Diagram
         private System.Windows.Forms.ToolStripMenuItem encryptItem;
         private System.Windows.Forms.ToolStripMenuItem changePasswordItem;
         private System.Windows.Forms.ToolStripMenuItem readonlyItem;
+        private System.Windows.Forms.ToolStripMenuItem restoreWindowItem;
         private System.Windows.Forms.ToolStripMenuItem gridItem;
         private System.Windows.Forms.ToolStripMenuItem coordinatesItem;
         private System.Windows.Forms.ToolStripMenuItem bordersItem;
@@ -109,7 +111,7 @@ namespace Diagram
             this.consoleItem.Visible = true;
             this.coordinatesItem.Visible = true;
 #endif
-
+            this.restoreWindowItem.Checked = this.diagramView.diagram.options.restoreWindow;
             this.gridItem.Checked = this.diagramView.diagram.options.grid;
             this.bordersItem.Checked = this.diagramView.diagram.options.borders;
             this.coordinatesItem.Checked = this.diagramView.diagram.options.coordinates;
@@ -137,7 +139,8 @@ namespace Diagram
             this.rightItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toLineItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inColumnItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupVericalItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupHorizontalItem = new System.Windows.Forms.ToolStripMenuItem();
 
             this.quickActionSeparator = new System.Windows.Forms.ToolStripSeparator();
             // FILE
@@ -199,6 +202,7 @@ namespace Diagram
             this.encryptItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readonlyItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restoreWindowItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridItem = new System.Windows.Forms.ToolStripMenuItem();
             this.coordinatesItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bordersItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -287,7 +291,8 @@ namespace Diagram
             this.rightItem,
             this.toLineItem,
             this.inColumnItem,
-            this.groupItem});
+            this.groupVericalItem,
+            this.groupHorizontalItem});
             this.alignItem.Name = "alignItem";
             this.alignItem.Size = new System.Drawing.Size(164, 22);
             this.alignItem.Text = "Align";
@@ -320,12 +325,19 @@ namespace Diagram
             this.inColumnItem.Text = "In column";
             this.inColumnItem.Click += new System.EventHandler(this.inColumnItem_Click);
             //
-            // groupItem
+            // groupVericalItem
             //
-            this.groupItem.Name = "groupItem";
-            this.groupItem.Size = new System.Drawing.Size(128, 22);
-            this.groupItem.Text = "Group";
-            this.groupItem.Click += new System.EventHandler(this.groupItem_Click);
+            this.groupVericalItem.Name = "groupVericalItem";
+            this.groupVericalItem.Size = new System.Drawing.Size(128, 22);
+            this.groupVericalItem.Text = "Group vertical";
+            this.groupVericalItem.Click += new System.EventHandler(this.groupVericalItem_Click);
+            //
+            // groupHorizontalItem
+            //
+            this.groupHorizontalItem.Name = "groupHorizontalItem";
+            this.groupHorizontalItem.Size = new System.Drawing.Size(128, 22);
+            this.groupHorizontalItem.Text = "Group horizontal";
+            this.groupHorizontalItem.Click += new System.EventHandler(this.groupHorizontalItem_Click);
             //
             // quickActionSeparator
             //
@@ -694,6 +706,7 @@ namespace Diagram
             this.encryptItem,
             this.changePasswordItem,
             this.readonlyItem,
+            this.restoreWindowItem,
             this.gridItem,
             this.coordinatesItem,
             this.bordersItem,
@@ -724,6 +737,16 @@ namespace Diagram
             this.readonlyItem.Size = new System.Drawing.Size(168, 22);
             this.readonlyItem.Text = "Read only";
             this.readonlyItem.Click += new System.EventHandler(this.readonlyItem_Click);
+            //
+            // restoreWindowItem
+            //
+            this.restoreWindowItem.Checked = true;
+            this.restoreWindowItem.CheckOnClick = true;
+            this.restoreWindowItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.restoreWindowItem.Name = "restoreWindowItem";
+            this.restoreWindowItem.Size = new System.Drawing.Size(168, 22);
+            this.restoreWindowItem.Text = "Restore window";
+            this.restoreWindowItem.Click += new System.EventHandler(this.restoreWindowItem_Click);
             //
             // gridItem
             //
@@ -839,6 +862,7 @@ namespace Diagram
             changePasswordItem.Enabled = !readOnly;
             defaultFontItem.Enabled = !readOnly;
             resetFontItem.Enabled = !readOnly;
+            restoreWindowItem.Enabled = !readOnly;
             gridItem.Enabled = !readOnly;
             coordinatesItem.Enabled = !readOnly;
             bordersItem.Enabled = !readOnly;
@@ -1038,9 +1062,12 @@ namespace Diagram
         // MENU Edit
         public void editItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.selectedNodes.Count() == 1)
+            if (this.diagramView.selectedNodes.Count() > 0)
             {
-                this.diagramView.diagram.EditNode(this.diagramView.selectedNodes[0]);
+                foreach (Node node in this.diagramView.selectedNodes)
+                {
+                    this.diagramView.diagram.EditNode(node);
+                }
             }
         }
 
@@ -1112,11 +1139,22 @@ namespace Diagram
         }
 
         // MENU align to group to column
-        private void groupItem_Click(object sender, EventArgs e)
+        private void groupVericalItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.selectedNodes.Count() > 0)
             {
                 this.diagramView.diagram.AlignCompact(this.diagramView.selectedNodes);
+                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.InvalidateDiagram();
+            }
+        }
+
+        // MENU align to group to column
+        private void groupHorizontalItem_Click(object sender, EventArgs e)
+        {
+            if (this.diagramView.selectedNodes.Count() > 0)
+            {
+                this.diagramView.diagram.AlignCompactLine(this.diagramView.selectedNodes);
                 this.diagramView.diagram.unsave();
                 this.diagramView.diagram.InvalidateDiagram();
             }
@@ -1312,13 +1350,13 @@ namespace Diagram
         // MENU NODE add file attachment to diagram
         private void includeFileItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.attachmentAddFile(new Position(this.diagramView.startMousePos.x, this.diagramView.startMousePos.y));
+            this.diagramView.attachmentAddFile(new Position(this.diagramView.startMousePos));
         }
 
         // MENU NODE add directory attachment to diagram
         private void includeDirectoryItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.attachmentAddDirectory(new Position(this.diagramView.startMousePos.x, this.diagramView.startMousePos.y));
+            this.diagramView.attachmentAddDirectory(new Position(this.diagramView.startMousePos));
         }
 
         // MENU NODE remove included data
@@ -1406,6 +1444,12 @@ namespace Diagram
         public void readonlyItem_Click(object sender, EventArgs e)
         {
             this.diagramView.diagram.options.readOnly = this.readonlyItem.Checked;
+        }
+
+        // MENU restore window position
+        public void restoreWindowItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.rememberPosition(this.restoreWindowItem.Checked);
         }
 
         // MENU Grid check

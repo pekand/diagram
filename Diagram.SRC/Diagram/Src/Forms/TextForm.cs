@@ -14,7 +14,6 @@ namespace Diagram
         private System.Windows.Forms.ColorDialog DColor;
         private System.Windows.Forms.SplitContainer SplitContainer1;
         private System.Windows.Forms.FontDialog DFont;
-        private System.Windows.Forms.ColorDialog DFColor;
         private System.Windows.Forms.RichTextBox TextFormTextBox;
         private System.Windows.Forms.RichTextBox TextFormNoteTextBox;
         private System.Windows.Forms.Label labelScriptId;
@@ -44,7 +43,6 @@ namespace Diagram
             this.textBoxScriptId = new System.Windows.Forms.TextBox();
             this.DColor = new System.Windows.Forms.ColorDialog();
             this.DFont = new System.Windows.Forms.FontDialog();
-            this.DFColor = new System.Windows.Forms.ColorDialog();
             this.textformtabs.SuspendLayout();
             this.mainTab.SuspendLayout();
             this.SplitContainer1.Panel1.SuspendLayout();

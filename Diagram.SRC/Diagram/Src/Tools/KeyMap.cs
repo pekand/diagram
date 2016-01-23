@@ -13,6 +13,7 @@ namespace Diagram
         public static string alignToLine = "CTRL+L";
         public static string alignToColumn = "CTRL+H";
         public static string alignToGroup = "CTRL+K";
+        public static string alignToLineGroup = "CTRL+SHIFT+K";
         public static string copy = "CTRL+C";
         public static string copyLinks = "CTRL+SHIFT+C";
         public static string copyNotes = "CTRL+ALT+SHIFT+C";

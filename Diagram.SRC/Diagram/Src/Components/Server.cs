@@ -14,7 +14,7 @@ namespace Diagram
         public Main main = null;
 
         public bool serverAlreadyExist = false;
-		public bool serverCurrent = false; // je true ak server spustil tento proces
+		public bool serverCurrent = false; // is true when server runing in this process, false if server already run in other process
 
         private volatile bool _shouldStop = false;
         private TcpListener tcpListener;

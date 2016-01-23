@@ -4,14 +4,17 @@
     <Files>
       <File FileName="Diagram/Src/Main.cs" Line="1" Column="1" />
       <File FileName="Diagram/Src/Program.cs" Line="1" Column="1" />
-      <File FileName="Diagram/Src/Forms/DiagramView.cs" Line="2158" Column="29" />
+      <File FileName="Diagram/Src/Forms/DiagramView.cs" Line="16" Column="16" />
+      <File FileName="Diagram/Src/Components/EditLinkPanel.cs" Line="1" Column="1" />
+      <File FileName="Diagram/Src/Components/EditPanel.cs" Line="1" Column="1" />
+      <File FileName="Diagram/Src/Model/Diagram.cs" Line="1" Column="1" />
+      <File FileName="Diagram/Src/Forms/TextForm.cs" Line="1" Column="1" />
+      <File FileName="Diagram/Src/Tools/OptionsFile.cs" Line="1" Column="1" />
+      <File FileName="Diagram/Src/Lib/Os.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/home/kerberos/Desktop/diagram/Diagram.SRC/Diagram/Src/Program.cs" line="9" column="1" />
-      <Breakpoint file="/home/kerberos/Everlution/infinite-diagram/Diagram.SRC/Diagram/Src/Forms/DiagramView.cs" line="2152" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

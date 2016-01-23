@@ -1,66 +1,204 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Diagram
 {
-    public class Breadcrumbs : Panel
+    // map node structure for copy paste operation
+    public class BreadcrumbItem
     {
+        public int layerId;
+        public int left;
+        public int top;
+        public int width;
+        public int height;
+        public string name;
+    }
+
+    public class Breadcrumbs
+    {
+        public bool isVisible = true;
+         
         public DiagramView diagramView = null;
 
-        public delegate void SearchPanelChangedEventHandler(string action, string search);
-        public event SearchPanelChangedEventHandler SearchpanelStateChanged;
+        List<BreadcrumbItem> items = new List<BreadcrumbItem>();
 
-        
+        // resources
+        Font font = new Font("Arial", 12);
+        SolidBrush brush = new SolidBrush(Color.Gray);
+        SolidBrush logoBlackBrash = new SolidBrush(Color.FromArgb(80, 0, 0, 0));
+        SolidBrush redBrash = new SolidBrush(Color.FromArgb(200, 255, 102, 0));
+        SolidBrush yellowBrash = new SolidBrush(Color.FromArgb(200, 255, 255, 0));
+        SolidBrush barBrash =  new SolidBrush(Color.FromArgb(50, 0, 0, 0));
+        SolidBrush separatorBrash = new SolidBrush(Color.FromArgb(100, 0, 0, 0));
+
+        int left = 10;
+        int top = 10;
+        int width = 0;
+        int height = 0;
+        int itemSpace = 5;
+
         public Breadcrumbs(DiagramView diagramView)
         {
             this.diagramView = diagramView;
-
-            InitializeComponent();
-            InitializeSearchPanelComponent();
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
+        public void Update()
         {
-            this.SuspendLayout();
-            //
-            // SearchPanel
-            //
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            this.width = 0;
+            this.height = 0;
+            this.isVisible = false;
 
+            if (this.diagramView.layersHistory != null 
+                && this.diagramView.layersHistory.Count > 1)
+            {
+                this.items.Clear();
+
+                int i = 0;
+                foreach (Layer layer in this.diagramView.layersHistory)
+                {
+                    //skip first top layer because logo is showed insted
+                    if (i++ == 0) continue;
+
+                    BreadcrumbItem item = new BreadcrumbItem();
+
+                    if (layer.parentNode != null)
+                    {
+                        item.name = layer.parentNode.name;
+                    }
+                    else
+                    {
+                        item.name = "Home";
+                    }
+
+                    if (item.name.Length > 10) {
+                        item.name = item.name.Substring(0, 9);
+                    }
+
+                    SizeF s = Fonts.MeasureString(item.name, this.font);
+                    item.left = this.width;
+                    item.top = 0;
+                    item.height = (int)s.Height;
+                    item.width = (int)s.Width;
+                    this.width += item.width + itemSpace;
+
+                    if (this.height < item.height)
+                    {
+                        this.height = item.height;
+                    }
+
+                    item.layerId = layer.id; // for restore layer after click
+
+                    this.items.Add(item);
+                }
+
+                // add logo width
+                this.width += this.height;
+
+                // add logo width to items
+                foreach (BreadcrumbItem item in items)
+                {
+                    item.left += this.height;
+                }
+
+                this.isVisible = true;
+            }
         }
 
-        #endregion
-
-        private void InitializeSearchPanelComponent()
+        // EVENT Paint                                                                                 
+        public void Draw(Graphics g)
         {
+            if (!this.isVisible)
+            {
+                return;
+            }
 
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.left = this.diagramView.ClientSize.Width - this.width - 10;
+            this.top = 10;
 
-            Form parentForm = (this.diagramView as Form);
-        }
+            // logo
+            int logopadding = (this.height > 10) ? this.height / 10 : 1;
 
-        public void centerPanel()
-        {
-            this.Top = 10;
-            this.Left = 10;
-        }
+            // draw bar
+            g.FillRectangle(
+                this.barBrash,
+                this.left + this.height + 2,
+                this.top,
+                this.width - this.height - 2,
+                this.height
+            );
 
-        public void ShowPanel()
-        {
-            this.Show();
-            this.centerPanel();
-        }
+            //logo background
+            g.FillRectangle(
+                this.barBrash,
+                this.left - 2, 
+                this.top - 2, 
+                this.height + 4, 
+                this.height + 4
+            );
 
-        public void HidePanel()
-        {
-            this.Hide();
+            //logo top left
+            g.FillRectangle(
+                this.yellowBrash,
+                this.left + logopadding, 
+                this.top + logopadding, 
+                this.height - this.height/2 - 2 * logopadding, 
+                this.height - this.height / 2 - 2 * logopadding
+            );
+
+            //logo bottom right
+            g.FillRectangle(
+                this.yellowBrash,
+                this.left + this.height / 2 + logopadding, 
+                this.top + this.height / 2 + logopadding, 
+                this.height - this.height / 2 - 2 * logopadding, 
+                this.height - this.height / 2 - 2 * logopadding
+            );
+
+            //logo bottom left
+           g.FillRectangle(
+                this.redBrash,
+                this.left + logopadding, 
+                this.top + this.height / 2 + logopadding, 
+                this.height - this.height / 2 - 2 * logopadding, 
+                this.height - this.height / 2 - 2 * logopadding
+            );
+
+            //logo top right
+            g.FillRectangle(
+                this.redBrash,
+                this.left + this.height / 2 + logopadding, 
+                this.top + logopadding, 
+                this.height - this.height / 2 - 2 * logopadding, 
+                this.height - this.height / 2 - 2 * logopadding
+            );
+
+            // Draw node names
+            int i = items.Count;
+            foreach (BreadcrumbItem item in items)
+            {
+                // layer name
+                g.DrawString(
+                    item.name,
+                    this.font,
+                    this.brush,
+                    this.left + item.left, 
+                    this.top
+                );
+
+                // draw separator
+                if (i-- > 1)
+                {
+                    g.FillEllipse(
+                        this.separatorBrash,
+                        this.left + item.left + item.width ,
+                        this.top + item.top + item.height/2,
+                        item.height / 5,
+                        item.height / 5
+                    );
+                }
+            }
         }
     }
 }

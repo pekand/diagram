@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Text;
 
 #if !MONO
 using Shell32;
@@ -333,6 +334,7 @@ namespace Diagram
         {
             return Path.GetFullPath(normalizePath(path));
         }
+        
         /// <summary>
         /// convert win path slash to linux type slash </summary>
         public static string toBackslash(string text)
@@ -453,9 +455,18 @@ namespace Diagram
 
         /// <summary>
         /// create directory</summary>
-        public static void createDirectory(string path)
+        public static bool createDirectory(string path)
         {
-            Os.createDirectory(path);
+			try{
+				Directory.CreateDirectory(path);
+
+				return true;
+			}
+			catch (Exception e) 
+			{
+				Program.log.write("os.createDirectory fail: " + path + ": " + e.ToString());
+			}
+			return false;
         }
 
         /// <summary>
@@ -493,6 +504,23 @@ namespace Diagram
             return File.ReadAllBytes(path);
         }
 
-        
+        /// <summary>
+        /// get file content as string</summary>
+        public static string getFileContent(string file)
+        {
+            try
+            {
+                using (StreamReader streamReader = new StreamReader(file, Encoding.UTF8))
+                {
+                    return streamReader.ReadToEnd();
+                }
+            }
+            catch (System.IO.IOException ex)
+            {
+                Program.log.write(ex.Message);
+            }
+
+            return null;
+        }
     }
 }

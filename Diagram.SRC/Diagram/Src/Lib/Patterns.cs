@@ -31,5 +31,31 @@ namespace Diagram
 
             return new string[] { command, arguments };
         }
+
+        public static bool hasHastag(string link, ref string fileName, ref string searchString)
+        {
+            Match matchFileOpenOnPosition = (new Regex("^([^#]+)#(.*)$")).Match(link.Trim());
+
+            if (matchFileOpenOnPosition.Success)
+            {
+                fileName = matchFileOpenOnPosition.Groups[1].Value;
+                searchString = matchFileOpenOnPosition.Groups[2].Value;
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool isNumber(string text)
+        {
+            Match matchNumber = (new Regex("^(\\d+)$")).Match(text);
+
+            if (matchNumber.Success)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

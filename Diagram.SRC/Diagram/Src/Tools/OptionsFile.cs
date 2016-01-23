@@ -92,10 +92,13 @@ namespace Diagram
 
         private string getGlobalConfigFileDirectory()
         {
-            return Os.combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+			string folderPath = Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
+			string configDirectory = Os.combine(
+				folderPath,
                 this.configFileDirectory
             );
+
+			return configDirectory;
         }
 
         private string getGlobalConfigFilePath()
