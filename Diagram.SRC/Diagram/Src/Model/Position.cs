@@ -76,6 +76,15 @@ namespace Diagram
             return this;
         }
 
+        // <summary>
+        /// subtract vector</summary>
+        public Position add(float a, float b)
+        {
+            this.x += (int)a;
+            this.y += (int)b;
+            return this;
+        }
+
         public static Position operator +(Position a, Position b)
         {
             return new Position(a).add(b);

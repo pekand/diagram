@@ -1004,12 +1004,10 @@ namespace Diagram
                             .clone()
                             .scale(this.scale)
                             )
-                        .subtract(
+                        .add(
                             (this.ClientSize.Width * this.scale) / 2, 
                             (this.ClientSize.Height * this.scale) / 2
                         );
-                    this.shift.x = (int)(this.shift.x - (this.actualMousePos.x * this.scale) + (this.ClientSize.Width * this.scale) / 2);
-                    this.shift.y = (int)(this.shift.y - (this.actualMousePos.y * this.scale) + (this.ClientSize.Height * this.scale) / 2);
                     this.diagram.InvalidateDiagram();
                 }
                 else
@@ -3233,7 +3231,7 @@ namespace Diagram
             this.BuildLayerHistory(layer);
         }
 
-        // NODE Najdenie nody podla pozicie myši
+        // NODE find node in mouse cursor position
         public Node findNodeInMousePosition(Position position)
         {
             return this.diagram.findNodeInPosition(
@@ -4640,20 +4638,22 @@ namespace Diagram
             return SelectedLines;
         }
 
-        // LINE selectcolor
-        public void selectLineColor()
+        // LINE change color of lines
+        public void changeLineColor()
         {
             if (!this.diagram.options.readOnly)
             {
                 if (this.selectedNodes.Count() > 0)
                 {
-                    //DColor.Color = this.SelectedNodes[0].color;
+                    Lines SelectedLines = getSelectedLines();
+
+                    if (SelectedLines.Count > 0)
+                    {
+                        DColor.Color = SelectedLines[0].color;
+                    }
 
                     if (DColor.ShowDialog() == DialogResult.OK)
                     {
-
-                        Lines SelectedLines = getSelectedLines();
-
                         foreach (Line lin in SelectedLines)
                         {
                             lin.color = DColor.Color;
@@ -4665,6 +4665,7 @@ namespace Diagram
                 }
             }
         }
+        
         /*************************************************************************************************************************/
 
         // DEBUG Show console

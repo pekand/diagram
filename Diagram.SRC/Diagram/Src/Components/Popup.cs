@@ -1318,7 +1318,7 @@ namespace Diagram
         // MENU LINE select line color
         private void lineColorItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.selectLineColor();
+            this.diagramView.changeLineColor();
         }
 
         // ATTACHMENT
