@@ -821,8 +821,8 @@ namespace Diagram
                 }
             }
 
-
             Node TargetNode = this.findNodeInMousePosition(new Position(e.X, e.Y));
+
             if (buttonleft) // MLEFT
             {
 
@@ -941,7 +941,7 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DRAG+ALT create
+                // KEY DRAG+ALT create node and make shortcut to target node
                 if (!isreadonly
                     && keyalt
                     && !keyctrl
@@ -958,7 +958,7 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DBLCLICK otvorenie editacie alebo linku [dblclick]
+                // KEY DBLCLICK open link or edit window after double click on node [dblclick]
                 if (dblclick
                     && this.sourceNode != null
                     && !keyctrl
@@ -1037,7 +1037,7 @@ namespace Diagram
                 }
                 else
                 // KEY CTRL+MLEFT
-                // KEY DBLCLICK Vytvorenie noveho obdlznika
+                // KEY DBLCLICK create new node
                 if (!isreadonly
                     && (dblclick || keyctrl)
                     && TargetNode == null
@@ -1050,7 +1050,7 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DRAG+CTRL Skopirovanie farby a stylu z jednej nody na druhu
+                // KEY DRAG+CTRL copy style from node to other node
                 if (!isreadonly
                     && !keyshift
                     && keyctrl
@@ -1089,7 +1089,7 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DRAG Pridanie spojovaciej čiary
+                // KEY DRAG make link between two nodes
                 if (!isreadonly
                     && TargetNode != null
                     && this.sourceNode != null
@@ -1126,7 +1126,7 @@ namespace Diagram
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
-                // KEY CTRL+MLEFT pridanie prvku do vyberu
+                // KEY CTRL+MLEFT add node to selected nodes
                 else
                 if (keyctrl
                     && !keyshift
@@ -1137,7 +1137,7 @@ namespace Diagram
                     this.SelectNode(TargetNode);
                     this.diagram.InvalidateDiagram();
                 }
-                // KEY CLICK+CTRL odstránenie prvku z vyberu
+                // KEY CLICK+CTRL remove node from selected nodes
                 else
                 if (keyctrl
                     && TargetNode != null
@@ -1373,13 +1373,13 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.save, keyData))  // [KEY] [CTRL+S] Uloženie okna
+            if (KeyMap.parseKey(KeyMap.save, keyData))  // [KEY] [CTRL+S] save diagram
             {
                 this.save();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.open, keyData))  // [KEY] [CTRL+O] Otvorenie diagramu
+            if (KeyMap.parseKey(KeyMap.open, keyData))  // [KEY] [CTRL+O] open diagram dialog window
             {
                 this.open();
                 return true;
@@ -1493,13 +1493,13 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.pageUp, keyData)) // [KEY] [PAGEUP] page up
+            if (KeyMap.parseKey(KeyMap.pageUp, keyData)) // [KEY] [PAGEUP] change current position in diagram view
             {
                 this.pageUp();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.pageDown, keyData)) // [KEY] [PAGEDOWN] Posun obrazovky
+            if (KeyMap.parseKey(KeyMap.pageDown, keyData)) // [KEY] [PAGEDOWN] change current position in diagram view
             {
                 this.pageDown();
                 return true;
@@ -1591,19 +1591,19 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.alignLeft, keyData)) // [KEY] [TAB] zarovnanie vybranych prvkov dolava
+            if (KeyMap.parseKey(KeyMap.alignLeft, keyData)) // [KEY] [TAB] align selected nodes to left
             {
                 this.alignLeft();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.alignRight, keyData))  // [KEY] [SHIFT+TAB] Zarovnanie vybranych prvkov doprava //KEY shift+tab
+            if (KeyMap.parseKey(KeyMap.alignRight, keyData))  // [KEY] [SHIFT+TAB] align selected nodes to right
             {
                 this.alignRight();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.resetZoom, keyData))  // [KEY] [CTRL+0] Otvorenie diagramu
+            if (KeyMap.parseKey(KeyMap.resetZoom, keyData))  // [KEY] [CTRL+0] reset zoom level to default
             {
                 this.resetZoom();
                 return true;
@@ -2297,9 +2297,8 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // SCROLLBAR MOVE LEFT-RIGHT                                                                       // SCROLLBAR
-        /* move view in percent units 0-1*/
-        public void moveScreenHorizontal(float per)
+        // SCROLLBAR MOVE LEFT-RIGHT set current position in view with relative (0-1) number          // SCROLLBAR              
+        public void moveScreenHorizontal(float per)                                                
         {
             int minx = int.MaxValue;
             int maxx = int.MinValue;
@@ -2324,8 +2323,7 @@ namespace Diagram
             }
         }
 
-        // SCROLLBAR GET POSITION LEFT-RIGHT nastaví aktuálnu pozíciu pre skrolbar
-        /* move view in percent units 0-1*/
+        // SCROLLBAR GET POSITION LEFT-RIGHT calculate current position in view as relative (0-1) number 
         public float getPositionHorizontal()
         {
             float per = 0;
@@ -2356,7 +2354,7 @@ namespace Diagram
 
         }
 
-        // SCROLLBAR MOVE UP-DOWN
+        // SCROLLBAR MOVE UP-DOWN set current position in view with relative (0-1) number
         public void moveScreenVertical(float per)
         {
             int miny = int.MaxValue;
@@ -2382,8 +2380,7 @@ namespace Diagram
             }
         }
 
-        // SCROLLBAR GET POSITION LEFT-RIGHT nastaví aktuálnu pozíciu pre skrolbar
-        /* get view position in percent units 0-1*/
+        // SCROLLBAR GET POSITION LEFT-RIGHT calculate current position in view as relative (0-1) number
         public float getPositionVertical()
         {
             float per = 0;
@@ -2413,13 +2410,13 @@ namespace Diagram
             }
         }
 
-        // SCROLLBAR Change position horizontal
+        // SCROLLBAR EVENT position is changed by horizontal scrollbar 
         public void positionChangeBottom(object source, PositionEventArgs e)
         {
             moveScreenHorizontal(e.GetPosition());
         }
 
-        // SCROLLBAR Change position vartical
+        // SCROLLBAR EVENT position is changed by vertical scrollbar 
         public void positionChangeRight(object source, PositionEventArgs e)
         {
             moveScreenVertical(e.GetPosition());
@@ -2427,7 +2424,7 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // FILE Save - Ulozit súbor
+        // FILE Save - Save diagram
         public void save()
         {
             if (!this.diagram.save())
@@ -2436,7 +2433,7 @@ namespace Diagram
             }
         }
 
-        // FILE SAVEAS - Uložiť súbor ako
+        // FILE SAVEAS - Save as diagram
         public bool saveas()
         {
             if (this.DSave.ShowDialog() == DialogResult.OK)
@@ -2450,7 +2447,7 @@ namespace Diagram
             }
         }
 
-        // FILE Open - Ulozit súbor
+        // FILE Open - Open diagram dialog
         public void open()
         {
             if (DOpen.ShowDialog() == DialogResult.OK)
@@ -2474,7 +2471,7 @@ namespace Diagram
             }
         }
 
-        // FILE Open diagram directory
+        // FILE Open diagram directory if diagram is already saved
         public void openDiagramDirectory()
         {
             if (!this.diagram.NewFile && Os.FileExists(this.diagram.FileName))
@@ -2488,7 +2485,16 @@ namespace Diagram
         // EXPORT Export diagram to png
         public void exportDiagramToPng()
         {
-            Nodes nodes = this.diagram.getAllNodes();
+            Nodes nodes = null;
+
+            if (this.selectedNodes.Count == 0)
+            {
+                nodes = this.currentLayer.nodes;
+            }
+            else
+            {
+                nodes = this.selectedNodes;
+            }
 
             if (nodes.Count > 0)
             {
@@ -2529,7 +2535,7 @@ namespace Diagram
                 Bitmap bmp = new Bitmap(maxx - minx, maxy - miny);
                 Graphics g = Graphics.FromImage(bmp);
                 g.Clear(this.BackColor);
-                this.DrawDiagram(g, new Position(-this.shift.x - minx, -this.shift.y - miny), true);
+                this.DrawDiagram(g, new Position(this.shift).invert().subtract(minx, miny), true);
                 g.Dispose();
                 bmp.Save(exportFile.FileName, ImageFormat.Png);
                 bmp.Dispose();
@@ -2539,16 +2545,25 @@ namespace Diagram
         // EXPORT Export diagram to txt
         public void exportDiagramToTxt(string filePath)
         {
-            if (this.diagram.getAllNodes().Count > 0)
-            {
-                string outtext = "";
 
-                foreach (Node rec in this.diagram.getAllNodes())
-                {
-                    outtext += rec.name + "\n" + (rec.link != "" ? rec.link + "\n" : "") + "\n" + rec.note + "\n---\n";
-                }
-                Os.writeAllText(filePath, outtext);
+            Nodes nodes = null;
+
+            if (this.selectedNodes.Count == 0)
+            {
+                nodes = this.diagram.getAllNodes();
             }
+            else
+            {
+                nodes = this.selectedNodes;
+            }
+
+            string outtext = "";
+
+            foreach (Node rec in nodes)
+            {
+                outtext += rec.name + "\n" + (rec.link != "" ? rec.link + "\n" : "") + "\n" + rec.note + "\n---\n";
+            }
+            Os.writeAllText(filePath, outtext);
         }
 
         /*************************************************************************************************************************/
@@ -2592,7 +2607,10 @@ namespace Diagram
             }
 
             // DRAW addingnode
-            this.breadcrumbs.Draw(gfx);
+            if (!export)
+            { 
+                this.breadcrumbs.Draw(gfx);
+            }
         }
 
         // DRAW grid
