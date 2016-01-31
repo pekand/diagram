@@ -59,6 +59,13 @@ namespace Diagram
         }
 
         // <summary>
+        /// Count distance between two points</summary>
+        public double size()
+        {
+            return Math.Sqrt((0 - this.x) * (0 - this.x) + (0 - this.y) * (0 - this.y));
+        }
+
+        // <summary>
         /// add vector</summary>
         public Position add(Position p)
         {
@@ -142,7 +149,7 @@ namespace Diagram
 
         // <summary>
         /// scale vector</summary>
-        public Position scale(float scale)
+        public Position scale(double scale)
         {
             this.x = (int)(this.x * scale);
             this.y = (int)(this.y * scale);

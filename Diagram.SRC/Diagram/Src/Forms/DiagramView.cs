@@ -99,10 +99,13 @@ namespace Diagram
         // Breadcrumbs
         public Breadcrumbs breadcrumbs = null;
 
+        // Move timer
+        Timer moveTimer = new Timer(); // timer pre animaciu
+        Position moveTimerSpeed = new Position();
+        int moveTimerCounter = 0;
+
         // COMPONENTS
         private IContainer components;
-
-        // INIT COMPONENTS
         private void InitializeComponent()
         {
             this.components = new Container();
@@ -140,7 +143,7 @@ namespace Diagram
             //
             // MoveTimer
             //
-            this.MoveTimer.Interval = 10;
+            this.MoveTimer.Interval = 5;
             this.MoveTimer.Tick += new EventHandler(this.MoveTimer_Tick);
             //
             // exportFile
@@ -215,6 +218,11 @@ namespace Diagram
 
             // initialize breadcrumbs
             this.breadcrumbs = new Breadcrumbs(this);
+
+            // move timer
+            this.moveTimer.Tick += new EventHandler(moveTimerTick);
+            this.moveTimer.Interval = 10;
+            this.moveTimer.Enabled = false;
         }
 
         // FORM Load event -
@@ -1555,7 +1563,14 @@ namespace Diagram
 
             if (KeyMap.parseKey(KeyMap.minimalize, keyData)) // [KEY] [ESC] minimalize diagram view
             {
-                return this.formHide();
+                if (this.moveTimer.Enabled)
+                {
+                    this.moveTimer.Enabled = false; // stop move animation if exist
+                }
+                else
+                {
+                    return this.formHide();
+                }
             }
 
             if (KeyMap.parseKey(KeyMap.delete, keyData)) // [KEY] [DELETE] delete
@@ -2169,7 +2184,7 @@ namespace Diagram
 
             if (node != null)
             {
-                this.goToNode(node);
+                this.goToNodeWithAnimation(node);
                 this.SelectOnlyOneNode(node);
                 this.diagram.InvalidateDiagram();
             }
@@ -2216,7 +2231,7 @@ namespace Diagram
 
             if (node != null)
             {
-                this.goToNode(node);
+                this.goToNodeWithAnimation(node);
                 this.SelectOnlyOneNode(node);
                 this.diagram.InvalidateDiagram();
             }
@@ -4740,6 +4755,48 @@ namespace Diagram
             script.setClipboard(clipboard);
             string body = node.note.Trim() != "" ? node.note : node.name;
             script.runScript(body);
+        }
+
+        /*************************************************************************************************************************/
+
+        // MOVE TIMER Go to node position
+        public void goToNodeWithAnimation(Node node)
+        {
+            if (node != null)
+            {
+                if (node.layer != this.currentLayer.id) // if node is in different layer then move instantly
+                {
+                    this.goToNode(node);
+                }
+                else
+                {
+                    this.moveTimer.Enabled = true;
+                    
+                    this.moveTimerSpeed.set(this.shift.clone().invert())
+                        .subtract(node.position)
+                        .add(this.ClientRectangle.Width / 2, this.ClientRectangle.Height / 2);
+
+                    double distance = this.moveTimerSpeed.size();
+                    this.moveTimerCounter = (distance > 1000) ? 10 : 30;
+
+                    this.moveTimerSpeed
+                        .split(this.moveTimerCounter);
+
+                }
+            }
+        }
+
+        // MOVE TIMER Go to node position
+        public void moveTimerTick(object sender, EventArgs e)
+        {
+
+            this.shift.add(this.moveTimerSpeed);
+
+            if (--this.moveTimerCounter <= 0) {
+                this.moveTimer.Enabled = false;
+            }
+
+            this.diagram.InvalidateDiagram();
         }
     }
 }
