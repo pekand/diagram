@@ -2300,7 +2300,7 @@ namespace Diagram
         {
             int minx = int.MaxValue;
             int maxx = int.MinValue;
-            foreach (Node rec in this.diagram.getAllNodes())
+            foreach (Node rec in this.currentLayer.nodes)
             {
                 if (rec.layer == this.currentLayer.id || rec.id == this.currentLayer.id)
                 {
@@ -2327,7 +2327,7 @@ namespace Diagram
             float per = 0;
             int minx = int.MaxValue;
             int maxx = int.MinValue;
-            foreach (Node rec in this.diagram.getAllNodes())
+            foreach (Node rec in this.currentLayer.nodes)
             {
                 if (rec.layer == this.currentLayer.id || rec.id == this.currentLayer.id)
                 {
@@ -2357,7 +2357,7 @@ namespace Diagram
         {
             int miny = int.MaxValue;
             int maxy = int.MinValue;
-            foreach (Node rec in this.diagram.getAllNodes())
+            foreach (Node rec in this.currentLayer.nodes)
             {
                 if (rec.layer == this.currentLayer.id || rec.id == this.currentLayer.id)
                 {
@@ -2384,7 +2384,7 @@ namespace Diagram
             float per = 0;
             int miny = int.MaxValue;
             int maxy = int.MinValue;
-            foreach (Node rec in this.diagram.getAllNodes())
+            foreach (Node rec in this.currentLayer.nodes)
             {
                 if (rec.layer == this.currentLayer.id || rec.id == this.currentLayer.id)
                 {
@@ -3023,13 +3023,13 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        //DIAGRAM Set model
+        // DIAGRAM Set model
         public void setDiagram(Diagram diagram)
         {
             this.diagram = diagram;
         }
 
-        //DIAGRAM Get model
+        // DIAGRAM Get model
         public Diagram getDiagram()
         {
             return this.diagram;

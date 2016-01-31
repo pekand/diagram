@@ -29,7 +29,7 @@ namespace Diagram
         public int barwidth = 1000;
         public int barheight = 30;
 
-        // orientation - orientácia skrolbaru
+        // scroll bar orientation
         public bool vertical = true;
         public bool horizontal = true;
 
@@ -45,16 +45,16 @@ namespace Diagram
         public int trackposold = 150;
 
         // mouse click
-        public bool mousedown = false; // bolo kliknuté do scrollbaru
+        public bool mousedown = false; // mouse click on scrollbar
         public int delta = 0;
 
-        // timer - animácia
+        // timer - animation
         Timer timer = new Timer(); // timer pre animaciu
         public int opacity = 0;
-        public bool animation = false; // ci je animacia spustena
-        public bool active = false; // je zobrazene skrolovanie?
-        public bool fadein = true; // zobrazuje sa scrollbar
-        public bool fadeout = false; // skovava sa scrollbar
+        public bool animation = false; // animation is running
+        public bool active = false; // scrolbarr is visible
+        public bool fadein = true; // running dade in animation
+        public bool fadeout = false; // running fade out animation
 
         // event change position
         public event PositionChangeEventHandler OnChangePosition;
@@ -220,7 +220,7 @@ namespace Diagram
 
         public bool MouseMove(int mx, int my)
         {
-            if (mousedown) // je kliknuté do skrolbaru
+            if (mousedown) // click to scroll bar
             {
 
                 if (horizontal)
@@ -270,7 +270,7 @@ namespace Diagram
                 }
 
             }
-            else // ak sa len prehádz ponad scrollbar mišou
+            else // only move mouse about scroolbar
             {
                 if (barx <= mx && mx <= barx + barwidth && bary <= my && my <= bary + barheight)
                 {
@@ -364,7 +364,6 @@ namespace Diagram
                 }
                 else
                 {
-                    //this.animation = false;
                     this.timer.Enabled = false;
                     this.timer.Stop();
                 }

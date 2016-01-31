@@ -90,7 +90,16 @@ namespace Diagram
                     return false;
                 }
 
-                bool opened = this.LoadXML(xml);
+                bool opened = false;
+                if (xml.Trim() == "")
+                {
+                    opened = true; // count empty file as valid new diagram
+                }
+                else
+                {
+                    opened = this.LoadXML(xml);
+                }
+
                 this.SetTitle();
 
                 return opened;
