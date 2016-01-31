@@ -2118,11 +2118,37 @@ namespace Diagram
             middle.x = middle.x - this.Width / 2;
             middle.y = middle.y - this.Height / 2;
 
+            int currentLayerId = this.currentLayer.id;
+
             foundNodes.Sort((first, second) =>
             {
+                // sort by layers
+                if (first.layer < second.layer)
+                {
+                    // current layer first
+                    if (currentLayerId == second.layer) {
+                        return 1;
+                    }
+
+                    return -1;
+                }
+
+                // sort by layers
+                if (first.layer > second.layer)
+                {
+                    // current layer first
+                    if (currentLayerId == first.layer)
+                    {
+                        return -1;
+                    }
+
+                    return 1;
+                }
+
                 double d1 = first.position.convertToStandard().distance(middle);
                 double d2 = second.position.convertToStandard().distance(middle);
 
+                // sort by distance if is same layer
                 if (d1 < d2)
                 {
                     return -1;
