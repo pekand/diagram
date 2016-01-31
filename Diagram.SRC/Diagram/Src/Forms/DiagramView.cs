@@ -93,7 +93,8 @@ namespace Diagram
         public int lastFound = -1;            // id of last node found by search panel
         public string searchFor = "";         // string selected by search panel
         public SearchPanel searhPanel = null; // search panel
-        Position currentPosition = new Position();
+        public Position currentPosition = new Position();
+        public int currentPositionLayer = 0;
         public List<int> nodesSearchResult = new List<int>(); // all nodes found by search panel
 
         // Breadcrumbs
@@ -2275,6 +2276,7 @@ namespace Diagram
 
             currentPosition.x = this.shift.x;
             currentPosition.y = this.shift.y;
+            currentPositionLayer = this.currentLayer.id;
 
             searhPanel.ShowPanel();
             this.stateSearching = true;
@@ -2283,8 +2285,10 @@ namespace Diagram
         // SEARCHPANEL CANCEL - restore beggining search position
         private void SearchCancel()
         {
+            this.goToLayer(currentPositionLayer);
             this.shift.x = currentPosition.x;
             this.shift.y = currentPosition.y;
+            
 
             this.SearchClose();
         }
