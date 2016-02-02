@@ -38,7 +38,6 @@ namespace Diagram
         private System.Windows.Forms.ToolStripMenuItem textItem;
         private System.Windows.Forms.ToolStripMenuItem exportToPngItem;
         private System.Windows.Forms.ToolStripMenuItem openItem;
-        private System.Windows.Forms.ToolStripMenuItem openDiagramDirectoryItem;
         private System.Windows.Forms.ToolStripMenuItem exitItem;
 
         private System.Windows.Forms.ToolStripMenuItem editMenuItem; // EDIT
@@ -62,12 +61,14 @@ namespace Diagram
 
         private System.Windows.Forms.ToolStripMenuItem lineItem; // LINE
         private System.Windows.Forms.ToolStripMenuItem lineColorItem;
+        private System.Windows.Forms.ToolStripMenuItem lineWidthItem;
 
-        private System.Windows.Forms.ToolStripMenuItem attachmentItem; // ATTACHMENT
+        private System.Windows.Forms.ToolStripMenuItem imageItem; // IMAGE
         private System.Windows.Forms.ToolStripMenuItem imageAddItem;
         private System.Windows.Forms.ToolStripMenuItem imageRemoveItem;
         private System.Windows.Forms.ToolStripMenuItem imageEmbeddedItem;
-        private System.Windows.Forms.ToolStripSeparator includeSeparator; //SEPARATOR
+
+        private System.Windows.Forms.ToolStripMenuItem attachmentItem; // ATTACHMENT
         private System.Windows.Forms.ToolStripMenuItem deploayAttachmentItem;
         private System.Windows.Forms.ToolStripMenuItem includeFileItem;
         private System.Windows.Forms.ToolStripMenuItem includeDirectoryItem;
@@ -83,6 +84,9 @@ namespace Diagram
         private System.Windows.Forms.ToolStripMenuItem outItem;
 
         private System.Windows.Forms.ToolStripSeparator helpSeparator;
+
+        private System.Windows.Forms.ToolStripMenuItem toolsItem; // TOOLS
+        private System.Windows.Forms.ToolStripMenuItem openDiagramDirectoryItem;
 
         private System.Windows.Forms.ToolStripMenuItem optionItem; // OPTION
         private System.Windows.Forms.ToolStripMenuItem encryptItem;
@@ -152,7 +156,6 @@ namespace Diagram
             this.textItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToPngItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openDiagramDirectoryItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitItem = new System.Windows.Forms.ToolStripMenuItem();
             // EDIT
             this.editMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -176,12 +179,14 @@ namespace Diagram
             // LINE
             this.lineItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lineColorItem = new System.Windows.Forms.ToolStripMenuItem();
-            // ATTACHMENT
-            this.attachmentItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lineWidthItem = new System.Windows.Forms.ToolStripMenuItem();
+            // IMAGE
+            this.imageItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageAddItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageRemoveItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageEmbeddedItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.includeSeparator = new System.Windows.Forms.ToolStripSeparator();
+            // ATTACHMENT
+            this.attachmentItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deploayAttachmentItem = new System.Windows.Forms.ToolStripMenuItem();
             this.includeFileItem = new System.Windows.Forms.ToolStripMenuItem();
             this.includeDirectoryItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -197,6 +202,10 @@ namespace Diagram
             this.outItem = new System.Windows.Forms.ToolStripMenuItem();
 
             this.helpSeparator = new System.Windows.Forms.ToolStripSeparator();
+
+            // TOOLS
+            this.toolsItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openDiagramDirectoryItem = new System.Windows.Forms.ToolStripMenuItem();
             // OPTION
             this.optionItem = new System.Windows.Forms.ToolStripMenuItem();
             this.encryptItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -229,10 +238,12 @@ namespace Diagram
             this.editMenuItem,
             this.nodeItem,
             this.lineItem,
+            this.imageItem,
             this.attachmentItem,
             this.viewItem,
             this.layerItem,
             this.helpSeparator,
+            this.toolsItem,
             this.optionItem,
             this.helpItem});
             this.Name = "popupMenu";
@@ -352,7 +363,6 @@ namespace Diagram
             this.saveAsItem,
             this.exportItem,
             this.openItem,
-            this.openDiagramDirectoryItem,
             this.exitItem});
             this.fileItem.Name = "fileItem";
             this.fileItem.Size = new System.Drawing.Size(164, 22);
@@ -408,13 +418,6 @@ namespace Diagram
             this.openItem.Size = new System.Drawing.Size(154, 22);
             this.openItem.Text = "Open";
             this.openItem.Click += new System.EventHandler(this.openItem_Click);
-            //
-            // openDiagramDirectoryItem
-            //
-            this.openDiagramDirectoryItem.Name = "openDiagramDirectoryItem";
-            this.openDiagramDirectoryItem.Size = new System.Drawing.Size(154, 22);
-            this.openDiagramDirectoryItem.Text = "Open Directory";
-            this.openDiagramDirectoryItem.Click += new System.EventHandler(this.openDiagramDirectoryItem_Click);
             //
             // exitItem
             //
@@ -559,7 +562,8 @@ namespace Diagram
             // lineItem
             //
             this.lineItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            lineColorItem});
+            lineColorItem,
+            lineWidthItem});
             this.lineItem.Name = "lineItem";
             this.lineItem.Size = new System.Drawing.Size(164, 22);
             this.lineItem.Text = "Line";
@@ -571,20 +575,22 @@ namespace Diagram
             this.lineColorItem.Text = "Color";
             this.lineColorItem.Click += new System.EventHandler(this.lineColorItem_Click);
             //
-            // attachmentItem
+            // lineWidthItem
             //
-            this.attachmentItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lineWidthItem.Name = "lineWidthItem";
+            this.lineWidthItem.Size = new System.Drawing.Size(126, 22);
+            this.lineWidthItem.Text = "Width";
+            this.lineWidthItem.Click += new System.EventHandler(this.lineWidthItem_Click);
+            //
+            // imageItem
+            //
+            this.imageItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             imageAddItem,
             imageRemoveItem,
-            imageEmbeddedItem,
-            includeSeparator,
-            deploayAttachmentItem,
-            includeFileItem,
-            includeDirectoryItem,
-            removeAttachmentItem});
-            this.attachmentItem.Name = "attachmentItem";
-            this.attachmentItem.Size = new System.Drawing.Size(126, 22);
-            this.attachmentItem.Text = "Attachment";
+            imageEmbeddedItem});
+            this.imageItem.Name = "imageItem";
+            this.imageItem.Size = new System.Drawing.Size(126, 22);
+            this.imageItem.Text = "Image";
             //
             // imageAddItem
             //
@@ -607,10 +613,16 @@ namespace Diagram
             this.imageEmbeddedItem.Text = "Embed image";
             this.imageEmbeddedItem.Click += new System.EventHandler(this.imageEmbeddedItem_Click);
             //
-            // includeSeparator
+            // attachmentItem
             //
-            this.includeSeparator.Name = "includeSeparator";
-            this.includeSeparator.Size = new System.Drawing.Size(161, 6);
+            this.attachmentItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            deploayAttachmentItem,
+            includeFileItem,
+            includeDirectoryItem,
+            removeAttachmentItem});
+            this.attachmentItem.Name = "attachmentItem";
+            this.attachmentItem.Size = new System.Drawing.Size(126, 22);
+            this.attachmentItem.Text = "Attachment";
             //
             // deploayAttachmentItem
             //
@@ -699,6 +711,22 @@ namespace Diagram
             //
             this.helpSeparator.Name = "helpSeparator";
             this.helpSeparator.Size = new System.Drawing.Size(161, 6);
+            //
+            // toolsItem
+            //
+            this.toolsItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                openDiagramDirectoryItem
+            });
+            this.toolsItem.Name = "toolsItem";
+            this.toolsItem.Size = new System.Drawing.Size(164, 22);
+            this.toolsItem.Text = "Tools";
+            //
+            // openDiagramDirectoryItem
+            //
+            this.openDiagramDirectoryItem.Name = "openDiagramDirectoryItem";
+            this.openDiagramDirectoryItem.Size = new System.Drawing.Size(154, 22);
+            this.openDiagramDirectoryItem.Text = "Open Directory";
+            this.openDiagramDirectoryItem.Click += new System.EventHandler(this.openDiagramDirectoryItem_Click);
             //
             // optionItem
             //
@@ -1215,12 +1243,6 @@ namespace Diagram
             this.diagramView.open();
         }
 
-        // MENU Open Directory  - otvory adresar v ktorom sa nachadza prave otvreny subor
-        public void openDiagramDirectoryItem_Click(object sender, EventArgs e)
-        {
-            this.diagramView.openDiagramDirectory();
-        }
-
         // MENU Exit
         public void exitItem_Click(object sender, EventArgs e)
         {
@@ -1321,6 +1343,12 @@ namespace Diagram
             this.diagramView.changeLineColor();
         }
 
+        // MENU LINE select line color
+        private void lineWidthItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.changeLineWidth();
+        }
+
         // ATTACHMENT
 
         // MENU NODE add image
@@ -1401,6 +1429,14 @@ namespace Diagram
         public void outItem_Click(object sender, EventArgs e)
         {
             this.diagramView.LayerOut();
+        }
+
+        // TOOLS
+
+        // MENU Open Directory  - otvory adresar v ktorom sa nachadza prave otvreny subor
+        public void openDiagramDirectoryItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.openDiagramDirectory();
         }
 
         // OPTIONS

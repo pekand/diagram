@@ -97,14 +97,17 @@ namespace Diagram
         public int currentPositionLayer = 0;
         public List<int> nodesSearchResult = new List<int>(); // all nodes found by search panel
 
-        // Breadcrumbs
+        // BREADCRUMBS
         public Breadcrumbs breadcrumbs = null;
 
-        // Move timer
+        // MOVETIMER
         Timer moveTimer = new Timer(); // timer pre animaciu
         Position moveTimerSpeed = new Position();
         int moveTimerCounter = 0;
 
+        // LINEWIDTHFORM
+        LineWidthForm lineWidthForm = new LineWidthForm(); 
+        
         // COMPONENTS
         private IContainer components;
         private void InitializeComponent()
@@ -224,6 +227,9 @@ namespace Diagram
             this.moveTimer.Tick += new EventHandler(moveTimerTick);
             this.moveTimer.Interval = 10;
             this.moveTimer.Enabled = false;
+
+            // lineWidthForm
+            this.lineWidthForm.trackbarStateChanged += this.resizeLineWidth;
         }
 
         // FORM Load event -
@@ -2116,8 +2122,8 @@ namespace Diagram
             Position middle = new Position();
             middle.copy(this.currentPosition);
 
-            middle.x = middle.x - this.Width / 2;
-            middle.y = middle.y - this.Height / 2;
+            middle.x = middle.x - this.ClientSize.Width / 2;
+            middle.y = middle.y - this.ClientSize.Height / 2;
 
             int currentLayerId = this.currentLayer.id;
 
@@ -2146,8 +2152,9 @@ namespace Diagram
                     return 1;
                 }
 
-                double d1 = first.position.convertToStandard().distance(middle);
-                double d2 = second.position.convertToStandard().distance(middle);
+                Position m = (currentLayerId == first.layer) ? middle : this.diagram.layers.getLayer(first.layer).parentNode.layerShift;
+                double d1 = first.position.convertToStandard().distance(m);
+                double d2 = second.position.convertToStandard().distance(m);
 
                 // sort by distance if is same layer
                 if (d1 < d2)
@@ -3053,7 +3060,7 @@ namespace Diagram
                         {
                             // draw line
                             gfx.DrawLine(
-                                new Pen(lin.color, 1),
+                                new Pen(lin.color, lin.width / s > 1 ? (int)lin.width / s : 1),
                                 (this.shift.x + cx + r1.position.x + r1.width / 2) / s,
                                 (this.shift.y + cy + r1.position.y + r1.height / 2) / s,
                                 (this.shift.x + cx + r2.position.x + r2.width / 2) / s,
@@ -4692,10 +4699,7 @@ namespace Diagram
                 {
                     Lines SelectedLines = getSelectedLines();
 
-                    if (SelectedLines.Count > 0)
-                    {
-                        DColor.Color = SelectedLines[0].color;
-                    }
+                    DColor.Color = SelectedLines[0].color;
 
                     if (DColor.ShowDialog() == DialogResult.OK)
                     {
@@ -4710,7 +4714,42 @@ namespace Diagram
                 }
             }
         }
-        
+
+        // LINE change line width
+        public void changeLineWidth()
+        {
+            if (!this.diagram.options.readOnly)
+            {
+                if (this.selectedNodes.Count() > 0)
+                {
+                    Lines SelectedLines = getSelectedLines();
+                    lineWidthForm.setValue(SelectedLines[0].width); // set trackbar to first selected line width
+                    lineWidthForm.ShowDialog();
+
+                }
+            }
+        }
+
+        // LINE resize line with event called by line width form
+        public void resizeLineWidth(int width = 1)
+        {
+            if (!this.diagram.options.readOnly)
+            {
+                if (this.selectedNodes.Count() > 0)
+                {
+                    Lines SelectedLines = getSelectedLines();
+
+                    foreach (Line lin in SelectedLines)
+                    {
+                        lin.width = width;
+                    }
+
+                    this.diagram.InvalidateDiagram();
+
+                }
+            }
+        }
+
         /*************************************************************************************************************************/
 
         // DEBUG Show console

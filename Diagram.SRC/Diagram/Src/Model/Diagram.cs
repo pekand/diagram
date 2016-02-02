@@ -572,6 +572,11 @@ namespace Diagram
                                                     L.color = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
                                                 }
 
+                                                if (el.Name.ToString() == "width")
+                                                {
+                                                    L.width = Int32.Parse(el.Value);
+                                                }
+
                                                 if (el.Name.ToString() == "layer")
                                                 {
                                                     L.layer = Int32.Parse(el.Value);
@@ -639,7 +644,8 @@ namespace Diagram
                     this.layers.getNode(line.start),
                     this.layers.getNode(line.end),
                     line.arrow,
-                    line.color
+                    line.color,
+                    line.width
                 );
             }
 
@@ -824,6 +830,7 @@ namespace Diagram
                     line.Add(new XElement("end", lin.end));
                     line.Add(new XElement("arrow", (lin.arrow) ? "1" : "0"));
                     line.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(lin.color)));
+                    if (lin.width != 1) line.Add(new XElement("width", lin.width));
                     line.Add(new XElement("layer", lin.layer));
                     lines.Add(line);
                 }
@@ -1144,7 +1151,7 @@ namespace Diagram
         }
 
         // NODE CONNECT connect two nodes and add arrow or set color
-        public Line Connect(Node a, Node b, bool arrow = false, Color? color = null)
+        public Line Connect(Node a, Node b, bool arrow = false, Color? color = null, int width = 1)
         {
             Line line = this.Connect(a, b);
 
@@ -1152,6 +1159,7 @@ namespace Diagram
             {
                 line.arrow = arrow;
                 line.color = color ?? Color.Black;
+                line.width = width;
             }
 
             return line;
@@ -1677,6 +1685,11 @@ namespace Diagram
                                                     L.color = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
                                                 }
 
+                                                if (el.Name.ToString() == "width")
+                                                {
+                                                    L.width = Int32.Parse(el.Value);
+                                                }
+
                                                 if (el.Name.ToString() == "layer")
                                                 {
                                                     L.layer = Int32.Parse(el.Value);
@@ -1773,7 +1786,8 @@ namespace Diagram
                                     mapbegin.newNode,
                                     mapend.newNode,
                                     line.arrow,
-                                    line.color
+                                    line.color,
+                                    line.width
                                 );
                             }
                         }
@@ -1888,6 +1902,7 @@ namespace Diagram
                                     line.Add(new XElement("end", li.end - minid + 1));
                                     line.Add(new XElement("arrow", (li.arrow) ? "1" : "0"));
                                     line.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(li.color)));
+                                    if (li.width != 1) line.Add(new XElement("width", li.width));
                                     if (li.layer - minid +1 > 0) {
                                         line.Add(new XElement("layer", li.layer - minid + 1));
                                     }
