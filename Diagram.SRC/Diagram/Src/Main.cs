@@ -199,10 +199,11 @@ namespace Diagram
                             lock (diagram)
                             {
                                 // create new model
-                                diagram.OpenFile(FilePath);
-                                Diagrams.Add(diagram);
-                                // open diagram view on diagram model
-                                diagram.openDiagramView();
+                                if (diagram.OpenFile(FilePath)) {
+                                    Diagrams.Add(diagram);
+                                    // open diagram view on diagram model
+                                    diagram.openDiagramView();
+                                }
                             }
                         }
                     }

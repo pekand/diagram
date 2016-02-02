@@ -158,6 +158,12 @@
     </Compile>
     <Compile Include="Src\Components\Server.cs" />
     <Compile Include="Src\Components\Script.cs" />
+    <Compile Include="Src\Forms\LineWidthForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Src\Forms\LineWidthForm.designer.cs">
+      <DependentUpon>LineWidthForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Src\Lib\Compress.cs" />
     <Compile Include="Src\Lib\Job.cs" />
     <Compile Include="Src\Lib\Encrypt.cs" />
@@ -296,6 +302,9 @@
     <EmbeddedResource Include="Src\Forms\DiagramView.resx">
       <DependentUpon>DiagramView.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\Forms\LineWidthForm.resx">
+      <DependentUpon>LineWidthForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Src\Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

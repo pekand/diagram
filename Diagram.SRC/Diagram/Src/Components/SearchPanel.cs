@@ -87,7 +87,7 @@ namespace Diagram
             string action = "";
             string currentText = textBoxSearch.Text;
 
-            if (oldText != currentText)
+            if (oldText != currentText && currentText != "")
             {
                 action = "search";
                 oldText = currentText;

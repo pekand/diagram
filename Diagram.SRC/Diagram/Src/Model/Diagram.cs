@@ -71,7 +71,7 @@ namespace Diagram
             return this.options.readOnly;
         }
 
-        // FILE OPEN Otvorenie xml súboru
+        // FILE OPEN Open xml file. If file is invalid return false
         public bool OpenFile(string FileName)
         {
             if (Os.FileExists(FileName))
@@ -86,23 +86,31 @@ namespace Diagram
                 string xml = Os.getFileContent(FileName);
 
                 if (xml == null) {
-
                     this.CloseFile();
                     return false;
                 }
 
-                this.LoadXML(xml);
+                bool opened = false;
+                if (xml.Trim() == "")
+                {
+                    opened = true; // count empty file as valid new diagram
+                }
+                else
+                {
+                    opened = this.LoadXML(xml);
+                }
+
                 this.SetTitle();
 
-                return true;
+                return opened;
 
             }
 
             return false;
         }
 
-        // FILE LOAD XML
-        public void LoadXML(string xml)
+        // FILE LOAD XML. If file is invalid return false
+        public bool LoadXML(string xml)
         {
 
             XmlReaderSettings xws = new XmlReaderSettings();
@@ -169,28 +177,31 @@ namespace Diagram
                         }
                         catch(Exception e)
                         {
-                            Program.log.write(e.Message);
+                            // probably invalid password
+                            Program.log.write("LoadXML: Password or file is invalid: " + e.Message);
                             error = true;
                         }
                     }
                     else
                     {
+                        main.passwordForm.CloseForm();
                         this.CloseFile();
-                        return;
+                        return false;
                     }
 
-                    main.passwordForm.CloseForm();
                 } while (error);
+
+                main.passwordForm.CloseForm();
+                return true;
             }
             else
             {
-                LoadInnerXML(xml);
+                return LoadInnerXML(xml);
             }
-
         }
 
-        // FILE LOAD XML inner part of diagram file
-        public void LoadInnerXML(string xml)
+        // FILE LOAD XML inner part of diagram file. If file is invalid return false
+        public bool LoadInnerXML(string xml)
         {
             string FontDefaultString = TypeDescriptor.GetConverter(typeof(Font)).ConvertToString(this.FontDefault);
 
@@ -561,6 +572,11 @@ namespace Diagram
                                                     L.color = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
                                                 }
 
+                                                if (el.Name.ToString() == "width")
+                                                {
+                                                    L.width = Int32.Parse(el.Value);
+                                                }
+
                                                 if (el.Name.ToString() == "layer")
                                                 {
                                                     L.layer = Int32.Parse(el.Value);
@@ -587,6 +603,7 @@ namespace Diagram
                 MessageBox.Show(main.translations.fileHasWrongFormat);
                 Program.log.write("load xml error: " + ex.Message);
                 this.CloseFile();
+                return false;
             }
 
             int newWidth = 0;
@@ -627,9 +644,12 @@ namespace Diagram
                     this.layers.getNode(line.start),
                     this.layers.getNode(line.end),
                     line.arrow,
-                    line.color
+                    line.color,
+                    line.width
                 );
             }
+
+            return true;
         }
 
         // FILE Save - save diagram
@@ -810,6 +830,7 @@ namespace Diagram
                     line.Add(new XElement("end", lin.end));
                     line.Add(new XElement("arrow", (lin.arrow) ? "1" : "0"));
                     line.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(lin.color)));
+                    if (lin.width != 1) line.Add(new XElement("width", lin.width));
                     line.Add(new XElement("layer", lin.layer));
                     lines.Add(line);
                 }
@@ -1130,7 +1151,7 @@ namespace Diagram
         }
 
         // NODE CONNECT connect two nodes and add arrow or set color
-        public Line Connect(Node a, Node b, bool arrow = false, Color? color = null)
+        public Line Connect(Node a, Node b, bool arrow = false, Color? color = null, int width = 1)
         {
             Line line = this.Connect(a, b);
 
@@ -1138,6 +1159,7 @@ namespace Diagram
             {
                 line.arrow = arrow;
                 line.color = color ?? Color.Black;
+                line.width = width;
             }
 
             return line;
@@ -1663,6 +1685,11 @@ namespace Diagram
                                                     L.color = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
                                                 }
 
+                                                if (el.Name.ToString() == "width")
+                                                {
+                                                    L.width = Int32.Parse(el.Value);
+                                                }
+
                                                 if (el.Name.ToString() == "layer")
                                                 {
                                                     L.layer = Int32.Parse(el.Value);
@@ -1759,7 +1786,8 @@ namespace Diagram
                                     mapbegin.newNode,
                                     mapend.newNode,
                                     line.arrow,
-                                    line.color
+                                    line.color,
+                                    line.width
                                 );
                             }
                         }
@@ -1874,6 +1902,7 @@ namespace Diagram
                                     line.Add(new XElement("end", li.end - minid + 1));
                                     line.Add(new XElement("arrow", (li.arrow) ? "1" : "0"));
                                     line.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(li.color)));
+                                    if (li.width != 1) line.Add(new XElement("width", li.width));
                                     if (li.layer - minid +1 > 0) {
                                         line.Add(new XElement("layer", li.layer - minid + 1));
                                     }

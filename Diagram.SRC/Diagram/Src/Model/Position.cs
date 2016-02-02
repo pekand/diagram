@@ -59,6 +59,13 @@ namespace Diagram
         }
 
         // <summary>
+        /// Count distance between two points</summary>
+        public double size()
+        {
+            return Math.Sqrt((0 - this.x) * (0 - this.x) + (0 - this.y) * (0 - this.y));
+        }
+
+        // <summary>
         /// add vector</summary>
         public Position add(Position p)
         {
@@ -78,11 +85,57 @@ namespace Diagram
 
         // <summary>
         /// subtract vector</summary>
+        public Position add(float a, float b)
+        {
+            this.x += (int)a;
+            this.y += (int)b;
+            return this;
+        }
+
+        public static Position operator +(Position a, Position b)
+        {
+            return new Position(a).add(b);
+        }
+
+        // <summary>
+        /// subtract vector</summary>
         public Position subtract(Position p)
         {
-            this.x += -p.x;
-            this.y += -p.y;
+            this.x -= p.x;
+            this.y -= p.y;
             return this;
+        }
+
+        // <summary>
+        /// subtract vector</summary>
+        public Position subtract(int a, int b)
+        {
+            this.x -= a;
+            this.y -= b;
+            return this;
+        }
+
+        // <summary>
+        /// subtract vector</summary>
+        public Position subtract(float a, float b)
+        {
+            this.x -= (int)a;
+            this.y -= (int)b;
+            return this;
+        }
+
+        // <summary>
+        /// subtract constant</summary>
+        public Position subtract(int c)
+        {
+            this.x -= c;
+            this.y -= c;
+            return this;
+        }
+
+        public static Position operator -(Position a, Position b)
+        {
+            return new Position(a).subtract(b);
         }
 
         // <summary>
@@ -96,11 +149,30 @@ namespace Diagram
 
         // <summary>
         /// scale vector</summary>
-        public Position scale(float scale)
+        public Position scale(double scale)
         {
             this.x = (int)(this.x * scale);
             this.y = (int)(this.y * scale);
             return this;
+        }
+
+        // <summary>
+        /// zoom vector</summary>
+        public Position split(float scale)
+        {
+            this.x = (int)(this.x / scale);
+            this.y = (int)(this.y / scale);
+            return this;
+        }
+
+        public static Position operator *(Position a, int c)
+        {
+            return new Position(a).scale(c);
+        }
+
+        public static Position operator /(Position a, int c)
+        {
+            return new Position(a).split(c);
         }
 
         // <summary>
