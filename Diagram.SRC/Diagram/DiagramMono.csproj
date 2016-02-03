@@ -130,6 +130,7 @@
     <Compile Include="Src\Lib\Compress.cs" />
     <Compile Include="Src\Lib\Patterns.cs" />
     <Compile Include="Src\Components\Breadcrumbs.cs" />
+    <Compile Include="Src\Forms\LineWidthForm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -182,6 +183,7 @@
     <None Include="Src\Forms\PasswordForm.resx" />
     <None Include="Src\Forms\TextForm.resx" />
     <None Include="Src\Forms\Console.resx" />
+    <None Include="Src\Forms\LineWidthForm.resx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
