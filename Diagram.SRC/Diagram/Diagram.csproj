@@ -161,9 +161,6 @@
     <Compile Include="Src\Forms\LineWidthForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Src\Forms\LineWidthForm.designer.cs">
-      <DependentUpon>LineWidthForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Src\Lib\Compress.cs" />
     <Compile Include="Src\Lib\Job.cs" />
     <Compile Include="Src\Lib\Encrypt.cs" />

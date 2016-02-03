@@ -2152,7 +2152,8 @@ namespace Diagram
                     return 1;
                 }
 
-                Position m = (currentLayerId == first.layer) ? middle : this.diagram.layers.getLayer(first.layer).parentNode.layerShift;
+                Node parent = this.diagram.layers.getLayer(first.layer).parentNode;
+                Position m = (currentLayerId == first.layer) ? middle : (parent != null) ? parent.layerShift : firstLayereShift;
                 double d1 = first.position.convertToStandard().distance(m);
                 double d2 = second.position.convertToStandard().distance(m);
 
@@ -4710,6 +4711,7 @@ namespace Diagram
 
 
                         this.diagram.InvalidateDiagram();
+                        this.diagram.unsave();
                     }
                 }
             }
@@ -4745,7 +4747,7 @@ namespace Diagram
                     }
 
                     this.diagram.InvalidateDiagram();
-
+                    this.diagram.unsave();
                 }
             }
         }
