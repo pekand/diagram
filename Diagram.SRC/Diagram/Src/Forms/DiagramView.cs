@@ -106,8 +106,11 @@ namespace Diagram
         int moveTimerCounter = 0;
 
         // LINEWIDTHFORM
-        LineWidthForm lineWidthForm = new LineWidthForm(); 
-        
+        LineWidthForm lineWidthForm = new LineWidthForm();
+
+        // COLORPICKERFORM
+        ColorPickerForm colorPickerForm = new ColorPickerForm();
+
         // COMPONENTS
         private IContainer components;
         private void InitializeComponent()
@@ -230,6 +233,9 @@ namespace Diagram
 
             // lineWidthForm
             this.lineWidthForm.trackbarStateChanged += this.resizeLineWidth;
+
+            //colorPickerForm
+            this.colorPickerForm.changeColor += this.changeColor;
         }
 
         // FORM Load event -
@@ -3494,24 +3500,25 @@ namespace Diagram
         {
             if (selectedNodes.Count() > 0 && !this.diagram.options.readOnly)
             {
-                DColor.Color = this.selectedNodes[0].color;
+                colorPickerForm.ShowDialog();
+            }
+        }
 
-                if (DColor.ShowDialog() == DialogResult.OK)
+        public void changeColor(Color color)
+        {
+            if (!this.diagram.options.readOnly)
+            {
+                if (selectedNodes.Count() > 0)
                 {
-                    if (!this.diagram.options.readOnly)
+                    foreach (Node rec in this.selectedNodes)
                     {
-                        if (selectedNodes.Count() > 0)
-                        {
-                            foreach (Node rec in this.selectedNodes)
-                            {
-                                rec.color = DColor.Color;
-                            }
-                        }
+                        rec.color = color;
                     }
-
-                    this.diagram.InvalidateDiagram();
                 }
             }
+
+            this.diagram.InvalidateDiagram();
+            this.diagram.unsave();
         }
 
         // NODE Select node font color
