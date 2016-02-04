@@ -36,7 +36,7 @@ namespace Diagram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(765, 510);
+            this.ClientSize = new System.Drawing.Size(765, 765);
             this.MaximizeBox = false;
             this.Name = "ColorPickerForm";
             this.Text = "Color";
@@ -45,6 +45,7 @@ namespace Diagram
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ColorPickerForm_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ColorPickerForm_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ColorPickerForm_MouseUp);
+            this.MouseWheel += new MouseEventHandler(DiagramApp_MouseWheel);
             this.ResumeLayout(false);
 
         }
