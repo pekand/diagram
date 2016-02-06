@@ -243,6 +243,11 @@ namespace Diagram
                                             options.homeLayer = Int32.Parse(el.Value);
                                         }
 
+                                        if (el.Name.ToString() == "endlayer")
+                                        {
+                                            options.endLayer = Int32.Parse(el.Value);
+                                        }
+
                                         if (el.Name.ToString() == "endPositionx")
                                         {
                                             this.options.endPosition.x = Int32.Parse(el.Value);
@@ -755,6 +760,7 @@ namespace Diagram
                 option.Add(new XElement("firstLayereShift.x", this.options.firstLayereShift.x));
                 option.Add(new XElement("firstLayereShift.y", this.options.firstLayereShift.y));
                 option.Add(new XElement("homelayer", this.options.homeLayer));
+                option.Add(new XElement("endlayer", this.options.endLayer));
                 option.Add(new XElement("diagramreadonly", this.options.readOnly));
                 option.Add(new XElement("grid", this.options.grid));
                 option.Add(new XElement("borders", this.options.borders));
