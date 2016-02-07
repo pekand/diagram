@@ -121,8 +121,8 @@ namespace Diagram
 
                 this.setPanelSize();
 
-                this.BackColor = this.editedNode.color;
-                this.edit.BackColor = this.editedNode.color;
+                this.BackColor = this.editedNode.color.get();
+                this.edit.BackColor = this.editedNode.color.get();
                 this.editing = true;
                 this.Show();
                 this.edit.Show();

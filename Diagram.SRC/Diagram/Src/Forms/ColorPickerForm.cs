@@ -14,10 +14,10 @@ namespace Diagram
 {
     public partial class ColorPickerForm : Form
     {
-        public delegate void ColorPickerFormChangeColor(Color color);
+        public delegate void ColorPickerFormChangeColor(ColorType color);
         public event ColorPickerFormChangeColor changeColor;
 
-        public Color color;
+        public ColorType color = new ColorType();
 
         Bitmap bmp = null;
 
@@ -117,7 +117,7 @@ namespace Diagram
 
             if (0 <= e.X && e.X <= bmp.Width && 0 <= e.Y && e.Y <= bmp.Height)
             {
-                this.color = bmp.GetPixel(e.X, e.Y);
+                this.color.set(bmp.GetPixel(e.X, e.Y));
             }
 
             if (this.changeColor != null)
@@ -134,29 +134,32 @@ namespace Diagram
             if (selecting)
             {
                 if (0 < e.X && e.X < bmp.Width && 0 < e.Y && e.Y < bmp.Height) {
-                    this.color = bmp.GetPixel(e.X, e.Y);
+                    this.color.set(bmp.GetPixel(e.X, e.Y));
                 }
 
                 if (this.changeColor != null)
                     this.changeColor(this.color);
             }
         }
-        // EVENT Mouse Whell
-        public void DiagramApp_MouseWheel(object sender, MouseEventArgs e)                             // [MOUSE] [WHELL] [EVENT]
-        {
-            /*if (e.Delta > 0)
-            {
-                b = b + 5;
-            }
-            else
-            {
-                b = b - 5;
-            }
 
-            if (b < 0) b = 0;
-            if (b > 255) b = 255; 
-            render();
-            InitializeComponent();*/
+        
+
+        public void DiagramApp_MouseWheel(object sender, MouseEventArgs e)
+        {
+           
+        /*if (e.Delta > 0)
+        {
+            b = b + 5;
         }
+        else
+        {
+            b = b - 5;
+        }
+
+        if (b < 0) b = 0;
+        if (b > 255) b = 255; 
+        render();
+        InitializeComponent();*/
+    }
     }
 }

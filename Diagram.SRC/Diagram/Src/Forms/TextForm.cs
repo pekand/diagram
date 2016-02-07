@@ -24,7 +24,7 @@ namespace Diagram
         // ATTRIBUTES Diagram
         public Diagram diagram = null;       // diagram ktory je previazany z pohladom
 
-        public Node rec;
+        public Node node;
 
         public TextForm(Main main)
         {
@@ -158,16 +158,16 @@ namespace Diagram
 
         public void TextForm_Load(object sender, EventArgs e)
         {
-            if (this.rec != null)
+            if (this.node != null)
             {
-                this.TextFormTextBox.Text = this.rec.name;
-                this.TextFormNoteTextBox.Text = this.rec.note;
+                this.TextFormTextBox.Text = this.node.name;
+                this.TextFormNoteTextBox.Text = this.node.note;
                 this.Left = Screen.PrimaryScreen.Bounds.Width / 2 - this.Width / 2;
                 this.Top = Screen.PrimaryScreen.Bounds.Height / 2 - this.Height / 2;
                 this.textformtabs.SelectedTab = this.mainTab;
-                this.textBoxScriptId.Text = this.rec.scriptid;
+                this.textBoxScriptId.Text = this.node.scriptid;
                 this.TextFormTextBox.Select();
-                this.DColor.Color = this.rec.color;
+                this.DColor.Color = this.node.color.color;
             }
 
             if (this.diagram.isReadOnly())
@@ -218,41 +218,41 @@ namespace Diagram
                 bool changed = false;
                 if
                 (
-                    rec.name != this.TextFormTextBox.Text ||
-                    rec.note != this.TextFormNoteTextBox.Text ||
-                    rec.scriptid != this.textBoxScriptId.Text
+                    node.name != this.TextFormTextBox.Text ||
+                    node.note != this.TextFormNoteTextBox.Text ||
+                    node.scriptid != this.textBoxScriptId.Text
                 )
                 {
                     changed = true;
                     DateTime dt = DateTime.Now;
-                    rec.timemodify = String.Format("{0:yyyy-M-d HH:mm:ss}", dt);
+                    node.timemodify = String.Format("{0:yyyy-M-d HH:mm:ss}", dt);
                 }
 
-                rec.name = this.TextFormTextBox.Text;
-                rec.note = this.TextFormNoteTextBox.Text;
-                rec.scriptid = this.textBoxScriptId.Text;
-                if (rec.embeddedimage && rec.image!=null)
+                node.name = this.TextFormTextBox.Text;
+                node.note = this.TextFormNoteTextBox.Text;
+                node.scriptid = this.textBoxScriptId.Text;
+                if (node.embeddedimage && node.image!=null)
                 {
-                    rec.isimage = true;
+                    node.isimage = true;
                 }
                 else
-                if (Os.FileExists(rec.imagepath))
+                if (Os.FileExists(node.imagepath))
                 {
-                    rec.isimage = true;
-                    rec.image = new Bitmap(rec.imagepath);
-                    rec.height = rec.image.Height;
+                    node.isimage = true;
+                    node.image = new Bitmap(node.imagepath);
+                    node.height = node.image.Height;
                     string ext = "";
-                    ext = Os.getExtension(rec.imagepath).ToLower();
-                    if (ext != ".ico") rec.image.MakeTransparent(Color.White);
-                    rec.width = rec.image.Width;
+                    ext = Os.getExtension(node.imagepath).ToLower();
+                    if (ext != ".ico") node.image.MakeTransparent(Color.White);
+                    node.width = node.image.Width;
                 }
                 else
                 {
-                    rec.isimage = false;
+                    node.isimage = false;
                 }
-                if (!rec.isimage)
+                if (!node.isimage)
                 {
-                    rec.resize();
+                    node.resize();
                 }
 
                 if(changed)
@@ -265,7 +265,7 @@ namespace Diagram
         public void TextForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.SaveNode();
-            this.diagram.EditNodeClose(this.rec);
+            this.diagram.EditNodeClose(this.node);
 
             this.diagram.TextWindows.Remove(this);
             main.TextWindows.Remove(this);

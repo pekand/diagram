@@ -879,8 +879,6 @@ namespace Diagram
                             this.currentLayer.id
                         )
                     );
-                    this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
                 }
                 else
                 // KEY DRAG+ALT create node and conect with existing node
@@ -890,10 +888,10 @@ namespace Diagram
                     && this.sourceNode != null)
                 {
                     var s = this.sourceNode;
-                    var r = this.CreateNode(new Position(e.X, e.Y));
-                    r.shortcut = s.id;
-                    this.diagram.Connect(s, r);
-                    this.diagram.unsave();
+                    var node = this.CreateNode(new Position(e.X, e.Y));
+                    node.shortcut = s.id;
+                    this.diagram.Connect(s, node);
+                    this.diagram.unsave("create", node);
                     this.diagram.InvalidateDiagram();
                 }
                 else
@@ -933,6 +931,8 @@ namespace Diagram
 
                     if (this.selectedNodes.Count > 0)
                     {
+                        this.diagram.undo.add("edit", this.selectedNodes);
+
                         foreach (Node node in this.selectedNodes)
                         {
                             node.position.add(vector);
@@ -949,16 +949,19 @@ namespace Diagram
                     && TargetNode != null
                     && this.sourceNode == null)
                 {
-                    this.diagram.Connect(
-                        this.CreateNode(
+                    Node node = this.CreateNode(
                             new Position(
                                 +this.shift.x - startShift.x + this.startMousePos.x,
                                 +this.shift.y - startShift.y + this.startMousePos.y
                             )
-                        ),
+                        );
+
+                    Line line = this.diagram.Connect(
+                        node,
                         TargetNode
                     );
-                    this.diagram.unsave();
+
+                    this.diagram.unsave("create", node, line);
                     this.diagram.InvalidateDiagram();
                 }
                 else
@@ -975,7 +978,7 @@ namespace Diagram
                     );
 
                     newrec.shortcut = TargetNode.id;
-                    this.diagram.unsave();
+                    this.diagram.unsave("create", newrec);
                     this.diagram.InvalidateDiagram();
                 }
                 else
@@ -1040,19 +1043,25 @@ namespace Diagram
                     && e.X == this.startMousePos.x
                     && e.Y == this.startMousePos.y)
                 {
+                    // TODO Still working this?
                     Node newrec = TargetNode;
+
+                    Nodes newNodes = new Nodes();
                     if (newrec == null)
                     {
                         newrec = this.CreateNode(this.actualMousePos.clone().subtract(10), false);
+                        newNodes.Add(newrec);
                     }
 
+                    Lines newLines = new Lines();
                     foreach (Node rec in this.selectedNodes)
                     {
-                        this.diagram.Connect(rec, newrec);
+                        Line line = this.diagram.Connect(rec, newrec);
+                        newLines.Add(line);
                     }
+
                     this.SelectOnlyOneNode(newrec);
-                    this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
+                    this.diagram.unsave("create", newNodes, newLines); 
                 }
                 else
                 // KEY CTRL+MLEFT
@@ -1064,9 +1073,8 @@ namespace Diagram
                     && e.X == this.startMousePos.x
                     && e.Y == this.startMousePos.y)
                 {
-                    this.CreateNode(new Position(e.X - 10, e.Y - 10), false);
-                    this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
+                    Node newNode = this.CreateNode(new Position(e.X - 10, e.Y - 10), false);
+                    this.diagram.unsave("create", newNode);
                 }
                 else
                 // KEY DRAG+CTRL copy style from node to other node
@@ -1079,6 +1087,7 @@ namespace Diagram
                 {
                     if (this.selectedNodes.Count() > 1)
                     {
+                        this.diagram.undo.add("edit", this.selectedNodes);
                         foreach (Node rec in this.selectedNodes)
                         {
                             rec.color = TargetNode.color;
@@ -1092,9 +1101,11 @@ namespace Diagram
                     if (this.selectedNodes.Count() == 1
                         || (this.selectedNodes.Count() == 0 && this.sourceNode != null))
                     {
-                        TargetNode.color = this.sourceNode.color;
+                        this.diagram.undo.add("edit", TargetNode);
+
+                        TargetNode.color.set(this.sourceNode.color);
                         TargetNode.font = this.sourceNode.font;
-                        TargetNode.fontcolor = this.sourceNode.fontcolor;
+                        TargetNode.fontcolor.set(this.sourceNode.fontcolor);
                         TargetNode.transparent = this.sourceNode.transparent;
                         TargetNode.resize();
 
@@ -1105,7 +1116,6 @@ namespace Diagram
                         }
                     }
                     this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
                 }
                 else
                 // KEY DRAG make link between two nodes
@@ -1377,6 +1387,18 @@ namespace Diagram
             if (KeyMap.parseKey(KeyMap.pasteToLink, keyData))  // [KEY] [CTRL+SHIFT+INS] paste to node link
             {
                 this.pasteToLink();
+                return true;
+            }
+
+            if (KeyMap.parseKey(KeyMap.undo, keyData))  // [KEY] [CTRL+Z]
+            {
+                this.diagram.doUndo();
+                return true;
+            }
+
+            if (KeyMap.parseKey(KeyMap.redo, keyData))  // [KEY] [CTRL+SHIFT+Z]
+            {
+                this.diagram.doRedo();
                 return true;
             }
 
@@ -1775,22 +1797,25 @@ namespace Diagram
         {
             try
             {
+                Nodes newNodes = new Nodes();
+
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 foreach (string file in files)
                 {
                     Node newrec = this.CreateNode(this.getMousePosition());
+                    newNodes.Add(newrec);
                     newrec.setName(Os.getFileName(file));
 
     				newrec.link = file;
     				if (Os.DirectoryExists(file)) // directory
                     {
     					newrec.link = Os.makeRelative(file, this.diagram.FileName);
-                        newrec.color = Media.getColor(diagram.options.colorDirectory);
+                        newrec.color.set(Media.getColor(diagram.options.colorDirectory));
                     }
     				else
     				if (Os.Exists(file))
                     {
-                        newrec.color = Media.getColor(diagram.options.colorFile);
+                        newrec.color.set(Media.getColor(diagram.options.colorFile));
 
                         if (this.diagram.FileName != "" && Os.FileExists(this.diagram.FileName)) // DROP FILE - skratenie cesty k suboru
                         {
@@ -1858,11 +1883,10 @@ namespace Diagram
                         #endif
 
                     }
-
-                    this.diagram.unsave();
                 }
 
-                this.diagram.InvalidateDiagram();
+                this.diagram.unsave("create", newNodes);
+                
             } catch (Exception ex) {
                 Program.log.write("drop file goes wrong: error: " + ex.Message);
             }
@@ -2879,7 +2903,7 @@ namespace Diagram
                             {
                                 if (!rec.transparent) // draw fill point
                                 {
-                                    gfx.FillEllipse(new SolidBrush(rec.color), rect1);
+                                    gfx.FillEllipse(new SolidBrush(rec.color.color), rect1);
                                     if (this.diagram.options.borders) gfx.DrawEllipse(myPen1, rect1);
                                 }
 
@@ -2912,7 +2936,7 @@ namespace Diagram
                                 // draw filled node rectangle
                                 if (!rec.transparent)
                                 {
-                                    gfx.FillRectangle(new SolidBrush(rec.color), rect1);
+                                    gfx.FillRectangle(new SolidBrush(rec.color.color), rect1);
                                     if (this.diagram.options.borders) gfx.DrawRectangle(myPen1, rect1);
                                 }
 
@@ -2963,7 +2987,7 @@ namespace Diagram
                                        GraphicsUnit.Point,
                                        ((byte)(0))
                                     ),
-                                    new SolidBrush(rec.fontcolor),
+                                    new SolidBrush(rec.fontcolor.color),
                                     rect2
                                 );
                             }
@@ -3058,7 +3082,7 @@ namespace Diagram
 
                             // Fill polygon to screen.
                             gfx.FillPolygon(
-                                new SolidBrush(lin.color),
+                                new SolidBrush(lin.color.color),
                                 curvePoints,
                                 newFillMode
                             );
@@ -3067,7 +3091,7 @@ namespace Diagram
                         {
                             // draw line
                             gfx.DrawLine(
-                                new Pen(lin.color, lin.width / s > 1 ? (int)lin.width / s : 1),
+                                new Pen(lin.color.color, lin.width / s > 1 ? (int)lin.width / s : 1),
                                 (this.shift.x + cx + r1.position.x + r1.width / 2) / s,
                                 (this.shift.y + cy + r1.position.y + r1.height / 2) / s,
                                 (this.shift.x + cx + r2.position.x + r2.width / 2) / s,
@@ -3245,20 +3269,7 @@ namespace Diagram
             {
                 if (DiagramView.selectedNodes.Count() > 0)
                 {
-                    bool canRefresh = false;
-                    for (int i = DiagramView.selectedNodes.Count() - 1; i >= 0; i--)
-                    {
-                        if (this.diagram.canDeleteNode(DiagramView.selectedNodes[i]))
-                        {
-                            this.diagram.DeleteNode(DiagramView.selectedNodes[i]);
-                            canRefresh = true;
-                        }
-                    }
-
-                    if (canRefresh)
-                    {
-                        this.diagram.InvalidateDiagram();
-                    }
+                    this.diagram.DeleteNodes(DiagramView.selectedNodes);
                 }
             }
         }
@@ -3504,21 +3515,22 @@ namespace Diagram
             }
         }
 
-        public void changeColor(Color color)
+        public void changeColor(ColorType color)
         {
             if (!this.diagram.options.readOnly)
             {
                 if (selectedNodes.Count() > 0)
                 {
+                    this.diagram.undo.add("edit", this.selectedNodes);
+
                     foreach (Node rec in this.selectedNodes)
                     {
-                        rec.color = color;
+                        rec.color.set(color);
                     }
+
+                    this.diagram.unsave();
                 }
             }
-
-            this.diagram.InvalidateDiagram();
-            this.diagram.unsave();
         }
 
         // NODE Select node font color
@@ -3526,7 +3538,7 @@ namespace Diagram
         {
             if (selectedNodes.Count() > 0 && !this.diagram.options.readOnly)
             {
-                DFontColor.Color = this.selectedNodes[0].color;
+                DFontColor.Color = this.selectedNodes[0].color.color;
 
                 if (DColor.ShowDialog() == DialogResult.OK)
                 {
@@ -3536,7 +3548,7 @@ namespace Diagram
                         {
                             foreach (Node rec in this.selectedNodes)
                             {
-                                rec.fontcolor = DColor.Color;
+                                rec.fontcolor.set(DColor.Color);
                             }
                         }
                     }
@@ -3830,7 +3842,7 @@ namespace Diagram
                             delegate (object o, RunWorkerCompletedEventArgs args)
                             {
                                 if (newrec.name == null) newrec.setName("url");
-                                newrec.color = ColorTranslator.FromHtml("#F2FFCC");
+                                newrec.color.set("#F2FFCC");
                                 this.diagram.InvalidateDiagram();
                             }
                         )
@@ -3847,7 +3859,7 @@ namespace Diagram
                     {
                         newrec.setName(Os.getFileName(ClipText));
                         newrec.link = Os.makeRelative(ClipText, this.diagram.FileName);
-                        newrec.color = Media.getColor(diagram.options.colorFile);
+                        newrec.color.set(Media.getColor(diagram.options.colorFile));
                     }
 
                     // set link to node as path to directory
@@ -3855,7 +3867,7 @@ namespace Diagram
                     {
                         newrec.setName(Os.getFileName(ClipText));
                         newrec.link = Os.makeRelative(ClipText, this.diagram.FileName);
-                        newrec.color = Media.getColor(diagram.options.colorDirectory);
+                        newrec.color.set(Media.getColor(diagram.options.colorDirectory));
                     }
 
                     this.diagram.unsave();
@@ -4165,7 +4177,7 @@ namespace Diagram
                 {
                     Node newrec = this.CreateNode(this.getMousePosition());
                     newrec.setName(expressionResult);
-                    newrec.color = ColorTranslator.FromHtml("#8AC5FF");
+                    newrec.color.set("#8AC5FF");
 
                     this.diagram.InvalidateDiagram();
                 }
@@ -4189,7 +4201,7 @@ namespace Diagram
 
                 Node newrec = this.CreateNode(this.getMousePosition());
                 newrec.setName(sum.ToString());
-                newrec.color = ColorTranslator.FromHtml("#8AC5FF");
+                newrec.color.set("#8AC5FF");
 
                 this.diagram.InvalidateDiagram();
                 return true;
@@ -4271,7 +4283,7 @@ namespace Diagram
 
             Node newrec = this.CreateNode(this.getMousePosition());
             newrec.setName(insertdatestring);
-            newrec.color = ColorTranslator.FromHtml("#8AC5FF");
+            newrec.color.set("#8AC5FF");
 
             this.diagram.InvalidateDiagram();
             return true;
@@ -4618,7 +4630,7 @@ namespace Diagram
                 {
                     Node newrec = this.CreateNode(position, true);
                     newrec.attachment = data;
-                    newrec.color = Media.getColor(diagram.options.colorAttachment);
+                    newrec.color.set(diagram.options.colorAttachment);
                     newrec.setName(Os.getFileName(this.DSelectFileAttachment.FileName));
                 }
 
@@ -4645,7 +4657,7 @@ namespace Diagram
                 {
                     Node newrec = this.CreateNode(position, true);
                     newrec.attachment = data;
-                    newrec.color = Media.getColor(diagram.options.colorAttachment);
+                    newrec.color.set(diagram.options.colorAttachment);
                     newrec.setName(Os.getFileName(this.DSelectDirectoryAttachment.SelectedPath));
                 }
 
@@ -4707,13 +4719,13 @@ namespace Diagram
                 {
                     Lines SelectedLines = getSelectedLines();
 
-                    DColor.Color = SelectedLines[0].color;
+                    DColor.Color = SelectedLines[0].color.color;
 
                     if (DColor.ShowDialog() == DialogResult.OK)
                     {
                         foreach (Line lin in SelectedLines)
                         {
-                            lin.color = DColor.Color;
+                            lin.color.set(DColor.Color);
                         }
 
 

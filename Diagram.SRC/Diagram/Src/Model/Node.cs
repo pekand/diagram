@@ -13,9 +13,9 @@ namespace Diagram
         public bool visible = true;
 
         // Style
-        public Color color = System.Drawing.ColorTranslator.FromHtml("#FFFFB8"); // node color
+        public ColorType color = new ColorType("#FFFFB8"); // node color
         public Font font = null; // node name font
-        public Color fontcolor = System.Drawing.Color.Black; // node name ext color
+        public ColorType fontcolor = new ColorType(); // node name ext color
         public bool transparent = false; // node is transparent, color is turn off
 
         // Text
@@ -62,13 +62,63 @@ namespace Diagram
         // Protect
         public bool protect = false; // protect sensitive data like pasword in node name (show asterisk instead of name)
 
+        public Node()
+        {
+        }
+
+        public Node(Node node)
+        {
+            this.set(node);
+        }
+
+        public void set(Node node)
+        {
+            this.id = node.id;
+
+            this.color.set(node.color);
+            this.font = node.font;
+            this.fontcolor.set(node.fontcolor);
+            this.transparent = node.transparent;
+
+            this.name = node.name;
+            this.note = node.note;
+            this.link = node.link;
+
+            this.position.set(node.position);
+            this.width = node.width;
+            this.height = node.height;
+
+            this.layer = node.layer;
+            this.haslayer = node.haslayer;
+            this.layerShift = node.layerShift;
+
+            this.shortcut = node.shortcut;
+
+            this.isimage = node.isimage;
+            this.embeddedimage = node.embeddedimage;
+            this.imagepath = node.imagepath;
+            this.image = node.image;
+
+            this.iwidth = node.iwidth;
+            this.iheight = node.iheight;
+
+            this.attachment = node.attachment;
+
+            this.timecreate = node.timecreate;
+            this.timemodify = node.timemodify;
+
+            this.scriptid = node.scriptid;
+
+            this.protect = node.protect;
+        }
+
         /// <summary>
         /// node copy from another node to current node</summary>
         public void copyNode(Node node, bool skipPosition = false, bool skipSize = false) 
         {
-            this.color = node.color;
+            this.color.set(node.color);
             this.font = node.font;
-            this.fontcolor = node.fontcolor;
+            this.fontcolor.set(node.fontcolor);
             this.transparent = node.transparent;
 
             this.name = node.name;
@@ -79,7 +129,7 @@ namespace Diagram
 
             if (!skipPosition)
             {
-                this.position = node.position;
+                this.position.set(node.position);
             }
 
             if (!skipSize)
@@ -95,6 +145,13 @@ namespace Diagram
 
             this.iwidth = node.iwidth;
             this.iheight = node.iheight;
+
+            this.timecreate = node.timecreate;
+            this.timemodify = node.timemodify;
+
+            this.scriptid = node.scriptid;
+
+            this.protect = node.protect;
         }
 
         public SizeF measure()
