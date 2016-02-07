@@ -46,9 +46,11 @@ namespace Diagram
                     RegexOptions.IgnoreCase
                     ).Groups["url"].Value;
 
-                    Uri result = null;
-                    Uri.TryCreate(new Uri(url), redirect, out result);
-                    return GetWebPageTitle(result.ToString(), level+1);
+                    if (redirect.Trim() != "") {
+                        Uri result = null;
+                        Uri.TryCreate(new Uri(url), redirect, out result);
+                        return GetWebPageTitle(result.ToString(), level + 1);
+                    }
                 }
 
                 // use different encoding
@@ -62,10 +64,10 @@ namespace Diagram
                 title = Regex.Match(
                         page,
                         "<title>(?<Title>.*?)</title>",
-                        RegexOptions.IgnoreCase
+                        RegexOptions.IgnoreCase | RegexOptions.Singleline
                     ).Groups["Title"].Value;
 
-                title = WebUtility.HtmlDecode(title);
+                title = WebUtility.HtmlDecode(title.Trim());
             }
             catch (Exception ex)
             {
