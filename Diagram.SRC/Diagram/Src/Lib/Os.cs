@@ -157,7 +157,7 @@ namespace Diagram
                 startInfo.Arguments = "/c " + "\"" + cmd + "\"";*/
 #else
 				startInfo.FileName = "/bin/bash";
-                startInfo.Arguments = "-c " + cmd;
+				startInfo.Arguments = "-c \"" + cmd + "\"";
 #endif
                 startInfo.WorkingDirectory = workdir;
                 startInfo.UseShellExecute = false;
@@ -186,8 +186,8 @@ namespace Diagram
             System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
             startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
 #if MONO
-            startInfo.FileName = "/bin/bash";
-            startInfo.Arguments = "-c " + cmd;
+			startInfo.FileName = "/bin/bash";
+			startInfo.Arguments =  "-c \"" + cmd + "\"";
 #else
             startInfo.FileName = "cmd.exe";
             startInfo.Arguments = "/C " + "\"" + cmd + "\"";

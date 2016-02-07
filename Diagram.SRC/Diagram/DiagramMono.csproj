@@ -131,6 +131,8 @@
     <Compile Include="Src\Lib\Patterns.cs" />
     <Compile Include="Src\Components\Breadcrumbs.cs" />
     <Compile Include="Src\Forms\LineWidthForm.cs" />
+    <Compile Include="Src\Forms\ColorPickerForm.cs" />
+    <Compile Include="Src\Forms\ColorPickerForm.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -184,6 +186,7 @@
     <None Include="Src\Forms\TextForm.resx" />
     <None Include="Src\Forms\Console.resx" />
     <None Include="Src\Forms\LineWidthForm.resx" />
+    <None Include="Src\Forms\ColorPickerForm.resx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
