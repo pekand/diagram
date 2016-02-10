@@ -243,6 +243,11 @@ namespace Diagram
                                             options.homeLayer = Int32.Parse(el.Value);
                                         }
 
+                                        if (el.Name.ToString() == "endlayer")
+                                        {
+                                            options.endLayer = Int32.Parse(el.Value);
+                                        }
+
                                         if (el.Name.ToString() == "endPositionx")
                                         {
                                             this.options.endPosition.x = Int32.Parse(el.Value);
@@ -491,7 +496,7 @@ namespace Diagram
                                                             string ext = "";
                                                             ext = Os.getExtension(R.imagepath).ToLower();
 
-                                                            if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // skratenie cesty k suboru
+                                                            if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp")
                                                             {
                                                                 R.image = new Bitmap(R.imagepath);
                                                                 if (ext != ".ico") R.image.MakeTransparent(Color.White);
@@ -755,6 +760,7 @@ namespace Diagram
                 option.Add(new XElement("firstLayereShift.x", this.options.firstLayereShift.x));
                 option.Add(new XElement("firstLayereShift.y", this.options.firstLayereShift.y));
                 option.Add(new XElement("homelayer", this.options.homeLayer));
+                option.Add(new XElement("endlayer", this.options.endLayer));
                 option.Add(new XElement("diagramreadonly", this.options.readOnly));
                 option.Add(new XElement("grid", this.options.grid));
                 option.Add(new XElement("borders", this.options.borders));
@@ -802,7 +808,7 @@ namespace Diagram
                     if (rec.transparent) rectangle.Add(new XElement("transparent", rec.transparent));
                     if (rec.embeddedimage) rectangle.Add(new XElement("embeddedimage", rec.embeddedimage));
 
-                    if (rec.embeddedimage && rec.image != null) // ak je obrázok vložený priamo do súboru
+                    if (rec.embeddedimage && rec.image != null) // image is inserted directly to file
                     {
                         TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
                         rectangle.Add(new XElement("imagedata", Convert.ToBase64String((byte[])converter.ConvertTo(rec.image, typeof(byte[])))));
@@ -810,7 +816,6 @@ namespace Diagram
                     else if (rec.imagepath != "")
                     {
                         rectangle.Add(new XElement("image", rec.imagepath));
-
                     }
 
                     if (rec.protect) rectangle.Add(new XElement("protect", rec.protect));
@@ -1615,6 +1620,48 @@ namespace Diagram
                                                     R.transparent = bool.Parse(el.Value);
                                                 }
 
+                                                if (el.Name.ToString() == "embeddedimage")
+                                                {
+                                                    R.embeddedimage = bool.Parse(el.Value);
+                                                }
+
+                                                if (el.Name.ToString() == "imagedata")
+                                                {
+                                                    R.image = new Bitmap(new MemoryStream(Convert.FromBase64String(el.Value)));
+                                                    R.height = R.image.Height;
+                                                    R.width = R.image.Width;
+                                                    R.isimage = true;
+                                                }
+
+                                                if (el.Name.ToString() == "image")
+                                                {
+                                                    R.imagepath = el.Value.ToString();
+                                                    if (Os.FileExists(R.imagepath))
+                                                    {
+                                                        try
+                                                        {
+                                                            string ext = "";
+                                                            ext = Os.getExtension(R.imagepath).ToLower();
+
+                                                            if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // skratenie cesty k suboru
+                                                            {
+                                                                R.image = new Bitmap(R.imagepath);
+                                                                if (ext != ".ico") R.image.MakeTransparent(Color.White);
+                                                                R.height = R.image.Height;
+                                                                R.width = R.image.Width;
+                                                                R.isimage = true;
+                                                            }
+                                                        }
+                                                        catch (Exception ex)
+                                                        {
+                                                            Program.log.write("load image from xml error: " + ex.Message);
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        R.imagepath = "";
+                                                    }
+                                                }
 
                                                 if (el.Name.ToString() == "timecreate")
                                                 {
@@ -1878,6 +1925,19 @@ namespace Diagram
                     if (rec.link != "") rectangle.Add(new XElement("link", rec.link));
                     if (rec.shortcut != 0 && rec.shortcut - minid + 1 > 0) rectangle.Add(new XElement("shortcut", rec.shortcut + 1));
                     rectangle.Add(new XElement("transparent", rec.transparent));
+
+                    if (rec.embeddedimage) rectangle.Add(new XElement("embeddedimage", rec.embeddedimage));
+
+                    if (rec.embeddedimage && rec.image != null)
+                    {
+                        TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+                        rectangle.Add(new XElement("imagedata", Convert.ToBase64String((byte[])converter.ConvertTo(rec.image, typeof(byte[])))));
+                    }
+                    else if (rec.imagepath != "")
+                    {
+                        rectangle.Add(new XElement("image", rec.imagepath));
+                    }
+
                     rectangle.Add(new XElement("timecreate", rec.timecreate));
                     rectangle.Add(new XElement("timemodify", rec.timemodify));
                     rectangle.Add(new XElement("attachment", rec.attachment));
