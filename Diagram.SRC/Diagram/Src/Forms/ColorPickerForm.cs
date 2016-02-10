@@ -25,6 +25,8 @@ namespace Diagram
 
         int b = 0;
 
+        Position position = new Position();
+
         public void render()
         {
             bmp = new Bitmap(51 * 5 * 3, 51 * 5 * 3);
@@ -72,9 +74,20 @@ namespace Diagram
 
         public ColorPickerForm()
         {
-
-            render();
             InitializeComponent();
+
+            // draw image into box
+            render();
+            pictureBox1.Image = bmp;
+
+            // create scrollbar
+            pictureBox1.Width = bmp.Width;
+            pictureBox1.Height = bmp.Height;
+            this.Width = bmp.Width+15;
+            this.Height = 255;
+
+            this.Left = Screen.FromControl(this).Bounds.Width /2 - this.Width/2;
+            this.Top = Screen.FromControl(this).Bounds.Height - this.Height - 100;
         }
 
         Color convert(int x, int y)
@@ -99,16 +112,6 @@ namespace Diagram
             r = t / 256 / 256 % 256;
 
             return Color.FromArgb(r, g, b);
-        }
-
-        private void ColorPickerForm_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-        public void PaintColorPicker(object sender, PaintEventArgs e)
-        {
-            e.Graphics.DrawImage(bmp, 0, 0);
         }
 
         private void ColorPickerForm_MouseUp(object sender, MouseEventArgs e)
@@ -140,23 +143,6 @@ namespace Diagram
                 if (this.changeColor != null)
                     this.changeColor(this.color);
             }
-        }
-        // EVENT Mouse Whell
-        public void DiagramApp_MouseWheel(object sender, MouseEventArgs e)                             // [MOUSE] [WHELL] [EVENT]
-        {
-            /*if (e.Delta > 0)
-            {
-                b = b + 5;
-            }
-            else
-            {
-                b = b - 5;
-            }
-
-            if (b < 0) b = 0;
-            if (b > 255) b = 255; 
-            render();
-            InitializeComponent();*/
         }
     }
 }

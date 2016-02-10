@@ -30,26 +30,39 @@ namespace Diagram
         /// </summary>
         private void InitializeComponent()
         {
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(-2, -1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(790, 430);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ColorPickerForm_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ColorPickerForm_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ColorPickerForm_MouseUp);
             // 
             // ColorPickerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(765, 765);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(977, 371);
+            this.Controls.Add(this.pictureBox1);
+            this.Icon = global::Diagram.Properties.Resources.ico_diagramico_forms;
             this.MaximizeBox = false;
             this.Name = "ColorPickerForm";
             this.Text = "Color";
-            this.Load += new System.EventHandler(this.ColorPickerForm_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintColorPicker);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ColorPickerForm_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ColorPickerForm_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ColorPickerForm_MouseUp);
-            this.MouseWheel += new MouseEventHandler(DiagramApp_MouseWheel);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private PictureBox pictureBox1;
     }
 }
