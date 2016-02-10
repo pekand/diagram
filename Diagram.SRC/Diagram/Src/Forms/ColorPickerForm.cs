@@ -24,8 +24,45 @@ namespace Diagram
         bool selecting = false;
 
         int b = 0;
-
+        private PictureBox pictureBox1;
         Position position = new Position();
+
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(391, 427);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ColorPickerForm_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ColorPickerForm_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ColorPickerForm_MouseUp);
+            // 
+            // ColorPickerForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(808, 248);
+            this.Controls.Add(this.pictureBox1);
+            this.Icon = global::Diagram.Properties.Resources.ico_diagramico_forms;
+            this.MaximizeBox = false;
+            this.Name = "ColorPickerForm";
+            this.Text = "Color";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.ResumeLayout(false);
+
+		}
 
         public void render()
         {
@@ -83,7 +120,7 @@ namespace Diagram
             // create scrollbar
             pictureBox1.Width = bmp.Width;
             pictureBox1.Height = bmp.Height;
-            this.Width = bmp.Width+15;
+            this.Width = bmp.Width+17;
             this.Height = 255;
 
             this.Left = Screen.FromControl(this).Bounds.Width /2 - this.Width/2;

@@ -19,6 +19,7 @@ namespace Diagram
             //
             // MainForm
             //
+			this.Icon = Properties.Resources.ico_diagramico_forms;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(10, 10);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

@@ -161,9 +161,6 @@
     <Compile Include="Src\Forms\ColorPickerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Src\Forms\ColorPickerForm.Designer.cs">
-      <DependentUpon>ColorPickerForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Src\Forms\LineWidthForm.cs">
       <SubType>Form</SubType>
     </Compile>
