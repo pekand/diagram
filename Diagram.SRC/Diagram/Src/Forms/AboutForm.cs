@@ -13,6 +13,8 @@ namespace Diagram
         private System.Windows.Forms.Label labelAuthor;
         private System.Windows.Forms.LinkLabel linkLabelMe;
         private System.Windows.Forms.Label labelLicenceType;
+		private System.Windows.Forms.Label labelVersion;
+		private System.Windows.Forms.LinkLabel labelHomepage;
 
         public AboutForm(Main main)
         {
@@ -28,6 +30,8 @@ namespace Diagram
             this.labelAuthor = new System.Windows.Forms.Label();
             this.linkLabelMe = new System.Windows.Forms.LinkLabel();
             this.labelLicenceType = new System.Windows.Forms.Label();
+			this.labelVersion = new System.Windows.Forms.Label();
+			this.labelHomepage = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             //
             // labelProgramName
@@ -61,6 +65,26 @@ namespace Diagram
             this.labelLicence.Size = new System.Drawing.Size(44, 13);
             this.labelLicence.TabIndex = 3;
             this.labelLicence.Text = "licence:";
+			//
+			// labelVersion
+			//
+			this.labelVersion.AutoSize = true;
+			this.labelVersion.Location = new System.Drawing.Point(28, 80);
+			this.labelVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.labelVersion.Name = "labelVersion";
+			this.labelVersion.Size = new System.Drawing.Size(44, 13);
+			this.labelVersion.TabIndex = 3;
+			this.labelVersion.Text = "version:0.4";
+			//
+			// labelHomepage
+			//
+			this.labelHomepage.AutoSize = true;
+			this.labelHomepage.Location = new System.Drawing.Point(28, 90);
+			this.labelHomepage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.labelHomepage.Name = "labelHomepage";
+			this.labelHomepage.Size = new System.Drawing.Size(44, 13);
+			this.labelHomepage.TabIndex = 3;
+			this.labelHomepage.Text = "https://infinite-diagram.com";
             //
             // labelAuthor
             //
@@ -92,7 +116,7 @@ namespace Diagram
             this.labelLicenceType.Name = "labelLicenceType";
             this.labelLicenceType.Size = new System.Drawing.Size(48, 13);
             this.labelLicenceType.TabIndex = 6;
-            this.labelLicenceType.Text = "freeware";
+            this.labelLicenceType.Text = "GPLv3";
             //
             // AboutForm
             //
@@ -103,6 +127,8 @@ namespace Diagram
             this.Controls.Add(this.linkLabelMe);
             this.Controls.Add(this.labelAuthor);
             this.Controls.Add(this.labelLicence);
+			this.Controls.Add(this.labelVersion);
+			this.Controls.Add(this.labelHomepage);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.labelProgramName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

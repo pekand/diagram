@@ -18,7 +18,7 @@ mkdir ./infinite-diagram/usr/share/applications
 cp ./files/infinite-diagram.desktop ./infinite-diagram/usr/share/applications/infinite-diagram.desktop
 mkdir ./infinite-diagram/usr/share/doc
 mkdir ./infinite-diagram/usr/share/doc/infinite-diagram/
-cp ./files/copyright ./infinite-diagram/usr/share/doc/infinite-diagram/copyright
+cp ../LICENSE.md ./infinite-diagram/usr/share/doc/infinite-diagram/copyright
 mkdir ./infinite-diagram/usr/share/icons
 mkdir ./infinite-diagram/usr/share/icons/gnome
 mkdir ./infinite-diagram/usr/share/icons/gnome/256x256
