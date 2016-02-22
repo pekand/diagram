@@ -7,6 +7,25 @@ namespace Diagram
     /// global program parmeters</summary>
     public class ProgramOptions
     {
+        [JsonIgnore]
+        /// <summary>
+        /// version</summary>
+        public String version = "0.4";
+
+        [JsonIgnore]
+        /// <summary>
+        /// version</summary>
+        public String license = "GPLv3";
+
+        [JsonIgnore]
+        /// <summary>
+        /// version</summary>
+        public String author = "Andrej Pekar";
+
+        [JsonIgnore]
+        /// <summary>
+        /// version</summary>
+        public String email = "infinite.diagram@gmail.com";
 
         [JsonIgnore]
         /// <summary>
@@ -18,9 +37,22 @@ namespace Diagram
         /// release note</summary>
         public String release_note = "ReleaseNote.html";
 
+        [JsonIgnore]
         /// <summary>
         /// local server ip address</summary>
         public String server_default_ip = "127.0.0.1";
+
+        /// <summary>
+        /// proxy uri</summary>
+        public String proxy_uri = "";
+
+        /// <summary>
+        /// proxy auth username</summary>
+        public String proxy_username = "";
+
+        /// <summary>
+        /// proxy auth password</summary>
+        public String proxy_password = "";
 
 #if DEBUG
         /// <summary>
@@ -39,7 +71,7 @@ namespace Diagram
 #else
         /// <summary>
         /// windows open on position command</summary>
-        public String texteditor = "\"c:\\Program Files\\Sublime Text 3\\sublime_text.exe\" \"%FILENAME%\":%LINE%";
+        public String texteditor = "subl \"%FILENAME%\":%LINE%";
 #endif
 
         }

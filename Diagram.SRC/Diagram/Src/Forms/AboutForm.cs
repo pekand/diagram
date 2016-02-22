@@ -5,12 +5,6 @@ namespace Diagram
 {
     public partial class AboutForm : Form
     {
-        public string version = "0.4";
-        public string email = "pekand@gmail.com";
-        public string author = "Andrej Pekar";
-        public string homepage = "https://infinite-diagram.com";
-        public string license = "GPLv3";
-
         public Main main = null;
 
         private System.Windows.Forms.Label labelProgramName;
@@ -28,10 +22,10 @@ namespace Diagram
             this.main = main;
             this.InitializeComponent();
 
-            this.labelLicenceType.Text = license;
-            this.labelVersionNumber.Text = version;
-            this.linkLabelMe.Text = author; 
-            this.labelHomepage.Text = homepage;
+            this.labelLicenceType.Text = Program.main.options.license;
+            this.labelVersionNumber.Text = Program.main.options.version;
+            this.linkLabelMe.Text = Program.main.options.author; 
+            this.labelHomepage.Text = Program.main.options.home_page;
         }
 
         private void InitializeComponent()
@@ -186,7 +180,7 @@ namespace Diagram
 
         private void labelHomepage_HomepageClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(this.homepage);
+            System.Diagnostics.Process.Start(Program.main.options.home_page);
         }
 
         private void AboutForm_FormClosed(object sender, FormClosedEventArgs e)

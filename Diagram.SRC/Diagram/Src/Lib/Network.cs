@@ -14,13 +14,30 @@ namespace Diagram
         {
             string title = url;
 
+            
+
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.AllowAutoRedirect = true;
                 request.MaximumAutomaticRedirections = 3;
                 request.UseDefaultCredentials = true;
-                request.Proxy = WebRequest.GetSystemWebProxy();
+                if (Program.main.options.proxy_password != "" && Program.main.options.proxy_username != "")
+                {
+                    // set proxy credentials
+                    WebProxy myProxy = new WebProxy();
+                    Uri newUri = new Uri(Program.main.options.proxy_uri);
+                    myProxy.Address = newUri;
+                    myProxy.Credentials = new NetworkCredential(
+                        Program.main.options.proxy_username, 
+                        Program.main.options.proxy_password
+                    );
+                    request.Proxy = myProxy;
+                }
+                else
+                {
+                    request.Proxy = WebRequest.GetSystemWebProxy();
+                }
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 Stream resStream = response.GetResponseStream();
 

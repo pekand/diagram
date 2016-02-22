@@ -68,7 +68,7 @@ namespace Diagram
             }
         }
 
-        private void saveConfigFile()
+        public void saveConfigFile()
         {
             try
             {
