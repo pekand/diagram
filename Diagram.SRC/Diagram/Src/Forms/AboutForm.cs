@@ -87,6 +87,7 @@ namespace Diagram
             this.labelLicenceType.Name = "labelLicenceType";
             this.labelLicenceType.Size = new System.Drawing.Size(0, 13);
             this.labelLicenceType.TabIndex = 6;
+            this.labelLicence.Text = "lic";
             // 
             // labelAuthor
             // 
@@ -128,7 +129,7 @@ namespace Diagram
             this.labelVersionNumber.Name = "labelVersionNumber";
             this.labelVersionNumber.Size = new System.Drawing.Size(59, 13);
             this.labelVersionNumber.TabIndex = 3;
-            this.labelVersionNumber.Text = "version";
+            this.labelVersionNumber.Text = "0.0";
             // 
             // labelHomepage
             // 
@@ -144,7 +145,7 @@ namespace Diagram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 143);
+            this.ClientSize = new System.Drawing.Size(260, 150);
             this.Controls.Add(this.labelLicenceType);
             this.Controls.Add(this.linkLabelMe);
             this.Controls.Add(this.labelAuthor);
