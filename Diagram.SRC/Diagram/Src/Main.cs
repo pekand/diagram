@@ -130,6 +130,7 @@ namespace Diagram
                 console.Close();
             }
 
+            this.optionsFile.saveConfigFile();
             Application.Exit();
             Application.ExitThread();
             Environment.Exit(0);
