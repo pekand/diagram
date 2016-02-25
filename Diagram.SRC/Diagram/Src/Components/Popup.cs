@@ -9,6 +9,8 @@ using System.Windows.Forms;
 
 namespace Diagram
 {
+    [System.ComponentModel.DesignerCategory("Code")]
+
     public class Popup : ContextMenuStrip
     {
         public DiagramView diagramView = null;       // diagram ktory je previazany z pohladom
@@ -32,12 +34,11 @@ namespace Diagram
             items["coordinatesItem"].Checked = this.diagramView.diagram.options.coordinates;
             items["readonlyItem"].Checked = this.diagramView.diagram.options.readOnly;
         }
-
+			
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        #region Windows Form Designer generated code
         private void InitializeComponent()
         {
             this.SuspendLayout();
@@ -47,7 +48,6 @@ namespace Diagram
             //
             items.Add("editItem", new System.Windows.Forms.ToolStripMenuItem());
             items["editItem"].Name = "editItem";
-            items["editItem"].Size = new System.Drawing.Size(164, 22);
             items["editItem"].Text = "Edit";
             items["editItem"].Click += new System.EventHandler(this.editItem_Click);
             //
@@ -55,23 +55,13 @@ namespace Diagram
             //
             items.Add("colorItem", new System.Windows.Forms.ToolStripMenuItem());
             items["colorItem"].Name = "colorItem";
-            items["colorItem"].Size = new System.Drawing.Size(164, 22);
             items["colorItem"].Text = "Color";
             items["colorItem"].Click += new System.EventHandler(this.colorItem_Click);
-            //
-            // removeShortcutItem
-            //
-            items.Add("removeShortcutItem", new System.Windows.Forms.ToolStripMenuItem());
-            items["removeShortcutItem"].Name = "removeShortcutItem";
-            items["removeShortcutItem"].Size = new System.Drawing.Size(164, 22);
-            items["removeShortcutItem"].Text = "Remove shortcut";
-            items["removeShortcutItem"].Click += new System.EventHandler(this.removeShortcutItem_Click);
             //
             // openlinkItem
             //
             items.Add("openlinkItem", new System.Windows.Forms.ToolStripMenuItem());
             items["openlinkItem"].Name = "openlinkItem";
-            items["openlinkItem"].Size = new System.Drawing.Size(153, 22);
             items["openlinkItem"].Text = "Open";
             items["openlinkItem"].Click += new System.EventHandler(this.openlinkItem_Click);
             //
@@ -79,7 +69,6 @@ namespace Diagram
             //
             items.Add("openLinkDirectoryItem", new System.Windows.Forms.ToolStripMenuItem());
             items["openLinkDirectoryItem"].Name = "openLinkDirectoryItem";
-            items["openLinkDirectoryItem"].Size = new System.Drawing.Size(153, 22);
             items["openLinkDirectoryItem"].Text = "Open directory";
             items["openLinkDirectoryItem"].Click += new System.EventHandler(this.openLinkDirectoryItem_Click);
             //
@@ -91,14 +80,12 @@ namespace Diagram
                 items["openLinkDirectoryItem"]
             });
             items["linkItem"].Name = "linkItem";
-            items["linkItem"].Size = new System.Drawing.Size(164, 22);
             items["linkItem"].Text = "Link";
             //
             // leftItem
             //
             items.Add("leftItem", new System.Windows.Forms.ToolStripMenuItem());
             items["leftItem"].Name = "leftItem";
-            items["leftItem"].Size = new System.Drawing.Size(128, 22);
             items["leftItem"].Text = "Left";
             items["leftItem"].Click += new System.EventHandler(this.leftItem_Click);
             //
@@ -106,7 +93,6 @@ namespace Diagram
             //
             items.Add("rightItem", new System.Windows.Forms.ToolStripMenuItem());
             items["rightItem"].Name = "rightItem";
-            items["rightItem"].Size = new System.Drawing.Size(128, 22);
             items["rightItem"].Text = "Right";
             items["rightItem"].Click += new System.EventHandler(this.rightItem_Click);
             //
@@ -114,7 +100,6 @@ namespace Diagram
             //
             items.Add("toLineItem", new System.Windows.Forms.ToolStripMenuItem());
             items["toLineItem"].Name = "toLineItem";
-            items["toLineItem"].Size = new System.Drawing.Size(128, 22);
             items["toLineItem"].Text = "To line";
             items["toLineItem"].Click += new System.EventHandler(this.toLineItem_Click);
             //
@@ -122,7 +107,6 @@ namespace Diagram
             //
             items.Add("inColumnItem", new System.Windows.Forms.ToolStripMenuItem());
             items["inColumnItem"].Name = "inColumnItem";
-            items["inColumnItem"].Size = new System.Drawing.Size(128, 22);
             items["inColumnItem"].Text = "In column";
             items["inColumnItem"].Click += new System.EventHandler(this.inColumnItem_Click);
             //
@@ -130,7 +114,6 @@ namespace Diagram
             //
             items.Add("groupVericalItem", new System.Windows.Forms.ToolStripMenuItem());
             items["groupVericalItem"].Name = "groupVericalItem";
-            items["groupVericalItem"].Size = new System.Drawing.Size(128, 22);
             items["groupVericalItem"].Text = "Group vertical";
             items["groupVericalItem"].Click += new System.EventHandler(this.groupVericalItem_Click);
             //
@@ -138,7 +121,6 @@ namespace Diagram
             //
             items.Add("groupHorizontalItem", new System.Windows.Forms.ToolStripMenuItem());
             items["groupHorizontalItem"].Name = "groupHorizontalItem";
-            items["groupHorizontalItem"].Size = new System.Drawing.Size(128, 22);
             items["groupHorizontalItem"].Text = "Group horizontal";
             items["groupHorizontalItem"].Click += new System.EventHandler(this.groupHorizontalItem_Click);
             //
@@ -154,20 +136,43 @@ namespace Diagram
                 items["groupHorizontalItem"]
             });
             items["alignItem"].Name = "alignItem";
-            items["alignItem"].Size = new System.Drawing.Size(164, 22);
             items["alignItem"].Text = "Align";
             //
             // quickActionSeparator
             //
             separators.Add("quickActionSeparator", new System.Windows.Forms.ToolStripSeparator());
             separators["quickActionSeparator"].Name = "quickActionSeparator";
-            separators["quickActionSeparator"].Size = new System.Drawing.Size(161, 6);
+            //
+            // copyItem
+            //
+            items.Add("copyItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["copyItem"].Name = "copyItem";
+            items["copyItem"].Text = "Copy";
+            items["copyItem"].Click += new System.EventHandler(this.copyItem_Click);
+            //
+            // cutItem
+            //
+            items.Add("cutItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["cutItem"].Name = "cutItem";
+            items["cutItem"].Text = "Cut";
+            items["cutItem"].Click += new System.EventHandler(this.cutItem_Click);
+            //
+            // pasteItem
+            //
+            items.Add("pasteItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["pasteItem"].Name = "pasteItem";
+            items["pasteItem"].Text = "Paste";
+            items["pasteItem"].Click += new System.EventHandler(this.pasteItem_Click);
+            //
+            // editSeparator
+            //
+            separators.Add("editSeparator", new System.Windows.Forms.ToolStripSeparator());
+            separators["editSeparator"].Name = "editSeparator";
             //
             // newItem
             //
             items.Add("newItem", new System.Windows.Forms.ToolStripMenuItem());
             items["newItem"].Name = "newItem";
-            items["newItem"].Size = new System.Drawing.Size(154, 22);
             items["newItem"].Text = "New";
             items["newItem"].Click += new System.EventHandler(this.newItem_Click);
             //
@@ -175,7 +180,6 @@ namespace Diagram
             //
             items.Add("saveItem", new System.Windows.Forms.ToolStripMenuItem());
             items["saveItem"].Name = "saveItem";
-            items["saveItem"].Size = new System.Drawing.Size(154, 22);
             items["saveItem"].Text = "Save";
             items["saveItem"].Click += new System.EventHandler(this.saveItem_Click);
             //
@@ -183,7 +187,6 @@ namespace Diagram
             //
             items.Add("saveAsItem", new System.Windows.Forms.ToolStripMenuItem());
             items["saveAsItem"].Name = "saveAsItem";
-            items["saveAsItem"].Size = new System.Drawing.Size(154, 22);
             items["saveAsItem"].Text = "Save As";
             items["saveAsItem"].Click += new System.EventHandler(this.saveAsItem_Click);
             //
@@ -191,7 +194,6 @@ namespace Diagram
             //
             items.Add("textItem", new System.Windows.Forms.ToolStripMenuItem());
             items["textItem"].Name = "textItem";
-            items["textItem"].Size = new System.Drawing.Size(145, 22);
             items["textItem"].Text = "Text";
             items["textItem"].Click += new System.EventHandler(this.textItem_Click);
             //
@@ -199,7 +201,6 @@ namespace Diagram
             //
             items.Add("exportToPngItem", new System.Windows.Forms.ToolStripMenuItem());
             items["exportToPngItem"].Name = "exportToPngItem";
-            items["exportToPngItem"].Size = new System.Drawing.Size(145, 22);
             items["exportToPngItem"].Text = "Export to png";
             items["exportToPngItem"].Click += new System.EventHandler(this.exportToPngItem_Click);
             //
@@ -211,14 +212,12 @@ namespace Diagram
                 items["exportToPngItem"]
             });
             items["exportItem"].Name = "exportItem";
-            items["exportItem"].Size = new System.Drawing.Size(154, 22);
             items["exportItem"].Text = "Export";
             //
             // openItem
             //
             items.Add("openItem", new System.Windows.Forms.ToolStripMenuItem());
             items["openItem"].Name = "openItem";
-            items["openItem"].Size = new System.Drawing.Size(154, 22);
             items["openItem"].Text = "Open";
             items["openItem"].Click += new System.EventHandler(this.openItem_Click);
             //
@@ -226,7 +225,6 @@ namespace Diagram
             //
             items.Add("exitItem", new System.Windows.Forms.ToolStripMenuItem());
             items["exitItem"].Name = "exitItem";
-            items["exitItem"].Size = new System.Drawing.Size(154, 22);
             items["exitItem"].Text = "Exit";
             items["exitItem"].Click += new System.EventHandler(this.exitItem_Click);
             //
@@ -242,44 +240,12 @@ namespace Diagram
                 items["exitItem"]
             });
             items["fileItem"].Name = "fileItem";
-            items["fileItem"].Size = new System.Drawing.Size(164, 22);
             items["fileItem"].Text = "File";
-            //
-            // copyItem
-            //
-            items.Add("copyItem", new System.Windows.Forms.ToolStripMenuItem());
-            items["copyItem"].Name = "editItem";
-            items["copyItem"].Size = new System.Drawing.Size(164, 22);
-            items["copyItem"].Text = "Copy";
-            items["copyItem"].Click += new System.EventHandler(this.copyItem_Click);
-            //
-            // cutItem
-            //
-            items.Add("cutItem", new System.Windows.Forms.ToolStripMenuItem());
-            items["cutItem"].Name = "editItem";
-            items["cutItem"].Size = new System.Drawing.Size(164, 22);
-            items["cutItem"].Text = "Cut";
-            items["cutItem"].Click += new System.EventHandler(this.cutItem_Click);
-            //
-            // pasteItem
-            //
-            items.Add("pasteItem", new System.Windows.Forms.ToolStripMenuItem());
-            items["pasteItem"].Name = "editItem";
-            items["pasteItem"].Size = new System.Drawing.Size(164, 22);
-            items["pasteItem"].Text = "Paste";
-            items["pasteItem"].Click += new System.EventHandler(this.pasteItem_Click);
-            //
-            // editSeparator
-            //
-            separators.Add("editSeparator", new System.Windows.Forms.ToolStripSeparator());
-            separators["editSeparator"].Name = "editSeparator";
-            separators["editSeparator"].Size = new System.Drawing.Size(161, 6);
             //
             // copyLinkItem
             //
             items.Add("copyLinkItem", new System.Windows.Forms.ToolStripMenuItem());
             items["copyLinkItem"].Name = "copyLinkItem";
-            items["copyLinkItem"].Size = new System.Drawing.Size(164, 22);
             items["copyLinkItem"].Text = "Copy link";
             items["copyLinkItem"].Click += new System.EventHandler(this.copyLinkItem_Click);
             //
@@ -287,7 +253,6 @@ namespace Diagram
             //
             items.Add("copyNoteItem", new System.Windows.Forms.ToolStripMenuItem());
             items["copyNoteItem"].Name = "copyNoteItem";
-            items["copyNoteItem"].Size = new System.Drawing.Size(164, 22);
             items["copyNoteItem"].Text = "Copy note";
             items["copyNoteItem"].Click += new System.EventHandler(this.copyNoteItem_Click);
             //
@@ -295,7 +260,6 @@ namespace Diagram
             //
             items.Add("pasteToLinkItem", new System.Windows.Forms.ToolStripMenuItem());
             items["pasteToLinkItem"].Name = "pasteToLinkItem";
-            items["pasteToLinkItem"].Size = new System.Drawing.Size(164, 22);
             items["pasteToLinkItem"].Text = "Paste to link";
             items["pasteToLinkItem"].Click += new System.EventHandler(this.pasteToLinkItem_Click);
             //
@@ -303,7 +267,6 @@ namespace Diagram
             //
             items.Add("pasteToNoteItem", new System.Windows.Forms.ToolStripMenuItem());
             items["pasteToNoteItem"].Name = "pasteToNoteItem";
-            items["pasteToNoteItem"].Size = new System.Drawing.Size(164, 22);
             items["pasteToNoteItem"].Text = "Paste to note";
             items["pasteToNoteItem"].Click += new System.EventHandler(this.pasteToNoteItem_Click);
             //
@@ -311,24 +274,18 @@ namespace Diagram
             //
             items.Add("editMenuItem", new System.Windows.Forms.ToolStripMenuItem());
             items["editMenuItem"].DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                items["copyItem"],
-                items["cutItem"],
-                items["pasteItem"],
-                separators["editSeparator"],
                 items["copyLinkItem"],
                 items["copyNoteItem"],
                 items["pasteToLinkItem"],
                 items["pasteToNoteItem"]
             });
             items["editMenuItem"].Name = "editMenuItem";
-            items["editMenuItem"].Size = new System.Drawing.Size(164, 22);
             items["editMenuItem"].Text = "Edit";
             //
             // transparentItem
             //
             items.Add("transparentItem", new System.Windows.Forms.ToolStripMenuItem());
             items["transparentItem"].Name = "transparentItem";
-            items["transparentItem"].Size = new System.Drawing.Size(126, 22);
             items["transparentItem"].Text = "Transparent";
             items["transparentItem"].Click += new System.EventHandler(this.transparentItem_Click);
             //
@@ -336,7 +293,6 @@ namespace Diagram
             //
             items.Add("fontItem", new System.Windows.Forms.ToolStripMenuItem());
             items["fontItem"].Name = "fontItem";
-            items["fontItem"].Size = new System.Drawing.Size(126, 22);
             items["fontItem"].Text = "Font";
             items["fontItem"].Click += new System.EventHandler(this.fontItem_Click);
             //
@@ -344,7 +300,6 @@ namespace Diagram
             //
             items.Add("fontColorItem", new System.Windows.Forms.ToolStripMenuItem());
             items["fontColorItem"].Name = "fontColorItem";
-            items["fontColorItem"].Size = new System.Drawing.Size(126, 22);
             items["fontColorItem"].Text = "Font color";
             items["fontColorItem"].Click += new System.EventHandler(this.fontColorItem_Click);
             //
@@ -352,7 +307,6 @@ namespace Diagram
             //
             items.Add("editLinkItem", new System.Windows.Forms.ToolStripMenuItem());
             items["editLinkItem"].Name = "editLinkItem";
-            items["editLinkItem"].Size = new System.Drawing.Size(126, 22);
             items["editLinkItem"].Text = "Edit link";
             items["editLinkItem"].Click += new System.EventHandler(this.editLinkItem_Click);
             //
@@ -360,7 +314,6 @@ namespace Diagram
             //
             items.Add("bringTopItem", new System.Windows.Forms.ToolStripMenuItem());
             items["bringTopItem"].Name = "bringTopItem";
-            items["bringTopItem"].Size = new System.Drawing.Size(126, 22);
             items["bringTopItem"].Text = "Bring to top";
             items["bringTopItem"].Click += new System.EventHandler(this.bringTopItem_Click);
             //
@@ -368,15 +321,20 @@ namespace Diagram
             //
             items.Add("bringBottomItem", new System.Windows.Forms.ToolStripMenuItem());
             items["bringBottomItem"].Name = "bringBottomItem";
-            items["bringBottomItem"].Size = new System.Drawing.Size(126, 22);
             items["bringBottomItem"].Text = "Bring to bottom";
             items["bringBottomItem"].Click += new System.EventHandler(this.bringBottomItem_Click);
+            //
+            // removeShortcutItem
+            //
+            items.Add("removeShortcutItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["removeShortcutItem"].Name = "removeShortcutItem";
+            items["removeShortcutItem"].Text = "Remove shortcut";
+            items["removeShortcutItem"].Click += new System.EventHandler(this.removeShortcutItem_Click);
             //
             // protectItem
             //
             items.Add("protectItem", new System.Windows.Forms.ToolStripMenuItem());
             items["protectItem"].Name = "protectItem";
-            items["protectItem"].Size = new System.Drawing.Size(126, 22);
             items["protectItem"].Text = "Protect";
             items["protectItem"].Click += new System.EventHandler(this.protectItem_Click);
             //
@@ -390,17 +348,16 @@ namespace Diagram
                 items["editLinkItem"],
                 items["bringTopItem"],
                 items["bringBottomItem"],
+                items["removeShortcutItem"],
                 items["protectItem"]
             });
             items["nodeItem"].Name = "nodeItem";
-            items["nodeItem"].Size = new System.Drawing.Size(164, 22);
             items["nodeItem"].Text = "Node";
             //
             // lineColorItem
             //
             items.Add("lineColorItem", new System.Windows.Forms.ToolStripMenuItem());
             items["lineColorItem"].Name = "lineColorItem";
-            items["lineColorItem"].Size = new System.Drawing.Size(126, 22);
             items["lineColorItem"].Text = "Color";
             items["lineColorItem"].Click += new System.EventHandler(this.lineColorItem_Click);
             //
@@ -408,7 +365,6 @@ namespace Diagram
             //
             items.Add("lineWidthItem", new System.Windows.Forms.ToolStripMenuItem());
             items["lineWidthItem"].Name = "lineWidthItem";
-            items["lineWidthItem"].Size = new System.Drawing.Size(126, 22);
             items["lineWidthItem"].Text = "Width";
             items["lineWidthItem"].Click += new System.EventHandler(this.lineWidthItem_Click);
             //
@@ -420,14 +376,12 @@ namespace Diagram
                 items["lineWidthItem"]
             });
             items["lineItem"].Name = "lineItem";
-            items["lineItem"].Size = new System.Drawing.Size(164, 22);
             items["lineItem"].Text = "Line";
             //
             // imageAddItem
             //
             items.Add("imageAddItem", new System.Windows.Forms.ToolStripMenuItem());
             items["imageAddItem"].Name = "imageAddItem";
-            items["imageAddItem"].Size = new System.Drawing.Size(126, 22);
             items["imageAddItem"].Text = "Add image";
             items["imageAddItem"].Click += new System.EventHandler(this.imageAddItem_Click);
             //
@@ -435,7 +389,6 @@ namespace Diagram
             //
             items.Add("imageRemoveItem", new System.Windows.Forms.ToolStripMenuItem());
             items["imageRemoveItem"].Name = "imageRemoveItem";
-            items["imageRemoveItem"].Size = new System.Drawing.Size(126, 22);
             items["imageRemoveItem"].Text = "Remove image";
             items["imageRemoveItem"].Click += new System.EventHandler(this.imageRemoveItem_Click);
             //
@@ -443,7 +396,6 @@ namespace Diagram
             //
             items.Add("imageEmbeddedItem", new System.Windows.Forms.ToolStripMenuItem());
             items["imageEmbeddedItem"].Name = "imageEmbeddedItem";
-            items["imageEmbeddedItem"].Size = new System.Drawing.Size(126, 22);
             items["imageEmbeddedItem"].Text = "Embed image";
             items["imageEmbeddedItem"].Click += new System.EventHandler(this.imageEmbeddedItem_Click);
             //
@@ -456,14 +408,12 @@ namespace Diagram
                 items["imageEmbeddedItem"]
             });
             items["imageItem"].Name = "imageItem";
-            items["imageItem"].Size = new System.Drawing.Size(126, 22);
             items["imageItem"].Text = "Image";
             //
             // deploayAttachmentItem
             //
             items.Add("deploayAttachmentItem", new System.Windows.Forms.ToolStripMenuItem());
             items["deploayAttachmentItem"].Name = "deploayAttachmentItem";
-            items["deploayAttachmentItem"].Size = new System.Drawing.Size(126, 22);
             items["deploayAttachmentItem"].Text = "Deploy attachment";
             items["deploayAttachmentItem"].Click += new System.EventHandler(this.deploayAttachmentItem_Click);
             //
@@ -471,7 +421,6 @@ namespace Diagram
             //
             items.Add("includeFileItem", new System.Windows.Forms.ToolStripMenuItem());
             items["includeFileItem"].Name = "includeFileItem";
-            items["includeFileItem"].Size = new System.Drawing.Size(126, 22);
             items["includeFileItem"].Text = "Add file";
             items["includeFileItem"].Click += new System.EventHandler(this.includeFileItem_Click);
             //
@@ -479,7 +428,6 @@ namespace Diagram
             //
             items.Add("includeDirectoryItem", new System.Windows.Forms.ToolStripMenuItem());
             items["includeDirectoryItem"].Name = "includeDirectoryItem";
-            items["includeDirectoryItem"].Size = new System.Drawing.Size(126, 22);
             items["includeDirectoryItem"].Text = "Add directory";
             items["includeDirectoryItem"].Click += new System.EventHandler(this.includeDirectoryItem_Click);
             //
@@ -487,7 +435,6 @@ namespace Diagram
             //
             items.Add("removeAttachmentItem", new System.Windows.Forms.ToolStripMenuItem());
             items["removeAttachmentItem"].Name = "removeAttachmentItem";
-            items["removeAttachmentItem"].Size = new System.Drawing.Size(126, 22);
             items["removeAttachmentItem"].Text = "Remove";
             items["removeAttachmentItem"].Click += new System.EventHandler(this.removeFileItem_Click);
             //
@@ -501,14 +448,12 @@ namespace Diagram
                 items["removeAttachmentItem"]
             });
             items["attachmentItem"].Name = "attachmentItem";
-            items["attachmentItem"].Size = new System.Drawing.Size(126, 22);
             items["attachmentItem"].Text = "Attachment";
             //
             // newViewItem
             //
             items.Add("newViewItem", new System.Windows.Forms.ToolStripMenuItem());
             items["newViewItem"].Name = "newViewItem";
-            items["newViewItem"].Size = new System.Drawing.Size(126, 22);
             items["newViewItem"].Text = "New View";
             items["newViewItem"].Click += new System.EventHandler(this.newViewItem_Click);
             //
@@ -516,7 +461,6 @@ namespace Diagram
             //
             items.Add("centerItem", new System.Windows.Forms.ToolStripMenuItem());
             items["centerItem"].Name = "centerItem";
-            items["centerItem"].Size = new System.Drawing.Size(162, 22);
             items["centerItem"].Text = "Center";
             items["centerItem"].Click += new System.EventHandler(this.centerItem_Click);
             //
@@ -524,9 +468,15 @@ namespace Diagram
             //
             items.Add("setStartPositionItem", new System.Windows.Forms.ToolStripMenuItem());
             items["setStartPositionItem"].Name = "setStartPositionItem";
-            items["setStartPositionItem"].Size = new System.Drawing.Size(162, 22);
             items["setStartPositionItem"].Text = "Set start position";
             items["setStartPositionItem"].Click += new System.EventHandler(this.setStartPositionItem_Click);
+            //
+            // refreshItem
+            //
+            items.Add("refreshItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["refreshItem"].Name = "refreshItem";
+            items["refreshItem"].Text = "Refresh";
+            items["refreshItem"].Click += new System.EventHandler(this.refreshItem_Click);
             //
             // viewItem
             //
@@ -534,17 +484,16 @@ namespace Diagram
             items["viewItem"].DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
                 items["newViewItem"],
                 items["centerItem"],
-                items["setStartPositionItem"]
+                items["setStartPositionItem"],
+                items["refreshItem"]
             });
             items["viewItem"].Name = "viewItem";
-            items["viewItem"].Size = new System.Drawing.Size(164, 22);
             items["viewItem"].Text = "View";
             //
             // inItem
             //
             items.Add("inItem", new System.Windows.Forms.ToolStripMenuItem());
             items["inItem"].Name = "inItem";
-            items["inItem"].Size = new System.Drawing.Size(94, 22);
             items["inItem"].Text = "In";
             items["inItem"].Click += new System.EventHandler(this.inItem_Click);
             //
@@ -552,7 +501,6 @@ namespace Diagram
             //
             items.Add("outItem", new System.Windows.Forms.ToolStripMenuItem());
             items["outItem"].Name = "outItem";
-            items["outItem"].Size = new System.Drawing.Size(94, 22);
             items["outItem"].Text = "Out";
             items["outItem"].Click += new System.EventHandler(this.outItem_Click);
             //
@@ -564,20 +512,17 @@ namespace Diagram
                 items["outItem"]
             });
             items["layerItem"].Name = "layerItem";
-            items["layerItem"].Size = new System.Drawing.Size(164, 22);
             items["layerItem"].Text = "Layer";
             //
             // helpSeparator
             //
             separators.Add("helpSeparator", new System.Windows.Forms.ToolStripSeparator());
             separators["helpSeparator"].Name = "helpSeparator";
-            separators["helpSeparator"].Size = new System.Drawing.Size(161, 6);
             //
             // openDiagramDirectoryItem
             //
             items.Add("openDiagramDirectoryItem", new System.Windows.Forms.ToolStripMenuItem());
             items["openDiagramDirectoryItem"].Name = "openDiagramDirectoryItem";
-            items["openDiagramDirectoryItem"].Size = new System.Drawing.Size(154, 22);
             items["openDiagramDirectoryItem"].Text = "Open Directory";
             items["openDiagramDirectoryItem"].Click += new System.EventHandler(this.openDiagramDirectoryItem_Click);
             //
@@ -588,14 +533,12 @@ namespace Diagram
                 items["openDiagramDirectoryItem"]
             });
             items["toolsItem"].Name = "toolsItem";
-            items["toolsItem"].Size = new System.Drawing.Size(164, 22);
             items["toolsItem"].Text = "Tools";
             //
             // encryptItem
             //
             items.Add("encryptItem", new System.Windows.Forms.ToolStripMenuItem());
             items["encryptItem"].Name = "encryptItem";
-            items["encryptItem"].Size = new System.Drawing.Size(168, 22);
             items["encryptItem"].Text = "Encrypt";
             items["encryptItem"].Click += new System.EventHandler(this.encryptItem_Click);
             //
@@ -603,7 +546,6 @@ namespace Diagram
             //
             items.Add("changePasswordItem", new System.Windows.Forms.ToolStripMenuItem());
             items["changePasswordItem"].Name = "changePasswordItem";
-            items["changePasswordItem"].Size = new System.Drawing.Size(168, 22);
             items["changePasswordItem"].Text = "Change password";
             items["changePasswordItem"].Click += new System.EventHandler(this.changePasswordItem_Click);
             //
@@ -612,7 +554,6 @@ namespace Diagram
             items.Add("readonlyItem", new System.Windows.Forms.ToolStripMenuItem());
             items["readonlyItem"].CheckOnClick = true;
             items["readonlyItem"].Name = "readonlyItem";
-            items["readonlyItem"].Size = new System.Drawing.Size(168, 22);
             items["readonlyItem"].Text = "Read only";
             items["readonlyItem"].Click += new System.EventHandler(this.readonlyItem_Click);
             //
@@ -623,7 +564,6 @@ namespace Diagram
             items["restoreWindowItem"].CheckOnClick = true;
             items["restoreWindowItem"].CheckState = System.Windows.Forms.CheckState.Checked;
             items["restoreWindowItem"].Name = "restoreWindowItem";
-            items["restoreWindowItem"].Size = new System.Drawing.Size(168, 22);
             items["restoreWindowItem"].Text = "Restore window";
             items["restoreWindowItem"].Click += new System.EventHandler(this.restoreWindowItem_Click);
             //
@@ -634,7 +574,6 @@ namespace Diagram
             items["gridItem"].CheckOnClick = true;
             items["gridItem"].CheckState = System.Windows.Forms.CheckState.Checked;
             items["gridItem"].Name = "gridItem";
-            items["gridItem"].Size = new System.Drawing.Size(168, 22);
             items["gridItem"].Text = "Grid";
             items["gridItem"].Click += new System.EventHandler(this.gridItem_Click);
             //
@@ -643,7 +582,6 @@ namespace Diagram
             items.Add("coordinatesItem", new System.Windows.Forms.ToolStripMenuItem());
             items["coordinatesItem"].CheckOnClick = true;
             items["coordinatesItem"].Name = "coordinatesItem";
-            items["coordinatesItem"].Size = new System.Drawing.Size(168, 22);
             items["coordinatesItem"].Text = "Coordinates";
             items["coordinatesItem"].Visible = false;
             items["coordinatesItem"].Click += new System.EventHandler(this.coordinatesItem_Click);
@@ -653,7 +591,6 @@ namespace Diagram
             items.Add("bordersItem", new System.Windows.Forms.ToolStripMenuItem());
             items["bordersItem"].CheckOnClick = true;
             items["bordersItem"].Name = "bordersItem";
-            items["bordersItem"].Size = new System.Drawing.Size(168, 22);
             items["bordersItem"].Text = "Borders";
             items["bordersItem"].Click += new System.EventHandler(this.bordersItem_Click);
             //
@@ -661,7 +598,6 @@ namespace Diagram
             //
             items.Add("defaultFontItem", new System.Windows.Forms.ToolStripMenuItem());
             items["defaultFontItem"].Name = "defaultFontItem";
-            items["defaultFontItem"].Size = new System.Drawing.Size(168, 22);
             items["defaultFontItem"].Text = "Default font";
             items["defaultFontItem"].Click += new System.EventHandler(this.defaultFontItem_Click);
             //
@@ -669,7 +605,6 @@ namespace Diagram
             //
             items.Add("resetFontItem", new System.Windows.Forms.ToolStripMenuItem());
             items["resetFontItem"].Name = "resetFontItem";
-            items["resetFontItem"].Size = new System.Drawing.Size(168, 22);
             items["resetFontItem"].Text = "Reset font";
             items["resetFontItem"].Click += new System.EventHandler(this.resetFontItem_Click);
             //
@@ -688,14 +623,12 @@ namespace Diagram
                 items["resetFontItem"]
             });
             items["optionItem"].Name = "optionItem";
-            items["optionItem"].Size = new System.Drawing.Size(164, 22);
             items["optionItem"].Text = "Option";
             //
             // consoleItem
             //
             items.Add("consoleItem", new System.Windows.Forms.ToolStripMenuItem());
             items["consoleItem"].Name = "consoleItem";
-            items["consoleItem"].Size = new System.Drawing.Size(155, 22);
             items["consoleItem"].Text = "Debug Console";
             items["consoleItem"].Visible = false;
             items["consoleItem"].Click += new System.EventHandler(this.consoleItem_Click);
@@ -704,7 +637,6 @@ namespace Diagram
             //
             items.Add("visitWebsiteItem", new System.Windows.Forms.ToolStripMenuItem());
             items["visitWebsiteItem"].Name = "visitWebsiteItem";
-            items["visitWebsiteItem"].Size = new System.Drawing.Size(155, 22);
             items["visitWebsiteItem"].Text = "Visit homesite";
             items["visitWebsiteItem"].Click += new System.EventHandler(this.visitWebsiteItem_Click);
             //
@@ -712,7 +644,6 @@ namespace Diagram
             //
             items.Add("releaseNoteItem", new System.Windows.Forms.ToolStripMenuItem());
             items["releaseNoteItem"].Name = "releaseNoteItem";
-            items["releaseNoteItem"].Size = new System.Drawing.Size(155, 22);
             items["releaseNoteItem"].Text = "Release Note";
             items["releaseNoteItem"].Click += new System.EventHandler(this.releaseNoteItem_Click);
             //
@@ -720,7 +651,6 @@ namespace Diagram
             //
             items.Add("aboutItem", new System.Windows.Forms.ToolStripMenuItem());
             items["aboutItem"].Name = "aboutItem";
-            items["aboutItem"].Size = new System.Drawing.Size(155, 22);
             items["aboutItem"].Text = "About";
             items["aboutItem"].Click += new System.EventHandler(this.aboutItem_Click);
             //
@@ -734,7 +664,6 @@ namespace Diagram
                 items["aboutItem"]
             });
             items["helpItem"].Name = "helpItem";
-            items["helpItem"].Size = new System.Drawing.Size(164, 22);
             items["helpItem"].Text = "Help";
             //
             // PopupMenu
@@ -742,10 +671,13 @@ namespace Diagram
             this.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
                 items["editItem"],
                 items["colorItem"],
-                items["removeShortcutItem"],
                 items["linkItem"],
                 items["alignItem"],
                 separators["quickActionSeparator"],
+                items["copyItem"],
+                items["cutItem"],
+                items["pasteItem"],
+                separators["editSeparator"],
                 items["fileItem"],
                 items["editMenuItem"],
                 items["nodeItem"],
@@ -757,16 +689,15 @@ namespace Diagram
                 separators["helpSeparator"],
                 items["toolsItem"],
                 items["optionItem"],
-                items["helpItem"]});
+                items["helpItem"]
+			});
             this.Name = "popupMenu";
-            this.Size = new System.Drawing.Size(165, 280);
             this.Opening += new System.ComponentModel.CancelEventHandler(this.PopupMenu_Opening);
             //
             // Popup
             //
             this.ResumeLayout(false);
         }
-        #endregion
 
         /*************************************************************************************************************************/
 
@@ -1319,6 +1250,12 @@ namespace Diagram
         private void setStartPositionItem_Click(object sender, EventArgs e)
         {
             this.diagramView.setCurentPositionAsHomePosition();
+        }
+
+        // MENU refresh diagram
+        private void refreshItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.diagram.refresh();
         }
 
         // LAYER

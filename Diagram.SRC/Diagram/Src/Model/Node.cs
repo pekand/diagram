@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace Diagram
 {
@@ -119,10 +120,17 @@ namespace Diagram
         {
             if (!this.isimage)
             {
-                SizeF s = measure();
+                if (!this.protect)
+                {
+                    SizeF s = measure();
 
-                this.width = (int)s.Width;
-                this.height = (int)s.Height;
+                    this.width = (int)s.Width;
+                    this.height = (int)s.Height;
+                }
+                else
+                {
+                    this.resizeProtect();
+                }
             }
         }
 
@@ -161,6 +169,35 @@ namespace Diagram
             else
             {
                 this.resize();
+            }
+        }
+
+        public void loadImage()
+        {
+            if (this.imagepath != "" && Os.FileExists(this.imagepath))
+            {
+                try
+                {
+                    string ext = "";
+                    ext = Os.getExtension(this.imagepath).ToLower();
+
+                    if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp")
+                    {
+                        this.image = new Bitmap(this.imagepath);
+                        if (ext != ".ico") this.image.MakeTransparent(Color.White);
+                        this.height = this.image.Height;
+                        this.width = this.image.Width;
+                        this.isimage = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Program.log.write("load image from xml error: " + ex.Message);
+                }
+            }
+            else
+            {
+                this.imagepath = "";
             }
         }
     }

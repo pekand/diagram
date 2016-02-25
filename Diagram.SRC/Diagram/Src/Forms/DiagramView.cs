@@ -213,7 +213,7 @@ namespace Diagram
             this.InitializeComponent();
 
             // initialize popup menu
-            this.PopupMenu = new Popup(this.components, this);
+			this.PopupMenu = new Popup(this.components, this);
 
             // initialize edit panel
             this.editPanel = new EditPanel(this);

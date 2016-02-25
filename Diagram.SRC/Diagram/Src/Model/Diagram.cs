@@ -155,6 +155,13 @@ namespace Diagram
 
             if (version == "1" && salt != "" && encrypted != "")
             {
+                // prevent open multiple files with password in one time
+                if (main.passwordForm != null)
+                {
+                    this.CloseFile();
+                    return false;
+                }
+
                 bool error = false;
                 do
                 {
@@ -489,31 +496,7 @@ namespace Diagram
                                                 if (el.Name.ToString() == "image")
                                                 {
                                                     R.imagepath = el.Value.ToString();
-                                                    if (Os.FileExists(R.imagepath))
-                                                    {
-                                                        try
-                                                        {
-                                                            string ext = "";
-                                                            ext = Os.getExtension(R.imagepath).ToLower();
-
-                                                            if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp")
-                                                            {
-                                                                R.image = new Bitmap(R.imagepath);
-                                                                if (ext != ".ico") R.image.MakeTransparent(Color.White);
-                                                                R.height = R.image.Height;
-                                                                R.width = R.image.Width;
-                                                                R.isimage = true;
-                                                            }
-                                                        }
-                                                        catch (Exception ex)
-                                                        {
-                                                            Program.log.write("load image from xml error: " + ex.Message);
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        R.imagepath = "";
-                                                    }
+                                                    R.loadImage();
                                                 }
 
 
@@ -1512,6 +1495,26 @@ namespace Diagram
             }
         }
 
+        // DIAGRAM refresh - refresh items depends on external resources like images
+        public void refresh()
+        {
+            foreach (Node node in this.layers.getAllNodes())
+            {
+                
+                if (node.isimage && !node.embeddedimage)
+                {
+                    node.loadImage();
+                }
+                else
+                {
+                    node.resize();
+                }
+            }
+
+            this.InvalidateDiagram();
+        }
+
+        
         /*************************************************************************************************************************/
 
         // CLIPBOARD PASTE paste part of diagram from clipboard                                   // CLIPBOARD
