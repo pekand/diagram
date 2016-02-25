@@ -9,6 +9,8 @@ using System.Windows.Forms;
 
 namespace Diagram
 {
+    [System.ComponentModel.DesignerCategory("Code")]
+
     public class Popup : ContextMenuStrip
     {
         public DiagramView diagramView = null;       // diagram ktory je previazany z pohladom
@@ -37,7 +39,6 @@ namespace Diagram
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        #region Windows Form Designer generated code
         private void InitializeComponent()
         {
             this.SuspendLayout();
@@ -766,7 +767,6 @@ namespace Diagram
             //
             this.ResumeLayout(false);
         }
-        #endregion
 
         /*************************************************************************************************************************/
 
