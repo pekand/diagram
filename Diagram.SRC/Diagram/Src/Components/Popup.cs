@@ -58,13 +58,6 @@ namespace Diagram
             items["colorItem"].Text = "Color";
             items["colorItem"].Click += new System.EventHandler(this.colorItem_Click);
             //
-            // removeShortcutItem
-            //
-            items.Add("removeShortcutItem", new System.Windows.Forms.ToolStripMenuItem());
-            items["removeShortcutItem"].Name = "removeShortcutItem";
-            items["removeShortcutItem"].Text = "Remove shortcut";
-            items["removeShortcutItem"].Click += new System.EventHandler(this.removeShortcutItem_Click);
-            //
             // openlinkItem
             //
             items.Add("openlinkItem", new System.Windows.Forms.ToolStripMenuItem());
@@ -150,6 +143,32 @@ namespace Diagram
             separators.Add("quickActionSeparator", new System.Windows.Forms.ToolStripSeparator());
             separators["quickActionSeparator"].Name = "quickActionSeparator";
             //
+            // copyItem
+            //
+            items.Add("copyItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["copyItem"].Name = "copyItem";
+            items["copyItem"].Text = "Copy";
+            items["copyItem"].Click += new System.EventHandler(this.copyItem_Click);
+            //
+            // cutItem
+            //
+            items.Add("cutItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["cutItem"].Name = "cutItem";
+            items["cutItem"].Text = "Cut";
+            items["cutItem"].Click += new System.EventHandler(this.cutItem_Click);
+            //
+            // pasteItem
+            //
+            items.Add("pasteItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["pasteItem"].Name = "pasteItem";
+            items["pasteItem"].Text = "Paste";
+            items["pasteItem"].Click += new System.EventHandler(this.pasteItem_Click);
+            //
+            // editSeparator
+            //
+            separators.Add("editSeparator", new System.Windows.Forms.ToolStripSeparator());
+            separators["editSeparator"].Name = "editSeparator";
+            //
             // newItem
             //
             items.Add("newItem", new System.Windows.Forms.ToolStripMenuItem());
@@ -223,32 +242,6 @@ namespace Diagram
             items["fileItem"].Name = "fileItem";
             items["fileItem"].Text = "File";
             //
-            // copyItem
-            //
-            items.Add("copyItem", new System.Windows.Forms.ToolStripMenuItem());
-			items["copyItem"].Name = "copyItem";
-            items["copyItem"].Text = "Copy";
-            items["copyItem"].Click += new System.EventHandler(this.copyItem_Click);
-            //
-            // cutItem
-            //
-            items.Add("cutItem", new System.Windows.Forms.ToolStripMenuItem());
-			items["cutItem"].Name = "cutItem";
-            items["cutItem"].Text = "Cut";
-            items["cutItem"].Click += new System.EventHandler(this.cutItem_Click);
-            //
-            // pasteItem
-            //
-            items.Add("pasteItem", new System.Windows.Forms.ToolStripMenuItem());
-			items["pasteItem"].Name = "pasteItem";
-            items["pasteItem"].Text = "Paste";
-            items["pasteItem"].Click += new System.EventHandler(this.pasteItem_Click);
-            //
-            // editSeparator
-            //
-            separators.Add("editSeparator", new System.Windows.Forms.ToolStripSeparator());
-            separators["editSeparator"].Name = "editSeparator";
-            //
             // copyLinkItem
             //
             items.Add("copyLinkItem", new System.Windows.Forms.ToolStripMenuItem());
@@ -281,10 +274,6 @@ namespace Diagram
             //
             items.Add("editMenuItem", new System.Windows.Forms.ToolStripMenuItem());
             items["editMenuItem"].DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                items["copyItem"],
-                items["cutItem"],
-                items["pasteItem"],
-                separators["editSeparator"],
                 items["copyLinkItem"],
                 items["copyNoteItem"],
                 items["pasteToLinkItem"],
@@ -335,6 +324,13 @@ namespace Diagram
             items["bringBottomItem"].Text = "Bring to bottom";
             items["bringBottomItem"].Click += new System.EventHandler(this.bringBottomItem_Click);
             //
+            // removeShortcutItem
+            //
+            items.Add("removeShortcutItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["removeShortcutItem"].Name = "removeShortcutItem";
+            items["removeShortcutItem"].Text = "Remove shortcut";
+            items["removeShortcutItem"].Click += new System.EventHandler(this.removeShortcutItem_Click);
+            //
             // protectItem
             //
             items.Add("protectItem", new System.Windows.Forms.ToolStripMenuItem());
@@ -352,6 +348,7 @@ namespace Diagram
                 items["editLinkItem"],
                 items["bringTopItem"],
                 items["bringBottomItem"],
+                items["removeShortcutItem"],
                 items["protectItem"]
             });
             items["nodeItem"].Name = "nodeItem";
@@ -666,10 +663,13 @@ namespace Diagram
             this.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
                 items["editItem"],
                 items["colorItem"],
-                items["removeShortcutItem"],
                 items["linkItem"],
                 items["alignItem"],
                 separators["quickActionSeparator"],
+                items["copyItem"],
+                items["cutItem"],
+                items["pasteItem"],
+                separators["editSeparator"],
                 items["fileItem"],
                 items["editMenuItem"],
                 items["nodeItem"],

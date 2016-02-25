@@ -155,6 +155,13 @@ namespace Diagram
 
             if (version == "1" && salt != "" && encrypted != "")
             {
+                // prevent open multiple files with password in one time
+                if (main.passwordForm != null)
+                {
+                    this.CloseFile();
+                    return false;
+                }
+
                 bool error = false;
                 do
                 {
