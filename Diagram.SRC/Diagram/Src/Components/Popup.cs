@@ -471,13 +471,21 @@ namespace Diagram
             items["setStartPositionItem"].Text = "Set start position";
             items["setStartPositionItem"].Click += new System.EventHandler(this.setStartPositionItem_Click);
             //
+            // refreshItem
+            //
+            items.Add("refreshItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["refreshItem"].Name = "refreshItem";
+            items["refreshItem"].Text = "Refresh";
+            items["refreshItem"].Click += new System.EventHandler(this.refreshItem_Click);
+            //
             // viewItem
             //
             items.Add("viewItem", new System.Windows.Forms.ToolStripMenuItem());
             items["viewItem"].DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
                 items["newViewItem"],
                 items["centerItem"],
-                items["setStartPositionItem"]
+                items["setStartPositionItem"],
+                items["refreshItem"]
             });
             items["viewItem"].Name = "viewItem";
             items["viewItem"].Text = "View";
@@ -1242,6 +1250,12 @@ namespace Diagram
         private void setStartPositionItem_Click(object sender, EventArgs e)
         {
             this.diagramView.setCurentPositionAsHomePosition();
+        }
+
+        // MENU refresh diagram
+        private void refreshItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.diagram.refresh();
         }
 
         // LAYER
