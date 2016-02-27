@@ -213,7 +213,7 @@ namespace Diagram
             this.InitializeComponent();
 
             // initialize popup menu
-            this.PopupMenu = new Popup(this.components, this);
+			this.PopupMenu = new Popup(this.components, this);
 
             // initialize edit panel
             this.editPanel = new EditPanel(this);
@@ -4366,20 +4366,45 @@ namespace Diagram
                     }
                 }
 
+                bool someEmptyUnHidden = false;
                 foreach (Node rec in this.selectedNodes)
                 {
-
-                    if (allHidden)
+                    if (!rec.transparent && rec.name == "")
                     {
-                        rec.transparent = true;
+                        someEmptyUnHidden = true;
+                        break;
                     }
-                    else
-                    {
-                        rec.transparent = false;
-                    }
+                }
 
-                    rec.transparent = !rec.transparent;
-                    changed = true;
+                if (someEmptyUnHidden)
+                {
+                    foreach (Node rec in this.selectedNodes)
+                    {
+
+                        if (!rec.transparent && rec.name == "")
+                        {
+                            rec.transparent = true;
+                            changed = true;
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (Node rec in this.selectedNodes)
+                    {
+
+                        if (allHidden)
+                        {
+                            rec.transparent = true;
+                        }
+                        else
+                        {
+                            rec.transparent = false;
+                        }
+
+                        rec.transparent = !rec.transparent;
+                        changed = true;
+                    }
                 }
             }
             if (changed) this.diagram.unsave();

@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Infinite Diagram"
-#define MyAppVersion "1.0"
+#define MyAppVersion "0.4"
 #define MyAppPublisher "pekand@gmail.com"
 #define MyAppURL "http://www.infinite-diagram.com"
 #define MyAppExeName "Diagram.exe"
@@ -22,7 +22,7 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
-LicenseFile=lic\licencia.txt
+LicenseFile=..\LICENSE.md
 OutputBaseFilename=infinite-diagram-{#MyAppVersion}
 SetupIconFile=files\Diagram.ico
 Compression=lzma

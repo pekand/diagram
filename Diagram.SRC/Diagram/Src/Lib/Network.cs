@@ -14,13 +14,30 @@ namespace Diagram
         {
             string title = url;
 
+            
+
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 request.AllowAutoRedirect = true;
                 request.MaximumAutomaticRedirections = 3;
                 request.UseDefaultCredentials = true;
-                request.Proxy = WebRequest.GetSystemWebProxy();
+                if (Program.main.options.proxy_password != "" && Program.main.options.proxy_username != "")
+                {
+                    // set proxy credentials
+                    WebProxy myProxy = new WebProxy();
+                    Uri newUri = new Uri(Program.main.options.proxy_uri);
+                    myProxy.Address = newUri;
+                    myProxy.Credentials = new NetworkCredential(
+                        Program.main.options.proxy_username, 
+                        Program.main.options.proxy_password
+                    );
+                    request.Proxy = myProxy;
+                }
+                else
+                {
+                    request.Proxy = WebRequest.GetSystemWebProxy();
+                }
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 Stream resStream = response.GetResponseStream();
 
@@ -46,9 +63,11 @@ namespace Diagram
                     RegexOptions.IgnoreCase
                     ).Groups["url"].Value;
 
-                    Uri result = null;
-                    Uri.TryCreate(new Uri(url), redirect, out result);
-                    return GetWebPageTitle(result.ToString(), level+1);
+                    if (redirect.Trim() != "") {
+                        Uri result = null;
+                        Uri.TryCreate(new Uri(url), redirect, out result);
+                        return GetWebPageTitle(result.ToString(), level + 1);
+                    }
                 }
 
                 // use different encoding
@@ -62,10 +81,10 @@ namespace Diagram
                 title = Regex.Match(
                         page,
                         "<title>(?<Title>.*?)</title>",
-                        RegexOptions.IgnoreCase
+                        RegexOptions.IgnoreCase | RegexOptions.Singleline
                     ).Groups["Title"].Value;
 
-                title = WebUtility.HtmlDecode(title);
+                title = WebUtility.HtmlDecode(title.Trim());
             }
             catch (Exception ex)
             {

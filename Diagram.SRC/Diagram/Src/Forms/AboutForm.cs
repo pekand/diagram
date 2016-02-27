@@ -13,11 +13,19 @@ namespace Diagram
         private System.Windows.Forms.Label labelAuthor;
         private System.Windows.Forms.LinkLabel linkLabelMe;
         private System.Windows.Forms.Label labelLicenceType;
+		private System.Windows.Forms.Label labelVersion;
+        private System.Windows.Forms.Label labelVersionNumber;
+        private System.Windows.Forms.LinkLabel labelHomepage;
 
         public AboutForm(Main main)
         {
             this.main = main;
             this.InitializeComponent();
+
+            this.labelLicenceType.Text = Program.main.options.license;
+            this.labelVersionNumber.Text = Program.main.options.version;
+            this.linkLabelMe.Text = Program.main.options.author; 
+            this.labelHomepage.Text = Program.main.options.home_page;
         }
 
         private void InitializeComponent()
@@ -25,13 +33,16 @@ namespace Diagram
             this.labelProgramName = new System.Windows.Forms.Label();
             this.buttonOk = new System.Windows.Forms.Button();
             this.labelLicence = new System.Windows.Forms.Label();
+            this.labelLicenceType = new System.Windows.Forms.Label();
             this.labelAuthor = new System.Windows.Forms.Label();
             this.linkLabelMe = new System.Windows.Forms.LinkLabel();
-            this.labelLicenceType = new System.Windows.Forms.Label();
+            this.labelVersion = new System.Windows.Forms.Label();
+            this.labelVersionNumber = new System.Windows.Forms.Label();
+            this.labelHomepage = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
-            //
+            // 
             // labelProgramName
-            //
+            // 
             this.labelProgramName.AutoSize = true;
             this.labelProgramName.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelProgramName.Location = new System.Drawing.Point(16, 16);
@@ -40,9 +51,9 @@ namespace Diagram
             this.labelProgramName.Size = new System.Drawing.Size(241, 37);
             this.labelProgramName.TabIndex = 0;
             this.labelProgramName.Text = "Infinite Diagram";
-            //
+            // 
             // buttonOk
-            //
+            // 
             this.buttonOk.Location = new System.Drawing.Point(182, 107);
             this.buttonOk.Margin = new System.Windows.Forms.Padding(2);
             this.buttonOk.Name = "buttonOk";
@@ -51,9 +62,9 @@ namespace Diagram
             this.buttonOk.Text = "OK";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
-            //
+            // 
             // labelLicence
-            //
+            // 
             this.labelLicence.AutoSize = true;
             this.labelLicence.Location = new System.Drawing.Point(28, 70);
             this.labelLicence.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -61,9 +72,19 @@ namespace Diagram
             this.labelLicence.Size = new System.Drawing.Size(44, 13);
             this.labelLicence.TabIndex = 3;
             this.labelLicence.Text = "licence:";
-            //
+            // 
+            // labelLicenceType
+            // 
+            this.labelLicenceType.AutoSize = true;
+            this.labelLicenceType.Location = new System.Drawing.Point(114, 70);
+            this.labelLicenceType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelLicenceType.Name = "labelLicenceType";
+            this.labelLicenceType.Size = new System.Drawing.Size(0, 13);
+            this.labelLicenceType.TabIndex = 6;
+            this.labelLicence.Text = "lic";
+            // 
             // labelAuthor
-            //
+            // 
             this.labelAuthor.AutoSize = true;
             this.labelAuthor.Location = new System.Drawing.Point(28, 53);
             this.labelAuthor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -71,38 +92,61 @@ namespace Diagram
             this.labelAuthor.Size = new System.Drawing.Size(40, 13);
             this.labelAuthor.TabIndex = 4;
             this.labelAuthor.Text = "author:";
-            //
+            // 
             // linkLabelMe
-            //
+            // 
             this.linkLabelMe.AutoSize = true;
             this.linkLabelMe.Location = new System.Drawing.Point(114, 53);
             this.linkLabelMe.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabelMe.Name = "linkLabelMe";
-            this.linkLabelMe.Size = new System.Drawing.Size(68, 13);
+            this.linkLabelMe.Size = new System.Drawing.Size(38, 13);
             this.linkLabelMe.TabIndex = 5;
             this.linkLabelMe.TabStop = true;
-            this.linkLabelMe.Text = "Andrej Pekar";
+            this.linkLabelMe.Text = "Author";
             this.linkLabelMe.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMe_LinkClicked);
-            //
-            // labelLicenceType
-            //
-            this.labelLicenceType.AutoSize = true;
-            this.labelLicenceType.Location = new System.Drawing.Point(114, 70);
-            this.labelLicenceType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelLicenceType.Name = "labelLicenceType";
-            this.labelLicenceType.Size = new System.Drawing.Size(48, 13);
-            this.labelLicenceType.TabIndex = 6;
-            this.labelLicenceType.Text = "freeware";
-            //
+            // 
+            // labelVersion
+            // 
+            this.labelVersion.AutoSize = true;
+            this.labelVersion.Location = new System.Drawing.Point(28, 87);
+            this.labelVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelVersion.Name = "labelVersion";
+            this.labelVersion.Size = new System.Drawing.Size(44, 13);
+            this.labelVersion.TabIndex = 3;
+            this.labelVersion.Text = "version:";
+            // 
+            // labelVersionNumber
+            // 
+            this.labelVersionNumber.AutoSize = true;
+            this.labelVersionNumber.Location = new System.Drawing.Point(114, 87);
+            this.labelVersionNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelVersionNumber.Name = "labelVersionNumber";
+            this.labelVersionNumber.Size = new System.Drawing.Size(59, 13);
+            this.labelVersionNumber.TabIndex = 3;
+            this.labelVersionNumber.Text = "0.0";
+            // 
+            // labelHomepage
+            // 
+            this.labelHomepage.AutoSize = true;
+            this.labelHomepage.Location = new System.Drawing.Point(28, 100);
+            this.labelHomepage.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelHomepage.Name = "labelHomepage";
+            this.labelHomepage.Size = new System.Drawing.Size(0, 13);
+            this.labelHomepage.TabIndex = 3;
+            this.labelHomepage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.labelHomepage_HomepageClicked);
+            // 
             // AboutForm
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(248, 143);
+            this.ClientSize = new System.Drawing.Size(260, 150);
             this.Controls.Add(this.labelLicenceType);
             this.Controls.Add(this.linkLabelMe);
             this.Controls.Add(this.labelAuthor);
             this.Controls.Add(this.labelLicence);
+            this.Controls.Add(this.labelVersion); 
+            this.Controls.Add(this.labelVersionNumber);
+            this.Controls.Add(this.labelHomepage);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.labelProgramName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -132,6 +176,11 @@ namespace Diagram
         private void linkLabelMe_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("mailto:pekand@gmail.com");
+        }
+
+        private void labelHomepage_HomepageClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(Program.main.options.home_page);
         }
 
         private void AboutForm_FormClosed(object sender, FormClosedEventArgs e)

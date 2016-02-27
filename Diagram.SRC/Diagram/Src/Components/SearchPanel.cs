@@ -101,6 +101,7 @@ namespace Diagram
             if (e.KeyCode == Keys.Up)
             {
                 action = "searchPrev";
+                e.SuppressKeyPress = true;
             }
             if (e.KeyCode == Keys.Enter)
             {
@@ -123,7 +124,7 @@ namespace Diagram
         private void textBoxSearch_KeyDown(object sender, KeyEventArgs e)
         {
             // remove ding sound
-            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Escape || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
             {
                 e.Handled = true;
                 e.SuppressKeyPress = true;

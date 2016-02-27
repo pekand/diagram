@@ -141,15 +141,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Src\Components\Breadcrumbs.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Src\Components\Breadcrumbs.cs" />
     <Compile Include="Src\Components\EditLinkPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Src\Components\Popup.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Src\Components\Popup.cs" />
     <Compile Include="Src\Components\EditPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -160,9 +156,6 @@
     <Compile Include="Src\Components\Script.cs" />
     <Compile Include="Src\Forms\ColorPickerForm.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Src\Forms\ColorPickerForm.Designer.cs">
-      <DependentUpon>ColorPickerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Src\Forms\LineWidthForm.cs">
       <SubType>Form</SubType>
