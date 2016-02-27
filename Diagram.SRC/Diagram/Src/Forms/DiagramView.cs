@@ -902,6 +902,7 @@ namespace Diagram
                     && this.sourceNode != null
                     && TargetNode != this.sourceNode)
                 {
+                    this.diagram.unsave("edit", this.sourceNode);
                     this.sourceNode.shortcut = TargetNode.id;
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
@@ -937,9 +938,10 @@ namespace Diagram
                         {
                             node.position.add(vector);
                         }
+
+                        this.diagram.unsave();
                     }
 
-                    this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
                 else
@@ -1096,6 +1098,7 @@ namespace Diagram
                             rec.transparent = TargetNode.transparent;
                             rec.resize();
                         }
+                        this.diagram.unsave();
                     }
 
                     if (this.selectedNodes.Count() == 1
@@ -1114,8 +1117,8 @@ namespace Diagram
                             this.ClearSelection();
                             this.SelectNode(this.sourceNode);
                         }
+                        this.diagram.unsave();
                     }
-                    this.diagram.unsave();
                 }
                 else
                 // KEY DRAG make link between two nodes
@@ -1130,29 +1133,47 @@ namespace Diagram
                         arrow = true;
                     }
 
+                    Lines newLines = new Lines();
+                    Lines removeLines = new Lines();
                     if (this.selectedNodes.Count() > 0)
                     {
                         foreach (Node rec in this.selectedNodes)
                         {
                             if (rec != TargetNode)
-                            {
-                                if (keyctrl)
+                            { 
+                                if (this.diagram.hasConnection(rec, TargetNode))
                                 {
-                                    this.diagram.Connect(TargetNode, rec, arrow, null);
+                                    Line removeLine = this.diagram.getLine(rec, TargetNode);
+                                    removeLines.Add(removeLine);
+                                    this.diagram.Disconnect(rec, TargetNode);
+
                                 }
                                 else
                                 {
-                                    this.diagram.Connect(rec, TargetNode, arrow, null);
+                                    Line newLine = this.diagram.Connect(rec, TargetNode, arrow, null);
+                                    newLines.Add(newLine);
                                 }
                             }
                         }
                     }
-                    else
+
+                    if (newLines.Count() > 0 && removeLines.Count() > 0)
                     {
-                        this.diagram.Connect(sourceNode, TargetNode, arrow, null);
+                        int group = this.diagram.undo.nextGroup();
+                        this.diagram.undo.add("create", null, newLines, group);
+                        this.diagram.undo.add("delete", null, removeLines, group);
+                        this.diagram.unsave();
+                    }
+                    else if (newLines.Count() > 0)
+                    {
+                        this.diagram.undo.add("create", null, newLines);
+                    }
+                    else if (removeLines.Count() > 0)
+                    {
+                        this.diagram.undo.add("delete", null, removeLines);
                     }
 
-                    this.diagram.unsave();
+                    
                     this.diagram.InvalidateDiagram();
                 }
                 // KEY CTRL+MLEFT add node to selected nodes

@@ -138,10 +138,13 @@ namespace Diagram
 
             if (this.editedNode == null) {
                 this.editedNode = this.diagramView.CreateNode(new Position(this.Left, this.Top));
+                this.editedNode.setName(edit.Text);
+                this.diagramView.diagram.undo.add("create", this.editedNode);
+                this.diagramView.diagram.unsave();
             }
-
-            if (this.editedNode.name != edit.Text)
+            else if (this.editedNode.name != edit.Text)
             {
+                this.diagramView.diagram.undo.add("edit", this.editedNode);
                 this.editedNode.setName(edit.Text);
                 this.diagramView.diagram.unsave();
             }

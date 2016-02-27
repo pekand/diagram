@@ -171,7 +171,7 @@ namespace Diagram
         }
 
         // all nodes contain nodes and all sublayer nodes, allLines contain all node lines and all sublayer lines
-        public Nodes getAllNodesAndLines(Nodes nodes, ref Nodes allNodes, ref Lines allLines)
+        public void getAllNodesAndLines(Nodes nodes, ref Nodes allNodes, ref Lines allLines)
         {
             foreach (Node node in nodes)
             {
@@ -180,34 +180,30 @@ namespace Diagram
 
                 if (node.haslayer)
                 {
-                    // get all lines from dodes in same layer
-                    Lines nodeLines = this.getAllLinesFromNode(node);
+                    Layer layer = this.getLayer(node.id);
+                    getAllNodesAndLines(layer.nodes, ref allNodes, ref allLines);
+                }
 
-                    foreach (Line nodeLine in nodeLines)
+                Lines lines = getAllLinesFromNode(node);
+                foreach (Line line in lines)
+                {
+                    bool found = false;
+
+                    foreach (Line subline in allLines)
                     {
-                        allLines.Add(nodeLine);
+                        if (line.start == subline.start && line.end == subline.end)
+                        {
+                            found = true;
+                            break;
+                        }
                     }
 
-                    Lines subLines = getAllSubNodeLines(node);
-
-                    foreach (Line subLine in subLines)
+                    if (!found)
                     {
-                        allLines.Add(subLine);
+                        allLines.Add(line);
                     }
-
-                    // get all sublayer nodes
-                    Nodes subNodes = this.getAllNodes(node);
-
-                    foreach (Node subNode in subNodes)
-                    {
-                        allNodes.Add(subNode);
-                    }
-
-                    
                 }
             }
-
-            return nodes;
         }
 
         public Lines getAllLines()
@@ -280,6 +276,25 @@ namespace Diagram
             return null;
         }
 
+        public Line getLine(int startId, int endId)
+        {
+            Node start = getNode(startId);
+
+            if (start == null)
+            {
+                return null;
+            }
+
+            Node end = getNode(endId);
+
+            if (end == null)
+            {
+                return null;
+            }
+
+            return getLine(start, end);
+        }
+
         public void removeNode(int id)
         {
             Node node = this.getNode(id);
@@ -328,6 +343,18 @@ namespace Diagram
             layer.lines.Remove(line);
 
             return layer;
+        }
+
+        public Layer removeLine(int startId, int endId)
+        {
+            Line line = getLine(startId, endId);
+
+            if (line != null)
+            {
+                return this.removeLine(line);
+            }
+
+            return null;
         }
 
         // LAYER remove layer and all sub layers

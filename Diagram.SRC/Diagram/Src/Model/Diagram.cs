@@ -1159,6 +1159,18 @@ namespace Diagram
             return null;
         }
 
+        // NODE HASLINE check if line exist between two nodes
+        public bool hasConnection(Node a, Node b)
+        {
+            Line line = this.layers.getLine(a, b);
+            return line != null;
+        }
+
+        public Line getLine(Node a, Node b)
+        {
+            return this.layers.getLine(a, b);
+        }
+
         // NODE CONNECT connect two nodes
         public Line Connect(Node a, Node b)
         {
@@ -1200,14 +1212,23 @@ namespace Diagram
 
                     return line;
                 }
-                else
-                {
-                    // if connection already exists remove connection instead
-                    this.layers.removeLine(line);
-                }
             }
 
             return null;
+        }
+
+        // NODE DISCONNECT remove connection between two nodes
+        public void Disconnect(Node a, Node b)
+        {
+            if (!this.options.readOnly && a != null && b != null)
+            {
+                Line line = this.layers.getLine(a, b);
+
+                if (line != null)
+                {
+                    this.layers.removeLine(line);
+                }
+            }
         }
 
         // NODE CONNECT connect two nodes and add arrow or set color

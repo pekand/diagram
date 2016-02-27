@@ -9,13 +9,16 @@ namespace Diagram
     public class UndoOperation
     {
         public string type = "";
+
+        public int group = 0; // undo operations in some grop are undo in one step
         
         public Nodes nodes = new Nodes();
         public Lines lines = new Lines();
 
-        public UndoOperation(string type, Nodes nodes = null, Lines lines = null)
+        public UndoOperation(string type, Nodes nodes = null, Lines lines = null, int group = 0)
         {
             this.type = type;
+            this.group = group;
 
             if (nodes != null)
             {
@@ -37,6 +40,8 @@ namespace Diagram
 
     public class Undo
     {
+        public int group = 0;
+
         public Diagram diagram = null;             // diagram assigned to current undo
 
         public Stack<UndoOperation> operations = new Stack<UndoOperation>();
@@ -47,27 +52,27 @@ namespace Diagram
             this.diagram = diagram;
         }
 
-        public void add(string type, Node node)
+        public void add(string type, Node node, int group = 0)
         {
             Nodes nodes = new Nodes();
             if (node != null)
             {
                 nodes.Add(new Node(node));
             }
-            this.add(type, nodes);
+            this.add(type, nodes, null, group);
         }
 
-        public void add(string type, Line line)
+        public void add(string type, Line line, int group = 0)
         {
             Lines lines = new Lines();
             if (line != null)
             {
                 lines.Add(new Line(line));
             }
-            this.add(type, null, lines);
+            this.add(type, null, lines, group);
         }
 
-        public void add(string type, Node node, Line line)
+        public void add(string type, Node node, Line line, int group = 0)
         {
             Nodes nodes = new Nodes();
             if (node != null)
@@ -80,12 +85,12 @@ namespace Diagram
             {
                 lines.Add(new Line(line));
             }
-            this.add(type, nodes, lines);
+            this.add(type, nodes, lines, group);
         }
 
-        public void add(string type, Nodes nodes = null, Lines lines = null)
+        public void add(string type, Nodes nodes = null, Lines lines = null, int group = 0)
         {
-            operations.Push(new UndoOperation(type, (nodes != null) ? new Nodes(nodes) : null, (lines != null) ? new Lines(lines) : null));
+            operations.Push(new UndoOperation(type, (nodes != null) ? new Nodes(nodes) : null, (lines != null) ? new Lines(lines) : null, group));
 
             // forgot undo operation
             if (reverseOperations.Count() > 0)
@@ -122,7 +127,7 @@ namespace Diagram
             {
                 foreach (Line line in operation.lines)
                 {
-                    this.diagram.layers.removeLine(line);
+                    this.diagram.layers.removeLine(line.start, line.end);
                 }
             }
 
@@ -166,33 +171,54 @@ namespace Diagram
             }
         }
 
+        public int nextGroup()
+        {
+            return ++this.group;
+        }
+
         public bool doUndo()
         {
-            if (operations.Count() > 0)
+            int group = 0;
+
+            bool result = false;
+
+            do
             {
-                UndoOperation operation = operations.Pop();
-
-                if (operation.type == "delete")
+                if (operations.Count() > 0)
                 {
-                    this.doUndoDelete(operation);
+                    UndoOperation operation = operations.Pop();
+
+                    // process all operations in same group
+                    if (group != 0 && operation.group != group)
+                    {
+                        group = 0;
+                        break;
+                    }
+
+                    group = operation.group;
+
+                    if (operation.type == "delete")
+                    {
+                        this.doUndoDelete(operation);
+                    }
+
+                    if (operation.type == "create")
+                    {
+                        this.doUndoCreate(operation);
+                    }
+
+                    if (operation.type == "edit")
+                    {
+                        this.doUndoEdit(operation);
+                    }
+
+                    reverseOperations.Push(operation);
+
+                    result = true;
                 }
+            } while (group != 0 && operations.Count() > 0);
 
-                if (operation.type == "create")
-                {
-                    this.doUndoCreate(operation);
-                }
-
-                if (operation.type == "edit")
-                {
-                    this.doUndoEdit(operation);
-                }
-
-                reverseOperations.Push(operation);
-
-                return true;
-            }
-
-            return false;
+            return result;
         }
 
         public bool doRedo()
