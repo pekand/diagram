@@ -45,7 +45,6 @@ namespace Diagram
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ColorPickerForm_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ColorPickerForm_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ColorPickerForm_MouseUp);
-            this.MouseWheel += new MouseEventHandler(DiagramApp_MouseWheel);
             this.ResumeLayout(false);
 
         }

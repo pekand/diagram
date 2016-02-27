@@ -141,25 +141,5 @@ namespace Diagram
                     this.changeColor(this.color);
             }
         }
-
-        
-
-        public void DiagramApp_MouseWheel(object sender, MouseEventArgs e)
-        {
-           
-        /*if (e.Delta > 0)
-        {
-            b = b + 5;
-        }
-        else
-        {
-            b = b - 5;
-        }
-
-        if (b < 0) b = 0;
-        if (b > 255) b = 255; 
-        render();
-        InitializeComponent();*/
-    }
     }
 }
