@@ -13,6 +13,9 @@ namespace Diagram
         private System.Windows.Forms.RichTextBox TextFormTextBox;
         private System.Windows.Forms.RichTextBox TextFormNoteTextBox;
 
+        public delegate void TextFormSaveEventHandler(Node node);
+        public event TextFormSaveEventHandler TextFormSave;
+
         /*************************************************************************************************************************/
 
         // ATTRIBUTES Diagram
@@ -156,7 +159,7 @@ namespace Diagram
                     node.name != this.TextFormTextBox.Text ||
                     node.note != this.TextFormNoteTextBox.Text
                 ) {
-                    this.diagram.undo.add("edit", node);
+                    this.diagram.undo.add("edit", node, node.position, node.layer);
                     node.name = this.TextFormTextBox.Text;
                     node.note = this.TextFormNoteTextBox.Text;
                     node.resize();
@@ -164,11 +167,9 @@ namespace Diagram
                     DateTime dt = DateTime.Now;
                     node.timemodify = String.Format("{0:yyyy-M-d HH:mm:ss}", dt);
 
-                    this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
+                    if (this.TextFormSave != null)
+                        this.TextFormSave(node);
                 }
-
-                
             }
         }
 

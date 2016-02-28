@@ -248,6 +248,21 @@ namespace Diagram
             items["copyLinkItem"].Name = "copyLinkItem";
             items["copyLinkItem"].Text = "Copy link";
             items["copyLinkItem"].Click += new System.EventHandler(this.copyLinkItem_Click);
+
+            //
+            // undoItem
+            //
+            items.Add("undoItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["undoItem"].Name = "undoItem";
+            items["undoItem"].Text = "Undo";
+            items["undoItem"].Click += new System.EventHandler(this.undoItem_Click);
+            //
+            // redoItem
+            //
+            items.Add("redoItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["redoItem"].Name = "redoItem";
+            items["redoItem"].Text = "Redo";
+            items["redoItem"].Click += new System.EventHandler(this.redoItem_Click);
             //
             // copyNoteItem
             //
@@ -274,6 +289,8 @@ namespace Diagram
             //
             items.Add("editMenuItem", new System.Windows.Forms.ToolStripMenuItem());
             items["editMenuItem"].DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                items["undoItem"],
+                items["redoItem"],
                 items["copyLinkItem"],
                 items["copyNoteItem"],
                 items["pasteToLinkItem"],
@@ -721,6 +738,8 @@ namespace Diagram
             items["pasteToNoteItem"].Enabled = !readOnly;
             items["setStartPositionItem"].Enabled = !readOnly;
             items["copyLinkItem"].Enabled = !readOnly;
+            items["undoItem"].Enabled = !readOnly;
+            items["redoItem"].Enabled = !readOnly;
             items["copyNoteItem"].Enabled = !readOnly;
             items["encryptItem"].Enabled = !readOnly;
             items["changePasswordItem"].Enabled = !readOnly;
@@ -838,6 +857,10 @@ namespace Diagram
                 items["openLinkDirectoryItem"].Visible = false;
                 items["lineColorItem"].Enabled = true;
             }
+
+            // UNDO REDO
+            items["undoItem"].Enabled = this.diagramView.diagram.undo.canUndo();
+            items["redoItem"].Enabled = this.diagramView.diagram.undo.canRedo();
 
             // REMOVE SHORTCUT
             if (this.diagramView.selectedNodes.Count() > 0)
@@ -1111,6 +1134,18 @@ namespace Diagram
         public void copyLinkItem_Click(object sender, EventArgs e)
         {
             this.diagramView.copyLink();
+        }
+
+        // MENU Undo
+        public void undoItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.diagram.doUndo(this.diagramView);
+        }
+
+        // MENU Redo
+        public void redoItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.diagram.doRedo(this.diagramView);
         }
 
         // MENU Copy note
