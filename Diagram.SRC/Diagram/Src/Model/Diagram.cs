@@ -651,6 +651,7 @@ namespace Diagram
                 this.SaveXMLFile(this.FileName);
                 this.NewFile = false;
                 this.SavedFile = true;
+                this.undo.rememberSave();
                 this.SetTitle();
 
                 return true;
@@ -866,7 +867,7 @@ namespace Diagram
             return "";
         }
 
-        // FILE UNSAVE Subor sa zmenil treba ho ulozit
+        // FILE UNSAVE file was changed - save undo position
         public void unsave(string type, Node node)
         {
             Nodes nodes = new Nodes();
@@ -892,6 +893,7 @@ namespace Diagram
 
         public void unsave(string type, Nodes nodes = null, Lines lines = null)
         {
+            this.undo.rememberSave();
             this.undo.add(type, nodes, lines);
             this.unsave();
         }
@@ -904,6 +906,13 @@ namespace Diagram
             this.InvalidateDiagram();
         }
 
+        public void restoresave()
+        {
+            this.SavedFile = true;
+            this.SetTitle();
+
+            this.InvalidateDiagram();
+        }
 
         // FILE CLOSE - Vycisti  nastavenie do  východzieho tavu a prekresli obrazovku
         public void CloseFile()
@@ -1601,19 +1610,13 @@ namespace Diagram
         // DIAGRAM undo
         public void doUndo()
         {
-            if (this.undo.doUndo())
-            {
-                this.unsave();
-            }
+            this.undo.doUndo();
         }
 
         // DIAGRAM redo
         public void doRedo()
         {
-            if (this.undo.doRedo())
-            {
-                this.unsave();
-            }
+            this.undo.doRedo();
         }
 
         // DIAGRAM refresh - refresh items depends on external resources like images
