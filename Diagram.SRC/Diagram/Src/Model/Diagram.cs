@@ -44,6 +44,8 @@ namespace Diagram
         public string password = "";             // password for encrypted file
 		private byte[] salt = null;              // salt
 
+        // UNDO
+        public Undo undo = null;                        // undo operations repository
 
         // ATTRIBUTES TextForm
         public List<TextForm> TextWindows = new List<TextForm>();   // opened text textforms for this diagram
@@ -55,6 +57,7 @@ namespace Diagram
         {
             this.main = main;
             this.FontDefault = new Font("Open Sans", 10);
+            this.undo = new Undo(this);
         }
 
         /*************************************************************************************************************************/
@@ -395,7 +398,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "fontcolor")
                                                 {
-                                                    R.fontcolor = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
+                                                    R.fontcolor.set(el.Value.ToString());
                                                 }
 
                                                 if (el.Name.ToString() == "text")
@@ -472,7 +475,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "color")
                                                 {
-                                                    R.color = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
+                                                    R.color.set(el.Value.ToString());
                                                 }
 
                                                 if (el.Name.ToString() == "transparent")
@@ -557,7 +560,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "color")
                                                 {
-                                                    L.color = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
+                                                    L.color.set(el.Value.ToString());
                                                 }
 
                                                 if (el.Name.ToString() == "width")
@@ -648,6 +651,7 @@ namespace Diagram
                 this.SaveXMLFile(this.FileName);
                 this.NewFile = false;
                 this.SavedFile = true;
+                this.undo.rememberSave();
                 this.SetTitle();
 
                 return true;
@@ -766,7 +770,7 @@ namespace Diagram
                     {
                         rectangle.Add(Fonts.FontToXml(rec.font));
                     }
-                    rectangle.Add(new XElement("fontcolor", System.Drawing.ColorTranslator.ToHtml(rec.fontcolor)));
+                    rectangle.Add(new XElement("fontcolor", rec.fontcolor));
                     if (rec.name != "") rectangle.Add(new XElement("text", rec.name));
                     if (rec.note != "") rectangle.Add(new XElement("note", rec.note));
                     if (rec.link != "") rectangle.Add(new XElement("link", rec.link));
@@ -787,7 +791,7 @@ namespace Diagram
                     rectangle.Add(new XElement("y", rec.position.y));
                     rectangle.Add(new XElement("width", rec.width));
                     rectangle.Add(new XElement("height", rec.height));
-                    rectangle.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(rec.color)));
+                    rectangle.Add(new XElement("color", rec.color));
                     if (rec.transparent) rectangle.Add(new XElement("transparent", rec.transparent));
                     if (rec.embeddedimage) rectangle.Add(new XElement("embeddedimage", rec.embeddedimage));
 
@@ -817,7 +821,7 @@ namespace Diagram
                     line.Add(new XElement("start", lin.start));
                     line.Add(new XElement("end", lin.end));
                     line.Add(new XElement("arrow", (lin.arrow) ? "1" : "0"));
-                    line.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(lin.color)));
+                    line.Add(new XElement("color", lin.color));
                     if (lin.width != 1) line.Add(new XElement("width", lin.width));
                     line.Add(new XElement("layer", lin.layer));
                     lines.Add(line);
@@ -863,11 +867,51 @@ namespace Diagram
             return "";
         }
 
-        // FILE UNSAVE Subor sa zmenil treba ho ulozit
+        // FILE UNSAVE file was changed - save undo position
+        public void unsave(string type, Node node)
+        {
+            Nodes nodes = new Nodes();
+            nodes.Add(node);
+            this.unsave(type, nodes);
+        }
+
+        public void unsave(string type, Line line)
+        {
+            Lines lines = new Lines();
+            lines.Add(line);
+            this.unsave(type, null, lines);
+        }
+
+        public void unsave(string type, Node node, Line line)
+        {
+            Nodes nodes = new Nodes();
+            nodes.Add(node);
+            Lines lines = new Lines();
+            lines.Add(line);
+            this.unsave(type, nodes, lines);
+        }
+
+        public void unsave(string type, Nodes nodes = null, Lines lines = null)
+        {
+            this.undo.rememberSave();
+            this.undo.add(type, nodes, lines);
+            this.unsave();
+        }
+
         public void unsave()
         {
             this.SavedFile = false;
             this.SetTitle();
+
+            this.InvalidateDiagram();
+        }
+
+        public void restoresave()
+        {
+            this.SavedFile = true;
+            this.SetTitle();
+
+            this.InvalidateDiagram();
         }
 
         // FILE CLOSE - Vycisti  nastavenie do  východzieho tavu a prekresli obrazovku
@@ -923,23 +967,21 @@ namespace Diagram
         }
 
         // NODE delete all nodes which is not in layer history
-        public bool canDeleteNode(Node rec)
+        public bool canDeleteNode(Node node)
         {
-            if (!rec.haslayer)
+            // sub node is viewed
+            foreach (DiagramView view in this.DiagramViews)
             {
-                foreach (DiagramView view in this.DiagramViews)
+                if (view.isNodeInLayerHistory(node))
                 {
-                    if (view.isNodeInLayerHistory(rec))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
 
             return true;
         }
 
-        // NODE Zmazanie nody
+        // NODE delete node
         public void DeleteNode(Node rec)
         {
             if (rec != null && !this.options.readOnly)
@@ -963,7 +1005,7 @@ namespace Diagram
                 {
                     for (int i = this.TextWindows.Count() - 1; i >= 0; i--)
                     {
-                        if (this.TextWindows[i].rec == rec)
+                        if (this.TextWindows[i].node == rec)
                         {
                             this.TextWindows[i].Close();
                             break;
@@ -971,7 +1013,40 @@ namespace Diagram
                     }
                 }
 
+                this.undo.add("delete", rec);
                 this.layers.removeNode(rec);
+                this.unsave();
+            }
+        }
+
+        // NODE delete multiple nodes and set undo operation
+        public void DeleteNodes(Nodes nodes)
+        {
+            bool canRefresh = false;
+
+            Nodes toDeleteNodes = new Nodes();
+            Lines toDeleteLines = new Lines();
+
+            this.layers.getAllNodesAndLines(nodes, ref toDeleteNodes, ref toDeleteLines);
+
+            foreach (Node node in nodes)
+            {
+                if (this.canDeleteNode(node))
+                {
+                    canRefresh = true;
+                }
+            }
+
+            if (canRefresh)
+            {
+                this.undo.add("delete", toDeleteNodes, toDeleteLines);
+
+                foreach (Node node in toDeleteNodes.Reverse<Node>()) // remove lines to node
+                {
+                    this.DeleteNode(node);
+                }
+
+                this.InvalidateDiagram();
                 this.unsave();
             }
         }
@@ -982,7 +1057,7 @@ namespace Diagram
             bool found = false;
             for (int i = TextWindows.Count() - 1; i >= 0; i--) // Loop through List with foreach
             {
-                if (TextWindows[i].rec == rec)
+                if (TextWindows[i].node == rec)
                 {
                     TextWindows[i].SetFocus();
                     TextWindows[i].Focus();
@@ -994,7 +1069,7 @@ namespace Diagram
             if (!found) {
                 TextForm textf = new TextForm(main);
                 textf.setDiagram(this);
-                textf.rec = rec;
+                textf.node = rec;
                 string[] lines = rec.name.Split(Environment.NewLine.ToCharArray()).ToArray();
                 if(lines.Count()>0)
                     textf.Text = lines[0];
@@ -1013,7 +1088,7 @@ namespace Diagram
         {
             for (int i = TextWindows.Count() - 1; i >= 0; i--) // Loop through List with foreach
             {
-                if (TextWindows[i].rec == rec)
+                if (TextWindows[i].node == rec)
                 {
                     TextWindows.RemoveAt(i);
                 }
@@ -1025,7 +1100,7 @@ namespace Diagram
             Position position,
             string name = "",
             int layer = 0,
-            Color? color = null,
+            ColorType color = null,
             Font font = null
         ) {
             if (!this.options.readOnly)
@@ -1049,7 +1124,14 @@ namespace Diagram
 
                 rec.position.set(position);
 
-                rec.color = color ?? Media.getColor(this.options.colorNode);
+                if (color != null)
+                {
+                    rec.color.set(color);
+                }
+                else
+                {
+                    rec.color.set(Media.getColor(this.options.colorNode));
+                }
 
                 DateTime dt = DateTime.Now;
                 rec.timecreate = String.Format("{0:yyyy-M-d HH:mm:ss}", dt);
@@ -1085,6 +1167,23 @@ namespace Diagram
             }
 
             return null;
+        }
+
+        // NODE HASLINE check if line exist between two nodes
+        public bool hasConnection(Node a, Node b)
+        {
+            Line line = this.layers.getLine(a, b);
+            return line != null;
+        }
+
+        public Line getLine(Node a, Node b)
+        {
+            return this.layers.getLine(a, b);
+        }
+
+        public Line getLine(int a, int b)
+        {
+            return this.layers.getLine(a, b);
         }
 
         // NODE CONNECT connect two nodes
@@ -1128,25 +1227,38 @@ namespace Diagram
 
                     return line;
                 }
-                else
-                {
-                    // if connection already exists remove connection instead
-                    this.layers.removeLine(line);
-                }
             }
 
             return null;
         }
 
+        // NODE DISCONNECT remove connection between two nodes
+        public void Disconnect(Node a, Node b)
+        {
+            if (!this.options.readOnly && a != null && b != null)
+            {
+                Line line = this.layers.getLine(a, b);
+
+                if (line != null)
+                {
+                    this.layers.removeLine(line);
+                }
+            }
+        }
+
         // NODE CONNECT connect two nodes and add arrow or set color
-        public Line Connect(Node a, Node b, bool arrow = false, Color? color = null, int width = 1)
+        public Line Connect(Node a, Node b, bool arrow = false, ColorType color = null, int width = 1)
         {
             Line line = this.Connect(a, b);
 
             if (line != null)
             {
                 line.arrow = arrow;
-                line.color = color ?? Color.Black;
+                if (color != null)
+                {
+                    line.color.set(color);
+                }
+                
                 line.width = width;
             }
 
@@ -1495,6 +1607,18 @@ namespace Diagram
             }
         }
 
+        // DIAGRAM undo
+        public void doUndo()
+        {
+            this.undo.doUndo();
+        }
+
+        // DIAGRAM redo
+        public void doRedo()
+        {
+            this.undo.doRedo();
+        }
+
         // DIAGRAM refresh - refresh items depends on external resources like images
         public void refresh()
         {
@@ -1514,7 +1638,6 @@ namespace Diagram
             this.InvalidateDiagram();
         }
 
-        
         /*************************************************************************************************************************/
 
         // CLIPBOARD PASTE paste part of diagram from clipboard                                   // CLIPBOARD
@@ -1581,7 +1704,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "color")
                                                 {
-                                                    R.color = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
+                                                    R.color.set(el.Value.ToString());
                                                 }
 
 
@@ -1605,7 +1728,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "fontcolor")
                                                 {
-                                                    R.fontcolor = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
+                                                    R.fontcolor.set(el.Value.ToString());
                                                 }
 
                                                 if (el.Name.ToString() == "link")
@@ -1732,7 +1855,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "color")
                                                 {
-                                                    L.color = System.Drawing.ColorTranslator.FromHtml(el.Value.ToString());
+                                                    L.color.set(el.Value.ToString());
                                                 }
 
                                                 if (el.Name.ToString() == "width")
@@ -1773,7 +1896,9 @@ namespace Diagram
             int layerParent = 0;
 
             MappedNode mappedNode;
-
+            Nodes createdNodes = new Nodes();
+            Node newNode = null;
+            int oldId = 0;
             foreach (Node rec in NewReorderedNodes)
             {
                 layerParent = 0;
@@ -1797,11 +1922,14 @@ namespace Diagram
                 rec.position.add(position);
                 rec.resize();
 
-                mappedNode = new MappedNode();
-                mappedNode.oldId = rec.id;
-                mappedNode.newNode = this.createNode(rec);
+                oldId = rec.id;
+                newNode = this.createNode(rec); ;
 
-                if (mappedNode.newNode != null) {
+                if (newNode != null) {
+                    mappedNode = new MappedNode();
+                    mappedNode.oldId = oldId;
+                    mappedNode.newNode = newNode;
+                    createdNodes.Add(newNode);
                     maps.Add(mappedNode);
                 }
             }
@@ -1822,6 +1950,8 @@ namespace Diagram
                 }
             }
 
+            Lines createdLines = new Lines();
+            Line newLine = null;
             foreach (Line line in NewLines)
             {
                 foreach (MappedNode mapbegin in maps)
@@ -1832,18 +1962,25 @@ namespace Diagram
                         {
                             if (line.end == mapend.oldId)
                             {
-                                this.Connect(
+                                newLine = this.Connect(
                                     mapbegin.newNode,
                                     mapend.newNode,
                                     line.arrow,
                                     line.color,
                                     line.width
                                 );
+
+                                if (newLine != null)
+                                {
+                                    createdLines.Add(newLine);
+                                }
                             }
                         }
                     }
                 }
             }
+
+            this.unsave("create", createdNodes, createdLines);
 
             return NewNodes;
         }
@@ -1922,9 +2059,9 @@ namespace Diagram
                     rectangle.Add(new XElement("y", rec.position.y - miny));
                     rectangle.Add(new XElement("text", rec.name));
                     rectangle.Add(new XElement("note", rec.note));
-                    rectangle.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(rec.color)));
+                    rectangle.Add(new XElement("color", rec.color));
                     rectangle.Add(Fonts.FontToXml(rec.font));
-                    rectangle.Add(new XElement("fontcolor", System.Drawing.ColorTranslator.ToHtml(rec.fontcolor)));
+                    rectangle.Add(new XElement("fontcolor", rec.fontcolor));
                     if (rec.link != "") rectangle.Add(new XElement("link", rec.link));
                     if (rec.shortcut != 0 && rec.shortcut - minid + 1 > 0) rectangle.Add(new XElement("shortcut", rec.shortcut + 1));
                     rectangle.Add(new XElement("transparent", rec.transparent));
@@ -1964,7 +2101,7 @@ namespace Diagram
                                     line.Add(new XElement("start", li.start - minid + 1));
                                     line.Add(new XElement("end", li.end - minid + 1));
                                     line.Add(new XElement("arrow", (li.arrow) ? "1" : "0"));
-                                    line.Add(new XElement("color", System.Drawing.ColorTranslator.ToHtml(li.color)));
+                                    line.Add(new XElement("color", li.color));
                                     if (li.width != 1) line.Add(new XElement("width", li.width));
                                     if (li.layer - minid +1 > 0) {
                                         line.Add(new XElement("layer", li.layer - minid + 1));

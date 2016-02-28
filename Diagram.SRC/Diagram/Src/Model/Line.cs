@@ -11,8 +11,29 @@ namespace Diagram
         public Node startNode = null; // linked start node for quick access
         public Node endNode = null; // linked end node for quick access
         public bool arrow = false; // node is rendered as arrow
-        public Color color = System.Drawing.ColorTranslator.FromHtml("#000000"); // line color
+        public ColorType color = new ColorType(); // line color
         public int width = 1; // line width
         public int layer = 0; // layer parent node id
+
+        public Line()
+        {
+        }
+
+        public Line(Line line)
+        {
+            this.set(line);
+        }
+
+        public void set(Line line)
+        {
+            this.start = line.start;
+            this.end = line.end;
+            this.startNode = line.startNode;
+            this.endNode = line.endNode;
+            this.arrow = line.arrow;
+            this.color.set(line.color);
+            this.width = line.width;
+            this.layer = line.layer;
+        }
     }
 }
