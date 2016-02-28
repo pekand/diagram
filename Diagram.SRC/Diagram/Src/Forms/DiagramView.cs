@@ -2130,7 +2130,7 @@ namespace Diagram
                 }
                 else
                 {
-                    this.diagram.EditNode(this.selectedNodes[0]);
+                    TextForm textform = this.diagram.EditNode(this.selectedNodes[0]);
                 }
             }
         }

@@ -138,7 +138,7 @@ namespace Diagram
 
             if (this.editedNode.link != edit.Text)
             {
-                this.diagramView.diagram.undo.add("edit", this.editedNode);
+                this.diagramView.diagram.undo.add("edit", this.editedNode, this.diagramView.shift, this.diagramView.currentLayer.id);
                 this.editedNode.link = edit.Text;
                 this.diagramView.diagram.unsave();
             }

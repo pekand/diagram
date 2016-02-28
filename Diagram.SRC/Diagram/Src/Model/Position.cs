@@ -22,8 +22,16 @@ namespace Diagram
         /// Constructor</summary>
         public Position(Position p)
         {
-            this.x = p.x;
-            this.y = p.y;
+            if (p != null)
+            {
+                this.x = p.x;
+                this.y = p.y;
+            }
+            else
+            {
+                this.x = 0;
+                this.y = 0;
+            }
         }
 
         /// <summary>
@@ -46,8 +54,17 @@ namespace Diagram
         /// set </summary>
         public Position set(Position p)
         {
-            this.x = p.x;
-            this.y = p.y;
+            if (p != null)
+            {
+                this.x = p.x;
+                this.y = p.y;
+            }
+            else
+            {
+                this.x = 0;
+                this.y = 0;
+            }
+
             return this;
         }
 
