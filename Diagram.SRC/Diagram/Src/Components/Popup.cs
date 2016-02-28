@@ -1368,7 +1368,11 @@ namespace Diagram
             }
             else
             {
-                this.diagramView.diagram.ResetFont();
+                this.diagramView.diagram.ResetFont(
+                    this.diagramView.diagram.getAllNodes(), 
+                    this.diagramView.shift, 
+                    this.diagramView.currentLayer.id
+                );
             }
         }
 
