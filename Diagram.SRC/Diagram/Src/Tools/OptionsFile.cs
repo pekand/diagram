@@ -19,7 +19,6 @@ namespace Diagram
         public String configFileName = "diagram.json";
 #endif
 
-
         public String optionsFilePath = "";
 
         ProgramOptions parameters = null;
