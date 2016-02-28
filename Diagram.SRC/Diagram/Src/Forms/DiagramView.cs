@@ -1092,9 +1092,9 @@ namespace Diagram
                         this.diagram.undo.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
                         foreach (Node rec in this.selectedNodes)
                         {
-                            rec.color = TargetNode.color;
+                            rec.color.set(TargetNode.color);
                             rec.font = TargetNode.font;
-                            rec.fontcolor = TargetNode.fontcolor;
+                            rec.fontcolor.set(TargetNode.fontcolor);
                             rec.transparent = TargetNode.transparent;
                             rec.resize();
                         }
