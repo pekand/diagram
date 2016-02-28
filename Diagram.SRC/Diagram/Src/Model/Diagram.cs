@@ -868,33 +868,33 @@ namespace Diagram
         }
 
         // FILE UNSAVE file was changed - save undo position
-        public void unsave(string type, Node node)
+        public void unsave(string type, Node node, Position position = null, int layer = 0)
         {
             Nodes nodes = new Nodes();
             nodes.Add(node);
-            this.unsave(type, nodes);
+            this.unsave(type, nodes, null,  position, layer);
         }
 
-        public void unsave(string type, Line line)
+        public void unsave(string type, Line line, Position position = null, int layer = 0)
         {
             Lines lines = new Lines();
             lines.Add(line);
-            this.unsave(type, null, lines);
+            this.unsave(type, null, lines, position, layer);
         }
 
-        public void unsave(string type, Node node, Line line)
+        public void unsave(string type, Node node, Line line, Position position = null, int layer = 0)
         {
             Nodes nodes = new Nodes();
             nodes.Add(node);
             Lines lines = new Lines();
             lines.Add(line);
-            this.unsave(type, nodes, lines);
+            this.unsave(type, nodes, lines, position, layer);
         }
 
-        public void unsave(string type, Nodes nodes = null, Lines lines = null)
+        public void unsave(string type, Nodes nodes = null, Lines lines = null, Position position = null, int layer = 0)
         {
             this.undo.rememberSave();
-            this.undo.add(type, nodes, lines);
+            this.undo.add(type, nodes, lines, position, layer);
             this.unsave();
         }
 
@@ -1013,16 +1013,14 @@ namespace Diagram
                     }
                 }
 
-                this.undo.add("delete", rec);
                 this.layers.removeNode(rec);
-                this.unsave();
             }
         }
 
         // NODE delete multiple nodes and set undo operation
-        public void DeleteNodes(Nodes nodes)
+        public void DeleteNodes(Nodes nodes, Position position = null, int layer = 0)
         {
-            bool canRefresh = false;
+            bool canDelete = false;
 
             Nodes toDeleteNodes = new Nodes();
             Lines toDeleteLines = new Lines();
@@ -1033,13 +1031,13 @@ namespace Diagram
             {
                 if (this.canDeleteNode(node))
                 {
-                    canRefresh = true;
+                    canDelete = true;
                 }
             }
 
-            if (canRefresh)
+            if (canDelete)
             {
-                this.undo.add("delete", toDeleteNodes, toDeleteLines);
+                this.undo.add("delete", toDeleteNodes, toDeleteLines, position, layer);
 
                 foreach (Node node in toDeleteNodes.Reverse<Node>()) // remove lines to node
                 {
@@ -1405,8 +1403,6 @@ namespace Diagram
                 {
                     rec.position.x = maxx - rec.width;
                 }
-                this.unsave();
-                this.InvalidateDiagram();
             }
         }
 
@@ -1437,24 +1433,12 @@ namespace Diagram
             if (node.shortcut > 0) node.shortcut = 0;
         }
 
-        // NODE Reset font to default font for all nodes
-        public void ResetFont()
-        {
-            foreach (Node rec in this.getAllNodes()) // Loop through List with foreach
-            {
-                rec.font = this.FontDefault;
-                rec.resize();
-            }
-
-            this.unsave();
-            this.InvalidateDiagram();
-        }
-
         // NODE Reset font to default font for group of nodes
-        public void ResetFont(Nodes Nodes)
+        public void ResetFont(Nodes nodes, Position position = null, int layer = 0)
         {
-            if (Nodes.Count>0) {
-                foreach (Node rec in Nodes) // Loop through List with foreach
+            if (nodes.Count>0) {
+                this.undo.add("edit", nodes, null, position, layer);
+                foreach (Node rec in nodes) // Loop through List with foreach
                 {
                     rec.font = this.FontDefault;
                     rec.resize();
@@ -1608,15 +1592,15 @@ namespace Diagram
         }
 
         // DIAGRAM undo
-        public void doUndo()
+        public void doUndo(DiagramView view = null)
         {
-            this.undo.doUndo();
+            this.undo.doUndo(view);
         }
 
         // DIAGRAM redo
-        public void doRedo()
+        public void doRedo(DiagramView view = null)
         {
-            this.undo.doRedo();
+            this.undo.doRedo(view);
         }
 
         // DIAGRAM refresh - refresh items depends on external resources like images
