@@ -1004,6 +1004,7 @@ namespace Diagram
                     }
                 }
 
+                this.undo.add("delete", rec);
                 this.layers.removeNode(rec);
                 this.unsave();
             }

@@ -176,6 +176,68 @@ namespace Diagram
             return ++this.group;
         }
 
+        public bool isSame(string type, Nodes nodes, Lines lines)
+        {
+            
+            if (operations.Count()>0)
+            {
+
+                UndoOperation operation = operations.First();
+
+                if (operation.type == type)
+                {
+
+                    if (operation.nodes.Count() == 0 && nodes == null)
+                    {
+                    }
+                    else if ((operation.nodes == null && nodes != null) || (operation.nodes != null && nodes == null))
+                    {
+                        return false;
+                    }
+                    else if (operation.nodes.Count() == nodes.Count())
+                    {
+                        for (int i = 0; i < nodes.Count(); i++)
+                        {
+                            if (operation.nodes[i].id != nodes[i].id)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                    if (operation.lines.Count() == 0 && lines == null)
+                    {
+                    }
+                    else if ((operation.lines == null && lines != null) || (operation.lines != null && lines == null))
+                    {
+                        return false;
+                    }
+                    else if (operation.lines.Count() == lines.Count())
+                    {
+                        for (int i = 0; i < lines.Count(); i++)
+                        {
+                            if (operation.lines[i].start != lines[i].start || operation.lines[i].end != lines[i].end)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public bool doUndo()
         {
             int group = 0;
@@ -207,8 +269,12 @@ namespace Diagram
                         this.doUndoCreate(operation);
                     }
 
-                    if (operation.type == "edit")
-                    {
+                    if (operation.type == "edit" || 
+                        operation.type == "move" || 
+                        operation.type == "changeLineColor" || 
+                        operation.type == "changeLineWidth" || 
+                        operation.type == "changeNodeColor"
+                    ) {
                         this.doUndoEdit(operation);
                     }
 
