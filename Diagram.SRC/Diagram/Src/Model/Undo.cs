@@ -54,8 +54,8 @@ namespace Diagram
         public int group = 0; // if two operations is in same group then undo restore both operations
 
         public int saved = 0; // if is 0 then indicate saved
-        public bool saveLost = false; // save > undo > change diagram > lost saved position
-        public bool grouping = false;
+        public bool saveLost = false; // if save is in redo and redo is cleared then save position is lost
+        public bool grouping = false; // if grouping is true and new undo is added then new undo is same group as previous undo
 
         public Diagram diagram = null;                // diagram assigned to current undo
         
@@ -121,7 +121,7 @@ namespace Diagram
             // forgot undo operation
             if (reverseOperations.Count() > 0)
             {
-                if (this.saved < 0)
+                if (this.saved > 0) // save is in redo but if redo is cleared theh save is lost
                 {
                     this.saveLost = true;
                 }
@@ -333,8 +333,8 @@ namespace Diagram
                     UndoOperation roperation = new UndoOperation(
                         operation.type, 
                         nodes, 
-                        lines, 
-                        0, 
+                        lines,
+                        operation.group, 
                         operation.position, 
                         operation.layer
                     );
@@ -421,7 +421,14 @@ namespace Diagram
                         lines.Add(this.diagram.getLine(line.start, line.end));
                     }
 
-                    UndoOperation roperation = new UndoOperation(operation.type, nodes, lines);
+                    UndoOperation roperation = new UndoOperation(
+                        operation.type, 
+                        nodes, 
+                        lines, 
+                        operation.group,
+                        operation.position, 
+                        operation.layer
+                    );
 
                     operations.Push(roperation);
                     this.doUndoEdit(operation);
