@@ -9,22 +9,16 @@ namespace Diagram
     {
         public Main main = null;
 
-        private System.Windows.Forms.TabControl textformtabs;
-        private System.Windows.Forms.TabPage mainTab;
-        private System.Windows.Forms.ColorDialog DColor;
         private System.Windows.Forms.SplitContainer SplitContainer1;
-        private System.Windows.Forms.FontDialog DFont;
         private System.Windows.Forms.RichTextBox TextFormTextBox;
         private System.Windows.Forms.RichTextBox TextFormNoteTextBox;
-        private System.Windows.Forms.Label labelScriptId;
-        private System.Windows.Forms.TextBox textBoxScriptId;
 
         /*************************************************************************************************************************/
 
         // ATTRIBUTES Diagram
         public Diagram diagram = null;       // diagram ktory je previazany z pohladom
 
-        public Node rec;
+        public Node node;
 
         public TextForm(Main main)
         {
@@ -34,43 +28,15 @@ namespace Diagram
 
         private void InitializeComponent()
         {
-            this.textformtabs = new System.Windows.Forms.TabControl();
-            this.mainTab = new System.Windows.Forms.TabPage();
+            
             this.SplitContainer1 = new System.Windows.Forms.SplitContainer();
             this.TextFormTextBox = new System.Windows.Forms.RichTextBox();
             this.TextFormNoteTextBox = new System.Windows.Forms.RichTextBox();
-            this.labelScriptId = new System.Windows.Forms.Label();
-            this.textBoxScriptId = new System.Windows.Forms.TextBox();
-            this.DColor = new System.Windows.Forms.ColorDialog();
-            this.DFont = new System.Windows.Forms.FontDialog();
-            this.textformtabs.SuspendLayout();
-            this.mainTab.SuspendLayout();
             this.SplitContainer1.Panel1.SuspendLayout();
             this.SplitContainer1.Panel2.SuspendLayout();
             this.SplitContainer1.SuspendLayout();
 
             this.SuspendLayout();
-            //
-            // textformtabs
-            //
-            this.textformtabs.Controls.Add(this.mainTab);
-            this.textformtabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textformtabs.Location = new System.Drawing.Point(0, 0);
-            this.textformtabs.Name = "textformtabs";
-            this.textformtabs.SelectedIndex = 0;
-            this.textformtabs.Size = new System.Drawing.Size(393, 517);
-            this.textformtabs.TabIndex = 0;
-            //
-            // mainTab
-            //
-            this.mainTab.Controls.Add(this.SplitContainer1);
-            this.mainTab.Location = new System.Drawing.Point(4, 22);
-            this.mainTab.Name = "mainTab";
-            this.mainTab.Padding = new System.Windows.Forms.Padding(3);
-            this.mainTab.Size = new System.Drawing.Size(385, 491);
-            this.mainTab.TabIndex = 0;
-            this.mainTab.Text = "Main";
-            this.mainTab.UseVisualStyleBackColor = true;
             //
             // SplitContainer1
             //
@@ -111,35 +77,12 @@ namespace Diagram
             this.TextFormNoteTextBox.TabIndex = 0;
             this.TextFormNoteTextBox.DetectUrls = false;
             //
-            // labelScriptId
-            //
-            this.labelScriptId.AutoSize = true;
-            this.labelScriptId.Location = new System.Drawing.Point(17, 14);
-            this.labelScriptId.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelScriptId.Name = "labelScriptId";
-            this.labelScriptId.Size = new System.Drawing.Size(19, 13);
-            this.labelScriptId.TabIndex = 2;
-            this.labelScriptId.Text = "Id:";
-            //
-            // textBoxScriptId
-            //
-            this.textBoxScriptId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxScriptId.Location = new System.Drawing.Point(52, 6);
-            this.textBoxScriptId.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxScriptId.Name = "textBoxScriptId";
-            this.textBoxScriptId.Size = new System.Drawing.Size(304, 26);
-            this.textBoxScriptId.TabIndex = 0;
-            //
-            // DFont
-            //
-            this.DFont.Color = System.Drawing.SystemColors.ControlText;
-            //
             // TextForm
             //
+            this.Controls.Add(this.SplitContainer1);
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(393, 517);
-            this.Controls.Add(this.textformtabs);
             this.Icon = global::Diagram.Properties.Resources.ico_diagramico_forms;
             this.KeyPreview = true;
             this.Name = "TextForm";
@@ -147,8 +90,6 @@ namespace Diagram
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TextForm_FormClosed);
             this.Load += new System.EventHandler(this.TextForm_Load);
             this.Resize += new System.EventHandler(this.TextForm_Resize);
-            this.textformtabs.ResumeLayout(false);
-            this.mainTab.ResumeLayout(false);
             this.SplitContainer1.Panel1.ResumeLayout(false);
             this.SplitContainer1.Panel2.ResumeLayout(false);
             this.SplitContainer1.ResumeLayout(false);
@@ -158,16 +99,13 @@ namespace Diagram
 
         public void TextForm_Load(object sender, EventArgs e)
         {
-            if (this.rec != null)
+            if (this.node != null)
             {
-                this.TextFormTextBox.Text = this.rec.name;
-                this.TextFormNoteTextBox.Text = this.rec.note;
+                this.TextFormTextBox.Text = this.node.name;
+                this.TextFormNoteTextBox.Text = this.node.note;
                 this.Left = Screen.PrimaryScreen.Bounds.Width / 2 - this.Width / 2;
                 this.Top = Screen.PrimaryScreen.Bounds.Height / 2 - this.Height / 2;
-                this.textformtabs.SelectedTab = this.mainTab;
-                this.textBoxScriptId.Text = this.rec.scriptid;
                 this.TextFormTextBox.Select();
-                this.DColor.Color = this.rec.color;
             }
 
             if (this.diagram.isReadOnly())
@@ -207,7 +145,6 @@ namespace Diagram
         public void TextForm_Resize(object sender, EventArgs e)
         {
             this.TextFormTextBox.Height = this.ClientSize.Height - 100;
-            this.textBoxScriptId.Width = this.ClientSize.Width - 150;
         }
 
         // Save data and update main form
@@ -215,57 +152,30 @@ namespace Diagram
         {
             if (!this.diagram.options.readOnly)
             {
-                bool changed = false;
-                if
-                (
-                    rec.name != this.TextFormTextBox.Text ||
-                    rec.note != this.TextFormNoteTextBox.Text ||
-                    rec.scriptid != this.textBoxScriptId.Text
-                )
-                {
-                    changed = true;
+                if (
+                    node.name != this.TextFormTextBox.Text ||
+                    node.note != this.TextFormNoteTextBox.Text
+                ) {
+                    this.diagram.undo.add("edit", node);
+                    node.name = this.TextFormTextBox.Text;
+                    node.note = this.TextFormNoteTextBox.Text;
+                    node.resize();
+                    
                     DateTime dt = DateTime.Now;
-                    rec.timemodify = String.Format("{0:yyyy-M-d HH:mm:ss}", dt);
-                }
+                    node.timemodify = String.Format("{0:yyyy-M-d HH:mm:ss}", dt);
 
-                rec.name = this.TextFormTextBox.Text;
-                rec.note = this.TextFormNoteTextBox.Text;
-                rec.scriptid = this.textBoxScriptId.Text;
-                if (rec.embeddedimage && rec.image!=null)
-                {
-                    rec.isimage = true;
-                }
-                else
-                if (Os.FileExists(rec.imagepath))
-                {
-                    rec.isimage = true;
-                    rec.image = new Bitmap(rec.imagepath);
-                    rec.height = rec.image.Height;
-                    string ext = "";
-                    ext = Os.getExtension(rec.imagepath).ToLower();
-                    if (ext != ".ico") rec.image.MakeTransparent(Color.White);
-                    rec.width = rec.image.Width;
-                }
-                else
-                {
-                    rec.isimage = false;
-                }
-                if (!rec.isimage)
-                {
-                    rec.resize();
-                }
-
-                if(changed)
                     this.diagram.unsave();
+                    this.diagram.InvalidateDiagram();
+                }
 
-                this.diagram.InvalidateDiagram();
+                
             }
         }
 
         public void TextForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.SaveNode();
-            this.diagram.EditNodeClose(this.rec);
+            this.diagram.EditNodeClose(this.node);
 
             this.diagram.TextWindows.Remove(this);
             main.TextWindows.Remove(this);

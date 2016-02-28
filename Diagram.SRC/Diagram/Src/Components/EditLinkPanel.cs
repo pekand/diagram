@@ -121,8 +121,8 @@ namespace Diagram
 
                 this.setPanelSize();
 
-                this.BackColor = this.editedNode.color;
-                this.edit.BackColor = this.editedNode.color;
+                this.BackColor = this.editedNode.color.get();
+                this.edit.BackColor = this.editedNode.color.get();
                 this.editing = true;
                 this.Show();
                 this.edit.Show();
@@ -138,6 +138,7 @@ namespace Diagram
 
             if (this.editedNode.link != edit.Text)
             {
+                this.diagramView.diagram.undo.add("edit", this.editedNode);
                 this.editedNode.link = edit.Text;
                 this.diagramView.diagram.unsave();
             }
