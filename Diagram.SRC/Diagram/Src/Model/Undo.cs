@@ -262,11 +262,13 @@ namespace Diagram
                     if (operation.type == "delete")
                     {
                         this.doUndoDelete(operation);
+                        reverseOperations.Push(operation);
                     }
 
                     if (operation.type == "create")
                     {
                         this.doUndoCreate(operation);
+                        reverseOperations.Push(operation);
                     }
 
                     if (operation.type == "edit" || 
@@ -275,10 +277,22 @@ namespace Diagram
                         operation.type == "changeLineWidth" || 
                         operation.type == "changeNodeColor"
                     ) {
+                        Nodes nodes = new Nodes();
+                        foreach (Node node in operation.nodes)
+                        {
+                            nodes.Add(this.diagram.GetNodeByID(node.id));
+                        }
+
+                        Lines lines = new Lines();
+                        foreach (Line line in operation.lines)
+                        {
+                            lines.Add(this.diagram.getLine(line.start, line.end));
+                        }
+
+                        UndoOperation roperation = new UndoOperation(operation.type, nodes, lines);
+                        reverseOperations.Push(roperation);
                         this.doUndoEdit(operation);
                     }
-
-                    reverseOperations.Push(operation);
 
                     result = true;
                 }
@@ -289,11 +303,46 @@ namespace Diagram
 
         public bool doRedo()
         {
-            if (operations.Count() > 0)
+            if (reverseOperations.Count() > 0)
             {
                 UndoOperation operation = reverseOperations.Pop();
 
-                operations.Push(operation);
+                if (operation.type == "delete")
+                {
+                    this.doUndoCreate(operation);
+                    operations.Push(operation);
+                }
+
+                if (operation.type == "create")
+                {
+                    this.doUndoDelete(operation);
+                    operations.Push(operation);
+                }
+
+                if (operation.type == "edit" ||
+                        operation.type == "move" ||
+                        operation.type == "changeLineColor" ||
+                        operation.type == "changeLineWidth" ||
+                        operation.type == "changeNodeColor"
+                    )
+                {
+                    Nodes nodes = new Nodes();
+                    foreach (Node node in operation.nodes)
+                    {
+                        nodes.Add(this.diagram.GetNodeByID(node.id));
+                    }
+
+                    Lines lines = new Lines();
+                    foreach (Line line in operation.lines)
+                    {
+                        lines.Add(this.diagram.getLine(line.start, line.end));
+                    }
+
+                    UndoOperation roperation = new UndoOperation(operation.type, nodes, lines);
+
+                    operations.Push(roperation);
+                    this.doUndoEdit(operation);
+                }
 
                 return true;
             }

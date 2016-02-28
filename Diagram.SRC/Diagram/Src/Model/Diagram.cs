@@ -1172,6 +1172,11 @@ namespace Diagram
             return this.layers.getLine(a, b);
         }
 
+        public Line getLine(int a, int b)
+        {
+            return this.layers.getLine(a, b);
+        }
+
         // NODE CONNECT connect two nodes
         public Line Connect(Node a, Node b)
         {
