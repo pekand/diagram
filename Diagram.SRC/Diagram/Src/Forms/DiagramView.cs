@@ -3543,6 +3543,31 @@ namespace Diagram
         {
             if (selectedNodes.Count() > 0 && !this.diagram.options.readOnly)
             {
+                // show color picker and move it to vsible area of screen
+                var screen = Screen.FromPoint(Cursor.Position);
+                colorPickerForm.StartPosition = FormStartPosition.Manual;
+                colorPickerForm.Left = Cursor.Position.X - 50;
+                colorPickerForm.Top = Cursor.Position.Y - 50;
+
+                if (Cursor.Position.X - 50 < 0) {
+                    colorPickerForm.Left = 0;
+                }
+
+                if (Cursor.Position.Y - 50 < 0)
+                {
+                    colorPickerForm.Top = 0;
+                }
+
+                if (Cursor.Position.X - 50 + colorPickerForm.Width > screen.Bounds.Width)
+                {
+                    colorPickerForm.Left = screen.Bounds.Width - colorPickerForm.Width;
+                }
+
+                if (Cursor.Position.Y - 50 + colorPickerForm.Height > screen.Bounds.Height)
+                {
+                    colorPickerForm.Top = screen.Bounds.Height - colorPickerForm.Height;
+                }
+
                 colorPickerForm.ShowDialog();
             }
         }
