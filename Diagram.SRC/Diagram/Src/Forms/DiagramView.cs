@@ -3415,6 +3415,17 @@ namespace Diagram
             }
         }
 
+        // NODE Check to shift
+        public bool isOnPosition(Position shift, int layer)
+        {
+            if (shift.x == this.shift.x && shift.y == this.shift.y && this.currentLayer.id == layer)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         // NODE Go to shift
         public void goToShift(Position shift)
         {
