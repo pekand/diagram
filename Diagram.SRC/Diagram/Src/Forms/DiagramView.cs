@@ -694,26 +694,17 @@ namespace Diagram
                                 this.SelectOnlyOneNode(this.sourceNode);
                             }
 
-                            int tx = sourceNode.position.x, ty = sourceNode.position.y;
-                            foreach (Node node in this.selectedNodes)
-                            {
-                                if (tx < node.position.x)
-                                {
-                                    tx = node.position.x;
-                                }
-
-                                if (ty < node.position.y)
-                                {
-                                    ty = node.position.y;
-                                }
-                            }
-
-
                             Nodes newNodes = this.diagram.AddDiagramPart(
                                 this.diagram.GetDiagramPart(this.selectedNodes),
                                 this.sourceNode.position.clone(),
                                 this.currentLayer.id
                             );
+
+                            // TODO : tis is only hack, set new position of copied items by vector (position of node in aray may not by same)
+                            for (int i = 0; i < this.selectedNodes.Count(); i++)
+                            {
+                                newNodes[i].position.set(this.selectedNodes[i].position);
+                            }
 
                             this.SelectNodes(newNodes);
 

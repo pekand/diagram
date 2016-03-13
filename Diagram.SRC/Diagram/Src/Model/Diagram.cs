@@ -1903,7 +1903,7 @@ namespace Diagram
                 }
 
                 rec.layer = layerParent;
-                rec.position.add(position); //xxx
+                rec.position.add(position);
                 rec.resize();
 
                 oldId = rec.id;
@@ -2013,38 +2013,44 @@ namespace Diagram
         // CLIPBOARD COPY copy part of diagram to text xml string
         public string GetDiagramPart(Nodes nodes)
         {
+            Nodes copy = new Nodes();
+            foreach (Node node in nodes)
+            {
+                copy.Add(node);
+            }
+
             string copyxml = "";
 
-            if (nodes.Count() > 0)
+            if (copy.Count() > 0)
             {
                 XElement root = new XElement("diagram");
                 XElement rectangles = new XElement("rectangles");
                 XElement lines = new XElement("lines");
 
-                int minx = nodes[0].position.x;
-                int miny = nodes[0].position.y;
-                int minid = nodes[0].id;
+                int minx = copy[0].position.x;
+                int miny = copy[0].position.y;
+                int minid = copy[0].id;
 
                 Nodes subnodes = new Nodes();
 
-                foreach (Node node in nodes)
+                foreach (Node node in copy)
                 {
                     getLayerNodes(node, subnodes);
                 }
 
                 foreach (Node node in subnodes)
                 {
-                    nodes.Add(node);
+                    copy.Add(node);
                 }
 
-                foreach (Node node in nodes)
+                foreach (Node node in copy)
                 {
                     if (node.position.x < minx) minx = node.position.x;
                     if (node.position.y < miny) miny = node.position.y;
                     if (node.id < minid) minid = node.id;
                 }
 
-                foreach (Node rec in nodes)
+                foreach (Node rec in copy)
                 {
                     XElement rectangle = new XElement("rectangle");
                     rectangle.Add(new XElement("id", rec.id - minid + 1));
@@ -2082,11 +2088,11 @@ namespace Diagram
 
                 foreach (Line li in this.getAllLines())
                 {
-                    foreach (Node recstart in nodes)
+                    foreach (Node recstart in copy)
                     {
                         if (li.start == recstart.id)
                         {
-                            foreach (Node recend in nodes)
+                            foreach (Node recend in copy)
                             {
                                 if (li.end == recend.id)
                                 {
