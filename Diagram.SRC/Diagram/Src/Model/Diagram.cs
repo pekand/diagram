@@ -1451,7 +1451,7 @@ namespace Diagram
         // NODE Najdenie nody podla pozicie myši
         public Node findNodeInPosition(Position position, int layer)
         {
-            foreach (Node node in this.layers.getLayer(layer).nodes) // Loop through List with foreach
+            foreach (Node node in this.layers.getLayer(layer).nodes.Reverse<Node>()) // Loop through List with foreach
             {
                 if (layer == node.layer || layer == node.id)
                 {
@@ -1903,7 +1903,7 @@ namespace Diagram
                 }
 
                 rec.layer = layerParent;
-                rec.position.add(position);
+                rec.position.add(position); //xxx
                 rec.resize();
 
                 oldId = rec.id;
@@ -1966,7 +1966,16 @@ namespace Diagram
 
             this.unsave("create", createdNodes, createdLines);
 
-            return NewNodes;
+            // filter only top nodes fromm all new created nodes. New nodes containing sublayer nodes.
+            Nodes topNodes = new Nodes();
+            foreach (Node node in NewNodes)
+            {
+                if (node.layer == layer) {
+                    topNodes.Add(node);
+                }
+            }
+
+            return topNodes;
         }
 
         // CLIPBOARD Get all layers nodes
