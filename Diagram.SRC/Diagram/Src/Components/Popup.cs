@@ -625,6 +625,13 @@ namespace Diagram
             items["resetFontItem"].Text = "Reset font";
             items["resetFontItem"].Click += new System.EventHandler(this.resetFontItem_Click);
             //
+            // openConfigDirItem
+            //
+            items.Add("openConfigDirItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["openConfigDirItem"].Name = "openConfigDirItem";
+            items["openConfigDirItem"].Text = "Open config dir";
+            items["openConfigDirItem"].Click += new System.EventHandler(this.openConfigDirItem_Click);
+            //
             // optionItem
             //
             items.Add("optionItem", new System.Windows.Forms.ToolStripMenuItem());
@@ -637,7 +644,8 @@ namespace Diagram
                 items["coordinatesItem"],
                 items["bordersItem"],
                 items["defaultFontItem"],
-                items["resetFontItem"]
+                items["resetFontItem"],
+                items["openConfigDirItem"]
             });
             items["optionItem"].Name = "optionItem";
             items["optionItem"].Text = "Option";
@@ -1409,6 +1417,13 @@ namespace Diagram
                     this.diagramView.currentLayer.id
                 );
             }
+        }
+
+        // MENU reset font
+        private void openConfigDirItem_Click(object sender, EventArgs e)
+        {
+
+            this.diagramView.main.optionsFile.openConfigDir();
         }
 
         // HELP

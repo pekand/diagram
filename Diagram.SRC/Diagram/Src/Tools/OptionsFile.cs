@@ -107,5 +107,10 @@ namespace Diagram
                 this.configFileName
             );
         }
+
+        public void openConfigDir()
+        {
+            Os.openDirectory(Os.getDirectoryName(optionsFilePath));
+        }
     }
 }

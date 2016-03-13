@@ -11,6 +11,10 @@ using System.Drawing.Imaging;
 using System.Collections.Specialized;
 using NCalc;
 
+#if DEBUG
+    using System.Diagnostics;
+#endif
+
 namespace Diagram
 {
 
@@ -34,6 +38,11 @@ namespace Diagram
         public OpenFileDialog DSelectFileAttachment;
 
         /*************************************************************************************************************************/
+
+#if DEBUG
+        // DEBUG TOOLS
+        string lastEvent = ""; // remember last event in console (for remove duplicate events)
+#endif
 
         // ATRIBUTES SCREEN
         public Position shift = new Position();                   // left corner position
@@ -101,9 +110,9 @@ namespace Diagram
         public Breadcrumbs breadcrumbs = null;
 
         // MOVETIMER
-        Timer moveTimer = new Timer(); // timer pre animaciu
-        Position moveTimerSpeed = new Position();
-        int moveTimerCounter = 0;
+        Timer animationTimer = new Timer(); //timer for all animations (goto node animation)
+        Position animationTimerSpeed = new Position();
+        int animationTimerCounter = 0;
 
         // LINEWIDTHFORM
         LineWidthForm lineWidthForm = new LineWidthForm();
@@ -227,9 +236,9 @@ namespace Diagram
             this.breadcrumbs = new Breadcrumbs(this);
 
             // move timer
-            this.moveTimer.Tick += new EventHandler(moveTimerTick);
-            this.moveTimer.Interval = 10;
-            this.moveTimer.Enabled = false;
+            this.animationTimer.Tick += new EventHandler(animationTimer_Tick);
+            this.animationTimer.Interval = 10;
+            this.animationTimer.Enabled = false;
 
             // lineWidthForm
             this.lineWidthForm.trackbarStateChanged += this.resizeLineWidth;
@@ -585,12 +594,21 @@ namespace Diagram
         // EVENT Mouse DoubleClick
         public void DiagramApp_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+
+#if DEBUG
+            this.logEvent("MouseDouble");
+#endif
+
             this.stateDblclick = true;
         }
 
         // EVENT Mouse Down                                                                            // [MOUSE] [DOWN] [EVENT]
         public void DiagramApp_MouseDown(object sender, MouseEventArgs e)
         {
+#if DEBUG
+            this.logEvent("MouseDown");
+#endif
+
             this.actualMousePos.set(e.X, e.Y);
 
             if (this.stateSearching)
@@ -644,7 +662,7 @@ namespace Diagram
                 if (this.sourceNode == null)
                 {
                     if (!this.diagram.options.readOnly
-                        && (this.keyctrl || this.keyalt)
+                        && ((!this.keyctrl && this.keyalt) || (this.keyctrl && this.keyalt))
                         && !this.keyshift) // add node by drag
                     {
                         this.stateAddingNode = true;
@@ -667,9 +685,32 @@ namespace Diagram
                         var data = new DataObject(DataFormats.FileDrop, array);
                         this.DoDragDrop(data, DragDropEffects.Copy);
                     }
-                    else
-                    if (!this.diagram.options.readOnly && !this.stateDblclick)  //informations for draging
+                    else if (!this.diagram.options.readOnly && !this.stateDblclick)  //informations for draging
                     {
+                        if (!this.keyshift && this.keyctrl && !this.keyalt)  // start copy item
+                        {
+                            if (!this.isSelected(this.sourceNode))
+                            {
+                                this.SelectOnlyOneNode(this.sourceNode);
+                            }
+
+                            Nodes newNodes = this.diagram.AddDiagramPart(
+                                this.diagram.GetDiagramPart(this.selectedNodes),
+                                this.sourceNode.position.clone(),
+                                this.currentLayer.id
+                            );
+
+                            // TODO : tis is only hack, set new position of copied items by vector (position of node in aray may not by same)
+                            for (int i = 0; i < this.selectedNodes.Count(); i++)
+                            {
+                                newNodes[i].position.set(this.selectedNodes[i].position);
+                            }
+
+                            this.SelectNodes(newNodes);
+
+                            this.sourceNode = this.findNodeInMousePosition(new Position(e.X, e.Y));
+                        }
+
                         this.stateDragSelection = true;
                         MoveTimer.Enabled = true;
                         this.startNodePos.set(this.sourceNode.position); // starting position of draging item
@@ -709,7 +750,11 @@ namespace Diagram
         // EVENT Mouse move                                                                            // [MOUSE] [MOVE] [EVENT]
         public void DiagramApp_MouseMove(object sender, MouseEventArgs e)
         {
-            
+
+#if DEBUG
+            this.logEvent("MouseMove");
+#endif
+
             if (this.stateSelectingNodes || this.stateAddingNode)
             {
                 this.actualMousePos.set(e.X, e.Y);
@@ -739,6 +784,11 @@ namespace Diagram
         // EVENT Mouse Up                                                                              // [MOUSE] [UP] [EVENT]
         public void DiagramApp_MouseUp(object sender, MouseEventArgs e)
         {
+
+#if DEBUG
+            this.logEvent("MouseUp");
+#endif
+
             this.actualMousePos.set(e.X, e.Y);
             Position mouseTranslation = new Position(this.actualMousePos).subtract(this.startMousePos);
 
@@ -768,7 +818,7 @@ namespace Diagram
             {
                 if (!this.diagram.options.readOnly)
                 {
-                    if (this.sourceNode != null) // return node to starting position after connection is created
+                    if (this.sourceNode != null && !keyctrl) // return node to starting position after connection is created
                     {
                         Position translation = new Position(this.startNodePos)
                             .subtract(sourceNode.position);
@@ -866,23 +916,10 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DRAG+CTRL copy of node
+                // KEY CTRL+ALT+DRAG create node and conect with existing node
                 if (!isreadonly
+                    && !keyshift
                     && keyctrl
-                    && TargetNode == null
-                    && this.sourceNode != null)
-                {
-                    this.SelectNodes(
-                        this.diagram.AddDiagramPart(
-                            this.diagram.GetDiagramPart(this.selectedNodes),
-                            this.getMousePosition().clone().scale(this.scale).subtract(this.shift),
-                            this.currentLayer.id
-                        )
-                    );
-                }
-                else
-                // KEY DRAG+ALT create node and conect with existing node
-                if (!isreadonly
                     && keyalt
                     && TargetNode == null
                     && this.sourceNode != null)
@@ -895,8 +932,10 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DRAG+ALT create shortcut beetwen objects
+                // KEY CTRL+ALT+DRAG create shortcut beetwen objects
                 if (!isreadonly
+                    && !keyshift
+                    && keyctrl
                     && keyalt
                     && TargetNode != null
                     && this.sourceNode != null
@@ -947,7 +986,9 @@ namespace Diagram
                 else
                 // KEY DRAG+CTRL create node and conect with existing node
                 if (!isreadonly
-                    && keyctrl
+                    && !keyshift
+                    && !keyctrl
+                    && keyalt
                     && TargetNode != null
                     && this.sourceNode == null)
                 {
@@ -967,10 +1008,10 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DRAG+ALT create node and make shortcut to target node
+                // KEY CTRL+ALT+DRAG create node and make shortcut to target node
                 if (!isreadonly
                     && keyalt
-                    && !keyctrl
+                    && keyctrl
                     && !keyshift
                     && TargetNode != null
                     && this.sourceNode == null)
@@ -1066,10 +1107,12 @@ namespace Diagram
                     this.diagram.unsave("create", newNodes, newLines, this.shift, this.currentLayer.id); 
                 }
                 else
-                // KEY CTRL+MLEFT
+                // KEY ALT+MLEFT
                 // KEY DBLCLICK create new node
                 if (!isreadonly
-                    && (dblclick || keyctrl)
+                    && (dblclick || keyalt)
+                    && !keyshift
+                    && !keyctrl
                     && TargetNode == null
                     && this.sourceNode == null
                     && e.X == this.startMousePos.x
@@ -1079,10 +1122,11 @@ namespace Diagram
                     this.diagram.unsave("create", newNode, this.shift, this.currentLayer.id);
                 }
                 else
-                // KEY DRAG+CTRL copy style from node to other node
+                // KEY DRAG+ALT copy style from node to other node
                 if (!isreadonly
                     && !keyshift
-                    && keyctrl
+                    && !keyctrl
+                    && keyalt
                     && TargetNode != null
                     && this.sourceNode != null
                     && this.sourceNode != TargetNode)
@@ -1123,6 +1167,9 @@ namespace Diagram
                 else
                 // KEY DRAG make link between two nodes
                 if (!isreadonly
+                    && !keyshift
+                    && !keyctrl
+                    && !keyalt
                     && TargetNode != null
                     && this.sourceNode != null
                     && this.sourceNode != TargetNode)
@@ -1260,6 +1307,11 @@ namespace Diagram
         // EVENT Mouse Whell
         public void DiagramApp_MouseWheel(object sender, MouseEventArgs e)                             // [MOUSE] [WHELL] [EVENT]
         {
+
+#if DEBUG
+            this.logEvent("MouseWheel");
+#endif
+
             //throw new NotImplementedException();
             if (e.Delta > 0) // MWHELL
             {
@@ -1330,6 +1382,11 @@ namespace Diagram
         // EVENT Shortcuts
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)                           // [KEYBOARD] [EVENT]
         {
+
+#if DEBUG
+            this.logEvent("ProcessCmdKey");
+#endif
+
             if (this.isEditing() || this.stateSearching)
             {
                 return false;
@@ -1622,9 +1679,9 @@ namespace Diagram
 
             if (KeyMap.parseKey(KeyMap.minimalize, keyData)) // [KEY] [ESC] minimalize diagram view
             {
-                if (this.moveTimer.Enabled)
+                if (this.animationTimer.Enabled)
                 {
-                    this.moveTimer.Enabled = false; // stop move animation if exist
+                    this.animationTimer.Enabled = false; // stop move animation if exist
                 }
                 else
                 {
@@ -1632,7 +1689,7 @@ namespace Diagram
                 }
             }
 
-            if (KeyMap.parseKey(KeyMap.delete, keyData)) // [KEY] [DELETE] delete
+            if (KeyMap.parseKey(KeyMap.delete, keyData)) // [KEY] [DEL] [DELETE] delete
             {
                 this.DeleteSelectedNodes(this);
                 return true;
@@ -1687,6 +1744,11 @@ namespace Diagram
         // EVENT Key down
         public void DiagramApp_KeyDown(object sender, KeyEventArgs e)                                  // [KEYBOARD] [DOWN] [EVENT]
         {
+
+#if DEBUG
+            this.logEvent("KeyDown");
+#endif
+
             if (this.isEditing() || this.stateSearching)
             {
                 return;
@@ -1743,6 +1805,11 @@ namespace Diagram
         // EVENT Key up
         public void DiagramApp_KeyUp(object sender, KeyEventArgs e)
         {
+
+#if DEBUG
+            this.logEvent("KeyUp");
+#endif
+
             this.keyshift = false;
             this.keyctrl = false;
             this.keyalt = false;
@@ -1781,6 +1848,11 @@ namespace Diagram
         // EVENT Keypress
         public void DiagramApp_KeyPress(object sender, KeyPressEventArgs e)
         {
+
+#if DEBUG
+            this.logEvent("KeyPress");
+#endif
+
             if (this.isEditing() || this.stateSearching)
             {
                 return;
@@ -1819,6 +1891,11 @@ namespace Diagram
         // EVENT DROP file
         public void DiagramApp_DragDrop(object sender, DragEventArgs e)                                // [DROP] [EVENT]
         {
+
+#if DEBUG
+            this.logEvent("DragDrop");
+#endif
+
             try
             {
                 Nodes newNodes = new Nodes();
@@ -1919,12 +1996,22 @@ namespace Diagram
         // EVENT DROP drag enter
         public void DiagramApp_DragEnter(object sender, DragEventArgs e)                               // [DRAG] [EVENT]
         {
+
+#if DEBUG
+            this.logEvent("DragEnter");
+#endif
+
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
 
         // EVENT Resize
         public void DiagramApp_Resize(object sender, EventArgs e)                                      // [RESIZE] [EVENT]
         {
+
+#if DEBUG
+            this.logEvent("Resize");
+#endif
+
             if (this.stateZooming)
             {
                 this.stateZooming = false;
@@ -1948,6 +2035,11 @@ namespace Diagram
         // EVENT MOVE TIMER for move view when node is draged to window edge
         public void MoveTimer_Tick(object sender, EventArgs e)
         {
+
+#if DEBUG
+            this.logEvent("MoveTimer_Tick");
+#endif
+
             if (this.stateDragSelection || this.stateSelectingNodes || this.stateAddingNode)
             {
                 bool changed = false;
@@ -1978,7 +2070,7 @@ namespace Diagram
 
                 if (this.stateDragSelection) // drag selected  nodes
                 {
-                    if (this.sourceNode != null)
+                    if (this.sourceNode != null && this.sourceNode.selected)
                     {
                         Position vector = new Position();
 
@@ -2009,6 +2101,11 @@ namespace Diagram
         // EVENT Deactivate - lost focus
         public void DiagramApp_Deactivate(object sender, EventArgs e)                              // [FOCUS]
         {
+
+#if DEBUG
+            this.logEvent("Deactivate");
+#endif
+
             this.keyctrl = false;
             this.keyalt = false;
             this.keyshift = false;
@@ -3316,6 +3413,17 @@ namespace Diagram
                 this.shift.x = (int)(-position.x + this.ClientSize.Width / 2 * this.scale);
                 this.shift.y = (int)(-position.y + this.ClientSize.Height / 2 * this.scale);
             }
+        }
+
+        // NODE Check to shift
+        public bool isOnPosition(Position shift, int layer)
+        {
+            if (shift.x == this.shift.x && shift.y == this.shift.y && this.currentLayer.id == layer)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         // NODE Go to shift
@@ -4987,33 +5095,50 @@ namespace Diagram
                 }
                 else
                 {
-                    this.moveTimer.Enabled = true;
+                    this.animationTimer.Enabled = true;
                     
-                    this.moveTimerSpeed.set(this.shift.clone().invert())
+                    this.animationTimerSpeed.set(this.shift.clone().invert())
                         .subtract(node.position)
                         .add(this.ClientRectangle.Width / 2, this.ClientRectangle.Height / 2);
 
-                    double distance = this.moveTimerSpeed.size();
-                    this.moveTimerCounter = (distance > 1000) ? 10 : 30;
+                    double distance = this.animationTimerSpeed.size();
+                    this.animationTimerCounter = (distance > 1000) ? 10 : 30;
 
-                    this.moveTimerSpeed
-                        .split(this.moveTimerCounter);
+                    this.animationTimerSpeed
+                        .split(this.animationTimerCounter);
 
                 }
             }
         }
 
         // MOVE TIMER Go to node position
-        public void moveTimerTick(object sender, EventArgs e)
+        public void animationTimer_Tick(object sender, EventArgs e)
         {
 
-            this.shift.add(this.moveTimerSpeed);
+#if DEBUG
+            this.logEvent("animationTimer");
+#endif
+            this.shift.add(this.animationTimerSpeed);
 
-            if (--this.moveTimerCounter <= 0) {
-                this.moveTimer.Enabled = false;
+            if (--this.animationTimerCounter <= 0) {
+                this.animationTimer.Enabled = false;
             }
 
             this.diagram.InvalidateDiagram();
         }
+
+        /*************************************************************************************************************************/
+#if DEBUG
+
+        // DEBUG log event to output console and prevent duplicate events display
+        public void logEvent(string lastEvetMessage = "")
+        {
+            if (this.lastEvent != lastEvetMessage)
+            {
+                Debug.WriteLine(lastEvetMessage);
+                this.lastEvent = lastEvetMessage;
+            }
+        }
+#endif
     }
 }

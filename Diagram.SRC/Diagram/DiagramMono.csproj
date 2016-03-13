@@ -132,6 +132,8 @@
     <Compile Include="Src\Components\Breadcrumbs.cs" />
     <Compile Include="Src\Forms\LineWidthForm.cs" />
     <Compile Include="Src\Forms\ColorPickerForm.cs" />
+    <Compile Include="Src\Model\ColorType.cs" />
+    <Compile Include="Src\Model\Undo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

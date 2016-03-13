@@ -65,3 +65,7 @@ sudo chmod 755 ./infinite-diagram/usr/lib/infinite-diagram/Diagram.exe
 #build
 sudo dpkg-deb --build infinite-diagram
 lintian infinite-diagram.deb
+
+#create zip
+tar -zcvf ./Output/infinite-diagram.tar.gz ./infinite-diagram/usr/lib/infinite-diagram/
+zip -r ./Output/infinite-diagram.zip ./infinite-diagram/usr/lib/infinite-diagram/

@@ -46,7 +46,7 @@ namespace Diagram
 
                     if (el.Name.ToString() == "size")
                     {
-                        fontSize = float.Parse(el.Value);
+                        fontSize = float.Parse(el.Value.Replace(',', '.'));
                     }
 
                     if (el.Name.ToString() == "bold")
@@ -109,7 +109,7 @@ namespace Diagram
             XElement element = new XElement(name, new XAttribute("type", "font"));
 
             element.Add(new XElement("name", font.Name));
-            element.Add(new XElement("size", font.Size.ToString()));
+            element.Add(new XElement("size", font.Size.ToString().Replace(',', '.')));
             element.Add(new XElement("bold", font.Bold));
             element.Add(new XElement("italic", font.Italic));
             element.Add(new XElement("underline", font.Underline));

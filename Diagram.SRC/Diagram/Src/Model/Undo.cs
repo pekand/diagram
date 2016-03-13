@@ -291,6 +291,15 @@ namespace Diagram
             {
                 UndoOperation operation = operations.First();
 
+                // first restore position where change occurred
+                if (view != null && !view.isOnPosition(operation.position, operation.layer))
+                {
+                    view.goToShift(operation.position);
+                    view.goToLayer(operation.layer);
+                    view.Invalidate();
+                    return false;
+                }
+
                 // process all operations in same group
                 if (group != 0 && operation.group != group)
                 {
@@ -342,12 +351,6 @@ namespace Diagram
                     this.doUndoEdit(operation);
                 }
 
-                if (view != null)
-                {
-                    view.goToShift(operation.position);
-                    view.goToLayer(operation.layer);
-                }
-
                 operations.Pop();
                 result = true;
             } while (group != 0 && operations.Count() > 0);
@@ -380,6 +383,15 @@ namespace Diagram
             do
             {
                 UndoOperation operation = reverseOperations.First();
+
+                // first restore position where change occurred
+                if (view != null && !view.isOnPosition(operation.position, operation.layer))
+                {
+                    view.goToShift(operation.position);
+                    view.goToLayer(operation.layer);
+                    view.Invalidate();
+                    return false;
+                }
 
                 // process all operations in same group
                 if (group != 0 && operation.group != group)
@@ -432,13 +444,6 @@ namespace Diagram
 
                     operations.Push(roperation);
                     this.doUndoEdit(operation);
-                }
-
-                if (view != null)
-                {
-
-                    view.goToShift(operation.position);
-                    view.goToLayer(operation.layer);
                 }
 
                 reverseOperations.Pop();
