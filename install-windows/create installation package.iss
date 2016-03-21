@@ -2,11 +2,10 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Infinite Diagram"
-#define MyAppVersion "0.4"
+#define MyAppVersion GetFileVersion("files\Diagram.exe")
 #define MyAppPublisher "pekand@gmail.com"
 #define MyAppURL "http://www.infinite-diagram.com"
 #define MyAppExeName "Diagram.exe"
-
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -15,7 +14,7 @@
 AppId={{E381FAEC-36E6-4BD0-A685-B130B8E56D7D}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-;AppVerName={#MyAppName} {#MyAppVersion}
+AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}

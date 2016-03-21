@@ -1472,13 +1472,20 @@ namespace Diagram
         // NODE set image
         public void setImage(Node rec, string file)
         {
-            rec.isimage = true;
-            rec.imagepath = Os.makeRelative(file, this.FileName);
-            rec.image = new Bitmap(rec.imagepath);
-            string ext = Os.getExtension(file);
-            if (ext != ".ico") rec.image.MakeTransparent(Color.White);
-            rec.height = rec.image.Height;
-            rec.width = rec.image.Width;
+            try
+            {
+                rec.isimage = true;
+                rec.image = new Bitmap(file);
+                rec.imagepath = Os.makeRelative(file, this.FileName);
+                string ext = Os.getExtension(file);
+                if (ext != ".ico") rec.image.MakeTransparent(Color.White);
+                rec.height = rec.image.Height;
+                rec.width = rec.image.Width;
+            }
+            catch(Exception e)
+            {
+                Program.log.write("setImage: " + e.Message);
+            }
         }
 
         // NODE remove image

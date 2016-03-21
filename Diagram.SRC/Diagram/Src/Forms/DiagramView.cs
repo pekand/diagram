@@ -3813,7 +3813,7 @@ namespace Diagram
 
                     foreach (Node rec in this.selectedNodes)
                     {
-                        this.diagram.setImage(rec, this.DImage.FileName);
+                        this.diagram.setImage(rec, Os.getFullPath(this.DImage.FileName));
                     }
 
                     this.diagram.unsave();

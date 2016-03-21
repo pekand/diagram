@@ -23,7 +23,7 @@ namespace Diagram
             this.InitializeComponent();
 
             this.labelLicenceType.Text = Program.main.options.license;
-            this.labelVersionNumber.Text = Program.main.options.version;
+            this.labelVersionNumber.Text = Application.ProductVersion;
             this.linkLabelMe.Text = Program.main.options.author; 
             this.labelHomepage.Text = Program.main.options.home_page;
         }
