@@ -694,6 +694,7 @@ namespace Diagram
                                 this.SelectOnlyOneNode(this.sourceNode);
                             }
 
+                            // copy part of diagram
                             Nodes newNodes = this.diagram.AddDiagramPart(
                                 this.diagram.GetDiagramPart(this.selectedNodes),
                                 this.sourceNode.position.clone(),
@@ -721,7 +722,7 @@ namespace Diagram
                             .subtract(this.shift)
                             .subtract(this.sourceNode.position); // mouse position in node
 
-                        if (!this.keyctrl && !this.isSelected(this.sourceNode))
+                        if (!this.keyctrl && !this.keyshift && !this.isSelected(this.sourceNode))
                         {
                             this.SelectOnlyOneNode(this.sourceNode);
                             this.diagram.InvalidateDiagram();
@@ -1035,7 +1036,7 @@ namespace Diagram
                     this.OpenLinkAsync(this.sourceNode);
                 }
                 else
-                // KEY DBLCLICK+SHIFT open node edit form
+                // KEY SHIFT+DBLCLICK open node edit form
                 if (dblclick
                     && this.sourceNode != null
                     && !keyctrl
@@ -1045,7 +1046,7 @@ namespace Diagram
                     this.diagram.EditNode(this.sourceNode);
                 }
                 else
-                // KEY DBLCLICK+CTRL open link in node
+                // KEY CTRL+DBLCLICK open link in node
                 if (dblclick
                     && this.sourceNode != null
                     && keyctrl
@@ -1224,10 +1225,11 @@ namespace Diagram
                     
                     this.diagram.InvalidateDiagram();
                 }
-                // KEY CTRL+MLEFT add node to selected nodes
+                // KEY SHIFT+MLEFT add node to selected nodes
                 else
-                if (keyctrl
-                    && !keyshift
+                if (!keyctrl
+                    && keyshift
+                    && !keyalt
                     && this.sourceNode == TargetNode
                     && TargetNode != null
                     && !this.isSelected(TargetNode))
@@ -1235,9 +1237,11 @@ namespace Diagram
                     this.SelectNode(TargetNode);
                     this.diagram.InvalidateDiagram();
                 }
-                // KEY CLICK+CTRL remove node from selected nodes
+                // KEY SHIFT+MLEFT remove node from selected nodes
                 else
-                if (keyctrl
+                if (!keyctrl
+                    && keyshift
+                    && !keyalt
                     && TargetNode != null
                     && (this.sourceNode == TargetNode || this.isSelected(TargetNode)))
                 {
