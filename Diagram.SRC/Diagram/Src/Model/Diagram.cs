@@ -1475,7 +1475,7 @@ namespace Diagram
             try
             {
                 rec.isimage = true;
-                rec.image = new Bitmap(file);
+                rec.image = Media.getImage(file);
                 rec.imagepath = Os.makeRelative(file, this.FileName);
                 string ext = Os.getExtension(file);
                 if (ext != ".ico") rec.image.MakeTransparent(Color.White);
@@ -1762,7 +1762,7 @@ namespace Diagram
 
                                                             if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // skratenie cesty k suboru
                                                             {
-                                                                R.image = new Bitmap(R.imagepath);
+                                                                R.image = Media.getImage(R.imagepath);
                                                                 if (ext != ".ico") R.image.MakeTransparent(Color.White);
                                                                 R.height = R.image.Height;
                                                                 R.width = R.image.Width;

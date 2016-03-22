@@ -1930,7 +1930,7 @@ namespace Diagram
                         {
                             newrec.isimage = true;
                             newrec.imagepath = Os.makeRelative(file, this.diagram.FileName);
-                            newrec.image = new Bitmap(file);
+                            newrec.image = Media.getImage(file);
                             if (ext != ".ico") newrec.image.MakeTransparent(Color.White);
                             newrec.height = newrec.image.Height;
                             newrec.width = newrec.image.Width;
