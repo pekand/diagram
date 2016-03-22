@@ -70,6 +70,7 @@ namespace Diagram
         public bool stateZooming = false;               // actual zooming by space status
         public bool stateSearching = false;             // actual search edit form status
         public bool stateSourceNodeAlreadySelected = false; // actual check if is clicket two time in same node for rename node
+        public bool stateCoping = false;             // start copy part of diagram
 
         // ATTRIBUTES ZOOMING
         public Position zoomShift = new Position();// zoom view - left corner position before zoom space press
@@ -694,6 +695,8 @@ namespace Diagram
                                 this.SelectOnlyOneNode(this.sourceNode);
                             }
 
+                            this.stateCoping = true;
+
                             // copy part of diagram
                             Nodes newNodes = this.diagram.AddDiagramPart(
                                 this.diagram.GetDiagramPart(this.selectedNodes),
@@ -898,12 +901,17 @@ namespace Diagram
             if (buttonleft) // MLEFT
             {
 
+                if (this.stateCoping)
+                {
+                    this.stateCoping = false;
+                }
+                else
                 if (bottomScrollBar != null
-                    && rightScrollBar!=null
+                    && rightScrollBar != null
                     && (bottomScrollBar.MouseUp() || rightScrollBar.MouseUp()))
                 {
                     this.diagram.InvalidateDiagram();
-                }else
+                } else
                 // KEY MLEFT clear selection
                 if (!mousemove
                     && TargetNode == null
@@ -1033,7 +1041,8 @@ namespace Diagram
                     && !keyalt
                     && !keyshift)
                 {
-                    this.OpenLinkAsync(this.sourceNode);
+                    this.resetStates();
+                    this.OpenLinkAsync(this.sourceNode);//xxx
                 }
                 else
                 // KEY SHIFT+DBLCLICK open node edit form
@@ -1302,6 +1311,11 @@ namespace Diagram
                 }
             }
 
+            this.resetStates();
+        }
+
+        private void resetStates()
+        {
             this.stateDblclick = false;
             this.stateDragSelection = false;
             this.stateAddingNode = false;
