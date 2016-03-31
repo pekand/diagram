@@ -1,2 +1,2 @@
 #/bin/bash
-sudo dpkg -i infinite-diagram.deb
+sudo dpkg -i ./Output/infinite-diagram.deb

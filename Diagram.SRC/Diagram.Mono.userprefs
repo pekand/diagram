@@ -1,21 +1,14 @@
 ﻿<Properties StartupItem="Diagram/DiagramMono.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Diagram/Src/Model/Diagram.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Diagram/Src/Forms/DiagramView.cs">
     <Files>
-      <File FileName="Diagram/Src/Main.cs" Line="1" Column="1" />
-      <File FileName="Diagram/Src/Program.cs" Line="1" Column="1" />
-      <File FileName="Diagram/Src/Forms/DiagramView.cs" Line="33" Column="33" />
-      <File FileName="Diagram/Src/Components/EditLinkPanel.cs" Line="1" Column="1" />
-      <File FileName="Diagram/Src/Components/EditPanel.cs" Line="1" Column="1" />
-      <File FileName="Diagram/Src/Model/Diagram.cs" Line="16" Column="16" />
-      <File FileName="Diagram/Src/Forms/TextForm.cs" Line="1" Column="1" />
-      <File FileName="Diagram/Src/Tools/OptionsFile.cs" Line="1" Column="1" />
-      <File FileName="Diagram/Src/Lib/Os.cs" Line="2" Column="2" />
-      <File FileName="Diagram/Src/Forms/LineWidthForm.cs" Line="1" Column="1" />
+      <File FileName="Diagram/Src/Forms/DiagramView.cs" Line="41" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/home/kerberos/Desktop/Apps/infinite-diagram/Diagram.SRC/Diagram/Src/Forms/DiagramView.cs" line="1907" column="44" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

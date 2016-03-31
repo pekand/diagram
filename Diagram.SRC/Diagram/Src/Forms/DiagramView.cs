@@ -1904,6 +1904,7 @@ namespace Diagram
             {
                 Nodes newNodes = new Nodes();
 
+				string[] formats = e.Data.GetFormats();
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 foreach (string file in files)
                 {
