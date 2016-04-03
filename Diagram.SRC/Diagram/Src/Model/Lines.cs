@@ -19,5 +19,16 @@ namespace Diagram
         public Lines(Lines collection) : base(collection)
         {
         }
+
+        public void copy(Lines lines)
+        {
+            this.Clear();
+
+            foreach (Line line in lines)
+            {
+                this.Add(line.clone());
+            }
+
+        }
     }
 }

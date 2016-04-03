@@ -1143,10 +1143,8 @@ namespace Diagram
             return null;
         }
 
-        // NODE Create Rectangle on point
-        public Node createNode(
-            Node node
-        )
+        // NODE add node to diagram (create new id and layer if not exist) 
+        public Node createNode(Node node)
         {
             if (!this.options.readOnly)
             {
@@ -1632,7 +1630,7 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // CLIPBOARD PASTE paste part of diagram from clipboard                                   // CLIPBOARD
-        public Nodes AddDiagramPart(string DiagramXml, Position position, int layer)
+        public DiagramBlock AddDiagramPart(string DiagramXml, Position position, int layer)
         {
             Nodes NewNodes = new Nodes();
             Lines NewLines = new Lines();
@@ -1971,18 +1969,7 @@ namespace Diagram
                 }
             }
 
-            this.unsave("create", createdNodes, createdLines);
-
-            // filter only top nodes fromm all new created nodes. New nodes containing sublayer nodes.
-            Nodes topNodes = new Nodes();
-            foreach (Node node in NewNodes)
-            {
-                if (node.layer == layer) {
-                    topNodes.Add(node);
-                }
-            }
-
-            return topNodes;
+            return new DiagramBlock(NewNodes, createdLines);
         }
 
         // CLIPBOARD Get all layers nodes
@@ -2125,6 +2112,160 @@ namespace Diagram
             }
 
             return copyxml;
+        }
+
+        public DiagramBlock getPartOfDiagram(Nodes nodes)
+        {
+            Nodes allNodes = new Nodes();
+            Lines lines = new Lines();
+
+            foreach (Node node in nodes)
+            {
+                allNodes.Add(node);
+            }
+
+            if (allNodes.Count() > 0)
+            {
+                Nodes subnodes = new Nodes();
+
+                foreach (Node node in allNodes)
+                {
+                    getLayerNodes(node, subnodes);
+                }
+
+                foreach (Node node in subnodes)
+                {
+                    allNodes.Add(node);
+                }
+
+                foreach (Line li in this.getAllLines())
+                {
+                    foreach (Node recstart in allNodes)
+                    {
+                        if (li.start == recstart.id)
+                        {
+                            foreach (Node recend in allNodes)
+                            {
+                                if (li.end == recend.id)
+                                {
+                                    lines.Add(li);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return new DiagramBlock(allNodes, lines);
+        }
+
+        public DiagramBlock duplicatePartOfDiagram(Nodes nodes, int layer = 0)
+        {
+            // get part of diagram for duplicate
+            DiagramBlock diagramPart = this.getPartOfDiagram(nodes);
+
+            List<MappedNode> maps = new List<MappedNode>();
+
+            Nodes duplicatedNodes = new Nodes();
+            foreach (Node node in diagramPart.nodes)
+            {
+                duplicatedNodes.Add(node.clone());
+            }
+
+            // order nodes parent first (layer must exist when sub node is created)
+            Nodes NewReorderedNodes = new Nodes(); 
+            this.nodesReorderNodes(0, null, duplicatedNodes, NewReorderedNodes);
+
+            int layerParent = 0;
+
+            MappedNode mappedNode;
+            Nodes createdNodes = new Nodes();
+            Node newNode = null;
+            int oldId = 0;
+            foreach (Node rec in NewReorderedNodes)
+            {
+                layerParent = 0;
+                if (rec.layer == 0)
+                {
+                    layerParent = layer; 
+                }
+                else
+                {
+                    // find layer id for sub layer
+                    foreach (MappedNode mapednode in maps)
+                    {
+                        if (rec.layer == mapednode.oldId)
+                        {
+                            layerParent = mapednode.newNode.id;
+                            break;
+                        }
+                    }
+                }
+
+                rec.layer = layerParent;
+                rec.resize();
+
+                oldId = rec.id;
+                newNode = this.createNode(rec);
+
+                if (newNode != null)
+                {
+                    mappedNode = new MappedNode();
+                    mappedNode.oldId = oldId;
+                    mappedNode.newNode = newNode;
+                    createdNodes.Add(newNode);
+                    maps.Add(mappedNode);
+                }
+            }
+
+            // fix layers and shortcuts
+            foreach (Node rec in duplicatedNodes)
+            {
+                if (rec.shortcut != 0)
+                {
+                    foreach (MappedNode mapednode in maps)
+                    {
+                        if (rec.shortcut == mapednode.oldId)
+                        {
+                            rec.shortcut = mapednode.newNode.id;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            Lines createdLines = new Lines();
+            Line newLine = null;
+            foreach (Line line in diagramPart.lines)
+            {
+                foreach (MappedNode mapbegin in maps)
+                {
+                    if (line.start == mapbegin.oldId)
+                    {
+                        foreach (MappedNode mapend in maps)
+                        {
+                            if (line.end == mapend.oldId)
+                            {
+                                // create new line by connecting new nodes
+                                newLine = this.Connect(
+                                    mapbegin.newNode,
+                                    mapend.newNode,
+                                    line.arrow,
+                                    line.color,
+                                    line.width
+                                );
+
+                                if (newLine != null) // skip invalid lines (perent not exist)
+                                {
+                                    createdLines.Add(newLine);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return new DiagramBlock(createdNodes, createdLines);
         }
     }
 }

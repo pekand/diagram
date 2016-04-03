@@ -86,6 +86,11 @@ namespace Diagram
         public Node sourceNode = null;             // selected node by mouse
         public Nodes selectedNodes = new Nodes();  // all selected nodes by mouse
 
+        // ATTRIBUTES copy nodes
+        public Node copySourceNode = null;             // selected node by mouse for copy action
+        public Nodes copySelectedNodes = new Nodes();  // all selected nodes by mouse for copy action
+        public Lines copySelectedLines = new Lines();  // all selected nodes by mouse for copy action
+
         // ATTRIBUTES Layers
         public Layer currentLayer = null;
         public Position firstLayereShift = new Position();    // left corner position in zero top layer
@@ -690,29 +695,34 @@ namespace Diagram
                     {
                         if (!this.keyshift && this.keyctrl && !this.keyalt)  // start copy item
                         {
-                            if (!this.isSelected(this.sourceNode))
-                            {
-                                this.SelectOnlyOneNode(this.sourceNode);
-                            }
-
                             this.stateCoping = true;
 
-                            // copy part of diagram
-                            Nodes newNodes = this.diagram.AddDiagramPart(
-                                this.diagram.GetDiagramPart(this.selectedNodes),
-                                this.sourceNode.position.clone(),
-                                this.currentLayer.id
-                            );
-
-                            // TODO : tis is only hack, set new position of copied items by vector (position of node in aray may not by same)
-                            for (int i = 0; i < this.selectedNodes.Count(); i++)
+                            this.copySelectedNodes.copy(this.selectedNodes);
+                            foreach (Node node in this.copySelectedNodes)
                             {
-                                newNodes[i].position.set(this.selectedNodes[i].position);
+                                if (node.id == this.sourceNode.id)
+                                {
+                                    this.copySourceNode = node;
+                                    break;
+                                }
                             }
+                            this.copySelectedLines.copy(this.getSelectedLines());
 
-                            this.SelectNodes(newNodes);
+                            foreach (Line line in this.copySelectedLines)
+                            {
+                                foreach (Node node in this.copySelectedNodes)
+                                {
+                                    if (line.end == node.id)
+                                    {
+                                        line.endNode = node;
+                                    }
 
-                            this.sourceNode = this.findNodeInMousePosition(new Position(e.X, e.Y));
+                                    if (line.start == node.id)
+                                    {
+                                        line.startNode = node;
+                                    }
+                                }
+                            }
                         }
 
                         this.stateDragSelection = true;
@@ -725,7 +735,7 @@ namespace Diagram
                             .subtract(this.shift)
                             .subtract(this.sourceNode.position); // mouse position in node
 
-                        if (!this.keyctrl && !this.keyshift && !this.isSelected(this.sourceNode))
+                        if (!this.keyctrl && !this.keyalt && !this.keyshift && !this.isSelected(this.sourceNode))
                         {
                             this.SelectOnlyOneNode(this.sourceNode);
                             this.diagram.InvalidateDiagram();
@@ -770,7 +780,7 @@ namespace Diagram
                 this.actualMousePos.set(e.X, e.Y);
             }
             else
-            if (this.stateMoveView) // posunutie obrazovky
+            if (this.stateMoveView) // screen moving
             {
                 this.shift.x = (int)(this.startShift.x + (e.X - this.startMousePos.x) * this.scale);
                 this.shift.y = (int)(this.startShift.y + (e.Y - this.startMousePos.y) * this.scale);
@@ -901,9 +911,52 @@ namespace Diagram
             if (buttonleft) // MLEFT
             {
 
-                if (this.stateCoping)
+                if (this.stateCoping && mousemove) // CTRL+DRAG copy part of diagram
                 {
                     this.stateCoping = false;
+
+                    DiagramBlock newBlock = this.diagram.duplicatePartOfDiagram(this.selectedNodes, this.currentLayer.id);
+
+                    Position vector = new Position(this.actualMousePos)
+                        .scale(this.scale)
+                        .subtract(this.vmouse)
+                        .subtract(this.shift)
+                        .subtract(this.sourceNode.position);
+
+                    // filter only top nodes fromm all new created nodes. NewNodes containing sublayer nodes.
+                    Nodes topNodes = new Nodes();
+                    
+                    foreach (Node node in newBlock.nodes)
+                    {
+                        if (node.layer == this.currentLayer.id)
+                        {
+                            topNodes.Add(node);
+                        }
+                    }
+
+                    foreach (Node node in topNodes)
+                    {
+                        node.position.add(vector);
+                    }
+
+                    this.diagram.unsave("create", newBlock.nodes, newBlock.lines);
+
+                    this.SelectNodes(topNodes);
+
+                    this.diagram.unsave();
+                    this.diagram.InvalidateDiagram();
+                }
+                else
+                if (!keyalt && keyctrl && !keyshift && TargetNode != null && TargetNode.selected) // CTRL+CLICK add node to selection
+                {
+                    this.RemoveNodeFromSelection(TargetNode);
+                    this.diagram.InvalidateDiagram();
+                }
+                else
+                if (!keyalt && keyctrl && !keyshift && TargetNode != null && !TargetNode.selected) // CTRL+CLICK remove node from selection
+                {
+                    this.SelectNode(TargetNode);
+                    this.diagram.InvalidateDiagram();
                 }
                 else
                 if (bottomScrollBar != null
@@ -911,7 +964,8 @@ namespace Diagram
                     && (bottomScrollBar.MouseUp() || rightScrollBar.MouseUp()))
                 {
                     this.diagram.InvalidateDiagram();
-                } else
+                }
+                else
                 // KEY MLEFT clear selection
                 if (!mousemove
                     && TargetNode == null
@@ -969,7 +1023,7 @@ namespace Diagram
                         )
                         || (TargetNode != null && this.sourceNode == TargetNode)
                     )
-                    && Math.Sqrt(mouseTranslation.x* mouseTranslation.x + mouseTranslation.y * mouseTranslation.y) > 5
+                    && Math.Sqrt(mouseTranslation.x * mouseTranslation.x + mouseTranslation.y * mouseTranslation.y) > 5
                 )
                 {
                     Position vector = new Position(this.actualMousePos)
@@ -1042,7 +1096,7 @@ namespace Diagram
                     && !keyshift)
                 {
                     this.resetStates();
-                    this.OpenLinkAsync(this.sourceNode);//xxx
+                    this.OpenLinkAsync(this.sourceNode);
                 }
                 else
                 // KEY SHIFT+DBLCLICK open node edit form
@@ -1062,7 +1116,7 @@ namespace Diagram
                     && !keyalt
                     && !keyshift)
                 {
-                    if (this.sourceNode.link!="")
+                    if (this.sourceNode.link != "")
                     {
                         Os.openPathInSystem(this.sourceNode.link);
                     }
@@ -1082,7 +1136,7 @@ namespace Diagram
                             .scale(this.scale)
                             )
                         .add(
-                            (this.ClientSize.Width * this.scale) / 2, 
+                            (this.ClientSize.Width * this.scale) / 2,
                             (this.ClientSize.Height * this.scale) / 2
                         );
                     this.diagram.InvalidateDiagram();
@@ -1114,7 +1168,7 @@ namespace Diagram
                     }
 
                     this.SelectOnlyOneNode(newrec);
-                    this.diagram.unsave("create", newNodes, newLines, this.shift, this.currentLayer.id); 
+                    this.diagram.unsave("create", newNodes, newLines, this.shift, this.currentLayer.id);
                 }
                 else
                 // KEY ALT+MLEFT
@@ -1197,7 +1251,7 @@ namespace Diagram
                         foreach (Node rec in this.selectedNodes)
                         {
                             if (rec != TargetNode)
-                            { 
+                            {
                                 if (this.diagram.hasConnection(rec, TargetNode))
                                 {
                                     Line removeLine = this.diagram.getLine(rec, TargetNode);
@@ -1231,7 +1285,7 @@ namespace Diagram
                         this.diagram.undo.add("delete", null, removeLines, this.shift, this.currentLayer.id);
                     }
 
-                    
+
                     this.diagram.InvalidateDiagram();
                 }
                 // KEY SHIFT+MLEFT add node to selected nodes
@@ -1320,6 +1374,7 @@ namespace Diagram
             this.stateDragSelection = false;
             this.stateAddingNode = false;
             this.stateSelectingNodes = false;
+            this.stateCoping = false;
         }
 
         // EVENT Mouse Whell
@@ -2093,16 +2148,31 @@ namespace Diagram
                     {
                         Position vector = new Position();
 
-                        // calculate shift between start node position and current sourceNode position
-                        vector
-                            .set(this.actualMousePos)
-                            .scale(this.scale)
-                            .subtract(this.vmouse)
-                            .subtract(this.shift)
-                            .subtract(this.sourceNode.position);
+                        if (this.stateCoping) {
+                            // calculate shift between start node position and current sourceNode position
+                            vector
+                                .set(this.actualMousePos)
+                                .scale(this.scale)
+                                .subtract(this.vmouse)
+                                .subtract(this.shift)
+                                .subtract(this.copySourceNode.position);
 
+                            foreach (Node node in this.copySelectedNodes)
+                            {
+                                node.position.add(vector);
+                            }
+                        }
+                        else
                         if (this.selectedNodes.Count > 0)
                         {
+                            // calculate shift between start node position and current sourceNode position
+                            vector
+                                .set(this.actualMousePos)
+                                .scale(this.scale)
+                                .subtract(this.vmouse)
+                                .subtract(this.shift)
+                                .subtract(this.sourceNode.position);
+
                             foreach (Node node in this.selectedNodes)
                             {
                                 node.position.add(vector);
@@ -2799,7 +2869,12 @@ namespace Diagram
                 this.DrawGrid(gfx);
             }
 
-            this.DrawLines(gfx, correction, export);
+            this.DrawLines(gfx, this.currentLayer.lines, correction, export);
+
+            if (!export && this.stateCoping)
+            {
+                this.DrawLines(gfx, this.copySelectedLines, correction, export);
+            }
 
             // DRAW addingnode
             if (!export && this.stateAddingNode && !this.stateZooming && (this.actualMousePos.x != this.startMousePos.x || this.actualMousePos.y != this.startMousePos.y))
@@ -2807,7 +2882,11 @@ namespace Diagram
                 this.DrawAddNode(gfx);
             }
 
-            this.DrawNodes(gfx, correction, export);
+            this.DrawNodes(gfx, this.currentLayer.nodes, correction, export);
+
+            if (!export && this.stateCoping) {
+                this.DrawNodes(gfx, this.copySelectedNodes, correction, export);
+            }
 
             // DRAW select - select nodes by mouse drag (blue rectangle - multiselect)
             if (!export && this.stateSelectingNodes && (this.actualMousePos.x != this.startMousePos.x || this.actualMousePos.y != this.startMousePos.y))
@@ -2939,7 +3018,7 @@ namespace Diagram
         }
 
         // DRAW nodes
-        void DrawNodes(Graphics gfx, Position correction = null, bool export = false)
+        void DrawNodes(Graphics gfx, Nodes nodes, Position correction = null, bool export = false)
         {
             bool isvisible = false; // drawonly visible elements
             float s = this.scale;
@@ -2957,189 +3036,185 @@ namespace Diagram
             }
 
             // DRAW nodes
-            foreach (Node rec in this.currentLayer.nodes) // Loop through List with foreach
+            foreach (Node rec in nodes) // Loop through List with foreach
             {
-                if (rec.layer == this.currentLayer.id || rec.id == this.currentLayer.id)
+                // exclude not visible nodes
+                isvisible = false;
+                if (export)
                 {
-                    // vylucenie moznosti ktore netreba vykreslovat
+                    isvisible = true;
+                }
+                else
+                    if (0 + this.ClientSize.Width <= (this.shift.x + rec.position.x) / s)
+                {
                     isvisible = false;
-                    if (export && this.currentLayer.id == rec.layer)
-                    {
-                        isvisible = true;
-                    }
-                    else
-                        if (0 + this.ClientSize.Width <= (this.shift.x + rec.position.x) / s)
-                    {
-                        isvisible = false;
-                    }
-                    else
-                            if ((this.shift.x + rec.position.x + rec.width) / s <= 0)
-                    {
-                        isvisible = false;
-                    }
-                    else
-                                if (0 + this.ClientSize.Height <= (this.shift.y + rec.position.y) / s)
-                    {
-                        isvisible = false;
-                    }
-                    else
-                                    if ((this.shift.y + rec.position.y + rec.height) / s <= 0)
-                    {
-                        isvisible = false;
-                    }
-                    else
-                    {
-                        isvisible = true;
-                    }
+                }
+                else
+                        if ((this.shift.x + rec.position.x + rec.width) / s <= 0)
+                {
+                    isvisible = false;
+                }
+                else
+                            if (0 + this.ClientSize.Height <= (this.shift.y + rec.position.y) / s)
+                {
+                    isvisible = false;
+                }
+                else
+                                if ((this.shift.y + rec.position.y + rec.height) / s <= 0)
+                {
+                    isvisible = false;
+                }
+                else
+                {
+                    isvisible = true;
+                }
 
-                    if (isvisible && rec.visible)
+                if (isvisible && rec.visible)
+                {
+                    if (rec.isimage)
                     {
-                        if (rec.isimage)
+                        // DRAW Image
+                        gfx.DrawImage(
+                                rec.image, new Rectangle(
+                                    (int)((this.shift.x + cx + rec.position.x) / s),
+                                    (int)((this.shift.y + cy + rec.position.y) / s),
+                                    (int)(rec.width / s),
+                                    (int)(rec.height / s)
+                                )
+                        );
+
+                        if (rec.selected && !export)
                         {
-                            // DRAW Image
-                            gfx.DrawImage(
-                                    rec.image, new Rectangle(
-                                        (int)((this.shift.x + cx + rec.position.x) / s),
-                                        (int)((this.shift.y + cy + rec.position.y) / s),
-                                        (int)(rec.width / s),
-                                        (int)(rec.height / s)
-                                    )
+                            gfx.DrawRectangle(
+                                myPen2,
+                                new Rectangle(
+                                    (int)((this.shift.x + cx + rec.position.x - 3) / s),
+                                    (int)((this.shift.y + cy + rec.position.y - 3) / s),
+                                    (int)((rec.width + 5) / s),
+                                    (int)((rec.height + 5) / s)
+                                )
                             );
+                        }
 
+                    }
+                    else
+                    {
+                        if (this.diagram.options.coordinates)
+                        {
+                            Font drawFont = new Font("Arial", 10 / s);
+                            SolidBrush drawBrush = new SolidBrush(Color.Black);
+                            gfx.DrawString((rec.position.x).ToString() + "," + (rec.position.y).ToString(), drawFont, drawBrush, (this.shift.x + rec.position.x) / s, (this.shift.y + rec.position.y - 20) / s);
+                        }
+
+                        // DRAW rectangle
+                        Rectangle rect1 = new Rectangle(
+                            (int)((this.shift.x + cx + rec.position.x) / s),
+                            (int)((this.shift.y + cy + rec.position.y) / s),
+                            (int)((rec.width) / s),
+                            (int)((rec.height) / s)
+                        );
+
+                        // DRAW border
+
+                        if (rec.name.Trim() == "") // draw empty point
+                        {
+                            if (!rec.transparent) // draw fill point
+                            {
+                                gfx.FillEllipse(new SolidBrush(rec.color.color), rect1);
+                                if (this.diagram.options.borders) gfx.DrawEllipse(myPen1, rect1);
+                            }
+
+                            if (rec.haslayer && !export) // draw layer indicator
+                            {
+                                gfx.DrawEllipse(myPen1, new Rectangle(
+                                        (int)((this.shift.x + cx + rec.position.x - 2) / s),
+                                        (int)((this.shift.y + cy + rec.position.y - 2) / s),
+                                        (int)((rec.width + 4) / s),
+                                        (int)((rec.height + 4) / s)
+                                    )
+                                );
+                            }
+
+                            if (rec.selected && !export)
+                            {
+                                gfx.DrawEllipse(
+                                    myPen2,
+                                    new Rectangle(
+                                        (int)((this.shift.x + cx + rec.position.x - 2) / s),
+                                        (int)((this.shift.y + cy + rec.position.y - 2) / s),
+                                        (int)((rec.width + 4) / s),
+                                        (int)((rec.height + 4) / s)
+                                    )
+                                );
+                            }
+                        }
+                        else
+                        {
+                            // draw filled node rectangle
+                            if (!rec.transparent)
+                            {
+                                gfx.FillRectangle(new SolidBrush(rec.color.color), rect1);
+                                if (this.diagram.options.borders) gfx.DrawRectangle(myPen1, rect1);
+                            }
+
+                            // draw layer indicator
+                            if (rec.haslayer && !export)
+                            {
+                                gfx.DrawRectangle(
+                                    myPen1,
+                                    new Rectangle(
+                                        (int)((this.shift.x + cx + rec.position.x - 2) / s),
+                                        (int)((this.shift.y + cy + rec.position.y - 2) / s),
+                                        (int)((rec.width + 4) / s),
+                                        (int)((rec.height + 4) / s)
+                                    )
+                                );
+                            }
+
+                            // draw selected node border
                             if (rec.selected && !export)
                             {
                                 gfx.DrawRectangle(
                                     myPen2,
                                     new Rectangle(
-                                        (int)((this.shift.x + cx + rec.position.x - 3) / s),
-                                        (int)((this.shift.y + cy + rec.position.y - 3) / s),
-                                        (int)((rec.width + 5) / s),
-                                        (int)((rec.height + 5) / s)
+                                        (int)((this.shift.x + cx + rec.position.x - 2) / s),
+                                        (int)((this.shift.y + cy + rec.position.y - 2) / s),
+                                        (int)((rec.width + 4) / s),
+                                        (int)((rec.height + 4) / s)
                                     )
                                 );
                             }
 
-                        }
-                        else
-                        {
-                            if (this.diagram.options.coordinates)
-                            {
-                                Font drawFont = new Font("Arial", 10 / s);
-                                SolidBrush drawBrush = new SolidBrush(Color.Black);
-                                gfx.DrawString((rec.position.x).ToString() + "," + (rec.position.y).ToString(), drawFont, drawBrush, (this.shift.x + rec.position.x) / s, (this.shift.y + rec.position.y - 20) / s);
-                            }
 
-                            // DRAW rectangle
-                            Rectangle rect1 = new Rectangle(
-                                (int)((this.shift.x + cx + rec.position.x) / s),
-                                (int)((this.shift.y + cy + rec.position.y) / s),
-                                (int)((rec.width) / s),
-                                (int)((rec.height) / s)
+                            // DRAW text
+                            RectangleF rect2 = new RectangleF(
+                                (int)((this.shift.x + cx + rec.position.x + Node.NodePadding) / s),
+                                (int)((this.shift.y + cy + rec.position.y + Node.NodePadding) / s),
+                                (int)((rec.width - Node.NodePadding) / s),
+                                (int)((rec.height - Node.NodePadding) / s)
                             );
 
-                            // DRAW border
 
-                            if (rec.name.Trim() == "") // draw empty point
-                            {
-                                if (!rec.transparent) // draw fill point
-                                {
-                                    gfx.FillEllipse(new SolidBrush(rec.color.color), rect1);
-                                    if (this.diagram.options.borders) gfx.DrawEllipse(myPen1, rect1);
-                                }
-
-                                if (rec.haslayer && !export) // draw layer indicator
-                                {
-                                    gfx.DrawEllipse(myPen1, new Rectangle(
-                                            (int)((this.shift.x + cx + rec.position.x - 2) / s),
-                                            (int)((this.shift.y + cy + rec.position.y - 2) / s),
-                                            (int)((rec.width + 4) / s),
-                                            (int)((rec.height + 4) / s)
-                                        )
-                                    );
-                                }
-
-                                if (rec.selected && !export)
-                                {
-                                    gfx.DrawEllipse(
-                                        myPen2,
-                                        new Rectangle(
-                                            (int)((this.shift.x + cx + rec.position.x - 2) / s),
-                                            (int)((this.shift.y + cy + rec.position.y - 2) / s),
-                                            (int)((rec.width + 4) / s),
-                                            (int)((rec.height + 4) / s)
-                                        )
-                                    );
-                                }
-                            }
-                            else
-                            {
-                                // draw filled node rectangle
-                                if (!rec.transparent)
-                                {
-                                    gfx.FillRectangle(new SolidBrush(rec.color.color), rect1);
-                                    if (this.diagram.options.borders) gfx.DrawRectangle(myPen1, rect1);
-                                }
-
-                                // draw layer indicator
-                                if (rec.haslayer && !export)
-                                {
-                                    gfx.DrawRectangle(
-                                        myPen1,
-                                        new Rectangle(
-                                            (int)((this.shift.x + cx + rec.position.x - 2) / s),
-                                            (int)((this.shift.y + cy + rec.position.y - 2) / s),
-                                            (int)((rec.width + 4) / s),
-                                            (int)((rec.height + 4) / s)
-                                        )
-                                    );
-                                }
-
-                                // draw selected node border
-                                if (rec.selected && !export)
-                                {
-                                    gfx.DrawRectangle(
-                                        myPen2,
-                                        new Rectangle(
-                                            (int)((this.shift.x + cx + rec.position.x - 2) / s),
-                                            (int)((this.shift.y + cy + rec.position.y - 2) / s),
-                                            (int)((rec.width + 4) / s),
-                                            (int)((rec.height + 4) / s)
-                                        )
-                                    );
-                                }
-
-
-                                // DRAW text
-                                RectangleF rect2 = new RectangleF(
-                                    (int)((this.shift.x + cx + rec.position.x + Node.NodePadding) / s),
-                                    (int)((this.shift.y + cy + rec.position.y + Node.NodePadding) / s),
-                                    (int)((rec.width - Node.NodePadding) / s),
-                                    (int)((rec.height - Node.NodePadding) / s)
-                                );
-
-
-                                gfx.DrawString(
-                                    (rec.protect) ? Node.protectedName : rec.name,
-                                    new Font(
-                                       rec.font.FontFamily,
-                                       rec.font.Size / s,
-                                       rec.font.Style,
-                                       GraphicsUnit.Point,
-                                       ((byte)(0))
-                                    ),
-                                    new SolidBrush(rec.fontcolor.color),
-                                    rect2
-                                );
-                            }
+                            gfx.DrawString(
+                                (rec.protect) ? Node.protectedName : rec.name,
+                                new Font(
+                                    rec.font.FontFamily,
+                                    rec.font.Size / s,
+                                    rec.font.Style,
+                                    GraphicsUnit.Point,
+                                    ((byte)(0))
+                                ),
+                                new SolidBrush(rec.fontcolor.color),
+                                rect2
+                            );
                         }
                     }
                 }
-
             }
         }
 
         // DRAW lines
-        void DrawLines(Graphics gfx, Position correction = null, bool export = false)
+        void DrawLines(Graphics gfx, Lines lines, Position correction = null, bool export = false)
         {
             bool isvisible = false; // drawonly visible elements
             float s = this.scale;
@@ -3154,93 +3229,92 @@ namespace Diagram
             }
 
             // DRAW lines
-            foreach (Line lin in this.diagram.getAllLines()) // Loop through List with foreach
+            foreach (Line lin in lines) // Loop through List with foreach
             {
 
                 Node r1 = lin.startNode;
                 Node r2 = lin.endNode;
-                if (lin.layer == this.currentLayer.id)
+
+                isvisible = false;
+                if (export)
+                {
+                    isvisible = true;
+                }
+                else
+                    if (0 + this.ClientSize.Width <= (this.shift.x + r1.position.x) / s && 0 + this.ClientSize.Width <= (this.shift.x + r2.position.x) / s)
                 {
                     isvisible = false;
-                    if (export && (this.currentLayer.id == lin.startNode.layer || this.currentLayer.id == lin.endNode.layer))
-                    {
-                        isvisible = true;
-                    }
-                    else
-                        if (0 + this.ClientSize.Width <= (this.shift.x + r1.position.x) / s && 0 + this.ClientSize.Width <= (this.shift.x + r2.position.x) / s)
-                    {
-                        isvisible = false;
-                    }
-                    else
-                            if ((this.shift.x + r1.position.x) / s <= 0 && (this.shift.x + r2.position.x) / s <= 0)
-                    {
-                        isvisible = false;
-                    }
-                    else
-                                if (0 + this.ClientSize.Height <= (this.shift.y + r1.position.y) / s && 0 + this.ClientSize.Height <= (this.shift.y + r2.position.y) / s)
-                    {
-                        isvisible = false;
-                    }
-                    else
-                                    if ((this.shift.y + r1.position.y) / s <= 0 && (this.shift.y + r2.position.y) / s <= 0)
-                    {
-                        isvisible = false;
-                    }
-                    else
-                    {
-                        isvisible = true;
-                    }
-
-
-                    if (isvisible)
-                    {
-
-                        if (lin.arrow) // draw line as arrow
-                        {
-                            float x1 = (this.shift.x + cx + r1.position.x + r1.width / 2) / s;
-                            float y1 = (this.shift.y + cy + r1.position.y + r1.height / 2) / s;
-                            float x2 = (this.shift.x + cx + r2.position.x + r2.width / 2) / s;
-                            float y2 = (this.shift.y + cy + r2.position.y + r2.height / 2) / s;
-                            double nx1 = (Math.Cos(Math.PI / 2) * (x2 - x1) - Math.Sin(Math.PI / 2) * (y2 - y1) + x1);
-                            double ny1 = (Math.Sin(Math.PI / 2) * (x2 - x1) + Math.Cos(Math.PI / 2) * (y2 - y1) + y1);
-                            double nx2 = (Math.Cos(-Math.PI / 2) * (x2 - x1) - Math.Sin(-Math.PI / 2) * (y2 - y1) + x1);
-                            double ny2 = (Math.Sin(-Math.PI / 2) * (x2 - x1) + Math.Cos(-Math.PI / 2) * (y2 - y1) + y1);
-                            double size = Math.Sqrt((nx1 - x1) * (nx1 - x1) + (ny1 - y1) * (ny1 - y1));
-                            nx1 = x1 + (((nx1 - x1) / size) * 7) / s;
-                            ny1 = y1 + (((ny1 - y1) / size) * 7) / s;
-                            nx2 = x1 + (((nx2 - x1) / size) * 7) / s;
-                            ny2 = y1 + (((ny2 - y1) / size) * 7) / s;
-
-                            // Create points that define polygon.
-                            PointF point1 = new PointF((float)nx1, (float)ny1);
-                            PointF point2 = new PointF((float)nx2, (float)ny2);
-                            PointF point3 = new PointF(x2, y2);
-                            PointF[] curvePoints = { point1, point2, point3 };
-
-                            // Define fill mode.
-                            FillMode newFillMode = FillMode.Winding;
-
-                            // Fill polygon to screen.
-                            gfx.FillPolygon(
-                                new SolidBrush(lin.color.color),
-                                curvePoints,
-                                newFillMode
-                            );
-                        }
-                        else
-                        {
-                            // draw line
-                            gfx.DrawLine(
-                                new Pen(lin.color.color, lin.width / s > 1 ? (int)lin.width / s : 1),
-                                (this.shift.x + cx + r1.position.x + r1.width / 2) / s,
-                                (this.shift.y + cy + r1.position.y + r1.height / 2) / s,
-                                (this.shift.x + cx + r2.position.x + r2.width / 2) / s,
-                                (this.shift.y + cy + r2.position.y + r2.height / 2) / s
-                            );
-                        }
-
-                    }
                 }
+                else
+                        if ((this.shift.x + r1.position.x) / s <= 0 && (this.shift.x + r2.position.x) / s <= 0)
+                {
+                    isvisible = false;
+                }
+                else
+                            if (0 + this.ClientSize.Height <= (this.shift.y + r1.position.y) / s && 0 + this.ClientSize.Height <= (this.shift.y + r2.position.y) / s)
+                {
+                    isvisible = false;
+                }
+                else
+                                if ((this.shift.y + r1.position.y) / s <= 0 && (this.shift.y + r2.position.y) / s <= 0)
+                {
+                    isvisible = false;
+                }
+                else
+                {
+                    isvisible = true;
+                }
+
+
+                if (isvisible)
+                {
+
+                    if (lin.arrow) // draw line as arrow
+                    {
+                        float x1 = (this.shift.x + cx + r1.position.x + r1.width / 2) / s;
+                        float y1 = (this.shift.y + cy + r1.position.y + r1.height / 2) / s;
+                        float x2 = (this.shift.x + cx + r2.position.x + r2.width / 2) / s;
+                        float y2 = (this.shift.y + cy + r2.position.y + r2.height / 2) / s;
+                        double nx1 = (Math.Cos(Math.PI / 2) * (x2 - x1) - Math.Sin(Math.PI / 2) * (y2 - y1) + x1);
+                        double ny1 = (Math.Sin(Math.PI / 2) * (x2 - x1) + Math.Cos(Math.PI / 2) * (y2 - y1) + y1);
+                        double nx2 = (Math.Cos(-Math.PI / 2) * (x2 - x1) - Math.Sin(-Math.PI / 2) * (y2 - y1) + x1);
+                        double ny2 = (Math.Sin(-Math.PI / 2) * (x2 - x1) + Math.Cos(-Math.PI / 2) * (y2 - y1) + y1);
+                        double size = Math.Sqrt((nx1 - x1) * (nx1 - x1) + (ny1 - y1) * (ny1 - y1));
+                        nx1 = x1 + (((nx1 - x1) / size) * 7) / s;
+                        ny1 = y1 + (((ny1 - y1) / size) * 7) / s;
+                        nx2 = x1 + (((nx2 - x1) / size) * 7) / s;
+                        ny2 = y1 + (((ny2 - y1) / size) * 7) / s;
+
+                        // Create points that define polygon.
+                        PointF point1 = new PointF((float)nx1, (float)ny1);
+                        PointF point2 = new PointF((float)nx2, (float)ny2);
+                        PointF point3 = new PointF(x2, y2);
+                        PointF[] curvePoints = { point1, point2, point3 };
+
+                        // Define fill mode.
+                        FillMode newFillMode = FillMode.Winding;
+
+                        // Fill polygon to screen.
+                        gfx.FillPolygon(
+                            new SolidBrush(lin.color.color),
+                            curvePoints,
+                            newFillMode
+                        );
+                    }
+                    else
+                    {
+                        // draw line
+                        gfx.DrawLine(
+                            new Pen(lin.color.color, lin.width / s > 1 ? (int)lin.width / s : 1),
+                            (this.shift.x + cx + r1.position.x + r1.width / 2) / s,
+                            (this.shift.y + cy + r1.position.y + r1.height / 2) / s,
+                            (this.shift.x + cx + r2.position.x + r2.width / 2) / s,
+                            (this.shift.y + cy + r2.position.y + r2.height / 2) / s
+                        );
+                    }
+
+                }
+                
             }
         }
 
@@ -3997,13 +4071,25 @@ namespace Diagram
 
             if (retrievedData.GetDataPresent("DiagramXml"))  // [PASTE] [DIAGRAM] [CLIPBOARD OBJECT] insert diagram
             {
-                this.SelectNodes(
-                    this.diagram.AddDiagramPart(
-                        retrievedData.GetData("DiagramXml") as string,
-                        position.clone().scale(this.scale).subtract(this.shift),
-                        this.currentLayer.id
-                    )
+                DiagramBlock newBlock = this.diagram.AddDiagramPart(
+                    retrievedData.GetData("DiagramXml") as string,
+                    position.clone().scale(this.scale).subtract(this.shift),
+                    this.currentLayer.id
                 );
+
+                this.diagram.unsave("create", newBlock.nodes, newBlock.lines);
+
+                // filter only top nodes fromm all new created nodes. NewNodes containing sublayer nodes.
+                Nodes topNodes = new Nodes();
+                foreach (Node node in newBlock.nodes)
+                {
+                    if (node.layer == this.currentLayer.id)
+                    {
+                        topNodes.Add(node);
+                    }
+                }
+
+                this.SelectNodes(topNodes);
                 this.diagram.InvalidateDiagram();
             }
             else

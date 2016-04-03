@@ -155,6 +155,13 @@ namespace Diagram
             this.protect = node.protect;
         }
 
+        /// <summary>
+        /// clone node to new node</summary>
+        public Node clone()
+        {
+            return new Node(this);
+        }
+
         public SizeF measure()
         {
             SizeF s;

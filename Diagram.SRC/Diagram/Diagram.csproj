@@ -169,6 +169,7 @@
     <Compile Include="Src\Lib\Patterns.cs" />
     <Compile Include="Src\Main.cs" />
     <Compile Include="Src\Model\ColorType.cs" />
+    <Compile Include="Src\Model\DiagramBlock.cs" />
     <Compile Include="Src\Model\Layer.cs" />
     <Compile Include="Src\Model\Layers.cs" />
     <Compile Include="Src\Model\Lines.cs" />
