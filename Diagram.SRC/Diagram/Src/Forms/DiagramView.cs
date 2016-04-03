@@ -936,6 +936,7 @@ namespace Diagram
 
                     foreach (Node node in topNodes)
                     {
+                        node.position.add(vector);
                     }
 
                     this.diagram.unsave("create", newBlock.nodes, newBlock.lines);
