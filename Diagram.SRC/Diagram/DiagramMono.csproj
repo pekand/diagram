@@ -134,6 +134,7 @@
     <Compile Include="Src\Forms\ColorPickerForm.cs" />
     <Compile Include="Src\Model\ColorType.cs" />
     <Compile Include="Src\Model\Undo.cs" />
+    <Compile Include="Src\Model\DiagramBlock.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
