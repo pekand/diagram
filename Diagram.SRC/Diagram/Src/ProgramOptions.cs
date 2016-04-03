@@ -10,11 +10,6 @@ namespace Diagram
         [JsonIgnore]
         /// <summary>
         /// version</summary>
-        public String version = "0.4";
-
-        [JsonIgnore]
-        /// <summary>
-        /// version</summary>
         public String license = "GPLv3";
 
         [JsonIgnore]

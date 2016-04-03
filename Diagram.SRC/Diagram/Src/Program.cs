@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Reflection;
+
+// [VERSION]
+[assembly: AssemblyVersion("4.0.2")]
 
 /*! \mainpage Infinite diagram
  *
@@ -36,7 +40,7 @@ namespace Diagram
             try
             {
 #endif
-            main = new Main();
+                main = new Main();
                 if (main.mainform != null) {
                     Application.Run(main.mainform);
                 }

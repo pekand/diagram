@@ -155,6 +155,13 @@ namespace Diagram
             this.protect = node.protect;
         }
 
+        /// <summary>
+        /// clone node to new node</summary>
+        public Node clone()
+        {
+            return new Node(this);
+        }
+
         public SizeF measure()
         {
             SizeF s;
@@ -240,7 +247,7 @@ namespace Diagram
 
                     if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp")
                     {
-                        this.image = new Bitmap(this.imagepath);
+                        this.image = Media.getImage(this.imagepath);
                         if (ext != ".ico") this.image.MakeTransparent(Color.White);
                         this.height = this.image.Height;
                         this.width = this.image.Width;

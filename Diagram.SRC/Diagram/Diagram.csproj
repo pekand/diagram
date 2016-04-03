@@ -27,7 +27,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <AutorunEnabled>true</AutorunEnabled>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.0.0.0</ApplicationVersion>
+    <ApplicationVersion>4.0.2.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -169,6 +169,7 @@
     <Compile Include="Src\Lib\Patterns.cs" />
     <Compile Include="Src\Main.cs" />
     <Compile Include="Src\Model\ColorType.cs" />
+    <Compile Include="Src\Model\DiagramBlock.cs" />
     <Compile Include="Src\Model\Layer.cs" />
     <Compile Include="Src\Model\Layers.cs" />
     <Compile Include="Src\Model\Lines.cs" />

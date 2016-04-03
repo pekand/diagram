@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Diagram
@@ -24,6 +25,22 @@ namespace Diagram
         public static Color getColor(string color)
         {
             return System.Drawing.ColorTranslator.FromHtml(color);
+        }
+
+        /// <summary>
+        /// load image from file </summary>
+        public static Bitmap getImage(string file)
+        {
+            try
+            {
+                return new Bitmap(file);
+            }
+            catch (Exception e)
+            {
+                Program.log.write("getImage: " + e.Message);
+            }
+
+            return null;
         }
     }
 }

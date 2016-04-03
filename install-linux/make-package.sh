@@ -1,7 +1,7 @@
 #/bin/bash
 
 #clean
-sudo rm ./infinite-diagram.deb
+sudo rm ./Output/infinite-diagram*
 sudo rm -R ./infinite-diagram
 
 #make dir structure
@@ -65,7 +65,12 @@ sudo chmod 755 ./infinite-diagram/usr/lib/infinite-diagram/Diagram.exe
 #build
 sudo dpkg-deb --build infinite-diagram
 lintian infinite-diagram.deb
+sudo alien -r infinite-diagram.deb
 
 #create zip
+mkdir ./Output
 tar -zcvf ./Output/infinite-diagram.tar.gz ./infinite-diagram/usr/lib/infinite-diagram/
 zip -r ./Output/infinite-diagram.zip ./infinite-diagram/usr/lib/infinite-diagram/
+
+mv ./infinite-diagram.deb ./Output
+mv ./infinite-diagram*.rpm ./Output
