@@ -34,5 +34,15 @@ namespace Diagram
         {
             this.Sort((a, b) => a.position.x.CompareTo(b.position.x));
         }
+
+        public void copy(Nodes nodes)
+        {
+            this.Clear();
+
+            foreach (Node node in nodes) {
+                this.Add(node.clone());
+            }
+
+        }
     }
 }

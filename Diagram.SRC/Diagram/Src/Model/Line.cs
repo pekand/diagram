@@ -35,5 +35,12 @@ namespace Diagram
             this.width = line.width;
             this.layer = line.layer;
         }
+
+        /// <summary>
+        /// clone line to new line</summary>
+        public Line clone()
+        {
+            return new Line(this);
+        }
     }
 }

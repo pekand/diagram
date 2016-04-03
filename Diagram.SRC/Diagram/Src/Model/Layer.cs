@@ -17,6 +17,13 @@ namespace Diagram
         public Lines lines = new Lines();          // all layer lines
 
         // LAYER construct - parentNode is node in upper layer - parentLayer is layer whitch has parentNode
+        public Layer(Nodes nodes = null, Lines lines = null)
+        {
+            this.nodes = nodes;
+            this.lines = lines;
+        }
+
+        // LAYER construct - parentNode is node in upper layer - parentLayer is layer whitch has parentNode
         public Layer(Node parentNode = null, Layer parentLayer = null)
         {
             if (parentNode != null)
