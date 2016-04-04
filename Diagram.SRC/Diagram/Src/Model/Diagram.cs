@@ -2025,6 +2025,13 @@ namespace Diagram
                 int miny = copy[0].position.y;
                 int minid = copy[0].id;
 
+                foreach (Node node in copy)
+                {
+                    if (node.position.x < minx) minx = node.position.x;
+                    if (node.position.y < miny) miny = node.position.y;
+                    if (node.id < minid) minid = node.id;
+                }
+
                 Nodes subnodes = new Nodes();
 
                 foreach (Node node in copy)
@@ -2035,13 +2042,6 @@ namespace Diagram
                 foreach (Node node in subnodes)
                 {
                     copy.Add(node);
-                }
-
-                foreach (Node node in copy)
-                {
-                    if (node.position.x < minx) minx = node.position.x;
-                    if (node.position.y < miny) miny = node.position.y;
-                    if (node.id < minid) minid = node.id;
                 }
 
                 foreach (Node rec in copy)
@@ -2174,7 +2174,7 @@ namespace Diagram
 
             // order nodes parent first (layer must exist when sub node is created)
             Nodes NewReorderedNodes = new Nodes(); 
-            this.nodesReorderNodes(0, null, duplicatedNodes, NewReorderedNodes);
+            this.nodesReorderNodes(layer, null, duplicatedNodes, NewReorderedNodes);
 
             int layerParent = 0;
 
@@ -2184,23 +2184,18 @@ namespace Diagram
             int oldId = 0;
             foreach (Node rec in NewReorderedNodes)
             {
-                layerParent = 0;
-                if (rec.layer == 0)
+                layerParent = layer;
+                
+                // find layer id for sub layer
+                foreach (MappedNode mapednode in maps)
                 {
-                    layerParent = layer; 
-                }
-                else
-                {
-                    // find layer id for sub layer
-                    foreach (MappedNode mapednode in maps)
+                    if (rec.layer == mapednode.oldId)
                     {
-                        if (rec.layer == mapednode.oldId)
-                        {
-                            layerParent = mapednode.newNode.id;
-                            break;
-                        }
+                        layerParent = mapednode.newNode.id;
+                        break;
                     }
                 }
+
 
                 rec.layer = layerParent;
                 rec.resize();

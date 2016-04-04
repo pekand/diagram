@@ -35,8 +35,6 @@ namespace Diagram
 
 // prevent catch global exception in debug mode
 #if !DEBUG
-
-
             try
             {
 #endif
