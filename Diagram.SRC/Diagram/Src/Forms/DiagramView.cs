@@ -1370,10 +1370,15 @@ namespace Diagram
 
         private void resetStates()
         {
-            this.stateDblclick = false;
+            this.MoveTimer.Enabled = false;
             this.stateDragSelection = false;
-            this.stateAddingNode = false;
+            this.stateMoveView = false;
             this.stateSelectingNodes = false;
+            this.stateAddingNode = false;
+            this.stateDblclick = false;
+            this.stateZooming = false;
+            this.stateSearching = false;
+            this.stateSourceNodeAlreadySelected = false;
             this.stateCoping = false;
         }
 
@@ -3350,11 +3355,16 @@ namespace Diagram
         public void setFocus()
         {
             //diagram bring to top hack in windows
-            this.WindowState = FormWindowState.Minimized;
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
-
-            this.Focus();
+            if (this.WindowState == FormWindowState.Minimized)
+                this.WindowState = FormWindowState.Normal;
+            else
+            {
+                TopMost = true;
+                Focus();
+                BringToFront();
+                TopMost = false;
+                this.Activate();
+            }
         }
 
         // VIEW page up
