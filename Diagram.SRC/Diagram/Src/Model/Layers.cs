@@ -10,6 +10,8 @@ namespace Diagram
     {
         public List<Layer> layers = new List<Layer>();
 
+        public Nodes markedNodes = new Nodes();
+
         public Layers()
         {
             this.createLayer();
