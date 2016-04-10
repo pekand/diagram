@@ -112,6 +112,9 @@ namespace Diagram
         public int currentPositionLayer = 0;
         public List<int> nodesSearchResult = new List<int>(); // all nodes found by search panel
 
+        // MARKED NODES
+        int lastMarkNode = 0; // last marked node in navigation history
+
         // BREADCRUMBS
         public Breadcrumbs breadcrumbs = null;
 
@@ -1368,12 +1371,18 @@ namespace Diagram
             this.resetStates();
         }
 
+        // EVENT revert states to default
         private void resetStates()
         {
-            this.stateDblclick = false;
+            this.MoveTimer.Enabled = false;
             this.stateDragSelection = false;
-            this.stateAddingNode = false;
+            this.stateMoveView = false;
             this.stateSelectingNodes = false;
+            this.stateAddingNode = false;
+            this.stateDblclick = false;
+            //this.stateZooming = false;
+            this.stateSearching = false;
+            this.stateSourceNodeAlreadySelected = false;
             this.stateCoping = false;
         }
 
@@ -1491,6 +1500,24 @@ namespace Diagram
             if (KeyMap.parseKey(KeyMap.alignToGroup, keyData)) // [KEY] [CTRL+K] align to group
             {
                 this.alignToGroup();
+                return true;
+            }
+
+            if (KeyMap.parseKey(KeyMap.markNodes, keyData)) // [KEY] [CTRL+M] mark node for navigation history
+            {
+                this.switchMarkForSelectedNodes();
+                return true;
+            }
+
+            if (KeyMap.parseKey(KeyMap.prevMarkNode, keyData)) // [KEY] [ALT+LEFT] find prev marked node
+            {
+                this.prevMarkedNode();
+                return true;
+            }
+
+            if (KeyMap.parseKey(KeyMap.nextMarkNode, keyData)) // [KEY] [ALT+RIGHT] find next marked node
+            {
+                this.nextMarkedNode();
                 return true;
             }
 
@@ -2891,7 +2918,7 @@ namespace Diagram
             // DRAW select - select nodes by mouse drag (blue rectangle - multiselect)
             if (!export && this.stateSelectingNodes && (this.actualMousePos.x != this.startMousePos.x || this.actualMousePos.y != this.startMousePos.y))
             {
-                this.DrawSelectNodes(gfx);
+                this.DrawNodesSelectArea(gfx);
             }
 
             // PREVIEW draw zoom mini screen
@@ -2972,8 +2999,9 @@ namespace Diagram
         }
 
         // DRAW select node by mouse drag (blue rectangle)
-        void DrawSelectNodes(Graphics gfx)
+        void DrawNodesSelectArea(Graphics gfx)
         {
+            SolidBrush brush = new SolidBrush(Color.FromArgb(100, 10, 200, 200));
 
             int a = (int)(+this.shift.x - this.startShift.x + this.startMousePos.x * this.scale);
             int b = (int)(+this.shift.y - this.startShift.y + this.startMousePos.y * this.scale);
@@ -2983,7 +3011,14 @@ namespace Diagram
             if (c < a) { temp = a; a = c; c = temp; }
             if (d < b) { temp = d; d = b; b = temp; }
 
-            gfx.FillRectangle(new SolidBrush(Color.FromArgb(100, 10, 200, 200)), new Rectangle((int)(a / this.scale), (int)(b / this.scale), (int)((c - a) / this.scale), (int)((d - b) / this.scale)));
+            gfx.FillRectangle(
+                brush, 
+                new Rectangle(
+                    (int)(a / this.scale), (int)(b / this.scale), 
+                    (int)((c - a) / this.scale), 
+                    (int)((d - b) / this.scale)
+                )
+            );
         }
 
         // DRAW add new node by drag
@@ -3023,8 +3058,10 @@ namespace Diagram
             bool isvisible = false; // drawonly visible elements
             float s = this.scale;
 
-            Pen myPen1 = new Pen(Color.Black, 1);
-            Pen myPen2 = new Pen(Color.Black, 3);
+            Pen nodeBorder = new Pen(Color.Black, 1);
+            Pen nodeSelectBorder = new Pen(Color.Black, 3);
+            Pen nodeLinkBorder = new Pen(Color.DarkRed, 3);
+            Pen nodeMarkBorder = new Pen(Color.Navy, 3);
 
             // fix position for image file export
             int cx = 0;
@@ -3086,7 +3123,7 @@ namespace Diagram
                         if (rec.selected && !export)
                         {
                             gfx.DrawRectangle(
-                                myPen2,
+                                nodeSelectBorder,
                                 new Rectangle(
                                     (int)((this.shift.x + cx + rec.position.x - 3) / s),
                                     (int)((this.shift.y + cy + rec.position.y - 3) / s),
@@ -3121,12 +3158,12 @@ namespace Diagram
                             if (!rec.transparent) // draw fill point
                             {
                                 gfx.FillEllipse(new SolidBrush(rec.color.color), rect1);
-                                if (this.diagram.options.borders) gfx.DrawEllipse(myPen1, rect1);
+                                if (this.diagram.options.borders) gfx.DrawEllipse(nodeBorder, rect1);
                             }
 
                             if (rec.haslayer && !export) // draw layer indicator
                             {
-                                gfx.DrawEllipse(myPen1, new Rectangle(
+                                gfx.DrawEllipse(nodeBorder, new Rectangle(
                                         (int)((this.shift.x + cx + rec.position.x - 2) / s),
                                         (int)((this.shift.y + cy + rec.position.y - 2) / s),
                                         (int)((rec.width + 4) / s),
@@ -3138,7 +3175,7 @@ namespace Diagram
                             if (rec.selected && !export)
                             {
                                 gfx.DrawEllipse(
-                                    myPen2,
+                                    (rec.link != "") ? nodeLinkBorder : ((rec.mark) ? nodeMarkBorder : nodeSelectBorder),
                                     new Rectangle(
                                         (int)((this.shift.x + cx + rec.position.x - 2) / s),
                                         (int)((this.shift.y + cy + rec.position.y - 2) / s),
@@ -3154,14 +3191,14 @@ namespace Diagram
                             if (!rec.transparent)
                             {
                                 gfx.FillRectangle(new SolidBrush(rec.color.color), rect1);
-                                if (this.diagram.options.borders) gfx.DrawRectangle(myPen1, rect1);
+                                if (this.diagram.options.borders) gfx.DrawRectangle(nodeBorder, rect1);
                             }
 
                             // draw layer indicator
                             if (rec.haslayer && !export)
                             {
                                 gfx.DrawRectangle(
-                                    myPen1,
+                                    nodeBorder,
                                     new Rectangle(
                                         (int)((this.shift.x + cx + rec.position.x - 2) / s),
                                         (int)((this.shift.y + cy + rec.position.y - 2) / s),
@@ -3175,7 +3212,7 @@ namespace Diagram
                             if (rec.selected && !export)
                             {
                                 gfx.DrawRectangle(
-                                    myPen2,
+                                    (rec.link != "") ? nodeLinkBorder: ((rec.mark)? nodeMarkBorder : nodeSelectBorder),
                                     new Rectangle(
                                         (int)((this.shift.x + cx + rec.position.x - 2) / s),
                                         (int)((this.shift.y + cy + rec.position.y - 2) / s),
@@ -3350,11 +3387,16 @@ namespace Diagram
         public void setFocus()
         {
             //diagram bring to top hack in windows
-            this.WindowState = FormWindowState.Minimized;
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
-
-            this.Focus();
+            if (this.WindowState == FormWindowState.Minimized)
+                this.WindowState = FormWindowState.Normal;
+            else
+            {
+                TopMost = true;
+                Focus();
+                BringToFront();
+                TopMost = false;
+                this.Activate();
+            }
         }
 
         // VIEW page up
@@ -5041,6 +5083,185 @@ namespace Diagram
             }
 
             return SelectedLines;
+        }
+
+        // NODE MARK nodes for navigation history
+        public void switchMarkForSelectedNodes()
+        {
+            if (this.selectedNodes.Count > 0)
+            {
+                this.diagram.unsave("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+
+                bool found = false;
+                foreach (Node node in this.selectedNodes)
+                {
+                    if (node.mark)
+                    {
+                        found = true;
+                    }
+                }
+
+                if (found)
+                {
+                    this.unMarkSelectedNodes();
+                }
+                else
+                {
+                    this.markSelectedNodes();
+                }
+
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // NODE MARK nodes for navigation history
+        public void markSelectedNodes()
+        {
+            foreach (Node node in this.selectedNodes)
+            {
+                node.mark = true;
+            }
+        }
+
+        // NODE MARK unmark nodes for navigation history
+        public void unMarkSelectedNodes()
+        {
+            foreach (Node node in this.selectedNodes)
+            {
+                node.mark = false;
+            }
+        }
+
+        // NODE MARK find next marked node
+        public void nextMarkedNode()
+        {
+            Nodes nodes = this.diagram.getAllNodes();
+            Nodes markedNodes = this.diagram.getAllNodes();
+
+            // get all marked nodes
+            foreach (Node node in nodes)
+            {
+                if (node.mark) {
+                    markedNodes.Add(node);
+                }
+            }
+
+            // no marked node found
+            if (markedNodes.Count == 0)
+            {
+                return;
+            }
+
+            // find last marked node
+            if (lastMarkNode == 0)
+            {
+                lastMarkNode = markedNodes[0].id;
+                this.goToNode(markedNodes[0]);
+                this.diagram.InvalidateDiagram();
+                return;
+            }
+
+            //lastMarkNode position in markedNodes
+            bool found = false;
+            int i = 0;
+            for (i = 0; i < markedNodes.Count; i++)
+            {
+                if (lastMarkNode == markedNodes[i].id)
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            //node is not longer marked then start from beginning
+            if (!found)
+            {
+                lastMarkNode = markedNodes[0].id;
+                this.goToNode(markedNodes[0]);
+                this.diagram.InvalidateDiagram();
+                return;
+            }
+
+            // find next node
+            if (i < (markedNodes.Count - 1))
+            {
+                lastMarkNode = markedNodes[i + 1].id;
+                this.goToNode(markedNodes[i + 1]);
+                this.diagram.InvalidateDiagram();
+                return;
+            }
+
+            // go to fisrt node
+            lastMarkNode = markedNodes[0].id;
+            this.goToNode(markedNodes[0]);
+            this.diagram.InvalidateDiagram();
+        }
+
+        // NODE MARK find prev marked node
+        public void prevMarkedNode()
+        {
+            Nodes nodes = this.diagram.getAllNodes();
+            Nodes markedNodes = this.diagram.getAllNodes();
+
+            // get all marked nodes
+            foreach (Node node in nodes)
+            {
+                if (node.mark)
+                {
+                    markedNodes.Add(node);
+                }
+            }
+
+            // no marked node found
+            if (markedNodes.Count == 0)
+            {
+                return;
+            }
+
+            // find last marked node
+            if (lastMarkNode == 0)
+            {
+                lastMarkNode = markedNodes[0].id;
+                this.goToNode(markedNodes[0]);
+                this.diagram.InvalidateDiagram();
+                return;
+            }
+
+            //lastMarkNode position in markedNodes
+            bool found = false;
+            int i = 0;
+            for (i = 0; i < markedNodes.Count; i++)
+            {
+                if (lastMarkNode == markedNodes[i].id)
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            //node is not longer marked then start from beginning
+            if (!found)
+            {
+                lastMarkNode = markedNodes[0].id;
+                this.goToNode(markedNodes[0]);
+                this.diagram.InvalidateDiagram();
+                return;
+            }
+
+            // find prev node
+            if (0 < i)
+            {
+                lastMarkNode = markedNodes[i - 1].id;
+                this.goToNode(markedNodes[i - 1]);
+                this.diagram.InvalidateDiagram();
+                return;
+            }
+
+            // go to last node
+            lastMarkNode = markedNodes[markedNodes.Count - 1].id;
+            this.goToNode(markedNodes[markedNodes.Count - 1]);
+            this.diagram.InvalidateDiagram();
         }
 
         // LINE change color of lines

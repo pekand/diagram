@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using System.Reflection;
 
 // [VERSION]
-[assembly: AssemblyVersion("4.0.2")]
+[assembly: AssemblyVersion("4.0.3")]
 
 /*! \mainpage Infinite diagram
  *
@@ -35,8 +35,6 @@ namespace Diagram
 
 // prevent catch global exception in debug mode
 #if !DEBUG
-
-
             try
             {
 #endif

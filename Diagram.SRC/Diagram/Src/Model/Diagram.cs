@@ -177,7 +177,7 @@ namespace Diagram
 
                     main.passwordForm.Clear();
                     main.passwordForm.ShowDialog();
-                    if (!main.passwordForm.cancled)
+                    if (main.passwordForm.ok)
                     {
                         try
                         {
@@ -194,14 +194,14 @@ namespace Diagram
                     }
                     else
                     {
-                        main.passwordForm.CloseForm();
+                        main.passwordForm = null;
                         this.CloseFile();
                         return false;
                     }
 
                 } while (error);
 
-                main.passwordForm.CloseForm();
+                main.passwordForm = null;
                 return true;
             }
             else
@@ -426,6 +426,11 @@ namespace Diagram
                                                 if (el.Name.ToString() == "shortcut")
                                                 {
                                                     R.shortcut = Int32.Parse(el.Value);
+                                                }
+
+                                                if (el.Name.ToString() == "mark")
+                                                {
+                                                    R.mark = bool.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "attachment")
@@ -776,6 +781,7 @@ namespace Diagram
                     if (rec.link != "") rectangle.Add(new XElement("link", rec.link));
                     if (rec.scriptid != "") rectangle.Add(new XElement("scriptid", rec.scriptid));
                     if (rec.shortcut != 0) rectangle.Add(new XElement("shortcut", rec.shortcut));
+                    if (rec.mark) rectangle.Add(new XElement("mark", rec.mark));
                     if (rec.attachment != "") rectangle.Add(new XElement("attachment", rec.attachment));
 
                     rectangle.Add(new XElement("layer", rec.layer));
@@ -1431,6 +1437,12 @@ namespace Diagram
             if (node.shortcut > 0) node.shortcut = 0;
         }
 
+        // NODES remove shortcut
+        public void RemoveMark(Node node)
+        {
+            if (node.mark) node.mark = false;
+        }
+
         // NODE Reset font to default font for group of nodes
         public void ResetFont(Nodes nodes, Position position = null, int layer = 0)
         {
@@ -1730,6 +1742,11 @@ namespace Diagram
                                                     R.shortcut = Int32.Parse(el.Value);
                                                 }
 
+                                                if (el.Name.ToString() == "mark")
+                                                {
+                                                    R.mark = bool.Parse(el.Value);
+                                                }
+
                                                 if (el.Name.ToString() == "transparent")
                                                 {
                                                     R.transparent = bool.Parse(el.Value);
@@ -2025,6 +2042,13 @@ namespace Diagram
                 int miny = copy[0].position.y;
                 int minid = copy[0].id;
 
+                foreach (Node node in copy)
+                {
+                    if (node.position.x < minx) minx = node.position.x;
+                    if (node.position.y < miny) miny = node.position.y;
+                    if (node.id < minid) minid = node.id;
+                }
+
                 Nodes subnodes = new Nodes();
 
                 foreach (Node node in copy)
@@ -2035,13 +2059,6 @@ namespace Diagram
                 foreach (Node node in subnodes)
                 {
                     copy.Add(node);
-                }
-
-                foreach (Node node in copy)
-                {
-                    if (node.position.x < minx) minx = node.position.x;
-                    if (node.position.y < miny) miny = node.position.y;
-                    if (node.id < minid) minid = node.id;
                 }
 
                 foreach (Node rec in copy)
@@ -2057,6 +2074,7 @@ namespace Diagram
                     rectangle.Add(new XElement("fontcolor", rec.fontcolor));
                     if (rec.link != "") rectangle.Add(new XElement("link", rec.link));
                     if (rec.shortcut != 0 && rec.shortcut - minid + 1 > 0) rectangle.Add(new XElement("shortcut", rec.shortcut + 1));
+                    if (rec.mark) rectangle.Add(new XElement("mark", rec.mark));
                     rectangle.Add(new XElement("transparent", rec.transparent));
 
                     if (rec.embeddedimage) rectangle.Add(new XElement("embeddedimage", rec.embeddedimage));
@@ -2174,7 +2192,7 @@ namespace Diagram
 
             // order nodes parent first (layer must exist when sub node is created)
             Nodes NewReorderedNodes = new Nodes(); 
-            this.nodesReorderNodes(0, null, duplicatedNodes, NewReorderedNodes);
+            this.nodesReorderNodes(layer, null, duplicatedNodes, NewReorderedNodes);
 
             int layerParent = 0;
 
@@ -2184,23 +2202,18 @@ namespace Diagram
             int oldId = 0;
             foreach (Node rec in NewReorderedNodes)
             {
-                layerParent = 0;
-                if (rec.layer == 0)
+                layerParent = layer;
+                
+                // find layer id for sub layer
+                foreach (MappedNode mapednode in maps)
                 {
-                    layerParent = layer; 
-                }
-                else
-                {
-                    // find layer id for sub layer
-                    foreach (MappedNode mapednode in maps)
+                    if (rec.layer == mapednode.oldId)
                     {
-                        if (rec.layer == mapednode.oldId)
-                        {
-                            layerParent = mapednode.newNode.id;
-                            break;
-                        }
+                        layerParent = mapednode.newNode.id;
+                        break;
                     }
                 }
+
 
                 rec.layer = layerParent;
                 rec.resize();

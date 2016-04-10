@@ -164,6 +164,11 @@ namespace Diagram
             // open existing diagram file
             else
             {
+                if (passwordForm != null) // prevent open diagram if another diagram triing open 
+                {
+                    return;
+                }
+
                 if (Os.FileExists(FilePath))
                 {
                     FilePath = Os.getFullPath(FilePath);
@@ -187,6 +192,7 @@ namespace Diagram
                                 if (diagram.DiagramViews.Count() > 0)
                                 {
                                     Program.log.write("window get focus");
+                                    Program.log.write("OpenDiagram: diagramView: setFocus");
                                     diagram.DiagramViews[0].setFocus();
                                 }
                                 alreadyOpen = true;

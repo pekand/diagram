@@ -14,8 +14,6 @@ namespace Diagram
         {
             string title = url;
 
-            
-
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -98,14 +96,14 @@ namespace Diagram
         /// check if url start on http or https </summary>
         public static bool isURL(String url) 
 		{
-			return (Regex.IsMatch(url, @"(http|https)://.*"));
+			return (Regex.IsMatch(url, @"^(http|https)://.*$"));
 		}
 
         /// <summary>
         /// check if url start on https </summary>
         public static bool isHttpsURL(String url)
         {
-            return (Regex.IsMatch(url, @"(https)://.*"));
+            return (Regex.IsMatch(url, @"^(https)://.*$"));
         }
 
         /// <summary>

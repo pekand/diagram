@@ -68,6 +68,9 @@ namespace Diagram
         public static string alignRight = "SHIFT+TAB";
         public static string editCancel = "ESCAPE";
         public static string resetZoom = "CTRL+0";
+        public static string markNodes = "CTRL+M";
+        public static string nextMarkNode = "ALT+RIGHT";
+        public static string prevMarkNode = "ALT+LEFT";
 
         public static bool parseKey(string key, Keys keyData)
         {
@@ -117,6 +120,30 @@ namespace Diagram
                 if (part == "DEL")
                 {
                     keyCode = Keys.Delete | keyCode;
+                    continue;
+                }
+
+                if (part == "LEFT")
+                {
+                    keyCode = Keys.Left | keyCode;
+                    continue;
+                }
+
+                if (part == "RIGHT")
+                {
+                    keyCode = Keys.Right | keyCode;
+                    continue;
+                }
+
+                if (part == "UP")
+                {
+                    keyCode = Keys.Up | keyCode;
+                    continue;
+                }
+
+                if (part == "DOWN")
+                {
+                    keyCode = Keys.Down | keyCode;
                     continue;
                 }
 

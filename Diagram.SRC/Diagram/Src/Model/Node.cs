@@ -36,6 +36,7 @@ namespace Diagram
 
         // Shortcut
         public int shortcut = 0; // node id whitch is linked with this node
+        public bool mark = false; // mark node position for navigation history
 
         // Image 
         public bool isimage = false; // show node as image instead of text
@@ -94,6 +95,7 @@ namespace Diagram
             this.layerShift = node.layerShift;
 
             this.shortcut = node.shortcut;
+            this.mark = node.mark;
 
             this.isimage = node.isimage;
             this.embeddedimage = node.embeddedimage;
@@ -127,6 +129,7 @@ namespace Diagram
             this.link = node.link;
 
             this.shortcut = node.shortcut;
+            this.mark = node.mark;
 
             if (!skipPosition)
             {
