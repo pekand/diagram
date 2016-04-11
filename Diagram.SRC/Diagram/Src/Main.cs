@@ -198,7 +198,7 @@ namespace Diagram
                                         diagram.DiagramViews[0].Show();
                                     }
 
-                                    diagram.DiagramViews[0].setFocus(); //xxx
+                                    diagram.DiagramViews[0].setFocus();
                                 }
                                 alreadyOpen = true;
                                 break;

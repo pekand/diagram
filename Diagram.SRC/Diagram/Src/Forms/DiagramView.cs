@@ -5147,7 +5147,7 @@ namespace Diagram
         public void nextMarkedNode()
         {
             Nodes nodes = this.diagram.getAllNodes();
-            Nodes markedNodes = this.diagram.getAllNodes();
+            Nodes markedNodes = new Nodes();
 
             // get all marked nodes
             foreach (Node node in nodes)
@@ -5212,7 +5212,7 @@ namespace Diagram
         public void prevMarkedNode()
         {
             Nodes nodes = this.diagram.getAllNodes();
-            Nodes markedNodes = this.diagram.getAllNodes();
+            Nodes markedNodes = new Nodes();
 
             // get all marked nodes
             foreach (Node node in nodes)
