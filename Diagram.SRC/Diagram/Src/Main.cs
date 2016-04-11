@@ -98,7 +98,6 @@ namespace Diagram
             }
         }
 
-
         /// <summary>
         /// force close application</summary>
         public void ExitApplication()
@@ -193,7 +192,13 @@ namespace Diagram
                                 {
                                     Program.log.write("window get focus");
                                     Program.log.write("OpenDiagram: diagramView: setFocus");
-                                    diagram.DiagramViews[0].setFocus();
+
+                                    if (!diagram.DiagramViews[0].Visible)
+                                    {
+                                        diagram.DiagramViews[0].Show();
+                                    }
+
+                                    diagram.DiagramViews[0].setFocus(); //xxx
                                 }
                                 alreadyOpen = true;
                                 break;
@@ -296,6 +301,74 @@ namespace Diagram
                 this.OpenDiagram();
             }
         }
+
+        /// <summary>
+        /// hide diagram views except diagramView</summary>
+        public void switchViews(DiagramView diagramView = null)
+        {
+            bool someIsHidden = false;
+            foreach (DiagramView view in DiagramViews)
+            {
+                if (!view.Visible)
+                {
+                    someIsHidden = true;
+                    break;
+                }
+            }
+
+            if (someIsHidden)
+            {
+                showViews();
+            }
+            else
+            {
+                hideViews(diagramView);
+            }
+        }
+
+        /// <summary>
+        /// show views if last visible view is closed</summary>
+        public void showIfIsLastViews(DiagramView diagramView = null)
+        {
+            bool someIsVisible = false;
+            foreach (DiagramView view in DiagramViews)
+            {
+                if (view.Visible && diagramView != view)
+                {
+                    someIsVisible = true;
+                    break;
+                }
+            }
+
+            if (!someIsVisible)
+            {
+                showViews();
+            }
+        }
+
+        /// <summary>
+        /// show diagram views</summary>
+        public void showViews()
+        {
+            foreach (DiagramView view in DiagramViews)
+            {
+                view.Show();
+            }
+        }
+
+        /// <summary>
+        /// hide diagram views</summary>
+        public void hideViews(DiagramView diagramView = null)
+        {
+            foreach (DiagramView view in DiagramViews)
+            {
+                if (view != diagramView) {
+                    view.Hide();
+                }
+            }
+        }
+
+        
 
         /// <summary>
         /// parse command line arguments and open forms</summary>
