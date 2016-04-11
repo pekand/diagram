@@ -371,6 +371,10 @@ namespace Diagram
                 }
             }
 
+            if (close) {
+                this.main.showIfIsLastViews(this);
+            }
+
             e.Cancel = !close;
 
         }
@@ -1592,6 +1596,12 @@ namespace Diagram
             if (KeyMap.parseKey(KeyMap.newDiagramView, keyData))  // [KEY] [F7] New Diagram view
             {
                 this.diagram.openDiagramView(this);
+                return true;
+            }
+
+            if (KeyMap.parseKey(KeyMap.switchViews, keyData))  // [KEY] [F8] hide views
+            {
+                this.main.switchViews(this);
                 return true;
             }
 
@@ -5137,7 +5147,7 @@ namespace Diagram
         public void nextMarkedNode()
         {
             Nodes nodes = this.diagram.getAllNodes();
-            Nodes markedNodes = this.diagram.getAllNodes();
+            Nodes markedNodes = new Nodes();
 
             // get all marked nodes
             foreach (Node node in nodes)
@@ -5202,7 +5212,7 @@ namespace Diagram
         public void prevMarkedNode()
         {
             Nodes nodes = this.diagram.getAllNodes();
-            Nodes markedNodes = this.diagram.getAllNodes();
+            Nodes markedNodes = new Nodes();
 
             // get all marked nodes
             foreach (Node node in nodes)

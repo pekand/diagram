@@ -25,6 +25,7 @@ namespace Diagram
         public static string redo = "CTRL+SHIFT+Z";
         public static string newDiagram = "CTRL+N";
         public static string newDiagramView = "F7";
+        public static string switchViews = "F8";
         public static string save = "CTRL+S";
         public static string open = "CTRL+O";
         public static string search = "CTRL+F";
