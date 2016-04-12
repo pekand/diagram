@@ -123,6 +123,11 @@ namespace Diagram
         Position animationTimerSpeed = new Position();
         int animationTimerCounter = 0;
 
+        // ZOOMTIMER
+        Timer zoomTimer = new Timer(); //zooming animation
+        public float zoomTimerScale = 1;
+        public float zoomTimerStep = 0;
+
         // LINEWIDTHFORM
         LineWidthForm lineWidthForm = new LineWidthForm();
 
@@ -251,6 +256,11 @@ namespace Diagram
             this.animationTimer.Tick += new EventHandler(animationTimer_Tick);
             this.animationTimer.Interval = 10;
             this.animationTimer.Enabled = false;
+
+            // move timer
+            this.zoomTimer.Tick += new EventHandler(zoomTimer_Tick);
+            this.zoomTimer.Interval = 10;
+            this.zoomTimer.Enabled = false;
 
             // lineWidthForm
             this.lineWidthForm.trackbarStateChanged += this.resizeLineWidth;
@@ -1396,11 +1406,10 @@ namespace Diagram
         // EVENT Mouse Whell
         public void DiagramApp_MouseWheel(object sender, MouseEventArgs e)                             // [MOUSE] [WHELL] [EVENT]
         {
-
 #if DEBUG
             this.logEvent("MouseWheel");
 #endif
-
+            float newScale = 0;
             //throw new NotImplementedException();
             if (e.Delta > 0) // MWHELL
             {
@@ -1411,16 +1420,16 @@ namespace Diagram
                         int a = (int)((this.shift.x - (this.ClientSize.Width / 2 * this.scale)));
                         int b = (int)((this.shift.y - (this.ClientSize.Height / 2 * this.scale)));
                         if (this.scale >= 1)
-                            this.scale = this.scale + 1;
+                            newScale = this.scale + 1;
                         else
                             if (this.scale < 1)
-                                this.scale = this.scale + 0.1f;
+                                newScale = this.scale + 0.1f;
 
                         this.shift.x = (int)((a + (this.ClientSize.Width / 2 * this.scale)));
                         this.shift.y = (int)((b + (this.ClientSize.Height / 2 * this.scale)));
                     }
 
-                    if (this.scale > 7) this.scale = 7;
+                    if (newScale > 7) newScale = 7;
                 }
                 else
                 if (this.keyshift)
@@ -1431,7 +1440,6 @@ namespace Diagram
                 {
                     this.shift.y += (int)(50 * this.scale);
                 }
-                this.diagram.InvalidateDiagram();
             }
             else
             {
@@ -1442,18 +1450,16 @@ namespace Diagram
                         int a = (int)((this.shift.x - (this.ClientSize.Width / 2 * this.scale)));
                         int b = (int)((this.shift.y - (this.ClientSize.Height / 2 * this.scale)));
                         if (this.scale>1)
-                            this.scale = this.scale - 1;
+                            newScale = this.scale - 1;
                         else
                         if (this.scale > 0.1f)
-                            this.scale = this.scale - 0.1f;
+                            newScale = this.scale - 0.1f;
 
                         this.shift.x = (int)((a + (this.ClientSize.Width / 2 * this.scale)));
                         this.shift.y = (int)((b + (this.ClientSize.Height / 2 * this.scale)));
-
-
                     }
 
-                    if (this.scale < 0.1) this.scale = 0.1f;
+                    if (newScale < 0.1f) newScale = 0.1f;
                 }
                 else
                 if (this.keyshift)
@@ -1464,7 +1470,17 @@ namespace Diagram
                 {
                     this.shift.y -= (int)(50 * this.scale);
                 }
-                this.diagram.InvalidateDiagram();
+            }
+
+            if (newScale != 0 && newScale != this.scale)
+            {
+                this.zoomTimerStep = Math.Abs((newScale - this.scale) / 30);
+                if (this.zoomTimerStep <= 0) {
+                    this.zoomTimerStep = 0.001f;
+                }
+
+                this.zoomTimerScale = newScale;
+                this.zoomTimer.Enabled = true;
             }
         }
 
@@ -1898,10 +1914,11 @@ namespace Diagram
                 return;
             }
 
-            if (e.KeyCode == Keys.Space && !this.stateZooming) // KEY SPACE
+            if (e.KeyCode == Keys.Space && !this.stateZooming) // KEY [SPACE] [SPACEBAR] [zoom] zoom preview
             {
                 this.stateSelectingNodes = false;
-                MoveTimer.Enabled = false;
+                this.MoveTimer.Enabled = false;
+                this.zoomTimer.Enabled = false;
 
                 this.stateZooming = true;
                 Position tmp = new Position(this.shift);
@@ -5495,6 +5512,57 @@ namespace Diagram
             }
 
             this.diagram.InvalidateDiagram();
+        }
+
+        // ZOOM TIMER zoom animation
+        public void zoomTimer_Tick(object sender, EventArgs e)
+        {
+
+#if DEBUG
+            this.logEvent("zoomTimer");
+#endif
+            if (zoomTimerScale > this.scale) // zoom in
+            {
+                this.scale += zoomTimerStep;
+
+                if (zoomTimerScale < this.scale) // prevent infinite animation
+                {
+                    this.scale = zoomTimerScale;
+                    this.zoomTimer.Enabled = false;
+                } 
+
+                this.diagram.InvalidateDiagram();
+            }
+            else
+            if (zoomTimerScale < this.scale) // zoom out
+            {
+                this.scale -= zoomTimerStep;
+
+                if (zoomTimerScale > this.scale) // prevent infinite animation
+                {
+                    this.scale = zoomTimerScale;
+                    this.zoomTimer.Enabled = false;
+                }
+
+                this.diagram.InvalidateDiagram();
+            }
+            else
+            {
+                this.zoomTimer.Enabled = false; // prevent infinite animation
+            }
+
+            // border
+            if (this.scale < 0.1f) {
+                this.scale = 0.1f;
+                this.zoomTimer.Enabled = false;
+            }
+
+            // border
+            if (this.scale > 7)
+            {
+                this.scale = 7;
+                this.zoomTimer.Enabled = false;
+            }
         }
 
         /*************************************************************************************************************************/
