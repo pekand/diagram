@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using System.Reflection;
 
 // [VERSION]
-[assembly: AssemblyVersion("4.0.4")]
+[assembly: AssemblyVersion("0.4.0.5")]
 
 /*! \mainpage Infinite diagram
  *

@@ -131,6 +131,9 @@ namespace Diagram
 
         // COMPONENTS
         private IContainer components;
+
+        public bool isFullScreen = false;
+
         private void InitializeComponent()
         {
             this.components = new Container();
@@ -1755,6 +1758,12 @@ namespace Diagram
                 return true;
             }
 
+            if (KeyMap.parseKey(KeyMap.fullScreean, keyData)) // [KEY] [F11] evaluate python script for selected nodes by stamp in link
+            {
+                this.fullScreenSwitch();
+                return true;
+            }
+
 
             if (KeyMap.parseKey(KeyMap.openEditForm, keyData)) // [KEY] [CTRL+E] open edit form
             {
@@ -1792,6 +1801,11 @@ namespace Diagram
                 if (this.animationTimer.Enabled)
                 {
                     this.animationTimer.Enabled = false; // stop move animation if exist
+                }
+                else
+                if (this.isFullScreen)
+                {
+                    this.fullScreenSwitch();
                 }
                 else
                 {
@@ -3437,6 +3451,26 @@ namespace Diagram
             Point ptCursor = Cursor.Position;
             ptCursor = this.PointToClient(ptCursor);
             return new Position(ptCursor.X, ptCursor.Y);
+        }
+
+        // VIEW full screen
+        private void fullScreenSwitch()
+        {
+            if (this.isFullScreen)
+            {
+                this.isFullScreen = false;
+                WindowState = FormWindowState.Normal;
+                FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+
+            }
+            else
+            {
+                this.isFullScreen = true;
+                FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                WindowState = FormWindowState.Maximized;
+            }
+
+                
         }
 
         /*************************************************************************************************************************/
