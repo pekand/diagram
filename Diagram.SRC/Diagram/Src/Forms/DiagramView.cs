@@ -1251,7 +1251,6 @@ namespace Diagram
                 else
                 // KEY DRAG make link between two nodes
                 if (!isreadonly
-                    && !keyshift
                     && !keyctrl
                     && !keyalt
                     && TargetNode != null
