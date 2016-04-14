@@ -1435,10 +1435,12 @@ namespace Diagram
                 if (this.keyshift)
                 {
                     this.shift.x += (int)(50 * this.scale);
+                    this.diagram.InvalidateDiagram();
                 }
                 else
                 {
                     this.shift.y += (int)(50 * this.scale);
+                    this.diagram.InvalidateDiagram();
                 }
             }
             else
@@ -1465,10 +1467,12 @@ namespace Diagram
                 if (this.keyshift)
                 {
                     this.shift.x -= (int)(50 * this.scale);
+                    this.diagram.InvalidateDiagram();
                 }
                 else
                 {
                     this.shift.y -= (int)(50 * this.scale);
+                    this.diagram.InvalidateDiagram();
                 }
             }
 
