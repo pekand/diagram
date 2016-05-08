@@ -1220,11 +1220,7 @@ namespace Diagram
                         this.diagram.undo.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
                         foreach (Node rec in this.selectedNodes)
                         {
-                            rec.color.set(TargetNode.color);
-                            rec.font = TargetNode.font;
-                            rec.fontcolor.set(TargetNode.fontcolor);
-                            rec.transparent = TargetNode.transparent;
-                            rec.resize();
+                            rec.copyNodeStyle(TargetNode);
                         }
                         this.diagram.unsave();
                     }
@@ -1234,11 +1230,7 @@ namespace Diagram
                     {
                         this.diagram.undo.add("edit", TargetNode, this.shift, this.currentLayer.id);
 
-                        TargetNode.color.set(this.sourceNode.color);
-                        TargetNode.font = this.sourceNode.font;
-                        TargetNode.fontcolor.set(this.sourceNode.fontcolor);
-                        TargetNode.transparent = this.sourceNode.transparent;
-                        TargetNode.resize();
+                        TargetNode.copyNodeStyle(this.sourceNode);
 
                         if (this.selectedNodes.Count() == 1 && this.selectedNodes[0] != this.sourceNode)
                         {
@@ -1645,9 +1637,16 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.evaluateExpression, keyData))  // [KEY] [CTRL+G] Evaluate expresion
+            if (KeyMap.parseKey(KeyMap.evaluateExpression, keyData))  // [KEY] [CTRL+G] Evaluate expresion or generate random value
             {
-                this.evaluateExpression();
+                if (this.selectedNodes.Count() == 0)
+                {
+                    this.random();
+                }
+                else
+                {
+                    this.evaluateExpression();
+                }
             }
 
             if (KeyMap.parseKey(KeyMap.date, keyData))  // [KEY] [CTRL+D] date
@@ -1662,9 +1661,17 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.random, keyData)) // [KEY] [CTRL+R] Random generator
+            if (KeyMap.parseKey(KeyMap.refresh, keyData)) // [KEY] [CTRL+R] Refresh
             {
-                this.random();
+                if (this.selectedNodes.Count > 0)
+                {
+                    this.diagram.refreshNodes(this.selectedNodes);
+                }
+                else
+                {
+                    this.diagram.refreshAll();
+                }
+
                 return true;
             }
 
@@ -4210,25 +4217,8 @@ namespace Diagram
                     newrec.link = ClipText;
                     newrec.setName(ClipText);
 
-                    // get page title async in thread
-                    Job.doJob(
-                        new DoWorkEventHandler(
-                            delegate (object o, DoWorkEventArgs args)
-                            {
-                                newrec.setName(Network.GetWebPageTitle(ClipText));
+                    this.setNodeNameByLink(newrec, ClipText);
 
-                            }
-                        ),
-                        new RunWorkerCompletedEventHandler(
-                            delegate (object o, RunWorkerCompletedEventArgs args)
-                            {
-                                if (newrec.name == null) newrec.setName("url");
-                                newrec.color.set("#F2FFCC");
-                                this.diagram.InvalidateDiagram();
-                            }
-                        )
-                    );
-                    
                     this.diagram.unsave("create", newrec, this.shift, this.currentLayer.id);
                 }
                 else
@@ -5326,6 +5316,29 @@ namespace Diagram
             lastMarkNode = markedNodes[markedNodes.Count - 1].id;
             this.goToNode(markedNodes[markedNodes.Count - 1]);
             this.diagram.InvalidateDiagram();
+        }
+
+        // NODE LINK NAME get link name from web
+        public void setNodeNameByLink(Node node, string url)
+    {
+            // get page title async in thread
+            Job.doJob(
+                new DoWorkEventHandler(
+                    delegate (object o, DoWorkEventArgs args)
+                    {
+                        node.setName(Network.GetWebPageTitle(url));
+
+                    }
+                ),
+                new RunWorkerCompletedEventHandler(
+                    delegate (object o, RunWorkerCompletedEventArgs args)
+                    {
+                        if (node.name == null) node.setName("url");
+                        node.color.set("#F2FFCC");
+                        this.diagram.InvalidateDiagram();
+                    }
+                )
+            );
         }
 
         // LINE change color of lines

@@ -1621,11 +1621,29 @@ namespace Diagram
         }
 
         // DIAGRAM refresh - refresh items depends on external resources like images
-        public void refresh()
+        public void refreshAll()
         {
             foreach (Node node in this.layers.getAllNodes())
             {
                 
+                if (node.isimage && !node.embeddedimage)
+                {
+                    node.loadImage();
+                }
+                else
+                {
+                    node.resize();
+                }
+            }
+
+            this.InvalidateDiagram();
+        }
+
+        // DIAGRAM refresh nodes- refresh items depends on external resources like images or hyperlinks names
+        public void refreshNodes(Nodes nodes)
+        {
+            foreach (Node node in nodes)
+            {
                 if (node.isimage && !node.embeddedimage)
                 {
                     node.loadImage();

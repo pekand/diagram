@@ -1298,7 +1298,7 @@ namespace Diagram
         // MENU refresh diagram
         private void refreshItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.diagram.refresh();
+            this.diagramView.diagram.refreshAll();
         }
 
         // LAYER
