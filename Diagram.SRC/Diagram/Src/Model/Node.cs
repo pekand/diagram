@@ -159,6 +159,28 @@ namespace Diagram
         }
 
         /// <summary>
+        /// node copy style from another node to current node</summary>
+        public void copyNodeStyle(Node node)
+        {
+            this.color.set(node.color);
+            this.font = node.font;
+            this.fontcolor.set(node.fontcolor);
+            this.transparent = node.transparent;
+
+            this.isimage = node.isimage;
+            this.embeddedimage = node.embeddedimage;
+            this.imagepath = node.imagepath;
+            this.image = node.image;
+
+            this.iwidth = node.iwidth;
+            this.iheight = node.iheight;
+
+            this.protect = node.protect;
+
+            this.resize();
+        }
+
+        /// <summary>
         /// clone node to new node</summary>
         public Node clone()
         {
