@@ -124,6 +124,13 @@ namespace Diagram
             items["groupHorizontalItem"].Text = "Group horizontal";
             items["groupHorizontalItem"].Click += new System.EventHandler(this.groupHorizontalItem_Click);
             //
+            // sortItem
+            //
+            items.Add("sortItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["sortItem"].Name = "sortItem";
+            items["sortItem"].Text = "Sort";
+            items["sortItem"].Click += new System.EventHandler(this.sortItem_Click);
+            //
             // alignItem
             //
             items.Add("alignItem", new System.Windows.Forms.ToolStripMenuItem());
@@ -133,7 +140,8 @@ namespace Diagram
                 items["toLineItem"],
                 items["inColumnItem"],
                 items["groupVericalItem"],
-                items["groupHorizontalItem"]
+                items["groupHorizontalItem"],
+                items["sortItem"]
             });
             items["alignItem"].Name = "alignItem";
             items["alignItem"].Text = "Align";
@@ -543,11 +551,19 @@ namespace Diagram
             items["openDiagramDirectoryItem"].Text = "Open Directory";
             items["openDiagramDirectoryItem"].Click += new System.EventHandler(this.openDiagramDirectoryItem_Click);
             //
+            // openDiagramDirectoryItem
+            //
+            items.Add("splitNodeItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["splitNodeItem"].Name = "openDiagramDirectoryItem";
+            items["splitNodeItem"].Text = "Split node";
+            items["splitNodeItem"].Click += new System.EventHandler(this.splitNodeItem_Click);
+            //
             // toolsItem
             //
             items.Add("toolsItem", new System.Windows.Forms.ToolStripMenuItem());
             items["toolsItem"].DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                items["openDiagramDirectoryItem"]
+                items["openDiagramDirectoryItem"],
+                items["splitNodeItem"]
             });
             items["toolsItem"].Name = "toolsItem";
             items["toolsItem"].Text = "Tools";
@@ -749,6 +765,7 @@ namespace Diagram
             items["undoItem"].Enabled = !readOnly;
             items["redoItem"].Enabled = !readOnly;
             items["copyNoteItem"].Enabled = !readOnly;
+            items["splitNodeItem"].Enabled = !readOnly;
             items["encryptItem"].Enabled = !readOnly;
             items["changePasswordItem"].Enabled = !readOnly;
             items["defaultFontItem"].Enabled = !readOnly;
@@ -816,6 +833,7 @@ namespace Diagram
                 items["bringBottomItem"].Enabled = false;
                 items["lineColorItem"].Enabled = false;
                 items["protectItem"].Enabled = false;
+                items["splitNodeItem"].Enabled = false;
             }
 
             // SELECTION NOT EMPTY
@@ -839,6 +857,7 @@ namespace Diagram
                 items["bringTopItem"].Enabled = true;
                 items["bringBottomItem"].Enabled = true;
                 items["protectItem"].Enabled = true;
+                items["splitNodeItem"].Enabled = true;
             }
 
             // SELECTION ONE
@@ -1052,6 +1071,17 @@ namespace Diagram
             if (this.diagramView.selectedNodes.Count() > 0)
             {
                 this.diagramView.diagram.AlignCompactLine(this.diagramView.selectedNodes);
+                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.InvalidateDiagram();
+            }
+        }
+
+        // MENU sort items
+        private void sortItem_Click(object sender, EventArgs e)
+        {
+            if (this.diagramView.selectedNodes.Count() > 0)
+            {
+                this.diagramView.diagram.sortNodes(this.diagramView.selectedNodes);
                 this.diagramView.diagram.unsave();
                 this.diagramView.diagram.InvalidateDiagram();
             }
@@ -1324,6 +1354,12 @@ namespace Diagram
         public void openDiagramDirectoryItem_Click(object sender, EventArgs e)
         {
             this.diagramView.openDiagramDirectory();
+        }
+
+        // MENU split node by lines
+        public void splitNodeItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.splitNode();
         }
 
         // OPTIONS
