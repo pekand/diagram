@@ -20,6 +20,15 @@ namespace Diagram
         {
         }
 
+        public void OrderByNameAsc()
+        {
+            this.Sort((x, y) => string.Compare(x.name, y.name));
+        }
+
+        public void OrderByNameDesc()
+        {
+            this.Sort((x, y) => string.Compare(y.name, x.name));
+        }
         public void OrderByLink()
         {
             this.Sort((x, y) => string.Compare(x.link, y.link));

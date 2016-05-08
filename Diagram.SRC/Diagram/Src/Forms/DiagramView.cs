@@ -533,12 +533,6 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // SELECTION check if node is in current window selecton
-        public bool isSelected(Node a)
-        {
-            return a.selected;
-        }
-
         // SELECTION Clear selection
         public void ClearSelection()
         {
@@ -755,7 +749,7 @@ namespace Diagram
                             .subtract(this.shift)
                             .subtract(this.sourceNode.position); // mouse position in node
 
-                        if (!this.keyctrl && !this.keyalt && !this.keyshift && !this.isSelected(this.sourceNode))
+                        if (!this.keyctrl && !this.keyalt && !this.keyshift && !this.sourceNode.selected)
                         {
                             this.SelectOnlyOneNode(this.sourceNode);
                             this.diagram.InvalidateDiagram();
@@ -1039,7 +1033,7 @@ namespace Diagram
                         || (
                             TargetNode != null
                             && this.sourceNode != TargetNode
-                            && this.isSelected(TargetNode)
+                            && TargetNode.selected
                         )
                         || (TargetNode != null && this.sourceNode == TargetNode)
                     )
@@ -1306,7 +1300,7 @@ namespace Diagram
                     && !keyalt
                     && this.sourceNode == TargetNode
                     && TargetNode != null
-                    && !this.isSelected(TargetNode))
+                    && !TargetNode.selected)
                 {
                     this.SelectNode(TargetNode);
                     this.diagram.InvalidateDiagram();
@@ -1317,7 +1311,7 @@ namespace Diagram
                     && keyshift
                     && !keyalt
                     && TargetNode != null
-                    && (this.sourceNode == TargetNode || this.isSelected(TargetNode)))
+                    && (this.sourceNode == TargetNode || TargetNode.selected))
                 {
                     this.RemoveNodeFromSelection(TargetNode);
                     this.diagram.InvalidateDiagram();
@@ -1341,7 +1335,7 @@ namespace Diagram
                 {
                     Node temp = this.findNodeInMousePosition(new Position(e.X, e.Y));
 
-                    if (this.sourceNode != temp && !this.isSelected(temp))
+                    if (this.sourceNode != temp && !temp.selected)
                     {
                         this.ClearSelection();
                         this.SelectOnlyOneNode(temp);
@@ -1518,6 +1512,7 @@ namespace Diagram
             if (KeyMap.parseKey(KeyMap.alignToGroup, keyData)) // [KEY] [CTRL+K] align to group
             {
                 this.alignToGroup();
+
                 return true;
             }
 
@@ -3042,11 +3037,15 @@ namespace Diagram
             Font drawFont = new Font("Arial", 10);
             SolidBrush drawBrush = new SolidBrush(Color.Black);
             gfx.DrawString(
-                        (this.shift.x).ToString() + "," +
+                (this.shift.x).ToString() + "sx," +
                         this.shift.y.ToString() +
-                        " (" + this.ClientSize.Width.ToString() + "x" + this.ClientSize.Height.ToString() + ") " +
-                        "scl:" + s.ToString() + "," + this.currentScale.ToString(),
-                        drawFont, drawBrush, 10, 10);
+                        "sy (" + this.ClientSize.Width.ToString() + "w x " + this.ClientSize.Height.ToString() + "h) " +
+                        "" + s.ToString() + "s," + this.currentScale.ToString() + "cs",
+                drawFont, 
+                drawBrush, 
+                10, 
+                10
+            );
         }
 
         // DRAW select node by mouse drag (blue rectangle)
@@ -3187,11 +3186,17 @@ namespace Diagram
                     }
                     else
                     {
-                        if (this.diagram.options.coordinates)
+                        if (this.diagram.options.coordinates) // draw debug information
                         {
                             Font drawFont = new Font("Arial", 10 / s);
                             SolidBrush drawBrush = new SolidBrush(Color.Black);
-                            gfx.DrawString((rec.position.x).ToString() + "," + (rec.position.y).ToString(), drawFont, drawBrush, (this.shift.x + rec.position.x) / s, (this.shift.y + rec.position.y - 20) / s);
+                            gfx.DrawString(
+                                rec.id.ToString() + "i:" + (rec.position.x).ToString() + "x," + (rec.position.y).ToString()+"y", 
+                                drawFont, 
+                                drawBrush, 
+                                (this.shift.x + rec.position.x) / s, 
+                                (this.shift.y + rec.position.y - 20) / s
+                            );
                         }
 
                         // DRAW rectangle
@@ -4433,6 +4438,33 @@ namespace Diagram
             }
         }
 
+        // NODE align to group and sort
+        public void sortNodes()
+        {
+            if (this.selectedNodes.Count() > 0)
+            {
+                this.diagram.undo.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                this.diagram.sortNodes(this.selectedNodes);
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // NODE split node by line and grou
+        public void splitNode()
+        {
+            if (this.selectedNodes.Count() > 0)
+            {
+                this.diagram.undo.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                this.diagram.splitNode(this.selectedNodes);
+                this.diagram.AlignCompact(this.selectedNodes);
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        
+
         // NODE align to group
         public void alignToLineGroup()
         {
@@ -4900,7 +4932,7 @@ namespace Diagram
             }
             else // MOVE SCREEN
             {
-                int speed = (quick) ? this.ClientSize.Width : this.diagram.options.keyArrowSlowSpeed;//xxx
+                int speed = (quick) ? this.ClientSize.Width : this.diagram.options.keyArrowSlowSpeed;
                 this.shift.x = this.shift.x + speed;
                 this.diagram.InvalidateDiagram();
             }
