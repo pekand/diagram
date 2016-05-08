@@ -32,7 +32,7 @@ namespace Diagram
         public static string evaluateExpression = "CTRL+G";
         public static string date = "CTRL+D";
         public static string promote = "CTRL+P";
-        public static string random = "CTRL+R";
+        public static string refresh = "CTRL+R";
         public static string hideBackground = "F3";
         public static string reverseSearch = "SHIFT+F3";
         public static string home = "HOME";

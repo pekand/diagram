@@ -533,12 +533,6 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // SELECTION check if node is in current window selecton
-        public bool isSelected(Node a)
-        {
-            return a.selected;
-        }
-
         // SELECTION Clear selection
         public void ClearSelection()
         {
@@ -755,7 +749,7 @@ namespace Diagram
                             .subtract(this.shift)
                             .subtract(this.sourceNode.position); // mouse position in node
 
-                        if (!this.keyctrl && !this.keyalt && !this.keyshift && !this.isSelected(this.sourceNode))
+                        if (!this.keyctrl && !this.keyalt && !this.keyshift && !this.sourceNode.selected)
                         {
                             this.SelectOnlyOneNode(this.sourceNode);
                             this.diagram.InvalidateDiagram();
@@ -1039,7 +1033,7 @@ namespace Diagram
                         || (
                             TargetNode != null
                             && this.sourceNode != TargetNode
-                            && this.isSelected(TargetNode)
+                            && TargetNode.selected
                         )
                         || (TargetNode != null && this.sourceNode == TargetNode)
                     )
@@ -1220,11 +1214,7 @@ namespace Diagram
                         this.diagram.undo.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
                         foreach (Node rec in this.selectedNodes)
                         {
-                            rec.color.set(TargetNode.color);
-                            rec.font = TargetNode.font;
-                            rec.fontcolor.set(TargetNode.fontcolor);
-                            rec.transparent = TargetNode.transparent;
-                            rec.resize();
+                            rec.copyNodeStyle(TargetNode);
                         }
                         this.diagram.unsave();
                     }
@@ -1234,11 +1224,7 @@ namespace Diagram
                     {
                         this.diagram.undo.add("edit", TargetNode, this.shift, this.currentLayer.id);
 
-                        TargetNode.color.set(this.sourceNode.color);
-                        TargetNode.font = this.sourceNode.font;
-                        TargetNode.fontcolor.set(this.sourceNode.fontcolor);
-                        TargetNode.transparent = this.sourceNode.transparent;
-                        TargetNode.resize();
+                        TargetNode.copyNodeStyle(this.sourceNode);
 
                         if (this.selectedNodes.Count() == 1 && this.selectedNodes[0] != this.sourceNode)
                         {
@@ -1251,7 +1237,6 @@ namespace Diagram
                 else
                 // KEY DRAG make link between two nodes
                 if (!isreadonly
-                    && !keyshift
                     && !keyctrl
                     && !keyalt
                     && TargetNode != null
@@ -1315,7 +1300,7 @@ namespace Diagram
                     && !keyalt
                     && this.sourceNode == TargetNode
                     && TargetNode != null
-                    && !this.isSelected(TargetNode))
+                    && !TargetNode.selected)
                 {
                     this.SelectNode(TargetNode);
                     this.diagram.InvalidateDiagram();
@@ -1326,7 +1311,7 @@ namespace Diagram
                     && keyshift
                     && !keyalt
                     && TargetNode != null
-                    && (this.sourceNode == TargetNode || this.isSelected(TargetNode)))
+                    && (this.sourceNode == TargetNode || TargetNode.selected))
                 {
                     this.RemoveNodeFromSelection(TargetNode);
                     this.diagram.InvalidateDiagram();
@@ -1350,7 +1335,7 @@ namespace Diagram
                 {
                     Node temp = this.findNodeInMousePosition(new Position(e.X, e.Y));
 
-                    if (this.sourceNode != temp && !this.isSelected(temp))
+                    if (this.sourceNode != temp && !temp.selected)
                     {
                         this.ClearSelection();
                         this.SelectOnlyOneNode(temp);
@@ -1527,6 +1512,7 @@ namespace Diagram
             if (KeyMap.parseKey(KeyMap.alignToGroup, keyData)) // [KEY] [CTRL+K] align to group
             {
                 this.alignToGroup();
+
                 return true;
             }
 
@@ -1646,9 +1632,16 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.evaluateExpression, keyData))  // [KEY] [CTRL+G] Evaluate expresion
+            if (KeyMap.parseKey(KeyMap.evaluateExpression, keyData))  // [KEY] [CTRL+G] Evaluate expresion or generate random value
             {
-                this.evaluateExpression();
+                if (this.selectedNodes.Count() == 0)
+                {
+                    this.random();
+                }
+                else
+                {
+                    this.evaluateExpression();
+                }
             }
 
             if (KeyMap.parseKey(KeyMap.date, keyData))  // [KEY] [CTRL+D] date
@@ -1663,9 +1656,17 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.random, keyData)) // [KEY] [CTRL+R] Random generator
+            if (KeyMap.parseKey(KeyMap.refresh, keyData)) // [KEY] [CTRL+R] Refresh
             {
-                this.random();
+                if (this.selectedNodes.Count > 0)
+                {
+                    this.diagram.refreshNodes(this.selectedNodes);
+                }
+                else
+                {
+                    this.diagram.refreshAll();
+                }
+
                 return true;
             }
 
@@ -1842,25 +1843,25 @@ namespace Diagram
             if (KeyMap.parseKey(KeyMap.moveLeft, keyData) || KeyMap.parseKey(KeyMap.moveLeftFast, keyData))  // [KEY] [left] [SHIFT+LEFT] [ARROW] Move node
             {
 
-                this.moveNodesToLeft(keyData == Keys.Left);
+                this.moveNodesToLeft(KeyMap.parseKey(KeyMap.moveLeftFast, keyData));
                 return true;
             }
 
             if (KeyMap.parseKey(KeyMap.moveRight, keyData) || KeyMap.parseKey(KeyMap.moveRightFast, keyData))  // [KEY] [right] [SHIFT+RIGHT] [ARROW] Move node
             {
-                this.moveNodesToRight(keyData == Keys.Right);
+                this.moveNodesToRight(KeyMap.parseKey(KeyMap.moveRightFast, keyData));
                 return true;
             }
 
             if (KeyMap.parseKey(KeyMap.moveUp, keyData) || KeyMap.parseKey(KeyMap.moveUpFast, keyData))  // [KEY] [up] [SHIFT+UP] [ARROW] Move node
             {
-                this.moveNodesUp(keyData == Keys.Up);
+                this.moveNodesUp(KeyMap.parseKey(KeyMap.moveUpFast, keyData));
                 return true;
             }
 
             if (KeyMap.parseKey(KeyMap.moveDown, keyData) || KeyMap.parseKey(KeyMap.moveDownFast, keyData))  // [KEY] [down] [SHIFT+DOWN] [ARROW] Move node
             {
-                this.moveNodesDown(keyData == Keys.Down);
+                this.moveNodesDown(KeyMap.parseKey(KeyMap.moveDownFast, keyData));
                 return true;
             }
 
@@ -3036,11 +3037,15 @@ namespace Diagram
             Font drawFont = new Font("Arial", 10);
             SolidBrush drawBrush = new SolidBrush(Color.Black);
             gfx.DrawString(
-                        (this.shift.x).ToString() + "," +
+                (this.shift.x).ToString() + "sx," +
                         this.shift.y.ToString() +
-                        " (" + this.ClientSize.Width.ToString() + "x" + this.ClientSize.Height.ToString() + ") " +
-                        "scl:" + s.ToString() + "," + this.currentScale.ToString(),
-                        drawFont, drawBrush, 10, 10);
+                        "sy (" + this.ClientSize.Width.ToString() + "w x " + this.ClientSize.Height.ToString() + "h) " +
+                        "" + s.ToString() + "s," + this.currentScale.ToString() + "cs",
+                drawFont, 
+                drawBrush, 
+                10, 
+                10
+            );
         }
 
         // DRAW select node by mouse drag (blue rectangle)
@@ -3181,11 +3186,17 @@ namespace Diagram
                     }
                     else
                     {
-                        if (this.diagram.options.coordinates)
+                        if (this.diagram.options.coordinates) // draw debug information
                         {
                             Font drawFont = new Font("Arial", 10 / s);
                             SolidBrush drawBrush = new SolidBrush(Color.Black);
-                            gfx.DrawString((rec.position.x).ToString() + "," + (rec.position.y).ToString(), drawFont, drawBrush, (this.shift.x + rec.position.x) / s, (this.shift.y + rec.position.y - 20) / s);
+                            gfx.DrawString(
+                                rec.id.ToString() + "i:" + (rec.position.x).ToString() + "x," + (rec.position.y).ToString()+"y", 
+                                drawFont, 
+                                drawBrush, 
+                                (this.shift.x + rec.position.x) / s, 
+                                (this.shift.y + rec.position.y - 20) / s
+                            );
                         }
 
                         // DRAW rectangle
@@ -4211,25 +4222,8 @@ namespace Diagram
                     newrec.link = ClipText;
                     newrec.setName(ClipText);
 
-                    // get page title async in thread
-                    Job.doJob(
-                        new DoWorkEventHandler(
-                            delegate (object o, DoWorkEventArgs args)
-                            {
-                                newrec.setName(Network.GetWebPageTitle(ClipText));
+                    this.setNodeNameByLink(newrec, ClipText);
 
-                            }
-                        ),
-                        new RunWorkerCompletedEventHandler(
-                            delegate (object o, RunWorkerCompletedEventArgs args)
-                            {
-                                if (newrec.name == null) newrec.setName("url");
-                                newrec.color.set("#F2FFCC");
-                                this.diagram.InvalidateDiagram();
-                            }
-                        )
-                    );
-                    
                     this.diagram.unsave("create", newrec, this.shift, this.currentLayer.id);
                 }
                 else
@@ -4443,6 +4437,33 @@ namespace Diagram
                 this.diagram.InvalidateDiagram();
             }
         }
+
+        // NODE align to group and sort
+        public void sortNodes()
+        {
+            if (this.selectedNodes.Count() > 0)
+            {
+                this.diagram.undo.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                this.diagram.sortNodes(this.selectedNodes);
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // NODE split node by line and grou
+        public void splitNode()
+        {
+            if (this.selectedNodes.Count() > 0)
+            {
+                this.diagram.undo.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                this.diagram.splitNode(this.selectedNodes);
+                this.diagram.AlignCompact(this.selectedNodes);
+                this.diagram.unsave();
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        
 
         // NODE align to group
         public void alignToLineGroup()
@@ -4901,7 +4922,7 @@ namespace Diagram
                 {
                     this.diagram.undo.add("move", this.selectedNodes, null, this.shift, this.currentLayer.id);
                 }
-                int speed = (quick) ? this.diagram.options.keyArrowSlowSpeed : this.diagram.options.keyArrowFastSpeed;
+                int speed = (quick) ? this.diagram.options.keyArrowFastMoveNodeSpeed : this.diagram.options.keyArrowSlowMoveNodeSpeed;
                 foreach (Node rec in this.selectedNodes)
                 {
                     rec.position.x -= speed;
@@ -4911,7 +4932,8 @@ namespace Diagram
             }
             else // MOVE SCREEN
             {
-                this.shift.x = this.shift.x + 50;
+                int speed = (quick) ? this.ClientSize.Width : this.diagram.options.keyArrowSlowSpeed;
+                this.shift.x = this.shift.x + speed;
                 this.diagram.InvalidateDiagram();
             }
         }
@@ -4925,7 +4947,7 @@ namespace Diagram
                 {
                     this.diagram.undo.add("move", this.selectedNodes, null, this.shift, this.currentLayer.id);
                 }
-                int speed = (quick) ? this.diagram.options.keyArrowSlowSpeed : this.diagram.options.keyArrowFastSpeed;
+                int speed = (quick) ? this.diagram.options.keyArrowFastMoveNodeSpeed : this.diagram.options.keyArrowSlowMoveNodeSpeed;
                 foreach (Node rec in this.selectedNodes)
                 {
                     rec.position.x += speed;
@@ -4935,7 +4957,8 @@ namespace Diagram
             }
             else // MOVE SCREEN
             {
-                this.shift.x = this.shift.x - 50;
+                int speed = (quick) ? this.ClientSize.Width : this.diagram.options.keyArrowSlowSpeed;
+                this.shift.x = this.shift.x - speed;
                 this.diagram.InvalidateDiagram();
             }
         }
@@ -4949,7 +4972,7 @@ namespace Diagram
                 {
                     this.diagram.undo.add("move", this.selectedNodes, null, this.shift, this.currentLayer.id);
                 }
-                int speed = (quick) ? this.diagram.options.keyArrowSlowSpeed : this.diagram.options.keyArrowFastSpeed;
+                int speed = (quick) ? this.diagram.options.keyArrowFastMoveNodeSpeed : this.diagram.options.keyArrowSlowMoveNodeSpeed;
                 foreach (Node rec in this.selectedNodes)
                 {
                     rec.position.y -= speed;
@@ -4959,7 +4982,8 @@ namespace Diagram
             }
             else // MOVE SCREEN
             {
-                this.shift.y = this.shift.y + 50;
+                int speed = (quick) ? this.ClientSize.Height : this.diagram.options.keyArrowSlowSpeed;
+                this.shift.y = this.shift.y + speed;
                 this.diagram.InvalidateDiagram();
             }
         }
@@ -4973,7 +4997,7 @@ namespace Diagram
                 {
                     this.diagram.undo.add("move", this.selectedNodes, null, this.shift, this.currentLayer.id);
                 }
-                int speed = (quick) ? this.diagram.options.keyArrowSlowSpeed : this.diagram.options.keyArrowFastSpeed;
+                int speed = (quick) ? this.diagram.options.keyArrowFastMoveNodeSpeed : this.diagram.options.keyArrowSlowMoveNodeSpeed;
                 foreach (Node rec in this.selectedNodes)
                 {
                     rec.position.y += speed;
@@ -4983,7 +5007,8 @@ namespace Diagram
             }
             else // MOVE SCREEN
             {
-                this.shift.y = this.shift.y - 50;
+                int speed = (quick) ? this.ClientSize.Height : this.diagram.options.keyArrowSlowSpeed;
+                this.shift.y = this.shift.y - speed;
                 this.diagram.InvalidateDiagram();
             }
         }
@@ -5327,6 +5352,29 @@ namespace Diagram
             lastMarkNode = markedNodes[markedNodes.Count - 1].id;
             this.goToNode(markedNodes[markedNodes.Count - 1]);
             this.diagram.InvalidateDiagram();
+        }
+
+        // NODE LINK NAME get link name from web
+        public void setNodeNameByLink(Node node, string url)
+    {
+            // get page title async in thread
+            Job.doJob(
+                new DoWorkEventHandler(
+                    delegate (object o, DoWorkEventArgs args)
+                    {
+                        node.setName(Network.GetWebPageTitle(url));
+
+                    }
+                ),
+                new RunWorkerCompletedEventHandler(
+                    delegate (object o, RunWorkerCompletedEventArgs args)
+                    {
+                        if (node.name == null) node.setName("url");
+                        node.color.set("#F2FFCC");
+                        this.diagram.InvalidateDiagram();
+                    }
+                )
+            );
         }
 
         // LINE change color of lines

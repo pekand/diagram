@@ -21,10 +21,11 @@
 
         public Position homePosition = new Position();     // diagram start and home key position
         public int homeLayer = 0;                          // startup layer after diagram open
-        public Position endPosition = new Position();      //  diagram end key position seet by end key
+        public Position endPosition = new Position();      // diagram end key position seet by end key
         public int endLayer = 0;                           // startup layer after diagram open
-        public int keyArrowSlowSpeed = 1;                  // node moving speed
-        public int keyArrowFastSpeed = 100;                // node moving speed
+        public int keyArrowSlowMoveNodeSpeed = 1;          // node moving speed
+        public int keyArrowFastMoveNodeSpeed = 100;        // node moving speed
+        public int keyArrowSlowSpeed = 50;                 // node moving speed
 
         public string colorDirectory = "#AF92FF";          // color for node linked with directory
         public string colorFile = "#D9CCFF";               // color for node linked with file

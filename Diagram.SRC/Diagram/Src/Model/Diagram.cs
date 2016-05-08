@@ -1343,10 +1343,114 @@ namespace Diagram
                 nodes.OrderByPositionY();
 
                 int posy = miny;
-                foreach (Node rec in nodes) // zmensit medzeru medzi objektami
+                foreach (Node rec in nodes) // change space between nodes
                 {
                     rec.position.y = posy;
                     posy = posy + rec.height + 10;
+                }
+            }
+        }
+
+        // NODES ALIGN compact
+        // align node to left and create constant space between nodes and sort items
+        public void sortNodes(Nodes nodes)
+        {
+            if (nodes.Count() > 0)
+            {
+                int minx = nodes[0].position.x;
+                int miny = nodes[0].position.y;
+                foreach (Node rec in nodes)
+                {
+                    if (rec.position.x <= minx) // find top left element
+                    {
+                        minx = rec.position.x;
+                    }
+
+                    if (rec.position.y <= miny) // find most top element
+                    {
+                        miny = rec.position.y;
+                    }
+                }
+
+                foreach (Node rec in nodes) // align to left
+                {
+                    rec.position.x = minx;
+                }
+
+                nodes.OrderByPositionY();
+
+                // check if nodes are ordered by name already
+                bool alreadyAsc = true;
+                for (int i = 0; i < nodes.Count - 1; i++)
+                {
+                    if (String.Compare(nodes[i + 1].name, nodes[i].name) < 0)
+                    {
+                        alreadyAsc = false;
+                        break;
+                    }
+                }
+
+                if (alreadyAsc)
+                {
+                    nodes.OrderByNameDesc();
+                }
+                else
+                {
+                    nodes.OrderByNameAsc();
+                }
+
+                int posy = miny;
+                foreach (Node rec in nodes) // change space between nodes
+                {
+                    rec.position.y = posy;
+                    posy = posy + rec.height + 10;
+                }
+            }
+        }
+
+        // NODES ALIGN compact
+        // align node to left and create constant space between nodes
+        public void splitNode(Nodes nodes)
+        {
+            if (nodes.Count() > 0)
+            {
+                Nodes newNodes = new Nodes();
+
+                int minx = nodes[0].position.x;
+                int miny = nodes[0].position.y;
+                foreach (Node rec in nodes)
+                {
+                    if (rec.position.x <= minx) // find top left element
+                    {
+                        minx = rec.position.x;
+                    }
+
+                    if (rec.position.y <= miny) // find most top element
+                    {
+                        miny = rec.position.y;
+                    }
+                }
+
+                foreach (Node node in nodes) // create new nodes
+                {
+                    string[] lines = node.name.Split(new string[] { "\n" }, StringSplitOptions.None);
+
+                    foreach (String line in lines)
+                    {
+                        if (line.Trim() != "")
+                        {
+                            Node newNode = this.createNode(new Node(node)); // duplicate content of old node
+                            newNode.setName(line);
+                            newNodes.Add(newNode);
+                        }
+                    }
+                }
+
+                int posy = miny;
+                foreach (Node node in newNodes) // change space between nodes
+                {
+                    node.position.y = posy;
+                    posy = posy + node.height + 10;
                 }
             }
         }
@@ -1621,11 +1725,29 @@ namespace Diagram
         }
 
         // DIAGRAM refresh - refresh items depends on external resources like images
-        public void refresh()
+        public void refreshAll()
         {
             foreach (Node node in this.layers.getAllNodes())
             {
                 
+                if (node.isimage && !node.embeddedimage)
+                {
+                    node.loadImage();
+                }
+                else
+                {
+                    node.resize();
+                }
+            }
+
+            this.InvalidateDiagram();
+        }
+
+        // DIAGRAM refresh nodes- refresh items depends on external resources like images or hyperlinks names
+        public void refreshNodes(Nodes nodes)
+        {
+            foreach (Node node in nodes)
+            {
                 if (node.isimage && !node.embeddedimage)
                 {
                     node.loadImage();
@@ -1929,7 +2051,7 @@ namespace Diagram
                 rec.resize();
 
                 oldId = rec.id;
-                newNode = this.createNode(rec); ;
+                newNode = this.createNode(rec);
 
                 if (newNode != null) {
                     mappedNode = new MappedNode();

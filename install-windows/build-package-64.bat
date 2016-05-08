@@ -1,7 +1,6 @@
 rmdir /S /Q .\files
 mkdir .\files
 
-
 copy ..\Diagram.SRC\Diagram\diagram.ico .\files\
 copy ..\Diagram.SRC\Diagram\bin\x64\Release\Diagram.exe .\files\
 copy ..\Diagram.SRC\Diagram\bin\x64\Release\IronPython.dll .\files\
