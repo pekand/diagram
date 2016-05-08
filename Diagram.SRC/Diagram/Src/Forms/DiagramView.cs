@@ -1848,25 +1848,25 @@ namespace Diagram
             if (KeyMap.parseKey(KeyMap.moveLeft, keyData) || KeyMap.parseKey(KeyMap.moveLeftFast, keyData))  // [KEY] [left] [SHIFT+LEFT] [ARROW] Move node
             {
 
-                this.moveNodesToLeft(keyData == Keys.Left);
+                this.moveNodesToLeft(KeyMap.parseKey(KeyMap.moveLeftFast, keyData));
                 return true;
             }
 
             if (KeyMap.parseKey(KeyMap.moveRight, keyData) || KeyMap.parseKey(KeyMap.moveRightFast, keyData))  // [KEY] [right] [SHIFT+RIGHT] [ARROW] Move node
             {
-                this.moveNodesToRight(keyData == Keys.Right);
+                this.moveNodesToRight(KeyMap.parseKey(KeyMap.moveRightFast, keyData));
                 return true;
             }
 
             if (KeyMap.parseKey(KeyMap.moveUp, keyData) || KeyMap.parseKey(KeyMap.moveUpFast, keyData))  // [KEY] [up] [SHIFT+UP] [ARROW] Move node
             {
-                this.moveNodesUp(keyData == Keys.Up);
+                this.moveNodesUp(KeyMap.parseKey(KeyMap.moveUpFast, keyData));
                 return true;
             }
 
             if (KeyMap.parseKey(KeyMap.moveDown, keyData) || KeyMap.parseKey(KeyMap.moveDownFast, keyData))  // [KEY] [down] [SHIFT+DOWN] [ARROW] Move node
             {
-                this.moveNodesDown(keyData == Keys.Down);
+                this.moveNodesDown(KeyMap.parseKey(KeyMap.moveDownFast, keyData));
                 return true;
             }
 
@@ -4890,7 +4890,7 @@ namespace Diagram
                 {
                     this.diagram.undo.add("move", this.selectedNodes, null, this.shift, this.currentLayer.id);
                 }
-                int speed = (quick) ? this.diagram.options.keyArrowSlowSpeed : this.diagram.options.keyArrowFastSpeed;
+                int speed = (quick) ? this.diagram.options.keyArrowFastMoveNodeSpeed : this.diagram.options.keyArrowSlowMoveNodeSpeed;
                 foreach (Node rec in this.selectedNodes)
                 {
                     rec.position.x -= speed;
@@ -4900,7 +4900,8 @@ namespace Diagram
             }
             else // MOVE SCREEN
             {
-                this.shift.x = this.shift.x + 50;
+                int speed = (quick) ? this.ClientSize.Width : this.diagram.options.keyArrowSlowSpeed;//xxx
+                this.shift.x = this.shift.x + speed;
                 this.diagram.InvalidateDiagram();
             }
         }
@@ -4914,7 +4915,7 @@ namespace Diagram
                 {
                     this.diagram.undo.add("move", this.selectedNodes, null, this.shift, this.currentLayer.id);
                 }
-                int speed = (quick) ? this.diagram.options.keyArrowSlowSpeed : this.diagram.options.keyArrowFastSpeed;
+                int speed = (quick) ? this.diagram.options.keyArrowFastMoveNodeSpeed : this.diagram.options.keyArrowSlowMoveNodeSpeed;
                 foreach (Node rec in this.selectedNodes)
                 {
                     rec.position.x += speed;
@@ -4924,7 +4925,8 @@ namespace Diagram
             }
             else // MOVE SCREEN
             {
-                this.shift.x = this.shift.x - 50;
+                int speed = (quick) ? this.ClientSize.Width : this.diagram.options.keyArrowSlowSpeed;
+                this.shift.x = this.shift.x - speed;
                 this.diagram.InvalidateDiagram();
             }
         }
@@ -4938,7 +4940,7 @@ namespace Diagram
                 {
                     this.diagram.undo.add("move", this.selectedNodes, null, this.shift, this.currentLayer.id);
                 }
-                int speed = (quick) ? this.diagram.options.keyArrowSlowSpeed : this.diagram.options.keyArrowFastSpeed;
+                int speed = (quick) ? this.diagram.options.keyArrowFastMoveNodeSpeed : this.diagram.options.keyArrowSlowMoveNodeSpeed;
                 foreach (Node rec in this.selectedNodes)
                 {
                     rec.position.y -= speed;
@@ -4948,7 +4950,8 @@ namespace Diagram
             }
             else // MOVE SCREEN
             {
-                this.shift.y = this.shift.y + 50;
+                int speed = (quick) ? this.ClientSize.Height : this.diagram.options.keyArrowSlowSpeed;
+                this.shift.y = this.shift.y + speed;
                 this.diagram.InvalidateDiagram();
             }
         }
@@ -4962,7 +4965,7 @@ namespace Diagram
                 {
                     this.diagram.undo.add("move", this.selectedNodes, null, this.shift, this.currentLayer.id);
                 }
-                int speed = (quick) ? this.diagram.options.keyArrowSlowSpeed : this.diagram.options.keyArrowFastSpeed;
+                int speed = (quick) ? this.diagram.options.keyArrowFastMoveNodeSpeed : this.diagram.options.keyArrowSlowMoveNodeSpeed;
                 foreach (Node rec in this.selectedNodes)
                 {
                     rec.position.y += speed;
@@ -4972,7 +4975,8 @@ namespace Diagram
             }
             else // MOVE SCREEN
             {
-                this.shift.y = this.shift.y - 50;
+                int speed = (quick) ? this.ClientSize.Height : this.diagram.options.keyArrowSlowSpeed;
+                this.shift.y = this.shift.y - speed;
                 this.diagram.InvalidateDiagram();
             }
         }
