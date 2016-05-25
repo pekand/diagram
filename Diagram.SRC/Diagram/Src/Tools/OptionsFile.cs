@@ -21,7 +21,7 @@ namespace Diagram
 
         public String optionsFilePath = "";
 
-        ProgramOptions parameters = null;
+        public ProgramOptions parameters = null;
 
         public OptionsFile(ProgramOptions parameters)
         {
@@ -59,7 +59,7 @@ namespace Diagram
             {
                 Program.log.write("loadConfigFile: path:" + this.optionsFilePath);
                 string inputJSON = Os.readAllText(this.optionsFilePath);
-                this.parameters = JsonConvert.DeserializeObject<ProgramOptions>(inputJSON);
+                this.parameters.setParams(JsonConvert.DeserializeObject<ProgramOptions>(inputJSON));
             }
             catch (Exception ex)
             {
