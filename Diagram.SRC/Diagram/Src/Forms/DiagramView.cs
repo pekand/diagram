@@ -1335,7 +1335,7 @@ namespace Diagram
                 {
                     Node temp = this.findNodeInMousePosition(new Position(e.X, e.Y));
 
-                    if (this.sourceNode != temp && !temp.selected)
+                    if (temp == null || (this.sourceNode != temp && !temp.selected))
                     {
                         this.ClearSelection();
                         this.SelectOnlyOneNode(temp);
