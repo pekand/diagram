@@ -69,5 +69,16 @@ namespace Diagram
         public String texteditor = "subl \"%FILENAME%\":%LINE%";
 #endif
 
+        public void setParams(ProgramOptions options)
+        {
+            this.proxy_uri = options.proxy_uri;
+            this.proxy_username = options.proxy_username;
+            this.proxy_password = options.proxy_password;
+            this.server_default_port = options.server_default_port;
+            this.texteditor = options.texteditor;
         }
+
+    }
+
+        
 }
