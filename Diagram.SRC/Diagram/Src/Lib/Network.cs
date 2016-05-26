@@ -20,16 +20,24 @@ namespace Diagram
                 request.AllowAutoRedirect = true;
                 request.MaximumAutomaticRedirections = 3;
                 request.UseDefaultCredentials = true;
-                if (Program.main.options.proxy_password != "" && Program.main.options.proxy_username != "")
+                if (Program.main.options.proxy_uri !="" || 
+                    Program.main.options.proxy_password != "" || 
+                    Program.main.options.proxy_username != ""
+                    )
                 {
                     // set proxy credentials
                     WebProxy myProxy = new WebProxy();
                     Uri newUri = new Uri(Program.main.options.proxy_uri);
                     myProxy.Address = newUri;
-                    myProxy.Credentials = new NetworkCredential(
-                        Program.main.options.proxy_username, 
-                        Program.main.options.proxy_password
-                    );
+                    if (Program.main.options.proxy_password != "" ||
+                        Program.main.options.proxy_username != ""
+                        )
+                    {
+                        myProxy.Credentials = new NetworkCredential(
+                            Program.main.options.proxy_username,
+                            Program.main.options.proxy_password
+                        );
+                    }
                     request.Proxy = myProxy;
                 }
                 else
@@ -96,14 +104,14 @@ namespace Diagram
         /// check if url start on http or https </summary>
         public static bool isURL(String url) 
 		{
-			return (Regex.IsMatch(url, @"^(http|https)://.*$"));
+			return (Regex.IsMatch(url, @"^(http|https)://[^ ]*$"));
 		}
 
         /// <summary>
         /// check if url start on https </summary>
         public static bool isHttpsURL(String url)
         {
-            return (Regex.IsMatch(url, @"^(https)://.*$"));
+            return (Regex.IsMatch(url, @"^(https)://[^ ]*$"));
         }
 
         /// <summary>
