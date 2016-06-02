@@ -767,7 +767,11 @@ namespace Diagram
             {
                 if (!this.diagram.options.readOnly)
                 {
-                    this.stateAddingNode = true;// add node by drag
+                    this.sourceNode = this.findNodeInMousePosition(new Position(e.X, e.Y));
+
+                    if (this.sourceNode == null) {
+                        this.stateAddingNode = true;// add node by drag
+                    }
                     MoveTimer.Enabled = true;
                 }
             }
@@ -1196,7 +1200,7 @@ namespace Diagram
                     && e.X == this.startMousePos.x
                     && e.Y == this.startMousePos.y)
                 {
-                    Node newNode = this.CreateNode(new Position(e.X - 10, e.Y - 10), false);
+                    Node newNode = this.CreateNode(this.actualMousePos.clone().subtract(10), false);
                     this.diagram.unsave("create", newNode, this.shift, this.currentLayer.id);
                 }
                 else
@@ -1353,7 +1357,34 @@ namespace Diagram
             else
             if (buttonmiddle) // MMIDDLE
             {
-                // KEY DRAG+MMIDDLE create new node and conect with existing node
+                // KEY DRAG+MMIDDLE conect two existing nodes
+                if (this.sourceNode != null && TargetNode != null) {
+
+                    Line newLine = this.diagram.Connect(
+                        sourceNode,
+                        TargetNode
+                    );
+
+                    this.diagram.unsave("create", newLine, this.shift, this.currentLayer.id);
+                    this.diagram.InvalidateDiagram();
+                }
+                else
+                // KEY DRAG+MMIDDLE connect exixting node with new node
+                if (this.sourceNode != null && TargetNode == null)
+                {
+
+                    Node newNode = this.CreateNode(this.actualMousePos.clone().subtract(10));
+
+                    Line newLine = this.diagram.Connect(
+                        sourceNode,
+                        newNode
+                    );
+
+                    this.diagram.unsave("create", newNode, newLine, this.shift, this.currentLayer.id);
+                    this.diagram.InvalidateDiagram();
+                }
+                else
+                // KEY DRAG+MMIDDLE create new node and conect id with existing node
                 if (!isreadonly && TargetNode != null)
                 {
                     Node newNode = this.CreateNode(
@@ -1366,6 +1397,34 @@ namespace Diagram
                     );
 
                     this.diagram.unsave("create", newNode, newLine, this.shift, this.currentLayer.id);
+                    this.diagram.InvalidateDiagram();
+                }
+                else
+                // KEY DRAG+MMIDDLE create new node and conect with new node (create line)
+                if (!isreadonly && TargetNode == null)
+                {
+                    Nodes nodes = new Nodes();
+                    Lines lines = new Lines();
+
+                    Node node1 = this.CreateNode(
+                            (new Position(this.shift)).subtract(this.startShift).add(this.startMousePos),
+                            false
+                        );
+
+                    nodes.Add(node1);
+
+                    Node node2 = this.CreateNode(
+                        this.actualMousePos.clone().subtract(10)
+                    );
+
+                    nodes.Add(node2);
+
+                    lines.Add(this.diagram.Connect(
+                        node1,
+                        node2
+                    ));
+
+                    this.diagram.unsave("create", nodes, lines, this.shift, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
                 }
             }
