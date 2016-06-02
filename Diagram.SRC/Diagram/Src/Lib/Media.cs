@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Diagram
@@ -42,5 +43,16 @@ namespace Diagram
 
             return null;
         }
+
+        [DllImport("User32.dll")]
+        public static extern Int32 SetForegroundWindow(int hWnd);
+        /// <summary>
+        /// load image from file </summary>
+        public static void bringToFront(Form form)
+        {
+            SetForegroundWindow(form.Handle.ToInt32());
+        }
+
+            
     }
 }
