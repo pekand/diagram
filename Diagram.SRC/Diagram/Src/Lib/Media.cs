@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
+
+#if !MONO
+using System.Runtime.InteropServices;
+#endif
 
 namespace Diagram
 {
@@ -44,15 +47,29 @@ namespace Diagram
             return null;
         }
 
+#if !MONO
         [DllImport("User32.dll")]
         public static extern Int32 SetForegroundWindow(int hWnd);
+#endif
         /// <summary>
         /// load image from file </summary>
         public static void bringToFront(Form form)
         {
+            //diagram bring to top hack in windows
+            if (form.WindowState == FormWindowState.Minimized)
+            {
+                form.WindowState = FormWindowState.Normal;
+            }
+
+#if !MONO
             SetForegroundWindow(form.Handle.ToInt32());
+#endif
+            form.TopMost = true;
+            form.Focus();
+            form.BringToFront();
+            form.TopMost = false;
+            form.Activate();
         }
 
-            
     }
 }

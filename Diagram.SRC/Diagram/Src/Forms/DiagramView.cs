@@ -3439,26 +3439,6 @@ namespace Diagram
             this.Invalidate();
         }
 
-        // VIEW FOCUS
-        public void setFocus()
-        {
-            Program.log.write("bring focus");
-
-            //diagram bring to top hack in windows
-            if (this.WindowState == FormWindowState.Minimized) { 
-                this.WindowState = FormWindowState.Normal;
-            }
-
-            Media.bringToFront(this);
-
-            TopMost = true;
-            Focus();
-            BringToFront();
-            TopMost = false;
-            this.Activate();
-            
-        }
-
         // VIEW page up
         public void pageUp()
         {

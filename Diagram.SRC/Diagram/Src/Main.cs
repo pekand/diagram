@@ -198,7 +198,8 @@ namespace Diagram
                                         diagram.DiagramViews[0].Show();
                                     }
 
-                                    diagram.DiagramViews[0].setFocus();
+                                    Program.log.write("bring focus");
+                                    Media.bringToFront(diagram.DiagramViews[0]);
                                 }
                                 alreadyOpen = true;
                                 break;

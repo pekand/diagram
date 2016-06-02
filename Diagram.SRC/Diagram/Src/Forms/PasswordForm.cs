@@ -89,6 +89,10 @@ namespace Diagram
         {
             this.Left = (Screen.PrimaryScreen.Bounds.Width - this.Width)/ 2;
             this.Top = (Screen.PrimaryScreen.Bounds.Height - this.Height) / 2;
+
+            Program.log.write("bring focus");
+            Media.bringToFront(this);
+
             this.ActiveControl = editPassword;
         }
 
