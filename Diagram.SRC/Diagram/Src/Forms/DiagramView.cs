@@ -1396,7 +1396,7 @@ namespace Diagram
 #endif
             float newScale = 0;
             //throw new NotImplementedException();
-            if (e.Delta > 0) // MWHELL
+            if (e.Delta < 0) // MWHELL
             {
                 if (this.keyctrl)
                 {
