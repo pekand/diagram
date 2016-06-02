@@ -1379,6 +1379,8 @@ namespace Diagram
                 this.diagramView.diagram.password = this.diagramView.main.newPasswordForm.GetPassword();
                 this.diagramView.diagram.unsave();
             }
+
+            this.diagramView.main.newPasswordForm = null;
         }
 
         // MENU Change password
@@ -1397,6 +1399,8 @@ namespace Diagram
                 this.diagramView.diagram.password = this.diagramView.main.changePasswordForm.GetPassword();
                 this.diagramView.diagram.unsave();
             }
+
+            this.diagramView.main.changePasswordForm = null;
         }
 
         // MENU Read only
