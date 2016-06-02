@@ -1455,47 +1455,15 @@ namespace Diagram
 #endif
             float newScale = 0;
             //throw new NotImplementedException();
-            if (e.Delta < 0) // MWHELL
+            if (e.Delta > 0) // MWHELL
             {
-                if (this.keyctrl)
-                {
-                    if (this.scale < 7) //up
-                    {
-                        int a = (int)((this.shift.x - (this.ClientSize.Width / 2 * this.scale)));
-                        int b = (int)((this.shift.y - (this.ClientSize.Height / 2 * this.scale)));
-                        if (this.scale >= 1)
-                            newScale = this.scale + 1;
-                        else
-                            if (this.scale < 1)
-                                newScale = this.scale + 0.1f;
-
-                        this.shift.x = (int)((a + (this.ClientSize.Width / 2 * this.scale)));
-                        this.shift.y = (int)((b + (this.ClientSize.Height / 2 * this.scale)));
-                    }
-
-                    if (newScale > 7) newScale = 7;
-                }
-                else
-                if (this.keyshift)
-                {
-                    this.shift.x += (int)(50 * this.scale);
-                    this.diagram.InvalidateDiagram();
-                }
-                else
-                {
-                    this.shift.y += (int)(50 * this.scale);
-                    this.diagram.InvalidateDiagram();
-                }
-            }
-            else
-            {
-                if (this.keyctrl)
+                if (this.keyctrl) // zoom
                 {
                     if (this.scale > 0) // down
                     {
                         int a = (int)((this.shift.x - (this.ClientSize.Width / 2 * this.scale)));
                         int b = (int)((this.shift.y - (this.ClientSize.Height / 2 * this.scale)));
-                        if (this.scale>1)
+                        if (this.scale > 1)
                             newScale = this.scale - 1;
                         else
                         if (this.scale > 0.1f)
@@ -1508,12 +1476,44 @@ namespace Diagram
                     if (newScale < 0.1f) newScale = 0.1f;
                 }
                 else
-                if (this.keyshift)
+                if (this.keyshift) // move view
+                {
+                    this.shift.x += (int)(50 * this.scale);
+                    this.diagram.InvalidateDiagram();
+                }
+                else // move view
+                {
+                    this.shift.y += (int)(50 * this.scale);
+                    this.diagram.InvalidateDiagram();
+                }
+            }
+            else
+            {
+                if (this.keyctrl) // zoom
+                {
+                    if (this.scale < 7) //up
+                    {
+                        int a = (int)((this.shift.x - (this.ClientSize.Width / 2 * this.scale)));
+                        int b = (int)((this.shift.y - (this.ClientSize.Height / 2 * this.scale)));
+                        if (this.scale >= 1)
+                            newScale = this.scale + 1;
+                        else
+                            if (this.scale < 1)
+                            newScale = this.scale + 0.1f;
+
+                        this.shift.x = (int)((a + (this.ClientSize.Width / 2 * this.scale)));
+                        this.shift.y = (int)((b + (this.ClientSize.Height / 2 * this.scale)));
+                    }
+
+                    if (newScale > 7) newScale = 7;
+                }
+                else
+                if (this.keyshift) // move view
                 {
                     this.shift.x -= (int)(50 * this.scale);
                     this.diagram.InvalidateDiagram();
                 }
-                else
+                else // move view
                 {
                     this.shift.y -= (int)(50 * this.scale);
                     this.diagram.InvalidateDiagram();
