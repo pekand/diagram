@@ -71,5 +71,53 @@ namespace Diagram
             form.Activate();
         }
 
+        public static Bitmap extractSystemIcon(string path)
+        {
+#if !MONO
+            try
+            {
+                Icon ico = Icon.ExtractAssociatedIcon(path);
+                return ico.ToBitmap();
+            }
+            catch (Exception e)
+            {
+                Program.log.write("get exe icon error: " + e.Message);
+            }
+
+            return null;
+#else
+            return null;
+#endif
+
+        }
+
+        public static Bitmap extractLnkIcon(string path)
+        {
+#if !MONO
+            try
+            {
+                var shl = new Shell32.Shell();
+                string lnkPath = System.IO.Path.GetFullPath(path);
+                var dir = shl.NameSpace(System.IO.Path.GetDirectoryName(lnkPath));
+                var itm = dir.Items().Item(System.IO.Path.GetFileName(lnkPath));
+                var lnk = (Shell32.ShellLinkObject)itm.GetLink;
+
+                String strIcon;
+                lnk.GetIconLocation(out strIcon);
+                Icon awIcon = Icon.ExtractAssociatedIcon(strIcon);
+
+                return awIcon.ToBitmap();
+            }
+            catch (Exception e)
+            {
+                Program.log.write("get exe icon error: " + e.Message);
+            }
+
+            return null;
+#else
+            return null;
+#endif
+
+        }
     }
 }

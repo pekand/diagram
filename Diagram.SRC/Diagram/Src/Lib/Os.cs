@@ -17,21 +17,33 @@ namespace Diagram
 
         /// <summary>
         /// get path from lnk file in windows  </summary>
-        public static string GetShortcutTargetFile(string shortcutFilename)
+        public static string[] GetShortcutTargetFile(string shortcutFilename)
         {
-            string pathOnly = Os.getDirectoryName(shortcutFilename);
-            string filenameOnly = Os.getFileName(shortcutFilename);
-
-            Shell shell = new Shell();
-            Folder folder = shell.NameSpace(pathOnly);
-            FolderItem folderItem = folder.ParseName(filenameOnly);
-            if (folderItem != null)
+            try
             {
-                Shell32.ShellLinkObject link = (Shell32.ShellLinkObject)folderItem.GetLink;
-                return link.Path;
+                string pathOnly = Os.getDirectoryName(shortcutFilename);
+                string filenameOnly = Os.getFileName(shortcutFilename);
+
+                Shell shell = new Shell();
+                Folder folder = shell.NameSpace(pathOnly);
+                FolderItem folderItem = folder.ParseName(filenameOnly);
+                if (folderItem != null)
+                {
+                    Shell32.ShellLinkObject link = (Shell32.ShellLinkObject)folderItem.GetLink;
+
+                    if (link.Arguments != "") {
+                        return new string[] { link.Path, link.Arguments };
+                    }
+
+                    return new string[] { link.Path, "" };
+                }
+            }
+            catch (Exception e)
+            {
+                Program.log.write("GetShortcutTargetFile error: " + e.Message);
             }
 
-            return string.Empty;
+            return new string[] { "", "" };
         }
 
         /// <summary>

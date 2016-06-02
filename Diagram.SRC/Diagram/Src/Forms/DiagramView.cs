@@ -2083,49 +2083,68 @@ namespace Diagram
                             newrec.width = newrec.image.Width;
                         }
 
-    					#if !MONO
-                        if (ext == ".exe")// [EXECUTABLE] [DROP] [ICON] extract icon
-                        {
-                            try
-                            {
-                                Icon ico = Icon.ExtractAssociatedIcon(file);
-                                newrec.isimage = true;
-                                newrec.embeddedimage = true;
-                                newrec.image = ico.ToBitmap();
-                                newrec.image.MakeTransparent(Color.White);
-                                newrec.height = newrec.image.Height;
-                                newrec.width = newrec.image.Width;
-                            }
-                            catch (Exception ex)
-                            {
-                                Program.log.write("extract icon from exe error: " + ex.Message);
-                            }
-                        }
-    					#endif
-
-                        #if !MONO
+#if !MONO
                         if (ext == ".lnk") // [LINK] [DROP] extract target
                         {
                             try
                             {
-                                newrec.link = Os.GetShortcutTargetFile(file);
+                                string[] shortcutInfo = Os.GetShortcutTargetFile(file);
 
-                                // ak je odkaz a odkazuje na exe subor pokusit sa extrahovat ikonu
-                                if (Os.FileExists(newrec.link) && Os.getExtension(newrec.link) == ".exe")// extract icon
+                                Bitmap icoLnk = Media.extractLnkIcon(file);
+                                if (icoLnk != null)// extract icon
                                 {
-                                    Icon ico = Icon.ExtractAssociatedIcon(newrec.link);
                                     newrec.isimage = true;
                                     newrec.embeddedimage = true;
-                                    newrec.image = ico.ToBitmap();
+                                    newrec.image = icoLnk;
                                     newrec.image.MakeTransparent(Color.White);
                                     newrec.height = newrec.image.Height;
                                     newrec.width = newrec.image.Width;
+                                }
+                                else if (shortcutInfo[0] != "" && Os.FileExists(shortcutInfo[0]))
+                                {
+                                    Bitmap icoExe = Media.extractSystemIcon(shortcutInfo[0]);
+
+                                    if (icoExe != null)// extract icon
+                                    {
+                                        newrec.isimage = true;
+                                        newrec.embeddedimage = true;
+                                        newrec.image = icoExe;
+                                        newrec.image.MakeTransparent(Color.White);
+                                        newrec.height = newrec.image.Height;
+                                        newrec.width = newrec.image.Width;
+                                    }
+                                }
+
+                                if (shortcutInfo[1] != "")
+                                {
+                                    newrec.link = shortcutInfo[0] + " " + shortcutInfo[1];
+                                }
+                                else if (shortcutInfo[0] != "")
+                                {
+                                    newrec.link = shortcutInfo[0];
+                                }
+                                else
+                                {
+                                    newrec.link = file;
                                 }
 
                             }
                             catch (Exception ex)
                             {
                                 Program.log.write("extract icon from lnk error: " + ex.Message);
+                            }
+                        }
+                        else
+                        {
+                            Bitmap ico = Media.extractSystemIcon(file);
+                            if (ico != null)// extract icon
+                            {
+                                newrec.isimage = true;
+                                newrec.embeddedimage = true;
+                                newrec.image = ico;
+                                newrec.image.MakeTransparent(Color.White);
+                                newrec.height = newrec.image.Height;
+                                newrec.width = newrec.image.Width;
                             }
                         }
                         #endif
