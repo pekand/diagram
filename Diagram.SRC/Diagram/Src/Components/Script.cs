@@ -43,27 +43,50 @@ using System.IO;
 */
 
 /*
-    # example of python script:
-    #
-    # create circle from nodes in current layer
+# example of python script:
+#
+# create circle from nodes in current layer
 
-    import clr
-    import math
-    clr.AddReference('Diagram')
-    from Diagram import Position
+import clr
+import math
+clr.AddReference('Diagram')
+from Diagram import Position
 
-    a = (2 * math.pi) / 100
-    l = DiagramView.currentLayer.id
-    prev = None
-    for i in range(100):
-        x = int(500 * math.cos(a*i))
-        y = int(500 * math.sin(a*i))
-        rec = Diagram.createNode(Position(x, y), "", l)
-        rec.transparent = True
-        if prev != None:
-            Diagram.Connect(rec, prev)
-        prev = rec
-    DiagramView.Invalidate();
+a = (2 * math.pi) / 100
+l = DiagramView.currentLayer.id
+prev = None
+for i in range(100):
+    x = int(500 * math.cos(a*i))
+    y = int(500 * math.sin(a*i))
+    rec = Diagram.createNode(Position(x, y), "", l)
+    rec.transparent = True
+    if prev != None:
+        Diagram.Connect(rec, prev)
+    prev = rec
+DiagramView.Invalidate();
+
+*/
+
+/*
+# example of python script:
+#
+# create circle from nodes in current layer
+
+import clr
+import math
+
+a = (2 * math.pi) / 100
+l = F.layer().id
+prev = None
+for i in range(100):
+    x = int(500 * math.cos(a*i))
+    y = int(500 * math.sin(a*i))
+    rec = F.create(x, y, "", l)
+    rec.transparent = True
+    if prev != None:
+        F.connect(rec, prev)
+    prev = rec
+F.refresh();
 
 */
 
@@ -141,17 +164,28 @@ namespace Diagram
             return this.script.diagram.GetNodeByID(id);
         }
 
-        public int layer()
+        public Position position(int x, int y)
         {
-            return this.script.diagramView.currentLayer.id;
+            return new Position(x, y);
+        }
+
+        public Layer layer()
+        {
+            return this.script.diagramView.currentLayer;
+        }
+
+        public Node create(Position p, string name = "", int layer = -1)
+        {
+            if (layer < 0)
+            {
+                layer = this.layer().id;
+            }
+
+            return this.script.diagram.createNode(p, name, layer);
         }
 
         public Node create(int x, int y, string name = "", int layer = -1)
         {
-            if (layer < 0) {
-                layer = this.layer();
-            }
-
             return this.script.diagram.createNode(new Position(x,y), name, layer);
         }
 

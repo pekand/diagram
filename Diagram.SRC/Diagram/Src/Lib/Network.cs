@@ -10,7 +10,13 @@ namespace Diagram
 
         /// <summary>
         /// download https page and parse title from it </summary>
-        public static string GetWebPageTitle(string url, int level = 0)
+        public static string GetWebPageTitle(
+            string url, 
+            string proxy_uri = "",
+            string proxy_password = "",
+            string proxy_username = "",
+            int level = 0
+            )
         {
             string title = url;
 
@@ -20,22 +26,22 @@ namespace Diagram
                 request.AllowAutoRedirect = true;
                 request.MaximumAutomaticRedirections = 3;
                 request.UseDefaultCredentials = true;
-                if (Program.main.options.proxy_uri !="" || 
-                    Program.main.options.proxy_password != "" || 
-                    Program.main.options.proxy_username != ""
+                if (proxy_uri !="" || 
+                    proxy_password != "" || 
+                    proxy_username != ""
                     )
                 {
                     // set proxy credentials
                     WebProxy myProxy = new WebProxy();
-                    Uri newUri = new Uri(Program.main.options.proxy_uri);
+                    Uri newUri = new Uri(proxy_uri);
                     myProxy.Address = newUri;
-                    if (Program.main.options.proxy_password != "" ||
-                        Program.main.options.proxy_username != ""
+                    if (proxy_password != "" ||
+                        proxy_username != ""
                         )
                     {
                         myProxy.Credentials = new NetworkCredential(
-                            Program.main.options.proxy_username,
-                            Program.main.options.proxy_password
+                            proxy_username,
+                            proxy_password
                         );
                     }
                     request.Proxy = myProxy;
@@ -72,7 +78,13 @@ namespace Diagram
                     if (redirect.Trim() != "") {
                         Uri result = null;
                         Uri.TryCreate(new Uri(url), redirect, out result);
-                        return GetWebPageTitle(result.ToString(), level + 1);
+                        return GetWebPageTitle(
+                            result.ToString(), 
+                            proxy_uri,
+                            proxy_password,
+                            proxy_username,
+                            level + 1
+                        );
                     }
                 }
 

@@ -24,7 +24,7 @@ namespace Diagram
 
         /// <summary>
         /// create main class which oppening forms</summary>
-        public static Main main = null;
+        private static Main main = null;
 
         [STAThread]
         static void Main()
@@ -44,6 +44,7 @@ namespace Diagram
                 }
                 Application.Exit();
 #if !DEBUG
+            // catch all exception globaly in release mode and prevent application crash
             }
             catch (Exception e) // global exception handling
             {

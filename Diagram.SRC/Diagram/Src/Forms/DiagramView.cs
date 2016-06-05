@@ -1792,7 +1792,7 @@ namespace Diagram
 
             if (KeyMap.parseKey(KeyMap.console, keyData)) // [KEY] [F12] show Debug console
             {
-                this.showConsole();
+                this.main.showConsole();
                 return true;
             }
 
@@ -5424,7 +5424,14 @@ namespace Diagram
                 new DoWorkEventHandler(
                     delegate (object o, DoWorkEventArgs args)
                     {
-                        node.setName(Network.GetWebPageTitle(url));
+                        node.setName(
+                            Network.GetWebPageTitle(
+                                url,
+                                this.main.options.proxy_uri,
+                                this.main.options.proxy_password,
+                                this.main.options.proxy_username
+                            )
+                        );
 
                     }
                 ),
@@ -5508,16 +5515,6 @@ namespace Diagram
         }
 
         /*************************************************************************************************************************/
-
-        // DEBUG Show console
-        public void showConsole()
-        {
-            if (main.console == null)
-            {
-                main.console = new Console(main);
-            }
-            main.console.Show();
-        }
 
         // SCRIPT evaluate python script in nodes signed with stamp in node link [F9]
         void evaluate()

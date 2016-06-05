@@ -179,7 +179,7 @@ namespace Diagram
             this.diagram.EditNodeClose(this.node);
 
             this.diagram.TextWindows.Remove(this);
-            main.TextWindows.Remove(this);
+            main.removeTextWindow(this);
             this.diagram.CloseDiagram();
         }
 
