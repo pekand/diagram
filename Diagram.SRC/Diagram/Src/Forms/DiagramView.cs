@@ -768,10 +768,7 @@ namespace Diagram
                 if (!this.diagram.options.readOnly)
                 {
                     this.sourceNode = this.findNodeInMousePosition(new Position(e.X, e.Y));
-
-                    if (this.sourceNode == null) {
-                        this.stateAddingNode = true;// add node by drag
-                    }
+                    this.stateAddingNode = true;// add node by drag
                     MoveTimer.Enabled = true;
                 }
             }
@@ -1365,8 +1362,10 @@ namespace Diagram
                         TargetNode
                     );
 
-                    this.diagram.unsave("create", newLine, this.shift, this.currentLayer.id);
-                    this.diagram.InvalidateDiagram();
+                    if (newLine != null) {
+                        this.diagram.unsave("create", newLine, this.shift, this.currentLayer.id);
+                        this.diagram.InvalidateDiagram();
+                    }
                 }
                 else
                 // KEY DRAG+MMIDDLE connect exixting node with new node
@@ -2339,7 +2338,7 @@ namespace Diagram
         }                                      // [MOVE] [TIMER] [EVENT]
 
         // EVENT Deactivate - lost focus
-        public void DiagramApp_Deactivate(object sender, EventArgs e)                              // [FOCUS]
+        public void DiagramApp_Deactivate(object sender, EventArgs e)                                  // [FOCUS]
         {
 
 #if DEBUG
@@ -3154,30 +3153,45 @@ namespace Diagram
         {
             Pen myPen = new Pen(Color.Black, 1);
 
-            gfx.DrawLine(
+            
+
+            if (this.sourceNode == null)
+            {
+                gfx.DrawLine(
                     myPen,
                     this.shift.x - this.startShift.x + this.startMousePos.x - 2 + 12,
                     this.shift.y - this.startShift.y + this.startMousePos.y - 2 + 12,
                     this.actualMousePos.x,
                     this.actualMousePos.y
                 );
-            gfx.FillEllipse(
-                new SolidBrush(ColorTranslator.FromHtml("#FFFFB8")),
-                new Rectangle(
-                    this.shift.x - this.startShift.x + this.startMousePos.x,
-                    this.shift.y - this.startShift.y + this.startMousePos.y,
-                    20,
-                    20
-                )
-            );
-            gfx.DrawEllipse(
-                myPen,
-                new Rectangle(
-                    this.shift.x - this.startShift.x + this.startMousePos.x,
-                    this.shift.y - this.startShift.y + this.startMousePos.y,
-                    20, 20
-                )
-            );
+
+                gfx.FillEllipse(
+                    new SolidBrush(ColorTranslator.FromHtml("#FFFFB8")),
+                    new Rectangle(
+                        this.shift.x - this.startShift.x + this.startMousePos.x,
+                        this.shift.y - this.startShift.y + this.startMousePos.y,
+                        20,
+                        20
+                    )
+                );
+                gfx.DrawEllipse(
+                    myPen,
+                    new Rectangle(
+                        this.shift.x - this.startShift.x + this.startMousePos.x,
+                        this.shift.y - this.startShift.y + this.startMousePos.y,
+                        20, 20
+                    )
+                );
+            }
+            else {
+                gfx.DrawLine(
+                    myPen,
+                    this.shift.x + this.sourceNode.position.x + this.sourceNode.width / 2,
+                    this.shift.y + this.sourceNode.position.y + this.sourceNode.height / 2,
+                    this.actualMousePos.x,
+                    this.actualMousePos.y
+                );
+            }
         }
 
         // DRAW nodes
