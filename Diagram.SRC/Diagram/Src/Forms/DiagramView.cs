@@ -4544,8 +4544,6 @@ namespace Diagram
             }
         }
 
-        
-
         // NODE align to group
         public void alignToLineGroup()
         {

@@ -17,5 +17,6 @@
         public string closeMacroForm = "Close macro form? Data will not be saved!";
         public string badCommandLineParameter = "Bed command line parameter";
         public string fileNotExist = "File not exist";
+        public string password = "Password";
     }
 }

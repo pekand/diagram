@@ -503,7 +503,7 @@ namespace Diagram
 
         /// <summary>
         /// show dialog for password for diagram unlock</summary>
-        public string getPassword()
+        public string getPassword(string subtitle)
         {
             string password = null;
 
@@ -512,6 +512,7 @@ namespace Diagram
                 this.passwordForm = new PasswordForm(this);
             }
 
+            this.passwordForm.Text = translations.password + " - " + subtitle;
             this.passwordForm.Clear();
             this.passwordForm.ShowDialog();
             if (!this.passwordForm.cancled)

@@ -163,7 +163,7 @@ namespace Diagram
                 {
                     error = false;
 
-                    string password = this.main.getPassword();
+                    string password = this.main.getPassword(Os.getFileNameWithoutExtension(this.FileName));
                     if (password != null)
                     {
                         try
