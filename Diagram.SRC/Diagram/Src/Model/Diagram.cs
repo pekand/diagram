@@ -1301,7 +1301,7 @@ namespace Diagram
         }
 
         // NODES ALIGN compact
-        // align node to left and create constant space between nodes
+        // align node to top element and create constant space between nodes
         public void AlignCompact(Nodes nodes)
         {
             if (nodes.Count() > 0)
@@ -1310,14 +1310,10 @@ namespace Diagram
                 int miny = nodes[0].position.y;
                 foreach (Node rec in nodes)
                 {
-                    if (rec.position.x <= minx) // find top left element
-                    {
-                        minx = rec.position.x;
-                    }
-
                     if (rec.position.y <= miny) // find most top element
                     {
                         miny = rec.position.y;
+                        minx = rec.position.x;
                     }
                 }
 
@@ -1339,7 +1335,7 @@ namespace Diagram
         }
 
         // NODES ALIGN compact
-        // align node to left and create constant space between nodes and sort items
+        // align node to top element and create constant space between nodes and sort items
         public void sortNodes(Nodes nodes)
         {
             if (nodes.Count() > 0)
@@ -1348,13 +1344,9 @@ namespace Diagram
                 int miny = nodes[0].position.y;
                 foreach (Node rec in nodes)
                 {
-                    if (rec.position.x <= minx) // find top left element
-                    {
-                        minx = rec.position.x;
-                    }
-
                     if (rec.position.y <= miny) // find most top element
                     {
+                        minx = rec.position.x;
                         miny = rec.position.y;
                     }
                 }
@@ -1395,9 +1387,9 @@ namespace Diagram
             }
         }
 
-        // NODES ALIGN compact
-        // align node to left and create constant space between nodes
-        public void splitNode(Nodes nodes)
+        // NODES SPLIT compact
+        // split node to lines
+        public Nodes splitNode(Nodes nodes)
         {
             if (nodes.Count() > 0)
             {
@@ -1407,13 +1399,9 @@ namespace Diagram
                 int miny = nodes[0].position.y;
                 foreach (Node rec in nodes)
                 {
-                    if (rec.position.x <= minx) // find top left element
-                    {
-                        minx = rec.position.x;
-                    }
-
                     if (rec.position.y <= miny) // find most top element
                     {
+                        minx = rec.position.x;
                         miny = rec.position.y;
                     }
                 }
@@ -1422,28 +1410,29 @@ namespace Diagram
                 {
                     string[] lines = node.name.Split(new string[] { "\n" }, StringSplitOptions.None);
 
+                    int posy = node.position.y + node.height + 10;
+
                     foreach (String line in lines)
                     {
                         if (line.Trim() != "")
                         {
                             Node newNode = this.createNode(new Node(node)); // duplicate content of old node
                             newNode.setName(line);
+                            newNode.position.y = posy;
+                            posy = posy + newNode.height + 10;
                             newNodes.Add(newNode);
                         }
                     }
                 }
 
-                int posy = miny;
-                foreach (Node node in newNodes) // change space between nodes
-                {
-                    node.position.y = posy;
-                    posy = posy + node.height + 10;
-                }
+                return newNodes;
             }
+
+            return null;
         }
 
         // NODES ALIGN compact
-        // align node to left and create constant space between nodes
+        // align node to most left node and create constant space between nodes
         public void AlignCompactLine(Nodes nodes)
         {
             if (nodes.Count() > 0)
@@ -1455,10 +1444,6 @@ namespace Diagram
                     if (rec.position.x <= minx) // find top left element
                     {
                         minx = rec.position.x;
-                    }
-
-                    if (rec.position.y <= miny) // find most top element
-                    {
                         miny = rec.position.y;
                     }
                 }

@@ -4536,10 +4536,8 @@ namespace Diagram
         {
             if (this.selectedNodes.Count() > 0)
             {
-                this.diagram.undo.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
-                this.diagram.splitNode(this.selectedNodes);
-                this.diagram.AlignCompact(this.selectedNodes);
-                this.diagram.unsave();
+                Nodes newNodes = this.diagram.splitNode(this.selectedNodes);
+                this.diagram.unsave("create", newNodes, null, this.shift, this.currentLayer.id);
                 this.diagram.InvalidateDiagram();
             }
         }
