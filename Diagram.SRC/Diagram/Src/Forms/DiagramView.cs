@@ -4293,7 +4293,12 @@ namespace Diagram
 
                 string ClipText = retrievedData.GetData(DataFormats.Text) as string;
 
-                if (Network.isURL(ClipText))  // [PASTE] [URL] [LINK] paste link from clipboard
+                if (Patterns.isColor(ClipText)) {
+                    newrec.setName(ClipText);
+                    newrec.color.set(Media.getColor(ClipText));
+                    this.diagram.unsave("create", newrec, this.shift, this.currentLayer.id);
+                }
+                else if (Network.isURL(ClipText))  // [PASTE] [URL] [LINK] paste link from clipboard
                 {
                     newrec.link = ClipText;
                     newrec.setName(ClipText);
@@ -4303,7 +4308,7 @@ namespace Diagram
                     this.diagram.unsave("create", newrec, this.shift, this.currentLayer.id);
                 }
                 else
-                {                                                      
+                {
                     newrec.setName(ClipText);
 
                     // set link to node as path to file
