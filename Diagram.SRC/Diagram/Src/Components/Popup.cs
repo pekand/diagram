@@ -910,15 +910,15 @@ namespace Diagram
             }
 
             // PASSWORD IS SET
-            if (this.diagramView.diagram.password == "")
-            {
-                items["changePasswordItem"].Visible = false;
-                items["encryptItem"].Visible = true;
-            }
-            else
+            if (this.diagramView.diagram.isEncrypted())
             {
                 items["changePasswordItem"].Visible = true;
                 items["encryptItem"].Visible = false;
+            }
+            else
+            {
+                items["changePasswordItem"].Visible = false;
+                items["encryptItem"].Visible = true;
             }
 
             // ATTACHMENT
@@ -1367,36 +1367,13 @@ namespace Diagram
         // MENU Encription
         private void encryptItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.main.newPasswordForm == null)
-            {
-                this.diagramView.main.newPasswordForm = new NewPasswordForm(this.diagramView.main);
-            }
-
-            this.diagramView.main.newPasswordForm.Clear();
-            this.diagramView.main.newPasswordForm.ShowDialog();
-            if (!this.diagramView.main.newPasswordForm.cancled)
-            {
-                this.diagramView.diagram.password = this.diagramView.main.newPasswordForm.GetPassword();
-                this.diagramView.diagram.unsave();
-            }
+            this.diagramView.diagram.setPassword();
         }
 
         // MENU Change password
         private void changePasswordItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.main.changePasswordForm == null)
-            {
-                this.diagramView.main.changePasswordForm = new ChangePasswordForm(this.diagramView.main);
-            }
-
-            this.diagramView.main.changePasswordForm.Clear();
-            this.diagramView.main.changePasswordForm.oldpassword = this.diagramView.diagram.password;
-            this.diagramView.main.changePasswordForm.ShowDialog();
-            if (!this.diagramView.main.changePasswordForm.cancled)
-            {
-                this.diagramView.diagram.password = this.diagramView.main.changePasswordForm.GetPassword();
-                this.diagramView.diagram.unsave();
-            }
+            this.diagramView.diagram.changePassword();
         }
 
         // MENU Read only
@@ -1459,7 +1436,7 @@ namespace Diagram
         private void openConfigDirItem_Click(object sender, EventArgs e)
         {
 
-            this.diagramView.main.optionsFile.openConfigDir();
+            this.diagramView.main.openConfigDir();
         }
 
         // HELP
@@ -1467,7 +1444,7 @@ namespace Diagram
         // MENU Console
         public void consoleItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.showConsole();
+            this.diagramView.main.showConsole();
         }
 
         // MENU visit homepage
@@ -1495,12 +1472,7 @@ namespace Diagram
         // MENU show About form
         private void aboutItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.main.aboutForm == null)
-            {
-                this.diagramView.main.aboutForm = new AboutForm(this.diagramView.main);
-            }
-
-            this.diagramView.main.aboutForm.Show();
+            this.diagramView.main.showAbout();
         }
     }
 }

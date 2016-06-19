@@ -19,6 +19,7 @@ namespace Diagram
 
         public NewPasswordForm(Main main)
         {
+            this.main = main;
             this.InitializeComponent();
         }
 
@@ -152,14 +153,11 @@ namespace Diagram
 
         private void NewPasswordForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            cancled = true;
+
             if (buttonok)
             {
                 cancled = false;
-            }
-            else
-            {
-                cancled = true;
-                main.newPasswordForm = null;
             }
         }
 

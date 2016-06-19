@@ -13,6 +13,7 @@ namespace Diagram
         private System.Windows.Forms.TextBox editPassword;
 
         public bool ok = false;
+        public bool cancled = false;
 
         public PasswordForm(Main main)
         {
@@ -79,7 +80,8 @@ namespace Diagram
             this.Name = "PasswordForm";
             this.Text = "Password";
             this.Load += new System.EventHandler(this.PasswordForm_Load);
-            
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PasswordForm_FormClosed);
+
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -87,15 +89,31 @@ namespace Diagram
 
         private void PasswordForm_Load(object sender, EventArgs e)
         {
+            this.Clear();
             this.Left = (Screen.PrimaryScreen.Bounds.Width - this.Width)/ 2;
             this.Top = (Screen.PrimaryScreen.Bounds.Height - this.Height) / 2;
+
+            Program.log.write("bring focus");
+            Media.bringToFront(this);
+
             this.ActiveControl = editPassword;
+        }
+
+        private void PasswordForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            cancled = true;
+
+            if (ok)
+            {
+                cancled = false;
+            }
         }
 
         public void Clear()
         {
             this.editPassword.Text = "";
             ok = false;
+            cancled = false;
         }
 
         public string GetPassword() {
@@ -105,11 +123,14 @@ namespace Diagram
         private void buttonOk_Click(object sender, EventArgs e)
         {
             this.ok = true;
+            this.cancled = false;
             this.Close();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
+            this.ok = false;
+            this.cancled = true;
             this.Close();
         }
 
@@ -119,22 +140,6 @@ namespace Diagram
             {
                 buttonOk_Click(sender, e);
             }
-        }
-
-        // set focus for form when diagram is open from system
-        public void setFocus()
-        {
-            //diagram bring to top hack in windows
-            if (this.WindowState == FormWindowState.Minimized)
-            {
-                this.WindowState = FormWindowState.Normal;
-            }
-
-            TopMost = true;
-            Focus();
-            BringToFront();
-            TopMost = false;
-            this.Activate();
         }
     }
 }

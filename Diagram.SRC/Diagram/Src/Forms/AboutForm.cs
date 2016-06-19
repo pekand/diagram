@@ -22,10 +22,10 @@ namespace Diagram
             this.main = main;
             this.InitializeComponent();
 
-            this.labelLicenceType.Text = Program.main.options.license;
+            this.labelLicenceType.Text = this.main.options.license;
             this.labelVersionNumber.Text = Application.ProductVersion;
-            this.linkLabelMe.Text = Program.main.options.author; 
-            this.labelHomepage.Text = Program.main.options.home_page;
+            this.linkLabelMe.Text = this.main.options.author; 
+            this.labelHomepage.Text = this.main.options.home_page;
         }
 
         private void InitializeComponent()
@@ -180,12 +180,12 @@ namespace Diagram
 
         private void labelHomepage_HomepageClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(Program.main.options.home_page);
+            System.Diagnostics.Process.Start(this.main.options.home_page);
         }
 
         private void AboutForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            main.aboutForm = null;
+            
         }
     }
 }

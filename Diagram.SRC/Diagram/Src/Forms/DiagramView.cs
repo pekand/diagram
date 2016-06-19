@@ -767,6 +767,7 @@ namespace Diagram
             {
                 if (!this.diagram.options.readOnly)
                 {
+                    this.sourceNode = this.findNodeInMousePosition(new Position(e.X, e.Y));
                     this.stateAddingNode = true;// add node by drag
                     MoveTimer.Enabled = true;
                 }
@@ -1196,7 +1197,7 @@ namespace Diagram
                     && e.X == this.startMousePos.x
                     && e.Y == this.startMousePos.y)
                 {
-                    Node newNode = this.CreateNode(new Position(e.X - 10, e.Y - 10), false);
+                    Node newNode = this.CreateNode(this.actualMousePos.clone().subtract(10), false);
                     this.diagram.unsave("create", newNode, this.shift, this.currentLayer.id);
                 }
                 else
@@ -1353,7 +1354,36 @@ namespace Diagram
             else
             if (buttonmiddle) // MMIDDLE
             {
-                // KEY DRAG+MMIDDLE create new node and conect with existing node
+                // KEY DRAG+MMIDDLE conect two existing nodes
+                if (this.sourceNode != null && TargetNode != null) {
+
+                    Line newLine = this.diagram.Connect(
+                        sourceNode,
+                        TargetNode
+                    );
+
+                    if (newLine != null) {
+                        this.diagram.unsave("create", newLine, this.shift, this.currentLayer.id);
+                        this.diagram.InvalidateDiagram();
+                    }
+                }
+                else
+                // KEY DRAG+MMIDDLE connect exixting node with new node
+                if (this.sourceNode != null && TargetNode == null)
+                {
+
+                    Node newNode = this.CreateNode(this.actualMousePos.clone().subtract(10));
+
+                    Line newLine = this.diagram.Connect(
+                        sourceNode,
+                        newNode
+                    );
+
+                    this.diagram.unsave("create", newNode, newLine, this.shift, this.currentLayer.id);
+                    this.diagram.InvalidateDiagram();
+                }
+                else
+                // KEY DRAG+MMIDDLE create new node and conect id with existing node
                 if (!isreadonly && TargetNode != null)
                 {
                     Node newNode = this.CreateNode(
@@ -1366,6 +1396,34 @@ namespace Diagram
                     );
 
                     this.diagram.unsave("create", newNode, newLine, this.shift, this.currentLayer.id);
+                    this.diagram.InvalidateDiagram();
+                }
+                else
+                // KEY DRAG+MMIDDLE create new node and conect with new node (create line)
+                if (!isreadonly && TargetNode == null)
+                {
+                    Nodes nodes = new Nodes();
+                    Lines lines = new Lines();
+
+                    Node node1 = this.CreateNode(
+                            (new Position(this.shift)).subtract(this.startShift).add(this.startMousePos),
+                            false
+                        );
+
+                    nodes.Add(node1);
+
+                    Node node2 = this.CreateNode(
+                        this.actualMousePos.clone().subtract(10)
+                    );
+
+                    nodes.Add(node2);
+
+                    lines.Add(this.diagram.Connect(
+                        node1,
+                        node2
+                    ));
+
+                    this.diagram.unsave("create", nodes, lines, this.shift, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
                 }
             }
@@ -1398,45 +1456,13 @@ namespace Diagram
             //throw new NotImplementedException();
             if (e.Delta > 0) // MWHELL
             {
-                if (this.keyctrl)
-                {
-                    if (this.scale < 7) //up
-                    {
-                        int a = (int)((this.shift.x - (this.ClientSize.Width / 2 * this.scale)));
-                        int b = (int)((this.shift.y - (this.ClientSize.Height / 2 * this.scale)));
-                        if (this.scale >= 1)
-                            newScale = this.scale + 1;
-                        else
-                            if (this.scale < 1)
-                                newScale = this.scale + 0.1f;
-
-                        this.shift.x = (int)((a + (this.ClientSize.Width / 2 * this.scale)));
-                        this.shift.y = (int)((b + (this.ClientSize.Height / 2 * this.scale)));
-                    }
-
-                    if (newScale > 7) newScale = 7;
-                }
-                else
-                if (this.keyshift)
-                {
-                    this.shift.x += (int)(50 * this.scale);
-                    this.diagram.InvalidateDiagram();
-                }
-                else
-                {
-                    this.shift.y += (int)(50 * this.scale);
-                    this.diagram.InvalidateDiagram();
-                }
-            }
-            else
-            {
-                if (this.keyctrl)
+                if (this.keyctrl) // zoom
                 {
                     if (this.scale > 0) // down
                     {
                         int a = (int)((this.shift.x - (this.ClientSize.Width / 2 * this.scale)));
                         int b = (int)((this.shift.y - (this.ClientSize.Height / 2 * this.scale)));
-                        if (this.scale>1)
+                        if (this.scale > 1)
                             newScale = this.scale - 1;
                         else
                         if (this.scale > 0.1f)
@@ -1449,12 +1475,44 @@ namespace Diagram
                     if (newScale < 0.1f) newScale = 0.1f;
                 }
                 else
-                if (this.keyshift)
+                if (this.keyshift) // move view
+                {
+                    this.shift.x += (int)(50 * this.scale);
+                    this.diagram.InvalidateDiagram();
+                }
+                else // move view
+                {
+                    this.shift.y += (int)(50 * this.scale);
+                    this.diagram.InvalidateDiagram();
+                }
+            }
+            else
+            {
+                if (this.keyctrl) // zoom
+                {
+                    if (this.scale < 7) //up
+                    {
+                        int a = (int)((this.shift.x - (this.ClientSize.Width / 2 * this.scale)));
+                        int b = (int)((this.shift.y - (this.ClientSize.Height / 2 * this.scale)));
+                        if (this.scale >= 1)
+                            newScale = this.scale + 1;
+                        else
+                            if (this.scale < 1)
+                            newScale = this.scale + 0.1f;
+
+                        this.shift.x = (int)((a + (this.ClientSize.Width / 2 * this.scale)));
+                        this.shift.y = (int)((b + (this.ClientSize.Height / 2 * this.scale)));
+                    }
+
+                    if (newScale > 7) newScale = 7;
+                }
+                else
+                if (this.keyshift) // move view
                 {
                     this.shift.x -= (int)(50 * this.scale);
                     this.diagram.InvalidateDiagram();
                 }
-                else
+                else // move view
                 {
                     this.shift.y -= (int)(50 * this.scale);
                     this.diagram.InvalidateDiagram();
@@ -1733,7 +1791,7 @@ namespace Diagram
 
             if (KeyMap.parseKey(KeyMap.console, keyData)) // [KEY] [F12] show Debug console
             {
-                this.showConsole();
+                this.main.showConsole();
                 return true;
             }
 
@@ -2083,49 +2141,68 @@ namespace Diagram
                             newrec.width = newrec.image.Width;
                         }
 
-    					#if !MONO
-                        if (ext == ".exe")// [EXECUTABLE] [DROP] [ICON] extract icon
-                        {
-                            try
-                            {
-                                Icon ico = Icon.ExtractAssociatedIcon(file);
-                                newrec.isimage = true;
-                                newrec.embeddedimage = true;
-                                newrec.image = ico.ToBitmap();
-                                newrec.image.MakeTransparent(Color.White);
-                                newrec.height = newrec.image.Height;
-                                newrec.width = newrec.image.Width;
-                            }
-                            catch (Exception ex)
-                            {
-                                Program.log.write("extract icon from exe error: " + ex.Message);
-                            }
-                        }
-    					#endif
-
-                        #if !MONO
+#if !MONO
                         if (ext == ".lnk") // [LINK] [DROP] extract target
                         {
                             try
                             {
-                                newrec.link = Os.GetShortcutTargetFile(file);
+                                string[] shortcutInfo = Os.GetShortcutTargetFile(file);
 
-                                // ak je odkaz a odkazuje na exe subor pokusit sa extrahovat ikonu
-                                if (Os.FileExists(newrec.link) && Os.getExtension(newrec.link) == ".exe")// extract icon
+                                Bitmap icoLnk = Media.extractLnkIcon(file);
+                                if (icoLnk != null)// extract icon
                                 {
-                                    Icon ico = Icon.ExtractAssociatedIcon(newrec.link);
                                     newrec.isimage = true;
                                     newrec.embeddedimage = true;
-                                    newrec.image = ico.ToBitmap();
+                                    newrec.image = icoLnk;
                                     newrec.image.MakeTransparent(Color.White);
                                     newrec.height = newrec.image.Height;
                                     newrec.width = newrec.image.Width;
+                                }
+                                else if (shortcutInfo[0] != "" && Os.FileExists(shortcutInfo[0]))
+                                {
+                                    Bitmap icoExe = Media.extractSystemIcon(shortcutInfo[0]);
+
+                                    if (icoExe != null)// extract icon
+                                    {
+                                        newrec.isimage = true;
+                                        newrec.embeddedimage = true;
+                                        newrec.image = icoExe;
+                                        newrec.image.MakeTransparent(Color.White);
+                                        newrec.height = newrec.image.Height;
+                                        newrec.width = newrec.image.Width;
+                                    }
+                                }
+
+                                if (shortcutInfo[1] != "")
+                                {
+                                    newrec.link = shortcutInfo[0] + " " + shortcutInfo[1];
+                                }
+                                else if (shortcutInfo[0] != "")
+                                {
+                                    newrec.link = shortcutInfo[0];
+                                }
+                                else
+                                {
+                                    newrec.link = file;
                                 }
 
                             }
                             catch (Exception ex)
                             {
                                 Program.log.write("extract icon from lnk error: " + ex.Message);
+                            }
+                        }
+                        else
+                        {
+                            Bitmap ico = Media.extractSystemIcon(file);
+                            if (ico != null)// extract icon
+                            {
+                                newrec.isimage = true;
+                                newrec.embeddedimage = true;
+                                newrec.image = ico;
+                                newrec.image.MakeTransparent(Color.White);
+                                newrec.height = newrec.image.Height;
+                                newrec.width = newrec.image.Width;
                             }
                         }
                         #endif
@@ -2261,7 +2338,7 @@ namespace Diagram
         }                                      // [MOVE] [TIMER] [EVENT]
 
         // EVENT Deactivate - lost focus
-        public void DiagramApp_Deactivate(object sender, EventArgs e)                              // [FOCUS]
+        public void DiagramApp_Deactivate(object sender, EventArgs e)                                  // [FOCUS]
         {
 
 #if DEBUG
@@ -3076,30 +3153,45 @@ namespace Diagram
         {
             Pen myPen = new Pen(Color.Black, 1);
 
-            gfx.DrawLine(
+            
+
+            if (this.sourceNode == null)
+            {
+                gfx.DrawLine(
                     myPen,
                     this.shift.x - this.startShift.x + this.startMousePos.x - 2 + 12,
                     this.shift.y - this.startShift.y + this.startMousePos.y - 2 + 12,
                     this.actualMousePos.x,
                     this.actualMousePos.y
                 );
-            gfx.FillEllipse(
-                new SolidBrush(ColorTranslator.FromHtml("#FFFFB8")),
-                new Rectangle(
-                    this.shift.x - this.startShift.x + this.startMousePos.x,
-                    this.shift.y - this.startShift.y + this.startMousePos.y,
-                    20,
-                    20
-                )
-            );
-            gfx.DrawEllipse(
-                myPen,
-                new Rectangle(
-                    this.shift.x - this.startShift.x + this.startMousePos.x,
-                    this.shift.y - this.startShift.y + this.startMousePos.y,
-                    20, 20
-                )
-            );
+
+                gfx.FillEllipse(
+                    new SolidBrush(ColorTranslator.FromHtml("#FFFFB8")),
+                    new Rectangle(
+                        this.shift.x - this.startShift.x + this.startMousePos.x,
+                        this.shift.y - this.startShift.y + this.startMousePos.y,
+                        20,
+                        20
+                    )
+                );
+                gfx.DrawEllipse(
+                    myPen,
+                    new Rectangle(
+                        this.shift.x - this.startShift.x + this.startMousePos.x,
+                        this.shift.y - this.startShift.y + this.startMousePos.y,
+                        20, 20
+                    )
+                );
+            }
+            else {
+                gfx.DrawLine(
+                    myPen,
+                    this.shift.x + this.sourceNode.position.x + this.sourceNode.width / 2,
+                    this.shift.y + this.sourceNode.position.y + this.sourceNode.height / 2,
+                    this.actualMousePos.x,
+                    this.actualMousePos.y
+                );
+            }
         }
 
         // DRAW nodes
@@ -3437,22 +3529,6 @@ namespace Diagram
         private void DiagramView_Activated(object sender, EventArgs e)
         {
             this.Invalidate();
-        }
-
-        // VIEW FOCUS
-        public void setFocus()
-        {
-            //diagram bring to top hack in windows
-            if (this.WindowState == FormWindowState.Minimized)
-                this.WindowState = FormWindowState.Normal;
-            else
-            {
-                TopMost = true;
-                Focus();
-                BringToFront();
-                TopMost = false;
-                this.Activate();
-            }
         }
 
         // VIEW page up
@@ -4217,7 +4293,12 @@ namespace Diagram
 
                 string ClipText = retrievedData.GetData(DataFormats.Text) as string;
 
-                if (Network.isURL(ClipText))  // [PASTE] [URL] [LINK] paste link from clipboard
+                if (Patterns.isColor(ClipText)) {
+                    newrec.setName(ClipText);
+                    newrec.color.set(Media.getColor(ClipText));
+                    this.diagram.unsave("create", newrec, this.shift, this.currentLayer.id);
+                }
+                else if (Network.isURL(ClipText))  // [PASTE] [URL] [LINK] paste link from clipboard
                 {
                     newrec.link = ClipText;
                     newrec.setName(ClipText);
@@ -4227,7 +4308,7 @@ namespace Diagram
                     this.diagram.unsave("create", newrec, this.shift, this.currentLayer.id);
                 }
                 else
-                {                                                      
+                {
                     newrec.setName(ClipText);
 
                     // set link to node as path to file
@@ -4455,15 +4536,11 @@ namespace Diagram
         {
             if (this.selectedNodes.Count() > 0)
             {
-                this.diagram.undo.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
-                this.diagram.splitNode(this.selectedNodes);
-                this.diagram.AlignCompact(this.selectedNodes);
-                this.diagram.unsave();
+                Nodes newNodes = this.diagram.splitNode(this.selectedNodes);
+                this.diagram.unsave("create", newNodes, null, this.shift, this.currentLayer.id);
                 this.diagram.InvalidateDiagram();
             }
         }
-
-        
 
         // NODE align to group
         public void alignToLineGroup()
@@ -5362,7 +5439,14 @@ namespace Diagram
                 new DoWorkEventHandler(
                     delegate (object o, DoWorkEventArgs args)
                     {
-                        node.setName(Network.GetWebPageTitle(url));
+                        node.setName(
+                            Network.GetWebPageTitle(
+                                url,
+                                this.main.options.proxy_uri,
+                                this.main.options.proxy_password,
+                                this.main.options.proxy_username
+                            )
+                        );
 
                     }
                 ),
@@ -5446,16 +5530,6 @@ namespace Diagram
         }
 
         /*************************************************************************************************************************/
-
-        // DEBUG Show console
-        public void showConsole()
-        {
-            if (main.console == null)
-            {
-                main.console = new Console(main);
-            }
-            main.console.Show();
-        }
 
         // SCRIPT evaluate python script in nodes signed with stamp in node link [F9]
         void evaluate()

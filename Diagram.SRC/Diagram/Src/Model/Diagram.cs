@@ -22,7 +22,7 @@ namespace Diagram
 
     public class Diagram
     {
-        public Main main = null;                 // reference to main form
+        private Main main = null;                 // reference to main form
 
         public Layers layers = new Layers();
 
@@ -40,9 +40,9 @@ namespace Diagram
         public int maxid = 0;                    // last used node id
 
         // ATTRIBUTES ENCRYPTION
-        public bool encrypted = false;           // flag for encrypted file
-        public string password = "";             // password for encrypted file
-		private byte[] salt = null;              // salt
+        private bool encrypted = false;           // flag for encrypted file
+        private string password = "";             // password for encrypted file
+        private byte[] salt = null;              // salt
 
         // UNDO
         public Undo undo = null;                        // undo operations repository
@@ -158,32 +158,20 @@ namespace Diagram
 
             if (version == "1" && salt != "" && encrypted != "")
             {
-                // prevent open multiple files with password in one time
-                if (main.passwordForm != null)
-                {
-                    this.CloseFile();
-                    return false;
-                }
-
                 bool error = false;
                 do
                 {
                     error = false;
 
-                    if (main.passwordForm == null)
-                    {
-                        main.passwordForm = new PasswordForm(main);
-                    }
-
-                    main.passwordForm.Clear();
-                    main.passwordForm.ShowDialog();
-                    if (main.passwordForm.ok)
+                    string password = this.main.getPassword(Os.getFileNameWithoutExtension(this.FileName));
+                    if (password != null)
                     {
                         try
                         {
-                            this.password = main.passwordForm.GetPassword();
                             this.salt = Encrypt.SetSalt(salt);
-                            this.LoadInnerXML(Encrypt.DecryptStringAES(encrypted, this.password, this.salt));
+                            this.LoadInnerXML(Encrypt.DecryptStringAES(encrypted, password, this.salt));
+                            this.encrypted = true;
+                            this.password = password;
                         }
                         catch(Exception e)
                         {
@@ -194,14 +182,13 @@ namespace Diagram
                     }
                     else
                     {
-                        main.passwordForm = null;
+                        // password dialog is cancled
                         this.CloseFile();
                         return false;
                     }
 
                 } while (error);
 
-                main.passwordForm = null;
                 return true;
             }
             else
@@ -957,7 +944,7 @@ namespace Diagram
             return this.layers.getNode(id);
         }
 
-        // NODE Najdenie nody podla scriptid
+        // NODE find node by link
         public Node getNodeByScriptID(string id)
         {
             Regex regex = new Regex(@"^\s*@(\w+){1}\s*$");
@@ -1079,7 +1066,7 @@ namespace Diagram
                     textf.Text = lines[0];
 
                 this.TextWindows.Add(textf);
-                main.TextWindows.Add(textf);
+                main.addTextWindow(textf);
                 textf.Show();
                 textf.SetFocus();
                 return textf;
@@ -1314,7 +1301,7 @@ namespace Diagram
         }
 
         // NODES ALIGN compact
-        // align node to left and create constant space between nodes
+        // align node to top element and create constant space between nodes
         public void AlignCompact(Nodes nodes)
         {
             if (nodes.Count() > 0)
@@ -1323,14 +1310,10 @@ namespace Diagram
                 int miny = nodes[0].position.y;
                 foreach (Node rec in nodes)
                 {
-                    if (rec.position.x <= minx) // find top left element
-                    {
-                        minx = rec.position.x;
-                    }
-
                     if (rec.position.y <= miny) // find most top element
                     {
                         miny = rec.position.y;
+                        minx = rec.position.x;
                     }
                 }
 
@@ -1352,7 +1335,7 @@ namespace Diagram
         }
 
         // NODES ALIGN compact
-        // align node to left and create constant space between nodes and sort items
+        // align node to top element and create constant space between nodes and sort items
         public void sortNodes(Nodes nodes)
         {
             if (nodes.Count() > 0)
@@ -1361,13 +1344,9 @@ namespace Diagram
                 int miny = nodes[0].position.y;
                 foreach (Node rec in nodes)
                 {
-                    if (rec.position.x <= minx) // find top left element
-                    {
-                        minx = rec.position.x;
-                    }
-
                     if (rec.position.y <= miny) // find most top element
                     {
+                        minx = rec.position.x;
                         miny = rec.position.y;
                     }
                 }
@@ -1408,9 +1387,9 @@ namespace Diagram
             }
         }
 
-        // NODES ALIGN compact
-        // align node to left and create constant space between nodes
-        public void splitNode(Nodes nodes)
+        // NODES SPLIT compact
+        // split node to lines
+        public Nodes splitNode(Nodes nodes)
         {
             if (nodes.Count() > 0)
             {
@@ -1420,13 +1399,9 @@ namespace Diagram
                 int miny = nodes[0].position.y;
                 foreach (Node rec in nodes)
                 {
-                    if (rec.position.x <= minx) // find top left element
-                    {
-                        minx = rec.position.x;
-                    }
-
                     if (rec.position.y <= miny) // find most top element
                     {
+                        minx = rec.position.x;
                         miny = rec.position.y;
                     }
                 }
@@ -1435,28 +1410,29 @@ namespace Diagram
                 {
                     string[] lines = node.name.Split(new string[] { "\n" }, StringSplitOptions.None);
 
+                    int posy = node.position.y + node.height + 10;
+
                     foreach (String line in lines)
                     {
                         if (line.Trim() != "")
                         {
                             Node newNode = this.createNode(new Node(node)); // duplicate content of old node
                             newNode.setName(line);
+                            newNode.position.y = posy;
+                            posy = posy + newNode.height + 10;
                             newNodes.Add(newNode);
                         }
                     }
                 }
 
-                int posy = miny;
-                foreach (Node node in newNodes) // change space between nodes
-                {
-                    node.position.y = posy;
-                    posy = posy + node.height + 10;
-                }
+                return newNodes;
             }
+
+            return null;
         }
 
         // NODES ALIGN compact
-        // align node to left and create constant space between nodes
+        // align node to most left node and create constant space between nodes
         public void AlignCompactLine(Nodes nodes)
         {
             if (nodes.Count() > 0)
@@ -1468,10 +1444,6 @@ namespace Diagram
                     if (rec.position.x <= minx) // find top left element
                     {
                         minx = rec.position.x;
-                    }
-
-                    if (rec.position.y <= miny) // find most top element
-                    {
                         miny = rec.position.y;
                     }
                 }
@@ -1652,7 +1624,7 @@ namespace Diagram
             DiagramView diagramview = new DiagramView(main, this, parent);
             diagramview.setDiagram(this);
             this.DiagramViews.Add(diagramview);
-            main.DiagramViews.Add(diagramview);
+            main.addDiagramView(diagramview);
 			this.SetTitle();
             diagramview.Show();
             return diagramview;
@@ -1674,7 +1646,7 @@ namespace Diagram
         public void CloseView(DiagramView view)
         {
             this.DiagramViews.Remove(view);
-            main.DiagramViews.Remove(view);
+            main.removeDiagramView(view);
 
             foreach (DiagramView diagramView in this.DiagramViews) {
                 if (diagramView.parentView == view) {
@@ -1698,7 +1670,7 @@ namespace Diagram
             if (canclose)
             {
                 this.CloseFile();
-                main.Diagrams.Remove(this);
+                main.removeDiagram(this);
                 main.CloseEmptyApplication();
             }
         }
@@ -2402,5 +2374,39 @@ namespace Diagram
 
             return new DiagramBlock(createdNodes, createdLines);
         }
+
+        /*************************************************************************************************************************/
+
+        // SECURITY encrypt diagram 
+        public void setPassword()
+        {
+            string password = this.main.getNewPassword();
+            if (password != null && password != this.password) {
+                this.password = password;
+                this.encrypted = (this.password != "");
+                this.unsave();
+            }
+        }
+
+
+        // SECURITY change password
+        public void changePassword()
+        {
+            string password = this.main.changePassword(this.password);
+            if (password != null && password != this.password)
+            {
+                this.password = password;
+                this.encrypted = (this.password != "");
+                this.unsave();
+            }
+        }
+
+
+        // SECURITY check if password is set
+        public bool isEncrypted()
+        {
+            return this.encrypted;
+        }
+
     }
 }

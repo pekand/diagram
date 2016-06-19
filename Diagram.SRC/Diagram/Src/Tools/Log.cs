@@ -7,8 +7,11 @@ namespace Diagram
     /// This informations can be show in console form
     class Log
     {
+        /// form for displaying errors
+        private Console console = null;
+
         /// All messages saved in log
-        string log = "";
+        private string log = "";
 
         /// <param name="message">Message witch will by saved in log</param>
         /// Get message from program and save it to log.
@@ -18,9 +21,9 @@ namespace Diagram
             log = message + "\n" + log;
 
             /// If console window is displayes then actualize data
-            if (Program.main!= null && Program.main.console != null)
+            if (this.console != null)
             {
-                Program.main.console.Invoke(new Action(() => Program.main.console.refreshWindow()));
+                this.console.Invoke(new Action(() => this.console.refreshWindow()));
             }
         }
 
@@ -29,13 +32,6 @@ namespace Diagram
         public string getText()
         {
             return log;
-        }
-
-        ///  set all text in log.
-        ///  Text is updated 
-        public void setText(string text)
-        {
-            log = text;
         }
 
         /// clear data in log
@@ -56,6 +52,12 @@ namespace Diagram
             }
 
             Os.writeAllText(logPath, this.log);
+        }
+
+        ///  use console for view errors
+        public void setConsole(Console console)
+        {
+            this.console = console;
         }
     }
 }

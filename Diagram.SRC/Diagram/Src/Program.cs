@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using System.Reflection;
 
 // [VERSION]
-[assembly: AssemblyVersion("0.4.0.5")]
+[assembly: AssemblyVersion("0.5.0.1")]
 
 /*! \mainpage Infinite diagram
  *
@@ -24,7 +24,7 @@ namespace Diagram
 
         /// <summary>
         /// create main class which oppening forms</summary>
-        public static Main main = null;
+        private static Main main = null;
 
         [STAThread]
         static void Main()
@@ -44,6 +44,7 @@ namespace Diagram
                 }
                 Application.Exit();
 #if !DEBUG
+            // catch all exception globaly in release mode and prevent application crash
             }
             catch (Exception e) // global exception handling
             {

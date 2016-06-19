@@ -194,14 +194,11 @@ namespace Diagram
 
         private void ChangePasswordForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            cancled = true;
+
             if (buttonok)
             {
                 cancled = false;
-            }
-            else
-            {
-                cancled = true;
-                main.changePasswordForm = null;
             }
         }
 

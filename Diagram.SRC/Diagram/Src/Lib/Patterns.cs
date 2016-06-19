@@ -57,5 +57,17 @@ namespace Diagram
 
             return false;
         }
+
+        public static bool isColor(string text)
+        {
+            Match matchNumber = (new Regex("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")).Match(text);
+
+            if (matchNumber.Success)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

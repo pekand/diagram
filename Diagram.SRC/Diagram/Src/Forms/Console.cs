@@ -42,7 +42,6 @@ namespace Diagram
             this.Name = "Console";
             this.Text = "Console";
             this.TopMost = true;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Console_FormClosed);
             this.Load += new System.EventHandler(this.Console_Load);
             this.ResumeLayout(false);
 
@@ -58,14 +57,9 @@ namespace Diagram
             logedit.Text = Program.log.getText();
         }
 
-        private void Console_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            main.console = null;
-        }
-
         private void logedit_KeyUp(object sender, KeyEventArgs e)
         {
-            Program.log.setText(this.logedit.Text);
+            
         }
     }
 }
