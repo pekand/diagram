@@ -2093,7 +2093,7 @@ namespace Diagram
         }                         // [KEYBOARD] [PRESS] [EVENT]
 
         // EVENT DROP file
-        public void DiagramApp_DragDrop(object sender, DragEventArgs e)                                // [DROP] [EVENT]
+        public void DiagramApp_DragDrop(object sender, DragEventArgs e)                                // [DROP] [DROP-FILE] [EVENT]
         {
 
 #if DEBUG
@@ -2140,8 +2140,8 @@ namespace Diagram
                             newrec.height = newrec.image.Height;
                             newrec.width = newrec.image.Width;
                         }
-
 #if !MONO
+                        else
                         if (ext == ".lnk") // [LINK] [DROP] extract target
                         {
                             try
@@ -2205,8 +2205,7 @@ namespace Diagram
                                 newrec.width = newrec.image.Width;
                             }
                         }
-                        #endif
-
+#endif
                     }
                 }
 
