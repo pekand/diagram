@@ -167,6 +167,7 @@
     <Compile Include="Src\Lib\Media.cs" />
     <Compile Include="Src\Lib\Os.cs" />
     <Compile Include="Src\Lib\Patterns.cs" />
+    <Compile Include="Src\Lib\Tick.cs" />
     <Compile Include="Src\Main.cs" />
     <Compile Include="Src\Model\ColorType.cs" />
     <Compile Include="Src\Model\DiagramBlock.cs" />

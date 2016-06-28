@@ -28,9 +28,9 @@ namespace Diagram
             this.labelPassword = new System.Windows.Forms.Label();
             this.editPassword = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            //
+            // 
             // buttonOk
-            //
+            // 
             this.buttonOk.Location = new System.Drawing.Point(79, 35);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(75, 31);
@@ -38,9 +38,9 @@ namespace Diagram
             this.buttonOk.Text = "Ok";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
-            //
+            // 
             // buttonCancel
-            //
+            // 
             this.buttonCancel.Location = new System.Drawing.Point(160, 35);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 32);
@@ -48,27 +48,27 @@ namespace Diagram
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            //
+            // 
             // labelPassword
-            //
+            // 
             this.labelPassword.AutoSize = true;
             this.labelPassword.Location = new System.Drawing.Point(20, 12);
             this.labelPassword.Name = "labelPassword";
             this.labelPassword.Size = new System.Drawing.Size(56, 13);
             this.labelPassword.TabIndex = 6;
             this.labelPassword.Text = "Password:";
-            //
+            // 
             // editPassword
-            //
+            // 
             this.editPassword.Location = new System.Drawing.Point(79, 9);
             this.editPassword.Name = "editPassword";
             this.editPassword.Size = new System.Drawing.Size(283, 20);
             this.editPassword.TabIndex = 8;
             this.editPassword.UseSystemPasswordChar = true;
             this.editPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.editPassword_KeyDown);
-            //
+            // 
             // PasswordForm
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(371, 74);
@@ -79,9 +79,9 @@ namespace Diagram
             this.Icon = global::Diagram.Properties.Resources.ico_diagramico_forms;
             this.Name = "PasswordForm";
             this.Text = "Password";
-            this.Load += new System.EventHandler(this.PasswordForm_Load);
+            this.Activated += new System.EventHandler(this.PasswordForm_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PasswordForm_FormClosed);
-
+            this.Load += new System.EventHandler(this.PasswordForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,7 +96,7 @@ namespace Diagram
             Program.log.write("bring focus");
             Media.bringToFront(this);
 
-            this.ActiveControl = editPassword;
+            this.editPassword.Focus();
         }
 
         private void PasswordForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -140,6 +140,11 @@ namespace Diagram
             {
                 buttonOk_Click(sender, e);
             }
+        }
+
+        private void PasswordForm_Activated(object sender, EventArgs e)
+        {
+            this.editPassword.Focus();
         }
     }
 }

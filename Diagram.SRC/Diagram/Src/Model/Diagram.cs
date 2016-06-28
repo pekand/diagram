@@ -1050,8 +1050,7 @@ namespace Diagram
             {
                 if (TextWindows[i].node == rec)
                 {
-                    TextWindows[i].SetFocus();
-                    TextWindows[i].Focus();
+                    Media.bringToFront(TextWindows[i]);
                     found = true;
                     return TextWindows[i];
                 }
@@ -1068,7 +1067,7 @@ namespace Diagram
                 this.TextWindows.Add(textf);
                 main.addTextWindow(textf);
                 textf.Show();
-                textf.SetFocus();
+                Media.bringToFront(textf);
                 return textf;
             }
             return null;

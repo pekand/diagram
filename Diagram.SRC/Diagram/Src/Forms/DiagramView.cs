@@ -141,84 +141,85 @@ namespace Diagram
 
         private void InitializeComponent()
         {
-            this.components = new Container();
-            this.DSave = new SaveFileDialog();
-            this.DOpen = new OpenFileDialog();
-            this.DColor = new ColorDialog();
-            this.DFontColor = new ColorDialog();
-            this.DFont = new FontDialog();
-            this.DImage = new OpenFileDialog();
-            this.MoveTimer = new Timer(this.components);
-            this.defaultfontDialog = new FontDialog();
-            this.exportFile = new SaveFileDialog();
-            this.saveTextFileDialog = new SaveFileDialog();
-            this.DSelectDirectoryAttachment = new FolderBrowserDialog();
-            this.DSelectFileAttachment = new OpenFileDialog();
+            this.components = new System.ComponentModel.Container();
+            this.DSave = new System.Windows.Forms.SaveFileDialog();
+            this.DOpen = new System.Windows.Forms.OpenFileDialog();
+            this.DColor = new System.Windows.Forms.ColorDialog();
+            this.DFontColor = new System.Windows.Forms.ColorDialog();
+            this.DFont = new System.Windows.Forms.FontDialog();
+            this.DImage = new System.Windows.Forms.OpenFileDialog();
+            this.MoveTimer = new System.Windows.Forms.Timer(this.components);
+            this.defaultfontDialog = new System.Windows.Forms.FontDialog();
+            this.exportFile = new System.Windows.Forms.SaveFileDialog();
+            this.saveTextFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.DSelectDirectoryAttachment = new System.Windows.Forms.FolderBrowserDialog();
+            this.DSelectFileAttachment = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
-            //
+            // 
             // DSave
-            //
+            // 
             this.DSave.DefaultExt = "*.diagram";
             this.DSave.Filter = "Diagram (*.diagram)|*.diagram";
-            //
+            // 
             // DOpen
-            //
+            // 
             this.DOpen.DefaultExt = "*.diagram";
             this.DOpen.Filter = "Diagram (*.diagram)|*.diagram";
-            //
+            // 
             // DFont
-            //
-            this.DFont.Color = SystemColors.ControlText;
-            //
+            // 
+            this.DFont.Color = System.Drawing.SystemColors.ControlText;
+            // 
             // DImage
-            //
-            this.DImage.Filter = "All|*.bmp;*.jpg;*.jpeg;*.png;*.ico|Bmp|*.bmp|Jpg|*.jpg;*.jpeg|Png|*.png|Ico|*.ico";
-            //
+            // 
+            this.DImage.Filter = "All|*.bmp;*.jpg;*.jpeg;*.png;*.ico|Bmp|*.bmp|Jpg|*.jpg;*.jpeg|Png|*.png|Ico|*.ico" +
+    "";
+            // 
             // MoveTimer
-            //
+            // 
             this.MoveTimer.Interval = 5;
-            this.MoveTimer.Tick += new EventHandler(this.MoveTimer_Tick);
-            //
+            this.MoveTimer.Tick += new System.EventHandler(this.MoveTimer_Tick);
+            // 
             // exportFile
-            //
+            // 
             this.exportFile.DefaultExt = "*.png";
             this.exportFile.Filter = "Image (*.png) | *.png";
-            //
+            // 
             // saveTextFileDialog
-            //
+            // 
             this.saveTextFileDialog.DefaultExt = "*.txt";
             this.saveTextFileDialog.Filter = "Text file (*.txt)|*.txt";
-            //
+            // 
             // DSelectFileAttachment
-            //
+            // 
             this.DSelectFileAttachment.DefaultExt = "*.*";
             this.DSelectFileAttachment.Filter = "All files (*.*)|*.*";
-            //
+            // 
             // DiagramView
-            //
-            this.AutoScaleDimensions = new SizeF(6F, 13F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.BackColor = SystemColors.Control;
-            this.ClientSize = new Size(383, 341);
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(383, 341);
             this.DoubleBuffered = true;
             this.Icon = global::Diagram.Properties.Resources.ico_diagram;
             this.KeyPreview = true;
             this.Name = "DiagramView";
             this.Text = "Diagram";
-            this.Activated += new EventHandler(this.DiagramView_Activated);
-            this.Deactivate += new EventHandler(this.DiagramApp_Deactivate);
-            this.FormClosing += new FormClosingEventHandler(this.DiagramApp_FormClosing);
-            this.FormClosed += new FormClosedEventHandler(this.DiagramView_FormClosed);
-            this.Load += new EventHandler(this.DiagramViewLoad);
-            this.Paint += new PaintEventHandler(this.DiagramApp_Paint);
-            this.KeyDown += new KeyEventHandler(this.DiagramApp_KeyDown);
-            this.KeyPress += new KeyPressEventHandler(this.DiagramApp_KeyPress);
-            this.KeyUp += new KeyEventHandler(this.DiagramApp_KeyUp);
-            this.MouseDoubleClick += new MouseEventHandler(this.DiagramApp_MouseDoubleClick);
-            this.MouseDown += new MouseEventHandler(this.DiagramApp_MouseDown);
-            this.MouseMove += new MouseEventHandler(this.DiagramApp_MouseMove);
-            this.MouseUp += new MouseEventHandler(this.DiagramApp_MouseUp);
-            this.Resize += new EventHandler(this.DiagramApp_Resize);
+            this.Activated += new System.EventHandler(this.DiagramView_Activated);
+            this.Deactivate += new System.EventHandler(this.DiagramApp_Deactivate);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DiagramApp_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DiagramView_FormClosed);
+            this.Load += new System.EventHandler(this.DiagramViewLoad);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.DiagramApp_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DiagramApp_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DiagramApp_KeyPress);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DiagramApp_KeyUp);
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.DiagramApp_MouseDoubleClick);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DiagramApp_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DiagramApp_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DiagramApp_MouseUp);
+            this.Resize += new System.EventHandler(this.DiagramApp_Resize);
             this.ResumeLayout(false);
 
         }

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Diagnostics;
 
 // [VERSION]
-[assembly: AssemblyVersion("0.5.0.1")]
+[assembly: AssemblyVersion("0.5.0.2")]
 
 /*! \mainpage Infinite diagram
  *
@@ -26,9 +27,32 @@ namespace Diagram
         /// create main class which oppening forms</summary>
         private static Main main = null;
 
+        /// <summary>
+        /// get current app version</summary>
+        public static string GetVersion()
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+            return fvi.FileVersion;
+        }
+
+        /// get current app executable path</summary>
+        public static string GetLocation()
+        {
+            return System.Reflection.Assembly.GetExecutingAssembly().Location;
+        }
+
         [STAThread]
         static void Main()
         {
+            Program.log.write("Start application: " + GetLocation());
+
+            Program.log.write("In version : " + GetVersion());
+#if DEBUG
+            Program.log.write("Debug mode");
+#else
+            Program.log.write("Production mode");
+#endif
             // aplication default settings
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

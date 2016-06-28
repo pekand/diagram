@@ -52,23 +52,35 @@ namespace Diagram
         public static extern Int32 SetForegroundWindow(int hWnd);
 #endif
         /// <summary>
-        /// load image from file </summary>
+        /// bring form to foreground </summary>
         public static void bringToFront(Form form)
         {
-            //diagram bring to top hack in windows
-            if (form.WindowState == FormWindowState.Minimized)
+            Program.log.write("bringToFront");
+            Tick.timer(200, (t, args) =>
             {
-                form.WindowState = FormWindowState.Normal;
-            }
+                if (t is Timer)
+                {
+                    Timer timer = t as Timer;
+
+                    Program.log.write("bringToFront: tick");
+                    ((Timer)t).Enabled = false;
+
+                    //diagram bring to top hack in windows
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
 
 #if !MONO
-            SetForegroundWindow(form.Handle.ToInt32());
+                    SetForegroundWindow(form.Handle.ToInt32());
 #endif
-            form.TopMost = true;
-            form.Focus();
-            form.BringToFront();
-            form.TopMost = false;
-            form.Activate();
+                    form.TopMost = true;
+                    form.Focus();
+                    form.BringToFront();
+                    form.TopMost = false;
+                    form.Activate();
+                }
+            });
         }
 
         public static Bitmap extractSystemIcon(string path)
