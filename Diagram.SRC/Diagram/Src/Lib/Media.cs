@@ -63,7 +63,7 @@ namespace Diagram
                     Timer timer = t as Timer;
 
                     Program.log.write("bringToFront: tick");
-                    ((Timer)t).Enabled = false;
+					timer.Enabled = false;
 
                     //diagram bring to top hack in windows
                     if (form.WindowState == FormWindowState.Minimized)
