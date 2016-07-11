@@ -29,11 +29,12 @@ namespace Diagram
         public static string save = "CTRL+S";
         public static string open = "CTRL+O";
         public static string search = "CTRL+F";
+        public static string searchNext = "F3";
         public static string evaluateExpression = "CTRL+G";
         public static string date = "CTRL+D";
         public static string promote = "CTRL+P";
         public static string refresh = "CTRL+R";
-        public static string hideBackground = "F3";
+        public static string hideBackground = "F6";
         public static string reverseSearch = "SHIFT+F3";
         public static string home = "HOME";
         public static string openViewHome = "CTRL+HOME";

@@ -1729,9 +1729,17 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.hideBackground, keyData)) // [KEY] [F3] Hide background
+            if (KeyMap.parseKey(KeyMap.hideBackground, keyData)) // [KEY] [F6] Hide background
             {
                 this.hideBackground();
+                return true;
+            }
+
+            if (KeyMap.parseKey(KeyMap.searchNext, keyData)) // [KEY] [F3] reverse search
+            {
+                if (this.searhPanel != null) {
+                    this.searhPanel.searchNext();
+                }
                 return true;
             }
 
