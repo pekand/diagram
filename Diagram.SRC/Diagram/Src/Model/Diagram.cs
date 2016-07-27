@@ -1534,7 +1534,7 @@ namespace Diagram
         }
 
         // NODE Najdenie nody podla pozicie myši
-        public Node findNodeInPosition(Position position, int layer)
+        public Node findNodeInPosition(Position position, int layer, Node skipNode = null)
         {
             foreach (Node node in this.layers.getLayer(layer).nodes.Reverse<Node>()) // Loop through List with foreach
             {
@@ -1543,7 +1543,8 @@ namespace Diagram
                     if
                     (
                         node.position.x <= position.x && position.x <= node.position.x + node.width &&
-                        node.position.y <= position.y && position.y <= node.position.y + node.height
+                        node.position.y <= position.y && position.y <= node.position.y + node.height &&
+                        (skipNode == null || skipNode.id != node.id)
                     )
                     {
                         return node;

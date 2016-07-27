@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Diagram
 {
@@ -68,6 +69,34 @@ namespace Diagram
             }
 
             return false;
+        }
+
+        public static bool isGotoCommand(string text)
+        {
+            Match matchNumber = (new Regex("#(\\d+)")).Match(text);
+
+            if (matchNumber.Success)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        ///  parse integer (representing node id) from goto command string 
+        /// </summary>
+        public static int getGotoCommandId(string text)
+        {
+            Match match = Regex.Match(text, "#(\\d+)", RegexOptions.IgnoreCase);
+
+	        if (match.Success)
+	        {
+	            string key = match.Groups[1].Value;
+                return Int32.Parse(key);
+            }
+
+            return -1;
         }
     }
 }

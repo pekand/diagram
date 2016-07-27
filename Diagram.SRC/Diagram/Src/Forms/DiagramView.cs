@@ -922,7 +922,7 @@ namespace Diagram
                 }
             }
 
-            Node TargetNode = this.findNodeInMousePosition(new Position(e.X, e.Y));
+            Node TargetNode = this.findNodeInMousePosition(new Position(e.X, e.Y), this.sourceNode);
 
             if (buttonleft) // MLEFT
             {
@@ -1021,7 +1021,7 @@ namespace Diagram
                     && TargetNode != this.sourceNode)
                 {
                     this.diagram.unsave("edit", this.sourceNode, this.shift, this.currentLayer.id);
-                    this.sourceNode.shortcut = TargetNode.id;
+                    this.sourceNode.link = "#" + TargetNode.id.ToString();
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
@@ -1099,7 +1099,7 @@ namespace Diagram
                         new Position(this.shift).subtract(startShift).add(this.startMousePos)
                     );
 
-                    newrec.shortcut = TargetNode.id;
+                    newrec.link = "#" + TargetNode.id;
                     this.diagram.unsave("create", newrec, this.shift, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
                 }
@@ -3737,14 +3737,15 @@ namespace Diagram
         }
 
         // NODE find node in mouse cursor position
-        public Node findNodeInMousePosition(Position position)
+        public Node findNodeInMousePosition(Position position, Node skipNode = null)
         {
             return this.diagram.findNodeInPosition(
                 new Position(
                     (int)(position.x * this.scale - this.shift.x),
                     (int)(position.y * this.scale - this.shift.y)
                 ),
-                this.currentLayer.id
+                this.currentLayer.id,
+                skipNode
             );
         }
 
@@ -3805,10 +3806,9 @@ namespace Diagram
                     string fileName = "";
                     string searchString = "";
 
-                    // node with link "script" is executed as script
                     if (!Network.isURL(rec.link)
                         && Patterns.hasHastag(rec.link.Trim(), ref fileName, ref searchString)
-                        && Os.FileExists(Os.normalizedFullPath(fileName)))       // OPEN FILE ON POSITION
+                        && Os.FileExists(Os.normalizedFullPath(fileName)))       // OPEN FILE ON LINE POSITION
                     {
                         try
                         {
@@ -3837,7 +3837,7 @@ namespace Diagram
                             Program.log.write("open link as file error: " + ex.Message);
                         }
                     }
-                    else if (rec.link.Trim() == "script" || rec.link.Trim() == "macro" || rec.link.Trim() == "$")  // OPEN SCRIPT
+                    else if (rec.link.Trim() == "script" || rec.link.Trim() == "macro" || rec.link.Trim() == "$")  // OPEN SCRIPT node with link "script" is executed as script
                     {
                         this.evaluate(rec, clipboard);
                     }
@@ -3883,6 +3883,14 @@ namespace Diagram
                         catch (Exception ex)
                         {
                             Program.log.write("open link as url error: " + ex.Message);
+                        }
+                    }
+                    else if (Patterns.isGotoCommand(rec.link)) // GOTO position
+                    {
+                        Program.log.write("go to position in diagram " + rec.link);
+                        Node node = this.diagram.GetNodeByID(Patterns.getGotoCommandId(rec.link));
+                        if (node != null) {
+                            this.goToNodeWithAnimation(node);
                         }
                     }
                     else // run as command
@@ -5629,6 +5637,8 @@ namespace Diagram
                         .split(this.animationTimerCounter);
 
                 }
+
+                this.SelectOnlyOneNode(node);
             }
         }
 
