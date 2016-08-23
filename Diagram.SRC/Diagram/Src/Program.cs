@@ -47,7 +47,7 @@ namespace Diagram
         {
             Program.log.write("Start application: " + GetLocation());
 
-            Program.log.write("In version : " + GetVersion());
+            Program.log.write("Version : " + GetVersion());
 #if DEBUG
             Program.log.write("Debug mode");
 #else
