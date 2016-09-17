@@ -135,6 +135,7 @@
     <Compile Include="Src\Model\ColorType.cs" />
     <Compile Include="Src\Model\Undo.cs" />
     <Compile Include="Src\Model\DiagramBlock.cs" />
+    <Compile Include="Src\Lib\Tick.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

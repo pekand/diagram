@@ -32,5 +32,7 @@
         public string colorLink = "#FFCCCC";               // color for node linked with url
         public string colorAttachment = "#C495DB";         // color for node linked with url
         public string colorNode = "#FFFFB8";               // new node color
+
+        public string icon = "";                           // diagram custom icon
     }
 }

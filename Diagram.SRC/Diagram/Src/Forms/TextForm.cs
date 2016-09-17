@@ -134,17 +134,6 @@ namespace Diagram
             return this.diagram;
         }
 
-        public void SetFocus()
-        {
-            if (this.WindowState == FormWindowState.Minimized)
-            {
-                this.BringToFront();
-                this.WindowState = FormWindowState.Minimized;
-                this.Show();
-                this.WindowState = FormWindowState.Normal;
-            }
-        }
-
         public void TextForm_Resize(object sender, EventArgs e)
         {
             this.TextFormTextBox.Height = this.ClientSize.Height - 100;

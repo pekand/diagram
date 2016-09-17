@@ -121,6 +121,15 @@ namespace Diagram
             this.centerPanel();
         }
 
+        public void searchNext()
+        {
+            string currentText = textBoxSearch.Text;
+
+            if (this.SearchpanelStateChanged != null) { 
+                this.SearchpanelStateChanged("searchNext", currentText);
+            }
+        }
+
         private void textBoxSearch_KeyDown(object sender, KeyEventArgs e)
         {
             // remove ding sound

@@ -27,10 +27,6 @@ namespace Diagram
         private OptionsFile optionsFile = null;
 
         /// <summary>
-        /// program translation strings</summary>
-        public Translations translations = null;
-
-        /// <summary>
         /// keyboard shorcut mapping</summary>
         public KeyMap keyMap = null;
 
@@ -79,7 +75,6 @@ namespace Diagram
         public Main()
         {
             // inicialize program
-            translations = new Translations();
             options = new ProgramOptions();
             optionsFile = new OptionsFile(options);
 
@@ -512,7 +507,7 @@ namespace Diagram
                 this.passwordForm = new PasswordForm(this);
             }
 
-            this.passwordForm.Text = translations.password + " - " + subtitle;
+            this.passwordForm.Text = Translations.password + " - " + subtitle;
             this.passwordForm.Clear();
             this.passwordForm.ShowDialog();
             if (!this.passwordForm.cancled)

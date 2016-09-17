@@ -141,84 +141,85 @@ namespace Diagram
 
         private void InitializeComponent()
         {
-            this.components = new Container();
-            this.DSave = new SaveFileDialog();
-            this.DOpen = new OpenFileDialog();
-            this.DColor = new ColorDialog();
-            this.DFontColor = new ColorDialog();
-            this.DFont = new FontDialog();
-            this.DImage = new OpenFileDialog();
-            this.MoveTimer = new Timer(this.components);
-            this.defaultfontDialog = new FontDialog();
-            this.exportFile = new SaveFileDialog();
-            this.saveTextFileDialog = new SaveFileDialog();
-            this.DSelectDirectoryAttachment = new FolderBrowserDialog();
-            this.DSelectFileAttachment = new OpenFileDialog();
+            this.components = new System.ComponentModel.Container();
+            this.DSave = new System.Windows.Forms.SaveFileDialog();
+            this.DOpen = new System.Windows.Forms.OpenFileDialog();
+            this.DColor = new System.Windows.Forms.ColorDialog();
+            this.DFontColor = new System.Windows.Forms.ColorDialog();
+            this.DFont = new System.Windows.Forms.FontDialog();
+            this.DImage = new System.Windows.Forms.OpenFileDialog();
+            this.MoveTimer = new System.Windows.Forms.Timer(this.components);
+            this.defaultfontDialog = new System.Windows.Forms.FontDialog();
+            this.exportFile = new System.Windows.Forms.SaveFileDialog();
+            this.saveTextFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.DSelectDirectoryAttachment = new System.Windows.Forms.FolderBrowserDialog();
+            this.DSelectFileAttachment = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
-            //
+            // 
             // DSave
-            //
+            // 
             this.DSave.DefaultExt = "*.diagram";
             this.DSave.Filter = "Diagram (*.diagram)|*.diagram";
-            //
+            // 
             // DOpen
-            //
+            // 
             this.DOpen.DefaultExt = "*.diagram";
             this.DOpen.Filter = "Diagram (*.diagram)|*.diagram";
-            //
+            // 
             // DFont
-            //
-            this.DFont.Color = SystemColors.ControlText;
-            //
+            // 
+            this.DFont.Color = System.Drawing.SystemColors.ControlText;
+            // 
             // DImage
-            //
-            this.DImage.Filter = "All|*.bmp;*.jpg;*.jpeg;*.png;*.ico|Bmp|*.bmp|Jpg|*.jpg;*.jpeg|Png|*.png|Ico|*.ico";
-            //
+            // 
+            this.DImage.Filter = "All|*.bmp;*.jpg;*.jpeg;*.png;*.ico|Bmp|*.bmp|Jpg|*.jpg;*.jpeg|Png|*.png|Ico|*.ico" +
+    "";
+            // 
             // MoveTimer
-            //
+            // 
             this.MoveTimer.Interval = 5;
-            this.MoveTimer.Tick += new EventHandler(this.MoveTimer_Tick);
-            //
+            this.MoveTimer.Tick += new System.EventHandler(this.MoveTimer_Tick);
+            // 
             // exportFile
-            //
+            // 
             this.exportFile.DefaultExt = "*.png";
             this.exportFile.Filter = "Image (*.png) | *.png";
-            //
+            // 
             // saveTextFileDialog
-            //
+            // 
             this.saveTextFileDialog.DefaultExt = "*.txt";
             this.saveTextFileDialog.Filter = "Text file (*.txt)|*.txt";
-            //
+            // 
             // DSelectFileAttachment
-            //
+            // 
             this.DSelectFileAttachment.DefaultExt = "*.*";
             this.DSelectFileAttachment.Filter = "All files (*.*)|*.*";
-            //
+            // 
             // DiagramView
-            //
-            this.AutoScaleDimensions = new SizeF(6F, 13F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.BackColor = SystemColors.Control;
-            this.ClientSize = new Size(383, 341);
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(383, 341);
             this.DoubleBuffered = true;
             this.Icon = global::Diagram.Properties.Resources.ico_diagram;
             this.KeyPreview = true;
             this.Name = "DiagramView";
             this.Text = "Diagram";
-            this.Activated += new EventHandler(this.DiagramView_Activated);
-            this.Deactivate += new EventHandler(this.DiagramApp_Deactivate);
-            this.FormClosing += new FormClosingEventHandler(this.DiagramApp_FormClosing);
-            this.FormClosed += new FormClosedEventHandler(this.DiagramView_FormClosed);
-            this.Load += new EventHandler(this.DiagramViewLoad);
-            this.Paint += new PaintEventHandler(this.DiagramApp_Paint);
-            this.KeyDown += new KeyEventHandler(this.DiagramApp_KeyDown);
-            this.KeyPress += new KeyPressEventHandler(this.DiagramApp_KeyPress);
-            this.KeyUp += new KeyEventHandler(this.DiagramApp_KeyUp);
-            this.MouseDoubleClick += new MouseEventHandler(this.DiagramApp_MouseDoubleClick);
-            this.MouseDown += new MouseEventHandler(this.DiagramApp_MouseDown);
-            this.MouseMove += new MouseEventHandler(this.DiagramApp_MouseMove);
-            this.MouseUp += new MouseEventHandler(this.DiagramApp_MouseUp);
-            this.Resize += new EventHandler(this.DiagramApp_Resize);
+            this.Activated += new System.EventHandler(this.DiagramView_Activated);
+            this.Deactivate += new System.EventHandler(this.DiagramApp_Deactivate);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DiagramApp_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DiagramView_FormClosed);
+            this.Load += new System.EventHandler(this.DiagramViewLoad);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.DiagramApp_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DiagramApp_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DiagramApp_KeyPress);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.DiagramApp_KeyUp);
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.DiagramApp_MouseDoubleClick);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DiagramApp_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DiagramApp_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DiagramApp_MouseUp);
+            this.Resize += new System.EventHandler(this.DiagramApp_Resize);
             this.ResumeLayout(false);
 
         }
@@ -267,6 +268,12 @@ namespace Diagram
 
             //colorPickerForm
             this.colorPickerForm.changeColor += this.changeColor;
+
+            // custom diagram icon
+            if (this.diagram.options.icon != "")
+            {
+                this.Icon = Media.StringToIcon(this.diagram.options.icon);
+            }
         }
 
         // FORM Load event -
@@ -332,7 +339,7 @@ namespace Diagram
 
                 if (this.diagram.DiagramViews.Count() == 1) // can close if other views alredy opened
                 {
-                    var res = MessageBox.Show(main.translations.saveBeforeExit, main.translations.confirmExit, MessageBoxButtons.YesNoCancel);
+                    var res = MessageBox.Show(Translations.saveBeforeExit, Translations.confirmExit, MessageBoxButtons.YesNoCancel);
                     if (res == DialogResult.Yes)
                     {
                         if (DSave.ShowDialog() == DialogResult.OK)
@@ -364,7 +371,7 @@ namespace Diagram
             {
                 if (this.diagram.DiagramViews.Count() == 1) // can close if other views alredy opened
                 {
-                    var res = MessageBox.Show(main.translations.saveBeforeExit, main.translations.confirmExit, MessageBoxButtons.YesNoCancel);
+                    var res = MessageBox.Show(Translations.saveBeforeExit, Translations.confirmExit, MessageBoxButtons.YesNoCancel);
                     if (res == DialogResult.Yes)
                     {
                         this.diagram.SaveXMLFile(this.diagram.FileName);
@@ -531,6 +538,39 @@ namespace Diagram
             }
         }
 
+        // FORM set icon
+        public void setIcon(int code = 0)
+        {
+            OpenFileDialog openIconDialog = new OpenFileDialog();
+
+            openIconDialog.Filter = "icons (*.ico)|*.ico";
+            openIconDialog.FilterIndex = 1;
+            openIconDialog.RestoreDirectory = true;
+
+            if (openIconDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Icon icon = new Icon(openIconDialog.FileName);
+                    this.Icon = icon;
+                    this.diagram.options.icon = Media.IconToString(icon);
+                }
+                catch (Exception e)
+                {
+                    Program.log.write("DiagramView: setIcon: error:" + e.Message);
+                }
+            }
+            else
+            {
+                if (MessageBox.Show(Translations.confirmRemoveQuestion, Translations.confirmRemoveIcon, MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    this.Icon = global::Diagram.Properties.Resources.ico_diagram;
+                    this.diagram.options.icon = "";
+                }
+            }
+        }
+
+        
         /*************************************************************************************************************************/
 
         // SELECTION Clear selection
@@ -921,7 +961,7 @@ namespace Diagram
                 }
             }
 
-            Node TargetNode = this.findNodeInMousePosition(new Position(e.X, e.Y));
+            Node TargetNode = this.findNodeInMousePosition(new Position(e.X, e.Y), this.sourceNode);
 
             if (buttonleft) // MLEFT
             {
@@ -1020,7 +1060,7 @@ namespace Diagram
                     && TargetNode != this.sourceNode)
                 {
                     this.diagram.unsave("edit", this.sourceNode, this.shift, this.currentLayer.id);
-                    this.sourceNode.shortcut = TargetNode.id;
+                    this.sourceNode.link = "#" + TargetNode.id.ToString();
                     this.diagram.unsave();
                     this.diagram.InvalidateDiagram();
                 }
@@ -1098,7 +1138,7 @@ namespace Diagram
                         new Position(this.shift).subtract(startShift).add(this.startMousePos)
                     );
 
-                    newrec.shortcut = TargetNode.id;
+                    newrec.link = "#" + TargetNode.id;
                     this.diagram.unsave("create", newrec, this.shift, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
                 }
@@ -1728,9 +1768,17 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.hideBackground, keyData)) // [KEY] [F3] Hide background
+            if (KeyMap.parseKey(KeyMap.hideBackground, keyData)) // [KEY] [F6] Hide background
             {
                 this.hideBackground();
+                return true;
+            }
+
+            if (KeyMap.parseKey(KeyMap.searchNext, keyData)) // [KEY] [F3] reverse search
+            {
+                if (this.searhPanel != null) {
+                    this.searhPanel.searchNext();
+                }
                 return true;
             }
 
@@ -2093,7 +2141,7 @@ namespace Diagram
         }                         // [KEYBOARD] [PRESS] [EVENT]
 
         // EVENT DROP file
-        public void DiagramApp_DragDrop(object sender, DragEventArgs e)                                // [DROP] [EVENT]
+        public void DiagramApp_DragDrop(object sender, DragEventArgs e)                                // [DROP] [DROP-FILE] [EVENT]
         {
 
 #if DEBUG
@@ -2140,8 +2188,8 @@ namespace Diagram
                             newrec.height = newrec.image.Height;
                             newrec.width = newrec.image.Width;
                         }
-
 #if !MONO
+                        else
                         if (ext == ".lnk") // [LINK] [DROP] extract target
                         {
                             try
@@ -2205,8 +2253,7 @@ namespace Diagram
                                 newrec.width = newrec.image.Width;
                             }
                         }
-                        #endif
-
+#endif
                     }
                 }
 
@@ -2906,7 +2953,7 @@ namespace Diagram
                     }
                     else
                     {
-                        MessageBox.Show(main.translations.wrongFileExtenson);
+                        MessageBox.Show(Translations.wrongFileExtenson);
                     }
                 }
             }
@@ -3729,14 +3776,15 @@ namespace Diagram
         }
 
         // NODE find node in mouse cursor position
-        public Node findNodeInMousePosition(Position position)
+        public Node findNodeInMousePosition(Position position, Node skipNode = null)
         {
             return this.diagram.findNodeInPosition(
                 new Position(
                     (int)(position.x * this.scale - this.shift.x),
                     (int)(position.y * this.scale - this.shift.y)
                 ),
-                this.currentLayer.id
+                this.currentLayer.id,
+                skipNode
             );
         }
 
@@ -3797,10 +3845,9 @@ namespace Diagram
                     string fileName = "";
                     string searchString = "";
 
-                    // node with link "script" is executed as script
                     if (!Network.isURL(rec.link)
                         && Patterns.hasHastag(rec.link.Trim(), ref fileName, ref searchString)
-                        && Os.FileExists(Os.normalizedFullPath(fileName)))       // OPEN FILE ON POSITION
+                        && Os.FileExists(Os.normalizedFullPath(fileName)))       // OPEN FILE ON LINE POSITION
                     {
                         try
                         {
@@ -3829,7 +3876,7 @@ namespace Diagram
                             Program.log.write("open link as file error: " + ex.Message);
                         }
                     }
-                    else if (rec.link.Trim() == "script" || rec.link.Trim() == "macro" || rec.link.Trim() == "$")  // OPEN SCRIPT
+                    else if (rec.link.Trim() == "script" || rec.link.Trim() == "macro" || rec.link.Trim() == "$")  // OPEN SCRIPT node with link "script" is executed as script
                     {
                         this.evaluate(rec, clipboard);
                     }
@@ -3875,6 +3922,14 @@ namespace Diagram
                         catch (Exception ex)
                         {
                             Program.log.write("open link as url error: " + ex.Message);
+                        }
+                    }
+                    else if (Patterns.isGotoCommand(rec.link)) // GOTO position
+                    {
+                        Program.log.write("go to position in diagram " + rec.link);
+                        Node node = this.diagram.GetNodeByID(Patterns.getGotoCommandId(rec.link));
+                        if (node != null) {
+                            this.goToNodeWithAnimation(node);
                         }
                     }
                     else // run as command
@@ -5621,6 +5676,8 @@ namespace Diagram
                         .split(this.animationTimerCounter);
 
                 }
+
+                this.SelectOnlyOneNode(node);
             }
         }
 
