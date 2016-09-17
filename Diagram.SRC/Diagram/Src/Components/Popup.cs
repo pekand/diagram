@@ -643,6 +643,13 @@ namespace Diagram
             //
             // openConfigDirItem
             //
+            items.Add("setIconItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["setIconItem"].Name = "setIconItem";
+            items["setIconItem"].Text = "Set icon";
+            items["setIconItem"].Click += new System.EventHandler(this.setIconItem_Click);
+            //
+            // openConfigDirItem
+            //
             items.Add("openConfigDirItem", new System.Windows.Forms.ToolStripMenuItem());
             items["openConfigDirItem"].Name = "openConfigDirItem";
             items["openConfigDirItem"].Text = "Open config dir";
@@ -661,6 +668,7 @@ namespace Diagram
                 items["bordersItem"],
                 items["defaultFontItem"],
                 items["resetFontItem"],
+                items["setIconItem"],
                 items["openConfigDirItem"]
             });
             items["optionItem"].Name = "optionItem";
@@ -1430,6 +1438,13 @@ namespace Diagram
                     this.diagramView.currentLayer.id
                 );
             }
+        }
+
+        // MENU set diagram icon
+        private void setIconItem_Click(object sender, EventArgs e)
+        {
+
+            this.diagramView.setIcon();
         }
 
         // MENU reset font

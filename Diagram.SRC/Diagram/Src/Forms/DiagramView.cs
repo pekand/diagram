@@ -268,6 +268,12 @@ namespace Diagram
 
             //colorPickerForm
             this.colorPickerForm.changeColor += this.changeColor;
+
+            // custom diagram icon
+            if (this.diagram.options.icon != "")
+            {
+                this.Icon = Media.StringToIcon(this.diagram.options.icon);
+            }
         }
 
         // FORM Load event -
@@ -333,7 +339,7 @@ namespace Diagram
 
                 if (this.diagram.DiagramViews.Count() == 1) // can close if other views alredy opened
                 {
-                    var res = MessageBox.Show(main.translations.saveBeforeExit, main.translations.confirmExit, MessageBoxButtons.YesNoCancel);
+                    var res = MessageBox.Show(Translations.saveBeforeExit, Translations.confirmExit, MessageBoxButtons.YesNoCancel);
                     if (res == DialogResult.Yes)
                     {
                         if (DSave.ShowDialog() == DialogResult.OK)
@@ -365,7 +371,7 @@ namespace Diagram
             {
                 if (this.diagram.DiagramViews.Count() == 1) // can close if other views alredy opened
                 {
-                    var res = MessageBox.Show(main.translations.saveBeforeExit, main.translations.confirmExit, MessageBoxButtons.YesNoCancel);
+                    var res = MessageBox.Show(Translations.saveBeforeExit, Translations.confirmExit, MessageBoxButtons.YesNoCancel);
                     if (res == DialogResult.Yes)
                     {
                         this.diagram.SaveXMLFile(this.diagram.FileName);
@@ -532,6 +538,39 @@ namespace Diagram
             }
         }
 
+        // FORM set icon
+        public void setIcon(int code = 0)
+        {
+            OpenFileDialog openIconDialog = new OpenFileDialog();
+
+            openIconDialog.Filter = "icons (*.ico)|*.ico";
+            openIconDialog.FilterIndex = 1;
+            openIconDialog.RestoreDirectory = true;
+
+            if (openIconDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Icon icon = new Icon(openIconDialog.FileName);
+                    this.Icon = icon;
+                    this.diagram.options.icon = Media.IconToString(icon);
+                }
+                catch (Exception e)
+                {
+                    Program.log.write("DiagramView: setIcon: error:" + e.Message);
+                }
+            }
+            else
+            {
+                if (MessageBox.Show(Translations.confirmRemoveQuestion, Translations.confirmRemoveIcon, MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    this.Icon = global::Diagram.Properties.Resources.ico_diagram;
+                    this.diagram.options.icon = "";
+                }
+            }
+        }
+
+        
         /*************************************************************************************************************************/
 
         // SELECTION Clear selection
@@ -2914,7 +2953,7 @@ namespace Diagram
                     }
                     else
                     {
-                        MessageBox.Show(main.translations.wrongFileExtenson);
+                        MessageBox.Show(Translations.wrongFileExtenson);
                     }
                 }
             }

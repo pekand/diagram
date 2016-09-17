@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
 
 #if !MONO
 using System.Runtime.InteropServices;
@@ -130,6 +131,43 @@ namespace Diagram
             return null;
 #endif
 
+        }
+
+        /// <summary>
+        /// convert Icon to base64 string </summary>
+        public static string IconToString(Icon icon)
+        {
+            try
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    icon.Save(ms);
+                    byte[] bytes = ms.ToArray();
+                    return Convert.ToBase64String(bytes);
+                }
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// convert base64 string to Icon</summary>
+        public static Icon StringToIcon(string icon)
+        {
+            try
+            {
+                byte[] bytes = Convert.FromBase64String(icon);
+                using (MemoryStream ms = new MemoryStream(bytes))
+                {
+                    return new Icon(ms);
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
     }
 }

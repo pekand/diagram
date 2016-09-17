@@ -151,7 +151,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                MessageBox.Show(main.translations.fileHasWrongFormat);
+                MessageBox.Show(Translations.fileHasWrongFormat);
                 Program.log.write("load xml error: " + ex.Message);
                 this.CloseFile();
             }
@@ -338,6 +338,11 @@ namespace Diagram
                                         if (el.Name.ToString() == "window.state")
                                         {
                                             this.options.WindowState = Int32.Parse(el.Value);
+                                        }
+
+                                        if (el.Name.ToString() == "icon")
+                                        {
+                                            this.options.icon = el.Value;
                                         }
 
                                     }
@@ -583,7 +588,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                MessageBox.Show(main.translations.fileHasWrongFormat);
+                MessageBox.Show(Translations.fileHasWrongFormat);
                 Program.log.write("load xml error: " + ex.Message);
                 this.CloseFile();
                 return false;
@@ -714,7 +719,7 @@ namespace Diagram
             catch (System.IO.IOException ex)
             {
                 Program.log.write("save file io error: " + ex.Message);
-                MessageBox.Show(main.translations.fileIsLocked);
+                MessageBox.Show(Translations.fileIsLocked);
                 this.CloseFile();
             }
             catch (Exception ex)
@@ -751,6 +756,7 @@ namespace Diagram
                 option.Add(new XElement("window.position.width", this.options.Width));
                 option.Add(new XElement("window.position.height", this.options.Height));
                 option.Add(new XElement("window.state", this.options.WindowState));
+                if (this.options.icon != "") option.Add(new XElement("icon", this.options.icon));
 
                 // Rectangles
                 XElement rectangles = new XElement("rectangles");
@@ -1918,7 +1924,7 @@ namespace Diagram
                                             }
                                             catch (Exception ex)
                                             {
-                                                Program.log.write(main.translations.dataHasWrongStructure + ": error: " + ex.Message);
+                                                Program.log.write(Translations.dataHasWrongStructure + ": error: " + ex.Message);
                                             }
                                         }
 
@@ -1970,7 +1976,7 @@ namespace Diagram
                                             }
                                             catch (Exception ex)
                                             {
-                                                Program.log.write(main.translations.dataHasWrongStructure + ": error: " + ex.Message);
+                                                Program.log.write(Translations.dataHasWrongStructure + ": error: " + ex.Message);
                                             }
                                         }
                                         NewLines.Add(L);
@@ -1984,7 +1990,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                Program.log.write(main.translations.dataHasWrongStructure + ": error: " + ex.Message);
+                Program.log.write(Translations.dataHasWrongStructure + ": error: " + ex.Message);
             }
 
 
