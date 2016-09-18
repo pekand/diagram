@@ -572,7 +572,7 @@ namespace Diagram
             }
         }
 
-        
+
         /*************************************************************************************************************************/
 
         // SELECTION Clear selection
@@ -963,11 +963,23 @@ namespace Diagram
                 }
             }
 
-            Node TargetNode = this.findNodeInMousePosition(new Position(e.X, e.Y), this.sourceNode);
+            Node TargetNode = this.findNodeInMousePosition(new Position(e.X, e.Y));
 
             if (buttonleft) // MLEFT
             {
 
+                if (!keyalt && keyctrl && !keyshift && TargetNode != null && TargetNode.selected) // CTRL+CLICK add node to selection
+                {
+                    this.RemoveNodeFromSelection(TargetNode);
+                    this.diagram.InvalidateDiagram();
+                }
+                else
+                if (!keyalt && keyctrl && !keyshift && TargetNode != null && !TargetNode.selected) // CTRL+CLICK remove node from selection
+                {
+                    this.SelectNode(TargetNode);
+                    this.diagram.InvalidateDiagram();
+                }
+                else
                 if (this.stateCoping && mousemove) // CTRL+DRAG copy part of diagram
                 {
                     this.stateCoping = false;
@@ -982,7 +994,7 @@ namespace Diagram
 
                     // filter only top nodes fromm all new created nodes. NewNodes containing sublayer nodes.
                     Nodes topNodes = new Nodes();
-                    
+
                     foreach (Node node in newBlock.nodes)
                     {
                         if (node.layer == this.currentLayer.id)
@@ -1001,18 +1013,6 @@ namespace Diagram
                     this.SelectNodes(topNodes);
 
                     this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
-                }
-                else
-                if (!keyalt && keyctrl && !keyshift && TargetNode != null && TargetNode.selected) // CTRL+CLICK add node to selection
-                {
-                    this.RemoveNodeFromSelection(TargetNode);
-                    this.diagram.InvalidateDiagram();
-                }
-                else
-                if (!keyalt && keyctrl && !keyshift && TargetNode != null && !TargetNode.selected) // CTRL+CLICK remove node from selection
-                {
-                    this.SelectNode(TargetNode);
                     this.diagram.InvalidateDiagram();
                 }
                 else
