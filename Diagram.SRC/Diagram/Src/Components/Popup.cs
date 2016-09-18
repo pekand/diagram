@@ -641,7 +641,7 @@ namespace Diagram
             items["resetFontItem"].Text = "Reset font";
             items["resetFontItem"].Click += new System.EventHandler(this.resetFontItem_Click);
             //
-            // openConfigDirItem
+            // setIconItem
             //
             items.Add("setIconItem", new System.Windows.Forms.ToolStripMenuItem());
             items["setIconItem"].Name = "setIconItem";

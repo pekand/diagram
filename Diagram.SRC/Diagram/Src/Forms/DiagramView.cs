@@ -554,6 +554,7 @@ namespace Diagram
                     Icon icon = new Icon(openIconDialog.FileName);
                     this.Icon = icon;
                     this.diagram.options.icon = Media.IconToString(icon);
+                    this.diagram.unsave();
                 }
                 catch (Exception e)
                 {
@@ -566,6 +567,7 @@ namespace Diagram
                 {
                     this.Icon = global::Diagram.Properties.Resources.ico_diagram;
                     this.diagram.options.icon = "";
+                    this.diagram.unsave();
                 }
             }
         }
