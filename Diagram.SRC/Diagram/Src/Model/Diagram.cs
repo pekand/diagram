@@ -1927,7 +1927,7 @@ namespace Diagram
                                             }
                                             catch (Exception ex)
                                             {
-                                                Program.log.write(Translations.dataHasWrongStructure + ": error: " + ex.Message);
+                                                Program.log.write("Data has wrong structure. : error: " + ex.Message);
                                             }
                                         }
 
@@ -1979,7 +1979,7 @@ namespace Diagram
                                             }
                                             catch (Exception ex)
                                             {
-                                                Program.log.write(Translations.dataHasWrongStructure + ": error: " + ex.Message);
+                                                Program.log.write("Data has wrong structure. : error: " + ex.Message);
                                             }
                                         }
                                         NewLines.Add(L);
@@ -1993,7 +1993,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                Program.log.write(Translations.dataHasWrongStructure + ": error: " + ex.Message);
+                Program.log.write("Data has wrong structure. : error: " + ex.Message);
             }
 
 
