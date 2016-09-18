@@ -641,12 +641,19 @@ namespace Diagram
             items["resetFontItem"].Text = "Reset font";
             items["resetFontItem"].Click += new System.EventHandler(this.resetFontItem_Click);
             //
-            // openConfigDirItem
+            // setIconItem
             //
             items.Add("setIconItem", new System.Windows.Forms.ToolStripMenuItem());
             items["setIconItem"].Name = "setIconItem";
             items["setIconItem"].Text = "Set icon";
             items["setIconItem"].Click += new System.EventHandler(this.setIconItem_Click);
+            //
+            // openLayerInNewViewItem
+            //
+            items.Add("openLayerInNewViewItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["openLayerInNewViewItem"].Name = "openLayerInNewViewItem";
+            items["openLayerInNewViewItem"].Text = "Open layer in new view";
+            items["openLayerInNewViewItem"].Click += new System.EventHandler(this.openLayerInNewViewItem_Click);
             //
             // openConfigDirItem
             //
@@ -669,6 +676,7 @@ namespace Diagram
                 items["defaultFontItem"],
                 items["resetFontItem"],
                 items["setIconItem"],
+                items["openLayerInNewViewItem"],
                 items["openConfigDirItem"]
             });
             items["optionItem"].Name = "optionItem";
@@ -750,7 +758,7 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // MENU Manage                                                                                // POPUP MENU
+        // MENU Manage                                                                                // POPUP MENU After open
         public void PopupMenu_Opening(object sender, CancelEventArgs e)
         {
             bool readOnly = this.diagramView.diagram.isReadOnly();
@@ -797,6 +805,7 @@ namespace Diagram
             items["includeDirectoryItem"].Enabled = !readOnly;
             items["removeAttachmentItem"].Enabled = !readOnly;
             items["protectItem"].Enabled = !readOnly;
+            items["openLayerInNewViewItem"].Checked = this.diagramView.diagram.options.openLayerInNewView;
 
             // NEW FILE
             if (this.diagramView.diagram.isNew())
@@ -1375,13 +1384,19 @@ namespace Diagram
         // MENU Encription
         private void encryptItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.diagram.setPassword();
+            if (this.diagramView.diagram.setPassword())
+            {
+                this.diagramView.diagram.unsave();
+            }
         }
 
         // MENU Change password
         private void changePasswordItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.diagram.changePassword();
+            if (this.diagramView.diagram.changePassword())
+            {
+                this.diagramView.diagram.unsave();
+            }
         }
 
         // MENU Read only
@@ -1443,10 +1458,17 @@ namespace Diagram
         // MENU set diagram icon
         private void setIconItem_Click(object sender, EventArgs e)
         {
-
             this.diagramView.setIcon();
         }
 
+        // MENU set diagram icon
+        private void openLayerInNewViewItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.diagram.options.openLayerInNewView = !this.diagramView.diagram.options.openLayerInNewView;
+            items["openLayerInNewViewItem"].Checked = this.diagramView.diagram.options.openLayerInNewView;
+            this.diagramView.diagram.unsave();
+        }
+        
         // MENU reset font
         private void openConfigDirItem_Click(object sender, EventArgs e)
         {

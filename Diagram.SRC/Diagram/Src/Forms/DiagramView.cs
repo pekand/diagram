@@ -554,6 +554,7 @@ namespace Diagram
                     Icon icon = new Icon(openIconDialog.FileName);
                     this.Icon = icon;
                     this.diagram.options.icon = Media.IconToString(icon);
+                    this.diagram.unsave();
                 }
                 catch (Exception e)
                 {
@@ -566,11 +567,12 @@ namespace Diagram
                 {
                     this.Icon = global::Diagram.Properties.Resources.ico_diagram;
                     this.diagram.options.icon = "";
+                    this.diagram.unsave();
                 }
             }
         }
 
-        
+
         /*************************************************************************************************************************/
 
         // SELECTION Clear selection
@@ -652,7 +654,7 @@ namespace Diagram
         }
 
         // EVENT Mouse DoubleClick
-        public void DiagramApp_MouseDoubleClick(object sender, MouseEventArgs e)
+        public void DiagramApp_MouseDoubleClick(object sender, MouseEventArgs e)                       // [MOUSE] [DBLCLICK] [EVENT]
         {
 
 #if DEBUG
@@ -961,11 +963,23 @@ namespace Diagram
                 }
             }
 
-            Node TargetNode = this.findNodeInMousePosition(new Position(e.X, e.Y), this.sourceNode);
+            Node TargetNode = this.findNodeInMousePosition(new Position(e.X, e.Y));
 
             if (buttonleft) // MLEFT
             {
 
+                if (!keyalt && keyctrl && !keyshift && TargetNode != null && TargetNode.selected) // CTRL+CLICK add node to selection
+                {
+                    this.RemoveNodeFromSelection(TargetNode);
+                    this.diagram.InvalidateDiagram();
+                }
+                else
+                if (!keyalt && keyctrl && !keyshift && TargetNode != null && !TargetNode.selected) // CTRL+CLICK remove node from selection
+                {
+                    this.SelectNode(TargetNode);
+                    this.diagram.InvalidateDiagram();
+                }
+                else
                 if (this.stateCoping && mousemove) // CTRL+DRAG copy part of diagram
                 {
                     this.stateCoping = false;
@@ -980,7 +994,7 @@ namespace Diagram
 
                     // filter only top nodes fromm all new created nodes. NewNodes containing sublayer nodes.
                     Nodes topNodes = new Nodes();
-                    
+
                     foreach (Node node in newBlock.nodes)
                     {
                         if (node.layer == this.currentLayer.id)
@@ -999,18 +1013,6 @@ namespace Diagram
                     this.SelectNodes(topNodes);
 
                     this.diagram.unsave();
-                    this.diagram.InvalidateDiagram();
-                }
-                else
-                if (!keyalt && keyctrl && !keyshift && TargetNode != null && TargetNode.selected) // CTRL+CLICK add node to selection
-                {
-                    this.RemoveNodeFromSelection(TargetNode);
-                    this.diagram.InvalidateDiagram();
-                }
-                else
-                if (!keyalt && keyctrl && !keyshift && TargetNode != null && !TargetNode.selected) // CTRL+CLICK remove node from selection
-                {
-                    this.SelectNode(TargetNode);
                     this.diagram.InvalidateDiagram();
                 }
                 else
@@ -1143,7 +1145,7 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DBLCLICK open link or edit window after double click on node [dblclick]
+                // KEY DBLCLICK open link or edit window after double click on node [dblclick] [open] [edit]
                 if (dblclick
                     && this.sourceNode != null
                     && !keyctrl
@@ -1986,6 +1988,23 @@ namespace Diagram
             if (KeyMap.parseKey(KeyMap.resetZoom, keyData))  // [KEY] [CTRL+0] reset zoom level to default
             {
                 this.resetZoom();
+                return true;
+            }
+
+            if (KeyMap.parseKey(KeyMap.switchSecurityLock, keyData)) // [KEY] [CTRL+ALT+L] lock encrypted diagram
+            {
+                if (this.diagram.isEncrypted())
+                {
+                    if (this.diagram.isLocked())
+                    {
+                        this.diagram.unlockDiagram();
+                    }
+                    else
+                    {
+                        this.main.lockDiagrams();
+                        this.diagram.unlockDiagram();
+                    }
+                }
                 return true;
             }
 
@@ -3057,13 +3076,18 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // DRAW                                                                                      // [DRAW]
-        void DrawDiagram(Graphics gfx, Position correction = null, bool export = false)
+        private  void DrawDiagram(Graphics gfx, Position correction = null, bool export = false)
         {
             gfx.SmoothingMode = SmoothingMode.AntiAlias;
 
             if (this.diagram.options.grid && !export)
             {
                 this.DrawGrid(gfx);
+            }
+
+            if (this.diagram.isLocked())
+            {
+                return;
             }
 
             this.DrawLines(gfx, this.currentLayer.lines, correction, export);
@@ -3575,6 +3599,11 @@ namespace Diagram
         // VIEW REFRESH
         private void DiagramView_Activated(object sender, EventArgs e)
         {
+            /*if (this.diagram.isLocked())
+            {
+                this.diagram.unlockDiagram();
+            }*/
+
             this.Invalidate();
         }
 
@@ -3967,7 +3996,19 @@ namespace Diagram
                     }
                 }
                 else if (rec.haslayer) {
-                    this.LayerIn(rec);
+                    if (this.diagram.options.openLayerInNewView)
+                    {
+                        this.diagram.openDiagramView(
+                            this, 
+                            this.diagram.layers.getLayer(
+                                rec.id
+                            )
+                        );
+                    }
+                    else
+                    {
+                        this.LayerIn(rec);
+                    }
                 }
                 else // EDIT NODE
                 {

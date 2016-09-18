@@ -12,7 +12,6 @@
         public static string fileIsLocked = "File is locked";
         public static string fileHasWrongFormat = "File has wrong format";
         public static string notFound = "Not found";
-        public static string dataHasWrongStructure = "Data has wrong structure.";
         public static string titleCloseMacroForm = "Close macro form";
         public static string closeMacroForm = "Close macro form? Data will not be saved!";
         public static string badCommandLineParameter = "Bed command line parameter";

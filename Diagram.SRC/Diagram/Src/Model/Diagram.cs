@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing.Text;
 using System.Text.RegularExpressions;
+using System.Security;
 
 namespace Diagram
 {
@@ -41,8 +42,10 @@ namespace Diagram
 
         // ATTRIBUTES ENCRYPTION
         private bool encrypted = false;           // flag for encrypted file
-        private string password = "";             // password for encrypted file
-        private byte[] salt = null;              // salt
+        private bool locked = false;              // flag for encrypted file
+        private SecureString password = null;     // password for encrypted file
+        private string passwordHash = null;
+        private byte[] salt = null;               // salt
 
         // UNDO
         public Undo undo = null;                        // undo operations repository
@@ -171,7 +174,7 @@ namespace Diagram
                             this.salt = Encrypt.SetSalt(salt);
                             this.LoadInnerXML(Encrypt.DecryptStringAES(encrypted, password, this.salt));
                             this.encrypted = true;
-                            this.password = password;
+                            this.setPassword(password);
                         }
                         catch(Exception e)
                         {
@@ -219,7 +222,7 @@ namespace Diagram
                         if (diagram.HasElements)
                         {
 
-                            if (diagram.Name.ToString() == "option")
+                            if (diagram.Name.ToString() == "option") // [options] [config]
                             {
                                 foreach (XElement el in diagram.Descendants())
                                 {
@@ -308,6 +311,11 @@ namespace Diagram
                                         if (el.Name.ToString() == "firstLayereShift.y")
                                         {
                                             this.options.firstLayereShift.y = Int32.Parse(el.Value);
+                                        }
+
+                                        if (el.Name.ToString() == "openLayerInNewView")
+                                        {
+                                            this.options.openLayerInNewView = bool.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "window.position.restore")
@@ -677,7 +685,7 @@ namespace Diagram
             {
                 System.IO.StreamWriter file = new System.IO.StreamWriter(FileName);
                 diagraxml = this.SaveInnerXMLFile();
-                if (this.password == "")
+                if (this.password == null)
                 {
                     file.Write(diagraxml);
                 }
@@ -691,7 +699,7 @@ namespace Diagram
                         // encrypted file is saved allways as different string
                         this.salt = Encrypt.CreateSalt(14);
 
-                        root.Add(new XElement("encrypted", Encrypt.EncryptStringAES(diagraxml, this.password, this.salt)));
+                        root.Add(new XElement("encrypted", Encrypt.EncryptStringAES(diagraxml, this.getPassword(), this.salt)));
                         root.Add(new XElement("salt", Encrypt.GetSalt(this.salt)));
 
                         StringBuilder sb = new StringBuilder();
@@ -735,7 +743,7 @@ namespace Diagram
             XElement root = new XElement("diagram");
             try
             {
-                // Options
+                // [options] [config]
                 XElement option = new XElement("option");
                 option.Add(new XElement("shiftx", this.options.homePosition.x));
                 option.Add(new XElement("shifty", this.options.homePosition.y));
@@ -743,6 +751,7 @@ namespace Diagram
                 option.Add(new XElement("endPositiony", this.options.endPosition.y));
                 option.Add(new XElement("firstLayereShift.x", this.options.firstLayereShift.x));
                 option.Add(new XElement("firstLayereShift.y", this.options.firstLayereShift.y));
+                if (this.options.openLayerInNewView) option.Add(new XElement("openLayerInNewView", this.options.openLayerInNewView));
                 option.Add(new XElement("homelayer", this.options.homeLayer));
                 option.Add(new XElement("endlayer", this.options.endLayer));
                 option.Add(new XElement("diagramreadonly", this.options.readOnly));
@@ -1625,7 +1634,7 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // DIAGRAM VIEW open new view on diagram
-        public DiagramView openDiagramView(DiagramView parent = null)
+        public DiagramView openDiagramView(DiagramView parent = null, Layer layer = null)
         {
             DiagramView diagramview = new DiagramView(main, this, parent);
             diagramview.setDiagram(this);
@@ -1633,6 +1642,10 @@ namespace Diagram
             main.addDiagramView(diagramview);
 			this.SetTitle();
             diagramview.Show();
+            if (layer != null)
+            {
+                diagramview.goToLayer(layer.id);
+            }
             return diagramview;
         }
 
@@ -1924,7 +1937,7 @@ namespace Diagram
                                             }
                                             catch (Exception ex)
                                             {
-                                                Program.log.write(Translations.dataHasWrongStructure + ": error: " + ex.Message);
+                                                Program.log.write("Data has wrong structure. : error: " + ex.Message);
                                             }
                                         }
 
@@ -1976,7 +1989,7 @@ namespace Diagram
                                             }
                                             catch (Exception ex)
                                             {
-                                                Program.log.write(Translations.dataHasWrongStructure + ": error: " + ex.Message);
+                                                Program.log.write("Data has wrong structure. : error: " + ex.Message);
                                             }
                                         }
                                         NewLines.Add(L);
@@ -1990,7 +2003,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                Program.log.write(Translations.dataHasWrongStructure + ": error: " + ex.Message);
+                Program.log.write("Data has wrong structure. : error: " + ex.Message);
             }
 
 
@@ -2384,27 +2397,70 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // SECURITY encrypt diagram 
-        public void setPassword()
+        public bool setPassword(string password = null)
         {
-            string password = this.main.getNewPassword();
-            if (password != null && password != this.password) {
-                this.password = password;
-                this.encrypted = (this.password != "");
-                this.unsave();
+            string newPassword = null;
+
+            if (password == null)
+            {
+                newPassword = this.main.getNewPassword();
             }
+            else
+            {
+                newPassword = password;
+            }
+
+            if (newPassword != null)
+            {
+
+                if (newPassword == "")
+                {
+                    this.encrypted = false;
+                    this.password = null;
+                    this.passwordHash = null;
+                    return true;
+                }
+
+                if (newPassword != "" && this.password == null)
+                {
+                    this.encrypted = true;
+                    this.password = Encrypt.convertToSecureString(newPassword);
+                    this.passwordHash = Encrypt.CalculateSHAHash(newPassword);
+                    return true;
+                }
+
+                if (newPassword != "" && this.password != null && newPassword != this.getPassword())
+                {
+                    this.encrypted = true;
+                    this.password = Encrypt.convertToSecureString(newPassword);
+                    this.passwordHash = Encrypt.CalculateSHAHash(newPassword);
+                    return true;
+                }
+            }
+
+            return false;
         }
 
+        private string getPassword()
+        {
+            if (this.password != null)
+            {
+                return Encrypt.convertFromSecureString(this.password);
+            }
+
+            return "";
+        } 
 
         // SECURITY change password
-        public void changePassword()
+        public bool changePassword()
         {
-            string password = this.main.changePassword(this.password);
-            if (password != null && password != this.password)
+            string newPassword = this.main.changePassword(this.getPassword());
+            if (newPassword != null)
             {
-                this.password = password;
-                this.encrypted = (this.password != "");
-                this.unsave();
+                return this.setPassword(newPassword);
             }
+
+            return false;
         }
 
 
@@ -2414,5 +2470,49 @@ namespace Diagram
             return this.encrypted;
         }
 
+        // SECURITY check if diagram is locked
+        public bool isLocked()
+        {
+            return this.locked;
+        }
+
+        // SECURITY lock diagram - forgot password
+        public void lockDiagram()
+        {
+            if (this.encrypted && !this.locked)
+            {
+                this.locked = true;
+                this.password = null;
+                this.InvalidateDiagram();
+            }
+        }
+
+        // SECURITY unlock diagram - prompt for new password
+        public bool unlockDiagram()
+        {
+            if (this.encrypted && this.locked)
+            {
+                while (true) // while password is not correct or cancel is pressed
+                {
+                    string password = this.main.getPassword();
+
+                    if (password != null && this.passwordHash == Encrypt.CalculateSHAHash(password))
+                    {
+                        this.setPassword(password);
+                        this.locked = false;
+                        this.InvalidateDiagram();
+                        return true;
+                    }
+                    else if (password == null)
+                    {
+                        this.locked = true;
+                        this.CloseDiagram();
+                        return false;
+                    }
+                }
+            }
+
+            return false;
+        }
     }
 }
