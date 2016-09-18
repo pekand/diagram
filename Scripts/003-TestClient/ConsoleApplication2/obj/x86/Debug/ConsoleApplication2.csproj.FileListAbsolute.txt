@@ -1,7 +1,0 @@
-C:\Users\Andrej\Desktop\Diagram\ConsoleApplication2\ConsoleApplication2\bin\Debug\ConsoleApplication2.exe
-C:\Users\Andrej\Desktop\Diagram\ConsoleApplication2\ConsoleApplication2\bin\Debug\ConsoleApplication2.pdb
-C:\Users\Andrej\Desktop\Diagram\ConsoleApplication2\ConsoleApplication2\obj\x86\Debug\ConsoleApplication2.exe
-C:\Users\Andrej\Desktop\Diagram\ConsoleApplication2\ConsoleApplication2\obj\x86\Debug\ConsoleApplication2.pdb
-C:\Users\Andrej\Desktop\Diagram\ConsoleApplication2\ConsoleApplication2\obj\x86\Debug\ConsoleApplication2.csprojResolveAssemblyReference.cache
-C:\Users\Andrej\Desktop\Diagram\Test\TestClient\ConsoleApplication2\obj\x86\Debug\ConsoleApplication2.exe
-C:\Users\Andrej\Desktop\Diagram\Test\TestClient\ConsoleApplication2\obj\x86\Debug\ConsoleApplication2.pdb

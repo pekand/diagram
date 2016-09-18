@@ -1,7 +1,0 @@
-/home/kerberos/Desktop/diagram/Test/TestClientGUI/WindowsFormsApplication1/WindowsFormsApplication1/obj/x86/Debug/.NETFramework,Version=v4.0,Profile=Client.AssemblyAttribute.cs
-/home/kerberos/Desktop/diagram/Test/TestClientGUI/WindowsFormsApplication1/WindowsFormsApplication1/obj/x86/Debug/WindowsFormsApplication1.Form1.resources
-/home/kerberos/Desktop/diagram/Test/TestClientGUI/WindowsFormsApplication1/WindowsFormsApplication1/obj/x86/Debug/WindowsFormsApplication1.Properties.Resources.resources
-/home/kerberos/Desktop/diagram/Test/TestClientGUI/WindowsFormsApplication1/WindowsFormsApplication1/bin/Debug/WindowsFormsApplication1.exe.mdb
-/home/kerberos/Desktop/diagram/Test/TestClientGUI/WindowsFormsApplication1/WindowsFormsApplication1/bin/Debug/WindowsFormsApplication1.exe
-/home/kerberos/Desktop/diagram/Test/TestClientGUI/WindowsFormsApplication1/WindowsFormsApplication1/obj/x86/Debug/WindowsFormsApplication1.exe
-/home/kerberos/Desktop/diagram/Test/TestClientGUI/WindowsFormsApplication1/WindowsFormsApplication1/obj/x86/Debug/WindowsFormsApplication1.exe.mdb
