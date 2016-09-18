@@ -1989,6 +1989,23 @@ namespace Diagram
                 return true;
             }
 
+            if (KeyMap.parseKey(KeyMap.switchSecurityLock, keyData)) // [KEY] [CTRL+ALT+L] lock encrypted diagram
+            {
+                if (this.diagram.isEncrypted())
+                {
+                    if (this.diagram.isLocked())
+                    {
+                        this.diagram.unlockDiagram();
+                    }
+                    else
+                    {
+                        this.main.lockDiagrams();
+                        this.diagram.unlockDiagram();
+                    }
+                }
+                return true;
+            }
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -3057,13 +3074,18 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // DRAW                                                                                      // [DRAW]
-        void DrawDiagram(Graphics gfx, Position correction = null, bool export = false)
+        private  void DrawDiagram(Graphics gfx, Position correction = null, bool export = false)
         {
             gfx.SmoothingMode = SmoothingMode.AntiAlias;
 
             if (this.diagram.options.grid && !export)
             {
                 this.DrawGrid(gfx);
+            }
+
+            if (this.diagram.isLocked())
+            {
+                return;
             }
 
             this.DrawLines(gfx, this.currentLayer.lines, correction, export);
@@ -3575,6 +3597,11 @@ namespace Diagram
         // VIEW REFRESH
         private void DiagramView_Activated(object sender, EventArgs e)
         {
+            /*if (this.diagram.isLocked())
+            {
+                this.diagram.unlockDiagram();
+            }*/
+
             this.Invalidate();
         }
 

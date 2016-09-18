@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using System.IO;
+
+#if !MONO
+using Microsoft.Win32;
+#endif
 
 namespace Diagram
 {
@@ -110,7 +113,11 @@ namespace Diagram
             // process comand line arguments
             this.ParseCommandLineArguments(this.args);
 
-            // check if this program instance created server
+#if !MONO
+            SystemEvents.PowerModeChanged += OnPowerChange;
+#endif
+
+// check if this program instance created server
             if (!server.serverAlreadyExist)
             {
                 this.mainform = new MainForm(this);
@@ -498,7 +505,7 @@ namespace Diagram
 
         /// <summary>
         /// show dialog for password for diagram unlock</summary>
-        public string getPassword(string subtitle)
+        public string getPassword(string subtitle = "")
         {
             string password = null;
 
@@ -576,5 +583,44 @@ namespace Diagram
         {
             this.optionsFile.openConfigDir();
         }
+
+
+#if !MONO
+
+        /// <summary>
+        /// lock encrypted diagrams if computer go to sleep or hibernation</summary>
+        private void OnPowerChange(object s, PowerModeChangedEventArgs e)
+        {
+            switch (e.Mode)
+            {
+                case PowerModes.Resume:
+                    break;
+                case PowerModes.Suspend:
+                    this.lockDiagrams();
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// forgot password if diagram is encrypted</summary>
+        public void lockDiagrams()
+        {
+            foreach (Diagram diagram in Diagrams)
+            {
+                diagram.lockDiagram();
+            }
+        }
+
+        /// <summary>
+        /// prompt for password if diagram is encrypted</summary>
+        public void unlockDiagrams()
+        {
+            foreach (Diagram diagram in Diagrams)
+            {
+                diagram.unlockDiagram();
+            }
+        }
+#endif
+
     }
 }

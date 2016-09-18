@@ -74,6 +74,7 @@ namespace Diagram
         public static string markNodes = "CTRL+M";
         public static string nextMarkNode = "ALT+RIGHT";
         public static string prevMarkNode = "ALT+LEFT";
+        public static string switchSecurityLock = "CTRL+ALT+L";
 
         public static bool parseKey(string key, Keys keyData)
         {

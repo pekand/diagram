@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing.Text;
 using System.Text.RegularExpressions;
+using System.Security;
 
 namespace Diagram
 {
@@ -41,8 +42,10 @@ namespace Diagram
 
         // ATTRIBUTES ENCRYPTION
         private bool encrypted = false;           // flag for encrypted file
-        private string password = "";             // password for encrypted file
-        private byte[] salt = null;              // salt
+        private bool locked = false;              // flag for encrypted file
+        private SecureString password = null;     // password for encrypted file
+        private string passwordHash = null;
+        private byte[] salt = null;               // salt
 
         // UNDO
         public Undo undo = null;                        // undo operations repository
@@ -171,7 +174,7 @@ namespace Diagram
                             this.salt = Encrypt.SetSalt(salt);
                             this.LoadInnerXML(Encrypt.DecryptStringAES(encrypted, password, this.salt));
                             this.encrypted = true;
-                            this.password = password;
+                            this.setPassword(password);
                         }
                         catch(Exception e)
                         {
@@ -677,7 +680,7 @@ namespace Diagram
             {
                 System.IO.StreamWriter file = new System.IO.StreamWriter(FileName);
                 diagraxml = this.SaveInnerXMLFile();
-                if (this.password == "")
+                if (this.password == null)
                 {
                     file.Write(diagraxml);
                 }
@@ -691,7 +694,7 @@ namespace Diagram
                         // encrypted file is saved allways as different string
                         this.salt = Encrypt.CreateSalt(14);
 
-                        root.Add(new XElement("encrypted", Encrypt.EncryptStringAES(diagraxml, this.password, this.salt)));
+                        root.Add(new XElement("encrypted", Encrypt.EncryptStringAES(diagraxml, this.getPassword(), this.salt)));
                         root.Add(new XElement("salt", Encrypt.GetSalt(this.salt)));
 
                         StringBuilder sb = new StringBuilder();
@@ -2384,27 +2387,70 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // SECURITY encrypt diagram 
-        public void setPassword()
+        public bool setPassword(string password = null)
         {
-            string password = this.main.getNewPassword();
-            if (password != null && password != this.password) {
-                this.password = password;
-                this.encrypted = (this.password != "");
-                this.unsave();
+            string newPassword = null;
+
+            if (password == null)
+            {
+                newPassword = this.main.getNewPassword();
             }
+            else
+            {
+                newPassword = password;
+            }
+
+            if (newPassword != null)
+            {
+
+                if (newPassword == "")
+                {
+                    this.encrypted = false;
+                    this.password = null;
+                    this.passwordHash = null;
+                    return true;
+                }
+
+                if (newPassword != "" && this.password == null)
+                {
+                    this.encrypted = true;
+                    this.password = Encrypt.convertToSecureString(newPassword);
+                    this.passwordHash = Encrypt.CalculateSHAHash(newPassword);
+                    return true;
+                }
+
+                if (newPassword != "" && this.password != null && newPassword != this.getPassword())
+                {
+                    this.encrypted = true;
+                    this.password = Encrypt.convertToSecureString(newPassword);
+                    this.passwordHash = Encrypt.CalculateSHAHash(newPassword);
+                    return true;
+                }
+            }
+
+            return false;
         }
 
+        private string getPassword()
+        {
+            if (this.password != null)
+            {
+                return Encrypt.convertFromSecureString(this.password);
+            }
+
+            return "";
+        } 
 
         // SECURITY change password
-        public void changePassword()
+        public bool changePassword()
         {
-            string password = this.main.changePassword(this.password);
-            if (password != null && password != this.password)
+            string newPassword = this.main.changePassword(this.getPassword());
+            if (newPassword != null)
             {
-                this.password = password;
-                this.encrypted = (this.password != "");
-                this.unsave();
+                return this.setPassword(newPassword);
             }
+
+            return false;
         }
 
 
@@ -2414,5 +2460,49 @@ namespace Diagram
             return this.encrypted;
         }
 
+        // SECURITY check if diagram is locked
+        public bool isLocked()
+        {
+            return this.locked;
+        }
+
+        // SECURITY lock diagram - forgot password
+        public void lockDiagram()
+        {
+            if (this.encrypted && !this.locked)
+            {
+                this.locked = true;
+                this.password = null;
+                this.InvalidateDiagram();
+            }
+        }
+
+        // SECURITY unlock diagram - prompt for new password
+        public bool unlockDiagram()
+        {
+            if (this.encrypted && this.locked)
+            {
+                while (true) // while password is not correct or cancel is pressed
+                {
+                    string password = this.main.getPassword();
+
+                    if (password != null && this.passwordHash == Encrypt.CalculateSHAHash(password))
+                    {
+                        this.setPassword(password);
+                        this.locked = false;
+                        this.InvalidateDiagram();
+                        return true;
+                    }
+                    else if (password == null)
+                    {
+                        this.locked = true;
+                        this.CloseDiagram();
+                        return false;
+                    }
+                }
+            }
+
+            return false;
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Text;
 using System.Security.Cryptography;
+using System.Runtime.InteropServices;
+using System.Security;
 using System.IO;
 
 namespace Diagram
@@ -28,7 +30,7 @@ namespace Diagram
 
         /// <summary>
         /// get sha hash from inputString</summary>
-        public static string CalculateSHA1Hash(string inputString)
+        public static string CalculateSHAHash(string inputString)
         {
             HashAlgorithm algorithm = SHA512.Create();
             byte[] inputBytes = Encoding.UTF8.GetBytes(inputString);
@@ -101,7 +103,7 @@ namespace Diagram
             try
             {
                 // generate the key from the shared secret and the salt
-                Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(Encrypt.CalculateSHA1Hash(sharedSecret), salt);
+                Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(Encrypt.CalculateSHAHash(sharedSecret), salt);
 
                 // Create a RijndaelManaged object
                 aesAlg = new RijndaelManaged();
@@ -156,7 +158,7 @@ namespace Diagram
             try
             {
                 // generate the key from the shared secret and the salt
-                Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(CalculateSHA1Hash(sharedSecret), salt);
+                Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(CalculateSHAHash(sharedSecret), salt);
 
                 // Create the streams used for decryption.                
                 byte[] bytes = Convert.FromBase64String(cipherText);
@@ -207,6 +209,41 @@ namespace Diagram
             }
 
             return buffer;
+        }
+
+        /// <summary>
+        /// Protect string by encryption</summary>
+        public static SecureString convertToSecureString(string str)
+        {
+            var secureStr = new SecureString();
+
+            if (str.Length > 0)
+            {
+                foreach (var c in str.ToCharArray()) secureStr.AppendChar(c);
+            }
+
+            return secureStr;
+        }
+
+        /// <summary>
+        /// Decrypt secure string</summary>
+        public static string convertFromSecureString(SecureString value)
+        {
+            if (value == null)
+            {
+                return "";
+            }
+
+            IntPtr unmanagedString = IntPtr.Zero;
+            try
+            {
+                unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(value);
+                return Marshal.PtrToStringUni(unmanagedString).ToString();
+            }
+            finally
+            {
+                Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
+            }
         }
     }
 }

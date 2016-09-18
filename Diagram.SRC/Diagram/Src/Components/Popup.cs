@@ -1375,13 +1375,19 @@ namespace Diagram
         // MENU Encription
         private void encryptItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.diagram.setPassword();
+            if (this.diagramView.diagram.setPassword())
+            {
+                this.diagramView.diagram.unsave();
+            }
         }
 
         // MENU Change password
         private void changePasswordItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.diagram.changePassword();
+            if (this.diagramView.diagram.changePassword())
+            {
+                this.diagramView.diagram.unsave();
+            }
         }
 
         // MENU Read only
