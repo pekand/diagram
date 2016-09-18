@@ -654,7 +654,7 @@ namespace Diagram
         }
 
         // EVENT Mouse DoubleClick
-        public void DiagramApp_MouseDoubleClick(object sender, MouseEventArgs e)
+        public void DiagramApp_MouseDoubleClick(object sender, MouseEventArgs e)                       // [MOUSE] [DBLCLICK] [EVENT]
         {
 
 #if DEBUG
@@ -1145,7 +1145,7 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DBLCLICK open link or edit window after double click on node [dblclick]
+                // KEY DBLCLICK open link or edit window after double click on node [dblclick] [open] [edit]
                 if (dblclick
                     && this.sourceNode != null
                     && !keyctrl
@@ -3996,7 +3996,19 @@ namespace Diagram
                     }
                 }
                 else if (rec.haslayer) {
-                    this.LayerIn(rec);
+                    if (this.diagram.options.openLayerInNewView)
+                    {
+                        this.diagram.openDiagramView(
+                            this, 
+                            this.diagram.layers.getLayer(
+                                rec.id
+                            )
+                        );
+                    }
+                    else
+                    {
+                        this.LayerIn(rec);
+                    }
                 }
                 else // EDIT NODE
                 {

@@ -222,7 +222,7 @@ namespace Diagram
                         if (diagram.HasElements)
                         {
 
-                            if (diagram.Name.ToString() == "option")
+                            if (diagram.Name.ToString() == "option") // [options] [config]
                             {
                                 foreach (XElement el in diagram.Descendants())
                                 {
@@ -311,6 +311,11 @@ namespace Diagram
                                         if (el.Name.ToString() == "firstLayereShift.y")
                                         {
                                             this.options.firstLayereShift.y = Int32.Parse(el.Value);
+                                        }
+
+                                        if (el.Name.ToString() == "openLayerInNewView")
+                                        {
+                                            this.options.openLayerInNewView = bool.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "window.position.restore")
@@ -738,7 +743,7 @@ namespace Diagram
             XElement root = new XElement("diagram");
             try
             {
-                // Options
+                // [options] [config]
                 XElement option = new XElement("option");
                 option.Add(new XElement("shiftx", this.options.homePosition.x));
                 option.Add(new XElement("shifty", this.options.homePosition.y));
@@ -746,6 +751,7 @@ namespace Diagram
                 option.Add(new XElement("endPositiony", this.options.endPosition.y));
                 option.Add(new XElement("firstLayereShift.x", this.options.firstLayereShift.x));
                 option.Add(new XElement("firstLayereShift.y", this.options.firstLayereShift.y));
+                if (this.options.openLayerInNewView) option.Add(new XElement("openLayerInNewView", this.options.openLayerInNewView));
                 option.Add(new XElement("homelayer", this.options.homeLayer));
                 option.Add(new XElement("endlayer", this.options.endLayer));
                 option.Add(new XElement("diagramreadonly", this.options.readOnly));
@@ -1628,7 +1634,7 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // DIAGRAM VIEW open new view on diagram
-        public DiagramView openDiagramView(DiagramView parent = null)
+        public DiagramView openDiagramView(DiagramView parent = null, Layer layer = null)
         {
             DiagramView diagramview = new DiagramView(main, this, parent);
             diagramview.setDiagram(this);
@@ -1636,6 +1642,10 @@ namespace Diagram
             main.addDiagramView(diagramview);
 			this.SetTitle();
             diagramview.Show();
+            if (layer != null)
+            {
+                diagramview.goToLayer(layer.id);
+            }
             return diagramview;
         }
 
