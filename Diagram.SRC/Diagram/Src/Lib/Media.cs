@@ -54,10 +54,10 @@ namespace Diagram
 #endif
         /// <summary>
         /// bring form to foreground </summary>
-        public static void bringToFront(Form form)
+        public static void bringToFront(Form form)   // [focus]
         {
             Program.log.write("bringToFront");
-            Tick.timer(200, (t, args) =>
+            Tick.timer(500, (t, args) =>
             {
                 if (t is Timer)
                 {
