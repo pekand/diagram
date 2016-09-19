@@ -791,7 +791,7 @@ namespace Diagram
                             .subtract(this.shift)
                             .subtract(this.sourceNode.position); // mouse position in node
 
-                        if (!this.keyctrl && !this.keyalt && !this.keyshift && !this.sourceNode.selected)
+                        if (!this.keyctrl && !this.keyshift && !this.sourceNode.selected)
                         {
                             this.SelectOnlyOneNode(this.sourceNode);
                             this.diagram.InvalidateDiagram();
