@@ -3,6 +3,20 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.Diagnostics;
 
+/*
+
+    class Program
+        log           // logging console
+        main          // main application
+
+        Main()        // application entry point. Create main application class
+
+        GetVersion()  // get current application version
+        GetLocation() // get current executable path
+
+
+*/
+
 // [VERSION]
 [assembly: AssemblyVersion("0.5.0.2")]
 

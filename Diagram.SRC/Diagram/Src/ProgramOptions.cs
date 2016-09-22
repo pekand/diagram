@@ -1,6 +1,23 @@
 ﻿using System;
 using Newtonsoft.Json;
 
+/*
+    class ProgramOptions
+        license
+        author
+        email
+        home_page
+        release_note
+        server_default_ip
+        proxy_uri
+        proxy_username
+        proxy_password
+        server_default_port
+        texteditor
+
+        setParams()
+*/
+
 namespace Diagram
 {
     /// <summary>
@@ -79,6 +96,4 @@ namespace Diagram
         }
 
     }
-
-        
 }

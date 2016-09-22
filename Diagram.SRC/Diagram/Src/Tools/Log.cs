@@ -1,6 +1,18 @@
 ﻿using System;
 using System.IO;
 
+/*
+    class Log
+        console            // reference to console form (display for messages)
+        log                // all messages in log separated by new line
+
+        write()            // write message to log and refresh console if is associated with log
+        getText()          // get whole log
+        clearLog()         // clear all loged data
+        saveLogToFile()    // save current log to file (specificied by path or in temporary directory)
+        setConsole()       // add reference for console form for displaing log
+*/
+
 namespace Diagram
 {
     /// Class for catch log informations.

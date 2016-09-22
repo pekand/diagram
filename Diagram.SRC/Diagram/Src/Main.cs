@@ -7,6 +7,32 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 #endif
 
+/*
+    class Main
+        //attributes
+        args
+        mainform
+        options
+        optionsFile
+        keyMap
+        console
+        passwordForm
+        newPasswordForm
+        changePasswordForm
+        aboutForm
+        server
+        Diagrams
+        DiagramViews
+        TextWindows
+
+        Main()
+        CloseEmptyApplication()
+        ExitApplication()
+        OpenDiagram()
+        ParseCommandLineArguments()
+        switchViews()
+
+*/
 namespace Diagram
 {
     /// <summary>
