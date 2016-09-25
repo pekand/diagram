@@ -15,6 +15,298 @@ using NCalc;
     using System.Diagnostics;
 #endif
 
+/*
+
+class DiagramView
+
+    main;
+    parentView;
+
+    PopupMenu;
+    DSave;
+    DOpen;
+    DColor;
+    DFontColor;
+    DFont;
+    DImage;
+    MoveTimer;
+    defaultfontDialog;
+    exportFile;
+    saveTextFileDialog;
+    DSelectDirectoryAttachment;
+    DSelectFileAttachment;
+
+    lastEvent;
+
+    shift;
+    startShift;
+
+    startMousePos;
+    startNodePos;
+    vmouse;
+    actualMousePos;
+
+    key;
+    keyshift;
+    keyctrl;
+    keyalt;
+
+    stateDragSelection;
+    stateMoveView;
+    stateSelectingNodes;
+    stateAddingNode;
+    stateDblclick;
+    stateZooming;
+    stateSearching;
+    stateSourceNodeAlreadySelected;
+    stateCoping;
+
+    zoomShift;
+    zoomingDefaultScale;
+    zoomingScale;
+    currentScale;
+    scale;
+
+    diagram;
+
+    sourceNode;
+    selectedNodes;
+
+    copySourceNode;
+    copySelectedNodes;
+    copySelectedLines;
+
+    currentLayer;
+    firstLayereShift;
+    layersHistory;
+
+    bottomScrollBar;
+    rightScrollBar;
+
+    editPanel;
+    editLinkPanel;
+
+    lastFound;
+    searchFor;
+    searhPanel;
+    currentPosition;
+    currentPositionLayer;
+    nodesSearchResult;
+
+    lastMarkNode;
+
+    breadcrumbs;
+
+    animationTimer;
+    animationTimerSpeed;
+    animationTimerCounter;
+
+    zoomTimer;
+    zoomTimerScale;
+    zoomTimerStep;
+
+    lineWidthForm;
+    colorPickerForm;
+
+    components;
+
+    isFullScreen;
+
+    // [FORM]
+    InitializeComponent()
+    DiagramView()
+    DiagramViewLoad()
+    DiagramApp_FormClosing()
+    SetTitle()
+    GoToHome()
+    OpenViewAndGoToHome()
+    setCurentPositionAsHomePosition()
+    GoToEnd()
+    OpenViewAndGoToEnd()
+    setCurentPositionAsEndPosition()
+    Position cursorPosition()
+    formHide()
+    rememberPosition()
+    getWindowsStateCode()
+    setWindowsStateCode()
+    setIcon()
+
+    // [SELECTION]
+    ClearSelection()
+    RemoveNodeFromSelection()
+    SelectOnlyOneNode()
+    SelectNode()
+    SelectNodes()
+    selectAll()
+
+    // [EVENTS]
+    DiagramApp_Paint()
+    DiagramApp_MouseDoubleClick()
+    DiagramApp_MouseDown()
+    DiagramApp_MouseMove()
+    DiagramApp_MouseUp()
+    resetStates()
+    DiagramApp_MouseWheel()
+    ProcessCmdKey()
+    DiagramApp_KeyDown()
+    DiagramApp_KeyUp()
+    DiagramApp_KeyPress()
+    DiagramApp_DragDrop()
+    DiagramApp_DragEnter()
+    DiagramApp_Resize()
+    MoveTimer_Tick()
+    DiagramApp_Deactivate()
+
+    // [LAYER]
+    LayerIn()
+    LayerOut()
+    BuildLayerHistory()
+    isNodeInLayerHistory()
+    layerIn()
+    layerInOrEdit()
+
+    // [SEARCH]
+    Search()
+    SearchFirst()
+    SearchNext()
+    SearchPrev()
+    showSearchPanel()
+    SearchCancel()
+    SearchClose()
+    SearchPanelChanged()
+
+    // [CLIPBOARD]
+    copyLinkToClipboard()
+
+    // [SCROLLBAR]
+    moveScreenHorizontal()
+    getPositionHorizontal()
+    moveScreenVertical()
+    getPositionVertical()
+    positionChangeBottom()
+    positionChangeRight()
+
+    // [FILE]
+    save()
+    saveas()
+    open()
+    openDiagramDirectory()
+
+    // [EXPORT]
+    exportDiagramToPng()
+    exportDiagramToTxt()
+
+    // [DRAW]
+    DrawDiagram()
+    DrawGrid()
+    DrawMiniScreen()
+    DrawCoordinates()
+    DrawAddNode()
+    DrawNodes()
+    DrawLines()
+
+    // [DIAGRAM]
+    setDiagram()
+    getDiagram()
+
+    // [VIEW]
+    DiagramView_FormClosed()
+    DiagramView_Activated()
+    pageUp()
+    pageDown()
+    resetZoom()
+    getMousePosition()
+    fullScreenSwitch()
+
+    // NODE
+    CreateNode()
+    addNodeAfterNode()
+    addNodeBelowNode()
+    openLinkDirectory()
+    DeleteSelectedNodes()
+    goToNode()
+    goToPosition()
+    isOnPosition()
+    goToShift()
+    goToLayer()
+    findNodeInMousePosition()
+    OpenLinkAsync()
+    OpenLink()
+    removeShortcuts()
+    selectColor()
+    changeColor()
+    selectFontColor()
+    selectFont()
+    isSelectionTransparent()
+    makeSelectionTransparent()
+    selectDefaultFont()
+    addImage()
+    removeImagesFromSelection()
+    hasSelectionImage()
+    hasSelectionNotEmbeddedImage()
+    makeImagesEmbedded()
+    copy()
+    cut()
+    paste()
+    pasteToNote()
+    pasteToLink()
+    alignToLine()
+    alignToColumn()
+    alignToGroup()
+    sortNodes()
+    splitNode()
+    alignToLineGroup()
+    alignLeft()
+    alignRight()
+    copyLink()
+    copyNote()
+    evaluateExpression()
+    evaluateDate()
+    promote()
+    random()
+    hideBackground()
+    edit()
+    rename()
+    editLink()
+    moveNodesToForeground()
+    moveNodesToBackground()
+    protectNodes()
+    moveNodesToLeft()
+    moveNodesToRight()
+    moveNodesUp()
+    moveNodesDown()
+    isEditing()
+    cancelEditing()
+    hasSelectionAttachment()
+    attachmentDeploy()
+    attachmentAddFile()
+    attachmentAddDirectory()
+    attachmentRemove()
+    getSelectedLines()
+    switchMarkForSelectedNodes()
+    markSelectedNodes()
+    unMarkSelectedNodes()
+    nextMarkedNode()
+    prevMarkedNode()
+    setNodeNameByLink()
+
+    // [LINE]
+    changeLineColor()
+    changeLineWidth()
+    resizeLineWidth()
+
+    // [SCRIPT]
+    evaluate()
+
+    // [MOVE]
+    goToNodeWithAnimation()
+    animationTimer_Tick()
+
+    // [ZOOM]
+    zoomTimer_Tick()
+    logEvent()
+ 
+*/
 namespace Diagram
 {
 
@@ -2509,7 +2801,8 @@ namespace Diagram
         }
 
         // LAYER check if node is parent trought layer history
-        public bool isNodeInLayerHistory(Node rec) {
+        public bool isNodeInLayerHistory(Node rec)
+        {
             foreach (Layer layer in this.layersHistory)
             {
                 if (layer.id == rec.id) {
@@ -3084,7 +3377,7 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // DRAW                                                                                      // [DRAW]
-        private  void DrawDiagram(Graphics gfx, Position correction = null, bool export = false)
+        private void DrawDiagram(Graphics gfx, Position correction = null, bool export = false)
         {
             gfx.SmoothingMode = SmoothingMode.AntiAlias;
 
@@ -3143,7 +3436,7 @@ namespace Diagram
         }
 
         // DRAW grid
-        void DrawGrid(Graphics gfx)
+        private void DrawGrid(Graphics gfx)
         {
             float s = this.scale;
             Pen myPen = new Pen(Color.FromArgb(201, 201, 201), 1);
@@ -3168,7 +3461,7 @@ namespace Diagram
         }
 
         // DRAW diagram mini screen in zoom mode
-        void DrawMiniScreen(Graphics gfx)
+        private void DrawMiniScreen(Graphics gfx)
         {
             float s = this.scale;
             Pen myPen = new Pen(Color.FromArgb(201, 201, 201), 1);
@@ -3186,7 +3479,7 @@ namespace Diagram
         }
 
         // DRAW coordinates for debuging
-        void DrawCoordinates(Graphics gfx)
+        private void DrawCoordinates(Graphics gfx)
         {
             float s = this.scale;
 
@@ -3205,7 +3498,7 @@ namespace Diagram
         }
 
         // DRAW select node by mouse drag (blue rectangle)
-        void DrawNodesSelectArea(Graphics gfx)
+        private void DrawNodesSelectArea(Graphics gfx)
         {
             SolidBrush brush = new SolidBrush(Color.FromArgb(100, 10, 200, 200));
 
@@ -3228,7 +3521,7 @@ namespace Diagram
         }
 
         // DRAW add new node by drag
-        void DrawAddNode(Graphics gfx)
+        private void DrawAddNode(Graphics gfx)
         {
             Pen myPen = new Pen(Color.Black, 1);
 
@@ -3274,7 +3567,7 @@ namespace Diagram
         }
 
         // DRAW nodes
-        void DrawNodes(Graphics gfx, Nodes nodes, Position correction = null, bool export = false)
+        private void DrawNodes(Graphics gfx, Nodes nodes, Position correction = null, bool export = false)
         {
             bool isvisible = false; // drawonly visible elements
             float s = this.scale;
@@ -3478,7 +3771,7 @@ namespace Diagram
         }
 
         // DRAW lines
-        void DrawLines(Graphics gfx, Lines lines, Position correction = null, bool export = false)
+        private void DrawLines(Graphics gfx, Lines lines, Position correction = null, bool export = false)
         {
             bool isvisible = false; // drawonly visible elements
             float s = this.scale;
@@ -5636,7 +5929,7 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // SCRIPT evaluate python script in nodes signed with stamp in node link [F9]
-        void evaluate()
+        private void evaluate()
         {
             Nodes nodes = null;
 
@@ -5670,7 +5963,7 @@ namespace Diagram
         }
 
         // SCRIPT evaluate python script in node name or in node note in nodes
-        void evaluate(Nodes nodes, string clipboard = "")
+        private void evaluate(Nodes nodes, string clipboard = "")
         {
             Program.log.write("diagram: openlink: run macro");
             Script script = new Script();
@@ -5687,7 +5980,7 @@ namespace Diagram
         }
 
         // SCRIPT evaluate python script in node name or in node note in node
-        void evaluate(Node node, string clipboard = "")
+        private void evaluate(Node node, string clipboard = "")
         {
             // run macro
             Program.log.write("diagram: openlink: run macro");
