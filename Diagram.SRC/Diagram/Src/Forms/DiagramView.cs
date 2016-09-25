@@ -41,7 +41,7 @@ namespace Diagram
 
 #if DEBUG
         // DEBUG TOOLS
-        string lastEvent = ""; // remember last event in console (for remove duplicate events)
+        private string lastEvent = ""; // remember last event in console (for remove duplicate events)
 #endif
 
         // ATRIBUTES SCREEN
@@ -113,26 +113,26 @@ namespace Diagram
         public List<int> nodesSearchResult = new List<int>(); // all nodes found by search panel
 
         // MARKED NODES
-        int lastMarkNode = 0; // last marked node in navigation history
+        private int lastMarkNode = 0; // last marked node in navigation history
 
         // BREADCRUMBS
         public Breadcrumbs breadcrumbs = null;
 
         // MOVETIMER
-        Timer animationTimer = new Timer(); //timer for all animations (goto node animation)
-        Position animationTimerSpeed = new Position();
-        int animationTimerCounter = 0;
+        private Timer animationTimer = new Timer(); //timer for all animations (goto node animation)
+        private Position animationTimerSpeed = new Position();
+        private int animationTimerCounter = 0;
 
         // ZOOMTIMER
-        Timer zoomTimer = new Timer(); //zooming animation
+        private Timer zoomTimer = new Timer(); //zooming animation
         public float zoomTimerScale = 1;
         public float zoomTimerStep = 0;
 
         // LINEWIDTHFORM
-        LineWidthForm lineWidthForm = new LineWidthForm();
+        private LineWidthForm lineWidthForm = new LineWidthForm();
 
         // COLORPICKERFORM
-        ColorPickerForm colorPickerForm = new ColorPickerForm();
+        private ColorPickerForm colorPickerForm = new ColorPickerForm();
 
         // COMPONENTS
         private IContainer components;
@@ -155,48 +155,48 @@ namespace Diagram
             this.DSelectDirectoryAttachment = new System.Windows.Forms.FolderBrowserDialog();
             this.DSelectFileAttachment = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
-            // 
+            //
             // DSave
-            // 
+            //
             this.DSave.DefaultExt = "*.diagram";
             this.DSave.Filter = "Diagram (*.diagram)|*.diagram";
-            // 
+            //
             // DOpen
-            // 
+            //
             this.DOpen.DefaultExt = "*.diagram";
             this.DOpen.Filter = "Diagram (*.diagram)|*.diagram";
-            // 
+            //
             // DFont
-            // 
+            //
             this.DFont.Color = System.Drawing.SystemColors.ControlText;
-            // 
+            //
             // DImage
-            // 
+            //
             this.DImage.Filter = "All|*.bmp;*.jpg;*.jpeg;*.png;*.ico|Bmp|*.bmp|Jpg|*.jpg;*.jpeg|Png|*.png|Ico|*.ico" +
     "";
-            // 
+            //
             // MoveTimer
-            // 
+            //
             this.MoveTimer.Interval = 5;
             this.MoveTimer.Tick += new System.EventHandler(this.MoveTimer_Tick);
-            // 
+            //
             // exportFile
-            // 
+            //
             this.exportFile.DefaultExt = "*.png";
             this.exportFile.Filter = "Image (*.png) | *.png";
-            // 
+            //
             // saveTextFileDialog
-            // 
+            //
             this.saveTextFileDialog.DefaultExt = "*.txt";
             this.saveTextFileDialog.Filter = "Text file (*.txt)|*.txt";
-            // 
+            //
             // DSelectFileAttachment
-            // 
+            //
             this.DSelectFileAttachment.DefaultExt = "*.*";
             this.DSelectFileAttachment.Filter = "All files (*.*)|*.*";
-            // 
+            //
             // DiagramView
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
@@ -279,7 +279,7 @@ namespace Diagram
         // FORM Load event -
         public void DiagramViewLoad(object sender, EventArgs e)
         {
-            
+
             // Preddefinovana pozicia okna
             if (this.diagram.options.restoreWindow)
             {
@@ -2277,7 +2277,7 @@ namespace Diagram
                 }
 
                 this.diagram.unsave("create", newNodes, null, this.shift, this.currentLayer.id);
-                
+
             } catch (Exception ex) {
                 Program.log.write("drop file goes wrong: error: " + ex.Message);
             }
@@ -2752,7 +2752,7 @@ namespace Diagram
             this.goToLayer(currentPositionLayer);
             this.shift.x = currentPosition.x;
             this.shift.y = currentPosition.y;
-            
+
 
             this.SearchClose();
         }
@@ -2804,8 +2804,8 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // SCROLLBAR MOVE LEFT-RIGHT set current position in view with relative (0-1) number          // SCROLLBAR              
-        public void moveScreenHorizontal(float per)                                                
+        // SCROLLBAR MOVE LEFT-RIGHT set current position in view with relative (0-1) number          // SCROLLBAR
+        public void moveScreenHorizontal(float per)
         {
             int minx = int.MaxValue;
             int maxx = int.MinValue;
@@ -2830,7 +2830,7 @@ namespace Diagram
             }
         }
 
-        // SCROLLBAR GET POSITION LEFT-RIGHT calculate current position in view as relative (0-1) number 
+        // SCROLLBAR GET POSITION LEFT-RIGHT calculate current position in view as relative (0-1) number
         public float getPositionHorizontal()
         {
             float per = 0;
@@ -2917,13 +2917,13 @@ namespace Diagram
             }
         }
 
-        // SCROLLBAR EVENT position is changed by horizontal scrollbar 
+        // SCROLLBAR EVENT position is changed by horizontal scrollbar
         public void positionChangeBottom(object source, PositionEventArgs e)
         {
             moveScreenHorizontal(e.GetPosition());
         }
 
-        // SCROLLBAR EVENT position is changed by vertical scrollbar 
+        // SCROLLBAR EVENT position is changed by vertical scrollbar
         public void positionChangeRight(object source, PositionEventArgs e)
         {
             moveScreenVertical(e.GetPosition());
@@ -3129,7 +3129,7 @@ namespace Diagram
 
             // DRAW addingnode
             if (!export)
-            { 
+            {
                 this.breadcrumbs.Draw(gfx);
             }
         }
@@ -3189,9 +3189,9 @@ namespace Diagram
                         this.shift.y.ToString() +
                         "sy (" + this.ClientSize.Width.ToString() + "w x " + this.ClientSize.Height.ToString() + "h) " +
                         "" + s.ToString() + "s," + this.currentScale.ToString() + "cs",
-                drawFont, 
-                drawBrush, 
-                10, 
+                drawFont,
+                drawBrush,
+                10,
                 10
             );
         }
@@ -3210,10 +3210,10 @@ namespace Diagram
             if (d < b) { temp = d; d = b; b = temp; }
 
             gfx.FillRectangle(
-                brush, 
+                brush,
                 new Rectangle(
-                    (int)(a / this.scale), (int)(b / this.scale), 
-                    (int)((c - a) / this.scale), 
+                    (int)(a / this.scale), (int)(b / this.scale),
+                    (int)((c - a) / this.scale),
                     (int)((d - b) / this.scale)
                 )
             );
@@ -3224,7 +3224,7 @@ namespace Diagram
         {
             Pen myPen = new Pen(Color.Black, 1);
 
-            
+
 
             if (this.sourceNode == null)
             {
@@ -3354,10 +3354,10 @@ namespace Diagram
                             Font drawFont = new Font("Arial", 10 / s);
                             SolidBrush drawBrush = new SolidBrush(Color.Black);
                             gfx.DrawString(
-                                rec.id.ToString() + "i:" + (rec.position.x).ToString() + "x," + (rec.position.y).ToString()+"y", 
-                                drawFont, 
-                                drawBrush, 
-                                (this.shift.x + rec.position.x) / s, 
+                                rec.id.ToString() + "i:" + (rec.position.x).ToString() + "x," + (rec.position.y).ToString()+"y",
+                                drawFont,
+                                drawBrush,
+                                (this.shift.x + rec.position.x) / s,
                                 (this.shift.y + rec.position.y - 20) / s
                             );
                         }
@@ -3570,7 +3570,7 @@ namespace Diagram
                     }
 
                 }
-                
+
             }
         }
 
@@ -3654,7 +3654,7 @@ namespace Diagram
                 WindowState = FormWindowState.Maximized;
             }
 
-                
+
         }
 
         /*************************************************************************************************************************/
@@ -3880,7 +3880,7 @@ namespace Diagram
                     {
                         try
                         {
-                            // if is not set search strin, only hastag after link then use node name as string for search 
+                            // if is not set search strin, only hastag after link then use node name as string for search
                             if(searchString.Trim() == "")
                             {
                                 searchString = rec.name;
@@ -3999,7 +3999,7 @@ namespace Diagram
                     if (this.diagram.options.openLayerInNewView)
                     {
                         this.diagram.openDiagramView(
-                            this, 
+                            this,
                             this.diagram.layers.getLayer(
                                 rec.id
                             )
@@ -4447,8 +4447,8 @@ namespace Diagram
                     }
                     else
                     if (
-                        this.diagram.FileName != "" 
-                        && Os.FileExists(this.diagram.FileName) 
+                        this.diagram.FileName != ""
+                        && Os.FileExists(this.diagram.FileName)
                         && file.IndexOf(Os.getDirectoryName(this.diagram.FileName)) == 0
                     ) // [PASTE] [FILE]
                     {
@@ -4483,7 +4483,7 @@ namespace Diagram
 
                 if (data.GetDataPresent(DataFormats.Bitmap))
                 {
-                    // paste image as embedded data direct inside diagram 
+                    // paste image as embedded data direct inside diagram
                     try
                     {
                         Node newrec = this.CreateNode(position);
@@ -4998,7 +4998,7 @@ namespace Diagram
                 this.diagram.unsave();
                 this.diagram.InvalidateDiagram();
             }
-            
+
             return true;
         }
 
@@ -5705,7 +5705,7 @@ namespace Diagram
                 else
                 {
                     this.animationTimer.Enabled = true;
-                    
+
                     this.animationTimerSpeed.set(this.shift.clone().invert())
                         .subtract(node.position)
                         .add(this.ClientRectangle.Width / 2, this.ClientRectangle.Height / 2);
@@ -5753,7 +5753,7 @@ namespace Diagram
                 {
                     this.scale = zoomTimerScale;
                     this.zoomTimer.Enabled = false;
-                } 
+                }
 
                 this.diagram.InvalidateDiagram();
             }
