@@ -73,6 +73,16 @@ namespace Diagram.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
+        public static System.Drawing.Icon ico_diagram_debug {
+            get {
+                object obj = ResourceManager.GetObject("ico_diagram_debug", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
         public static System.Drawing.Icon ico_diagramico_forms {
             get {
                 object obj = ResourceManager.GetObject("ico_diagramico_forms", resourceCulture);

@@ -202,7 +202,11 @@ namespace Diagram
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(383, 341);
             this.DoubleBuffered = true;
+#if DEBUG
+            this.Icon = global::Diagram.Properties.Resources.ico_diagram_debug;
+#else
             this.Icon = global::Diagram.Properties.Resources.ico_diagram;
+#endif
             this.KeyPreview = true;
             this.Name = "DiagramView";
             this.Text = "Diagram";
@@ -565,7 +569,11 @@ namespace Diagram
             {
                 if (MessageBox.Show(Translations.confirmRemoveQuestion, Translations.confirmRemoveIcon, MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
+#if DEBUG
+                    this.Icon = global::Diagram.Properties.Resources.ico_diagram_debug;
+#else
                     this.Icon = global::Diagram.Properties.Resources.ico_diagram;
+#endif
                     this.diagram.options.icon = "";
                     this.diagram.unsave();
                 }

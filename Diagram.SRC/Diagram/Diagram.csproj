@@ -371,6 +371,11 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="diagram.debug.ico" />
+    <Content Include="Resources\diagram.debug.ico" />
+    <None Include="Resources\ico_diagram_debug.ico" />
+  </ItemGroup>
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
