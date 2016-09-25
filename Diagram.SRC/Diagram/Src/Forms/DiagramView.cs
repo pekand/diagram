@@ -36,8 +36,6 @@ class DiagramView
     DSelectDirectoryAttachment;
     DSelectFileAttachment;
 
-    lastEvent;
-
     shift;
     startShift;
 
@@ -304,7 +302,10 @@ class DiagramView
 
     // [ZOOM]
     zoomTimer_Tick()
-    logEvent()
+
+    // [DEBUG]
+    lastEvent; // remember last event log message for skiping similar messages
+    logEvent() // log events only in debug mode to system console
  
 */
 namespace Diagram
