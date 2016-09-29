@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Diagram
 {
-    class Encrypt
+    public class Encrypt
     {
 
         /// <summary>

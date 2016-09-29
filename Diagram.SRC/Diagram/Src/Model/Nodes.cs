@@ -29,6 +29,7 @@ namespace Diagram
         {
             this.Sort((x, y) => string.Compare(y.name, x.name));
         }
+
         public void OrderByLink()
         {
             this.Sort((x, y) => string.Compare(x.link, y.link));

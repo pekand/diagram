@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 
 namespace Diagram
 {
-    class Media
+    public class Media
     {
         /// <summary>
         /// get active form screen width </summary>

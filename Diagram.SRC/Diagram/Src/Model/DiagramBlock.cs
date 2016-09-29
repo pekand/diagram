@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Diagram
 {
-
     // container for part of diagram
     public class DiagramBlock
     {

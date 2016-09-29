@@ -10,18 +10,18 @@ using System.Xml.Linq;
 
 namespace Diagram
 {
-    class EDirectory
+    public class EDirectory
     {
         public string name = "";
     }
 
-    class EFile
+    public class EFile
     {
         public string name = "";
         public string data = "";
     }
 
-    class Compress
+    public class Compress
     {
         public static string Zip(string str)
         {

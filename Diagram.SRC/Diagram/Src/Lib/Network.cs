@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace Diagram
 {
-    class Network
+    public class Network
     {
 
         /// <summary>

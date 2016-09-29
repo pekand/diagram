@@ -17,7 +17,7 @@ namespace Diagram
 {
     /// Class for catch log informations.
     /// This informations can be show in console form
-    class Log
+    public class Log
     {
         /// form for displaying errors
         private Console console = null;

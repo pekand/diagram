@@ -15,8 +15,8 @@ namespace Diagram
     {
         public DiagramView diagramView = null;       // diagram ktory je previazany z pohladom
 
-        Dictionary<string, ToolStripMenuItem> items = new Dictionary<string, ToolStripMenuItem>();
-        Dictionary<string, ToolStripSeparator> separators = new Dictionary<string, ToolStripSeparator>();
+        private Dictionary<string, ToolStripMenuItem> items = new Dictionary<string, ToolStripMenuItem>();
+        private Dictionary<string, ToolStripSeparator> separators = new Dictionary<string, ToolStripSeparator>();
 
         public Popup(System.ComponentModel.IContainer container, DiagramView diagramView) : base(container)
         {

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Diagram
 {
-    class Tick
+    public class Tick
     {
         
         public static Timer timer(int interval, EventHandler tick)

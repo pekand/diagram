@@ -11,7 +11,7 @@ using Shell32;
 
 namespace Diagram
 {
-    class Os
+    public class Os
     {
 #if !MONO
 

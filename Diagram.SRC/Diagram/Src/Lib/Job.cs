@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Diagram
 {
-    class Job
+    public class Job
     {
         /// <summary>
         /// run task in thread </summary>

@@ -31,7 +31,7 @@ namespace Diagram
 {
     /// <summary>
     /// Application entry point</summary>
-    static class Program
+    public static class Program
     {
         /// <summary>
         /// debuging console for loging messages</summary>
@@ -57,7 +57,7 @@ namespace Diagram
         }
 
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Program.log.write("Start application: " + GetLocation());
 

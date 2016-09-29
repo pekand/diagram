@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace Diagram
 {
-    class Patterns
+    public class Patterns
     {
         public static string[] splitCommand(string cmd)
         {
