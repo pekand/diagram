@@ -2541,18 +2541,9 @@ namespace Diagram
                                     }
                                 }
 
-                                if (shortcutInfo[1] != "")
-                                {
-                                    newrec.link = shortcutInfo[0] + " " + shortcutInfo[1];
-                                }
-                                else if (shortcutInfo[0] != "")
-                                {
-                                    newrec.link = shortcutInfo[0];
-                                }
-                                else
-                                {
-                                    newrec.link = file;
-                                }
+                                // shortcutInfo[0] - file path in lnk file
+                                // shortcutInfo[1] - parameters in lnk file
+                                newrec.link = Os.makeRelative(file, this.diagram.FileName);
 
                             }
                             catch (Exception ex)
