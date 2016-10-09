@@ -4122,7 +4122,7 @@ namespace Diagram
         // NODE Open Link
         public void OpenLinkAsync(Node rec)
         {
-            Program.log.write("diagram: openlink: run worker");
+            Program.log.write("diagram: openlink");
             String clipboard = Os.getTextFormClipboard();
 
 
@@ -4138,6 +4138,7 @@ namespace Diagram
             worker.WorkerSupportsCancellation = true;
             worker.DoWork += (sender, e) =>
             {
+                Program.log.write("diagram: openlink: run worker");
                 e.Result = this.OpenLink(rec, clipboard);
             };
             worker.RunWorkerCompleted += (sender, e) =>
@@ -4147,6 +4148,12 @@ namespace Diagram
                 if ((int)result == 1)
                 {
                     this.diagram.EditNode(rec);
+                }
+
+                if ((int)result == 2)
+                {
+                   this.SelectOnlyOneNode(rec);
+                   this.attachmentDeploy();
                 }
             };
             worker.RunWorkerAsync();
@@ -4158,9 +4165,8 @@ namespace Diagram
         {
             if (rec != null)
             {
-                if (rec.attachment != "") { //deploy attachment
-                    this.SelectOnlyOneNode(rec);
-                    this.attachmentDeploy();
+                if (rec.attachment != "") { //deploy attachment                    
+                    return 2; // deploy attachment
                 }
                 else
                 if (rec.shortcut > 0) // GO TO LINK
