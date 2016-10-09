@@ -2541,19 +2541,7 @@ namespace Diagram
                                     }
                                 }
 
-                                if (shortcutInfo[1] != "")
-                                {
-                                    newrec.link = shortcutInfo[0] + " " + shortcutInfo[1];
-                                }
-                                else if (shortcutInfo[0] != "")
-                                {
-                                    newrec.link = shortcutInfo[0];
-                                }
-                                else
-                                {
-                                    newrec.link = file;
-                                }
-
+                                newrec.link = file;
                             }
                             catch (Exception ex)
                             {
