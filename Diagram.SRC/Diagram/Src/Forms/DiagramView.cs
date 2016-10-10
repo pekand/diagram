@@ -840,7 +840,7 @@ namespace Diagram
         {
             OpenFileDialog openIconDialog = new OpenFileDialog();
 
-            openIconDialog.Filter = "icons (*.ico)|*.ico";
+            openIconDialog.Filter = "icons (*.ico)|*.ico|bmp (*.bmp)|*.bmp|png (*.png)|*.png";            
             openIconDialog.FilterIndex = 1;
             openIconDialog.RestoreDirectory = true;
 
@@ -848,7 +848,29 @@ namespace Diagram
             {
                 try
                 {
-                    Icon icon = new Icon(openIconDialog.FileName);
+                    Icon icon = null;
+
+                    if (Os.getExtension(openIconDialog.FileName).ToLower() == ".png") {
+                        Image pngImage = Image.FromFile(openIconDialog.FileName);
+                        Bitmap bmpImage = (Bitmap)pngImage.GetThumbnailImage(pngImage.Width, pngImage.Height, null, IntPtr.Zero);
+                        bmpImage.MakeTransparent();
+                        System.IntPtr icH = bmpImage.GetHicon();
+                        icon = Icon.FromHandle(icH);
+                    }
+
+                    if (Os.getExtension(openIconDialog.FileName).ToLower() == ".bmp")
+                    {
+                        Bitmap bmpImage = new Bitmap(openIconDialog.FileName);
+                        bmpImage.MakeTransparent();
+                        System.IntPtr icH = bmpImage.GetHicon();
+                        icon = Icon.FromHandle(icH);
+                    }
+
+                    if (Os.getExtension(openIconDialog.FileName).ToLower() == ".ico")
+                    {
+                        icon = new Icon(openIconDialog.FileName);
+                    }
+
                     this.Icon = icon;
                     this.diagram.options.icon = Media.IconToString(icon);
                     this.diagram.unsave();
@@ -860,7 +882,7 @@ namespace Diagram
             }
             else
             {
-                if (MessageBox.Show(Translations.confirmRemoveQuestion, Translations.confirmRemoveIcon, MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (this.diagram.options.icon != "" &&  MessageBox.Show(Translations.confirmRemoveQuestion, Translations.confirmRemoveIcon, MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
 #if DEBUG
                     this.Icon = global::Diagram.Properties.Resources.ico_diagram_debug;
