@@ -697,13 +697,6 @@ namespace Diagram
             items["visitWebsiteItem"].Text = "Visit homesite";
             items["visitWebsiteItem"].Click += new System.EventHandler(this.visitWebsiteItem_Click);
             //
-            // releaseNoteItem
-            //
-            items.Add("releaseNoteItem", new System.Windows.Forms.ToolStripMenuItem());
-            items["releaseNoteItem"].Name = "releaseNoteItem";
-            items["releaseNoteItem"].Text = "Release Note";
-            items["releaseNoteItem"].Click += new System.EventHandler(this.releaseNoteItem_Click);
-            //
             // aboutItem
             //
             items.Add("aboutItem", new System.Windows.Forms.ToolStripMenuItem());
@@ -717,7 +710,6 @@ namespace Diagram
             items["helpItem"].DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
                 items["consoleItem"],
                 items["visitWebsiteItem"],
-                items["releaseNoteItem"],
                 items["aboutItem"]
             });
             items["helpItem"].Name = "helpItem";
@@ -1488,22 +1480,6 @@ namespace Diagram
         private void visitWebsiteItem_Click(object sender, EventArgs e)
         {
             Network.openUrl(this.diagramView.main.options.home_page);
-        }
-
-        // MENU Show release note
-        private void releaseNoteItem_Click(object sender, EventArgs e)
-        {
-            string releasNotePath = Os.getCurrentApplicationDirectory() + Os.getSeparator() + this.diagramView.main.options.release_note;
-            if (Os.FileExists(releasNotePath))
-            {
-                string releaseNoteUrl = "file:///" + Os.toBackslash(Os.getCurrentApplicationDirectory()) + "/" + this.diagramView.main.options.release_note;
-                Network.openUrl(releaseNoteUrl);
-                Program.log.write("open release note: " + releasNotePath);
-            }
-            else
-            {
-                Program.log.write("open release note: error: file not exist" + releasNotePath);
-            }
         }
 
         // MENU show About form

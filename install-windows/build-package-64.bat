@@ -13,6 +13,5 @@ copy ..\Diagram.SRC\Diagram\bin\x64\Release\Microsoft.Scripting.dll .\files\
 copy ..\Diagram.SRC\Diagram\bin\x64\Release\Microsoft.Scripting.Metadata.dll .\files\
 copy ..\Diagram.SRC\Diagram\bin\x64\Release\NCalc.dll .\files\
 copy ..\Diagram.SRC\Diagram\bin\x64\Release\Newtonsoft.Json.dll .\files\
-copy ..\Documentation\ReleaseNote\ReleaseNote.html .\files\
 
 pause

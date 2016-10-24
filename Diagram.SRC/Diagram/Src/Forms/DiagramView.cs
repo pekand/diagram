@@ -840,7 +840,7 @@ namespace Diagram
         {
             OpenFileDialog openIconDialog = new OpenFileDialog();
 
-            openIconDialog.Filter = "icons (*.ico)|*.ico";
+            openIconDialog.Filter = "icons (*.ico)|*.ico|bmp (*.bmp)|*.bmp|png (*.png)|*.png";            
             openIconDialog.FilterIndex = 1;
             openIconDialog.RestoreDirectory = true;
 
@@ -848,7 +848,29 @@ namespace Diagram
             {
                 try
                 {
-                    Icon icon = new Icon(openIconDialog.FileName);
+                    Icon icon = null;
+
+                    if (Os.getExtension(openIconDialog.FileName).ToLower() == ".png") {
+                        Image pngImage = Image.FromFile(openIconDialog.FileName);
+                        Bitmap bmpImage = (Bitmap)pngImage.GetThumbnailImage(pngImage.Width, pngImage.Height, null, IntPtr.Zero);
+                        bmpImage.MakeTransparent();
+                        System.IntPtr icH = bmpImage.GetHicon();
+                        icon = Icon.FromHandle(icH);
+                    }
+
+                    if (Os.getExtension(openIconDialog.FileName).ToLower() == ".bmp")
+                    {
+                        Bitmap bmpImage = new Bitmap(openIconDialog.FileName);
+                        bmpImage.MakeTransparent();
+                        System.IntPtr icH = bmpImage.GetHicon();
+                        icon = Icon.FromHandle(icH);
+                    }
+
+                    if (Os.getExtension(openIconDialog.FileName).ToLower() == ".ico")
+                    {
+                        icon = new Icon(openIconDialog.FileName);
+                    }
+
                     this.Icon = icon;
                     this.diagram.options.icon = Media.IconToString(icon);
                     this.diagram.unsave();
@@ -860,7 +882,7 @@ namespace Diagram
             }
             else
             {
-                if (MessageBox.Show(Translations.confirmRemoveQuestion, Translations.confirmRemoveIcon, MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (this.diagram.options.icon != "" &&  MessageBox.Show(Translations.confirmRemoveQuestion, Translations.confirmRemoveIcon, MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
 #if DEBUG
                     this.Icon = global::Diagram.Properties.Resources.ico_diagram_debug;
@@ -2541,10 +2563,7 @@ namespace Diagram
                                     }
                                 }
 
-                                // shortcutInfo[0] - file path in lnk file
-                                // shortcutInfo[1] - parameters in lnk file
                                 newrec.link = Os.makeRelative(file, this.diagram.FileName);
-
                             }
                             catch (Exception ex)
                             {
@@ -4113,7 +4132,7 @@ namespace Diagram
         // NODE Open Link
         public void OpenLinkAsync(Node rec)
         {
-            Program.log.write("diagram: openlink: run worker");
+            Program.log.write("diagram: openlink");
             String clipboard = Os.getTextFormClipboard();
 
 
@@ -4129,6 +4148,7 @@ namespace Diagram
             worker.WorkerSupportsCancellation = true;
             worker.DoWork += (sender, e) =>
             {
+                Program.log.write("diagram: openlink: run worker");
                 e.Result = this.OpenLink(rec, clipboard);
             };
             worker.RunWorkerCompleted += (sender, e) =>
@@ -4138,6 +4158,12 @@ namespace Diagram
                 if ((int)result == 1)
                 {
                     this.diagram.EditNode(rec);
+                }
+
+                if ((int)result == 2)
+                {
+                   this.SelectOnlyOneNode(rec);
+                   this.attachmentDeploy();
                 }
             };
             worker.RunWorkerAsync();
@@ -4149,9 +4175,8 @@ namespace Diagram
         {
             if (rec != null)
             {
-                if (rec.attachment != "") { //deploy attachment
-                    this.SelectOnlyOneNode(rec);
-                    this.attachmentDeploy();
+                if (rec.attachment != "") { //deploy attachment                    
+                    return 2; // deploy attachment
                 }
                 else
                 if (rec.shortcut > 0) // GO TO LINK
