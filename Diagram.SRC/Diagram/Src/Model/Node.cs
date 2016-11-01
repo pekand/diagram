@@ -289,5 +289,28 @@ namespace Diagram
                 this.imagepath = "";
             }
         }
+
+        /// <summary>
+        /// Check if node contain string in some attribute (for search nodes by string)</summary>
+        public bool Contain(string searchFor)
+        {
+            if (name.Contains(searchFor))
+            {
+                return true;
+            }
+
+            if (note.Contains(searchFor))
+            {
+                return true;
+            }
+
+            if (link.Contains(searchFor))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
     }
 }

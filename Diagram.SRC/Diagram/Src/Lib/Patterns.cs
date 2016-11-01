@@ -71,7 +71,7 @@ namespace Diagram
             return false;
         }
 
-        public static bool isGotoCommand(string text)
+        public static bool isGotoIdCommand(string text)
         {
             Match matchNumber = (new Regex("#(\\d+)")).Match(text);
 
@@ -81,7 +81,7 @@ namespace Diagram
             }
 
             return false;
-        }
+        }        
 
         /// <summary>
         ///  parse integer (representing node id) from goto command string 
@@ -97,6 +97,38 @@ namespace Diagram
             }
 
             return -1;
+        }
+
+        /// <summary>
+        ///  Check if string is in format of node link search command
+        ///  Example: #search for string
+        /// </summary>
+        public static bool isGotoStringCommand(string text)
+        {
+            Match matchNumber = (new Regex("#([\\w ]+)")).Match(text);
+
+            if (matchNumber.Success)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        ///  Get argument from search command
+        ///  Example: #search for string
+        /// </summary>
+        public static String getGotoStringCommand(string text)
+        {
+            Match match = Regex.Match(text, "#([\\w ]+)", RegexOptions.IgnoreCase);
+
+            if (match.Success)
+            {
+                return match.Groups[1].Value;
+            }
+
+            return null;
         }
     }
 }

@@ -264,6 +264,24 @@ namespace Diagram
             return null;
         }
 
+        public Nodes getNodes(string searchFor)
+        {
+            Nodes nodes = new Nodes();
+
+            foreach (Layer l in this.layers)
+            {
+                foreach (Node node in l.nodes)
+                {
+                    if (node.Contain(searchFor))
+                    {
+                        nodes.Add(node);
+                    }
+                }
+            }
+
+            return nodes;
+        }
+
         public Line getLine(Node start, Node end)
         {
             foreach (Layer l in this.layers)

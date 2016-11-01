@@ -4271,12 +4271,26 @@ namespace Diagram
                             Program.log.write("open link as url error: " + ex.Message);
                         }
                     }
-                    else if (Patterns.isGotoCommand(rec.link)) // GOTO position
+                    else if (Patterns.isGotoIdCommand(rec.link)) // GOTO position
                     {
                         Program.log.write("go to position in diagram " + rec.link);
                         Node node = this.diagram.GetNodeByID(Patterns.getGotoCommandId(rec.link));
                         if (node != null) {
                             this.goToNodeWithAnimation(node);
+                        }
+                    }
+                    else if (Patterns.isGotoStringCommand(rec.link)) // GOTO position
+                    {
+                        Program.log.write("go to position in diagram " + rec.link);
+                        String searchFor = Patterns.getGotoStringCommand(rec.link);
+                        Nodes nodes = this.diagram.layers.getNodes(searchFor);
+                        if (nodes.Count() >= 2)
+                        {
+                            if (rec != nodes[0]) {
+                                this.goToNodeWithAnimation(nodes[0]);
+                            } else {
+                                this.goToNodeWithAnimation(nodes[1]);
+                            }
                         }
                     }
                     else // run as command

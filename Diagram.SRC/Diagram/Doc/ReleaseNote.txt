@@ -1,1 +1,2 @@
-﻿0.5.0.3 Add release note for version tracking
+﻿0.5.0.4 Add ling go to node command type (#)
+0.5.0.3 Add release note for version tracking
