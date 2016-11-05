@@ -5207,6 +5207,7 @@ namespace Diagram
             newrec.setName(insertdatestring);
             newrec.color.set("#8AC5FF");
 
+            this.diagram.unsave("create", newrec, this.shift, this.currentLayer.id);
             this.diagram.InvalidateDiagram();
             return true;
         }
