@@ -7,8 +7,13 @@ using System.IO;
 
 namespace Diagram
 {
+
+    /// <summary>
+    /// repository for encryption related functions</summary>
     public class Encrypt
     {
+        /*************************************************************************************************************************/
+        // GENERATOR
 
         /// <summary>
         /// get random crypto secure string</summary>
@@ -27,6 +32,9 @@ namespace Diagram
 
             return token;
         }
+
+        /*************************************************************************************************************************/
+        // HASHES
 
         /// <summary>
         /// get sha hash from inputString</summary>
@@ -63,6 +71,7 @@ namespace Diagram
             return sb.ToString();
         }
 
+        /*************************************************************************************************************************/
         // ENCRYPTION
 
         /// <summary>
@@ -210,6 +219,9 @@ namespace Diagram
 
             return buffer;
         }
+
+        /*************************************************************************************************************************/
+        // SECURE STRING
 
         /// <summary>
         /// Protect string by encryption</summary>

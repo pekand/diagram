@@ -3,20 +3,6 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.Diagnostics;
 
-/*
-
-    class Program
-        log           // logging console
-        main          // main application
-
-        Main()        // application entry point. Create main application class
-
-        GetVersion()  // get current application version
-        GetLocation() // get current executable path
-
-
-*/
-
 // [VERSION]
 [assembly: AssemblyVersion("0.5.0.6")]
 
@@ -41,6 +27,9 @@ namespace Diagram
         /// create main class which oppening forms</summary>
         private static Main main = null;
 
+        /*************************************************************************************************************************/
+        // TOOLS
+
         /// <summary>
         /// get current app version</summary>
         public static string GetVersion()
@@ -55,6 +44,9 @@ namespace Diagram
         {
             return System.Reflection.Assembly.GetExecutingAssembly().Location;
         }
+
+        /*************************************************************************************************************************/
+        // MAIN APPLICATION START
 
         [STAThread]
         private static void Main()

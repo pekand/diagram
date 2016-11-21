@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Diagram
 {
+    /// <summary>
+    /// collection of nodes</summary>
     public class Nodes : List<Node>
     {
+        /*************************************************************************************************************************/
+        // CONSTRUCTORS
+
         public Nodes()
         {
         }
@@ -19,6 +24,23 @@ namespace Diagram
         public Nodes(List<Node> collection) : base(collection)
         {
         }
+
+        /*************************************************************************************************************************/
+        // SETTERS AND GETTERS
+
+        public void copy(Nodes nodes)
+        {
+            this.Clear();
+
+            foreach (Node node in nodes)
+            {
+                this.Add(node.clone());
+            }
+
+        }
+
+        /*************************************************************************************************************************/
+        // SORT
 
         public void OrderByNameAsc()
         {
@@ -44,15 +66,6 @@ namespace Diagram
         {
             this.Sort((a, b) => a.position.x.CompareTo(b.position.x));
         }
-
-        public void copy(Nodes nodes)
-        {
-            this.Clear();
-
-            foreach (Node node in nodes) {
-                this.Add(node.clone());
-            }
-
-        }
+        
     }
 }

@@ -12,6 +12,10 @@ using System.Drawing.Text;
 using System.Text.RegularExpressions;
 using System.Security;
 
+/*
+ 
+*/
+
 namespace Diagram
 {
     // map node structure for copy paste operation
@@ -25,59 +29,60 @@ namespace Diagram
     {
         private Main main = null;                 // reference to main form
 
-        public Layers layers = new Layers();
+        /*************************************************************************************************************************/
+        // COOLECTIONS
 
-        public List<DiagramView> DiagramViews = new List<DiagramView>(); // all views forms to diagram
-
-        // RESOURCES
-        public Font FontDefault = null;          // default font
-
-        // ATTRIBUTES File
-        public bool NewFile = true;              // flag for new unsaved file without name
-        public bool SavedFile = true;            // flag for saved diagram with name
-        public string FileName = "";             // path to diagram file
-
-        // ATRIBUTES OBJECTS
         public int maxid = 0;                    // last used node id
 
+        public Layers layers = new Layers();
+        public List<DiagramView> DiagramViews = new List<DiagramView>(); // all views forms to diagram
+        public List<TextForm> TextWindows = new List<TextForm>();   // opened text textforms for this diagram
+
+        /*************************************************************************************************************************/
+        // ATTRIBUTES OPTIONS
+
+        public Options options = new Options();  // diagram options saved to xml file        
+
+        /*************************************************************************************************************************/
+        // FILE
+
+        public bool NewFile = true;              // flag for new unsaved file without name
+        public bool SavedFile = true;            // flag for saved diagram with name
+        public string FileName = "";             // path to diagram file        
+
+        /*************************************************************************************************************************/
         // ATTRIBUTES ENCRYPTION
+
         private bool encrypted = false;           // flag for encrypted file
         private bool locked = false;              // flag for encrypted file
         private SecureString password = null;     // password for encrypted file
         private string passwordHash = null;
         private byte[] salt = null;               // salt
 
+        /*************************************************************************************************************************/
         // UNDO
-        public Undo undo = null;                        // undo operations repository
 
-        // ATTRIBUTES TextForm
-        public List<TextForm> TextWindows = new List<TextForm>();   // opened text textforms for this diagram
+        public UndoOperations undoOperations = null;  // undo operations repository        
 
-        // ATTRIBUTES OPTIONS
-        public Options options = new Options();  // diagram options saved to xml file
+        /*************************************************************************************************************************/
+        // RESOURCES
+
+        public Font FontDefault = null; // default font
+
+        /*************************************************************************************************************************/
+        // CONSTRUCTORS
 
         public Diagram(Main main)
         {
             this.main = main;
             this.FontDefault = new Font("Open Sans", 10);
-            this.undo = new Undo(this);
+            this.undoOperations = new UndoOperations(this);
         }
 
         /*************************************************************************************************************************/
+        // FILE OPERATIONS
 
-        // FILE IS NEW - check if file is empty
-        public bool isNew()
-        {
-            return (this.FileName == "" && this.NewFile && this.SavedFile);
-        }
-
-        // FILE IS NEW - check if file is empty
-        public bool isReadOnly()
-        {
-            return this.options.readOnly;
-        }
-
-        // FILE OPEN Open xml file. If file is invalid return false
+        // open file. If file is invalid return false
         public bool OpenFile(string FileName)
         {
             if (Os.FileExists(FileName))
@@ -114,8 +119,257 @@ namespace Diagram
 
             return false;
         }
+        
+        // save diagram
+        public bool save()
+        {
+            if (this.FileName != "" && Os.FileExists(this.FileName))
+            {
+                this.SaveXMLFile(this.FileName);
+                this.NewFile = false;
+                this.SavedFile = true;
+                this.undoOperations.rememberSave();
+                this.SetTitle();
 
-        // FILE LOAD XML. If file is invalid return false
+                return true;
+            }
+
+            return false;
+        }
+
+        // save diagram as
+        public void saveas(String FileName)
+        {
+            this.SaveXMLFile(FileName);
+            this.FileName = FileName;
+            this.SavedFile = true;
+            this.NewFile = false;
+
+            this.SetTitle();
+        }
+
+        // set default options for file like new file 
+        public void CloseFile()
+        {
+            // Prednadstavenie atributov
+            this.maxid = 0;
+            this.NewFile = true;
+            this.SavedFile = true;
+            this.FileName = "";
+
+            // clear nodes and lines lists
+            this.layers.clear();
+
+            this.options.readOnly = false;
+            this.options.grid = true;
+            this.options.coordinates = false;
+
+            this.TextWindows.Clear();
+        }
+
+        /*************************************************************************************************************************/
+        // XML OPERATIONS
+
+        // XML SAVE file or encrypted file
+        public void SaveXMLFile(string FileName)
+        {
+            string diagraxml = "";
+
+            try
+            {
+                System.IO.StreamWriter file = new System.IO.StreamWriter(FileName);
+                diagraxml = this.SaveInnerXMLFile();
+                if (this.password == null)
+                {
+                    file.Write(diagraxml);
+                }
+                else
+                {
+                    XElement root = new XElement("diagram");
+                    try
+                    {
+                        root.Add(new XElement("version", "1"));
+
+                        // encrypted file is saved allways as different string
+                        this.salt = Encrypt.CreateSalt(14);
+
+                        root.Add(new XElement("encrypted", Encrypt.EncryptStringAES(diagraxml, this.getPassword(), this.salt)));
+                        root.Add(new XElement("salt", Encrypt.GetSalt(this.salt)));
+
+                        StringBuilder sb = new StringBuilder();
+                        XmlWriterSettings xws = new XmlWriterSettings();
+                        xws.OmitXmlDeclaration = true;
+                        xws.CheckCharacters = false;
+                        xws.Indent = true;
+
+                        using (XmlWriter xw = XmlWriter.Create(sb, xws))
+                        {
+                            root.WriteTo(xw);
+                        }
+
+                        file.Write(sb.ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        Program.log.write("save file error: " + ex.Message);
+                    }
+                }
+
+                file.Close();
+
+            }
+            catch (System.IO.IOException ex)
+            {
+                Program.log.write("save file io error: " + ex.Message);
+                MessageBox.Show(Translations.fileIsLocked);
+                this.CloseFile();
+            }
+            catch (Exception ex)
+            {
+                Program.log.write("save file error: " + ex.Message);
+            }
+        }
+
+        // XML SAVE create xml from current diagram file state
+        public string SaveInnerXMLFile()
+        {
+            bool checkpoint = false;
+            XElement root = new XElement("diagram");
+            try
+            {
+                // [options] [config]
+                XElement option = new XElement("option");
+                option.Add(new XElement("shiftx", this.options.homePosition.x));
+                option.Add(new XElement("shifty", this.options.homePosition.y));
+                option.Add(new XElement("endPositionx", this.options.endPosition.x));
+                option.Add(new XElement("endPositiony", this.options.endPosition.y));
+                option.Add(new XElement("firstLayereShift.x", this.options.firstLayereShift.x));
+                option.Add(new XElement("firstLayereShift.y", this.options.firstLayereShift.y));
+                if (this.options.openLayerInNewView) option.Add(new XElement("openLayerInNewView", this.options.openLayerInNewView));
+                option.Add(new XElement("homelayer", this.options.homeLayer));
+                option.Add(new XElement("endlayer", this.options.endLayer));
+                option.Add(new XElement("diagramreadonly", this.options.readOnly));
+                option.Add(new XElement("grid", this.options.grid));
+                option.Add(new XElement("borders", this.options.borders));
+                option.Add(Fonts.FontToXml(this.FontDefault, "defaultfont"));
+                option.Add(new XElement("coordinates", this.options.coordinates));
+                option.Add(new XElement("window.position.restore", this.options.restoreWindow));
+                option.Add(new XElement("window.position.x", this.options.Left));
+                option.Add(new XElement("window.position.y", this.options.Top));
+                option.Add(new XElement("window.position.width", this.options.Width));
+                option.Add(new XElement("window.position.height", this.options.Height));
+                option.Add(new XElement("window.state", this.options.WindowState));
+                if (this.options.icon != "") option.Add(new XElement("icon", this.options.icon));
+
+                // Rectangles
+                XElement rectangles = new XElement("rectangles");
+                foreach (Node rec in this.getAllNodes())
+                {
+                    XElement rectangle = new XElement("rectangle");
+                    rectangle.Add(new XElement("id", rec.id));
+                    if (!Fonts.compare(this.FontDefault, rec.font))
+                    {
+                        rectangle.Add(Fonts.FontToXml(rec.font));
+                    }
+                    rectangle.Add(new XElement("fontcolor", rec.fontcolor));
+                    if (rec.name != "") rectangle.Add(new XElement("text", rec.name));
+                    if (rec.note != "") rectangle.Add(new XElement("note", rec.note));
+                    if (rec.link != "") rectangle.Add(new XElement("link", rec.link));
+                    if (rec.scriptid != "") rectangle.Add(new XElement("scriptid", rec.scriptid));
+                    if (rec.shortcut != 0) rectangle.Add(new XElement("shortcut", rec.shortcut));
+                    if (rec.mark) rectangle.Add(new XElement("mark", rec.mark));
+                    if (rec.attachment != "") rectangle.Add(new XElement("attachment", rec.attachment));
+
+                    rectangle.Add(new XElement("layer", rec.layer));
+
+                    if (rec.haslayer)
+                    {
+                        rectangle.Add(new XElement("haslayer", rec.haslayer));
+                        rectangle.Add(new XElement("layershiftx", rec.layerShift.x));
+                        rectangle.Add(new XElement("layershifty", rec.layerShift.y));
+                    }
+
+                    rectangle.Add(new XElement("x", rec.position.x));
+                    rectangle.Add(new XElement("y", rec.position.y));
+                    rectangle.Add(new XElement("width", rec.width));
+                    rectangle.Add(new XElement("height", rec.height));
+                    rectangle.Add(new XElement("color", rec.color));
+                    if (rec.transparent) rectangle.Add(new XElement("transparent", rec.transparent));
+                    if (rec.embeddedimage) rectangle.Add(new XElement("embeddedimage", rec.embeddedimage));
+
+                    if (rec.embeddedimage && rec.image != null) // image is inserted directly to file
+                    {
+                        TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+                        rectangle.Add(new XElement("imagedata", Convert.ToBase64String((byte[])converter.ConvertTo(rec.image, typeof(byte[])))));
+                    }
+                    else if (rec.imagepath != "")
+                    {
+                        rectangle.Add(new XElement("image", rec.imagepath));
+                    }
+
+                    if (rec.protect) rectangle.Add(new XElement("protect", rec.protect));
+
+                    rectangle.Add(new XElement("timecreate", rec.timecreate));
+                    rectangle.Add(new XElement("timemodify", rec.timemodify));
+
+                    rectangles.Add(rectangle);
+                }
+
+                // Lines
+                XElement lines = new XElement("lines");
+                foreach (Line lin in this.getAllLines())
+                {
+                    XElement line = new XElement("line");
+                    line.Add(new XElement("start", lin.start));
+                    line.Add(new XElement("end", lin.end));
+                    line.Add(new XElement("arrow", (lin.arrow) ? "1" : "0"));
+                    line.Add(new XElement("color", lin.color));
+                    if (lin.width != 1) line.Add(new XElement("width", lin.width));
+                    line.Add(new XElement("layer", lin.layer));
+                    lines.Add(line);
+                }
+
+                root.Add(option);
+                root.Add(rectangles);
+                root.Add(lines);
+
+                checkpoint = true;
+            }
+            catch (Exception ex)
+            {
+                Program.log.write("save xml error: " + ex.Message);
+            }
+
+            if (checkpoint)
+            {
+                try
+                {
+
+                    StringBuilder sb = new StringBuilder();
+                    XmlWriterSettings xws = new XmlWriterSettings();
+                    xws.OmitXmlDeclaration = true;
+                    xws.CheckCharacters = false;
+                    xws.Indent = true;
+
+                    using (XmlWriter xw = XmlWriter.Create(sb, xws))
+                    {
+                        root.WriteTo(xw);
+                    }
+
+                    return sb.ToString();
+
+                }
+                catch (Exception ex)
+                {
+                    Program.log.write("write xml to file error: " + ex.Message);
+                }
+
+            }
+
+            return "";
+        }
+
+        // XML LOAD If file is invalid return false
         public bool LoadXML(string xml)
         {
 
@@ -176,7 +430,7 @@ namespace Diagram
                             this.encrypted = true;
                             this.setPassword(password);
                         }
-                        catch(Exception e)
+                        catch (Exception e)
                         {
                             // probably invalid password
                             Program.log.write("LoadXML: Password or file is invalid: " + e.Message);
@@ -200,7 +454,7 @@ namespace Diagram
             }
         }
 
-        // FILE LOAD XML inner part of diagram file. If file is invalid return false
+        // XML LOAD inner part of diagram file. If file is invalid return false
         public bool LoadInnerXML(string xml)
         {
             string FontDefaultString = TypeDescriptor.GetConverter(typeof(Font)).ConvertToString(this.FontDefault);
@@ -617,12 +871,14 @@ namespace Diagram
                     newHeight = (int)s.Height;
 
                     // font change correction > center node
-                    if (rec.width != 0 && newWidth != rec.width) {
+                    if (rec.width != 0 && newWidth != rec.width)
+                    {
                         rec.position.x += (rec.width - newWidth) / 2;
                     }
 
-                    if (rec.height != 0 && newHeight != rec.height) {
-                       rec.position.y += (rec.height - newHeight) / 2;
+                    if (rec.height != 0 && newHeight != rec.height)
+                    {
+                        rec.position.y += (rec.height - newHeight) / 2;
                     }
 
                     rec.resize();
@@ -632,7 +888,7 @@ namespace Diagram
                 this.layers.addNode(rec);
             }
 
-            this.layers.buildTree();
+            this.layers.setLayersParentsReferences();
 
             foreach (Line line in lines)
             {
@@ -648,239 +904,29 @@ namespace Diagram
             return true;
         }
 
-        // FILE Save - save diagram
-        public bool save()
+        /*************************************************************************************************************************/
+        // STATES
+
+        // check if file is empty
+        public bool isNew()
         {
-            if (this.FileName != "" && Os.FileExists(this.FileName))
-            {
-                this.SaveXMLFile(this.FileName);
-                this.NewFile = false;
-                this.SavedFile = true;
-                this.undo.rememberSave();
-                this.SetTitle();
-
-                return true;
-            }
-
-            return false;
+            return (this.FileName == "" && this.NewFile && this.SavedFile);
         }
 
-        // FILE SAVEAS - save diagram as
-        public void saveas(String FileName)
+        // check if file is empty
+        public bool isReadOnly()
         {
-            this.SaveXMLFile(FileName);
-            this.FileName = FileName;
-            this.SavedFile = true;
-            this.NewFile = false;
-
-            this.SetTitle();
+            return this.options.readOnly;
         }
 
-        // FILE SAVE save xml file or encrypted file
-        public void SaveXMLFile(string FileName)
-        {
-            string diagraxml = "";
+        /*************************************************************************************************************************/
+        // UNSAVE
 
-            try
-            {
-                System.IO.StreamWriter file = new System.IO.StreamWriter(FileName);
-                diagraxml = this.SaveInnerXMLFile();
-                if (this.password == null)
-                {
-                    file.Write(diagraxml);
-                }
-                else
-                {
-                    XElement root = new XElement("diagram");
-                    try
-                    {
-                        root.Add(new XElement("version", "1"));
-
-                        // encrypted file is saved allways as different string
-                        this.salt = Encrypt.CreateSalt(14);
-
-                        root.Add(new XElement("encrypted", Encrypt.EncryptStringAES(diagraxml, this.getPassword(), this.salt)));
-                        root.Add(new XElement("salt", Encrypt.GetSalt(this.salt)));
-
-                        StringBuilder sb = new StringBuilder();
-                        XmlWriterSettings xws = new XmlWriterSettings();
-                        xws.OmitXmlDeclaration = true;
-                        xws.CheckCharacters = false;
-                        xws.Indent = true;
-
-                        using (XmlWriter xw = XmlWriter.Create(sb, xws))
-                        {
-                            root.WriteTo(xw);
-                        }
-
-                        file.Write(sb.ToString());
-                    }
-                    catch (Exception ex)
-                    {
-                        Program.log.write("save file error: " + ex.Message);
-                    }
-                }
-
-                file.Close();
-
-            }
-            catch (System.IO.IOException ex)
-            {
-                Program.log.write("save file io error: " + ex.Message);
-                MessageBox.Show(Translations.fileIsLocked);
-                this.CloseFile();
-            }
-            catch (Exception ex)
-            {
-                Program.log.write("save file error: " + ex.Message);
-            }
-        }
-
-        // FILE SAVE XML create xml from current diagram file state
-        public string SaveInnerXMLFile()
-        {
-            bool checkpoint = false;
-            XElement root = new XElement("diagram");
-            try
-            {
-                // [options] [config]
-                XElement option = new XElement("option");
-                option.Add(new XElement("shiftx", this.options.homePosition.x));
-                option.Add(new XElement("shifty", this.options.homePosition.y));
-                option.Add(new XElement("endPositionx", this.options.endPosition.x));
-                option.Add(new XElement("endPositiony", this.options.endPosition.y));
-                option.Add(new XElement("firstLayereShift.x", this.options.firstLayereShift.x));
-                option.Add(new XElement("firstLayereShift.y", this.options.firstLayereShift.y));
-                if (this.options.openLayerInNewView) option.Add(new XElement("openLayerInNewView", this.options.openLayerInNewView));
-                option.Add(new XElement("homelayer", this.options.homeLayer));
-                option.Add(new XElement("endlayer", this.options.endLayer));
-                option.Add(new XElement("diagramreadonly", this.options.readOnly));
-                option.Add(new XElement("grid", this.options.grid));
-                option.Add(new XElement("borders", this.options.borders));
-                option.Add(Fonts.FontToXml(this.FontDefault, "defaultfont"));
-                option.Add(new XElement("coordinates", this.options.coordinates));
-                option.Add(new XElement("window.position.restore", this.options.restoreWindow));
-                option.Add(new XElement("window.position.x", this.options.Left));
-                option.Add(new XElement("window.position.y", this.options.Top));
-                option.Add(new XElement("window.position.width", this.options.Width));
-                option.Add(new XElement("window.position.height", this.options.Height));
-                option.Add(new XElement("window.state", this.options.WindowState));
-                if (this.options.icon != "") option.Add(new XElement("icon", this.options.icon));
-
-                // Rectangles
-                XElement rectangles = new XElement("rectangles");
-                foreach (Node rec in this.getAllNodes())
-                {
-                    XElement rectangle = new XElement("rectangle");
-                    rectangle.Add(new XElement("id", rec.id));
-                    if (!Fonts.compare(this.FontDefault, rec.font))
-                    {
-                        rectangle.Add(Fonts.FontToXml(rec.font));
-                    }
-                    rectangle.Add(new XElement("fontcolor", rec.fontcolor));
-                    if (rec.name != "") rectangle.Add(new XElement("text", rec.name));
-                    if (rec.note != "") rectangle.Add(new XElement("note", rec.note));
-                    if (rec.link != "") rectangle.Add(new XElement("link", rec.link));
-                    if (rec.scriptid != "") rectangle.Add(new XElement("scriptid", rec.scriptid));
-                    if (rec.shortcut != 0) rectangle.Add(new XElement("shortcut", rec.shortcut));
-                    if (rec.mark) rectangle.Add(new XElement("mark", rec.mark));
-                    if (rec.attachment != "") rectangle.Add(new XElement("attachment", rec.attachment));
-
-                    rectangle.Add(new XElement("layer", rec.layer));
-
-                    if (rec.haslayer)
-                    {
-                        rectangle.Add(new XElement("haslayer", rec.haslayer));
-                        rectangle.Add(new XElement("layershiftx", rec.layerShift.x));
-                        rectangle.Add(new XElement("layershifty", rec.layerShift.y));
-                    }
-
-                    rectangle.Add(new XElement("x", rec.position.x));
-                    rectangle.Add(new XElement("y", rec.position.y));
-                    rectangle.Add(new XElement("width", rec.width));
-                    rectangle.Add(new XElement("height", rec.height));
-                    rectangle.Add(new XElement("color", rec.color));
-                    if (rec.transparent) rectangle.Add(new XElement("transparent", rec.transparent));
-                    if (rec.embeddedimage) rectangle.Add(new XElement("embeddedimage", rec.embeddedimage));
-
-                    if (rec.embeddedimage && rec.image != null) // image is inserted directly to file
-                    {
-                        TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
-                        rectangle.Add(new XElement("imagedata", Convert.ToBase64String((byte[])converter.ConvertTo(rec.image, typeof(byte[])))));
-                    }
-                    else if (rec.imagepath != "")
-                    {
-                        rectangle.Add(new XElement("image", rec.imagepath));
-                    }
-
-                    if (rec.protect) rectangle.Add(new XElement("protect", rec.protect));
-
-                    rectangle.Add(new XElement("timecreate", rec.timecreate));
-                    rectangle.Add(new XElement("timemodify", rec.timemodify));
-
-                    rectangles.Add(rectangle);
-                }
-
-                // Lines
-                XElement lines = new XElement("lines");
-                foreach (Line lin in this.getAllLines())
-                {
-                    XElement line = new XElement("line");
-                    line.Add(new XElement("start", lin.start));
-                    line.Add(new XElement("end", lin.end));
-                    line.Add(new XElement("arrow", (lin.arrow) ? "1" : "0"));
-                    line.Add(new XElement("color", lin.color));
-                    if (lin.width != 1) line.Add(new XElement("width", lin.width));
-                    line.Add(new XElement("layer", lin.layer));
-                    lines.Add(line);
-                }
-
-                root.Add(option);
-                root.Add(rectangles);
-                root.Add(lines);
-
-                checkpoint = true;
-            }
-            catch (Exception ex)
-            {
-                Program.log.write("save xml error: " + ex.Message);
-            }
-
-            if (checkpoint)
-            {
-                try
-                {
-
-                    StringBuilder sb = new StringBuilder();
-                    XmlWriterSettings xws = new XmlWriterSettings();
-                    xws.OmitXmlDeclaration = true;
-                    xws.CheckCharacters = false;
-                    xws.Indent = true;
-
-                    using (XmlWriter xw = XmlWriter.Create(sb, xws))
-                    {
-                        root.WriteTo(xw);
-                    }
-
-                    return sb.ToString();
-
-                }
-                catch (Exception ex)
-                {
-                    Program.log.write("write xml to file error: " + ex.Message);
-                }
-
-            }
-
-            return "";
-        }
-
-        // FILE UNSAVE file was changed - save undo position
         public void unsave(string type, Node node, Position position = null, int layer = 0)
         {
             Nodes nodes = new Nodes();
             nodes.Add(node);
-            this.unsave(type, nodes, null,  position, layer);
+            this.unsave(type, nodes, null, position, layer);
         }
 
         public void unsave(string type, Line line, Position position = null, int layer = 0)
@@ -901,8 +947,8 @@ namespace Diagram
 
         public void unsave(string type, Nodes nodes = null, Lines lines = null, Position position = null, int layer = 0)
         {
-            this.undo.rememberSave();
-            this.undo.add(type, nodes, lines, position, layer);
+            this.undoOperations.rememberSave();
+            this.undoOperations.add(type, nodes, lines, position, layer);
             this.unsave();
         }
 
@@ -922,36 +968,23 @@ namespace Diagram
             this.InvalidateDiagram();
         }
 
-        // FILE CLOSE - Vycisti  nastavenie do  východzieho tavu a prekresli obrazovku
-        public void CloseFile()
+        /*************************************************************************************************************************/
+        // UNDO
+
+        // undo
+        public void doUndo(DiagramView view = null)
         {
-            // Prednadstavenie atributov
-            this.maxid = 0;
-            this.NewFile = true;
-            this.SavedFile = true;
-            this.FileName = "";
+            this.undoOperations.doUndo(view);
+        }
 
-            // clear nodes and lines lists
-            this.layers.clear();
-
-            this.options.readOnly = false;
-            this.options.grid = true;
-            this.options.coordinates = false;
-
-            this.TextWindows.Clear();
+        // redo
+        public void doRedo(DiagramView view = null)
+        {
+            this.undoOperations.doRedo(view);
         }
 
         /*************************************************************************************************************************/
-
-        public Nodes getAllNodes()
-        {
-            return this.layers.getAllNodes();
-        }
-
-        public Lines getAllLines()
-        {
-            return this.layers.getAllLines();
-        }
+        // NODES SELECT
 
         // NODE find node by id
         public Node GetNodeByID(int id)
@@ -973,6 +1006,41 @@ namespace Diagram
 
             return null;
         }
+
+        public Nodes getAllNodes()
+        {
+            return this.layers.getAllNodes();
+        }
+
+        public Lines getAllLines()
+        {
+            return this.layers.getAllLines();
+        }
+
+        // NODE Najdenie nody podla pozicie myši
+        public Node findNodeInPosition(Position position, int layer, Node skipNode = null)
+        {
+            foreach (Node node in this.layers.getLayer(layer).nodes.Reverse<Node>()) // Loop through List with foreach
+            {
+                if (layer == node.layer || layer == node.id)
+                {
+                    if
+                    (
+                        node.position.x <= position.x && position.x <= node.position.x + node.width &&
+                        node.position.y <= position.y && position.y <= node.position.y + node.height &&
+                        (skipNode == null || skipNode.id != node.id)
+                    )
+                    {
+                        return node;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        /*************************************************************************************************************************/
+        // NODES DELETE
 
         // NODE delete all nodes which is not in layer history
         public bool canDeleteNode(Node node)
@@ -1045,7 +1113,7 @@ namespace Diagram
 
             if (canDelete)
             {
-                this.undo.add("delete", toDeleteNodes, toDeleteLines, position, layer);
+                this.undoOperations.add("delete", toDeleteNodes, toDeleteLines, position, layer);
 
                 foreach (Node node in toDeleteNodes.Reverse<Node>()) // remove lines to node
                 {
@@ -1056,6 +1124,9 @@ namespace Diagram
                 this.unsave();
             }
         }
+
+        /*************************************************************************************************************************/
+        // NODES EDIT
 
         // NODE Editovanie vlastnosti nody
         public TextForm EditNode(Node rec)
@@ -1099,6 +1170,9 @@ namespace Diagram
                 }
             }
         }
+
+        /*************************************************************************************************************************/
+        // NODES CREATE
 
         // NODE Create Rectangle on point
         public Node createNode(
@@ -1172,7 +1246,10 @@ namespace Diagram
             return null;
         }
 
-        // NODE HASLINE check if line exist between two nodes
+        /*************************************************************************************************************************/
+        // LINES SELECT
+
+        // LINE HASLINE check if line exist between two nodes
         public bool hasConnection(Node a, Node b)
         {
             Line line = this.layers.getLine(a, b);
@@ -1189,7 +1266,7 @@ namespace Diagram
             return this.layers.getLine(a, b);
         }
 
-        // NODE CONNECT connect two nodes
+        // LINE CONNECT connect two nodes
         public Line Connect(Node a, Node b)
         {
             if (!this.options.readOnly && a != null && b != null)
@@ -1235,7 +1312,7 @@ namespace Diagram
             return null;
         }
 
-        // NODE DISCONNECT remove connection between two nodes
+        // LINE DISCONNECT remove connection between two nodes
         public void Disconnect(Node a, Node b)
         {
             if (!this.options.readOnly && a != null && b != null)
@@ -1249,7 +1326,7 @@ namespace Diagram
             }
         }
 
-        // NODE CONNECT connect two nodes and add arrow or set color
+        // LINE CONNECT connect two nodes and add arrow or set color
         public Line Connect(Node a, Node b, bool arrow = false, ColorType color = null, int width = 1)
         {
             Line line = this.Connect(a, b);
@@ -1268,30 +1345,10 @@ namespace Diagram
             return line;
         }
 
-        // NODES ALIGN to column
-        public void AlignToColumn(Nodes Nodes)
-        {
-            if (Nodes.Count() > 0)
-            {
-                int miny = Nodes[0].position.y;
-                int topx = Nodes[0].position.x;
-                foreach (Node rec in Nodes)
-                {
-                    if (rec.position.y <= miny)
-                    {
-                        miny = rec.position.y;
-                        topx = rec.position.x + rec.width / 2; ;
-                    }
-                }
+        /*************************************************************************************************************************/
+        // ALIGN
 
-                foreach (Node rec in Nodes)
-                {
-                    rec.position.x = topx - rec.width / 2;
-                }
-            }
-        }
-
-        // NODES ALIGN to line
+        // align to line
         public void AlignToLine(Nodes Nodes)
         {
             if (Nodes.Count() > 0)
@@ -1314,7 +1371,6 @@ namespace Diagram
             }
         }
 
-        // NODES ALIGN compact
         // align node to top element and create constant space between nodes
         public void AlignCompact(Nodes nodes)
         {
@@ -1348,7 +1404,104 @@ namespace Diagram
             }
         }
 
-        // NODES ALIGN compact
+        // NODES ALIGN to column
+        public void AlignToColumn(Nodes Nodes)
+        {
+            if (Nodes.Count() > 0)
+            {
+                int miny = Nodes[0].position.y;
+                int topx = Nodes[0].position.x;
+                foreach (Node rec in Nodes)
+                {
+                    if (rec.position.y <= miny)
+                    {
+                        miny = rec.position.y;
+                        topx = rec.position.x + rec.width / 2; ;
+                    }
+                }
+
+                foreach (Node rec in Nodes)
+                {
+                    rec.position.x = topx - rec.width / 2;
+                }
+            }
+        }
+
+        // align node to most left node and create constant space between nodes
+        public void AlignCompactLine(Nodes nodes)
+        {
+            if (nodes.Count() > 0)
+            {
+                int minx = nodes[0].position.x;
+                int miny = nodes[0].position.y;
+                foreach (Node rec in nodes)
+                {
+                    if (rec.position.x <= minx) // find top left element
+                    {
+                        minx = rec.position.x;
+                        miny = rec.position.y;
+                    }
+                }
+
+                foreach (Node rec in nodes) // align to top
+                {
+                    rec.position.y = miny;
+                }
+
+                // sort elements by y coordinate
+                nodes.OrderByPositionX();
+
+                int posx = minx;
+                foreach (Node rec in nodes) // zmensit medzeru medzi objektami
+                {
+                    rec.position.x = posx;
+                    posx = posx + rec.width + 10;
+                }
+            }
+        }
+
+        // align left
+        public void AlignRight(Nodes Nodes)
+        {
+            if (Nodes.Count() > 0)
+            {
+                int maxx = Nodes[0].position.x + Nodes[0].width;
+                foreach (Node rec in Nodes)
+                {
+                    if (rec.position.x + rec.width >= maxx)
+                    {
+                        maxx = rec.position.x + rec.width;
+                    }
+                }
+
+                foreach (Node rec in Nodes)
+                {
+                    rec.position.x = maxx - rec.width;
+                }
+            }
+        }
+
+        // align left
+        public void AlignLeft(Nodes Nodes)
+        {
+            if (Nodes.Count() > 0)
+            {
+                int minx = Nodes[0].position.x;
+                foreach (Node rec in Nodes)
+                {
+                    if (rec.position.x <= minx)
+                    {
+                        minx = rec.position.x;
+                    }
+                }
+
+                foreach (Node rec in Nodes)
+                {
+                    rec.position.x = minx;
+                }
+            }
+        }
+
         // align node to top element and create constant space between nodes and sort items
         public void sortNodes(Nodes nodes)
         {
@@ -1401,7 +1554,6 @@ namespace Diagram
             }
         }
 
-        // NODES SPLIT compact
         // split node to lines
         public Nodes splitNode(Nodes nodes)
         {
@@ -1445,99 +1597,29 @@ namespace Diagram
             return null;
         }
 
-        // NODES ALIGN compact
-        // align node to most left node and create constant space between nodes
-        public void AlignCompactLine(Nodes nodes)
-        {
-            if (nodes.Count() > 0)
-            {
-                int minx = nodes[0].position.x;
-                int miny = nodes[0].position.y;
-                foreach (Node rec in nodes)
-                {
-                    if (rec.position.x <= minx) // find top left element
-                    {
-                        minx = rec.position.x;
-                        miny = rec.position.y;
-                    }
-                }
+        /*************************************************************************************************************************/
+        // SHORTCUTS
 
-                foreach (Node rec in nodes) // align to top
-                {
-                    rec.position.y = miny;
-                }
-
-                // sort elements by y coordinate
-                nodes.OrderByPositionX();
-
-                int posx = minx;
-                foreach (Node rec in nodes) // zmensit medzeru medzi objektami
-                {
-                    rec.position.x = posx;
-                    posx = posx + rec.width + 10;
-                }
-            }
-        }
-
-        // NODES ALIGN left
-        public void AlignRight(Nodes Nodes)
-        {
-            if (Nodes.Count() > 0)
-            {
-                int maxx = Nodes[0].position.x + Nodes[0].width;
-                foreach (Node rec in Nodes)
-                {
-                    if (rec.position.x + rec.width >= maxx)
-                    {
-                        maxx = rec.position.x + rec.width;
-                    }
-                }
-
-                foreach (Node rec in Nodes)
-                {
-                    rec.position.x = maxx - rec.width;
-                }
-            }
-        }
-
-        // NODES ALIGN left
-        public void AlignLeft(Nodes Nodes)
-        {
-            if (Nodes.Count() > 0)
-            {
-                int minx = Nodes[0].position.x;
-                foreach (Node rec in Nodes)
-                {
-                    if (rec.position.x <= minx)
-                    {
-                        minx = rec.position.x;
-                    }
-                }
-
-                foreach (Node rec in Nodes)
-                {
-                    rec.position.x = minx;
-                }
-            }
-        }
-
-        // NODES remove shortcut
+        // remove shortcut
         public void RemoveShortcut(Node node)
         {
             if (node.shortcut > 0) node.shortcut = 0;
         }
 
-        // NODES remove shortcut
+        // remove mark
         public void RemoveMark(Node node)
         {
             if (node.mark) node.mark = false;
         }
 
+        /*************************************************************************************************************************/
+        // NODE FONTS
+
         // NODE Reset font to default font for group of nodes
         public void ResetFont(Nodes nodes, Position position = null, int layer = 0)
         {
             if (nodes.Count>0) {
-                this.undo.add("edit", nodes, null, position, layer);
+                this.undoOperations.add("edit", nodes, null, position, layer);
                 foreach (Node rec in nodes) // Loop through List with foreach
                 {
                     rec.font = this.FontDefault;
@@ -1548,29 +1630,10 @@ namespace Diagram
             }
         }
 
-        // NODE Najdenie nody podla pozicie myši
-        public Node findNodeInPosition(Position position, int layer, Node skipNode = null)
-        {
-            foreach (Node node in this.layers.getLayer(layer).nodes.Reverse<Node>()) // Loop through List with foreach
-            {
-                if (layer == node.layer || layer == node.id)
-                {
-                    if
-                    (
-                        node.position.x <= position.x && position.x <= node.position.x + node.width &&
-                        node.position.y <= position.y && position.y <= node.position.y + node.height &&
-                        (skipNode == null || skipNode.id != node.id)
-                    )
-                    {
-                        return node;
-                    }
-                }
-            }
+        /*************************************************************************************************************************/
+        // IMAGE
 
-            return null;
-        }
-
-        // NODE set image
+        // set image
         public void setImage(Node rec, string file)
         {
             try
@@ -1589,7 +1652,7 @@ namespace Diagram
             }
         }
 
-        // NODE remove image
+        // remove image
         public void removeImage(Node rec)
         {
             rec.isimage = false;
@@ -1599,7 +1662,7 @@ namespace Diagram
             rec.resize();
         }
 
-        // NODE set image embedded
+        // set image embedded
         public void setImageEmbedded(Node rec)
         {
             if (rec.isimage)
@@ -1609,6 +1672,7 @@ namespace Diagram
         }
 
         /*************************************************************************************************************************/
+        // LAYERS
 
         // LAYER MOVE posunie rekurzivne layer a jeho nody OBSOLATE
         public void MoveLayer(Node rec, Position vector)
@@ -1632,8 +1696,9 @@ namespace Diagram
         }
 
         /*************************************************************************************************************************/
+        // VIEW
 
-        // DIAGRAM VIEW open new view on diagram
+        // open new view on diagram
         public DiagramView openDiagramView(DiagramView parent = null, Layer layer = null)
         {
             DiagramView diagramview = new DiagramView(main, this, parent);
@@ -1649,7 +1714,7 @@ namespace Diagram
             return diagramview;
         }
 
-        // DIAGRAM VIEW invalidate all opened views
+        // invalidate all opened views
         public void InvalidateDiagram()
         {
             foreach (DiagramView DiagramView in this.DiagramViews)
@@ -1661,7 +1726,7 @@ namespace Diagram
             }
         }
 
-        // DIAGRAM close diagram
+        // close view
         public void CloseView(DiagramView view)
         {
             this.DiagramViews.Remove(view);
@@ -1676,7 +1741,7 @@ namespace Diagram
             this.CloseDiagram();
         }
 
-        // DIAGRAM close diagram
+        // close diagram
         public void CloseDiagram()
         {
             bool canclose = true;
@@ -1694,7 +1759,7 @@ namespace Diagram
             }
         }
 
-        // DIAGRAM VIEWS change title
+        // change title
         public void SetTitle()
         {
             foreach (DiagramView DiagramView in this.DiagramViews)
@@ -1703,19 +1768,7 @@ namespace Diagram
             }
         }
 
-        // DIAGRAM undo
-        public void doUndo(DiagramView view = null)
-        {
-            this.undo.doUndo(view);
-        }
-
-        // DIAGRAM redo
-        public void doRedo(DiagramView view = null)
-        {
-            this.undo.doRedo(view);
-        }
-
-        // DIAGRAM refresh - refresh items depends on external resources like images
+        // refresh - refresh items depends on external resources like images
         public void refreshAll()
         {
             foreach (Node node in this.layers.getAllNodes())
@@ -1734,7 +1787,7 @@ namespace Diagram
             this.InvalidateDiagram();
         }
 
-        // DIAGRAM refresh nodes- refresh items depends on external resources like images or hyperlinks names
+        // refresh nodes- refresh items depends on external resources like images or hyperlinks names
         public void refreshNodes(Nodes nodes)
         {
             foreach (Node node in nodes)
@@ -1753,8 +1806,9 @@ namespace Diagram
         }
 
         /*************************************************************************************************************************/
+        // CLIPBOARD
 
-        // CLIPBOARD PASTE paste part of diagram from clipboard                                   // CLIPBOARD
+        // paste part of diagram from clipboard                                   
         public DiagramBlock AddDiagramPart(string DiagramXml, Position position, int layer)
         {
             Nodes NewNodes = new Nodes();
@@ -2102,7 +2156,7 @@ namespace Diagram
             return new DiagramBlock(NewNodes, createdLines);
         }
 
-        // CLIPBOARD Get all layers nodes
+        // Get all layers nodes
         private void nodesReorderNodes(int layer, Node parent, Nodes nodesIn, Nodes nodesOut)
         {
             foreach (Node node in nodesIn)
@@ -2120,7 +2174,7 @@ namespace Diagram
             }
         }
 
-        // CLIPBOARD Get all layers nodes
+        // Get all layers nodes
         public void getLayerNodes(Node node, Nodes nodes)
         {
             if (node.haslayer) {
@@ -2134,7 +2188,7 @@ namespace Diagram
             }
         }
 
-        // CLIPBOARD COPY copy part of diagram to text xml string
+        // copy part of diagram to text xml string
         public string GetDiagramPart(Nodes nodes)
         {
             Nodes copy = new Nodes();
@@ -2395,8 +2449,9 @@ namespace Diagram
         }
 
         /*************************************************************************************************************************/
+        // SECURITY
 
-        // SECURITY encrypt diagram 
+        // encrypt diagram 
         public bool setPassword(string password = null)
         {
             string newPassword = null;
@@ -2451,7 +2506,7 @@ namespace Diagram
             return "";
         } 
 
-        // SECURITY change password
+        // change password
         public bool changePassword()
         {
             string newPassword = this.main.changePassword(this.getPassword());
@@ -2463,20 +2518,19 @@ namespace Diagram
             return false;
         }
 
-
-        // SECURITY check if password is set
+        // check if password is set
         public bool isEncrypted()
         {
             return this.encrypted;
         }
 
-        // SECURITY check if diagram is locked
+        // check if diagram is locked
         public bool isLocked()
         {
             return this.locked;
         }
 
-        // SECURITY lock diagram - forgot password
+        // lock diagram - forgot password
         public void lockDiagram()
         {
             if (this.encrypted && !this.locked)
@@ -2487,7 +2541,7 @@ namespace Diagram
             }
         }
 
-        // SECURITY unlock diagram - prompt for new password
+        // unlock diagram - prompt for new password
         public bool unlockDiagram()
         {
             if (this.encrypted && this.locked)

@@ -145,6 +145,7 @@
     <Compile Include="Src\Components\EditLinkPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Src\Components\Notifications.cs" />
     <Compile Include="Src\Components\Popup.cs" />
     <Compile Include="Src\Components\EditPanel.cs">
       <SubType>Component</SubType>
@@ -176,7 +177,7 @@
     <Compile Include="Src\Model\Lines.cs" />
     <Compile Include="Src\Model\Nodes.cs" />
     <Compile Include="Src\Model\Position.cs" />
-    <Compile Include="Src\Model\Undo.cs" />
+    <Compile Include="Src\Model\UndoOperations.cs" />
     <Compile Include="Src\ProgramOptions.cs" />
     <Compile Include="Src\Forms\AboutForm.cs">
       <SubType>Form</SubType>

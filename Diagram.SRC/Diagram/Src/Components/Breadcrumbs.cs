@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
+/*
+ 
+*/
+
 namespace Diagram
 {
     // map node structure for copy paste operation

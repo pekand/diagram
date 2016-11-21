@@ -3,6 +3,10 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 
+/*
+ 
+*/
+
 namespace Diagram
 {
     public class TextForm : Form
@@ -171,7 +175,7 @@ namespace Diagram
                     node.note != this.TextFormNoteTextBox.Text ||
                     node.link != this.TextFormLinkTextBox.Text
                 ) {
-                    this.diagram.undo.add("edit", node, node.position, node.layer);
+                    this.diagram.undoOperations.add("edit", node, node.position, node.layer);
                     node.name = this.TextFormTextBox.Text;
                     node.note = this.TextFormNoteTextBox.Text;
                     node.link = this.TextFormLinkTextBox.Text;

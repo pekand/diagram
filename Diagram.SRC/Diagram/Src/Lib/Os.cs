@@ -5,14 +5,245 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Text;
 
+
 #if !MONO
 using Shell32;
 #endif
 
 namespace Diagram
 {
+    /// <summary>
+    /// OS and path related functions repository</summary>
     public class Os
     {
+        /*************************************************************************************************************************/
+        // FILE EXTENSION
+
+        /// <summary>
+        /// get file extension</summary>
+        public static string getExtension(string file)
+        {
+            string ext = "";
+            if (file != "" && Os.FileExists(file))
+            {
+                ext = Path.GetExtension(file).ToLower();
+            }
+
+            return ext;
+        }
+
+        /// <summary>
+        /// check if diagramPath file path has good extension  </summary>
+        public static bool isDiagram(string diagramPath)
+        {
+            diagramPath = normalizePath(diagramPath);
+            if (Os.FileExists(diagramPath) && Path.GetExtension(diagramPath).ToLower() == ".diagram")
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /*************************************************************************************************************************/
+        // FILE OPERATIONS
+
+        /// <summary>
+        /// check if path is file</summary>
+        public static bool isFile(string path)
+        {
+            return Os.FileExists(path);
+        }
+
+        /// <summary>
+        /// check if file exist independent on os </summary>
+        public static bool FileExists(string path)
+        {
+            return File.Exists(normalizePath(path));
+        }
+
+        /// <summary>
+        /// check if directory or file exist independent on os </summary>
+        public static bool Exists(string path)
+        {
+            return FileExists(path) || DirectoryExists(path);
+        }
+
+        /// <summary>
+        /// get file name or directory name from path</summary>
+        public static string getFileName(string path)
+        {
+            return Path.GetFileName(path);
+        }
+
+        /// <summary>
+        /// get file name or directory name from path</summary>
+        public static string getFileNameWithoutExtension(string path)
+        {
+            return Path.GetFileNameWithoutExtension(path);
+        }
+
+        /// <summary>
+        /// get parent directory of FileName path </summary>
+        public static string getFileDirectory(string FileName)
+        {
+            if (FileName.Trim().Length > 0 && Os.FileExists(FileName))
+            {
+                return new FileInfo(FileName).Directory.FullName;
+            }
+            return null;
+        }
+
+        /*************************************************************************************************************************/
+        // DIRECTORY OPERATIONS
+
+        /// <summary>
+        /// check if path is directory</summary>
+        public static bool isDirectory(string path)
+        {
+            return Os.DirectoryExists(path);
+        }
+
+        /// <summary>
+        /// check if directory exist independent on os </summary>
+        public static bool DirectoryExists(string path)
+        {
+            return Directory.Exists(normalizePath(path));
+        }
+
+        /// <summary>
+        /// get file name or directory name from path</summary>
+        public static string getDirectoryName(string path)
+        {
+            return Path.GetDirectoryName(path);
+        }
+
+
+        /// <summary>
+        /// get current running application executable directory </summary>
+        public static string getCurrentApplicationDirectory()
+        {
+            string currentApp = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            return Os.getFileDirectory(currentApp);
+        }
+
+        /// <summary>
+        /// set current directory</summary>
+        public static void setCurrentDirectory(string path)
+        {
+            Directory.SetCurrentDirectory(path);
+        }
+
+        /// <summary>
+        /// create directory</summary>
+        public static bool createDirectory(string path)
+        {
+            try
+            {
+                Directory.CreateDirectory(path);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Program.log.write("os.createDirectory fail: " + path + ": " + e.ToString());
+            }
+            return false;
+        }
+
+        /*************************************************************************************************************************/
+        // PATH OPERATIONS
+
+        /// <summary>
+        /// get full path</summary>
+        public static string getFullPath(string path)
+        {
+            return Path.GetFullPath(path);
+        }
+
+        /// <summary>
+        /// concat path and subdir</summary>
+        public static string combine(string path, string subdir)
+        {
+            return Path.Combine(path, subdir);
+        }
+
+        /// <summary>
+        /// convert slash dependent on current os </summary>
+        public static string normalizePath(string path)
+        {
+
+#if MONO
+            return path.Replace("\\","/");
+#else
+            return path.Replace("/", "\\");
+#endif
+        }
+
+        /// <summary>
+        /// normalize path and get full path from relative path </summary>
+        public static string normalizedFullPath(string path)
+        {
+            return Path.GetFullPath(normalizePath(path));
+        }
+
+        /// <summary>
+        /// meke filePath relative to currentPath. 
+        /// If is set inCurrentDir path is converted to relative only 
+        /// if currentPath is parent of filePath</summary>
+        public static string makeRelative(string filePath, string currentPath, bool inCurrentDir = true)
+        {
+            filePath = filePath.Trim();
+            currentPath = currentPath.Trim();
+
+            if (currentPath == "")
+            {
+                return filePath;
+            }
+
+            if (!Os.FileExists(filePath) && !Os.DirectoryExists(filePath))
+            {
+                return filePath;
+            }
+
+            filePath = Os.getFullPath(filePath);
+
+            if (Os.FileExists(currentPath))
+            {
+                currentPath = Os.getDirectoryName(currentPath);
+            }
+
+            if (!Os.DirectoryExists(currentPath))
+            {
+                return filePath;
+            }
+
+            currentPath = Os.getFullPath(currentPath);
+
+            Uri pathUri = new Uri(filePath);
+            // Folders must end in a slash
+            if (!currentPath.EndsWith(Path.DirectorySeparatorChar.ToString()))
+            {
+                currentPath += Path.DirectorySeparatorChar;
+            }
+
+            int pos = filePath.ToLower().IndexOf(currentPath.ToLower());
+            if (inCurrentDir && pos != 0) // skip files outside of currentPath
+            {
+                return filePath;
+            }
+
+            Uri folderUri = new Uri(currentPath);
+            return Uri.UnescapeDataString(
+                folderUri.MakeRelativeUri(pathUri)
+                .ToString()
+                .Replace('/', Path.DirectorySeparatorChar)
+            );
+        }
+
+        /*************************************************************************************************************************/
+        // SHORTCUTS
+
 #if !MONO
 
         /// <summary>
@@ -68,6 +299,17 @@ namespace Diagram
         }
 #endif
 
+        /*************************************************************************************************************************/
+        // OPEN
+
+        /// <summary>
+        /// run application in current os </summary>
+        public static void runProcess(string path)
+        {
+            path = normalizePath(path);
+            System.Diagnostics.Process.Start(path);
+        }
+
         /// <summary>
         /// open path in system if exist  </summary>
         public static void openPathInSystem(string path)
@@ -92,19 +334,6 @@ namespace Diagram
         }
 
         /// <summary>
-        /// check if diagramPath file path has good extension  </summary>
-        public static bool isDiagram(string diagramPath)
-        {
-            diagramPath = normalizePath(diagramPath);
-            if (Os.FileExists(diagramPath) && Path.GetExtension(diagramPath).ToLower() == ".diagram")
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
         /// open diagram file in current runing application with system call command </summary>
         public static void openDiagram(string diagramPath)
         {
@@ -126,7 +355,7 @@ namespace Diagram
 
         /// <summary>
         /// open directory in system</summary>
-        public static void openDirectory(string path)
+        public static void showDirectoryInExternalApplication(string path)
         {
             try
             {
@@ -136,17 +365,6 @@ namespace Diagram
             {
                 Program.log.write("open directory: " + path + ": error: " + ex.Message);
             }
-        }
-
-        /// <summary>
-        /// get parent directory of FileName path </summary>
-        public static string getFileDirectory(string FileName)
-        {
-            if (FileName.Trim().Length > 0 && Os.FileExists(FileName))
-            {
-                return new FileInfo(FileName).Directory.FullName;
-            }
-            return null;
         }
 
         /// <summary>
@@ -209,131 +427,8 @@ namespace Diagram
             process.Start();
         }
 
-        /// <summary>
-        /// get string from clipboard </summary>
-        public static string getTextFormClipboard()
-        {
-            DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
-            string clipboard = "";
-            if (retrievedData != null && retrievedData.GetDataPresent(DataFormats.Text))  // [PASTE] [TEXT] insert text
-            {
-                clipboard = retrievedData.GetData(DataFormats.Text) as string;
-            }
-
-            return clipboard;
-        }
-
-        /// <summary>
-        /// run application in current os </summary>
-        public static void runProcess(string path)
-        {
-            path = normalizePath(path);
-            System.Diagnostics.Process.Start(path);
-        }
-
-        /// <summary>
-        /// find line number with first search string occurrence </summary>
-        public static int fndLineNumber(string fileName, string search)
-        {
-            int pos = 0;
-            string line;
-            using (StreamReader file = new StreamReader(fileName))
-            {
-                while ((line = file.ReadLine()) != null)
-                {
-                    pos++;
-                    if (line.Contains(search))
-                    {
-                        return pos;
-                    }
-                }
-            }
-
-            return pos;
-        }
-
-        /// <summary>
-        /// meke filePath relative to currentPath. 
-        /// If is set inCurrentDir path is converted to relative only 
-        /// if currentPath is parent of filePath</summary>
-		public static string makeRelative(string filePath, string currentPath, bool inCurrentDir = true)
-		{
-            filePath = filePath.Trim();
-			currentPath = currentPath.Trim();
-
-			if (currentPath == "") 
-			{
-				return filePath;
-			} 
-
-			if (!Os.FileExists(filePath) && !Os.DirectoryExists(filePath)) 
-			{
-				return filePath;
-			}
-
-			filePath = Os.getFullPath(filePath);
-
-			if (Os.FileExists(currentPath)) 
-			{
-				currentPath = Os.getDirectoryName(currentPath);
-			}
-
-			if (!Os.DirectoryExists(currentPath))
-			{
-				return filePath;
-			}
-
-			currentPath = Os.getFullPath(currentPath);
-
-			Uri pathUri = new Uri(filePath);
-			// Folders must end in a slash
-			if (!currentPath.EndsWith(Path.DirectorySeparatorChar.ToString()))
-			{
-				currentPath += Path.DirectorySeparatorChar;
-			}
-
-			int pos = filePath.ToLower().IndexOf(currentPath.ToLower());
-			if( inCurrentDir && pos != 0) // skip files outside of currentPath
-			{
-				return filePath;
-			}
-
-			Uri folderUri = new Uri(currentPath);
-			return Uri.UnescapeDataString(
-                folderUri.MakeRelativeUri(pathUri)
-                .ToString()
-                .Replace('/', Path.DirectorySeparatorChar)
-            );
-		}
-
-        /// <summary>
-        /// check if file exist independent on os </summary>
-        public static bool FileExists(string path)
-        {
-            return File.Exists(normalizePath(path));
-        }
-
-        /// <summary>
-        /// check if directory exist independent on os </summary>
-        public static bool DirectoryExists(string path)
-        {
-            return Directory.Exists(normalizePath(path));
-        }
-
-        /// <summary>
-        /// check if directory or file exist independent on os </summary>
-        public static bool Exists(string path)
-        {
-            return FileExists(path) || DirectoryExists(path);
-        }
-
-        /// <summary>
-        /// get current running application executable directory </summary>
-        public static string getCurrentApplicationDirectory()
-        {
-            string currentApp = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            return Os.getFileDirectory(currentApp); 
-        }
+        /*************************************************************************************************************************/
+        // TOOLS
 
         /// <summary>
         /// add slash before slash and quote </summary>
@@ -342,25 +437,6 @@ namespace Diagram
             return text.Replace("\\", "\\\\").Replace("\"", "\\\"");
         }
 
-        /// <summary>
-        /// convert slash dependent on current os </summary>
-        public static string normalizePath(string path)
-        {
-
-#if MONO
-            return path.Replace("\\","/");
-#else
-            return path.Replace("/","\\");
-#endif
-        }
-
-        /// <summary>
-        /// normalize path and get full path from relative path </summary>
-        public static string normalizedFullPath(string path)
-        {
-            return Path.GetFullPath(normalizePath(path));
-        }
-        
         /// <summary>
         /// convert win path slash to linux type slash </summary>
         public static string toBackslash(string text)
@@ -375,32 +451,8 @@ namespace Diagram
             return Path.DirectorySeparatorChar.ToString();
         }
 
-        /// <summary>
-        /// get file extension</summary>
-        public static string getExtension(string file)
-        {
-            string ext = "";
-            if (file != "" && Os.FileExists(file))
-            {
-                ext = Path.GetExtension(file).ToLower();
-            }
-
-            return ext;
-        }
-
-        /// <summary>
-        /// check if path is directory</summary>
-        public static bool isDirectory(string path)
-        {
-            return Os.DirectoryExists(path);
-        }
-
-        /// <summary>
-        /// check if path is file</summary>
-        public static bool isFile(string path)
-        {
-            return Os.FileExists(path);
-        }
+        /*************************************************************************************************************************/
+        // SEARCH IN DIRECTORY
 
         /// <summary>
         /// Scans a folder and all of its subfolders recursively, and updates the List of files
@@ -430,40 +482,32 @@ namespace Diagram
             }
         }
 
-        /// <summary>
-        /// get file name or directory name from path</summary>
-        public static string getFileName(string path)
-        {
-            return Path.GetFileName(path);
-        }
+        /*************************************************************************************************************************/
+        // SEARCH IN FILE
 
         /// <summary>
-        /// get file name or directory name from path</summary>
-        public static string getFileNameWithoutExtension(string path)
+        /// find line number with first search string occurrence </summary>
+        public static int fndLineNumber(string fileName, string search)
         {
-            return Path.GetFileNameWithoutExtension(path);
+            int pos = 0;
+            string line;
+            using (StreamReader file = new StreamReader(fileName))
+            {
+                while ((line = file.ReadLine()) != null)
+                {
+                    pos++;
+                    if (line.Contains(search))
+                    {
+                        return pos;
+                    }
+                }
+            }
+
+            return pos;
         }
 
-        /// <summary>
-        /// get file name or directory name from path</summary>
-        public static string getDirectoryName(string path)
-        {
-            return Path.GetDirectoryName(path);
-        }
-
-        /// <summary>
-        /// set current directory</summary>
-        public static void setCurrentDirectory(string path)
-        {
-            Directory.SetCurrentDirectory(path);
-        }
-
-        /// <summary>
-        /// get full path</summary>
-        public static string getFullPath(string path)
-        {
-            return Path.GetFullPath(path);
-        }
+        /*************************************************************************************************************************/
+        // TEMP
 
         /// <summary>
         /// get temporary directory</summary>
@@ -472,27 +516,14 @@ namespace Diagram
             return Path.GetTempPath();
         }
 
-        /// <summary>
-        /// concat path and subdir</summary>
-        public static string combine(string path, string subdir)
-        {
-            return Path.Combine(path, subdir);
-        }
+        /*************************************************************************************************************************/
+        // WRITE AND READ FILE OPERATIONS
 
         /// <summary>
-        /// create directory</summary>
-        public static bool createDirectory(string path)
+        /// create empty file</summary>
+        public static void createEmptyFile(string path)
         {
-			try{
-				Directory.CreateDirectory(path);
-
-				return true;
-			}
-			catch (Exception e) 
-			{
-				Program.log.write("os.createDirectory fail: " + path + ": " + e.ToString());
-			}
-			return false;
+            File.Create(path).Dispose();
         }
 
         /// <summary>
@@ -507,27 +538,6 @@ namespace Diagram
         public static string readAllText(string path)
         {
             return File.ReadAllText(path);
-        }
-
-        /// <summary>
-        /// create empty file</summary>
-        public static void createEmptyFile(string path)
-        {
-            File.Create(path).Dispose();
-        }
-
-        /// <summary>
-        /// write string content to file</summary>
-        public static void writeAllBytes(string path, byte[] data)
-        {
-            File.WriteAllBytes(path, data);
-        }
-
-        /// <summary>
-        /// write string content to file</summary>
-        public static byte[] readAllBytes(string path)
-        {
-            return File.ReadAllBytes(path);
         }
 
         /// <summary>
@@ -548,5 +558,37 @@ namespace Diagram
 
             return null;
         }
+
+        /// <summary>
+        /// write string content to file</summary>
+        public static void writeAllBytes(string path, byte[] data)
+        {
+            File.WriteAllBytes(path, data);
+        }
+
+        /// <summary>
+        /// write string content to file</summary>
+        public static byte[] readAllBytes(string path)
+        {
+            return File.ReadAllBytes(path);
+        }
+
+        /*************************************************************************************************************************/
+        // CLIPBOARD
+
+        /// <summary>
+        /// get string from clipboard </summary>
+        public static string getTextFormClipboard()
+        {
+            DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
+            string clipboard = "";
+            if (retrievedData != null && retrievedData.GetDataPresent(DataFormats.Text))  // [PASTE] [TEXT] insert text
+            {
+                clipboard = retrievedData.GetData(DataFormats.Text) as string;
+            }
+
+            return clipboard;
+        }
+
     }
 }

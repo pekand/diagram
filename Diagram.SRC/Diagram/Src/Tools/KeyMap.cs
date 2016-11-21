@@ -7,6 +7,8 @@ using System.Windows.Forms;
 
 namespace Diagram
 {
+    /// <summary>
+    /// key shortcuts table </summary>
     public class KeyMap
     {
         public static string selectAllElements = "CTRL+A";
@@ -76,6 +78,8 @@ namespace Diagram
         public static string prevMarkNode = "ALT+LEFT";
         public static string switchSecurityLock = "CTRL+ALT+L";
 
+        /// <summary>
+        /// check if key string match keyData representing key pressed code</summary>
         public static bool parseKey(string key, Keys keyData)
         {
 

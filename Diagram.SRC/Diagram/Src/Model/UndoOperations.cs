@@ -6,17 +6,23 @@ using System.Threading.Tasks;
 
 namespace Diagram
 {
+
+    /// <summary>
+    /// one undo operation</summary> 
     public class UndoOperation
     {
-        public string type = "";
+        public string type = ""; // type of undo operation (delete, create, edit, move, changeLineColor, changeLineWidth, changeNodeColor)
 
-        public int group = 0; // undo operations in some grop are undo in one step
+        public int group = 0; // undo operations group. Undo operations in some group are undo as one operation
         
-        public Nodes nodes = new Nodes();
-        public Lines lines = new Lines();
+        public Nodes nodes = new Nodes(); // affected nodes
+        public Lines lines = new Lines(); // affected lines
 
         public Position position = new Position(); // position in diagram when change occurred
-        public int layer = 0;
+        public int layer = 0; // layer in diagram when change occurred
+
+        /*************************************************************************************************************************/
+        // CONSTRUCTORS
 
         public UndoOperation(
             string type, 
@@ -49,7 +55,9 @@ namespace Diagram
         }
     }
 
-    public class Undo
+    /// <summary>
+    /// container for UndoOperations and undo manipulation</summary> 
+    public class UndoOperations
     {
         public int group = 0; // if two operations is in same group then undo restore both operations
 
@@ -59,13 +67,19 @@ namespace Diagram
 
         public Diagram diagram = null;                // diagram assigned to current undo
         
-        public Stack<UndoOperation> operations = new Stack<UndoOperation>();
-        public Stack<UndoOperation> reverseOperations = new Stack<UndoOperation>();
+        public Stack<UndoOperation> operations = new Stack<UndoOperation>(); // saved undo operations
+        public Stack<UndoOperation> reverseOperations = new Stack<UndoOperation>(); // saved redo operations
 
-        public Undo(Diagram diagram)
+        /*************************************************************************************************************************/
+        // CONSTRUCTORS
+
+        public UndoOperations(Diagram diagram)
         {
             this.diagram = diagram;
         }
+
+        /*************************************************************************************************************************/
+        // ADD UNDO OPERATIONS
 
         public void add(string type, Node node, Position position = null, int layer = 0)
         {
@@ -129,150 +143,17 @@ namespace Diagram
             }
         }
 
-        private void doUndoDelete(UndoOperation operation)
+        /*************************************************************************************************************************/
+        // UNDO OPERATIONS
+
+        public bool canUndo()
         {
-            if (operation.nodes != null)
-            {
-                foreach (Node node in operation.nodes)
-                {
-                    this.diagram.layers.addNode(node);
-                }
-            }
-
-            if (operation.lines != null)
-            {
-                foreach (Line line in operation.lines)
-                {
-                    line.startNode = this.diagram.GetNodeByID(line.start);
-                    line.endNode = this.diagram.GetNodeByID(line.end);
-                    this.diagram.layers.addLine(line);
-                }
-            }
-
+            return this.operations.Count() > 0;
         }
 
-        private void doUndoCreate(UndoOperation operation)
+        public bool canRedo()
         {
-            if (operation.lines != null)
-            {
-                foreach (Line line in operation.lines)
-                {
-                    this.diagram.layers.removeLine(line.start, line.end);
-                }
-            }
-
-            if (operation.nodes != null)
-            {
-                foreach (Node node in operation.nodes)
-                {
-                    this.diagram.layers.removeNode(node.id);
-                }
-            }
-        }
-
-        private void doUndoEdit(UndoOperation operation)
-        {
-            if (operation.lines != null)
-            {
-                foreach (Line lineOld in operation.lines)
-                {
-                    lineOld.startNode = this.diagram.GetNodeByID(lineOld.start);
-                    lineOld.endNode = this.diagram.GetNodeByID(lineOld.end);
-                    Line line = this.diagram.layers.getLine(lineOld.startNode, lineOld.endNode);
-
-                    if (line != null)
-                    {
-                        line.set(lineOld);
-                    }
-                }
-            }
-
-            if (operation.nodes != null)
-            {
-                foreach (Node nodeOld in operation.nodes)
-                {
-                    Node node = this.diagram.layers.getNode(nodeOld.id);
-
-                    if (node != null)
-                    {
-                        node.set(nodeOld);
-                    }
-                }
-            }
-        }
-
-        public int startGroup()
-        {
-            grouping = true;
-            return ++this.group;
-        }
-
-        public int endGroup()
-        {
-            grouping = false;
-            return ++this.group;
-        }
-
-        public bool isSame(string type, Nodes nodes, Lines lines)
-        {
-            
-            if (operations.Count()>0)
-            {
-
-                UndoOperation operation = operations.First();
-
-                if (operation.type == type)
-                {
-
-                    if (operation.nodes.Count() == 0 && nodes == null)
-                    {
-                    }
-                    else if ((operation.nodes == null && nodes != null) || (operation.nodes != null && nodes == null))
-                    {
-                        return false;
-                    }
-                    else if (operation.nodes.Count() == nodes.Count())
-                    {
-                        for (int i = 0; i < nodes.Count(); i++)
-                        {
-                            if (operation.nodes[i].id != nodes[i].id)
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        return false;
-                    }
-
-                    if (operation.lines.Count() == 0 && lines == null)
-                    {
-                    }
-                    else if ((operation.lines == null && lines != null) || (operation.lines != null && lines == null))
-                    {
-                        return false;
-                    }
-                    else if (operation.lines.Count() == lines.Count())
-                    {
-                        for (int i = 0; i < lines.Count(); i++)
-                        {
-                            if (operation.lines[i].start != lines[i].start || operation.lines[i].end != lines[i].end)
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        return false;
-                    }
-
-                    return true;
-                }
-            }
-
-            return false;
+            return this.reverseOperations.Count() > 0;
         }
 
         public bool doUndo(DiagramView view = null)
@@ -321,12 +202,13 @@ namespace Diagram
                     reverseOperations.Push(operation);
                 }
 
-                if (operation.type == "edit" || 
-                    operation.type == "move" || 
-                    operation.type == "changeLineColor" || 
-                    operation.type == "changeLineWidth" || 
+                if (operation.type == "edit" ||
+                    operation.type == "move" ||
+                    operation.type == "changeLineColor" ||
+                    operation.type == "changeLineWidth" ||
                     operation.type == "changeNodeColor"
-                ) {
+                )
+                {
                     Nodes nodes = new Nodes();
                     foreach (Node node in operation.nodes)
                     {
@@ -340,11 +222,11 @@ namespace Diagram
                     }
 
                     UndoOperation roperation = new UndoOperation(
-                        operation.type, 
-                        nodes, 
+                        operation.type,
+                        nodes,
                         lines,
-                        operation.group, 
-                        operation.position, 
+                        operation.group,
+                        operation.position,
                         operation.layer
                     );
                     reverseOperations.Push(roperation);
@@ -355,7 +237,8 @@ namespace Diagram
                 result = true;
             } while (group != 0 && operations.Count() > 0);
 
-            if (result) {
+            if (result)
+            {
                 this.saved--;
                 if (!this.saveLost && this.saved == 0)
                 {
@@ -434,11 +317,11 @@ namespace Diagram
                     }
 
                     UndoOperation roperation = new UndoOperation(
-                        operation.type, 
-                        nodes, 
-                        lines, 
+                        operation.type,
+                        nodes,
+                        lines,
                         operation.group,
-                        operation.position, 
+                        operation.position,
                         operation.layer
                     );
 
@@ -467,20 +350,175 @@ namespace Diagram
             return result;
         }
 
+
+        /*************************************************************************************************************************/
+        // EVERSE OPERATION BY TYPE
+
+        private void doUndoDelete(UndoOperation operation)
+        {
+            if (operation.nodes != null)
+            {
+                foreach (Node node in operation.nodes)
+                {
+                    this.diagram.layers.addNode(node);
+                }
+            }
+
+            if (operation.lines != null)
+            {
+                foreach (Line line in operation.lines)
+                {
+                    line.startNode = this.diagram.GetNodeByID(line.start);
+                    line.endNode = this.diagram.GetNodeByID(line.end);
+                    this.diagram.layers.addLine(line);
+                }
+            }
+
+        }
+
+        private void doUndoCreate(UndoOperation operation)
+        {
+            if (operation.lines != null)
+            {
+                foreach (Line line in operation.lines)
+                {
+                    this.diagram.layers.removeLine(line.start, line.end);
+                }
+            }
+
+            if (operation.nodes != null)
+            {
+                foreach (Node node in operation.nodes)
+                {
+                    this.diagram.layers.removeNode(node.id);
+                }
+            }
+        }
+
+        private void doUndoEdit(UndoOperation operation)
+        {
+            if (operation.lines != null)
+            {
+                foreach (Line lineOld in operation.lines)
+                {
+                    lineOld.startNode = this.diagram.GetNodeByID(lineOld.start);
+                    lineOld.endNode = this.diagram.GetNodeByID(lineOld.end);
+                    Line line = this.diagram.layers.getLine(lineOld.startNode, lineOld.endNode);
+
+                    if (line != null)
+                    {
+                        line.set(lineOld);
+                    }
+                }
+            }
+
+            if (operation.nodes != null)
+            {
+                foreach (Node nodeOld in operation.nodes)
+                {
+                    Node node = this.diagram.layers.getNode(nodeOld.id);
+
+                    if (node != null)
+                    {
+                        node.set(nodeOld);
+                    }
+                }
+            }
+        }
+
+        /*************************************************************************************************************************/
+        // GROUPING OF UNDO OPERATIONS
+
+        public int startGroup()
+        {
+            grouping = true;
+            return ++this.group;
+        }
+
+        public int endGroup()
+        {
+            grouping = false;
+            return ++this.group;
+        }
+
+        /// <summary>
+        /// Check if operation is same as previous operation 
+        /// If previous operation is move node (by arrow forexample) is better group operation like one big move instead of many small moves.
+        /// </summary>
+        public bool isSame(string type, Nodes nodes, Lines lines)
+        {
+            
+            if (operations.Count()>0)
+            {
+
+                UndoOperation operation = operations.First();
+
+                if (operation.type == type)
+                {
+
+                    if (operation.nodes.Count() == 0 && nodes == null)
+                    {
+                    }
+                    else if ((operation.nodes == null && nodes != null) || (operation.nodes != null && nodes == null))
+                    {
+                        return false;
+                    }
+                    else if (operation.nodes.Count() == nodes.Count())
+                    {
+                        for (int i = 0; i < nodes.Count(); i++)
+                        {
+                            if (operation.nodes[i].id != nodes[i].id)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                    if (operation.lines.Count() == 0 && lines == null)
+                    {
+                    }
+                    else if ((operation.lines == null && lines != null) || (operation.lines != null && lines == null))
+                    {
+                        return false;
+                    }
+                    else if (operation.lines.Count() == lines.Count())
+                    {
+                        for (int i = 0; i < lines.Count(); i++)
+                        {
+                            if (operation.lines[i].start != lines[i].start || operation.lines[i].end != lines[i].end)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /*************************************************************************************************************************/
+        // SAVE STATE
+
+        /// <summary>
+        /// Save current state as state where file is saved and save is not needed.
+        /// When undo or redo is executed and after it file is already savet in curent state asterisk from title can be removed.
+        /// </summary>
         public void rememberSave()
         {
             saveLost = false;
             saved = 0;
         }
 
-        public bool canUndo()
-        {
-            return this.operations.Count() > 0;
-        }
-
-        public bool canRedo()
-        {
-            return this.reverseOperations.Count() > 0;
-        }
     }
 }

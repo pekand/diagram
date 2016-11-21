@@ -1,5 +1,26 @@
 ﻿using System;
 
+/*
+    class Position
+        Position()
+        clone()
+        set()
+        distance()
+        size()
+        add()
+        subtract()
+        operator -()
+        invert()
+        scale()
+        split()
+        operator *()
+        copy()
+        convertToStandard()
+        ToString()
+        toCartesian()
+        toView()
+*/
+
 namespace Diagram
 {
 
@@ -9,6 +30,9 @@ namespace Diagram
     {
         public int x = 0;
         public int y = 0;
+
+        /*************************************************************************************************************************/
+        // CONSTRUCTORS
 
         /// <summary>
         /// Constructor</summary>
@@ -34,12 +58,8 @@ namespace Diagram
             }
         }
 
-        /// <summary>
-        /// Clone</summary>
-        public Position clone()
-        {
-            return new Position(this);
-        }
+        /*************************************************************************************************************************/
+        // SETERS AND GETERS
 
         // <summary>
         /// set </summary>
@@ -68,19 +88,25 @@ namespace Diagram
             return this;
         }
 
-        // <summary>
-        /// Count distance between two points</summary>
-        public double distance(Position b)
+
+        /// <summary>
+        /// Clone</summary>
+        public Position clone()
         {
-            return Math.Sqrt((b.x - this.x) * (b.x - this.x) + (b.y - this.y) * (b.y - this.y));
+            return new Position(this);
         }
 
         // <summary>
-        /// Count distance between two points</summary>
-        public double size()
+        /// Copy position to current position</summary>
+        public Position copy(Position b)
         {
-            return Math.Sqrt((0 - this.x) * (0 - this.x) + (0 - this.y) * (0 - this.y));
+            this.x = b.x;
+            this.y = b.y;
+            return this;
         }
+        
+        /*************************************************************************************************************************/
+        // ADD OPERATIONS
 
         // <summary>
         /// add vector</summary>
@@ -101,7 +127,7 @@ namespace Diagram
         }
 
         // <summary>
-        /// subtract vector</summary>
+        /// add vector</summary>
         public Position add(float a, float b)
         {
             this.x += (int)a;
@@ -109,10 +135,15 @@ namespace Diagram
             return this;
         }
 
+        // <summary>
+        /// add node</summary>
         public static Position operator +(Position a, Position b)
         {
             return new Position(a).add(b);
         }
+
+        /*************************************************************************************************************************/
+        // SUBSTRACT OPERATIONS
 
         // <summary>
         /// subtract vector</summary>
@@ -150,9 +181,28 @@ namespace Diagram
             return this;
         }
 
+        // <summary>
+        /// substact node</summary>        
         public static Position operator -(Position a, Position b)
         {
             return new Position(a).subtract(b);
+        }
+
+        /*************************************************************************************************************************/
+        // OPERATIONS
+
+        // <summary>
+        /// Count distance between two points</summary>
+        public double distance(Position b)
+        {
+            return Math.Sqrt((b.x - this.x) * (b.x - this.x) + (b.y - this.y) * (b.y - this.y));
+        }
+
+        // <summary>
+        /// Count distance to zero vector</summary>
+        public double size()
+        {
+            return Math.Sqrt((0 - this.x) * (0 - this.x) + (0 - this.y) * (0 - this.y));
         }
 
         // <summary>
@@ -182,24 +232,22 @@ namespace Diagram
             return this;
         }
 
+        // <summary>
+        /// scale vector by constant</summary>
         public static Position operator *(Position a, int c)
         {
             return new Position(a).scale(c);
         }
 
+        // <summary>
+        /// scale vector by constant</summary>
         public static Position operator /(Position a, int c)
         {
             return new Position(a).split(c);
         }
 
-        // <summary>
-        /// Copy position to current position</summary>
-        public Position copy(Position b)
-        {
-            this.x = b.x;
-            this.y = b.y;
-            return this;
-        }
+        /*************************************************************************************************************************/
+        // CONVERSION
 
         // <summary>
         /// Convert position to cartesian coordinate</summary>

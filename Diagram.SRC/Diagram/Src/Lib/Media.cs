@@ -9,8 +9,14 @@ using System.Runtime.InteropServices;
 
 namespace Diagram
 {
+
+    /// <summary>
+    /// repository for screen and images related functions</summary>
     public class Media
     {
+        /*************************************************************************************************************************/
+        // SCREEN
+
         /// <summary>
         /// get active form screen width </summary>
         public static int screenWidth(Form form)
@@ -25,12 +31,18 @@ namespace Diagram
             return Screen.FromControl(form).Bounds.Size.Height;
         }
 
+        /*************************************************************************************************************************/
+        // COLOR
+
         /// <summary>
         /// convert hexidecimal html color to Color object </summary>
         public static Color getColor(string color)
         {
             return System.Drawing.ColorTranslator.FromHtml(color);
         }
+
+        /*************************************************************************************************************************/
+        // BITMAPS
 
         /// <summary>
         /// load image from file </summary>
@@ -48,10 +60,14 @@ namespace Diagram
             return null;
         }
 
+        /*************************************************************************************************************************/
+        // FOCUS
+
 #if !MONO
         [DllImport("User32.dll")]
         public static extern Int32 SetForegroundWindow(int hWnd);
 #endif
+
         /// <summary>
         /// bring form to foreground </summary>
         public static void bringToFront(Form form)   // [focus]
@@ -84,6 +100,11 @@ namespace Diagram
             });
         }
 
+        /*************************************************************************************************************************/
+        // ICONS
+
+        /// <summary>
+        /// extract icon from executable</summary>
         public static Bitmap extractSystemIcon(string path)
         {
 #if !MONO
@@ -104,6 +125,8 @@ namespace Diagram
 
         }
 
+        /// <summary>
+        /// extract icon from link file</summary>
         public static Bitmap extractLnkIcon(string path)
         {
 #if !MONO
@@ -148,6 +171,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
+                Program.log.write("IconToString error: " + e.Message);
                 return "";
             }
         }
@@ -166,6 +190,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
+                Program.log.write("StringToIcon error: " + e.Message);
                 return null;
             }
         }

@@ -7,6 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+ 
+*/
+
 namespace Diagram
 {
     [System.ComponentModel.DesignerCategory("Code")]
@@ -895,8 +899,8 @@ namespace Diagram
             }
 
             // UNDO REDO
-            items["undoItem"].Enabled = this.diagramView.diagram.undo.canUndo();
-            items["redoItem"].Enabled = this.diagramView.diagram.undo.canRedo();
+            items["undoItem"].Enabled = this.diagramView.diagram.undoOperations.canUndo();
+            items["redoItem"].Enabled = this.diagramView.diagram.undoOperations.canRedo();
 
             // REMOVE SHORTCUT
             if (this.diagramView.selectedNodes.Count() > 0)

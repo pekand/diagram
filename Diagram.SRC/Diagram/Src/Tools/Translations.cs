@@ -1,6 +1,12 @@
-﻿namespace Diagram
+﻿
+/*
+    class Translations
+*/
+
+namespace Diagram
 {
-    //translation table
+    /// <summary>
+    /// text translation table</summary> 
     public static class Translations
     {
         public static string saveBeforeOpenFile = "Save before open file?";

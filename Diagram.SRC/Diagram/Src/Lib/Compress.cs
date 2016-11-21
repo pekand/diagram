@@ -10,19 +10,30 @@ using System.Xml.Linq;
 
 namespace Diagram
 {
+    /// <summary>
+    /// directory structure for zip file in directory to string</summary>
     public class EDirectory
     {
         public string name = "";
     }
 
+    /// <summary>
+    /// file structure for zip file in directory to string</summary>
     public class EFile
     {
         public string name = "";
         public string data = "";
     }
 
+    /// <summary>
+    /// repository for compression related functions</summary>
     public class Compress
     {
+        /*************************************************************************************************************************/
+        // ZIP STRING
+
+        /// <summary>
+        /// gZip utf8 string to base64</summary>
         public static string Zip(string str)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(str);
@@ -40,6 +51,8 @@ namespace Diagram
             }
         }
 
+        /// <summary>
+        /// gUnzip base64 strng to utf8</summary>
         public static string Unzip(string str)
         {
             byte[] bytes = Convert.FromBase64String(str);
@@ -56,6 +69,11 @@ namespace Diagram
             }
         }
 
+        /*************************************************************************************************************************/
+        // COMPRESS DIRECTORY
+
+        /// <summary>
+        /// compress directory with files to string</summary>
         public static string compress(string path)
         {
             if (!Os.Exists(path)) {
@@ -161,6 +179,8 @@ namespace Diagram
             return Zip(sb.ToString());
         }
 
+        /// <summary>
+        /// decompress string with directory structure to path</summary>
         public static void decompress(string compressedData, string destinationPath)
         {
             if (!Os.DirectoryExists(destinationPath))

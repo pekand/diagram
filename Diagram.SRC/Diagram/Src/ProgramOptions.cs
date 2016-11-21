@@ -1,42 +1,29 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-/*
-    class ProgramOptions
-        license
-        author
-        email
-        home_page
-        release_note
-        server_default_ip
-        proxy_uri
-        proxy_username
-        proxy_password
-        server_default_port
-        texteditor
-
-        setParams()
-*/
-
 namespace Diagram
 {
     /// <summary>
-    /// global program parmeters</summary>
+    /// global program parmeters for all instances </summary>
     public class ProgramOptions
     {
+        /*************************************************************************************************************************/
+
+        // NOT SYNCHRONIZED PARAMETERS
+
         [JsonIgnore]
         /// <summary>
-        /// version</summary>
+        /// license</summary>
         public String license = "GPLv3";
 
         [JsonIgnore]
         /// <summary>
-        /// version</summary>
+        /// author</summary>
         public String author = "Andrej Pekar";
 
         [JsonIgnore]
         /// <summary>
-        /// version</summary>
+        /// contact email</summary>
         public String email = "infinite.diagram@gmail.com";
 
         [JsonIgnore]
@@ -46,13 +33,12 @@ namespace Diagram
 
         [JsonIgnore]
         /// <summary>
-        /// release note</summary>
-        public String release_note = "ReleaseNote.html";
-
-        [JsonIgnore]
-        /// <summary>
-        /// local server ip address</summary>
+        /// local server ip address fo messaging beetwen runing instances</summary>
         public String server_default_ip = "127.0.0.1";
+
+        /*************************************************************************************************************************/
+
+        // SYNCHRONIZED PARAMETERS
 
         /// <summary>
         /// proxy uri</summary>
@@ -68,24 +54,28 @@ namespace Diagram
 
 #if DEBUG
         /// <summary>
-        /// debug lolocal messaging server port</summary>
+        /// debug local messaging server port</summary>
         public Int32 server_default_port = 13001;
 #else
         /// <summary>
-        /// release lolocal messaging server port</summary>
+        /// release local messaging server port</summary>
         public Int32 server_default_port = 13000;
 #endif
 
 #if MONO
         /// <summary>
-        /// linux open on position command</summary>
+        /// command for open editor on line position</summary>
         public String texteditor = "'subl %FILENAME%:%LINE%'";
 #else
         /// <summary>
-        /// windows open on position command</summary>
+        /// command for open editor on line position</summary>
         public String texteditor = "subl \"%FILENAME%\":%LINE%";
 #endif
 
+        /*************************************************************************************************************************/
+
+        /// <summary>
+        /// copy options from other instance</summary>
         public void setParams(ProgramOptions options)
         {
             this.proxy_uri = options.proxy_uri;

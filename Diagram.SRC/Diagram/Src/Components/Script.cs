@@ -7,6 +7,10 @@ using Microsoft.Scripting.Hosting;
 using System.IO;
 
 /*
+ 
+*/
+
+/*
     ! | eval | evaluate
     script executed by F9
     evaluate selected nodes or all nodes globaly
@@ -127,53 +131,59 @@ namespace Diagram
     {
         private Script script = null;
 
-        public string clipboard = "";
-
         public Tools(Script script)
         {
-            this.script = script;
+            this.script = script; // for get scope of script inside script (instance of whole parent script class)
         }
 
+        /*************************************************************************************************************************/
+        // MESSAGES
+
+        // add mesage to console window
         public void log(String text)
         {
             Program.log.write(text);
         }
 
+        // show alert message
         public void show(string message)
         {
             MessageBox.Show(message);
         }
 
+        /*************************************************************************************************************************/
+        // CLIPBOARD
+
+        public string clipboard = "";
+
+        // set text content of clipboard (engine cant acess to cliboard)
         public void setClipboard(String clipboard)
         {
             this.clipboard = clipboard;
         }
 
+        // get text message from clipboard (text before engine start running)
         public String getClipboard()
         {
             return this.clipboard;
         }
 
+        /*************************************************************************************************************************/
+        // NODE
+
+        // get node by script id
         public Node get(string nodeScriptId)
         {
             return this.script.diagram.getNodeByScriptID(nodeScriptId);
         }
 
+        // get node by id
         public Node id(int id)
         {
             return this.script.diagram.GetNodeByID(id);
         }
 
-        public Position position(int x, int y)
-        {
-            return new Position(x, y);
-        }
-
-        public Layer layer()
-        {
-            return this.script.diagramView.currentLayer;
-        }
-
+        // create node with position object
         public Node create(Position p, string name = "", int layer = -1)
         {
             if (layer < 0)
@@ -184,31 +194,74 @@ namespace Diagram
             return this.script.diagram.createNode(p, name, layer);
         }
 
+        // create node with coordinates
         public Node create(int x, int y, string name = "", int layer = -1)
         {
             return this.script.diagram.createNode(new Position(x,y), name, layer);
         }
 
-        public Line connect(Node a, Node b)
-        {
-            return this.script.diagram.Connect(a, b);
-        }
 
+        // remove node from diagram
         public void remove(Node n)
         {
             this.script.diagram.DeleteNode(n);
         }
 
+        // remove node from diagram
         public void delete(Node n)
         {
             this.script.diagram.DeleteNode(n);
         }
 
+        /*************************************************************************************************************************/
+        // LINE
+
+        // connect two nodes
+        public Line connect(Node a, Node b)
+        {
+            return this.script.diagram.Connect(a, b);
+        }
+
+        /*************************************************************************************************************************/
+        // VIEW
+
+        // get current view left corner position
+        public Position position()
+        {
+            return this.script.diagramView.shift;
+        }
+
+        // redraw view
+        public void refresh()
+        {
+            this.script.diagramView.Invalidate();
+        }
+
+        /*************************************************************************************************************************/
+        // LAYER
+
+        // get current layer
+        public Layer layer()
+        {
+            return this.script.diagramView.currentLayer;
+        }
+
+        /*************************************************************************************************************************/
+        // POSITION
+
+        // create position object
+        public Position position(int x, int y)
+        {
+            return new Position(x, y);
+        }
+
+        // go to node with animation
         public void go(Node n)
         {
             this.script.diagramView.goToNode(n);
         }
 
+        // go to position by coordinates
         public void go(int x, int y, int layer = -1)
         {
             if (layer >= 0)
@@ -219,16 +272,10 @@ namespace Diagram
             this.script.diagramView.goToPosition(new Position(x, y));
         }
 
-        public Position position()
-        {
-            return this.script.diagramView.shift;
-        }
+        /*************************************************************************************************************************/
+        // CONVERT
 
-        public void refresh()
-        {
-            this.script.diagramView.Invalidate();
-        }
-
+        // convert string to int
         public int val(string s)
         {
             int x = 0;
@@ -241,10 +288,13 @@ namespace Diagram
             return 0;
         }
 
+        // convert int to string
         public string val(int v)
         {
             return v.ToString();
         }
+
+
     }
 
     /// <example>
@@ -271,10 +321,86 @@ namespace Diagram
 
         public string script = "";
 
+        /*************************************************************************************************************************/
+        // ENGINE
+
         public Script()
         {
             this.tools = new Tools(this);
         }
+
+        /// <summary>
+        /// Run python code in curent scope
+        /// </summary>
+        /// <param name="code">python code</param>
+        /// <returns></returns>
+        private dynamic CompileSourceAndExecute(String code)
+        {
+            ScriptSource source = pyEngine.CreateScriptSourceFromString(code, SourceCodeKind.Statements);
+            CompiledCode compiled = source.Compile(); // Executes in the scope of Python
+            return compiled.Execute(pyScope);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="script">Script with python code</param>
+        /// <example>
+        /// import clr
+        /// clr.AddReference('Diagram')
+        /// from Diagram import Position
+        /// DiagramView.CreateNode(Position(0,0))
+        /// </example>
+        /// <example>
+        /// Tools.log("test")
+        /// Tools.ShowMessage("test")
+        /// Tools.setClipboard("test")
+        /// clp = Tools.getClipboard()
+        /// <returns>Return script string result</returns>
+        public string runScript(String script)
+        {
+            if (pyEngine == null)
+            {
+                pyEngine = Python.CreateEngine();
+                pyScope = pyEngine.CreateScope();
+
+                /// add items to scope
+                pyScope.Diagram = this.diagram;
+                pyScope.Tools = this.tools;
+                pyScope.F = this.tools;
+                pyScope.DiagramView = this.diagramView;
+            }
+
+            string output = null;
+
+            try
+            {
+                /// set streams
+                MemoryStream ms = new MemoryStream();
+                StreamWriter outputWr = new StreamWriter(ms);
+                pyEngine.Runtime.IO.SetOutput(ms, outputWr);
+                pyEngine.Runtime.IO.SetErrorOutput(ms, outputWr);
+
+                /// execute script
+                this.CompileSourceAndExecute(script);
+
+                /// read script output
+                ms.Position = 0;
+                StreamReader sr = new StreamReader(ms);
+                output = sr.ReadToEnd();
+
+                Program.log.write("Script: output:\n" + output);
+            }
+            catch (Exception ex)
+            {
+                Program.log.write("Script: error: " + ex.ToString());
+            }
+
+            return output;
+        }
+
+        /*************************************************************************************************************************/
+        // REFERENCIES
 
         /// <summary>
         /// Set current diagram for context in script
@@ -330,74 +456,5 @@ namespace Diagram
             return this.tools.getClipboard();
         }
 
-        /// <summary>
-        /// Run python code in curent scope
-        /// </summary>
-        /// <param name="code">python code</param>
-        /// <returns></returns>
-        private dynamic CompileSourceAndExecute(String code)
-        {
-            ScriptSource source = pyEngine.CreateScriptSourceFromString(code, SourceCodeKind.Statements);
-            CompiledCode compiled = source.Compile(); // Executes in the scope of Python
-            return compiled.Execute(pyScope);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="script">Script with python code</param>
-        /// <example>
-        /// import clr
-        /// clr.AddReference('Diagram')
-        /// from Diagram import Position
-        /// DiagramView.CreateNode(Position(0,0))
-        /// </example>
-        /// <example>
-        /// Tools.log("test")
-        /// Tools.ShowMessage("test")
-        /// Tools.setClipboard("test")
-        /// clp = Tools.getClipboard()
-        /// <returns>Return script string result</returns>
-        public string runScript(String script)
-        {
-            if (pyEngine == null)
-            {
-                pyEngine = Python.CreateEngine();
-                pyScope = pyEngine.CreateScope();
-
-                /// add items to scope
-                pyScope.Diagram = this.diagram;
-                pyScope.Tools = this.tools;
-                pyScope.F = this.tools;
-                pyScope.DiagramView = this.diagramView;
-            }
-
-			string output = null;
-
-            try
-            {
-                /// set streams
-                MemoryStream ms = new MemoryStream();
-                StreamWriter outputWr = new StreamWriter(ms);
-                pyEngine.Runtime.IO.SetOutput(ms, outputWr);
-                pyEngine.Runtime.IO.SetErrorOutput(ms, outputWr);
-
-                /// execute script
-                this.CompileSourceAndExecute(script);
-
-                /// read script output
-                ms.Position = 0;
-                StreamReader sr = new StreamReader(ms);
-                output = sr.ReadToEnd();
-
-                Program.log.write("Script: output:\n" + output);
-            }
-            catch (Exception ex)
-            {
-                Program.log.write("Script: error: "+ex.ToString());
-            }
-
-			return output;
-        }
     }
 }

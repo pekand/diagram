@@ -9,36 +9,50 @@ namespace Diagram
     {
         public int id = 0; // node unique id
 
-        // Flags
+        /*************************************************************************************************************************/
+        // SIZE AND POSITION
+
+        public Position position = new Position(); // node position in canvas
+        public int width = 0; // node size counted from current font
+        public int height = 0;
+
+        /*************************************************************************************************************************/
+        // FLAGS
+
         public bool selected = false; // node is selected by mouse
         public bool visible = true;
 
-        // Style
+        /*************************************************************************************************************************/
+        // STYLES
+
         public ColorType color = new ColorType("#FFFFB8"); // node color
         public Font font = null; // node name font
         public ColorType fontcolor = new ColorType(); // node name ext color
         public bool transparent = false; // node is transparent, color is turn off
 
-        // Text
+        /*************************************************************************************************************************/
+        // TEXT
+
         public string name = ""; // node name
         public string note = ""; // node note
         public string link = ""; // node link to external source
 
-        // Size and position
-        public Position position = new Position(); // node position in canvas
-        public int width = 0; // node size counted from current font
-        public int height = 0;
+        /*************************************************************************************************************************/
+        // LAYER
 
-        // Layer
         public int layer = 0; // layer id or parent node id
         public bool haslayer = false; // nose has one or more childrens
         public Position layerShift = new Position(); // last position in layer
 
-        // Shortcut
+        /*************************************************************************************************************************/
+        // SHORTCUT
+
         public int shortcut = 0; // node id whitch is linked with this node
         public bool mark = false; // mark node position for navigation history
 
-        // Image 
+        /*************************************************************************************************************************/
+        // IMAGE
+
         public bool isimage = false; // show node as image instead of text
         public bool embeddedimage = false; // image is imported to xml file as string
         public string imagepath = ""; // path to node image
@@ -46,23 +60,36 @@ namespace Diagram
         public int iwidth = 0; //image size
         public int iheight = 0;
 
-        // Attachment
+        /*************************************************************************************************************************/
+        // ATTACHMENT
+
         public string attachment = ""; // compressed file attachment
 
-        // Time
+        /*************************************************************************************************************************/
+        // TIME
+
         public string timecreate = ""; // node creation time
         public string timemodify = ""; // node modification time
 
-        // Script
+        /*************************************************************************************************************************/
+        // SCRIPT
+
         public string scriptid = ""; // node text id for in script search
 
-        // Padding
+        /*************************************************************************************************************************/
+        // PADDING
+
         public const int NodePadding = 10;             // node padding around node name text
         public const int EmptyNodePadding = 20;        // node padding for empty node circle
         public const string protectedName = "*****";   // name for protected node
+        
+        /*************************************************************************************************************************/
+        // SECURITY
 
-        // Protect
         public bool protect = false; // protect sensitive data like pasword in node name (show asterisk instead of name)
+
+        /*************************************************************************************************************************/
+        // CONSTRUCTORS
 
         public Node()
         {
@@ -72,6 +99,9 @@ namespace Diagram
         {
             this.set(node);
         }
+
+        /*************************************************************************************************************************/
+        // SETTERS AND GETTERS
 
         public void set(Node node)
         {
@@ -187,6 +217,23 @@ namespace Diagram
             return new Node(this);
         }
 
+        /*************************************************************************************************************************/
+        // RESIZE
+
+        public void setName(string name)
+        {
+            this.name = name;
+
+            if (this.protect)
+            {
+                this.resizeProtect();
+            }
+            else
+            {
+                this.resize();
+            }
+        }
+
         public SizeF measure()
         {
             SizeF s;
@@ -233,20 +280,6 @@ namespace Diagram
             this.height = (int)s.Height;
         }
 
-        public void setName(string name)
-        {
-            this.name = name;
-
-            if (this.protect)
-            {
-                this.resizeProtect();
-            }
-            else
-            {
-                this.resize();
-            }
-        }
-
         public void setProtect(bool protect)
         {
             this.protect = protect;
@@ -260,6 +293,9 @@ namespace Diagram
                 this.resize();
             }
         }
+
+        /*************************************************************************************************************************/
+        // IMAGE
 
         public void loadImage()
         {
@@ -289,6 +325,9 @@ namespace Diagram
                 this.imagepath = "";
             }
         }
+
+        /*************************************************************************************************************************/
+        // SEARCH
 
         /// <summary>
         /// Check if node contain string in some attribute (for search nodes by string)</summary>

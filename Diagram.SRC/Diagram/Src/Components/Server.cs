@@ -7,40 +7,47 @@ using System.Text.RegularExpressions;
 
 namespace Diagram
 {
+    /// <summary>
+    /// message server between running processies
+    /// </summary>
     public class Server
     {
+        /*************************************************************************************************************************/
+        
+        public Main main = null; // parent
 
-        // parent
-        public Main main = null;
+        public bool mainProcess = false; // is true when server runing in this process, false if server already run in other process
 
-        public bool serverAlreadyExist = false;
-		public bool serverCurrent = false; // is true when server runing in this process, false if server already run in other process
+        private volatile bool _shouldStop = false; // signal for server loop to stop
+        private TcpListener tcpListener; // server
+        private Thread listenThread; // thread for server loop
 
-        private volatile bool _shouldStop = false;
-        private TcpListener tcpListener;
-        private Thread listenThread;
+        /*************************************************************************************************************************/
+        // SERVER LOOP
 
         public Server(Main main)
         {
             this.main = main;
 
+            this.mainProcess = false;
+
             try
             {
-                if (!SendMessage("ping"))
+                if (!SendMessage("ping")) // check if server exists
                 {
                     Int32 port = main.options.server_default_port;
                     IPAddress localAddr = IPAddress.Parse(main.options.server_default_ip);
 
                     this.tcpListener = new TcpListener(localAddr, port);
-                    this.listenThread = new Thread(new ThreadStart(ListenForClients));
+                    this.listenThread = new Thread(new ThreadStart(ListenForClients)); // start thread with server
                     this.listenThread.Start();
-					this.serverCurrent = true;
+					this.mainProcess = true;
                     Program.log.write("Server: start on " + main.options.server_default_ip + ":" + main.options.server_default_port);
                 }
                 else
                 {
-					Program.log.write("Server: already exist");
-                    serverAlreadyExist = true;
+                    this.mainProcess = false;
+                    Program.log.write("Server: already exist");                    
                 }
             }
             catch (Exception ex)
@@ -49,20 +56,21 @@ namespace Diagram
             }
         }
 
+        // start server loop
         public void ListenForClients()
         {
             try
             {
                 this.tcpListener.Start();
 
-                while (!_shouldStop)
+                while (!_shouldStop) // wait for signal to end server
                 {
                     //blocks until a client has connected to the server
-                    TcpClient client = this.tcpListener.AcceptTcpClient();
+                    TcpClient client = this.tcpListener.AcceptTcpClient(); // wait for message from client
 
                     //create a thread to handle communication
                     //with connected client
-                    Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientComm));
+                    Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientComm)); // process message from client in thread
                     clientThread.Start(client);
                 }
 
@@ -74,12 +82,7 @@ namespace Diagram
             }
         }
 
-        public void RequestStop()
-        {
-           _shouldStop = true;
-           SendMessage("close");
-        }
-
+        // process message catched from server
         private void HandleClientComm(object client)
         {
             TcpClient tcpClient = (TcpClient)client;
@@ -108,24 +111,22 @@ namespace Diagram
                     //the client has disconnected from the server
                     break;
                 }
-
-                //message has successfully been received
+                
                 ASCIIEncoding encoder = new ASCIIEncoding();
-                string result = this.ParseMessage(encoder.GetString(message, 0, bytesRead));
-                try
-                {
-                    Byte[] data = System.Text.Encoding.ASCII.GetBytes(result);
-                    clientStream.Write(data, 0, data.Length);
-                }
-                catch (Exception ex)
-                {
-                    Program.log.write("Server: HandleClientComm: client refuse connecton: error: " + ex.Message);
-                }
+
+                // process catchet messages
+                this.ParseMessage(
+                    encoder.GetString(message, 0, bytesRead)
+                );
             }
 
             tcpClient.Close();
         }
 
+        /*************************************************************************************************************************/
+        // MESSAGES
+
+        // send message to server
         public bool SendMessage(String Messsage)
         {
 			Program.log.write("Server: SendMessage: "+Messsage);
@@ -154,20 +155,21 @@ namespace Diagram
             }
         }
 
-        public string ParseMessage(String Messsage)
+        // parde message from server
+        public void ParseMessage(String Messsage)
         {
             // send message
 			Program.log.write("Server: ParseMessage: "+Messsage);
 
             if (Messsage == "ping") // check if server is live
             {
-                return "ping";
+                return;
             }
             else
             if (Messsage == "close")
             {
                 main.mainform.Invoke(new Action(() => main.mainform.ExitApplication()));
-                return "close";
+                return;
             }
             else
             {
@@ -178,11 +180,18 @@ namespace Diagram
                     string FileName = match.Groups[1].Value;
                     main.mainform.Invoke(new Action(() => main.mainform.OpenDiagram(FileName)));
 
-                    return "ok";
+                    return;
                 }
 
-                return "error:bed request";
+                return;
             }
+        }
+
+        // send close message to server
+        public void RequestStop()
+        {
+            _shouldStop = true;
+            SendMessage("close");
         }
     }
 }
