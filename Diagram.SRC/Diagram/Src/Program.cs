@@ -18,7 +18,7 @@ using System.Diagnostics;
 */
 
 // [VERSION]
-[assembly: AssemblyVersion("0.5.0.5")]
+[assembly: AssemblyVersion("0.5.0.6")]
 
 /*! \mainpage Infinite diagram
  *
