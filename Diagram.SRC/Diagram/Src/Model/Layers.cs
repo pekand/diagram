@@ -10,9 +10,11 @@ namespace Diagram
     /// collection of layers</summary>
     public class Layers
     {
-        public List<Layer> layers = new List<Layer>();
+        private int maxid = 0;                    // last used node id
 
-        public Nodes markedNodes = new Nodes();
+        private Dictionary<int, Node> allNodes = new Dictionary<int, Node>();
+
+        private List<Layer> layers = new List<Layer>();
 
         /*************************************************************************************************************************/
         // CONSTRUCTORS
@@ -70,13 +72,8 @@ namespace Diagram
 
         public Node getNode(int id)
         {
-            foreach (Layer l in this.layers)
-            {
-                foreach (Node node in l.nodes)
-                {
-                    if (node.id == id)
-                        return node;
-                }
+            if (this.allNodes.ContainsKey(id)) {
+                return this.allNodes[id];
             }
 
             return null;
@@ -164,9 +161,9 @@ namespace Diagram
         {
             Nodes nodes = new Nodes();
 
-            foreach (Layer l in this.layers)
+            foreach (Node n in this.allNodes.Values)
             {
-                nodes.AddRange(l.nodes);
+                nodes.Add(n);
             }
 
             return nodes;
@@ -321,8 +318,45 @@ namespace Diagram
         /*************************************************************************************************************************/
         // ADD ITEM
 
+        public Node createNode(Node node)
+        {
+
+            DateTime dt = DateTime.Now;
+            node.timecreate = String.Format("{0:yyyy-M-d HH:mm:ss}", dt);
+            node.timemodify = node.timecreate;
+
+            Layer layer = this.addNode(node);
+
+            if (layer != null)
+            {
+                return node;
+            }
+
+            return null;
+        }
+
         public Layer addNode(Node node)
         {
+            // prevent duplicate id
+            if (node.id == 0)
+            {
+                node.id = ++maxid; // new node
+            }
+            else
+            {
+
+                Node nodeById = this.getNode(node.id); 
+
+                if (nodeById != null)
+                {
+                    node.id = ++maxid; // already exist node with this id
+                }
+                else if (maxid < node.id)
+                {
+                    maxid = node.id; // node not exist but has id bigger then current max id
+                }
+            }
+
             Layer layer = this.getLayer(node.layer);
 
             if (layer == null)
@@ -332,6 +366,7 @@ namespace Diagram
                 parentNode.haslayer = true;
             }
 
+            this.allNodes.Add(node.id, node);
             layer.nodes.Add(node);
 
             return layer;
@@ -365,6 +400,8 @@ namespace Diagram
 
         public void removeNode(Node node)
         {
+            this.allNodes.Remove(node.id);
+
             Layer layer = getLayer(node.layer);
 
             foreach (Node n in layer.nodes)
@@ -437,13 +474,16 @@ namespace Diagram
 
         public void clear()
         {
+            this.maxid = 0;
+
             foreach (Layer l in this.layers)
             {
                 l.lines.Clear();
                 l.nodes.Clear();
             }
 
-            layers.Clear();
+            this.allNodes.Clear();
+            this.layers.Clear();
             this.createLayer();
         }
 

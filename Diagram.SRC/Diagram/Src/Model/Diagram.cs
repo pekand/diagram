@@ -32,8 +32,6 @@ namespace Diagram
         /*************************************************************************************************************************/
         // COOLECTIONS
 
-        public int maxid = 0;                    // last used node id
-
         public Layers layers = new Layers();
         public List<DiagramView> DiagramViews = new List<DiagramView>(); // all views forms to diagram
         public List<TextForm> TextWindows = new List<TextForm>();   // opened text textforms for this diagram
@@ -152,7 +150,6 @@ namespace Diagram
         public void CloseFile()
         {
             // Prednadstavenie atributov
-            this.maxid = 0;
             this.NewFile = true;
             this.SavedFile = true;
             this.FileName = "";
@@ -632,7 +629,6 @@ namespace Diagram
                                                 if (el.Name.ToString() == "id")
                                                 {
                                                     R.id = Int32.Parse(el.Value);
-                                                    maxid = (R.id > maxid) ? R.id : maxid;
                                                 }
 
                                                 if (el.Name.ToString() == "font")
@@ -1182,46 +1178,39 @@ namespace Diagram
             ColorType color = null,
             Font font = null
         ) {
-            if (!this.options.readOnly)
+            if (this.options.readOnly)
             {
-                var rec = new Node();
-                if (font == null)
-                {
-                    rec.font = this.FontDefault;
-                }
-                else
-                {
-                    rec.font = font;
-                }
-
-                rec.id = ++maxid;
-                rec.layer = layer;
-
-                rec.setName(name);
-                rec.note = "";
-                rec.link = "";
-
-                rec.position.set(position);
-
-                if (color != null)
-                {
-                    rec.color.set(color);
-                }
-                else
-                {
-                    rec.color.set(Media.getColor(this.options.colorNode));
-                }
-
-                DateTime dt = DateTime.Now;
-                rec.timecreate = String.Format("{0:yyyy-M-d HH:mm:ss}", dt);
-                rec.timemodify = rec.timecreate;
-
-                this.layers.addNode(rec);
-
-                return rec;
+                return null;
             }
 
-            return null;
+            var rec = new Node();
+            if (font == null)
+            {
+                rec.font = this.FontDefault;
+            }
+            else
+            {
+                rec.font = font;
+            }
+
+            rec.layer = layer;
+
+            rec.setName(name);
+            rec.note = "";
+            rec.link = "";
+
+            rec.position.set(position);
+
+            if (color != null)
+            {
+                rec.color.set(color);
+            }
+            else
+            {
+                rec.color.set(Media.getColor(this.options.colorNode));
+            }
+
+            return this.layers.createNode(rec);
         }
 
         // NODE add node to diagram (create new id and layer if not exist) 
@@ -1229,18 +1218,7 @@ namespace Diagram
         {
             if (!this.options.readOnly)
             {
-                node.id = ++maxid;
-
-                DateTime dt = DateTime.Now;
-                node.timecreate = String.Format("{0:yyyy-M-d HH:mm:ss}", dt);
-                node.timemodify = node.timecreate;
-
-                Layer layer = this.layers.addNode(node);
-
-                if (layer != null)
-                {
-                    return node;
-                }
+                return this.layers.createNode(node);
             }
 
             return null;

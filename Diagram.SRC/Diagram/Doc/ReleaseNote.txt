@@ -1,4 +1,5 @@
-﻿0.5.0.6 Unsave after insert date
+﻿0.5.0.7 speedup search nodes
+0.5.0.6 Unsave after insert date
 ﻿0.5.0.5 Add link edit to bottom of node textbox
 0.5.0.4 Add ling go to node command type (#)
 0.5.0.3 Add release note for version tracking
