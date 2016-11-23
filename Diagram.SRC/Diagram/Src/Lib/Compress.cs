@@ -32,40 +32,64 @@ namespace Diagram
         /*************************************************************************************************************************/
         // ZIP STRING
 
+        public static void stringToStream(string s, MemoryStream stream)
+        {
+            StreamWriter writer = new StreamWriter(stream);
+            writer.Write(s);
+            writer.Flush();
+            stream.Seek(0, SeekOrigin.Begin);
+        }
+
+        public static string streamToString(MemoryStream stream)
+        {
+            stream.Seek(0, SeekOrigin.Begin);
+            StreamReader reader = new StreamReader(stream);
+            return reader.ReadToEnd();
+        }
+
         /// <summary>
         /// gZip utf8 string to base64</summary>
         public static string Zip(string str)
         {
-            byte[] bytes = Encoding.UTF8.GetBytes(str);
-
-            using (var msi = new MemoryStream(bytes))
-            using (var mso = new MemoryStream())
-            {
-                using (var gs = new GZipStream(mso, CompressionMode.Compress))
-                {
-                    msi.CopyTo(gs);
-                }
-
-                
-                return Convert.ToBase64String(mso.ToArray());
-            }
+            MemoryStream stream = new MemoryStream();
+            stringToStream(str, stream);
+            return ZipStream(stream);            
         }
 
         /// <summary>
         /// gUnzip base64 strng to utf8</summary>
         public static string Unzip(string str)
         {
-            byte[] bytes = Convert.FromBase64String(str);
+            MemoryStream stream = new MemoryStream(); ;
+            UnzipStream(str, stream);
+            return streamToString(stream);
+        }
 
-            using (var msi = new MemoryStream(bytes))
-            using (var mso = new MemoryStream())
+        public static string ZipStream(MemoryStream input)
+        {
+            input.Seek(0, SeekOrigin.Begin);
+
+            using (var gzipOutput = new MemoryStream())
             {
-                using (var gs = new GZipStream(msi, CompressionMode.Decompress))
+                using (var gzip = new GZipStream(gzipOutput, CompressionMode.Compress))
                 {
-                    gs.CopyTo(mso);
+                    input.CopyTo(gzip);
                 }
 
-                return Encoding.UTF8.GetString(mso.ToArray());
+                return Convert.ToBase64String(gzipOutput.ToArray());
+            }
+        }
+
+        public static void UnzipStream(string str, MemoryStream output)
+        {
+            byte[] bytes = Convert.FromBase64String(str);
+
+            using (MemoryStream gzipInput = new MemoryStream(bytes))
+            {
+                using (GZipStream gzip = new GZipStream(gzipInput, CompressionMode.Decompress))
+                {
+                    gzip.CopyTo(output);
+                }
             }
         }
 

@@ -430,6 +430,10 @@ namespace Diagram
         // COMPONENTS
         private IContainer components;
 
+        // BACKGROUND
+        private Bitmap backgroundImage = null;
+        
+
         public bool isFullScreen = false;
 
         private void InitializeComponent()
@@ -570,7 +574,7 @@ namespace Diagram
             if (this.diagram.options.icon != "")
             {
                 this.Icon = Media.StringToIcon(this.diagram.options.icon);
-            }
+            }           
         }
 
         // FORM Load event -
@@ -624,6 +628,12 @@ namespace Diagram
             {
                 this.goToLayer(this.diagram.options.homeLayer);
                 this.shift.set(diagram.options.homePosition);
+            }
+
+            // custom diagram background image
+            if (this.diagram.options.backgroundImage != null)
+            {
+                this.diagram.refreshBackgroundImages();
             }
         }
 
@@ -836,7 +846,7 @@ namespace Diagram
         }
 
         // FORM set icon
-        public void setIcon(int code = 0)
+        public void setIcon()
         {
             OpenFileDialog openIconDialog = new OpenFileDialog();
 
@@ -895,6 +905,44 @@ namespace Diagram
             }
         }
 
+        // FORM set icon
+        public void setBackgroundImage()
+        {
+            OpenFileDialog openIconDialog = new OpenFileDialog();
+
+            openIconDialog.Filter = "Image files (*.jpg, *.jpeg, *.bmp, *.ico, *.png, *.gif, *.tiff)| *.jpg; *.jpeg; *.bmp; *.ico; *.png; *.gif; *.tiff";
+            openIconDialog.FilterIndex = 1;
+            openIconDialog.RestoreDirectory = true;
+
+            if (openIconDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Bitmap background = Media.getImage(openIconDialog.FileName);
+                    this.diagram.options.backgroundImage = background;
+                    this.diagram.refreshBackgroundImages();
+                    this.diagram.unsave();
+                }
+                catch (Exception e)
+                {
+                    Program.log.write("DiagramView: setIcon: error:" + e.Message);
+                }
+            }
+            else
+            {
+                if (this.diagram.options.backgroundImage != null && MessageBox.Show(Translations.confirmRemoveQuestion, Translations.confirmRemoveIcon, MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    this.diagram.options.backgroundImage = null;
+                    this.diagram.refreshBackgroundImages();
+                    this.diagram.unsave();
+                }
+            }
+        }
+
+        public void refreshBackgroundImage()
+        {
+            this.BackgroundImage = this.diagram.options.backgroundImage;
+        }
 
         /*************************************************************************************************************************/
 

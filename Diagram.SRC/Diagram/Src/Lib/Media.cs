@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
+using System.IO.Compression;
+using System.ComponentModel;
 
 #if !MONO
 using System.Runtime.InteropServices;
@@ -50,7 +52,7 @@ namespace Diagram
         {
             try
             {
-                return new Bitmap(file);
+                return  (Bitmap)Image.FromFile(file, true);
             }
             catch (Exception e)
             {
@@ -58,6 +60,71 @@ namespace Diagram
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// convert Bitmap to base64 string </summary>
+        public static string ImageToString(Bitmap image)
+        {
+            try
+            {
+                using (MemoryStream ms = new MemoryStream()) // result from bitmap to stream
+                {
+                    image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    return Compress.ZipStream(ms);
+                }
+            }
+            catch (Exception e)
+            {
+                Program.log.write("BitmapToString error: " + e.Message);
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// convert base64 string to Icon</summary>
+        public static Bitmap StringToImage(string bitmap)
+        {
+            try
+            {
+                MemoryStream ms = new MemoryStream(); // input stream for gzip
+                Compress.UnzipStream(bitmap, ms);
+                return new Bitmap(ms);
+            }
+            catch (Exception e)
+            {
+                Program.log.write("StringToBitmap error: " + e.Message);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// convert Bitmap to base64 string </summary>
+        public static string BitmapToString(Bitmap image)
+        {
+            try
+            {
+                TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+                return Convert.ToBase64String(
+                    (byte[])converter.ConvertTo(image, typeof(byte[]))
+                );
+            }
+            catch (Exception e)
+            {
+                Program.log.write("StringToBitmap error: " + e.Message);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// convert Bitmap to base64 string </summary>
+        public static Bitmap StringToBitmap(String str)
+        {
+            return new Bitmap(
+                new MemoryStream(
+                    Convert.FromBase64String(str)
+                )
+            );
         }
 
         /*************************************************************************************************************************/
@@ -194,5 +261,6 @@ namespace Diagram
                 return null;
             }
         }
+        
     }
 }

@@ -256,7 +256,20 @@ namespace Diagram
                 option.Add(new XElement("window.position.width", this.options.Width));
                 option.Add(new XElement("window.position.height", this.options.Height));
                 option.Add(new XElement("window.state", this.options.WindowState));
-                if (this.options.icon != "") option.Add(new XElement("icon", this.options.icon));
+
+                if (this.options.icon != "")
+                {
+                    option.Add(new XElement("icon", this.options.icon));
+                }
+
+                if (this.options.backgroundImage != null)
+                {
+                    option.Add(new XElement(
+                        "backgroundImage", 
+                        Media.ImageToString(this.options.backgroundImage)
+                        )
+                    );
+                }
 
                 // Rectangles
                 XElement rectangles = new XElement("rectangles");
@@ -296,8 +309,7 @@ namespace Diagram
 
                     if (rec.embeddedimage && rec.image != null) // image is inserted directly to file
                     {
-                        TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
-                        rectangle.Add(new XElement("imagedata", Convert.ToBase64String((byte[])converter.ConvertTo(rec.image, typeof(byte[])))));
+                        rectangle.Add(new XElement("imagedata", Media.BitmapToString(rec.image)));
                     }
                     else if (rec.imagepath != "")
                     {
@@ -604,6 +616,11 @@ namespace Diagram
                                             this.options.icon = el.Value;
                                         }
 
+                                        if (el.Name.ToString() == "backgroundImage")
+                                        {
+                                            this.options.backgroundImage = Media.StringToImage(el.Value);
+                                        }
+
                                     }
                                     catch (Exception ex)
                                     {
@@ -745,7 +762,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "imagedata")
                                                 {
-                                                    R.image = new Bitmap(new MemoryStream(Convert.FromBase64String(el.Value)));
+                                                    R.image = Media.StringToBitmap(el.Value);
                                                     R.height = R.image.Height;
                                                     R.width = R.image.Width;
                                                     R.isimage = true;
@@ -1781,6 +1798,15 @@ namespace Diagram
             }
 
             this.InvalidateDiagram();
+        }
+
+        // refresh background image after background image change
+        public void refreshBackgroundImages()
+        {
+            foreach (DiagramView DiagramView in this.DiagramViews)
+            {
+                DiagramView.refreshBackgroundImage();
+            }
         }
 
         /*************************************************************************************************************************/

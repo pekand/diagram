@@ -71,6 +71,20 @@ namespace Diagram
             return sb.ToString();
         }
 
+        public static string getMd5Hash(byte[] buffer)
+        {
+            MD5 md5Hasher = MD5.Create();
+
+            byte[] data = md5Hasher.ComputeHash(buffer);
+
+            StringBuilder sBuilder = new StringBuilder();
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+            return sBuilder.ToString();
+        }
+
         /*************************************************************************************************************************/
         // ENCRYPTION
 

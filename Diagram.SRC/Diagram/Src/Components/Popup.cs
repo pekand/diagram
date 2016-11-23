@@ -652,6 +652,13 @@ namespace Diagram
             items["setIconItem"].Text = "Set icon";
             items["setIconItem"].Click += new System.EventHandler(this.setIconItem_Click);
             //
+            // setBackgroundItem
+            //
+            items.Add("setBackgroundItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["setBackgroundItem"].Name = "setBackgroundItem";
+            items["setBackgroundItem"].Text = "Set background image";
+            items["setBackgroundItem"].Click += new System.EventHandler(this.setBackgroundItem_Click);
+            //
             // openLayerInNewViewItem
             //
             items.Add("openLayerInNewViewItem", new System.Windows.Forms.ToolStripMenuItem());
@@ -680,6 +687,7 @@ namespace Diagram
                 items["defaultFontItem"],
                 items["resetFontItem"],
                 items["setIconItem"],
+                items["setBackgroundItem"],
                 items["openLayerInNewViewItem"],
                 items["openConfigDirItem"]
             });
@@ -1455,6 +1463,12 @@ namespace Diagram
         private void setIconItem_Click(object sender, EventArgs e)
         {
             this.diagramView.setIcon();
+        }
+
+        // MENU set diagram background image
+        private void setBackgroundItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.setBackgroundImage();
         }
 
         // MENU set diagram icon

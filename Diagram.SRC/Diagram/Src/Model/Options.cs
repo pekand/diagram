@@ -1,7 +1,5 @@
 ﻿
-/*
-    class Options
-*/
+using System.Drawing;
 
 namespace Diagram
 {
@@ -63,5 +61,6 @@ namespace Diagram
         // ICON
 
         public string icon = "";                           // diagram custom icon
+        public Bitmap backgroundImage = null;                // diagram custom icon
     }
 }
