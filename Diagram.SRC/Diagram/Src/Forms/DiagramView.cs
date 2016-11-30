@@ -10,9 +10,10 @@ using System.Globalization;
 using System.Drawing.Imaging;
 using System.Collections.Specialized;
 using NCalc;
+using System.Text;
 
 #if DEBUG
-    using System.Diagnostics;
+using System.Diagnostics;
 #endif
 
 /*
@@ -4763,11 +4764,11 @@ namespace Diagram
                 this.diagram.InvalidateDiagram();
             }
             else
-            if (retrievedData.GetDataPresent(DataFormats.Text))  // [PASTE] [TEXT] insert text
+            if (retrievedData.GetDataPresent(DataFormats.StringFormat))  // [PASTE] [TEXT] insert text
             {
                 Node newrec = this.CreateNode(position);
 
-                string ClipText = retrievedData.GetData(DataFormats.Text) as string;
+                string ClipText = retrievedData.GetData(DataFormats.StringFormat) as string;
 
                 if (Patterns.isColor(ClipText)) {
                     newrec.setName(ClipText);
