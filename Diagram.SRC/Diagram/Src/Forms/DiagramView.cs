@@ -849,9 +849,10 @@ namespace Diagram
         // FORM set icon
         public void setIcon()
         {
+            // #icon
             OpenFileDialog openIconDialog = new OpenFileDialog();
 
-            openIconDialog.Filter = "icons (*.ico)|*.ico|bmp (*.bmp)|*.bmp|png (*.png)|*.png";            
+            openIconDialog.Filter = "Image files (*.jpg, *.jpeg, *.bmp, *.ico, *.png, *.gif, *.tiff)| *.jpg; *.jpeg; *.bmp; *.ico; *.png; *.gif; *.tiff";            
             openIconDialog.FilterIndex = 1;
             openIconDialog.RestoreDirectory = true;
 
@@ -861,25 +862,15 @@ namespace Diagram
                 {
                     Icon icon = null;
 
-                    if (Os.getExtension(openIconDialog.FileName).ToLower() == ".png") {
-                        Image pngImage = Image.FromFile(openIconDialog.FileName);
-                        Bitmap bmpImage = (Bitmap)pngImage.GetThumbnailImage(pngImage.Width, pngImage.Height, null, IntPtr.Zero);
-                        bmpImage.MakeTransparent();
-                        System.IntPtr icH = bmpImage.GetHicon();
-                        icon = Icon.FromHandle(icH);
-                    }
-
-                    if (Os.getExtension(openIconDialog.FileName).ToLower() == ".bmp")
-                    {
-                        Bitmap bmpImage = new Bitmap(openIconDialog.FileName);
-                        bmpImage.MakeTransparent();
-                        System.IntPtr icH = bmpImage.GetHicon();
-                        icon = Icon.FromHandle(icH);
-                    }
-
                     if (Os.getExtension(openIconDialog.FileName).ToLower() == ".ico")
                     {
-                        icon = new Icon(openIconDialog.FileName);
+                        icon = Media.getIcon(openIconDialog.FileName); 
+                    }
+                    else
+                    {
+                        Bitmap image = Media.getImage(openIconDialog.FileName);
+                        IntPtr Hicon = image.GetHicon();
+                        icon = Icon.FromHandle(Hicon);
                     }
 
                     this.Icon = icon;
@@ -931,6 +922,7 @@ namespace Diagram
             }
             else
             {
+                //#background
                 if (this.diagram.options.backgroundImage != null && MessageBox.Show(Translations.confirmRemoveBackgroundQuestion, Translations.confirmRemoveBackground, MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     this.diagram.options.backgroundImage = null;

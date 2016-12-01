@@ -63,6 +63,22 @@ namespace Diagram
         }
 
         /// <summary>
+        /// load icon from file </summary>
+        public static Icon getIcon(string file)
+        {
+            try
+            {
+                return new Icon(file);
+            }
+            catch (Exception e)
+            {
+                Program.log.write("getIcon: " + e.Message);
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// convert Bitmap to base64 string </summary>
         public static string ImageToString(Bitmap image)
         {
