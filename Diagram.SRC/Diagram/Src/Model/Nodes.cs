@@ -42,6 +42,11 @@ namespace Diagram
         /*************************************************************************************************************************/
         // SORT
 
+        public void OrderByIdAsc()
+        {
+            this.Sort((x, y) => x.id.CompareTo(y.id));
+        }
+
         public void OrderByNameAsc()
         {
             this.Sort((x, y) => string.Compare(x.name, y.name));

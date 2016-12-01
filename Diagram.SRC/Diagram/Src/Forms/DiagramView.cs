@@ -582,7 +582,7 @@ namespace Diagram
         public void DiagramViewLoad(object sender, EventArgs e)
         {
 
-            // Preddefinovana pozicia okna
+            // predefined window position
             if (this.diagram.options.restoreWindow)
             {
                 this.Left = this.diagram.options.Left;
@@ -627,8 +627,7 @@ namespace Diagram
             }
             else
             {
-                this.goToLayer(this.diagram.options.homeLayer);
-                this.shift.set(diagram.options.homePosition);
+                this.GoToHome();
             }
 
             // custom diagram background image
@@ -723,8 +722,26 @@ namespace Diagram
         // FORM go to home position - center window to home position
         public void GoToHome()
         {
-            this.shift.set(diagram.options.homePosition);
-            this.goToLayer(diagram.options.homeLayer);
+            Nodes nodes = this.diagram.layers.searchInAllNodes("@home");
+            nodes.OrderByIdAsc();
+
+            Node homenode = null;
+            foreach (Node node in nodes)
+            {
+                if (node.link == "@home") {
+                    homenode = node;
+                }
+            }
+
+            if (homenode != null)
+            {
+                this.goToNode(homenode);
+            }
+            else
+            {
+                this.shift.set(diagram.options.homePosition);
+                this.goToLayer(diagram.options.homeLayer);
+            }            
             this.diagram.InvalidateDiagram();
         }
 
@@ -748,8 +765,28 @@ namespace Diagram
         // FORM go to end position - center window to second remembered position
         public void GoToEnd()
         {
-            this.shift.set(diagram.options.endPosition);
-            this.goToLayer(diagram.options.endLayer);
+            Nodes nodes = this.diagram.layers.searchInAllNodes("@end");
+            nodes.OrderByIdAsc();
+
+            Node homenode = null;
+            foreach (Node node in nodes)
+            {
+                if (node.link == "@end")
+                {
+                    homenode = node;
+                }
+            }
+
+            if (homenode != null)
+            {
+                this.goToNode(homenode);
+            }
+            else
+            {
+                this.shift.set(diagram.options.endPosition);
+                this.goToLayer(diagram.options.endLayer);
+            }
+
             this.diagram.InvalidateDiagram();
         }
 
