@@ -1,7 +1,8 @@
-﻿0.5.0.9 get utf-8 string from clipboard
-0.5.0.8 diagram image background
-0.5.0.7 speedup search nodes
-0.5.0.6 Unsave after insert date
-﻿0.5.0.5 Add link edit to bottom of node textbox
-0.5.0.4 Add ling go to node command type (#)
-0.5.0.3 Add release note for version tracking
+﻿0.5.0.10 change remove backround dialog text
+0.5.0.9  get utf-8 string from clipboard
+0.5.0.8  diagram image background
+0.5.0.7  speedup search nodes
+0.5.0.6  Unsave after insert date
+﻿0.5.0.5  Add link edit to bottom of node textbox
+0.5.0.4  Add ling go to node command type (#)
+0.5.0.3  Add release note for version tracking

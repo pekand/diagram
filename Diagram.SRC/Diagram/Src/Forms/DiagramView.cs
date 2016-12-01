@@ -893,7 +893,7 @@ namespace Diagram
             }
             else
             {
-                if (this.diagram.options.icon != "" &&  MessageBox.Show(Translations.confirmRemoveQuestion, Translations.confirmRemoveIcon, MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (this.diagram.options.icon != "" &&  MessageBox.Show(Translations.confirmRemoveIconQuestion, Translations.confirmRemoveIcon, MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
 #if DEBUG
                     this.Icon = global::Diagram.Properties.Resources.ico_diagram_debug;
@@ -931,7 +931,7 @@ namespace Diagram
             }
             else
             {
-                if (this.diagram.options.backgroundImage != null && MessageBox.Show(Translations.confirmRemoveQuestion, Translations.confirmRemoveIcon, MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (this.diagram.options.backgroundImage != null && MessageBox.Show(Translations.confirmRemoveBackgroundQuestion, Translations.confirmRemoveBackground, MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     this.diagram.options.backgroundImage = null;
                     this.diagram.refreshBackgroundImages();
