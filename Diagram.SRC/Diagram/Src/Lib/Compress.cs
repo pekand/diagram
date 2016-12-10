@@ -10,52 +10,94 @@ using System.Xml.Linq;
 
 namespace Diagram
 {
-    class EDirectory
+    /// <summary>
+    /// directory structure for zip file in directory to string</summary>
+    public class EDirectory
     {
         public string name = "";
     }
 
-    class EFile
+    /// <summary>
+    /// file structure for zip file in directory to string</summary>
+    public class EFile
     {
         public string name = "";
         public string data = "";
     }
 
-    class Compress
+    /// <summary>
+    /// repository for compression related functions</summary>
+    public class Compress
     {
+        /*************************************************************************************************************************/
+        // ZIP STRING
+
+        public static void stringToStream(string s, MemoryStream stream)
+        {
+            StreamWriter writer = new StreamWriter(stream);
+            writer.Write(s);
+            writer.Flush();
+            stream.Seek(0, SeekOrigin.Begin);
+        }
+
+        public static string streamToString(MemoryStream stream)
+        {
+            stream.Seek(0, SeekOrigin.Begin);
+            StreamReader reader = new StreamReader(stream);
+            return reader.ReadToEnd();
+        }
+
+        /// <summary>
+        /// gZip utf8 string to base64</summary>
         public static string Zip(string str)
         {
-            byte[] bytes = Encoding.UTF8.GetBytes(str);
+            MemoryStream stream = new MemoryStream();
+            stringToStream(str, stream);
+            return ZipStream(stream);            
+        }
 
-            using (var msi = new MemoryStream(bytes))
-            using (var mso = new MemoryStream())
+        /// <summary>
+        /// gUnzip base64 strng to utf8</summary>
+        public static string Unzip(string str)
+        {
+            MemoryStream stream = new MemoryStream(); ;
+            UnzipStream(str, stream);
+            return streamToString(stream);
+        }
+
+        public static string ZipStream(MemoryStream input)
+        {
+            input.Seek(0, SeekOrigin.Begin);
+
+            using (var gzipOutput = new MemoryStream())
             {
-                using (var gs = new GZipStream(mso, CompressionMode.Compress))
+                using (var gzip = new GZipStream(gzipOutput, CompressionMode.Compress))
                 {
-                    msi.CopyTo(gs);
+                    input.CopyTo(gzip);
                 }
 
-                
-                return Convert.ToBase64String(mso.ToArray());
+                return Convert.ToBase64String(gzipOutput.ToArray());
             }
         }
 
-        public static string Unzip(string str)
+        public static void UnzipStream(string str, MemoryStream output)
         {
             byte[] bytes = Convert.FromBase64String(str);
 
-            using (var msi = new MemoryStream(bytes))
-            using (var mso = new MemoryStream())
+            using (MemoryStream gzipInput = new MemoryStream(bytes))
             {
-                using (var gs = new GZipStream(msi, CompressionMode.Decompress))
+                using (GZipStream gzip = new GZipStream(gzipInput, CompressionMode.Decompress))
                 {
-                    gs.CopyTo(mso);
+                    gzip.CopyTo(output);
                 }
-
-                return Encoding.UTF8.GetString(mso.ToArray());
             }
         }
 
+        /*************************************************************************************************************************/
+        // COMPRESS DIRECTORY
+
+        /// <summary>
+        /// compress directory with files to string</summary>
         public static string compress(string path)
         {
             if (!Os.Exists(path)) {
@@ -161,6 +203,8 @@ namespace Diagram
             return Zip(sb.ToString());
         }
 
+        /// <summary>
+        /// decompress string with directory structure to path</summary>
         public static void decompress(string compressedData, string destinationPath)
         {
             if (!Os.DirectoryExists(destinationPath))

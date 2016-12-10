@@ -1,12 +1,15 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Text.RegularExpressions;
 
 namespace Diagram
 {
-    class Network
+    /// <summary>
+    /// repository of network and web related functions</summary>
+    public class Network
     {
+        /*************************************************************************************************************************/
+        // GET CONTENT
 
         /// <summary>
         /// download https page and parse title from it </summary>
@@ -30,11 +33,7 @@ namespace Diagram
 
             string title = "";
             try {
-                title = Regex.Match(
-                        page,
-                        "<title>(.*?)</title>",
-                        RegexOptions.IgnoreCase | RegexOptions.Singleline
-                    ).Groups[1].Value;
+                title = Patterns.matchWebPageTitle(page);
 
             }
             catch (Exception ex)
@@ -45,15 +44,6 @@ namespace Diagram
             return (title.Trim() == "")? url : title.Trim();
         }
 
-        public static bool ConfirmAllCertifications(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certification, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
-        {
-            return true;
-        }
-
-        public static void AcceptAllCertifications()
-        {
-            ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(ConfirmAllCertifications);
-        }
 
         /// <summary>
         /// download https page and parse title from it </summary>
@@ -154,20 +144,12 @@ namespace Diagram
                 StreamReader reader = new StreamReader(memoryStream);
                 page = reader.ReadToEnd();
 
-                string encoding = Regex.Match(
-                    page,
-                    "<meta.*?charset=['\"]?(?<Encoding>[^\"']+)['\"]?",
-                    RegexOptions.IgnoreCase
-                ).Groups["Encoding"].Value;
+                string encoding = Patterns.matchWebPageEncoding(page);
 
                 // try redirect 
                 if (level < 10)
                 {
-                    string redirect = Regex.Match(
-                    page,
-                    "<meta.*?http-equiv=\"refresh\".*?(CONTENT|content)=[\"']\\d;\\s?(URL|url)=(?<url>.*?)([\"']\\s*\\/?>)",
-                    RegexOptions.IgnoreCase
-                    ).Groups["url"].Value;
+                    string redirect = Patterns.matchWebPageRedirectUrl(page);
 
                     if (redirect.Trim() != "")
                     {
@@ -201,19 +183,8 @@ namespace Diagram
             return page;
         }
 
-        /// <summary>
-        /// check if url start on http or https </summary>
-        public static bool isURL(String url) 
-		{
-			return (Regex.IsMatch(url, @"^(http|https)://[^ ]*$"));
-		}
-
-        /// <summary>
-        /// check if url start on https </summary>
-        public static bool isHttpsURL(String url)
-        {
-            return (Regex.IsMatch(url, @"^(https)://[^ ]*$"));
-        }
+        /*************************************************************************************************************************/
+        // OPEN
 
         /// <summary>
         /// open url in os default browser </summary>

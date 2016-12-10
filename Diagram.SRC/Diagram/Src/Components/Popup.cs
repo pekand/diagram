@@ -7,6 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+ 
+*/
+
 namespace Diagram
 {
     [System.ComponentModel.DesignerCategory("Code")]
@@ -15,8 +19,8 @@ namespace Diagram
     {
         public DiagramView diagramView = null;       // diagram ktory je previazany z pohladom
 
-        Dictionary<string, ToolStripMenuItem> items = new Dictionary<string, ToolStripMenuItem>();
-        Dictionary<string, ToolStripSeparator> separators = new Dictionary<string, ToolStripSeparator>();
+        private Dictionary<string, ToolStripMenuItem> items = new Dictionary<string, ToolStripMenuItem>();
+        private Dictionary<string, ToolStripSeparator> separators = new Dictionary<string, ToolStripSeparator>();
 
         public Popup(System.ComponentModel.IContainer container, DiagramView diagramView) : base(container)
         {
@@ -34,7 +38,9 @@ namespace Diagram
             items["coordinatesItem"].Checked = this.diagramView.diagram.options.coordinates;
             items["readonlyItem"].Checked = this.diagramView.diagram.options.readOnly;
         }
-			
+
+        public ToolStripItem[] recentItems = null;
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -229,6 +235,12 @@ namespace Diagram
             items["openItem"].Text = "Open";
             items["openItem"].Click += new System.EventHandler(this.openItem_Click);
             //
+            // openItem
+            //
+            items.Add("recentItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["recentItem"].Name = "recentItem";
+            items["recentItem"].Text = "Recent";
+            //
             // exitItem
             //
             items.Add("exitItem", new System.Windows.Forms.ToolStripMenuItem());
@@ -245,6 +257,7 @@ namespace Diagram
                 items["saveAsItem"],
                 items["exportItem"],
                 items["openItem"],
+                items["recentItem"],
                 items["exitItem"]
             });
             items["fileItem"].Name = "fileItem";
@@ -648,6 +661,13 @@ namespace Diagram
             items["setIconItem"].Text = "Set icon";
             items["setIconItem"].Click += new System.EventHandler(this.setIconItem_Click);
             //
+            // setBackgroundItem
+            //
+            items.Add("setBackgroundItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["setBackgroundItem"].Name = "setBackgroundItem";
+            items["setBackgroundItem"].Text = "Set background image";
+            items["setBackgroundItem"].Click += new System.EventHandler(this.setBackgroundItem_Click);
+            //
             // openLayerInNewViewItem
             //
             items.Add("openLayerInNewViewItem", new System.Windows.Forms.ToolStripMenuItem());
@@ -676,6 +696,7 @@ namespace Diagram
                 items["defaultFontItem"],
                 items["resetFontItem"],
                 items["setIconItem"],
+                items["setBackgroundItem"],
                 items["openLayerInNewViewItem"],
                 items["openConfigDirItem"]
             });
@@ -697,13 +718,6 @@ namespace Diagram
             items["visitWebsiteItem"].Text = "Visit homesite";
             items["visitWebsiteItem"].Click += new System.EventHandler(this.visitWebsiteItem_Click);
             //
-            // releaseNoteItem
-            //
-            items.Add("releaseNoteItem", new System.Windows.Forms.ToolStripMenuItem());
-            items["releaseNoteItem"].Name = "releaseNoteItem";
-            items["releaseNoteItem"].Text = "Release Note";
-            items["releaseNoteItem"].Click += new System.EventHandler(this.releaseNoteItem_Click);
-            //
             // aboutItem
             //
             items.Add("aboutItem", new System.Windows.Forms.ToolStripMenuItem());
@@ -717,7 +731,6 @@ namespace Diagram
             items["helpItem"].DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
                 items["consoleItem"],
                 items["visitWebsiteItem"],
-                items["releaseNoteItem"],
                 items["aboutItem"]
             });
             items["helpItem"].Name = "helpItem";
@@ -903,8 +916,8 @@ namespace Diagram
             }
 
             // UNDO REDO
-            items["undoItem"].Enabled = this.diagramView.diagram.undo.canUndo();
-            items["redoItem"].Enabled = this.diagramView.diagram.undo.canRedo();
+            items["undoItem"].Enabled = this.diagramView.diagram.undoOperations.canUndo();
+            items["redoItem"].Enabled = this.diagramView.diagram.undoOperations.canRedo();
 
             // REMOVE SHORTCUT
             if (this.diagramView.selectedNodes.Count() > 0)
@@ -988,6 +1001,25 @@ namespace Diagram
             {
                 items["pasteItem"].Enabled = false;
             }
+
+            // add recent files
+            if (recentItems != null && recentItems.Count() > 0) {
+                items["recentItem"].DropDownItems.Clear();
+            }
+
+            recentItems = new System.Windows.Forms.ToolStripItem[this.diagramView.main.options.recentFiles.Count()];
+            int i = 0;
+            foreach (String path in this.diagramView.main.options.recentFiles)
+            {
+                recentItems[i] = new System.Windows.Forms.ToolStripMenuItem();
+                recentItems[i].Name = "recent"+i+"Item";
+                recentItems[i].Text = Os.getFileNameWithoutExtension(path);
+                recentItems[i].Tag = path;
+                recentItems[i].Click += new System.EventHandler(this.recentItem_Click);
+                i++;
+            }
+
+            items["recentItem"].DropDownItems.AddRange(recentItems);
         }
 
         // QUICK ACTIONS
@@ -1157,6 +1189,13 @@ namespace Diagram
         public void openItem_Click(object sender, EventArgs e)
         {
             this.diagramView.open();
+        }
+
+        // MENU Open
+        public void recentItem_Click(object sender, EventArgs e)
+        {
+            String path = (string)((ToolStripMenuItem)sender).Tag;
+            this.diagramView.open(path);
         }
 
         // MENU Exit
@@ -1461,6 +1500,12 @@ namespace Diagram
             this.diagramView.setIcon();
         }
 
+        // MENU set diagram background image
+        private void setBackgroundItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.setBackgroundImage();
+        }
+
         // MENU set diagram icon
         private void openLayerInNewViewItem_Click(object sender, EventArgs e)
         {
@@ -1488,22 +1533,6 @@ namespace Diagram
         private void visitWebsiteItem_Click(object sender, EventArgs e)
         {
             Network.openUrl(this.diagramView.main.options.home_page);
-        }
-
-        // MENU Show release note
-        private void releaseNoteItem_Click(object sender, EventArgs e)
-        {
-            string releasNotePath = Os.getCurrentApplicationDirectory() + Os.getSeparator() + this.diagramView.main.options.release_note;
-            if (Os.FileExists(releasNotePath))
-            {
-                string releaseNoteUrl = "file:///" + Os.toBackslash(Os.getCurrentApplicationDirectory()) + "/" + this.diagramView.main.options.release_note;
-                Network.openUrl(releaseNoteUrl);
-                Program.log.write("open release note: " + releasNotePath);
-            }
-            else
-            {
-                Program.log.write("open release note: error: file not exist" + releasNotePath);
-            }
         }
 
         // MENU show About form

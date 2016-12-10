@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
+/*
+ 
+*/
+
 namespace Diagram
 {
     // map node structure for copy paste operation
@@ -22,22 +26,22 @@ namespace Diagram
          
         public DiagramView diagramView = null;
 
-        List<BreadcrumbItem> items = new List<BreadcrumbItem>();
+        private List<BreadcrumbItem> items = new List<BreadcrumbItem>();
 
         // resources
-        Font font = new Font("Arial", 12);
-        SolidBrush brush = new SolidBrush(Color.Gray);
-        SolidBrush logoBlackBrash = new SolidBrush(Color.FromArgb(80, 0, 0, 0));
-        SolidBrush redBrash = new SolidBrush(Color.FromArgb(200, 255, 102, 0));
-        SolidBrush yellowBrash = new SolidBrush(Color.FromArgb(200, 255, 255, 0));
-        SolidBrush barBrash =  new SolidBrush(Color.FromArgb(50, 0, 0, 0));
-        SolidBrush separatorBrash = new SolidBrush(Color.FromArgb(100, 0, 0, 0));
+        private Font font = new Font("Arial", 12);
+        private SolidBrush brush = new SolidBrush(Color.Gray);
+        private SolidBrush logoBlackBrash = new SolidBrush(Color.FromArgb(80, 0, 0, 0));
+        private SolidBrush redBrash = new SolidBrush(Color.FromArgb(200, 255, 102, 0));
+        private SolidBrush yellowBrash = new SolidBrush(Color.FromArgb(200, 255, 255, 0));
+        private SolidBrush barBrash =  new SolidBrush(Color.FromArgb(50, 0, 0, 0));
+        private SolidBrush separatorBrash = new SolidBrush(Color.FromArgb(100, 0, 0, 0));
 
-        int left = 10;
-        int top = 10;
-        int width = 0;
-        int height = 0;
-        int itemSpace = 5;
+        private int left = 10;
+        private int top = 10;
+        private int width = 0;
+        private int height = 0;
+        private int itemSpace = 5;
 
         public Breadcrumbs(DiagramView diagramView)
         {

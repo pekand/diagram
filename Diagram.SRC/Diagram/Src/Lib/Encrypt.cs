@@ -7,8 +7,13 @@ using System.IO;
 
 namespace Diagram
 {
-    class Encrypt
+
+    /// <summary>
+    /// repository for encryption related functions</summary>
+    public class Encrypt
     {
+        /*************************************************************************************************************************/
+        // GENERATOR
 
         /// <summary>
         /// get random crypto secure string</summary>
@@ -27,6 +32,9 @@ namespace Diagram
 
             return token;
         }
+
+        /*************************************************************************************************************************/
+        // HASHES
 
         /// <summary>
         /// get sha hash from inputString</summary>
@@ -63,6 +71,21 @@ namespace Diagram
             return sb.ToString();
         }
 
+        public static string getMd5Hash(byte[] buffer)
+        {
+            MD5 md5Hasher = MD5.Create();
+
+            byte[] data = md5Hasher.ComputeHash(buffer);
+
+            StringBuilder sBuilder = new StringBuilder();
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+            return sBuilder.ToString();
+        }
+
+        /*************************************************************************************************************************/
         // ENCRYPTION
 
         /// <summary>
@@ -210,6 +233,9 @@ namespace Diagram
 
             return buffer;
         }
+
+        /*************************************************************************************************************************/
+        // SECURE STRING
 
         /// <summary>
         /// Protect string by encryption</summary>

@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 
+/*
+ 
+*/
+
 namespace Diagram
 {
     public partial class AboutForm : Form

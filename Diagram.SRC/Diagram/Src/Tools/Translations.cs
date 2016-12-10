@@ -1,6 +1,12 @@
-﻿namespace Diagram
+﻿
+/*
+    class Translations
+*/
+
+namespace Diagram
 {
-    //translation table
+    /// <summary>
+    /// text translation table</summary> 
     public static class Translations
     {
         public static string saveBeforeOpenFile = "Save before open file?";
@@ -18,6 +24,8 @@
         public static string fileNotExist = "File not exist";
         public static string password = "Password";
         public static string confirmRemoveIcon = "Confirm remove diagram icon";
-        public static string confirmRemoveQuestion = "Remove icon?";
+        public static string confirmRemoveIconQuestion = "Remove icon?";
+        public static string confirmRemoveBackground = "Confirm remove diagram background";
+        public static string confirmRemoveBackgroundQuestion = "Remove background?";
     }
 }

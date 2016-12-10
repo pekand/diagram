@@ -3,8 +3,46 @@ using System.Text.RegularExpressions;
 
 namespace Diagram
 {
-    class Patterns
+    /// <summary>
+    /// Regex patterns repository</summary>
+    public class Patterns
     {
+        /*************************************************************************************************************************/
+        // TYPE
+
+        /// <summary>
+        /// check if string is integer</summary>
+        public static bool isNumber(string text)
+        {
+            Match matchNumber = (new Regex("^(\\d+)$")).Match(text);
+
+            if (matchNumber.Success)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// check if string is html color format starting with hash</summary>
+        public static bool isColor(string text)
+        {
+            Match matchNumber = (new Regex("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")).Match(text);
+
+            if (matchNumber.Success)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /*************************************************************************************************************************/
+        // COMMAND
+
+        /// <summary>
+        /// windows shell command with arguments spit for run command from node link</summary>
         public static string[] splitCommand(string cmd)
         {
             // ^(?:\s*"?)((?<=")(?:\\.|[^"\\])*(?=")|[^ "]+)(?:"?\s*)(.*)
@@ -33,6 +71,9 @@ namespace Diagram
             return new string[] { command, arguments };
         }
 
+        /// <summary>
+        /// check if file path ending on hash with string after hastag 
+        /// Parse node link to file for open on position</summary>
         public static bool hasHastag(string link, ref string fileName, ref string searchString)
         {
             Match matchFileOpenOnPosition = (new Regex("^([^#]+)#(.*)$")).Match(link.Trim());
@@ -45,33 +86,11 @@ namespace Diagram
             }
 
             return false;
-        }
+        }     
 
-        public static bool isNumber(string text)
-        {
-            Match matchNumber = (new Regex("^(\\d+)$")).Match(text);
-
-            if (matchNumber.Success)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        public static bool isColor(string text)
-        {
-            Match matchNumber = (new Regex("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$")).Match(text);
-
-            if (matchNumber.Success)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        public static bool isGotoCommand(string text)
+        /// <summary>
+        /// check if string start with hash</summary>
+        public static bool isGotoIdCommand(string text)
         {
             Match matchNumber = (new Regex("#(\\d+)")).Match(text);
 
@@ -81,12 +100,11 @@ namespace Diagram
             }
 
             return false;
-        }
+        }        
 
         /// <summary>
-        ///  parse integer (representing node id) from goto command string 
-        /// </summary>
-        public static int getGotoCommandId(string text)
+        ///  parse integer (representing node id) from goto command string </summary>
+        public static int getGotoIdCommand(string text)
         {
             Match match = Regex.Match(text, "#(\\d+)", RegexOptions.IgnoreCase);
 
@@ -98,5 +116,86 @@ namespace Diagram
 
             return -1;
         }
+
+        /// <summary>
+        ///  Check if string is in format of node link search command
+        ///  Example: #search for string</summary>
+        public static bool isGotoStringCommand(string text)
+        {
+            Match matchNumber = (new Regex("#([\\w ]+)")).Match(text);
+
+            if (matchNumber.Success)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        ///  Get argument from search command
+        ///  Example: #search for string</summary>
+        public static String getGotoStringCommand(string text)
+        {
+            Match match = Regex.Match(text, "#([\\w ]+)", RegexOptions.IgnoreCase);
+
+            if (match.Success)
+            {
+                return match.Groups[1].Value;
+            }
+
+            return null;
+        }
+
+        /*************************************************************************************************************************/
+        // WEB
+
+        /// <summary>
+        /// check if url start on http or https </summary>
+        public static bool isURL(String url)
+        {
+            return (Regex.IsMatch(url, @"^(http|https)://[^ ]*$"));
+        }
+
+        /// <summary>
+        /// check if url start on https </summary>
+        public static bool isHttpsURL(String url)
+        {
+            return (Regex.IsMatch(url, @"^(https)://[^ ]*$"));
+        }
+
+        /// <summary>
+        /// get page title from html</summary>
+        public static string matchWebPageTitle(String page)
+        {
+            return Regex.Match(
+                page,
+                "<title>(.*?)</title>",
+                RegexOptions.IgnoreCase | RegexOptions.Singleline
+            ).Groups[1].Value;
+        }
+
+        /// <summary>
+        /// get page encoding from html</summary>
+        public static string matchWebPageEncoding(String page)
+        {
+            return Regex.Match(
+                page,
+                "<meta.*?charset=['\"]?(?<Encoding>[^\"']+)['\"]?",
+                RegexOptions.IgnoreCase
+            ).Groups["Encoding"].Value;
+        }
+
+        /// <summary>
+        /// get page redirect url from html meta tag</summary>
+        public static string matchWebPageRedirectUrl(String page)
+        {
+            return Regex.Match(
+                page,
+                "<meta.*?http-equiv=\"refresh\".*?(CONTENT|content)=[\"']\\d;\\s?(URL|url)=(?<url>.*?)([\"']\\s*\\/?>)",
+                RegexOptions.IgnoreCase
+            ).Groups["url"].Value;
+        }
+
     }
 }

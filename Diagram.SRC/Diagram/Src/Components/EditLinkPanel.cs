@@ -2,6 +2,10 @@
 using System.Drawing;
 using System.Windows.Forms;
 
+/*
+ 
+*/
+
 namespace Diagram
 {
     public class EditLinkPanel : Panel
@@ -138,7 +142,7 @@ namespace Diagram
 
             if (this.editedNode.link != edit.Text)
             {
-                this.diagramView.diagram.undo.add("edit", this.editedNode, this.diagramView.shift, this.diagramView.currentLayer.id);
+                this.diagramView.diagram.undoOperations.add("edit", this.editedNode, this.diagramView.shift, this.diagramView.currentLayer.id);
                 this.editedNode.link = edit.Text;
                 this.diagramView.diagram.unsave();
             }

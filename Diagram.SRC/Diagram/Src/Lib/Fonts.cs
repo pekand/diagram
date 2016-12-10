@@ -4,10 +4,15 @@ using System.Xml.Linq;
 
 namespace Diagram
 {
+    /// <summary>
+    /// repository for font and text related functions</summary>
     public class Fonts
     {
-        private static Bitmap bitmap = null;
-        private static Graphics g = null;
+        /*************************************************************************************************************************/
+        // MEASURE
+
+        private static Bitmap bitmap = null; //bitmap for measure font size
+        private static Graphics g = null; // graphic from bitmap for measure string size
 
         /// <summary>
         /// meassure s string size written in font</summary>
@@ -22,6 +27,20 @@ namespace Diagram
 
             return g.MeasureString(s, font);
         }
+
+       
+        /*************************************************************************************************************************/
+        // TEXT
+
+        /// <summary>
+        /// convert first character of input string to upper case</summary>
+        public static string FirstCharToUpper(string input)
+        {
+            return input.Substring(0, 1).ToUpper() + input.Substring(1).ToLower();
+        }
+
+        /*************************************************************************************************************************/
+        // XML TO FONT CONVERSION
 
         /// <summary>
         /// convert xml element to Font object</summary>
@@ -118,21 +137,18 @@ namespace Diagram
             return element;
         }
 
+        /*************************************************************************************************************************/
+        // FONT
+
         /// <summary>
         /// compare fonts by attributes</summary>
         public static bool compare(Font font1, Font font2)
         {
             if (font1.Name != font2.Name) return false;
             if (font1.Size != font2.Size) return false;
-            if (font1.Style!= font2.Style) return false;
+            if (font1.Style != font2.Style) return false;
             return true;
         }
 
-        /// <summary>
-        /// convert first character of input string to upper case</summary>
-        public static string FirstCharToUpper(string input)
-        {
-            return input.Substring(0,1).ToUpper() + input.Substring(1).ToLower();
-        }
     }
 }

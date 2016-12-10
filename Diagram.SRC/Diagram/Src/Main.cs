@@ -9,17 +9,17 @@ using Microsoft.Win32;
 
 namespace Diagram
 {
-    /// <summary>
-    /// Processing command line arguments. </summary>
+    /// <summary>    
+    /// Processing global options files
+    /// Start server
+    /// Processing command line arguments.
+    /// Create mainform
+    /// </summary>
     public class Main
     {
 
-        // command line arguments
-        private string[] args = null;
-
-        /// <summary>
-        /// form for catching messages from local server</summary>
-        public MainForm mainform = null;
+        /*************************************************************************************************************************/
+        // OPTONS
 
         /// <summary>
         /// Global program options</summary>
@@ -34,44 +34,28 @@ namespace Diagram
         public KeyMap keyMap = null;
 
         /// <summary>
-        /// form for display logged messages</summary>
-        private Console console = null;
+        /// open directori with global configuration</summary>
+        public void openConfigDir()
+        {
+            this.optionsFile.showDirectoryWithConfiguration();
+        }
 
-        // ENCRYPTION FORM
-
-        /// <summary>
-        ///input form for password</summary>
-        private PasswordForm passwordForm = null;
-
-        /// <summary>
-        /// input form for new password</summary>
-        private NewPasswordForm newPasswordForm = null;
-
-        /// <summary>
-        /// input form for change old password</summary>
-        private ChangePasswordForm changePasswordForm = null;
-
-        /// <summary>
-        /// about form for display basic informations about application</summary>
-        private AboutForm aboutForm = null;
+        /*************************************************************************************************************************/
+        // SERVER
 
         /// <summary>
         /// local messsaging server for communication between running program instances</summary>
         private Server server = null;
 
-        /// <summary>
-        /// all opened diagrams models</summary>
-        private List<Diagram> Diagrams = new List<Diagram>();
-
-        /// <summary>
-        /// all opened form views to diagrams models</summary>
-        private List<DiagramView> DiagramViews = new List<DiagramView>();
-
-        /// <summary>
-        /// all opened node edit forms for all diagrams models</summary>
-        private List<TextForm> TextWindows = new List<TextForm>();
-
         /*************************************************************************************************************************/
+        // MAIN APPLICATION
+
+        // command line arguments
+        private string[] args = null;
+
+        /// <summary>
+        /// form for catching messages from local server</summary>
+        public MainForm mainform = null;
 
         /// <summary>
         /// parse command line arguments and open forms</summary>
@@ -118,161 +102,9 @@ namespace Diagram
 #endif
 
 // check if this program instance created server
-            if (!server.serverAlreadyExist)
+            if (server.mainProcess)
             {
                 this.mainform = new MainForm(this);
-            }
-        }
-
-        /// <summary>
-        /// close application if not diagram view or node edit form is open </summary>
-        public void CloseEmptyApplication()
-        {
-            Program.log.write("Program : CloseApplication");
-
-            bool canclose = true;
-
-            if (Diagrams.Count > 0 || DiagramViews.Count > 0 || TextWindows.Count > 0)
-            {
-                canclose = false;
-            }
-
-            if (canclose)
-            {
-                if (server.serverCurrent)
-                {
-                    server.RequestStop();
-                }
-                else
-                {
-                    ExitApplication();
-                }
-            }
-        }
-
-        /// <summary>
-        /// force close application</summary>
-        public void ExitApplication()
-        {
-            Program.log.write("Program : ExitApplication");
-
-            if (mainform != null)
-            {
-                mainform.Close();
-            }
-
-            if (passwordForm != null)
-            {
-                passwordForm.Close();
-            }
-
-            if (newPasswordForm != null)
-            {
-                newPasswordForm.Close();
-            }
-
-            if (changePasswordForm != null)
-            {
-                changePasswordForm.Close();
-            }
-
-            if (console != null)
-            {
-                console.Close();
-            }
-
-            this.optionsFile.saveConfigFile();
-            Application.Exit();
-            Application.ExitThread();
-            Environment.Exit(0);
-        }
-
-/// <summary>
-        /// open existing diagram or create new empty diagram
-        /// Create diagram model and then open diagram view on this model</summary>
-        public void OpenDiagram(String FilePath = "")
-        {
-            Program.log.write("Program : OpenDiagram: " + FilePath);
-
-            // open new empty diagram
-            if (FilePath == "")
-            {
-                // if server already exist in system, send him message whitch open empty diagram
-                if (server.serverAlreadyExist)
-                {
-                    server.SendMessage("open:");
-                }
-                // open diagram in current program instance
-                else
-                {
-                    // create new model
-                    Diagram diagram = new Diagram(this);
-                    Diagrams.Add(diagram);
-                    // open diagram view on diagram model
-                    diagram.openDiagramView();
-                }
-            }
-            // open existing diagram file
-            else
-            {
-                if (passwordForm != null) // prevent open diagram if another diagram triing open 
-                {
-                    return;
-                }
-
-                if (Os.FileExists(FilePath))
-                {
-                    FilePath = Os.getFullPath(FilePath);
-
-                    // if server already exist in system, send him message whitch open diagram file
-                    if (server.serverAlreadyExist)
-                    {
-                        server.SendMessage("open:" + FilePath);
-                    }
-                    // open diagram in current program instance
-                    else
-                    {
-                        // check if file is already opened in current instance
-                        bool alreadyOpen = false;
-
-                        foreach (Diagram diagram in Diagrams)
-                        {
-                            if (diagram.FileName == FilePath)
-                            {
-                                // focus
-                                if (diagram.DiagramViews.Count() > 0)
-                                {
-                                    Program.log.write("window get focus");
-                                    Program.log.write("OpenDiagram: diagramView: setFocus");
-
-                                    if (!diagram.DiagramViews[0].Visible)
-                                    {
-                                        diagram.DiagramViews[0].Show();
-                                    }
-
-                                    Program.log.write("bring focus");
-                                    Media.bringToFront(diagram.DiagramViews[0]);
-                                }
-                                alreadyOpen = true;
-                                break;
-                            }
-                        }
-
-                        if (!alreadyOpen)
-                        {
-                            Diagram diagram = new Diagram(this);
-                            lock (diagram)
-                            {
-                                // create new model
-                                if (diagram.OpenFile(FilePath)) {
-                                    Diagrams.Add(diagram);
-                                    // open diagram view on diagram model
-                                    diagram.openDiagramView();
-                                }
-                            }
-                        }
-                    }
-                }
             }
         }
 
@@ -356,6 +188,202 @@ namespace Diagram
         }
 
         /// <summary>
+        /// close application if not diagram view or node edit form is open </summary>
+        public void CloseEmptyApplication()
+        {
+            Program.log.write("Program : CloseApplication");
+
+            bool canclose = true;
+
+            if (Diagrams.Count > 0 || DiagramViews.Count > 0 || TextWindows.Count > 0)
+            {
+                canclose = false;
+            }
+
+            if (canclose)
+            {
+                if (server.mainProcess)
+                {
+                    server.RequestStop();
+                }
+                else
+                {
+                    ExitApplication();
+                }
+            }
+        }
+
+        /// <summary>
+        /// force close application</summary>
+        public void ExitApplication()
+        {
+            Program.log.write("Program : ExitApplication");
+
+            if (mainform != null)
+            {
+                mainform.Close();
+            }
+
+            if (passwordForm != null)
+            {
+                passwordForm.Close();
+            }
+
+            if (newPasswordForm != null)
+            {
+                newPasswordForm.Close();
+            }
+
+            if (changePasswordForm != null)
+            {
+                changePasswordForm.Close();
+            }
+
+            if (console != null)
+            {
+                console.Close();
+            }
+
+            this.optionsFile.saveConfigFile();
+            Application.Exit();
+            Application.ExitThread();
+            Environment.Exit(0);
+        }
+
+        /*************************************************************************************************************************/
+        // DIAGRAMS
+
+        /// <summary>
+        /// all opened diagrams models</summary>
+        private List<Diagram> Diagrams = new List<Diagram>();
+
+        /// <summary>
+        /// add diagram to list of all diagrams</summary>
+        public void addDiagram(Diagram diagram)
+        {
+            this.Diagrams.Add(diagram);
+        }
+
+        /// <summary>
+        /// remove diagram from list of all diagrams</summary>
+        public void removeDiagram(Diagram diagram)
+        {
+            this.Diagrams.Remove(diagram);
+        }
+
+        /// <summary>
+        /// open existing diagram or create new empty diagram
+        /// Create diagram model and then open diagram view on this model</summary>
+        public void OpenDiagram(String FilePath = "")
+        {
+            Program.log.write("Program : OpenDiagram: " + FilePath);
+
+            // open new empty diagram
+            if (FilePath == "")
+            {
+                // if server already exist in system, send him message whitch open empty diagram
+                if (!server.mainProcess)
+                {
+                    server.SendMessage("open:");
+                }
+                // open diagram in current program instance
+                else
+                {
+                    // create new model
+                    Diagram diagram = new Diagram(this);
+                    Diagrams.Add(diagram);
+                    // open diagram view on diagram model
+                    diagram.openDiagramView();
+                }
+            }
+            // open existing diagram file
+            else
+            {
+                if (passwordForm != null) // prevent open diagram if another diagram triing open 
+                {
+                    return;
+                }
+
+                if (Os.FileExists(FilePath))
+                {
+                    FilePath = Os.getFullPath(FilePath);
+
+                    // if server already exist in system, send him message whitch open diagram file
+                    if (!server.mainProcess)
+                    {
+                        server.SendMessage("open:" + FilePath);
+                    }
+                    // open diagram in current program instance
+                    else
+                    {
+                        // check if file is already opened in current instance
+                        bool alreadyOpen = false;
+
+                        foreach (Diagram diagram in Diagrams)
+                        {
+                            if (diagram.FileName == FilePath)
+                            {
+                                // focus
+                                if (diagram.DiagramViews.Count() > 0)
+                                {
+                                    Program.log.write("window get focus");
+                                    Program.log.write("OpenDiagram: diagramView: setFocus");
+
+                                    if (!diagram.DiagramViews[0].Visible)
+                                    {
+                                        diagram.DiagramViews[0].Show();
+                                    }
+
+                                    Program.log.write("bring focus");
+                                    Media.bringToFront(diagram.DiagramViews[0]);
+                                }
+                                alreadyOpen = true;
+                                break;
+                            }
+                        }
+
+                        if (!alreadyOpen)
+                        {
+                            Diagram diagram = new Diagram(this);
+                            lock (diagram)
+                            {
+                                // create new model
+                                if (diagram.OpenFile(FilePath))
+                                {
+                                    this.options.addRecentFile(FilePath);
+                                    Diagrams.Add(diagram);
+                                    // open diagram view on diagram model
+                                    diagram.openDiagramView();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /*************************************************************************************************************************/
+        // VIEWS
+
+        /// <summary>
+        /// all opened form views to diagrams models</summary>
+        private List<DiagramView> DiagramViews = new List<DiagramView>();
+
+        /// <summary>
+        /// add diagram view to list of all views</summary>
+        public void addDiagramView(DiagramView view)
+        {
+            this.DiagramViews.Add(view);
+        }
+
+        /// <summary>
+        /// remove diagram view from list of all diagram views</summary>
+        public void removeDiagramView(DiagramView view)
+        {
+            this.DiagramViews.Remove(view);
+        }
+
+        /// <summary>
         /// hide diagram views except diagramView</summary>
         public void switchViews(DiagramView diagramView = null)
         {
@@ -422,72 +450,11 @@ namespace Diagram
         }
 
         /*************************************************************************************************************************/
+        // DIAGRAM EDIT FORMS
 
         /// <summary>
-        /// show about</summary>
-        public void showAbout()
-        {
-            if (this.aboutForm == null)
-            {
-                this.aboutForm = new AboutForm(this);
-            }
-
-            this.aboutForm.ShowDialog();
-
-            this.aboutForm = null;
-        }
-
-        /// <summary>
-        /// show error console</summary>
-        public void showConsole()
-        {
-            if (this.console == null)
-            {
-                this.console = new Console(this);
-                this.console.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.closeConsole);
-                Program.log.setConsole(this.console);
-            }
-
-            this.console.Show();
-
-            this.console = null;
-        }
-
-        /// <summary>
-        /// clean after error console close</summary>
-        private void closeConsole(object sender, FormClosedEventArgs e)
-        {
-            Program.log.setConsole(null);
-            this.console = null;
-        }
-
-        /// <summary>
-        /// add diagram view to list of all views</summary>
-        public void addDiagramView(DiagramView view)
-        {
-            this.DiagramViews.Add(view);
-        }
-
-        /// <summary>
-        /// remove diagram view from list of all diagram views</summary>
-        public void removeDiagramView(DiagramView view)
-        {
-            this.DiagramViews.Remove(view);
-        }
-
-        /// <summary>
-        /// add diagram to list of all diagrams</summary>
-        public void addDiagram(Diagram diagram)
-        {
-            this.Diagrams.Add(diagram);
-        }
-
-        /// <summary>
-        /// remove diagram from list of all diagrams</summary>
-        public void removeDiagram(Diagram diagram)
-        {
-            this.Diagrams.Remove(diagram);
-        }
+        /// all opened node edit forms for all diagrams models</summary>
+        private List<TextForm> TextWindows = new List<TextForm>();
 
         /// <summary>
         /// add text form to list of all text forms</summary>
@@ -502,6 +469,21 @@ namespace Diagram
         {
             this.TextWindows.Remove(textWindows);
         }
+
+        /*************************************************************************************************************************/
+        // PASSWORD FORMS
+
+        /// <summary>
+        ///input form for password</summary>
+        private PasswordForm passwordForm = null;
+
+        /// <summary>
+        /// input form for new password</summary>
+        private NewPasswordForm newPasswordForm = null;
+
+        /// <summary>
+        /// input form for change old password</summary>
+        private ChangePasswordForm changePasswordForm = null;
 
         /// <summary>
         /// show dialog for password for diagram unlock</summary>
@@ -577,14 +559,8 @@ namespace Diagram
             return password;
         }
 
-        /// <summary>
-        /// open directori with global configuration</summary>
-        public void openConfigDir()
-        {
-            this.optionsFile.openConfigDir();
-        }
-
-
+        /*************************************************************************************************************************/
+        // LOCK DIAGRAM
 #if !MONO
 
         /// <summary>
@@ -621,6 +597,57 @@ namespace Diagram
             }
         }
 #endif
+        /*************************************************************************************************************************/
+        // ABOUT FORM        
+
+        /// <summary>
+        /// about form for display basic informations about application</summary>
+        private AboutForm aboutForm = null;
+
+        /// <summary>
+        /// show about</summary>
+        public void showAbout()
+        {
+            if (this.aboutForm == null)
+            {
+                this.aboutForm = new AboutForm(this);
+            }
+
+            this.aboutForm.ShowDialog();
+
+            this.aboutForm = null;
+        }
+
+        /*************************************************************************************************************************/
+        // CONSOLE
+
+        /// <summary>
+        /// form for display logged messages</summary>
+        private Console console = null;
+
+        /// <summary>
+        /// show error console</summary>
+        public void showConsole()
+        {
+            if (this.console == null)
+            {
+                this.console = new Console(this);
+                this.console.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.closeConsole);
+                Program.log.setConsole(this.console);
+            }
+
+            this.console.Show();
+
+            this.console = null;
+        }
+
+        /// <summary>
+        /// clean after error console close</summary>
+        private void closeConsole(object sender, FormClosedEventArgs e)
+        {
+            Program.log.setConsole(null);
+            this.console = null;
+        }
 
     }
 }

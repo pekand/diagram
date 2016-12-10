@@ -7,9 +7,15 @@ using System.Threading.Tasks;
 
 namespace Diagram
 {
+
+    /// <summary>
+    /// color type encapsulation</summary>
     public class ColorType
     {
         public Color color = System.Drawing.Color.Black;
+
+        /*************************************************************************************************************************/
+        // CONSTRUCTORS
 
         public ColorType()
         {
@@ -29,6 +35,9 @@ namespace Diagram
         {
             this.color = colorType.color;
         }
+
+        /*************************************************************************************************************************/
+        // SETERS AND GETERS
 
         public void set(ColorType colorType)
         {
@@ -50,6 +59,11 @@ namespace Diagram
             return color;
         }
 
+        /*************************************************************************************************************************/
+        // CONVERSION
+
+        /// <summary>
+        /// convert system color to string</summary>
         public override string ToString()
         {
             return System.Drawing.ColorTranslator.ToHtml(color);

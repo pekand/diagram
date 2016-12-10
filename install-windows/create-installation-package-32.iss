@@ -48,7 +48,6 @@ Source: "files\Microsoft.Scripting.AspNet.dll"; DestDir: "{app}"; Flags: ignorev
 Source: "files\Microsoft.Scripting.Metadata.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "files\NCalc.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "files\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "files\ReleaseNote.html"; DestDir: "{app}"; Flags: ignoreversion
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

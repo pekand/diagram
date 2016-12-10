@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
+using System.IO.Compression;
+using System.ComponentModel;
 
 #if !MONO
 using System.Runtime.InteropServices;
@@ -9,8 +11,14 @@ using System.Runtime.InteropServices;
 
 namespace Diagram
 {
-    class Media
+
+    /// <summary>
+    /// repository for screen and images related functions</summary>
+    public class Media
     {
+        /*************************************************************************************************************************/
+        // SCREEN
+
         /// <summary>
         /// get active form screen width </summary>
         public static int screenWidth(Form form)
@@ -25,6 +33,9 @@ namespace Diagram
             return Screen.FromControl(form).Bounds.Size.Height;
         }
 
+        /*************************************************************************************************************************/
+        // COLOR
+
         /// <summary>
         /// convert hexidecimal html color to Color object </summary>
         public static Color getColor(string color)
@@ -32,13 +43,16 @@ namespace Diagram
             return System.Drawing.ColorTranslator.FromHtml(color);
         }
 
+        /*************************************************************************************************************************/
+        // BITMAPS
+
         /// <summary>
         /// load image from file </summary>
         public static Bitmap getImage(string file)
         {
             try
             {
-                return new Bitmap(file);
+                return  (Bitmap)Image.FromFile(file, true);
             }
             catch (Exception e)
             {
@@ -48,10 +62,95 @@ namespace Diagram
             return null;
         }
 
+        /// <summary>
+        /// load icon from file </summary>
+        public static Icon getIcon(string file)
+        {
+            try
+            {
+                return new Icon(file);
+            }
+            catch (Exception e)
+            {
+                Program.log.write("getIcon: " + e.Message);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// convert Bitmap to base64 string </summary>
+        public static string ImageToString(Bitmap image)
+        {
+            try
+            {
+                using (MemoryStream ms = new MemoryStream()) // result from bitmap to stream
+                {
+                    image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    return Compress.ZipStream(ms);
+                }
+            }
+            catch (Exception e)
+            {
+                Program.log.write("BitmapToString error: " + e.Message);
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// convert base64 string to Icon</summary>
+        public static Bitmap StringToImage(string bitmap)
+        {
+            try
+            {
+                MemoryStream ms = new MemoryStream(); // input stream for gzip
+                Compress.UnzipStream(bitmap, ms);
+                return new Bitmap(ms);
+            }
+            catch (Exception e)
+            {
+                Program.log.write("StringToBitmap error: " + e.Message);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// convert Bitmap to base64 string </summary>
+        public static string BitmapToString(Bitmap image)
+        {
+            try
+            {
+                TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
+                return Convert.ToBase64String(
+                    (byte[])converter.ConvertTo(image, typeof(byte[]))
+                );
+            }
+            catch (Exception e)
+            {
+                Program.log.write("StringToBitmap error: " + e.Message);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// convert Bitmap to base64 string </summary>
+        public static Bitmap StringToBitmap(String str)
+        {
+            return new Bitmap(
+                new MemoryStream(
+                    Convert.FromBase64String(str)
+                )
+            );
+        }
+
+        /*************************************************************************************************************************/
+        // FOCUS
+
 #if !MONO
         [DllImport("User32.dll")]
         public static extern Int32 SetForegroundWindow(int hWnd);
 #endif
+
         /// <summary>
         /// bring form to foreground </summary>
         public static void bringToFront(Form form)   // [focus]
@@ -84,6 +183,11 @@ namespace Diagram
             });
         }
 
+        /*************************************************************************************************************************/
+        // ICONS
+
+        /// <summary>
+        /// extract icon from executable</summary>
         public static Bitmap extractSystemIcon(string path)
         {
 #if !MONO
@@ -104,6 +208,8 @@ namespace Diagram
 
         }
 
+        /// <summary>
+        /// extract icon from link file</summary>
         public static Bitmap extractLnkIcon(string path)
         {
 #if !MONO
@@ -148,6 +254,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
+                Program.log.write("IconToString error: " + e.Message);
                 return "";
             }
         }
@@ -166,8 +273,10 @@ namespace Diagram
             }
             catch (Exception e)
             {
+                Program.log.write("StringToIcon error: " + e.Message);
                 return null;
             }
         }
+        
     }
 }

@@ -10,6 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+ 
+*/
+
 namespace Diagram
 {
     public partial class ColorPickerForm : Form
@@ -19,13 +23,13 @@ namespace Diagram
 
         public ColorType color = new ColorType();
 
-        Bitmap bmp = null;
+        private Bitmap bmp = null;
 
         bool selecting = false;
 
-        int b = 0;
+        private int b = 0;
         private PictureBox pictureBox1;
-        Position position = new Position();
+        private Position position = new Position();
 
 		/// <summary>
 		/// Required method for Designer support - do not modify
@@ -127,7 +131,7 @@ namespace Diagram
             this.Top = Screen.FromControl(this).Bounds.Height - this.Height - 100;
         }
 
-        Color convert(int x, int y)
+        private Color convert(int x, int y)
         {
             int r,g,b;
 
@@ -140,7 +144,7 @@ namespace Diagram
             return Color.FromArgb(r,g,b);
         }
 
-        Color convert(int t)
+        private Color convert(int t)
         {
             int r, g, b;
 

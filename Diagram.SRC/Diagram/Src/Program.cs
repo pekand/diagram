@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Diagnostics;
 
 // [VERSION]
-[assembly: AssemblyVersion("0.5.0.2")]
+[assembly: AssemblyVersion("0.5.0.14")]
 
 /*! \mainpage Infinite diagram
  *
@@ -17,7 +17,7 @@ namespace Diagram
 {
     /// <summary>
     /// Application entry point</summary>
-    static class Program
+    public static class Program
     {
         /// <summary>
         /// debuging console for loging messages</summary>
@@ -26,6 +26,9 @@ namespace Diagram
         /// <summary>
         /// create main class which oppening forms</summary>
         private static Main main = null;
+
+        /*************************************************************************************************************************/
+        // TOOLS
 
         /// <summary>
         /// get current app version</summary>
@@ -42,8 +45,11 @@ namespace Diagram
             return System.Reflection.Assembly.GetExecutingAssembly().Location;
         }
 
+        /*************************************************************************************************************************/
+        // MAIN APPLICATION START
+
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Program.log.write("Start application: " + GetLocation());
 

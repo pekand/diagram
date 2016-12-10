@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Diagram
 {
-
-    // container for part of diagram
+    /// <summary>
+    /// container for manipulation with part of diagram</summary> 
     public class DiagramBlock
     {
         public Nodes nodes = new Nodes();
