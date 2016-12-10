@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Diagram
 {
@@ -72,6 +73,10 @@ namespace Diagram
         public String texteditor = "subl \"%FILENAME%\":%LINE%";
 #endif
 
+        /// <summary>
+        /// recently opened files</summary>
+        public IList<String> recentFiles = new List<String>();
+
         /*************************************************************************************************************************/
 
         /// <summary>
@@ -83,7 +88,45 @@ namespace Diagram
             this.proxy_password = options.proxy_password;
             this.server_default_port = options.server_default_port;
             this.texteditor = options.texteditor;
+
+            this.recentFiles.Clear();
+            foreach (String path in options.recentFiles) {
+                this.recentFiles.Add(path);
+            }
+
+            this.removeOldRecentFiles();
         }
 
+        /*************************************************************************************************************************/
+        // Recent files
+
+        /// <summary>
+        /// add path to recent files</summary>
+        public void addRecentFile(String path)
+        {
+            if (Os.FileExists(path))
+            {
+                if (!this.recentFiles.Contains(path))
+                {
+                    this.recentFiles.Add(path);                                        
+                }
+            }
+        }
+
+        /// <summary>
+        /// remove old not existing diagrams from recent files</summary>
+        public void removeOldRecentFiles()
+        {
+            IList<String> newRecentFiles = new List<String>();
+
+            foreach (String path in this.recentFiles)
+            {
+                if(Os.FileExists(path))
+                {
+                    newRecentFiles.Add(path);
+                }
+            }
+            this.recentFiles = newRecentFiles;
+        }
     }
 }

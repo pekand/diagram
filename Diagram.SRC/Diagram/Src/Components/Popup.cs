@@ -38,7 +38,9 @@ namespace Diagram
             items["coordinatesItem"].Checked = this.diagramView.diagram.options.coordinates;
             items["readonlyItem"].Checked = this.diagramView.diagram.options.readOnly;
         }
-			
+
+        public ToolStripItem[] recentItems = null;
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -233,6 +235,12 @@ namespace Diagram
             items["openItem"].Text = "Open";
             items["openItem"].Click += new System.EventHandler(this.openItem_Click);
             //
+            // openItem
+            //
+            items.Add("recentItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["recentItem"].Name = "recentItem";
+            items["recentItem"].Text = "Recent";
+            //
             // exitItem
             //
             items.Add("exitItem", new System.Windows.Forms.ToolStripMenuItem());
@@ -249,6 +257,7 @@ namespace Diagram
                 items["saveAsItem"],
                 items["exportItem"],
                 items["openItem"],
+                items["recentItem"],
                 items["exitItem"]
             });
             items["fileItem"].Name = "fileItem";
@@ -992,6 +1001,25 @@ namespace Diagram
             {
                 items["pasteItem"].Enabled = false;
             }
+
+            // add recent files
+            if (recentItems != null && recentItems.Count() > 0) {
+                items["recentItem"].DropDownItems.Clear();
+            }
+
+            recentItems = new System.Windows.Forms.ToolStripItem[this.diagramView.main.options.recentFiles.Count()];
+            int i = 0;
+            foreach (String path in this.diagramView.main.options.recentFiles)
+            {
+                recentItems[i] = new System.Windows.Forms.ToolStripMenuItem();
+                recentItems[i].Name = "recent"+i+"Item";
+                recentItems[i].Text = Os.getFileNameWithoutExtension(path);
+                recentItems[i].Tag = path;
+                recentItems[i].Click += new System.EventHandler(this.recentItem_Click);
+                i++;
+            }
+
+            items["recentItem"].DropDownItems.AddRange(recentItems);
         }
 
         // QUICK ACTIONS
@@ -1161,6 +1189,13 @@ namespace Diagram
         public void openItem_Click(object sender, EventArgs e)
         {
             this.diagramView.open();
+        }
+
+        // MENU Open
+        public void recentItem_Click(object sender, EventArgs e)
+        {
+            String path = (string)((ToolStripMenuItem)sender).Tag;
+            this.diagramView.open(path);
         }
 
         // MENU Exit

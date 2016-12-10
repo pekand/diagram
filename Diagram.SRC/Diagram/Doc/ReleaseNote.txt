@@ -1,4 +1,5 @@
-﻿0.5.0.13 migrate to visual studio 2017
+﻿0.5.0.14 open recent files
+0.5.0.13 migrate to visual studio 2017
 0.5.0.12 go to node with @end and @home mark in link
 0.5.0.11 add more image types to change diagram icons
 0.5.0.10 change remove backround dialog text

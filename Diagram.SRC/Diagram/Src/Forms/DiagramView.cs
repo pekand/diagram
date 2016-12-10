@@ -3334,8 +3334,9 @@ namespace Diagram
         public bool saveas()
         {
             if (this.DSave.ShowDialog() == DialogResult.OK)
-            {
+            {                
                 this.diagram.saveas(this.DSave.FileName);
+                this.main.options.addRecentFile(this.DSave.FileName);
                 return true;
             }
             else
@@ -3352,18 +3353,26 @@ namespace Diagram
                 if (Os.FileExists(DOpen.FileName))
                 {
                     if (Os.getExtension(DOpen.FileName).ToLower() == ".diagram")
-                    {
-                        main.OpenDiagram(DOpen.FileName);
-
-                        if (this.diagram.isNew())
-                        {
-                            this.Close();
-                        }
+                    {                        
+                        this.open(DOpen.FileName);
                     }
                     else
                     {
                         MessageBox.Show(Translations.wrongFileExtenson);
                     }
+                }
+            }
+        }
+
+        // FILE Open - Open diagram dialog
+        public void open(String path)
+        {
+            if (Os.FileExists(path))
+            {
+                this.main.OpenDiagram(path);
+                if (this.diagram.isNew())
+                {
+                    this.Close();
                 }
             }
         }

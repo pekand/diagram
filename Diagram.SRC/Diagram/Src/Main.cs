@@ -350,6 +350,7 @@ namespace Diagram
                                 // create new model
                                 if (diagram.OpenFile(FilePath))
                                 {
+                                    this.options.addRecentFile(FilePath);
                                     Diagrams.Add(diagram);
                                     // open diagram view on diagram model
                                     diagram.openDiagramView();
