@@ -4252,7 +4252,7 @@ namespace Diagram
                 if ((int)result == 2)
                 {
                    this.SelectOnlyOneNode(rec);
-                   this.attachmentDeploy();
+                   this.AttachmentDeploy();
                 }
             };
             worker.RunWorkerAsync();
