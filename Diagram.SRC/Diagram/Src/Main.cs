@@ -37,7 +37,7 @@ namespace Diagram
         /// open directori with global configuration</summary>
         public void openConfigDir()
         {
-            this.optionsFile.showDirectoryWithConfiguration();
+            this.optionsFile.ShowDirectoryWithConfiguration();
         }
 
         /*************************************************************************************************************************/
@@ -140,7 +140,7 @@ namespace Diagram
                 else
                 {
                     // [COMAND LINE] [OPEN] check if argument is diagram file
-                    if (Os.getExtension(arg).ToLower() == ".diagram")
+                    if (Os.GetExtension(arg).ToLower() == ".diagram")
                     {
                         CommandLineOpen.Add(arg);
                     }
@@ -163,7 +163,7 @@ namespace Diagram
                     {
                         try
                         {
-                            Os.createEmptyFile(file);
+                            Os.CreateEmptyFile(file);
                         }
                         catch (Exception ex)
                         {
@@ -244,7 +244,7 @@ namespace Diagram
                 console.Close();
             }
 
-            this.optionsFile.saveConfigFile();
+            this.optionsFile.SaveConfigFile();
             Application.Exit();
             Application.ExitThread();
             Environment.Exit(0);
@@ -293,7 +293,7 @@ namespace Diagram
                     Diagram diagram = new Diagram(this);
                     Diagrams.Add(diagram);
                     // open diagram view on diagram model
-                    diagram.openDiagramView();
+                    diagram.OpenDiagramView();
                 }
             }
             // open existing diagram file
@@ -306,7 +306,7 @@ namespace Diagram
 
                 if (Os.FileExists(FilePath))
                 {
-                    FilePath = Os.getFullPath(FilePath);
+                    FilePath = Os.GetFullPath(FilePath);
 
                     // if server already exist in system, send him message whitch open diagram file
                     if (!server.mainProcess)
@@ -350,10 +350,10 @@ namespace Diagram
                                 // create new model
                                 if (diagram.OpenFile(FilePath))
                                 {
-                                    this.options.addRecentFile(FilePath);
+                                    this.options.AddRecentFile(FilePath);
                                     Diagrams.Add(diagram);
                                     // open diagram view on diagram model
-                                    diagram.openDiagramView();
+                                    diagram.OpenDiagramView();
                                 }
                             }
                         }
@@ -583,7 +583,7 @@ namespace Diagram
         {
             foreach (Diagram diagram in Diagrams)
             {
-                diagram.lockDiagram();
+                diagram.LockDiagram();
             }
         }
 
@@ -593,7 +593,7 @@ namespace Diagram
         {
             foreach (Diagram diagram in Diagrams)
             {
-                diagram.unlockDiagram();
+                diagram.UnlockDiagram();
             }
         }
 #endif

@@ -55,28 +55,28 @@ namespace Diagram
             items.Add("editItem", new System.Windows.Forms.ToolStripMenuItem());
             items["editItem"].Name = "editItem";
             items["editItem"].Text = "Edit";
-            items["editItem"].Click += new System.EventHandler(this.editItem_Click);
+            items["editItem"].Click += new System.EventHandler(this.EditItem_Click);
             //
             // colorItem
             //
             items.Add("colorItem", new System.Windows.Forms.ToolStripMenuItem());
             items["colorItem"].Name = "colorItem";
             items["colorItem"].Text = "Color";
-            items["colorItem"].Click += new System.EventHandler(this.colorItem_Click);
+            items["colorItem"].Click += new System.EventHandler(this.ColorItem_Click);
             //
             // openlinkItem
             //
             items.Add("openlinkItem", new System.Windows.Forms.ToolStripMenuItem());
             items["openlinkItem"].Name = "openlinkItem";
             items["openlinkItem"].Text = "Open";
-            items["openlinkItem"].Click += new System.EventHandler(this.openlinkItem_Click);
+            items["openlinkItem"].Click += new System.EventHandler(this.OpenlinkItem_Click);
             //
             // openLinkDirectoryItem
             //
             items.Add("openLinkDirectoryItem", new System.Windows.Forms.ToolStripMenuItem());
             items["openLinkDirectoryItem"].Name = "openLinkDirectoryItem";
             items["openLinkDirectoryItem"].Text = "Open directory";
-            items["openLinkDirectoryItem"].Click += new System.EventHandler(this.openLinkDirectoryItem_Click);
+            items["openLinkDirectoryItem"].Click += new System.EventHandler(this.OpenLinkDirectoryItem_Click);
             //
             // linkItem
             //
@@ -93,49 +93,49 @@ namespace Diagram
             items.Add("leftItem", new System.Windows.Forms.ToolStripMenuItem());
             items["leftItem"].Name = "leftItem";
             items["leftItem"].Text = "Left";
-            items["leftItem"].Click += new System.EventHandler(this.leftItem_Click);
+            items["leftItem"].Click += new System.EventHandler(this.LeftItem_Click);
             //
             // rightItem
             //
             items.Add("rightItem", new System.Windows.Forms.ToolStripMenuItem());
             items["rightItem"].Name = "rightItem";
             items["rightItem"].Text = "Right";
-            items["rightItem"].Click += new System.EventHandler(this.rightItem_Click);
+            items["rightItem"].Click += new System.EventHandler(this.RightItem_Click);
             //
             // toLineItem
             //
             items.Add("toLineItem", new System.Windows.Forms.ToolStripMenuItem());
             items["toLineItem"].Name = "toLineItem";
             items["toLineItem"].Text = "To line";
-            items["toLineItem"].Click += new System.EventHandler(this.toLineItem_Click);
+            items["toLineItem"].Click += new System.EventHandler(this.ToLineItem_Click);
             //
             // inColumnItem
             //
             items.Add("inColumnItem", new System.Windows.Forms.ToolStripMenuItem());
             items["inColumnItem"].Name = "inColumnItem";
             items["inColumnItem"].Text = "In column";
-            items["inColumnItem"].Click += new System.EventHandler(this.inColumnItem_Click);
+            items["inColumnItem"].Click += new System.EventHandler(this.InColumnItem_Click);
             //
             // groupVericalItem
             //
             items.Add("groupVericalItem", new System.Windows.Forms.ToolStripMenuItem());
             items["groupVericalItem"].Name = "groupVericalItem";
             items["groupVericalItem"].Text = "Group vertical";
-            items["groupVericalItem"].Click += new System.EventHandler(this.groupVericalItem_Click);
+            items["groupVericalItem"].Click += new System.EventHandler(this.GroupVericalItem_Click);
             //
             // groupHorizontalItem
             //
             items.Add("groupHorizontalItem", new System.Windows.Forms.ToolStripMenuItem());
             items["groupHorizontalItem"].Name = "groupHorizontalItem";
             items["groupHorizontalItem"].Text = "Group horizontal";
-            items["groupHorizontalItem"].Click += new System.EventHandler(this.groupHorizontalItem_Click);
+            items["groupHorizontalItem"].Click += new System.EventHandler(this.GroupHorizontalItem_Click);
             //
             // sortItem
             //
             items.Add("sortItem", new System.Windows.Forms.ToolStripMenuItem());
             items["sortItem"].Name = "sortItem";
             items["sortItem"].Text = "Sort";
-            items["sortItem"].Click += new System.EventHandler(this.sortItem_Click);
+            items["sortItem"].Click += new System.EventHandler(this.SortItem_Click);
             //
             // alignItem
             //
@@ -162,21 +162,21 @@ namespace Diagram
             items.Add("copyItem", new System.Windows.Forms.ToolStripMenuItem());
             items["copyItem"].Name = "copyItem";
             items["copyItem"].Text = "Copy";
-            items["copyItem"].Click += new System.EventHandler(this.copyItem_Click);
+            items["copyItem"].Click += new System.EventHandler(this.CopyItem_Click);
             //
             // cutItem
             //
             items.Add("cutItem", new System.Windows.Forms.ToolStripMenuItem());
             items["cutItem"].Name = "cutItem";
             items["cutItem"].Text = "Cut";
-            items["cutItem"].Click += new System.EventHandler(this.cutItem_Click);
+            items["cutItem"].Click += new System.EventHandler(this.CutItem_Click);
             //
             // pasteItem
             //
             items.Add("pasteItem", new System.Windows.Forms.ToolStripMenuItem());
             items["pasteItem"].Name = "pasteItem";
             items["pasteItem"].Text = "Paste";
-            items["pasteItem"].Click += new System.EventHandler(this.pasteItem_Click);
+            items["pasteItem"].Click += new System.EventHandler(this.PasteItem_Click);
             //
             // editSeparator
             //
@@ -188,35 +188,35 @@ namespace Diagram
             items.Add("newItem", new System.Windows.Forms.ToolStripMenuItem());
             items["newItem"].Name = "newItem";
             items["newItem"].Text = "New";
-            items["newItem"].Click += new System.EventHandler(this.newItem_Click);
+            items["newItem"].Click += new System.EventHandler(this.NewItem_Click);
             //
             // saveItem
             //
             items.Add("saveItem", new System.Windows.Forms.ToolStripMenuItem());
             items["saveItem"].Name = "saveItem";
             items["saveItem"].Text = "Save";
-            items["saveItem"].Click += new System.EventHandler(this.saveItem_Click);
+            items["saveItem"].Click += new System.EventHandler(this.SaveItem_Click);
             //
             // saveAsItem
             //
             items.Add("saveAsItem", new System.Windows.Forms.ToolStripMenuItem());
             items["saveAsItem"].Name = "saveAsItem";
             items["saveAsItem"].Text = "Save As";
-            items["saveAsItem"].Click += new System.EventHandler(this.saveAsItem_Click);
+            items["saveAsItem"].Click += new System.EventHandler(this.SaveAsItem_Click);
             //
             // textItem
             //
             items.Add("textItem", new System.Windows.Forms.ToolStripMenuItem());
             items["textItem"].Name = "textItem";
             items["textItem"].Text = "Text";
-            items["textItem"].Click += new System.EventHandler(this.textItem_Click);
+            items["textItem"].Click += new System.EventHandler(this.TextItem_Click);
             //
             // exportToPngItem
             //
             items.Add("exportToPngItem", new System.Windows.Forms.ToolStripMenuItem());
             items["exportToPngItem"].Name = "exportToPngItem";
             items["exportToPngItem"].Text = "Export to png";
-            items["exportToPngItem"].Click += new System.EventHandler(this.exportToPngItem_Click);
+            items["exportToPngItem"].Click += new System.EventHandler(this.ExportToPngItem_Click);
             //
             // exportItem
             //
@@ -233,7 +233,7 @@ namespace Diagram
             items.Add("openItem", new System.Windows.Forms.ToolStripMenuItem());
             items["openItem"].Name = "openItem";
             items["openItem"].Text = "Open";
-            items["openItem"].Click += new System.EventHandler(this.openItem_Click);
+            items["openItem"].Click += new System.EventHandler(this.OpenItem_Click);
             //
             // openItem
             //
@@ -246,7 +246,7 @@ namespace Diagram
             items.Add("exitItem", new System.Windows.Forms.ToolStripMenuItem());
             items["exitItem"].Name = "exitItem";
             items["exitItem"].Text = "Exit";
-            items["exitItem"].Click += new System.EventHandler(this.exitItem_Click);
+            items["exitItem"].Click += new System.EventHandler(this.ExitItem_Click);
             //
             // fileItem
             //
@@ -268,7 +268,7 @@ namespace Diagram
             items.Add("copyLinkItem", new System.Windows.Forms.ToolStripMenuItem());
             items["copyLinkItem"].Name = "copyLinkItem";
             items["copyLinkItem"].Text = "Copy link";
-            items["copyLinkItem"].Click += new System.EventHandler(this.copyLinkItem_Click);
+            items["copyLinkItem"].Click += new System.EventHandler(this.CopyLinkItem_Click);
 
             //
             // undoItem
@@ -276,35 +276,35 @@ namespace Diagram
             items.Add("undoItem", new System.Windows.Forms.ToolStripMenuItem());
             items["undoItem"].Name = "undoItem";
             items["undoItem"].Text = "Undo";
-            items["undoItem"].Click += new System.EventHandler(this.undoItem_Click);
+            items["undoItem"].Click += new System.EventHandler(this.UndoItem_Click);
             //
             // redoItem
             //
             items.Add("redoItem", new System.Windows.Forms.ToolStripMenuItem());
             items["redoItem"].Name = "redoItem";
             items["redoItem"].Text = "Redo";
-            items["redoItem"].Click += new System.EventHandler(this.redoItem_Click);
+            items["redoItem"].Click += new System.EventHandler(this.RedoItem_Click);
             //
             // copyNoteItem
             //
             items.Add("copyNoteItem", new System.Windows.Forms.ToolStripMenuItem());
             items["copyNoteItem"].Name = "copyNoteItem";
             items["copyNoteItem"].Text = "Copy note";
-            items["copyNoteItem"].Click += new System.EventHandler(this.copyNoteItem_Click);
+            items["copyNoteItem"].Click += new System.EventHandler(this.CopyNoteItem_Click);
             //
             // pasteToLinkItem
             //
             items.Add("pasteToLinkItem", new System.Windows.Forms.ToolStripMenuItem());
             items["pasteToLinkItem"].Name = "pasteToLinkItem";
             items["pasteToLinkItem"].Text = "Paste to link";
-            items["pasteToLinkItem"].Click += new System.EventHandler(this.pasteToLinkItem_Click);
+            items["pasteToLinkItem"].Click += new System.EventHandler(this.PasteToLinkItem_Click);
             //
             // pasteToNoteItem
             //
             items.Add("pasteToNoteItem", new System.Windows.Forms.ToolStripMenuItem());
             items["pasteToNoteItem"].Name = "pasteToNoteItem";
             items["pasteToNoteItem"].Text = "Paste to note";
-            items["pasteToNoteItem"].Click += new System.EventHandler(this.pasteToNoteItem_Click);
+            items["pasteToNoteItem"].Click += new System.EventHandler(this.PasteToNoteItem_Click);
             //
             // editMenuItem
             //
@@ -325,56 +325,56 @@ namespace Diagram
             items.Add("transparentItem", new System.Windows.Forms.ToolStripMenuItem());
             items["transparentItem"].Name = "transparentItem";
             items["transparentItem"].Text = "Transparent";
-            items["transparentItem"].Click += new System.EventHandler(this.transparentItem_Click);
+            items["transparentItem"].Click += new System.EventHandler(this.TransparentItem_Click);
             //
             // fontItem
             //
             items.Add("fontItem", new System.Windows.Forms.ToolStripMenuItem());
             items["fontItem"].Name = "fontItem";
             items["fontItem"].Text = "Font";
-            items["fontItem"].Click += new System.EventHandler(this.fontItem_Click);
+            items["fontItem"].Click += new System.EventHandler(this.FontItem_Click);
             //
             // fontColorItem
             //
             items.Add("fontColorItem", new System.Windows.Forms.ToolStripMenuItem());
             items["fontColorItem"].Name = "fontColorItem";
             items["fontColorItem"].Text = "Font color";
-            items["fontColorItem"].Click += new System.EventHandler(this.fontColorItem_Click);
+            items["fontColorItem"].Click += new System.EventHandler(this.FontColorItem_Click);
             //
             // editLinkItem
             //
             items.Add("editLinkItem", new System.Windows.Forms.ToolStripMenuItem());
             items["editLinkItem"].Name = "editLinkItem";
             items["editLinkItem"].Text = "Edit link";
-            items["editLinkItem"].Click += new System.EventHandler(this.editLinkItem_Click);
+            items["editLinkItem"].Click += new System.EventHandler(this.EditLinkItem_Click);
             //
             // bringTopItem
             //
             items.Add("bringTopItem", new System.Windows.Forms.ToolStripMenuItem());
             items["bringTopItem"].Name = "bringTopItem";
             items["bringTopItem"].Text = "Bring to top";
-            items["bringTopItem"].Click += new System.EventHandler(this.bringTopItem_Click);
+            items["bringTopItem"].Click += new System.EventHandler(this.BringTopItem_Click);
             //
             // bringBottomItem
             //
             items.Add("bringBottomItem", new System.Windows.Forms.ToolStripMenuItem());
             items["bringBottomItem"].Name = "bringBottomItem";
             items["bringBottomItem"].Text = "Bring to bottom";
-            items["bringBottomItem"].Click += new System.EventHandler(this.bringBottomItem_Click);
+            items["bringBottomItem"].Click += new System.EventHandler(this.BringBottomItem_Click);
             //
             // removeShortcutItem
             //
             items.Add("removeShortcutItem", new System.Windows.Forms.ToolStripMenuItem());
             items["removeShortcutItem"].Name = "removeShortcutItem";
             items["removeShortcutItem"].Text = "Remove shortcut";
-            items["removeShortcutItem"].Click += new System.EventHandler(this.removeShortcutItem_Click);
+            items["removeShortcutItem"].Click += new System.EventHandler(this.RemoveShortcutItem_Click);
             //
             // protectItem
             //
             items.Add("protectItem", new System.Windows.Forms.ToolStripMenuItem());
             items["protectItem"].Name = "protectItem";
             items["protectItem"].Text = "Protect";
-            items["protectItem"].Click += new System.EventHandler(this.protectItem_Click);
+            items["protectItem"].Click += new System.EventHandler(this.ProtectItem_Click);
             //
             // nodeItem
             //
@@ -397,14 +397,14 @@ namespace Diagram
             items.Add("lineColorItem", new System.Windows.Forms.ToolStripMenuItem());
             items["lineColorItem"].Name = "lineColorItem";
             items["lineColorItem"].Text = "Color";
-            items["lineColorItem"].Click += new System.EventHandler(this.lineColorItem_Click);
+            items["lineColorItem"].Click += new System.EventHandler(this.LineColorItem_Click);
             //
             // lineWidthItem
             //
             items.Add("lineWidthItem", new System.Windows.Forms.ToolStripMenuItem());
             items["lineWidthItem"].Name = "lineWidthItem";
             items["lineWidthItem"].Text = "Width";
-            items["lineWidthItem"].Click += new System.EventHandler(this.lineWidthItem_Click);
+            items["lineWidthItem"].Click += new System.EventHandler(this.LineWidthItem_Click);
             //
             // lineItem
             //
@@ -421,21 +421,21 @@ namespace Diagram
             items.Add("imageAddItem", new System.Windows.Forms.ToolStripMenuItem());
             items["imageAddItem"].Name = "imageAddItem";
             items["imageAddItem"].Text = "Add image";
-            items["imageAddItem"].Click += new System.EventHandler(this.imageAddItem_Click);
+            items["imageAddItem"].Click += new System.EventHandler(this.ImageAddItem_Click);
             //
             // imageRemoveItem
             //
             items.Add("imageRemoveItem", new System.Windows.Forms.ToolStripMenuItem());
             items["imageRemoveItem"].Name = "imageRemoveItem";
             items["imageRemoveItem"].Text = "Remove image";
-            items["imageRemoveItem"].Click += new System.EventHandler(this.imageRemoveItem_Click);
+            items["imageRemoveItem"].Click += new System.EventHandler(this.ImageRemoveItem_Click);
             //
             // imageEmbeddedItem
             //
             items.Add("imageEmbeddedItem", new System.Windows.Forms.ToolStripMenuItem());
             items["imageEmbeddedItem"].Name = "imageEmbeddedItem";
             items["imageEmbeddedItem"].Text = "Embed image";
-            items["imageEmbeddedItem"].Click += new System.EventHandler(this.imageEmbeddedItem_Click);
+            items["imageEmbeddedItem"].Click += new System.EventHandler(this.ImageEmbeddedItem_Click);
             //
             // imageItem
             //
@@ -453,28 +453,28 @@ namespace Diagram
             items.Add("deploayAttachmentItem", new System.Windows.Forms.ToolStripMenuItem());
             items["deploayAttachmentItem"].Name = "deploayAttachmentItem";
             items["deploayAttachmentItem"].Text = "Deploy attachment";
-            items["deploayAttachmentItem"].Click += new System.EventHandler(this.deploayAttachmentItem_Click);
+            items["deploayAttachmentItem"].Click += new System.EventHandler(this.DeploayAttachmentItem_Click);
             //
             // includeFileItem
             //
             items.Add("includeFileItem", new System.Windows.Forms.ToolStripMenuItem());
             items["includeFileItem"].Name = "includeFileItem";
             items["includeFileItem"].Text = "Add file";
-            items["includeFileItem"].Click += new System.EventHandler(this.includeFileItem_Click);
+            items["includeFileItem"].Click += new System.EventHandler(this.IncludeFileItem_Click);
             //
             // includeDirectoryItem
             //
             items.Add("includeDirectoryItem", new System.Windows.Forms.ToolStripMenuItem());
             items["includeDirectoryItem"].Name = "includeDirectoryItem";
             items["includeDirectoryItem"].Text = "Add directory";
-            items["includeDirectoryItem"].Click += new System.EventHandler(this.includeDirectoryItem_Click);
+            items["includeDirectoryItem"].Click += new System.EventHandler(this.IncludeDirectoryItem_Click);
             //
             // removeAttachmentItem
             //
             items.Add("removeAttachmentItem", new System.Windows.Forms.ToolStripMenuItem());
             items["removeAttachmentItem"].Name = "removeAttachmentItem";
             items["removeAttachmentItem"].Text = "Remove";
-            items["removeAttachmentItem"].Click += new System.EventHandler(this.removeFileItem_Click);
+            items["removeAttachmentItem"].Click += new System.EventHandler(this.RemoveFileItem_Click);
             //
             // attachmentItem
             //
@@ -493,28 +493,28 @@ namespace Diagram
             items.Add("newViewItem", new System.Windows.Forms.ToolStripMenuItem());
             items["newViewItem"].Name = "newViewItem";
             items["newViewItem"].Text = "New View";
-            items["newViewItem"].Click += new System.EventHandler(this.newViewItem_Click);
+            items["newViewItem"].Click += new System.EventHandler(this.NewViewItem_Click);
             //
             // centerItem
             //
             items.Add("centerItem", new System.Windows.Forms.ToolStripMenuItem());
             items["centerItem"].Name = "centerItem";
             items["centerItem"].Text = "Center";
-            items["centerItem"].Click += new System.EventHandler(this.centerItem_Click);
+            items["centerItem"].Click += new System.EventHandler(this.CenterItem_Click);
             //
             // setStartPositionItem
             //
             items.Add("setStartPositionItem", new System.Windows.Forms.ToolStripMenuItem());
             items["setStartPositionItem"].Name = "setStartPositionItem";
             items["setStartPositionItem"].Text = "Set start position";
-            items["setStartPositionItem"].Click += new System.EventHandler(this.setStartPositionItem_Click);
+            items["setStartPositionItem"].Click += new System.EventHandler(this.SetStartPositionItem_Click);
             //
             // refreshItem
             //
             items.Add("refreshItem", new System.Windows.Forms.ToolStripMenuItem());
             items["refreshItem"].Name = "refreshItem";
             items["refreshItem"].Text = "Refresh";
-            items["refreshItem"].Click += new System.EventHandler(this.refreshItem_Click);
+            items["refreshItem"].Click += new System.EventHandler(this.RefreshItem_Click);
             //
             // viewItem
             //
@@ -533,14 +533,14 @@ namespace Diagram
             items.Add("inItem", new System.Windows.Forms.ToolStripMenuItem());
             items["inItem"].Name = "inItem";
             items["inItem"].Text = "In";
-            items["inItem"].Click += new System.EventHandler(this.inItem_Click);
+            items["inItem"].Click += new System.EventHandler(this.InItem_Click);
             //
             // outItem
             //
             items.Add("outItem", new System.Windows.Forms.ToolStripMenuItem());
             items["outItem"].Name = "outItem";
             items["outItem"].Text = "Out";
-            items["outItem"].Click += new System.EventHandler(this.outItem_Click);
+            items["outItem"].Click += new System.EventHandler(this.OutItem_Click);
             //
             // layerItem
             //
@@ -562,14 +562,14 @@ namespace Diagram
             items.Add("openDiagramDirectoryItem", new System.Windows.Forms.ToolStripMenuItem());
             items["openDiagramDirectoryItem"].Name = "openDiagramDirectoryItem";
             items["openDiagramDirectoryItem"].Text = "Open Directory";
-            items["openDiagramDirectoryItem"].Click += new System.EventHandler(this.openDiagramDirectoryItem_Click);
+            items["openDiagramDirectoryItem"].Click += new System.EventHandler(this.OpenDiagramDirectoryItem_Click);
             //
             // openDiagramDirectoryItem
             //
             items.Add("splitNodeItem", new System.Windows.Forms.ToolStripMenuItem());
             items["splitNodeItem"].Name = "openDiagramDirectoryItem";
             items["splitNodeItem"].Text = "Split node";
-            items["splitNodeItem"].Click += new System.EventHandler(this.splitNodeItem_Click);
+            items["splitNodeItem"].Click += new System.EventHandler(this.SplitNodeItem_Click);
             //
             // toolsItem
             //
@@ -586,14 +586,14 @@ namespace Diagram
             items.Add("encryptItem", new System.Windows.Forms.ToolStripMenuItem());
             items["encryptItem"].Name = "encryptItem";
             items["encryptItem"].Text = "Encrypt";
-            items["encryptItem"].Click += new System.EventHandler(this.encryptItem_Click);
+            items["encryptItem"].Click += new System.EventHandler(this.EncryptItem_Click);
             //
             // changePasswordItem
             //
             items.Add("changePasswordItem", new System.Windows.Forms.ToolStripMenuItem());
             items["changePasswordItem"].Name = "changePasswordItem";
             items["changePasswordItem"].Text = "Change password";
-            items["changePasswordItem"].Click += new System.EventHandler(this.changePasswordItem_Click);
+            items["changePasswordItem"].Click += new System.EventHandler(this.ChangePasswordItem_Click);
             //
             // readonlyItem
             //
@@ -601,7 +601,7 @@ namespace Diagram
             items["readonlyItem"].CheckOnClick = true;
             items["readonlyItem"].Name = "readonlyItem";
             items["readonlyItem"].Text = "Read only";
-            items["readonlyItem"].Click += new System.EventHandler(this.readonlyItem_Click);
+            items["readonlyItem"].Click += new System.EventHandler(this.ReadonlyItem_Click);
             //
             // restoreWindowItem
             //
@@ -611,7 +611,7 @@ namespace Diagram
             items["restoreWindowItem"].CheckState = System.Windows.Forms.CheckState.Checked;
             items["restoreWindowItem"].Name = "restoreWindowItem";
             items["restoreWindowItem"].Text = "Restore window";
-            items["restoreWindowItem"].Click += new System.EventHandler(this.restoreWindowItem_Click);
+            items["restoreWindowItem"].Click += new System.EventHandler(this.RestoreWindowItem_Click);
             //
             // gridItem
             //
@@ -621,7 +621,7 @@ namespace Diagram
             items["gridItem"].CheckState = System.Windows.Forms.CheckState.Checked;
             items["gridItem"].Name = "gridItem";
             items["gridItem"].Text = "Grid";
-            items["gridItem"].Click += new System.EventHandler(this.gridItem_Click);
+            items["gridItem"].Click += new System.EventHandler(this.GridItem_Click);
             //
             // coordinatesItem
             //
@@ -630,7 +630,7 @@ namespace Diagram
             items["coordinatesItem"].Name = "coordinatesItem";
             items["coordinatesItem"].Text = "Coordinates";
             items["coordinatesItem"].Visible = false;
-            items["coordinatesItem"].Click += new System.EventHandler(this.coordinatesItem_Click);
+            items["coordinatesItem"].Click += new System.EventHandler(this.CoordinatesItem_Click);
             //
             // bordersItem
             //
@@ -638,49 +638,49 @@ namespace Diagram
             items["bordersItem"].CheckOnClick = true;
             items["bordersItem"].Name = "bordersItem";
             items["bordersItem"].Text = "Borders";
-            items["bordersItem"].Click += new System.EventHandler(this.bordersItem_Click);
+            items["bordersItem"].Click += new System.EventHandler(this.BordersItem_Click);
             //
             // defaultFontItem
             //
             items.Add("defaultFontItem", new System.Windows.Forms.ToolStripMenuItem());
             items["defaultFontItem"].Name = "defaultFontItem";
             items["defaultFontItem"].Text = "Default font";
-            items["defaultFontItem"].Click += new System.EventHandler(this.defaultFontItem_Click);
+            items["defaultFontItem"].Click += new System.EventHandler(this.DefaultFontItem_Click);
             //
             // resetFontItem
             //
             items.Add("resetFontItem", new System.Windows.Forms.ToolStripMenuItem());
             items["resetFontItem"].Name = "resetFontItem";
             items["resetFontItem"].Text = "Reset font";
-            items["resetFontItem"].Click += new System.EventHandler(this.resetFontItem_Click);
+            items["resetFontItem"].Click += new System.EventHandler(this.ResetFontItem_Click);
             //
             // setIconItem
             //
             items.Add("setIconItem", new System.Windows.Forms.ToolStripMenuItem());
             items["setIconItem"].Name = "setIconItem";
             items["setIconItem"].Text = "Set icon";
-            items["setIconItem"].Click += new System.EventHandler(this.setIconItem_Click);
+            items["setIconItem"].Click += new System.EventHandler(this.SetIconItem_Click);
             //
             // setBackgroundItem
             //
             items.Add("setBackgroundItem", new System.Windows.Forms.ToolStripMenuItem());
             items["setBackgroundItem"].Name = "setBackgroundItem";
             items["setBackgroundItem"].Text = "Set background image";
-            items["setBackgroundItem"].Click += new System.EventHandler(this.setBackgroundItem_Click);
+            items["setBackgroundItem"].Click += new System.EventHandler(this.SetBackgroundItem_Click);
             //
             // openLayerInNewViewItem
             //
             items.Add("openLayerInNewViewItem", new System.Windows.Forms.ToolStripMenuItem());
             items["openLayerInNewViewItem"].Name = "openLayerInNewViewItem";
             items["openLayerInNewViewItem"].Text = "Open layer in new view";
-            items["openLayerInNewViewItem"].Click += new System.EventHandler(this.openLayerInNewViewItem_Click);
+            items["openLayerInNewViewItem"].Click += new System.EventHandler(this.OpenLayerInNewViewItem_Click);
             //
             // openConfigDirItem
             //
             items.Add("openConfigDirItem", new System.Windows.Forms.ToolStripMenuItem());
             items["openConfigDirItem"].Name = "openConfigDirItem";
             items["openConfigDirItem"].Text = "Open config dir";
-            items["openConfigDirItem"].Click += new System.EventHandler(this.openConfigDirItem_Click);
+            items["openConfigDirItem"].Click += new System.EventHandler(this.OpenConfigDirItem_Click);
             //
             // optionItem
             //
@@ -709,21 +709,21 @@ namespace Diagram
             items["consoleItem"].Name = "consoleItem";
             items["consoleItem"].Text = "Debug Console";
             items["consoleItem"].Visible = false;
-            items["consoleItem"].Click += new System.EventHandler(this.consoleItem_Click);
+            items["consoleItem"].Click += new System.EventHandler(this.ConsoleItem_Click);
             //
             // visitWebsiteItem
             //
             items.Add("visitWebsiteItem", new System.Windows.Forms.ToolStripMenuItem());
             items["visitWebsiteItem"].Name = "visitWebsiteItem";
             items["visitWebsiteItem"].Text = "Visit homesite";
-            items["visitWebsiteItem"].Click += new System.EventHandler(this.visitWebsiteItem_Click);
+            items["visitWebsiteItem"].Click += new System.EventHandler(this.VisitWebsiteItem_Click);
             //
             // aboutItem
             //
             items.Add("aboutItem", new System.Windows.Forms.ToolStripMenuItem());
             items["aboutItem"].Name = "aboutItem";
             items["aboutItem"].Text = "About";
-            items["aboutItem"].Click += new System.EventHandler(this.aboutItem_Click);
+            items["aboutItem"].Click += new System.EventHandler(this.AboutItem_Click);
             //
             // helpItem
             //
@@ -774,7 +774,7 @@ namespace Diagram
         // MENU Manage                                                                                // POPUP MENU After open
         public void PopupMenu_Opening(object sender, CancelEventArgs e)
         {
-            bool readOnly = this.diagramView.diagram.isReadOnly();
+            bool readOnly = this.diagramView.diagram.IsReadOnly();
 
             items["editItem"].Visible = !readOnly;
             items["colorItem"].Visible = !readOnly;
@@ -821,7 +821,7 @@ namespace Diagram
             items["openLayerInNewViewItem"].Checked = this.diagramView.diagram.options.openLayerInNewView;
 
             // NEW FILE
-            if (this.diagramView.diagram.isNew())
+            if (this.diagramView.diagram.IsNew())
             {
                 items["openDiagramDirectoryItem"].Enabled = false;
             }
@@ -876,11 +876,11 @@ namespace Diagram
                 items["cutItem"].Enabled = true;
                 items["copyLinkItem"].Enabled = true;
                 items["copyNoteItem"].Enabled = true;
-                items["transparentItem"].Checked = this.diagramView.isSelectionTransparent();
+                items["transparentItem"].Checked = this.diagramView.IsSelectionTransparent();
                 items["transparentItem"].Enabled = true;
                 items["imageAddItem"].Enabled = true;
-                items["imageRemoveItem"].Enabled = this.diagramView.hasSelectionImage();
-                items["imageEmbeddedItem"].Enabled = this.diagramView.hasSelectionNotEmbeddedImage();
+                items["imageRemoveItem"].Enabled = this.diagramView.HasSelectionImage();
+                items["imageEmbeddedItem"].Enabled = this.diagramView.HasSelectionNotEmbeddedImage();
                 items["fontItem"].Enabled = true;
                 items["fontColorItem"].Enabled = true;
                 items["editLinkItem"].Enabled = false;
@@ -940,7 +940,7 @@ namespace Diagram
             }
 
             // PASSWORD IS SET
-            if (this.diagramView.diagram.isEncrypted())
+            if (this.diagramView.diagram.IsEncrypted())
             {
                 items["changePasswordItem"].Visible = true;
                 items["encryptItem"].Visible = false;
@@ -952,7 +952,7 @@ namespace Diagram
             }
 
             // ATTACHMENT
-            if (this.diagramView.hasSelectionAttachment())
+            if (this.diagramView.HasSelectionAttachment())
             {
                 items["deploayAttachmentItem"].Enabled = true;
                 items["removeAttachmentItem"].Enabled = true;
@@ -1011,11 +1011,13 @@ namespace Diagram
             int i = 0;
             foreach (String path in this.diagramView.main.options.recentFiles)
             {
-                recentItems[i] = new System.Windows.Forms.ToolStripMenuItem();
-                recentItems[i].Name = "recent"+i+"Item";
-                recentItems[i].Text = Os.getFileNameWithoutExtension(path);
-                recentItems[i].Tag = path;
-                recentItems[i].Click += new System.EventHandler(this.recentItem_Click);
+                recentItems[i] = new ToolStripMenuItem
+                {
+                    Name = "recent" + i + "Item",
+                    Text = Os.GetFileNameWithoutExtension(path),
+                    Tag = path,
+                };
+                recentItems[i].Click += new System.EventHandler(this.RecentItem_Click);
                 i++;
             }
 
@@ -1025,7 +1027,7 @@ namespace Diagram
         // QUICK ACTIONS
 
         // MENU Edit
-        public void editItem_Click(object sender, EventArgs e)
+        public void EditItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.selectedNodes.Count() > 0)
             {
@@ -1037,24 +1039,24 @@ namespace Diagram
         }
 
         // MENU Change color
-        public void colorItem_Click(object sender, EventArgs e)
+        public void ColorItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.selectColor();
+            this.diagramView.SelectColor();
         }
 
         // MENU remove shortcut
-        private void removeShortcutItem_Click(object sender, EventArgs e)
+        private void RemoveShortcutItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.selectedNodes.Count() > 0)
             {
-                this.diagramView.removeShortcuts(this.diagramView.selectedNodes);
+                this.diagramView.RemoveShortcuts(this.diagramView.selectedNodes);
             }
         }
 
         // LINK
 
         // MENU Link Open
-        public void openlinkItem_Click(object sender, EventArgs e)
+        public void OpenlinkItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.selectedNodes.Count() > 0)
             {
@@ -1063,86 +1065,86 @@ namespace Diagram
         }
 
         // MENU open directory for file in link
-        private void openLinkDirectoryItem_Click(object sender, EventArgs e)
+        private void OpenLinkDirectoryItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.openLinkDirectory();
+            this.diagramView.OpenLinkDirectory();
         }
 
         // ALIGN
 
         // MENU align right
-        private void rightItem_Click(object sender, EventArgs e)
+        private void RightItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.selectedNodes.Count() > 0)
             {
                 this.diagramView.diagram.AlignRight(this.diagramView.selectedNodes);
-                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.Unsave();
                 this.diagramView.diagram.InvalidateDiagram();
             }
         }
 
         // MENU align to line
-        private void toLineItem_Click(object sender, EventArgs e)
+        private void ToLineItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.selectedNodes.Count() > 0)
             {
                 this.diagramView.diagram.AlignToLine(this.diagramView.selectedNodes);
-                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.Unsave();
                 this.diagramView.diagram.InvalidateDiagram();
             }
         }
 
         // MENU align to column
-        private void inColumnItem_Click(object sender, EventArgs e)
+        private void InColumnItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.selectedNodes.Count() > 0)
             {
                 this.diagramView.diagram.AlignToColumn(this.diagramView.selectedNodes);
-                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.Unsave();
                 this.diagramView.diagram.InvalidateDiagram();
             }
         }
 
         // MENU align to group to column
-        private void groupVericalItem_Click(object sender, EventArgs e)
+        private void GroupVericalItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.selectedNodes.Count() > 0)
             {
                 this.diagramView.diagram.AlignCompact(this.diagramView.selectedNodes);
-                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.Unsave();
                 this.diagramView.diagram.InvalidateDiagram();
             }
         }
 
         // MENU align to group to column
-        private void groupHorizontalItem_Click(object sender, EventArgs e)
+        private void GroupHorizontalItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.selectedNodes.Count() > 0)
             {
                 this.diagramView.diagram.AlignCompactLine(this.diagramView.selectedNodes);
-                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.Unsave();
                 this.diagramView.diagram.InvalidateDiagram();
             }
         }
 
         // MENU sort items
-        private void sortItem_Click(object sender, EventArgs e)
+        private void SortItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.selectedNodes.Count() > 0)
             {
-                this.diagramView.diagram.sortNodes(this.diagramView.selectedNodes);
-                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.SortNodes(this.diagramView.selectedNodes);
+                this.diagramView.diagram.Unsave();
                 this.diagramView.diagram.InvalidateDiagram();
             }
         }
 
         // MENU align left
-        private void leftItem_Click(object sender, EventArgs e)
+        private void LeftItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.selectedNodes.Count() > 0)
             {
                 this.diagramView.diagram.AlignLeft(this.diagramView.selectedNodes);
-                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.Unsave();
                 this.diagramView.diagram.InvalidateDiagram();
             }
         }
@@ -1150,56 +1152,56 @@ namespace Diagram
         // FILE
 
         // MENU New
-        public void newItem_Click(object sender, EventArgs e)
+        public void NewItem_Click(object sender, EventArgs e)
         {
             this.diagramView.main.OpenDiagram();
         }
 
         // MENU Save
-        public void saveItem_Click(object sender, EventArgs e)
+        public void SaveItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.save();
+            this.diagramView.Save();
         }
 
         // MENU Save As
-        public void saveAsItem_Click(object sender, EventArgs e)
+        public void SaveAsItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.saveas();
+            this.diagramView.Saveas();
         }
 
         // MENU export to txt
-        private void textItem_Click(object sender, EventArgs e)
+        private void TextItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.saveTextFileDialog.ShowDialog() == DialogResult.OK)
             {
-                this.diagramView.exportDiagramToTxt(this.diagramView.saveTextFileDialog.FileName);
+                this.diagramView.ExportDiagramToTxt(this.diagramView.saveTextFileDialog.FileName);
             }
         }
 
         // MENU export to png
-        private void exportToPngItem_Click(object sender, EventArgs e)
+        private void ExportToPngItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.exportFile.ShowDialog() == DialogResult.OK)
             {
-                this.diagramView.exportDiagramToPng();
+                this.diagramView.ExportDiagramToPng();
             }
         }
 
         // MENU Open
-        public void openItem_Click(object sender, EventArgs e)
+        public void OpenItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.open();
+            this.diagramView.Open();
         }
 
         // MENU Open
-        public void recentItem_Click(object sender, EventArgs e)
+        public void RecentItem_Click(object sender, EventArgs e)
         {
             String path = (string)((ToolStripMenuItem)sender).Tag;
-            this.diagramView.open(path);
+            this.diagramView.Open(path);
         }
 
         // MENU Exit
-        public void exitItem_Click(object sender, EventArgs e)
+        public void ExitItem_Click(object sender, EventArgs e)
         {
             this.diagramView.Close();
         }
@@ -1207,190 +1209,190 @@ namespace Diagram
         // EDIT
 
         // MENU Copy
-        public void copyItem_Click(object sender, EventArgs e)
+        public void CopyItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.copy();
+            this.diagramView.Copy();
         }
 
         // MENU cut
-        public void cutItem_Click(object sender, EventArgs e)
+        public void CutItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.cut();
+            this.diagramView.Cut();
         }
 
         // MENU paste
-        public void pasteItem_Click(object sender, EventArgs e)
+        public void PasteItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.paste(new Position(this.diagramView.startMousePos));
+            this.diagramView.Paste(new Position(this.diagramView.startMousePos));
         }
 
         // MENU Copy link
-        public void copyLinkItem_Click(object sender, EventArgs e)
+        public void CopyLinkItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.copyLink();
+            this.diagramView.CopyLink();
         }
 
         // MENU Undo
-        public void undoItem_Click(object sender, EventArgs e)
+        public void UndoItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.diagram.doUndo(this.diagramView);
+            this.diagramView.diagram.DoUndo(this.diagramView);
         }
 
         // MENU Redo
-        public void redoItem_Click(object sender, EventArgs e)
+        public void RedoItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.diagram.doRedo(this.diagramView);
+            this.diagramView.diagram.DoRedo(this.diagramView);
         }
 
         // MENU Copy note
-        public void copyNoteItem_Click(object sender, EventArgs e)
+        public void CopyNoteItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.copyNote();
+            this.diagramView.CopyNote();
         }
 
         // MENU Copy link
-        public void pasteToLinkItem_Click(object sender, EventArgs e)
+        public void PasteToLinkItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.pasteToLink();
+            this.diagramView.PasteToLink();
         }
 
         // MENU Copy note
-        public void pasteToNoteItem_Click(object sender, EventArgs e)
+        public void PasteToNoteItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.pasteToNote();
+            this.diagramView.PasteToNote();
         }
 
         // NODE
 
         // MENU NODE transparent
-        private void transparentItem_Click(object sender, EventArgs e)
+        private void TransparentItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.makeSelectionTransparent();
+            this.diagramView.MakeSelectionTransparent();
         }
 
         // MENU NODE set font
-        private void fontItem_Click(object sender, EventArgs e)
+        private void FontItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.selectFont();
+            this.diagramView.SelectFont();
         }
 
         // MENU NODE set font color
-        private void fontColorItem_Click(object sender, EventArgs e)
+        private void FontColorItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.selectFontColor();
+            this.diagramView.SelectFontColor();
         }
 
         // MENU NODE edit node link
-        private void editLinkItem_Click(object sender, EventArgs e)
+        private void EditLinkItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.editLink();
+            this.diagramView.EditLink();
         }
 
         // MENU NODE edit node link
-        private void bringTopItem_Click(object sender, EventArgs e)
+        private void BringTopItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.moveNodesToForeground();
+            this.diagramView.MoveNodesToForeground();
         }
 
         // MENU NODE edit node link
-        private void bringBottomItem_Click(object sender, EventArgs e)
+        private void BringBottomItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.moveNodesToBackground();
+            this.diagramView.MoveNodesToBackground();
         }
 
         // MENU NODE protect sesitive data in node name
-        private void protectItem_Click(object sender, EventArgs e)
+        private void ProtectItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.protectNodes();
+            this.diagramView.ProtectNodes();
         }
 
         // MENU LINE select line color
-        private void lineColorItem_Click(object sender, EventArgs e)
+        private void LineColorItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.changeLineColor();
+            this.diagramView.ChangeLineColor();
         }
 
         // MENU LINE select line color
-        private void lineWidthItem_Click(object sender, EventArgs e)
+        private void LineWidthItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.changeLineWidth();
+            this.diagramView.ChangeLineWidth();
         }
 
         // ATTACHMENT
 
         // MENU NODE add image
-        private void imageAddItem_Click(object sender, EventArgs e)
+        private void ImageAddItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.addImage();
+            this.diagramView.AddImage();
         }
 
         // MENU NODE image remove from diagram
-        private void imageRemoveItem_Click(object sender, EventArgs e)
+        private void ImageRemoveItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.removeImagesFromSelection();
+            this.diagramView.RemoveImagesFromSelection();
         }
 
         // MENU NODE image embedded to diagram
-        private void imageEmbeddedItem_Click(object sender, EventArgs e)
+        private void ImageEmbeddedItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.makeImagesEmbedded();
+            this.diagramView.MakeImagesEmbedded();
         }
 
         // MENU NODE deploy attachment to system
-        private void deploayAttachmentItem_Click(object sender, EventArgs e)
+        private void DeploayAttachmentItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.attachmentDeploy();
+            this.diagramView.AttachmentDeploy();
         }
 
         // MENU NODE add file attachment to diagram
-        private void includeFileItem_Click(object sender, EventArgs e)
+        private void IncludeFileItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.attachmentAddFile(new Position(this.diagramView.startMousePos));
+            this.diagramView.AttachmentAddFile(new Position(this.diagramView.startMousePos));
         }
 
         // MENU NODE add directory attachment to diagram
-        private void includeDirectoryItem_Click(object sender, EventArgs e)
+        private void IncludeDirectoryItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.attachmentAddDirectory(new Position(this.diagramView.startMousePos));
+            this.diagramView.AttachmentAddDirectory(new Position(this.diagramView.startMousePos));
         }
 
         // MENU NODE remove included data
-        private void removeFileItem_Click(object sender, EventArgs e)
+        private void RemoveFileItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.attachmentRemove();
+            this.diagramView.AttachmentRemove();
         }
 
         // VIEW
 
         // MENU VIEW NEW VIEW
-        private void newViewItem_Click(object sender, EventArgs e)
+        private void NewViewItem_Click(object sender, EventArgs e)
         {
             // otvorenie novej insancie DiagramView
-            this.diagramView.diagram.openDiagramView();
+            this.diagramView.diagram.OpenDiagramView();
         }
 
         // MENU Center
-        public void centerItem_Click(object sender, EventArgs e)
+        public void CenterItem_Click(object sender, EventArgs e)
         {
             this.diagramView.GoToHome();
         }
 
         // MENU set home position
-        private void setStartPositionItem_Click(object sender, EventArgs e)
+        private void SetStartPositionItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.setCurentPositionAsHomePosition();
+            this.diagramView.SetCurentPositionAsHomePosition();
         }
 
         // MENU refresh diagram
-        private void refreshItem_Click(object sender, EventArgs e)
+        private void RefreshItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.diagram.refreshAll();
+            this.diagramView.diagram.RefreshAll();
         }
 
         // LAYER
 
         // MENU Layer In
-        public void inItem_Click(object sender, EventArgs e)
+        public void InItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.selectedNodes.Count() == 1)
             {
@@ -1399,7 +1401,7 @@ namespace Diagram
         }
 
         // MENU Layer Out
-        public void outItem_Click(object sender, EventArgs e)
+        public void OutItem_Click(object sender, EventArgs e)
         {
             this.diagramView.LayerOut();
         }
@@ -1407,78 +1409,78 @@ namespace Diagram
         // TOOLS
 
         // MENU Open Directory  - otvory adresar v ktorom sa nachadza prave otvreny subor
-        public void openDiagramDirectoryItem_Click(object sender, EventArgs e)
+        public void OpenDiagramDirectoryItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.openDiagramDirectory();
+            this.diagramView.OpenDiagramDirectory();
         }
 
         // MENU split node by lines
-        public void splitNodeItem_Click(object sender, EventArgs e)
+        public void SplitNodeItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.splitNode();
+            this.diagramView.SplitNode();
         }
 
         // OPTIONS
 
         // MENU Encription
-        private void encryptItem_Click(object sender, EventArgs e)
+        private void EncryptItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.diagram.setPassword())
+            if (this.diagramView.diagram.SetPassword())
             {
-                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.Unsave();
             }
         }
 
         // MENU Change password
-        private void changePasswordItem_Click(object sender, EventArgs e)
+        private void ChangePasswordItem_Click(object sender, EventArgs e)
         {
-            if (this.diagramView.diagram.changePassword())
+            if (this.diagramView.diagram.ChangePassword())
             {
-                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.Unsave();
             }
         }
 
         // MENU Read only
-        public void readonlyItem_Click(object sender, EventArgs e)
+        public void ReadonlyItem_Click(object sender, EventArgs e)
         {
             this.diagramView.diagram.options.readOnly = items["readonlyItem"].Checked;
         }
 
         // MENU restore window position
-        public void restoreWindowItem_Click(object sender, EventArgs e)
+        public void RestoreWindowItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.rememberPosition(items["restoreWindowItem"].Checked);
+            this.diagramView.RememberPosition(items["restoreWindowItem"].Checked);
         }
 
         // MENU Grid check
-        public void gridItem_Click(object sender, EventArgs e)
+        public void GridItem_Click(object sender, EventArgs e)
         {
             this.diagramView.diagram.options.grid = items["gridItem"].Checked;
             this.diagramView.diagram.InvalidateDiagram();
         }
 
         // MENU coordinates
-        public void coordinatesItem_Click(object sender, EventArgs e)
+        public void CoordinatesItem_Click(object sender, EventArgs e)
         {
             this.diagramView.diagram.options.coordinates = items["coordinatesItem"].Checked;
             this.diagramView.diagram.InvalidateDiagram();
         }
 
         // MENU Option Borders
-        public void bordersItem_Click(object sender, EventArgs e)
+        public void BordersItem_Click(object sender, EventArgs e)
         {
             this.diagramView.diagram.options.borders = items["bordersItem"].Checked;
             this.diagramView.diagram.InvalidateDiagram();
         }
 
         // MENU Option Default font
-        public void defaultFontItem_Click(object sender, EventArgs e)
+        public void DefaultFontItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.selectDefaultFont();
+            this.diagramView.SelectDefaultFont();
         }
 
         // MENU reset font
-        private void resetFontItem_Click(object sender, EventArgs e)
+        private void ResetFontItem_Click(object sender, EventArgs e)
         {
             if (this.diagramView.selectedNodes.Count() > 0)
             {
@@ -1487,7 +1489,7 @@ namespace Diagram
             else
             {
                 this.diagramView.diagram.ResetFont(
-                    this.diagramView.diagram.getAllNodes(), 
+                    this.diagramView.diagram.GetAllNodes(), 
                     this.diagramView.shift, 
                     this.diagramView.currentLayer.id
                 );
@@ -1495,27 +1497,27 @@ namespace Diagram
         }
 
         // MENU set diagram icon
-        private void setIconItem_Click(object sender, EventArgs e)
+        private void SetIconItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.setIcon();
+            this.diagramView.SetIcon();
         }
 
         // MENU set diagram background image
-        private void setBackgroundItem_Click(object sender, EventArgs e)
+        private void SetBackgroundItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.setBackgroundImage();
+            this.diagramView.SetBackgroundImage();
         }
 
         // MENU set diagram icon
-        private void openLayerInNewViewItem_Click(object sender, EventArgs e)
+        private void OpenLayerInNewViewItem_Click(object sender, EventArgs e)
         {
             this.diagramView.diagram.options.openLayerInNewView = !this.diagramView.diagram.options.openLayerInNewView;
             items["openLayerInNewViewItem"].Checked = this.diagramView.diagram.options.openLayerInNewView;
-            this.diagramView.diagram.unsave();
+            this.diagramView.diagram.Unsave();
         }
         
         // MENU reset font
-        private void openConfigDirItem_Click(object sender, EventArgs e)
+        private void OpenConfigDirItem_Click(object sender, EventArgs e)
         {
 
             this.diagramView.main.openConfigDir();
@@ -1524,19 +1526,19 @@ namespace Diagram
         // HELP
 
         // MENU Console
-        public void consoleItem_Click(object sender, EventArgs e)
+        public void ConsoleItem_Click(object sender, EventArgs e)
         {
             this.diagramView.main.showConsole();
         }
 
         // MENU visit homepage
-        private void visitWebsiteItem_Click(object sender, EventArgs e)
+        private void VisitWebsiteItem_Click(object sender, EventArgs e)
         {
             Network.openUrl(this.diagramView.main.options.home_page);
         }
 
         // MENU show About form
-        private void aboutItem_Click(object sender, EventArgs e)
+        private void AboutItem_Click(object sender, EventArgs e)
         {
             this.diagramView.main.showAbout();
         }

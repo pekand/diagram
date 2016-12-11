@@ -144,7 +144,7 @@ namespace Diagram
             {
                 this.diagramView.diagram.undoOperations.add("edit", this.editedNode, this.diagramView.shift, this.diagramView.currentLayer.id);
                 this.editedNode.link = edit.Text;
-                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.Unsave();
             }
 
             this.Hide();
@@ -199,14 +199,14 @@ namespace Diagram
             {
                 this.saveNodeLinkPanel();
                 this.Focus();
-                this.diagramView.addNodeAfterNode();
+                this.diagramView.AddNodeAfterNode();
             }
 
             if (KeyMap.parseKey("TAB", keyData) && e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
                 this.saveNodeLinkPanel();
                 this.Focus();
-                this.diagramView.addNodeBelowNode();
+                this.diagramView.AddNodeBelowNode();
             }
 
             if (KeyMap.parseKey("ENTER", keyData) || KeyMap.parseKey("TAB", keyData))

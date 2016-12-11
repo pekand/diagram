@@ -144,13 +144,13 @@ namespace Diagram
                 this.editedNode = this.diagramView.CreateNode(new Position(this.Left, this.Top));
                 this.editedNode.setName(edit.Text);
                 this.diagramView.diagram.undoOperations.add("create", this.editedNode, this.diagramView.shift, this.diagramView.currentLayer.id);
-                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.Unsave();
             }
             else if (this.editedNode.name != edit.Text)
             {
                 this.diagramView.diagram.undoOperations.add("edit", this.editedNode, this.diagramView.shift, this.diagramView.currentLayer.id);
                 this.editedNode.setName(edit.Text);
-                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.Unsave();
             }
 
             this.editedNode.visible = true;
@@ -214,14 +214,14 @@ namespace Diagram
             {
                 this.saveNodeNamePanel();
                 this.Focus();
-                this.diagramView.addNodeAfterNode();
+                this.diagramView.AddNodeAfterNode();
             }
 
             if (KeyMap.parseKey("TAB", keyData) && e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
                 this.saveNodeNamePanel();
                 this.Focus();
-                this.diagramView.addNodeBelowNode();
+                this.diagramView.AddNodeBelowNode();
             }
 
             if (KeyMap.parseKey("ENTER", keyData) || KeyMap.parseKey("TAB", keyData))

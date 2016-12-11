@@ -140,13 +140,13 @@ namespace Diagram
         // MESSAGES
 
         // add mesage to console window
-        public void log(String text)
+        public void Log(String text)
         {
             Program.log.write(text);
         }
 
         // show alert message
-        public void show(string message)
+        public void Show(string message)
         {
             MessageBox.Show(message);
         }
@@ -157,13 +157,13 @@ namespace Diagram
         public string clipboard = "";
 
         // set text content of clipboard (engine cant acess to cliboard)
-        public void setClipboard(String clipboard)
+        public void SetClipboard(String clipboard)
         {
             this.clipboard = clipboard;
         }
 
         // get text message from clipboard (text before engine start running)
-        public String getClipboard()
+        public String GetClipboard()
         {
             return this.clipboard;
         }
@@ -172,43 +172,43 @@ namespace Diagram
         // NODE
 
         // get node by script id
-        public Node get(string nodeScriptId)
+        public Node Get(string nodeScriptId)
         {
-            return this.script.diagram.getNodeByScriptID(nodeScriptId);
+            return this.script.diagram.GetNodeByScriptID(nodeScriptId);
         }
 
         // get node by id
-        public Node id(int id)
+        public Node Id(int id)
         {
             return this.script.diagram.GetNodeByID(id);
         }
 
         // create node with position object
-        public Node create(Position p, string name = "", int layer = -1)
+        public Node Create(Position p, string name = "", int layer = -1)
         {
             if (layer < 0)
             {
-                layer = this.layer().id;
+                layer = this.Layer().id;
             }
 
-            return this.script.diagram.createNode(p, name, layer);
+            return this.script.diagram.CreateNode(p, name, layer);
         }
 
         // create node with coordinates
-        public Node create(int x, int y, string name = "", int layer = -1)
+        public Node Create(int x, int y, string name = "", int layer = -1)
         {
-            return this.script.diagram.createNode(new Position(x,y), name, layer);
+            return this.script.diagram.CreateNode(new Position(x,y), name, layer);
         }
 
 
         // remove node from diagram
-        public void remove(Node n)
+        public void Remove(Node n)
         {
             this.script.diagram.DeleteNode(n);
         }
 
         // remove node from diagram
-        public void delete(Node n)
+        public void Delete(Node n)
         {
             this.script.diagram.DeleteNode(n);
         }
@@ -217,7 +217,7 @@ namespace Diagram
         // LINE
 
         // connect two nodes
-        public Line connect(Node a, Node b)
+        public Line Connect(Node a, Node b)
         {
             return this.script.diagram.Connect(a, b);
         }
@@ -226,13 +226,13 @@ namespace Diagram
         // VIEW
 
         // get current view left corner position
-        public Position position()
+        public Position Position()
         {
             return this.script.diagramView.shift;
         }
 
         // redraw view
-        public void refresh()
+        public void Refresh()
         {
             this.script.diagramView.Invalidate();
         }
@@ -241,7 +241,7 @@ namespace Diagram
         // LAYER
 
         // get current layer
-        public Layer layer()
+        public Layer Layer()
         {
             return this.script.diagramView.currentLayer;
         }
@@ -250,37 +250,35 @@ namespace Diagram
         // POSITION
 
         // create position object
-        public Position position(int x, int y)
+        public Position Position(int x, int y)
         {
             return new Position(x, y);
         }
 
         // go to node with animation
-        public void go(Node n)
+        public void Go(Node n)
         {
-            this.script.diagramView.goToNode(n);
+            this.script.diagramView.GoToNode(n);
         }
 
         // go to position by coordinates
-        public void go(int x, int y, int layer = -1)
+        public void Go(int x, int y, int layer = -1)
         {
             if (layer >= 0)
             {
-                this.script.diagramView.goToLayer(layer);
+                this.script.diagramView.GoToLayer(layer);
             }
 
-            this.script.diagramView.goToPosition(new Position(x, y));
+            this.script.diagramView.GoToPosition(new Position(x, y));
         }
 
         /*************************************************************************************************************************/
         // CONVERT
 
         // convert string to int
-        public int val(string s)
+        public int Val(string s)
         {
-            int x = 0;
-
-            if (Int32.TryParse(s, out x))
+            if (Int32.TryParse(s, out int x))
             {
                 return x;
             }
@@ -289,7 +287,7 @@ namespace Diagram
         }
 
         // convert int to string
-        public string val(int v)
+        public string Val(int v)
         {
             return v.ToString();
         }
@@ -357,7 +355,7 @@ namespace Diagram
         /// Tools.setClipboard("test")
         /// clp = Tools.getClipboard()
         /// <returns>Return script string result</returns>
-        public string runScript(String script)
+        public string RunScript(String script)
         {
             if (pyEngine == null)
             {
@@ -406,7 +404,7 @@ namespace Diagram
         /// Set current diagram for context in script
         /// </summary>
         /// <param name="diagram"></param>
-        public void setDiagram(Diagram diagram)
+        public void SetDiagram(Diagram diagram)
         {
             this.diagram = diagram;
         }
@@ -415,7 +413,7 @@ namespace Diagram
         /// Get diagram in current script context
         /// </summary>
         /// <returns>Diagram</returns>
-        public Diagram getDiagram()
+        public Diagram GetDiagram()
         {
             return this.diagram;
         }
@@ -424,7 +422,7 @@ namespace Diagram
         /// Set current diagramView for context in script
         /// </summary>
         /// <param name="diagramView"></param>
-        public void setDiagramView(DiagramView diagramView)
+        public void SetDiagramView(DiagramView diagramView)
         {
             this.diagramView = diagramView;
         }
@@ -433,7 +431,7 @@ namespace Diagram
         /// Get diagramView in current script context
         /// </summary>
         /// <returns></returns>
-        public DiagramView getDiagramView()
+        public DiagramView GetDiagramView()
         {
             return this.diagramView;
         }
@@ -442,18 +440,18 @@ namespace Diagram
         /// Set text to clipboard
         /// </summary>
         /// <param name="clipboard"></param>
-        public void setClipboard(String clipboard)
+        public void SetClipboard(String clipboard)
         {
-            this.tools.setClipboard(clipboard);
+            this.tools.SetClipboard(clipboard);
         }
 
         /// <summary>
         /// Get text from clipboard
         /// </summary>
         /// <returns></returns>
-        public String getClipboard()
+        public String GetClipboard()
         {
-            return this.tools.getClipboard();
+            return this.tools.GetClipboard();
         }
 
     }

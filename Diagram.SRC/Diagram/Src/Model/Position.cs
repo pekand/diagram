@@ -63,7 +63,7 @@ namespace Diagram
 
         // <summary>
         /// set </summary>
-        public Position set(int x, int y)
+        public Position Set(int x, int y)
         {
             this.x = x;
             this.y = y;
@@ -72,7 +72,7 @@ namespace Diagram
 
         // <summary>
         /// set </summary>
-        public Position set(Position p)
+        public Position Set(Position p)
         {
             if (p != null)
             {
@@ -91,14 +91,14 @@ namespace Diagram
 
         /// <summary>
         /// Clone</summary>
-        public Position clone()
+        public Position Clone()
         {
             return new Position(this);
         }
 
         // <summary>
         /// Copy position to current position</summary>
-        public Position copy(Position b)
+        public Position Copy(Position b)
         {
             this.x = b.x;
             this.y = b.y;
@@ -110,7 +110,7 @@ namespace Diagram
 
         // <summary>
         /// add vector</summary>
-        public Position add(Position p)
+        public Position Add(Position p)
         {
             this.x += p.x;
             this.y += p.y;
@@ -119,7 +119,7 @@ namespace Diagram
 
         // <summary>
         /// add vector</summary>
-        public Position add(int x, int y)
+        public Position Add(int x, int y)
         {
             this.x += x;
             this.y += y;
@@ -128,7 +128,7 @@ namespace Diagram
 
         // <summary>
         /// add vector</summary>
-        public Position add(float a, float b)
+        public Position Add(float a, float b)
         {
             this.x += (int)a;
             this.y += (int)b;
@@ -139,7 +139,7 @@ namespace Diagram
         /// add node</summary>
         public static Position operator +(Position a, Position b)
         {
-            return new Position(a).add(b);
+            return new Position(a).Add(b);
         }
 
         /*************************************************************************************************************************/
@@ -147,7 +147,7 @@ namespace Diagram
 
         // <summary>
         /// subtract vector</summary>
-        public Position subtract(Position p)
+        public Position Subtract(Position p)
         {
             this.x -= p.x;
             this.y -= p.y;
@@ -156,7 +156,7 @@ namespace Diagram
 
         // <summary>
         /// subtract vector</summary>
-        public Position subtract(int a, int b)
+        public Position Subtract(int a, int b)
         {
             this.x -= a;
             this.y -= b;
@@ -165,7 +165,7 @@ namespace Diagram
 
         // <summary>
         /// subtract vector</summary>
-        public Position subtract(float a, float b)
+        public Position Subtract(float a, float b)
         {
             this.x -= (int)a;
             this.y -= (int)b;
@@ -174,7 +174,7 @@ namespace Diagram
 
         // <summary>
         /// subtract constant</summary>
-        public Position subtract(int c)
+        public Position Subtract(int c)
         {
             this.x -= c;
             this.y -= c;
@@ -185,7 +185,7 @@ namespace Diagram
         /// substact node</summary>        
         public static Position operator -(Position a, Position b)
         {
-            return new Position(a).subtract(b);
+            return new Position(a).Subtract(b);
         }
 
         /*************************************************************************************************************************/
@@ -193,21 +193,21 @@ namespace Diagram
 
         // <summary>
         /// Count distance between two points</summary>
-        public double distance(Position b)
+        public double Distance(Position b)
         {
             return Math.Sqrt((b.x - this.x) * (b.x - this.x) + (b.y - this.y) * (b.y - this.y));
         }
 
         // <summary>
         /// Count distance to zero vector</summary>
-        public double size()
+        public double Size()
         {
             return Math.Sqrt((0 - this.x) * (0 - this.x) + (0 - this.y) * (0 - this.y));
         }
 
         // <summary>
         /// subtract vector</summary>
-        public Position invert()
+        public Position Invert()
         {
             this.x = -this.x;
             this.y = -this.y;
@@ -216,7 +216,7 @@ namespace Diagram
 
         // <summary>
         /// scale vector</summary>
-        public Position scale(double scale)
+        public Position Scale(double scale)
         {
             this.x = (int)(this.x * scale);
             this.y = (int)(this.y * scale);
@@ -225,7 +225,7 @@ namespace Diagram
 
         // <summary>
         /// zoom vector</summary>
-        public Position split(float scale)
+        public Position Split(float scale)
         {
             this.x = (int)(this.x / scale);
             this.y = (int)(this.y / scale);
@@ -236,14 +236,14 @@ namespace Diagram
         /// scale vector by constant</summary>
         public static Position operator *(Position a, int c)
         {
-            return new Position(a).scale(c);
+            return new Position(a).Scale(c);
         }
 
         // <summary>
         /// scale vector by constant</summary>
         public static Position operator /(Position a, int c)
         {
-            return new Position(a).split(c);
+            return new Position(a).Split(c);
         }
 
         /*************************************************************************************************************************/
@@ -251,7 +251,7 @@ namespace Diagram
 
         // <summary>
         /// Convert position to cartesian coordinate</summary>
-        public Position convertToStandard()
+        public Position ConvertToStandard()
         {
             return new Position(this.x, -this.y);
         }
@@ -265,7 +265,7 @@ namespace Diagram
 
         // <summary>
         /// Convert position to cartesian coordinates</summary>
-        public Position toCartesian()
+        public Position ToCartesian()
         {
             this.y = -this.y;
             return this;
@@ -273,7 +273,7 @@ namespace Diagram
 
         // <summary>
         /// Convert position to pc view coordinates</summary>
-        public Position toView()
+        public Position ToView()
         {
             this.y = -this.y;
             return this;

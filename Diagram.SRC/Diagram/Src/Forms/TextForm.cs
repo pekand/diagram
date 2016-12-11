@@ -130,7 +130,7 @@ namespace Diagram
                 this.TextFormTextBox.Select();
             }
 
-            if (this.diagram.isReadOnly())
+            if (this.diagram.IsReadOnly())
             {
                 this.TextFormTextBox.ReadOnly = true;
                 this.TextFormNoteTextBox.ReadOnly = true;
@@ -205,7 +205,7 @@ namespace Diagram
             if (keyData == (Keys.Control | Keys.S))
             {
                 this.SaveNode();
-                this.diagram.save();
+                this.diagram.Save();
                 return true;
             }
 

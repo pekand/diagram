@@ -34,7 +34,7 @@ namespace Diagram
         ) {
             this.type = type;
             this.group = group;
-            this.position.set(position);
+            this.position.Set(position);
             this.layer = layer;
 
             if (nodes != null)
@@ -173,10 +173,10 @@ namespace Diagram
                 UndoOperation operation = operations.First();
 
                 // first restore position where change occurred
-                if (view != null && !view.isOnPosition(operation.position, operation.layer))
+                if (view != null && !view.IsOnPosition(operation.position, operation.layer))
                 {
-                    view.goToShift(operation.position);
-                    view.goToLayer(operation.layer);
+                    view.GoToShift(operation.position);
+                    view.GoToLayer(operation.layer);
                     view.Invalidate();
                     return false;
                 }
@@ -218,7 +218,7 @@ namespace Diagram
                     Lines lines = new Lines();
                     foreach (Line line in operation.lines)
                     {
-                        lines.Add(this.diagram.getLine(line.start, line.end));
+                        lines.Add(this.diagram.GetLine(line.start, line.end));
                     }
 
                     UndoOperation roperation = new UndoOperation(
@@ -242,11 +242,11 @@ namespace Diagram
                 this.saved--;
                 if (!this.saveLost && this.saved == 0)
                 {
-                    this.diagram.restoresave();
+                    this.diagram.Restoresave();
                 }
                 else
                 {
-                    this.diagram.unsave();
+                    this.diagram.Unsave();
                 }
             }
 
@@ -268,10 +268,10 @@ namespace Diagram
                 UndoOperation operation = reverseOperations.First();
 
                 // first restore position where change occurred
-                if (view != null && !view.isOnPosition(operation.position, operation.layer))
+                if (view != null && !view.IsOnPosition(operation.position, operation.layer))
                 {
-                    view.goToShift(operation.position);
-                    view.goToLayer(operation.layer);
+                    view.GoToShift(operation.position);
+                    view.GoToLayer(operation.layer);
                     view.Invalidate();
                     return false;
                 }
@@ -313,7 +313,7 @@ namespace Diagram
                     Lines lines = new Lines();
                     foreach (Line line in operation.lines)
                     {
-                        lines.Add(this.diagram.getLine(line.start, line.end));
+                        lines.Add(this.diagram.GetLine(line.start, line.end));
                     }
 
                     UndoOperation roperation = new UndoOperation(
@@ -339,11 +339,11 @@ namespace Diagram
                 this.saved++;
                 if (!this.saveLost && this.saved == 0)
                 {
-                    this.diagram.restoresave();
+                    this.diagram.Restoresave();
                 }
                 else
                 {
-                    this.diagram.unsave();
+                    this.diagram.Unsave();
                 }
             }
 
@@ -360,7 +360,7 @@ namespace Diagram
             {
                 foreach (Node node in operation.nodes)
                 {
-                    this.diagram.layers.addNode(node);
+                    this.diagram.layers.AddNode(node);
                 }
             }
 
@@ -370,7 +370,7 @@ namespace Diagram
                 {
                     line.startNode = this.diagram.GetNodeByID(line.start);
                     line.endNode = this.diagram.GetNodeByID(line.end);
-                    this.diagram.layers.addLine(line);
+                    this.diagram.layers.AddLine(line);
                 }
             }
 
@@ -382,7 +382,7 @@ namespace Diagram
             {
                 foreach (Line line in operation.lines)
                 {
-                    this.diagram.layers.removeLine(line.start, line.end);
+                    this.diagram.layers.RemoveLine(line.start, line.end);
                 }
             }
 
@@ -390,7 +390,7 @@ namespace Diagram
             {
                 foreach (Node node in operation.nodes)
                 {
-                    this.diagram.layers.removeNode(node.id);
+                    this.diagram.layers.RemoveNode(node.id);
                 }
             }
         }
@@ -403,7 +403,7 @@ namespace Diagram
                 {
                     lineOld.startNode = this.diagram.GetNodeByID(lineOld.start);
                     lineOld.endNode = this.diagram.GetNodeByID(lineOld.end);
-                    Line line = this.diagram.layers.getLine(lineOld.startNode, lineOld.endNode);
+                    Line line = this.diagram.layers.GetLine(lineOld.startNode, lineOld.endNode);
 
                     if (line != null)
                     {
@@ -416,7 +416,7 @@ namespace Diagram
             {
                 foreach (Node nodeOld in operation.nodes)
                 {
-                    Node node = this.diagram.layers.getNode(nodeOld.id);
+                    Node node = this.diagram.layers.GetNode(nodeOld.id);
 
                     if (node != null)
                     {

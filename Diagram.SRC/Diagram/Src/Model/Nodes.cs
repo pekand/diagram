@@ -28,7 +28,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // SETTERS AND GETTERS
 
-        public void copy(Nodes nodes)
+        public void Copy(Nodes nodes)
         {
             this.Clear();
 

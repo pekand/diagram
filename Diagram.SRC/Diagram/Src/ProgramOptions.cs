@@ -81,7 +81,7 @@ namespace Diagram
 
         /// <summary>
         /// copy options from other instance</summary>
-        public void setParams(ProgramOptions options)
+        public void SetParams(ProgramOptions options)
         {
             this.proxy_uri = options.proxy_uri;
             this.proxy_username = options.proxy_username;
@@ -94,7 +94,7 @@ namespace Diagram
                 this.recentFiles.Add(path);
             }
 
-            this.removeOldRecentFiles();
+            this.RemoveOldRecentFiles();
         }
 
         /*************************************************************************************************************************/
@@ -102,7 +102,7 @@ namespace Diagram
 
         /// <summary>
         /// add path to recent files</summary>
-        public void addRecentFile(String path)
+        public void AddRecentFile(String path)
         {
             if (Os.FileExists(path))
             {
@@ -115,7 +115,7 @@ namespace Diagram
 
         /// <summary>
         /// remove old not existing diagrams from recent files</summary>
-        public void removeOldRecentFiles()
+        public void RemoveOldRecentFiles()
         {
             IList<String> newRecentFiles = new List<String>();
 

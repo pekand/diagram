@@ -116,7 +116,7 @@ namespace Diagram
             this.note = node.note;
             this.link = node.link;
 
-            this.position.set(node.position);
+            this.position.Set(node.position);
             this.width = node.width;
             this.height = node.height;
 
@@ -163,7 +163,7 @@ namespace Diagram
 
             if (!skipPosition)
             {
-                this.position.set(node.position);
+                this.position.Set(node.position);
             }
 
             if (!skipSize)
@@ -304,7 +304,7 @@ namespace Diagram
                 try
                 {
                     string ext = "";
-                    ext = Os.getExtension(this.imagepath).ToLower();
+                    ext = Os.GetExtension(this.imagepath).ToLower();
 
                     if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp")
                     {
