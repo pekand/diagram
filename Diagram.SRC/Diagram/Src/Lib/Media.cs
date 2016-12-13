@@ -146,11 +146,6 @@ namespace Diagram
         /*************************************************************************************************************************/
         // FOCUS
 
-#if !MONO
-        [DllImport("User32.dll")]
-        public static extern Int32 SetForegroundWindow(int hWnd);
-#endif
-
         /// <summary>
         /// bring form to foreground </summary>
         public static void bringToFront(Form form)   // [focus]
@@ -160,25 +155,11 @@ namespace Diagram
             {
                 if (t is Timer)
                 {
-                    Timer timer = t as Timer;
-
                     Program.log.write("bringToFront: tick");
+
+                    Timer timer = t as Timer;                    
 					timer.Enabled = false;
-
-                    //diagram bring to top hack in windows
-                    if (form.WindowState == FormWindowState.Minimized)
-                    {
-                        form.WindowState = FormWindowState.Normal;
-                    }
-
-#if !MONO
-                    SetForegroundWindow(form.Handle.ToInt32());
-#endif
-                    form.TopMost = true;
-                    form.Focus();
                     form.BringToFront();
-                    form.TopMost = false;
-                    form.Activate();
                 }
             });
         }
