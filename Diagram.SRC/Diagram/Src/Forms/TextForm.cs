@@ -196,7 +196,7 @@ namespace Diagram
             this.diagram.EditNodeClose(this.node);
 
             this.diagram.TextWindows.Remove(this);
-            main.removeTextWindow(this);
+            main.RemoveTextWindow(this);
             this.diagram.CloseDiagram();
         }
 

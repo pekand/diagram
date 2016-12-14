@@ -1520,7 +1520,7 @@ namespace Diagram
         private void OpenConfigDirItem_Click(object sender, EventArgs e)
         {
 
-            this.diagramView.main.openConfigDir();
+            this.diagramView.main.OpenConfigDir();
         }
 
         // HELP
@@ -1528,7 +1528,7 @@ namespace Diagram
         // MENU Console
         public void ConsoleItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.main.showConsole();
+            this.diagramView.main.ShowConsole();
         }
 
         // MENU visit homepage
@@ -1540,7 +1540,7 @@ namespace Diagram
         // MENU show About form
         private void AboutItem_Click(object sender, EventArgs e)
         {
-            this.diagramView.main.showAbout();
+            this.diagramView.main.ShowAbout();
         }
     }
 }

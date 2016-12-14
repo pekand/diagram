@@ -107,9 +107,9 @@ namespace Diagram
         {
             this.id = node.id;
 
-            this.color.set(node.color);
+            this.color.Set(node.color);
             this.font = node.font;
-            this.fontcolor.set(node.fontcolor);
+            this.fontcolor.Set(node.fontcolor);
             this.transparent = node.transparent;
 
             this.name = node.name;
@@ -149,9 +149,9 @@ namespace Diagram
         /// node copy from another node to current node</summary>
         public void copyNode(Node node, bool skipPosition = false, bool skipSize = false) 
         {
-            this.color.set(node.color);
+            this.color.Set(node.color);
             this.font = node.font;
-            this.fontcolor.set(node.fontcolor);
+            this.fontcolor.Set(node.fontcolor);
             this.transparent = node.transparent;
 
             this.name = node.name;
@@ -192,9 +192,9 @@ namespace Diagram
         /// node copy style from another node to current node</summary>
         public void copyNodeStyle(Node node)
         {
-            this.color.set(node.color);
+            this.color.Set(node.color);
             this.font = node.font;
-            this.fontcolor.set(node.fontcolor);
+            this.fontcolor.Set(node.fontcolor);
             this.transparent = node.transparent;
 
             this.isimage = node.isimage;
@@ -308,7 +308,7 @@ namespace Diagram
 
                     if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp")
                     {
-                        this.image = Media.getImage(this.imagepath);
+                        this.image = Media.GetImage(this.imagepath);
                         if (ext != ".ico") this.image.MakeTransparent(Color.White);
                         this.height = this.image.Height;
                         this.width = this.image.Width;

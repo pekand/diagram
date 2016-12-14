@@ -170,17 +170,12 @@ namespace Diagram
         // XML SAVE file or encrypted file
         public void SaveXMLFile(string FileName)
         {
-            string diagraxml = "";
+            string diagraxml = this.SaveInnerXMLFile();
 
+            // encrypt data if password is set
             try
             {
-                System.IO.StreamWriter file = new System.IO.StreamWriter(FileName);
-                diagraxml = this.SaveInnerXMLFile();
-                if (this.password == null)
-                {
-                    file.Write(diagraxml);
-                }
-                else
+                if (this.password != null)
                 {
                     XElement root = new XElement("diagram");
                     try
@@ -190,11 +185,12 @@ namespace Diagram
                         // encrypted file is saved allways as different string
                         this.salt = Encrypt.CreateSalt(14);
 
-                        root.Add(new XElement("encrypted", Encrypt.EncryptStringAES(diagraxml, this.GetPassword(), this.salt)));
+                        root.Add(new XElement("encrypted", Encrypt.EncryptStringAES(diagraxml, this.password, this.salt)));
                         root.Add(new XElement("salt", Encrypt.GetSalt(this.salt)));
 
                         StringBuilder sb = new StringBuilder();
-                        XmlWriterSettings xws = new XmlWriterSettings { 
+                        XmlWriterSettings xws = new XmlWriterSettings
+                        {
                             OmitXmlDeclaration = true,
                             CheckCharacters = false,
                             Indent = true
@@ -205,15 +201,27 @@ namespace Diagram
                             root.WriteTo(xw);
                         }
 
-                        file.Write(sb.ToString());
+                        diagraxml = sb.ToString();
                     }
                     catch (Exception ex)
                     {
                         Program.log.write("save file error: " + ex.Message);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Program.log.write("save file error: " + ex.Message);
+            }
 
-                file.Close();
+            // save data to file
+            try
+            {
+                if (diagraxml != "") { // prevent acidentaly loos data
+                    System.IO.StreamWriter file = new System.IO.StreamWriter(FileName);
+                    file.Write(diagraxml);
+                    file.Close();
+                }
 
             }
             catch (System.IO.IOException ex)
@@ -433,7 +441,7 @@ namespace Diagram
                 {
                     error = false;
 
-                    string password = this.main.getPassword(Os.GetFileNameWithoutExtension(this.FileName));
+                    string password = this.main.GetPassword(Os.GetFileNameWithoutExtension(this.FileName));
                     if (password != null)
                     {
                         try
@@ -672,7 +680,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "fontcolor")
                                                 {
-                                                    R.fontcolor.set(el.Value.ToString());
+                                                    R.fontcolor.Set(el.Value.ToString());
                                                 }
 
                                                 if (el.Name.ToString() == "text")
@@ -754,7 +762,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "color")
                                                 {
-                                                    R.color.set(el.Value.ToString());
+                                                    R.color.Set(el.Value.ToString());
                                                 }
 
                                                 if (el.Name.ToString() == "transparent")
@@ -840,7 +848,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "color")
                                                 {
-                                                    L.color.set(el.Value.ToString());
+                                                    L.color.Set(el.Value.ToString());
                                                 }
 
                                                 if (el.Name.ToString() == "width")
@@ -1157,7 +1165,7 @@ namespace Diagram
             {
                 if (TextWindows[i].node == rec)
                 {
-                    Media.bringToFront(TextWindows[i]);
+                    Media.BringToFront(TextWindows[i]);
                     found = true;
                     return TextWindows[i];
                 }
@@ -1172,9 +1180,9 @@ namespace Diagram
                     textf.Text = lines[0];
 
                 this.TextWindows.Add(textf);
-                main.addTextWindow(textf);
+                main.AddTextWindow(textf);
                 textf.Show();
-                Media.bringToFront(textf);
+                Media.BringToFront(textf);
                 return textf;
             }
             return null;
@@ -1228,11 +1236,11 @@ namespace Diagram
 
             if (color != null)
             {
-                rec.color.set(color);
+                rec.color.Set(color);
             }
             else
             {
-                rec.color.set(Media.getColor(this.options.colorNode));
+                rec.color.Set(Media.GetColor(this.options.colorNode));
             }
 
             return this.layers.CreateNode(rec);
@@ -1303,8 +1311,8 @@ namespace Diagram
                     line = new Line {
                         start = a.id,
                         end = b.id,
-                        startNode = this.GetNodeByID(line.start),
-                        endNode = this.GetNodeByID(line.end),
+                        startNode = this.GetNodeByID(a.id),
+                        endNode = this.GetNodeByID(b.id),
                         layer = layer
                     };
 
@@ -1341,7 +1349,7 @@ namespace Diagram
                 line.arrow = arrow;
                 if (color != null)
                 {
-                    line.color.set(color);
+                    line.color.Set(color);
                 }
                 
                 line.width = width;
@@ -1644,7 +1652,7 @@ namespace Diagram
             try
             {
                 rec.isimage = true;
-                rec.image = Media.getImage(file);
+                rec.image = Media.GetImage(file);
                 rec.imagepath = Os.MakeRelative(file, this.FileName);
                 string ext = Os.GetExtension(file);
                 if (ext != ".ico") rec.image.MakeTransparent(Color.White);
@@ -1709,7 +1717,7 @@ namespace Diagram
             DiagramView diagramview = new DiagramView(main, this, parent);
             diagramview.SetDiagram(this);
             this.DiagramViews.Add(diagramview);
-            main.addDiagramView(diagramview);
+            main.AddDiagramView(diagramview);
 			this.SetTitle();
             diagramview.Show();
             if (layer != null)
@@ -1735,7 +1743,7 @@ namespace Diagram
         public void CloseView(DiagramView view)
         {
             this.DiagramViews.Remove(view);
-            main.removeDiagramView(view);
+            main.RemoveDiagramView(view);
 
             foreach (DiagramView diagramView in this.DiagramViews) {
                 if (diagramView.parentView == view) {
@@ -1759,7 +1767,7 @@ namespace Diagram
             if (canclose)
             {
                 this.CloseFile();
-                main.removeDiagram(this);
+                main.RemoveDiagram(this);
                 main.CloseEmptyApplication();
             }
         }
@@ -1890,7 +1898,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "color")
                                                 {
-                                                    R.color.set(el.Value.ToString());
+                                                    R.color.Set(el.Value.ToString());
                                                 }
 
 
@@ -1914,7 +1922,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "fontcolor")
                                                 {
-                                                    R.fontcolor.set(el.Value.ToString());
+                                                    R.fontcolor.Set(el.Value.ToString());
                                                 }
 
                                                 if (el.Name.ToString() == "link")
@@ -1962,7 +1970,7 @@ namespace Diagram
 
                                                             if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // skratenie cesty k suboru
                                                             {
-                                                                R.image = Media.getImage(R.imagepath);
+                                                                R.image = Media.GetImage(R.imagepath);
                                                                 if (ext != ".ico") R.image.MakeTransparent(Color.White);
                                                                 R.height = R.image.Height;
                                                                 R.width = R.image.Width;
@@ -2046,7 +2054,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "color")
                                                 {
-                                                    L.color.set(el.Value.ToString());
+                                                    L.color.Set(el.Value.ToString());
                                                 }
 
                                                 if (el.Name.ToString() == "width")
@@ -2480,7 +2488,7 @@ namespace Diagram
 
             if (password == null)
             {
-                newPassword = this.main.getNewPassword();
+                newPassword = this.main.GetNewPassword();
             }
             else
             {
@@ -2501,15 +2509,15 @@ namespace Diagram
                 if (newPassword != "" && this.password == null)
                 {
                     this.encrypted = true;
-                    this.password = Encrypt.convertToSecureString(newPassword);
+                    this.password = Encrypt.ConvertToSecureString(newPassword);
                     this.passwordHash = Encrypt.CalculateSHAHash(newPassword);
                     return true;
                 }
 
-                if (newPassword != "" && this.password != null && newPassword != this.GetPassword())
+                if (newPassword != "" && this.password != null && !Encrypt.CompareSecureString(this.password, newPassword))
                 {
                     this.encrypted = true;
-                    this.password = Encrypt.convertToSecureString(newPassword);
+                    this.password = Encrypt.ConvertToSecureString(newPassword);
                     this.passwordHash = Encrypt.CalculateSHAHash(newPassword);
                     return true;
                 }
@@ -2518,20 +2526,10 @@ namespace Diagram
             return false;
         }
 
-        private string GetPassword()
-        {
-            if (this.password != null)
-            {
-                return Encrypt.convertFromSecureString(this.password);
-            }
-
-            return "";
-        } 
-
         // change password
         public bool ChangePassword()
         {
-            string newPassword = this.main.changePassword(this.GetPassword());
+            string newPassword = this.main.ChangePassword(this.password);
             if (newPassword != null)
             {
                 return this.SetPassword(newPassword);
@@ -2570,7 +2568,7 @@ namespace Diagram
             {
                 while (true) // while password is not correct or cancel is pressed
                 {
-                    string password = this.main.getPassword();
+                    string password = this.main.GetPassword();
 
                     if (password != null && this.passwordHash == Encrypt.CalculateSHAHash(password))
                     {

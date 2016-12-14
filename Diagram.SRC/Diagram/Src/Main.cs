@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Security;
 
 #if !MONO
 using Microsoft.Win32;
@@ -35,7 +36,7 @@ namespace Diagram
 
         /// <summary>
         /// open directori with global configuration</summary>
-        public void openConfigDir()
+        public void OpenConfigDir()
         {
             this.optionsFile.ShowDirectoryWithConfiguration();
         }
@@ -259,14 +260,14 @@ namespace Diagram
 
         /// <summary>
         /// add diagram to list of all diagrams</summary>
-        public void addDiagram(Diagram diagram)
+        public void AddDiagram(Diagram diagram)
         {
             this.Diagrams.Add(diagram);
         }
 
         /// <summary>
         /// remove diagram from list of all diagrams</summary>
-        public void removeDiagram(Diagram diagram)
+        public void RemoveDiagram(Diagram diagram)
         {
             this.Diagrams.Remove(diagram);
         }
@@ -335,7 +336,7 @@ namespace Diagram
                                     }
 
                                     Program.log.write("bring focus");
-                                    Media.bringToFront(diagram.DiagramViews[0]);
+                                    Media.BringToFront(diagram.DiagramViews[0]);
                                 }
                                 alreadyOpen = true;
                                 break;
@@ -371,21 +372,21 @@ namespace Diagram
 
         /// <summary>
         /// add diagram view to list of all views</summary>
-        public void addDiagramView(DiagramView view)
+        public void AddDiagramView(DiagramView view)
         {
             this.DiagramViews.Add(view);
         }
 
         /// <summary>
         /// remove diagram view from list of all diagram views</summary>
-        public void removeDiagramView(DiagramView view)
+        public void RemoveDiagramView(DiagramView view)
         {
             this.DiagramViews.Remove(view);
         }
 
         /// <summary>
         /// hide diagram views except diagramView</summary>
-        public void switchViews(DiagramView diagramView = null)
+        public void SwitchViews(DiagramView diagramView = null)
         {
             bool someIsHidden = false;
             foreach (DiagramView view in DiagramViews)
@@ -399,17 +400,17 @@ namespace Diagram
 
             if (someIsHidden)
             {
-                showViews();
+                ShowViews();
             }
             else
             {
-                hideViews(diagramView);
+                HideViews(diagramView);
             }
         }
 
         /// <summary>
         /// show views if last visible view is closed</summary>
-        public void showIfIsLastViews(DiagramView diagramView = null)
+        public void ShowIfIsLastViews(DiagramView diagramView = null)
         {
             bool someIsVisible = false;
             foreach (DiagramView view in DiagramViews)
@@ -423,13 +424,13 @@ namespace Diagram
 
             if (!someIsVisible)
             {
-                showViews();
+                ShowViews();
             }
         }
 
         /// <summary>
         /// show diagram views</summary>
-        public void showViews()
+        public void ShowViews()
         {
             foreach (DiagramView view in DiagramViews)
             {
@@ -439,7 +440,7 @@ namespace Diagram
 
         /// <summary>
         /// hide diagram views</summary>
-        public void hideViews(DiagramView diagramView = null)
+        public void HideViews(DiagramView diagramView = null)
         {
             foreach (DiagramView view in DiagramViews)
             {
@@ -458,14 +459,14 @@ namespace Diagram
 
         /// <summary>
         /// add text form to list of all text forms</summary>
-        public void addTextWindow(TextForm textWindows)
+        public void AddTextWindow(TextForm textWindows)
         {
             this.TextWindows.Add(textWindows);
         }
 
         /// <summary>
         /// remove text form from list of all text forms</summary>
-        public void removeTextWindow(TextForm textWindows)
+        public void RemoveTextWindow(TextForm textWindows)
         {
             this.TextWindows.Remove(textWindows);
         }
@@ -487,7 +488,7 @@ namespace Diagram
 
         /// <summary>
         /// show dialog for password for diagram unlock</summary>
-        public string getPassword(string subtitle = "")
+        public string GetPassword(string subtitle = "")
         {
             string password = null;
 
@@ -512,7 +513,7 @@ namespace Diagram
 
         /// <summary>
         /// show dialog for new password for diagram</summary>
-        public string getNewPassword()
+        public string GetNewPassword()
         {
             string password = null;
 
@@ -536,7 +537,7 @@ namespace Diagram
 
         /// <summary>
         /// show dialog for change password for diagram</summary>
-        public string changePassword(String currentPassword)
+        public string ChangePassword(SecureString currentPassword)
         {
             string password = null;
 
@@ -572,14 +573,14 @@ namespace Diagram
                 case PowerModes.Resume:
                     break;
                 case PowerModes.Suspend:
-                    this.lockDiagrams();
+                    this.LockDiagrams();
                     break;
             }
         }
 
         /// <summary>
         /// forgot password if diagram is encrypted</summary>
-        public void lockDiagrams()
+        public void LockDiagrams()
         {
             foreach (Diagram diagram in Diagrams)
             {
@@ -589,7 +590,7 @@ namespace Diagram
 
         /// <summary>
         /// prompt for password if diagram is encrypted</summary>
-        public void unlockDiagrams()
+        public void UnlockDiagrams()
         {
             foreach (Diagram diagram in Diagrams)
             {
@@ -606,7 +607,7 @@ namespace Diagram
 
         /// <summary>
         /// show about</summary>
-        public void showAbout()
+        public void ShowAbout()
         {
             if (this.aboutForm == null)
             {
@@ -627,12 +628,12 @@ namespace Diagram
 
         /// <summary>
         /// show error console</summary>
-        public void showConsole()
+        public void ShowConsole()
         {
             if (this.console == null)
             {
                 this.console = new Console(this);
-                this.console.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.closeConsole);
+                this.console.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CloseConsole);
                 Program.log.setConsole(this.console);
             }
 
@@ -643,7 +644,7 @@ namespace Diagram
 
         /// <summary>
         /// clean after error console close</summary>
-        private void closeConsole(object sender, FormClosedEventArgs e)
+        private void CloseConsole(object sender, FormClosedEventArgs e)
         {
             Program.log.setConsole(null);
             this.console = null;

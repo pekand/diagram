@@ -41,7 +41,7 @@ namespace Diagram
             this.buttonOk.TabIndex = 4;
             this.buttonOk.Text = "Ok";
             this.buttonOk.UseVisualStyleBackColor = true;
-            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
+            this.buttonOk.Click += new System.EventHandler(this.ButtonOk_Click);
             // 
             // buttonCancel
             // 
@@ -51,7 +51,7 @@ namespace Diagram
             this.buttonCancel.TabIndex = 5;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // labelPassword
             // 
@@ -69,7 +69,7 @@ namespace Diagram
             this.editPassword.Size = new System.Drawing.Size(283, 20);
             this.editPassword.TabIndex = 8;
             this.editPassword.UseSystemPasswordChar = true;
-            this.editPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.editPassword_KeyDown);
+            this.editPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditPassword_KeyDown);
             // 
             // PasswordForm
             // 
@@ -94,11 +94,11 @@ namespace Diagram
         private void PasswordForm_Load(object sender, EventArgs e)
         {
             this.Clear();
-            this.Left = (Screen.PrimaryScreen.Bounds.Width - this.Width)/ 2;
+            this.Left = (Screen.PrimaryScreen.Bounds.Width - this.Width) / 2;
             this.Top = (Screen.PrimaryScreen.Bounds.Height - this.Height) / 2;
 
             Program.log.write("bring focus");
-            Media.bringToFront(this);
+            Media.BringToFront(this);
 
             this.editPassword.Focus();
         }
@@ -124,25 +124,25 @@ namespace Diagram
             return this.editPassword.Text;
         }
 
-        private void buttonOk_Click(object sender, EventArgs e)
+        private void ButtonOk_Click(object sender, EventArgs e)
         {
             this.ok = true;
             this.cancled = false;
             this.Close();
         }
 
-        private void buttonCancel_Click(object sender, EventArgs e)
+        private void ButtonCancel_Click(object sender, EventArgs e)
         {
             this.ok = false;
             this.cancled = true;
             this.Close();
         }
 
-        private void editPassword_KeyDown(object sender, KeyEventArgs e)
+        private void EditPassword_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                buttonOk_Click(sender, e);
+                ButtonOk_Click(sender, e);
             }
         }
 

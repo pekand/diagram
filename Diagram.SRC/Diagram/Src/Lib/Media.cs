@@ -21,14 +21,14 @@ namespace Diagram
 
         /// <summary>
         /// get active form screen width </summary>
-        public static int screenWidth(Form form)
+        public static int ScreenWidth(Form form)
         {
             return ((Screen.FromControl(form).Bounds.Size.Width > 1920) ? 1920 : Screen.FromControl(form).Bounds.Size.Width);
         }
 
         /// <summary>
         /// get active form screenn height </summary>
-        public static int screenHeight(Form form)
+        public static int ScreenHeight(Form form)
         {
             return Screen.FromControl(form).Bounds.Size.Height;
         }
@@ -38,7 +38,7 @@ namespace Diagram
 
         /// <summary>
         /// convert hexidecimal html color to Color object </summary>
-        public static Color getColor(string color)
+        public static Color GetColor(string color)
         {
             return System.Drawing.ColorTranslator.FromHtml(color);
         }
@@ -48,7 +48,7 @@ namespace Diagram
 
         /// <summary>
         /// load image from file </summary>
-        public static Bitmap getImage(string file)
+        public static Bitmap GetImage(string file)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace Diagram
 
         /// <summary>
         /// load icon from file </summary>
-        public static Icon getIcon(string file)
+        public static Icon GetIcon(string file)
         {
             try
             {
@@ -148,7 +148,7 @@ namespace Diagram
 
         /// <summary>
         /// bring form to foreground </summary>
-        public static void bringToFront(Form form)   // [focus]
+        public static void BringToFront(Form form)   // [focus]
         {
             Program.log.write("bringToFront");
             Tick.timer(500, (t, args) =>
@@ -169,7 +169,7 @@ namespace Diagram
 
         /// <summary>
         /// extract icon from executable</summary>
-        public static Bitmap extractSystemIcon(string path)
+        public static Bitmap ExtractSystemIcon(string path)
         {
 #if !MONO
             try
@@ -191,7 +191,7 @@ namespace Diagram
 
         /// <summary>
         /// extract icon from link file</summary>
-        public static Bitmap extractLnkIcon(string path)
+        public static Bitmap ExtractLnkIcon(string path)
         {
 #if !MONO
             try
@@ -202,8 +202,7 @@ namespace Diagram
                 var itm = dir.Items().Item(System.IO.Path.GetFileName(lnkPath));
                 var lnk = (Shell32.ShellLinkObject)itm.GetLink;
 
-                String strIcon;
-                lnk.GetIconLocation(out strIcon);
+                lnk.GetIconLocation(out String strIcon);
                 Icon awIcon = Icon.ExtractAssociatedIcon(strIcon);
 
                 return awIcon.ToBitmap();

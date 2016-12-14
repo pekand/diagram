@@ -590,8 +590,8 @@ namespace Diagram
             {
                 this.Left = 50;
                 this.Top = 40;
-                this.Width = Media.screenWidth(this) - 100;
-                this.Height = Media.screenHeight(this) - 100;
+                this.Width = Media.ScreenWidth(this) - 100;
+                this.Height = Media.ScreenHeight(this) - 100;
                 this.WindowState = FormWindowState.Normal;
             }
 
@@ -694,7 +694,7 @@ namespace Diagram
             }
 
             if (close) {
-                this.main.showIfIsLastViews(this);
+                this.main.ShowIfIsLastViews(this);
             }
 
             e.Cancel = !close;
@@ -897,11 +897,11 @@ namespace Diagram
 
                     if (Os.GetExtension(openIconDialog.FileName).ToLower() == ".ico")
                     {
-                        icon = Media.getIcon(openIconDialog.FileName); 
+                        icon = Media.GetIcon(openIconDialog.FileName); 
                     }
                     else
                     {
-                        Bitmap image = Media.getImage(openIconDialog.FileName);
+                        Bitmap image = Media.GetImage(openIconDialog.FileName);
                         IntPtr Hicon = image.GetHicon();
                         icon = Icon.FromHandle(Hicon);
                     }
@@ -944,7 +944,7 @@ namespace Diagram
             {
                 try
                 {
-                    Bitmap background = Media.getImage(openIconDialog.FileName);
+                    Bitmap background = Media.GetImage(openIconDialog.FileName);
                     this.diagram.options.backgroundImage = background;
                     this.diagram.RefreshBackgroundImages();
                     this.diagram.Unsave();
@@ -2113,7 +2113,7 @@ namespace Diagram
 
             if (KeyMap.parseKey(KeyMap.switchViews, keyData))  // [KEY] [F8] hide views
             {
-                this.main.switchViews(this);
+                this.main.SwitchViews(this);
                 return true;
             }
 
@@ -2244,7 +2244,7 @@ namespace Diagram
 
             if (KeyMap.parseKey(KeyMap.console, keyData)) // [KEY] [F12] show Debug console
             {
-                this.main.showConsole();
+                this.main.ShowConsole();
                 return true;
             }
 
@@ -2404,7 +2404,7 @@ namespace Diagram
                     }
                     else
                     {
-                        this.main.lockDiagrams();
+                        this.main.LockDiagrams();
                         this.diagram.UnlockDiagram();
                     }
                 }
@@ -2586,12 +2586,12 @@ namespace Diagram
     				if (Os.DirectoryExists(file)) // directory
                     {
     					newrec.link = Os.MakeRelative(file, this.diagram.FileName);
-                        newrec.color.set(Media.getColor(diagram.options.colorDirectory));
+                        newrec.color.Set(Media.GetColor(diagram.options.colorDirectory));
                     }
     				else
     				if (Os.Exists(file))
                     {
-                        newrec.color.set(Media.getColor(diagram.options.colorFile));
+                        newrec.color.Set(Media.GetColor(diagram.options.colorFile));
 
                         if (this.diagram.FileName != "" && Os.FileExists(this.diagram.FileName)) // DROP FILE - skratenie cesty k suboru
                         {
@@ -2605,7 +2605,7 @@ namespace Diagram
                         {
                             newrec.isimage = true;
                             newrec.imagepath = Os.MakeRelative(file, this.diagram.FileName);
-                            newrec.image = Media.getImage(file);
+                            newrec.image = Media.GetImage(file);
                             if (ext != ".ico") newrec.image.MakeTransparent(Color.White);
                             newrec.height = newrec.image.Height;
                             newrec.width = newrec.image.Width;
@@ -2618,7 +2618,7 @@ namespace Diagram
                             {
                                 string[] shortcutInfo = Os.GetShortcutTargetFile(file);
 
-                                Bitmap icoLnk = Media.extractLnkIcon(file);
+                                Bitmap icoLnk = Media.ExtractLnkIcon(file);
                                 if (icoLnk != null)// extract icon
                                 {
                                     newrec.isimage = true;
@@ -2630,7 +2630,7 @@ namespace Diagram
                                 }
                                 else if (shortcutInfo[0] != "" && Os.FileExists(shortcutInfo[0]))
                                 {
-                                    Bitmap icoExe = Media.extractSystemIcon(shortcutInfo[0]);
+                                    Bitmap icoExe = Media.ExtractSystemIcon(shortcutInfo[0]);
 
                                     if (icoExe != null)// extract icon
                                     {
@@ -2652,7 +2652,7 @@ namespace Diagram
                         }
                         else
                         {
-                            Bitmap ico = Media.extractSystemIcon(file);
+                            Bitmap ico = Media.ExtractSystemIcon(file);
                             if (ico != null)// extract icon
                             {
                                 newrec.isimage = true;
@@ -4233,8 +4233,10 @@ namespace Diagram
                 this.diagram.EditNode(rec);
             }
 #else
-            var worker = new BackgroundWorker();
-            worker.WorkerSupportsCancellation = true;
+            var worker = new BackgroundWorker {
+                WorkerSupportsCancellation = true
+            };
+
             worker.DoWork += (sender, e) =>
             {
                 Program.log.write("diagram: openlink: run worker");
@@ -4497,7 +4499,7 @@ namespace Diagram
 
                     foreach (Node rec in this.selectedNodes)
                     {
-                        rec.color.set(color);
+                        rec.color.Set(color);
                     }
 
                     this.Invalidate();
@@ -4520,7 +4522,7 @@ namespace Diagram
                         {
                             foreach (Node rec in this.selectedNodes)
                             {
-                                rec.fontcolor.set(DColor.Color);
+                                rec.fontcolor.Set(DColor.Color);
                             }
                         }
                     }
@@ -4812,7 +4814,7 @@ namespace Diagram
 
                 if (Patterns.isColor(ClipText)) {
                     newrec.setName(ClipText);
-                    newrec.color.set(Media.getColor(ClipText));
+                    newrec.color.Set(Media.GetColor(ClipText));
                     this.diagram.Unsave("create", newrec, this.shift, this.currentLayer.id);
                 }
                 else if (Patterns.isURL(ClipText))  // [PASTE] [URL] [LINK] paste link from clipboard
@@ -4833,7 +4835,7 @@ namespace Diagram
                     {
                         newrec.setName(Os.GetFileName(ClipText));
                         newrec.link = Os.MakeRelative(ClipText, this.diagram.FileName);
-                        newrec.color.set(Media.getColor(diagram.options.colorFile));
+                        newrec.color.Set(Media.GetColor(diagram.options.colorFile));
                     }
 
                     // set link to node as path to directory
@@ -4841,7 +4843,7 @@ namespace Diagram
                     {
                         newrec.setName(Os.GetFileName(ClipText));
                         newrec.link = Os.MakeRelative(ClipText, this.diagram.FileName);
-                        newrec.color.set(Media.getColor(diagram.options.colorDirectory));
+                        newrec.color.Set(Media.GetColor(diagram.options.colorDirectory));
                     }
 
                     this.diagram.Unsave("create", newrec, this.shift, this.currentLayer.id);
@@ -5179,7 +5181,7 @@ namespace Diagram
                 {
                     Node newrec = this.CreateNode(this.GetMousePosition());
                     newrec.setName(expressionResult);
-                    newrec.color.set("#8AC5FF");
+                    newrec.color.Set("#8AC5FF");
 
                     this.diagram.InvalidateDiagram();
                 }
@@ -5203,7 +5205,7 @@ namespace Diagram
 
                 Node newrec = this.CreateNode(this.GetMousePosition());
                 newrec.setName(sum.ToString());
-                newrec.color.set("#8AC5FF");
+                newrec.color.Set("#8AC5FF");
 
                 this.diagram.InvalidateDiagram();
                 return true;
@@ -5282,7 +5284,7 @@ namespace Diagram
 
             Node newrec = this.CreateNode(this.GetMousePosition());
             newrec.setName(insertdatestring);
-            newrec.color.set("#8AC5FF");
+            newrec.color.Set("#8AC5FF");
 
             this.diagram.Unsave("create", newrec, this.shift, this.currentLayer.id);
             this.diagram.InvalidateDiagram();
@@ -5675,7 +5677,7 @@ namespace Diagram
                 {
                     Node newrec = this.CreateNode(position, true);
                     newrec.attachment = data;
-                    newrec.color.set(diagram.options.colorAttachment);
+                    newrec.color.Set(diagram.options.colorAttachment);
                     newrec.setName(Os.GetFileName(this.DSelectFileAttachment.FileName));
                     this.diagram.Unsave("create", newrec, this.shift, this.currentLayer.id);
                 }
@@ -5704,7 +5706,7 @@ namespace Diagram
                 {
                     Node newrec = this.CreateNode(position, true);
                     newrec.attachment = data;
-                    newrec.color.set(diagram.options.colorAttachment);
+                    newrec.color.Set(diagram.options.colorAttachment);
                     newrec.setName(Os.GetFileName(this.DSelectDirectoryAttachment.SelectedPath));
                     this.diagram.Unsave("create", newrec, this.shift, this.currentLayer.id);
                 }
@@ -5959,7 +5961,7 @@ namespace Diagram
                     delegate (object o, RunWorkerCompletedEventArgs args)
                     {
                         if (node.name == null) node.setName("url");
-                        node.color.set("#F2FFCC");
+                        node.color.Set("#F2FFCC");
                         this.diagram.InvalidateDiagram();
                     }
                 )
@@ -5986,7 +5988,7 @@ namespace Diagram
 
                         foreach (Line lin in SelectedLines)
                         {
-                            lin.color.set(DColor.Color);
+                            lin.color.Set(DColor.Color);
                         }
 
                         this.diagram.InvalidateDiagram();
@@ -6057,8 +6059,11 @@ namespace Diagram
             String clipboard = Os.GetTextFormClipboard();
 
 #if !DEBUG
-            var worker = new BackgroundWorker();
-            worker.WorkerSupportsCancellation = true;
+            var worker = new BackgroundWorker
+            {
+                WorkerSupportsCancellation = true
+            };
+
             worker.DoWork += (sender, e) =>
             {
 #endif

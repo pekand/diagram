@@ -49,7 +49,7 @@ namespace Diagram
             this.startNode = line.startNode;
             this.endNode = line.endNode;
             this.arrow = line.arrow;
-            this.color.set(line.color);
+            this.color.Set(line.color);
             this.width = line.width;
             this.layer = line.layer;
         }

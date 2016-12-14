@@ -161,7 +161,7 @@ namespace Diagram
 
             if (0 <= e.X && e.X <= bmp.Width && 0 <= e.Y && e.Y <= bmp.Height)
             {
-                this.color.set(bmp.GetPixel(e.X, e.Y));
+                this.color.Set(bmp.GetPixel(e.X, e.Y));
             }
 
             if (this.changeColor != null)
@@ -178,7 +178,7 @@ namespace Diagram
             if (selecting)
             {
                 if (0 < e.X && e.X < bmp.Width && 0 < e.Y && e.Y < bmp.Height) {
-                    this.color.set(bmp.GetPixel(e.X, e.Y));
+                    this.color.Set(bmp.GetPixel(e.X, e.Y));
                 }
 
                 if (this.changeColor != null)

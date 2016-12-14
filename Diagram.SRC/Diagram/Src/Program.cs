@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Diagnostics;
 
 // [VERSION]
-[assembly: AssemblyVersion("0.5.0.17")]
+[assembly: AssemblyVersion("0.5.0.18")]
 
 /*! \mainpage Infinite diagram
  *
