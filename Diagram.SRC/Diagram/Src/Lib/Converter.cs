@@ -5,24 +5,43 @@ namespace Diagram
 {
 	public class Converter
 	{
-		public static DateTime toDate(string s)
+		public static DateTime ToDateAndTime(string s)
 		{
 			DateTime d;
-			DateTime.TryParse(s, out d);
+			bool result = DateTime.TryParse(s, out d);
+			if (!result) {
+				return DateTime.Now;
+			}
+
 			return d;
 		}
 
-		public static DateTime toExactDate(string s)
+		public static DateTime ToDate(string s)
 		{
 			DateTime d;
-			DateTime.TryParseExact(s, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out d);
+			bool result = DateTime.TryParseExact(s, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out d);
+			if (!result) {
+				return DateTime.Now;
+			}
+
 			return d;
 		}
 
-		public static int toInt(string s)
+		public static String DateToString(DateTime d)
+		{
+			return String.Format("{0:yyyy-MM-dd}", d);
+		}
+
+
+
+		public static int ToInt(string s)
 		{
 			int i;
-			Int32.TryParse (s, out i);
+			bool result = Int32.TryParse(s, out i);
+			if (!result) {
+				return 0;
+			}
+
 			return i;
 		}
 

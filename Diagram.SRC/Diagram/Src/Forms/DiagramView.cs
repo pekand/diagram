@@ -5260,8 +5260,8 @@ namespace Diagram
                 {
                     try
                     {
-						DateTime d1 = Converter.toDate(this.selectedNodes[0].name);
-						DateTime d2 = Converter.toDate(this.selectedNodes[1].name);
+						DateTime d1 = Converter.ToDateAndTime(this.selectedNodes[0].name);
+						DateTime d2 = Converter.ToDateAndTime(this.selectedNodes[1].name);
                         insertdatestring = ((d1 < d2) ? d2 - d1 : d1 - d2).ToString();
                         insertdate = false;
                     }
@@ -5321,10 +5321,10 @@ namespace Diagram
                 }
                 else if (matchesDate.Count > 0) // add day to date
                 {
-					DateTime theDate = Converter.toExactDate(expression);                    
+					DateTime theDate = Converter.ToDate(expression);                    
                     theDate = theDate.AddDays(1);
                     string dateValue = matchesFloat[0].Groups[1].Value;
-                    string newnDateValue = String.Format("{0:yyyy-MM-dd}", theDate);
+					string newnDateValue = Converter.DateToString(theDate);
                     newrec.setName(newnDateValue);
                 }
                 else if (matchesFloat.Count > 0) //add to number

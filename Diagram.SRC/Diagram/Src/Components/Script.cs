@@ -277,9 +277,8 @@ namespace Diagram
 
         // convert string to int
         public int Val(string s)
-        {
-			int x = Converter.toInt (s);
-			return x;
+        {			
+			return Converter.ToInt (s);
         }
 
         // convert int to string
