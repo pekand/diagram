@@ -278,12 +278,8 @@ namespace Diagram
         // convert string to int
         public int Val(string s)
         {
-            if (Int32.TryParse(s, out int x))
-            {
-                return x;
-            }
-
-            return 0;
+			int x = Converter.toInt (s);
+			return x;
         }
 
         // convert int to string

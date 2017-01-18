@@ -2404,8 +2404,11 @@ namespace Diagram
                     }
                     else
                     {
+#if !MONO
                         this.main.LockDiagrams();
+#endif
                         this.diagram.UnlockDiagram();
+
                     }
                 }
                 return true;
@@ -5252,14 +5255,13 @@ namespace Diagram
                 }
                 else
                 // count difference between two dates
-                if (
-                    this.selectedNodes.Count() == 2 &&
-                    DateTime.TryParse(this.selectedNodes[0].name, out var d1) &&
-                    DateTime.TryParse(this.selectedNodes[1].name, out var d2)
-                )
+				
+                if (this.selectedNodes.Count() == 2)
                 {
                     try
                     {
+						DateTime d1 = Converter.toDate(this.selectedNodes[0].name);
+						DateTime d2 = Converter.toDate(this.selectedNodes[1].name);
                         insertdatestring = ((d1 < d2) ? d2 - d1 : d1 - d2).ToString();
                         insertdate = false;
                     }
@@ -5319,7 +5321,7 @@ namespace Diagram
                 }
                 else if (matchesDate.Count > 0) // add day to date
                 {
-                    DateTime.TryParseExact(expression, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out var theDate);
+					DateTime theDate = Converter.toExactDate(expression);                    
                     theDate = theDate.AddDays(1);
                     string dateValue = matchesFloat[0].Groups[1].Value;
                     string newnDateValue = String.Format("{0:yyyy-MM-dd}", theDate);
