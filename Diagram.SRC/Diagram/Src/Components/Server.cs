@@ -174,7 +174,7 @@ namespace Diagram
             else
             {
 
-                Match match = Regex.Match(Messsage, @"open:(.*)", RegexOptions.IgnoreCase);
+                Match match = Regex.Match(Messsage, @"open:(.*)", RegexOptions.IgnoreCase); //d36c6402df
                 if (match.Success)
                 {
                     string FileName = match.Groups[1].Value;

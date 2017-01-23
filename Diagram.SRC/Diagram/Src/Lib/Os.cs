@@ -370,7 +370,7 @@ namespace Diagram
 
         /// <summary>
         /// run command in system and wait for output </summary>
-        public static void RunCommand(string cmd, string workdir = null)
+        public static void RunCommand(string cmd, string workdir = null) //b39d265706
         {
             try
             {

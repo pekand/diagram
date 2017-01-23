@@ -1548,7 +1548,7 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DBLCLICK open link or edit window after double click on node [dblclick] [open] [edit]
+                // KEY DBLCLICK open link or edit window after double click on node [dblclick] [open] [edit] //c1703aa4d2
                 if (dblclick
                     && this.sourceNode != null
                     && !keyctrl
@@ -4222,11 +4222,10 @@ namespace Diagram
         }
 
         // NODE Open Link
-        public void OpenLinkAsync(Node rec)
+        public void OpenLinkAsync(Node rec) //d5fd12c855
         {
             Program.log.write("diagram: openlink");
             String clipboard = Os.GetTextFormClipboard();
-
 
 #if DEBUG
             var result = 0;
@@ -4265,15 +4264,30 @@ namespace Diagram
         }
 
         // NODE Open Link
-        public int OpenLink(Node rec, String clipboard = "")
+        public int OpenLink(Node rec, String clipboard = "") //fdb05537c2
         {
             if (rec != null)
             {
-                if (rec.attachment != "") { //deploy attachment                    
+                if (rec.haslayer) {
+                    if (this.diagram.options.openLayerInNewView)
+                    {
+                        this.diagram.OpenDiagramView(
+                            this,
+                            this.diagram.layers.GetLayer(
+                                rec.id
+                            )
+                        );
+                    }
+                    else
+                    {
+                        this.LayerIn(rec);
+                    }
+                } 
+                else if (rec.attachment != "") 
+                { //deploy attachment                    
                     return 2; // deploy attachment
                 }
-                else
-                if (rec.shortcut > 0) // GO TO LINK
+                else if (rec.shortcut > 0) // GO TO LINK
                 {
                     Node target = this.diagram.GetNodeByID(rec.shortcut);
                     this.GoToNode(target);
@@ -4286,40 +4300,43 @@ namespace Diagram
                     string fileName = "";
                     string searchString = "";
 
-                    if (!Patterns.isURL(rec.link)
-                        && Patterns.hasHastag(rec.link.Trim(), ref fileName, ref searchString)
-                        && Os.FileExists(Os.NormalizedFullPath(fileName)))       // OPEN FILE ON LINE POSITION
+                    if (rec.link.Trim() == "script" || rec.link.Trim() == "macro" || rec.link.Trim() == "$")  // OPEN SCRIPT node with link "script" is executed as script
+                    {
+                        this.Evaluate(rec, clipboard);
+                    }
+                    else if (Patterns.isGotoIdCommand(rec.link)) // GOTO position
+                    {
+                        Program.log.write("go to position in diagram " + rec.link);
+                        Node node = this.diagram.GetNodeByID(Patterns.getGotoIdCommand(rec.link));
+                        if (node != null) {
+                            this.GoToNodeWithAnimation(node);
+                        }
+                    }
+                    else if (Patterns.isGotoStringCommand(rec.link)) // GOTO position
+                    {
+                        Program.log.write("go to position in diagram " + rec.link);
+                        String searchFor = Patterns.getGotoStringCommand(rec.link);
+                        Nodes nodes = this.diagram.layers.SearchInAllNodes(searchFor);
+                        if (nodes.Count() >= 2)
+                        {
+                            if (rec != nodes[0]) {
+                                this.GoToNodeWithAnimation(nodes[0]);
+                            } else {
+                                this.GoToNodeWithAnimation(nodes[1]);
+                            }
+                        }
+                    }
+                    else if (Patterns.isURL(rec.link)) // OPEN URL
                     {
                         try
                         {
-                            // if is not set search strin, only hastag after link then use node name as string for search
-                            if(searchString.Trim() == "")
-                            {
-                                searchString = rec.name;
-                            }
-
-                            // if search string is not number then search for first line with search string
-                            if (!Patterns.isNumber(searchString))
-                            {
-                                searchString = Os.FndLineNumber(fileName, searchString).ToString();
-                            }
-
-                            // get external editor path from global configuration saved in user configuration directory
-                            String editFileCmd = this.main.options.texteditor;
-                            editFileCmd = editFileCmd.Replace("%FILENAME%", Os.NormalizedFullPath(fileName));
-                            editFileCmd = editFileCmd.Replace("%LINE%", searchString);
-
-                            Program.log.write("diagram: openlink: open file on position " + editFileCmd);
-                            Os.RunCommand(editFileCmd);
+                            Program.log.write("diagram: openlink: open url " + rec.link);
+                            Network.openUrl(rec.link);
                         }
                         catch (Exception ex)
                         {
-                            Program.log.write("open link as file error: " + ex.Message);
+                            Program.log.write("open link as url error: " + ex.Message);
                         }
-                    }
-                    else if (rec.link.Trim() == "script" || rec.link.Trim() == "macro" || rec.link.Trim() == "$")  // OPEN SCRIPT node with link "script" is executed as script
-                    {
-                        this.Evaluate(rec, clipboard);
                     }
                     else if (Os.DirectoryExists(rec.link))  // OPEN DIRECTORY
                     {
@@ -4353,40 +4370,36 @@ namespace Diagram
                             Program.log.write("open link as file error: " + ex.Message);
                         }
                     }
-                    else if (Patterns.isURL(rec.link)) // OPEN URL
+                    else if (Patterns.hasHastag(rec.link.Trim(), ref fileName, ref searchString)
+                        && Os.FileExists(Os.NormalizedFullPath(fileName)))       // OPEN FILE ON LINE POSITION
                     {
                         try
                         {
-                            Program.log.write("diagram: openlink: open url " + rec.link);
-                            Network.openUrl(rec.link);
+                            // if is not set search strin, only hastag after link then use node name as string for search
+                            if(searchString.Trim() == "")
+                            {
+                                searchString = rec.name;
+                            }
+
+                            // if search string is not number then search for first line with search string
+                            if (!Patterns.isNumber(searchString))
+                            {
+                                searchString = Os.FndLineNumber(fileName, searchString).ToString();
+                            }
+
+                            // get external editor path from global configuration saved in user configuration directory
+                            String editFileCmd = this.main.options.texteditor;
+                            editFileCmd = editFileCmd.Replace("%FILENAME%", Os.NormalizedFullPath(fileName));
+                            editFileCmd = editFileCmd.Replace("%LINE%", searchString);
+
+                            Program.log.write("diagram: openlink: open file on position " + editFileCmd);
+                            Os.RunCommand(editFileCmd);
                         }
                         catch (Exception ex)
                         {
-                            Program.log.write("open link as url error: " + ex.Message);
+                            Program.log.write("open link as file error: " + ex.Message);
                         }
-                    }
-                    else if (Patterns.isGotoIdCommand(rec.link)) // GOTO position
-                    {
-                        Program.log.write("go to position in diagram " + rec.link);
-                        Node node = this.diagram.GetNodeByID(Patterns.getGotoIdCommand(rec.link));
-                        if (node != null) {
-                            this.GoToNodeWithAnimation(node);
-                        }
-                    }
-                    else if (Patterns.isGotoStringCommand(rec.link)) // GOTO position
-                    {
-                        Program.log.write("go to position in diagram " + rec.link);
-                        String searchFor = Patterns.getGotoStringCommand(rec.link);
-                        Nodes nodes = this.diagram.layers.SearchInAllNodes(searchFor);
-                        if (nodes.Count() >= 2)
-                        {
-                            if (rec != nodes[0]) {
-                                this.GoToNodeWithAnimation(nodes[0]);
-                            } else {
-                                this.GoToNodeWithAnimation(nodes[1]);
-                            }
-                        }
-                    }
+                    }                    
                     else // run as command
                     {
 
@@ -4419,21 +4432,6 @@ namespace Diagram
 
                         Program.log.write("diagram: openlink: run command: " + cmd);
                         Os.RunCommand(cmd, Os.GetFileDirectory(this.diagram.FileName)); // RUN COMMAND
-                    }
-                }
-                else if (rec.haslayer) {
-                    if (this.diagram.options.openLayerInNewView)
-                    {
-                        this.diagram.OpenDiagramView(
-                            this,
-                            this.diagram.layers.GetLayer(
-                                rec.id
-                            )
-                        );
-                    }
-                    else
-                    {
-                        this.LayerIn(rec);
                     }
                 }
                 else // EDIT NODE
