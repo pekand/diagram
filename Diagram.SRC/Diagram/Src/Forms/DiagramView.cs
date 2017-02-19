@@ -4268,7 +4268,13 @@ namespace Diagram
         {
             if (rec != null)
             {
-                if (rec.haslayer) {
+
+                bool stopNextAction = this.main.plugins.ClickOnNodeAction(this.diagram, rec);
+
+                if (stopNextAction) {
+                    // stop execution from plugin
+                    return 0;
+                } else if (rec.haslayer) {
                     if (this.diagram.options.openLayerInNewView)
                     {
                         this.diagram.OpenDiagramView(

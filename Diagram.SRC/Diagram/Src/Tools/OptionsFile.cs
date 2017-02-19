@@ -50,7 +50,7 @@ namespace Diagram
         {
             this.parameters = parameters;
 
-            this.optionsFilePath = this.GetPortableConfigFilePath();
+            this.optionsFilePath = Os.GetPortableConfigFilePath(this.configFileName);
 
             // use global if portable version not exist
             if (!Os.FileExists(this.optionsFilePath))
@@ -65,9 +65,9 @@ namespace Diagram
             else
             {
                 // create global config directory if not exist
-                if (!Os.DirectoryExists(this.GetGlobalConfigFileDirectory()))
+                if (!Os.DirectoryExists(Os.GetGlobalConfigFileDirectory(this.configFileDirectory)))
                 {
-                    Os.CreateDirectory(this.GetGlobalConfigFileDirectory());
+                    Os.CreateDirectory(Os.GetGlobalConfigFileDirectory(this.configFileDirectory));
                 }
 
                 this.SaveConfigFile();
@@ -107,36 +107,13 @@ namespace Diagram
         }
 
         /*************************************************************************************************************************/
-
-        /// <summary>
-        /// get config file directory when diagram app is used in portable mode</summary> 
-        public String GetPortableConfigFilePath()
-        {
-            return Os.Combine(
-                Os.GetDirectoryName(Application.ExecutablePath),
-                this.configFileName
-            );
-        }
-
-        /// <summary>
-        /// get config file directory</summary> 
-        private string GetGlobalConfigFileDirectory()
-        {
-			string folderPath = Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
-			string configDirectory = Os.Combine(
-				folderPath,
-                this.configFileDirectory
-            );
-
-			return configDirectory;
-        }
-
+       
         /// <summary>
         /// get full config file path</summary> 
-        private string GetFullGlobalConfigFilePath()
+        public string GetFullGlobalConfigFilePath()
         {
             return Os.Combine(
-                this.GetGlobalConfigFileDirectory(),
+                Os.GetGlobalConfigFileDirectory(this.configFileDirectory),
                 this.configFileName
             );
         }

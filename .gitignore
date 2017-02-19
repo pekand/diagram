@@ -10,3 +10,4 @@ Documentation/Doxygen/html
 .vs
 /Diagram.SRC/Diagram/publish
 *.pfx
+/Diagram.SRC/Plugins/FirstPlugin/obj

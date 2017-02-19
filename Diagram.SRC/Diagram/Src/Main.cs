@@ -42,11 +42,20 @@ namespace Diagram
         }
 
         /*************************************************************************************************************************/
+        // Plugins
+
+        /// <summary>
+        /// load plugins</summary>
+        public string pluginsDirectoryName = "plugins";
+        public Plugins plugins = null;
+
+        /*************************************************************************************************************************/
         // SERVER
 
         /// <summary>
         /// local messsaging server for communication between running program instances</summary>
         private Server server = null;
+
 
         /*************************************************************************************************************************/
         // MAIN APPLICATION
@@ -65,6 +74,22 @@ namespace Diagram
             // inicialize program
             options = new ProgramOptions();
             optionsFile = new OptionsFile(options);
+
+            // load external plugins
+            plugins = new Plugins();
+
+            // executable location directory
+            string pluginsLocalDirectory = Os.Combine(Os.GetCurrentApplicationDirectory(), this.pluginsDirectoryName);
+            if (Os.DirectoryExists(pluginsLocalDirectory))
+            {
+                plugins.LoadPlugins(pluginsLocalDirectory);
+            }
+
+            string pluginsGlobalDirectory = Os.Combine(optionsFile.GetFullGlobalConfigFilePath(), this.pluginsDirectoryName);
+            if (Os.DirectoryExists(pluginsLocalDirectory))
+            {
+                plugins.LoadPlugins(pluginsLocalDirectory);
+            }
 
             // create local server for comunication between local instances
             server = new Server(this);
@@ -117,6 +142,8 @@ namespace Diagram
             // options - create new file with given name if not exist
             bool CommandLineCreateIfNotExistFile = false;
 
+            bool ShowCommandLineHelp = false;
+
             // list of diagram files names for open
             List<String> CommandLineOpen = new List<String>();
 
@@ -134,7 +161,11 @@ namespace Diagram
                 arg = args[i];
 
                 // [COMAND LINE] [CREATE]  oprions create new file with given name if not exist
-                if (arg == "-e")
+                if (arg == "-h" || arg == "--help" || arg == "/?")
+                {
+                    ShowCommandLineHelp = true;
+                }
+                else if(arg == "-e")
                 {
                     CommandLineCreateIfNotExistFile = true;
                 }
@@ -153,6 +184,15 @@ namespace Diagram
             }
 
             // open diagram given as arguments
+            if (ShowCommandLineHelp)
+            {
+                String help =
+                "diagram -h --help /?  >> show this help\n" +
+                "diagram -e {filename} >> create file if not exist\n" +
+                "diagram {filepath} {filepath} >> open existing file\n";
+                MessageBox.Show(help, "Command line parameters");
+            }
+            else
             if (CommandLineOpen.Count > 0)
             {
                 for (int i = 0; i < CommandLineOpen.Count(); i++)

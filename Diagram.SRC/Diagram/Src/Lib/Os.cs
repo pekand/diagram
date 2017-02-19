@@ -595,5 +595,31 @@ namespace Diagram
             return clipboard;
         }
 
+        /*************************************************************************************************************************/
+        // STANDARD DIRECTORY LOCATIONS
+
+        /// <summary>
+        /// get config file directory when diagram app is used in portable mode</summary> 
+        public static String GetPortableConfigFilePath(String configFileName)
+        {
+            return Os.Combine(
+                Os.GetDirectoryName(Application.ExecutablePath),
+                configFileName
+            );
+        }
+
+        /// <summary>
+        /// get config file directory</summary> 
+        public static string GetGlobalConfigFileDirectory(String configFileDirectory)
+        {
+            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string configDirectory = Os.Combine(
+                folderPath,
+                configFileDirectory
+            );
+
+            return configDirectory;
+        }
+
     }
 }
