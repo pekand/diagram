@@ -19,13 +19,13 @@ namespace Diagram
         /// load plugins from path</summary>
         public void LoadPlugins(string path)
         {
-            string[] dllFileNames = null;
+            IEnumerable<string> dllFileNames = null;
             if (Directory.Exists(path))
             {
-                dllFileNames = Directory.GetFiles(path, "*.dll");
+                dllFileNames = Directory.EnumerateFiles(path, "*.dll", SearchOption.AllDirectories);
             }
 
-            ICollection<Assembly> assemblies = new List<Assembly>(dllFileNames.Length);
+            ICollection<Assembly> assemblies = new List<Assembly>(dllFileNames.Count());
             foreach (string dllFile in dllFileNames)
             {
                 AssemblyName an = AssemblyName.GetAssemblyName(dllFile);

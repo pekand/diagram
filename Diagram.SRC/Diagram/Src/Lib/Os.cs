@@ -432,6 +432,19 @@ namespace Diagram
             process.Start();
         }
 
+        /// <summary>
+        /// open file on position </summary>
+        public static void OpenFileOnPosition(string fileName, int pos = 0)
+        {
+
+            String editFileCmd = "subl \"%FILENAME%\":%LINE%"; ;
+            editFileCmd = editFileCmd.Replace("%FILENAME%", Os.NormalizedFullPath(fileName));
+            editFileCmd = editFileCmd.Replace("%LINE%", pos.ToString());
+
+            Program.log.write("diagram: openlink: open file on position " + editFileCmd);
+            Os.RunCommand(editFileCmd);
+        }
+
         /*************************************************************************************************************************/
         // TOOLS
 
