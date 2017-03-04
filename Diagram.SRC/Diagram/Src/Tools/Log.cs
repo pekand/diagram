@@ -7,7 +7,7 @@ namespace Diagram
     /// <summary>
     /// Class for catch log informations.
     /// This informations can be show in console form </summary>
-    public class Log
+    public class Log //UID8455348623
     {
         /// <summary>
         /// form for displaying errors </summary>

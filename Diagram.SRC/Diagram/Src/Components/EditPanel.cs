@@ -2,13 +2,9 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-/*
- 
-*/
-
 namespace Diagram
 {
-    public class EditPanel : Panel
+    public class EditPanel : Panel //UID2281296902
     {
         public DiagramView diagramView = null;       // diagram ktory je previazany z pohladom
 

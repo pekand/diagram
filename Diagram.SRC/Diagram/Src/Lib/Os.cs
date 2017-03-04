@@ -14,7 +14,7 @@ namespace Diagram
 {
     /// <summary>
     /// OS and path related functions repository</summary>
-    public class Os
+    public class Os //UID8599434163
     {
         /*************************************************************************************************************************/
         // FILE EXTENSION
@@ -118,15 +118,6 @@ namespace Diagram
             return Path.GetDirectoryName(path);
         }
 
-
-        /// <summary>
-        /// get current running application executable directory </summary>
-        public static string GetCurrentApplicationDirectory()
-        {
-            string currentApp = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            return Os.GetFileDirectory(currentApp);
-        }
-
         /// <summary>
         /// set current directory</summary>
         public static void SetCurrentDirectory(string path)
@@ -149,6 +140,24 @@ namespace Diagram
                 Program.log.write("os.createDirectory fail: " + path + ": " + e.ToString());
             }
             return false;
+        }
+
+        /// <summary>
+        /// get current running application executable directory
+        /// Example: c:\Program Files\Infinite Diagram\
+        /// </summary> 
+        public static String GetCurrentApplicationDirectory()
+        {
+            return Os.GetDirectoryName(Application.ExecutablePath);
+        }
+
+        /// <summary>
+        /// get config file directory
+        /// Example: C:\Users\user_name\AppData\Roaming\
+        /// </summary> 
+        public static string GetApplicationsDirectory()
+        {
+            return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         }
 
         /*************************************************************************************************************************/
@@ -606,32 +615,6 @@ namespace Diagram
             }
 
             return clipboard;
-        }
-
-        /*************************************************************************************************************************/
-        // STANDARD DIRECTORY LOCATIONS
-
-        /// <summary>
-        /// get config file directory when diagram app is used in portable mode</summary> 
-        public static String GetPortableConfigFilePath(String configFileName)
-        {
-            return Os.Combine(
-                Os.GetDirectoryName(Application.ExecutablePath),
-                configFileName
-            );
-        }
-
-        /// <summary>
-        /// get config file directory</summary> 
-        public static string GetGlobalConfigFileDirectory(String configFileDirectory)
-        {
-            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string configDirectory = Os.Combine(
-                folderPath,
-                configFileDirectory
-            );
-
-            return configDirectory;
         }
 
     }

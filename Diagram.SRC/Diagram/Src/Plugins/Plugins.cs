@@ -10,7 +10,7 @@ namespace Diagram
 {
     /// <summary>
     /// load plugins</summary>
-    public class Plugins
+    public class Plugins //UID8736657869
     {
         public ICollection<IDiagramPlugin> plugins = null;
         public ICollection<INodeOpenPlugin> nodeOpenPlugins = null;
@@ -19,6 +19,8 @@ namespace Diagram
         /// load plugins from path</summary>
         public void LoadPlugins(string path)
         {
+            Program.log.write("Loading plugins");
+
             IEnumerable<string> dllFileNames = null;
             if (Directory.Exists(path))
             {
@@ -85,6 +87,8 @@ namespace Diagram
                     if (plugin != null)
                     {
                         plugins.Add(plugin);
+
+                        Program.log.write("Loading plugin: " + plugin.Name);
                     }
                 }
             }

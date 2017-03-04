@@ -127,7 +127,7 @@ namespace Diagram
     /// Tools.setClipboard('text')
     /// a = Tools.getClipboard()
     /// </example>
-    public class Tools
+    public class Tools //UID6975866488
     {
         private Script script = null;
 
@@ -302,7 +302,7 @@ namespace Diagram
     ///     Program.log.write("evaluation error: " + ex.Message);
     /// }
     /// </example>
-    public class Script
+    public class Script //UID6870742772
     {
         private ScriptEngine pyEngine = null;
         private dynamic pyScope = null;

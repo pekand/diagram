@@ -12,7 +12,7 @@ namespace Diagram
 {
     /// <summary>
     /// Ncalc library for expression evaluating</summary>
-    class Evaluator
+    class Evaluator //UID9411889982
     {
 
         public Evaluator()

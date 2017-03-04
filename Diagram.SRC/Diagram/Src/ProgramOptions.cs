@@ -6,7 +6,7 @@ namespace Diagram
 {
     /// <summary>
     /// global program parmeters for all instances </summary>
-    public class ProgramOptions
+    public class ProgramOptions //UID0014460148
     {
         /*************************************************************************************************************************/
 

@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Diagram
 {
-    public class TextForm : Form
+    public class TextForm : Form //UID6772159546
     {
         public Main main = null;
 

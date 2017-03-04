@@ -1,32 +1,11 @@
 ﻿using System;
 
-/*
-    class Position
-        Position()
-        clone()
-        set()
-        distance()
-        size()
-        add()
-        subtract()
-        operator -()
-        invert()
-        scale()
-        split()
-        operator *()
-        copy()
-        convertToStandard()
-        ToString()
-        toCartesian()
-        toView()
-*/
-
 namespace Diagram
 {
 
     /// <summary>
     /// Point position in canvas</summary>
-    public class Position
+    public class Position //UID0604640560
     {
         public int x = 0;
         public int y = 0;

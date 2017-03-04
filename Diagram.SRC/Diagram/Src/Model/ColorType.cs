@@ -10,7 +10,7 @@ namespace Diagram
 
     /// <summary>
     /// color type encapsulation</summary>
-    public class ColorType
+    public class ColorType //UID6485317568
     {
         public Color color = System.Drawing.Color.Black;
 

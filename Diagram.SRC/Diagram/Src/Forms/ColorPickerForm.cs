@@ -10,13 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-/*
- 
-*/
-
 namespace Diagram
 {
-    public partial class ColorPickerForm : Form
+    public partial class ColorPickerForm : Form //UID2354438225
     {
         public delegate void ColorPickerFormChangeColor(ColorType color);
         public event ColorPickerFormChangeColor changeColor;

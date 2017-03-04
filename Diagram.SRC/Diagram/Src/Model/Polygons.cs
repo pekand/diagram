@@ -4,7 +4,7 @@ namespace Diagram
 {
     /// <summary>
     /// collection of polygons</summary>
-    public class Polygons : List<Polygon>
+    public class Polygons : List<Polygon> //UID7474399328
     {
     }
 }

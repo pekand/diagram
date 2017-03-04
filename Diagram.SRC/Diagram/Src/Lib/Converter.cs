@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace Diagram
 {
-	public class Converter
+	public class Converter //UID8493692592
 	{
 		public static DateTime ToDateAndTime(string s)
 		{

@@ -9,7 +9,7 @@ namespace Diagram
 
     /// <summary>
     /// one undo operation</summary> 
-    public class UndoOperation
+    public class UndoOperation //UID6178817122
     {
         public string type = ""; // type of undo operation (delete, create, edit, move, changeLineColor, changeLineWidth, changeNodeColor)
 

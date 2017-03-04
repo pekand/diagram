@@ -9,7 +9,7 @@ namespace Diagram
 {
     /// <summary>
     /// key shortcuts table </summary>
-    public class KeyMap
+    public class KeyMap //UID6078031921
     {
         public static string selectAllElements = "CTRL+A";
         public static string alignToLine = "CTRL+L";

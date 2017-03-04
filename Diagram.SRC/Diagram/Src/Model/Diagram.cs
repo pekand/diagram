@@ -25,7 +25,7 @@ namespace Diagram
         public Node newNode;
     }
 
-    public class Diagram
+    public class Diagram //UID2487098516
     {
         private Main main = null;                 // reference to main form
 

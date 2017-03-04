@@ -16,7 +16,7 @@ namespace Diagram
     /// Processing command line arguments.
     /// Create mainform
     /// </summary>
-    public class Main
+    public class Main //UID7118462915
     {
 
         /*************************************************************************************************************************/
@@ -85,10 +85,10 @@ namespace Diagram
                 plugins.LoadPlugins(pluginsLocalDirectory);
             }
 
-            string pluginsGlobalDirectory = Os.Combine(optionsFile.GetFullGlobalConfigFilePath(), this.pluginsDirectoryName);
-            if (Os.DirectoryExists(pluginsLocalDirectory))
+            string pluginsGlobalDirectory = Os.Combine(optionsFile.GetGlobalConfigDirectory(), this.pluginsDirectoryName);
+            if (Os.DirectoryExists(pluginsGlobalDirectory))
             {
-                plugins.LoadPlugins(pluginsLocalDirectory);
+                plugins.LoadPlugins(pluginsGlobalDirectory);
             }
 
             // create local server for comunication between local instances
@@ -315,7 +315,7 @@ namespace Diagram
         /// <summary>
         /// open existing diagram or create new empty diagram
         /// Create diagram model and then open diagram view on this model</summary>
-        public void OpenDiagram(String FilePath = "")
+        public void OpenDiagram(String FilePath = "") //UID1771511767
         {
             Program.log.write("Program : OpenDiagram: " + FilePath);
 
@@ -376,7 +376,7 @@ namespace Diagram
                                     }
 
                                     Program.log.write("bring focus");
-                                    Media.BringToFront(diagram.DiagramViews[0]);
+                                        Media.BringToFront(diagram.DiagramViews[0]); //UID4510272262
                                 }
                                 alreadyOpen = true;
                                 break;

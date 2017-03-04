@@ -17,7 +17,7 @@ namespace Diagram
 {
     /// <summary>
     /// Application entry point</summary>
-    public static class Program
+    public static class Program //UID2573216529
     {
         /// <summary>
         /// debuging console for loging messages</summary>

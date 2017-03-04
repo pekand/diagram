@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Diagram
 {
-    public class ChangePasswordForm : Form
+    public class ChangePasswordForm : Form //UID9355910334
     {
         public Main main = null;
 

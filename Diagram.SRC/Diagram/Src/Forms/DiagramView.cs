@@ -15,303 +15,10 @@ using System.Text;
 using System.Diagnostics;
 #endif
 
-/*
-
-class DiagramView
-
-    main;
-    parentView;
-
-    PopupMenu;
-    DSave;
-    DOpen;
-    DColor;
-    DFontColor;
-    DFont;
-    DImage;
-    MoveTimer;
-    defaultfontDialog;
-    exportFile;
-    saveTextFileDialog;
-    DSelectDirectoryAttachment;
-    DSelectFileAttachment;
-
-    shift;
-    startShift;
-
-    startMousePos;
-    startNodePos;
-    vmouse;
-    actualMousePos;
-
-    key;
-    keyshift;
-    keyctrl;
-    keyalt;
-
-    stateDragSelection;
-    stateMoveView;
-    stateSelectingNodes;
-    stateAddingNode;
-    stateDblclick;
-    stateZooming;
-    stateSearching;
-    stateSourceNodeAlreadySelected;
-    stateCoping;
-
-    zoomShift;
-    zoomingDefaultScale;
-    zoomingScale;
-    currentScale;
-    scale;
-
-    diagram;
-
-    sourceNode;
-    selectedNodes;
-
-    copySourceNode;
-    copySelectedNodes;
-    copySelectedLines;
-
-    currentLayer;
-    firstLayereShift;
-    layersHistory;
-
-    bottomScrollBar;
-    rightScrollBar;
-
-    editPanel;
-    editLinkPanel;
-
-    lastFound;
-    searchFor;
-    searhPanel;
-    currentPosition;
-    currentPositionLayer;
-    nodesSearchResult;
-
-    lastMarkNode;
-
-    breadcrumbs;
-
-    animationTimer;
-    animationTimerSpeed;
-    animationTimerCounter;
-
-    zoomTimer;
-    zoomTimerScale;
-    zoomTimerStep;
-
-    lineWidthForm;
-    colorPickerForm;
-
-    components;
-
-    isFullScreen;
-
-    // [FORM]
-    InitializeComponent()
-    DiagramView()
-    DiagramViewLoad()
-    DiagramApp_FormClosing()
-    SetTitle()
-    GoToHome()
-    OpenViewAndGoToHome()
-    setCurentPositionAsHomePosition()
-    GoToEnd()
-    OpenViewAndGoToEnd()
-    setCurentPositionAsEndPosition()
-    Position cursorPosition()
-    formHide()
-    rememberPosition()
-    getWindowsStateCode()
-    setWindowsStateCode()
-    setIcon()
-
-    // [SELECTION]
-    ClearSelection()
-    RemoveNodeFromSelection()
-    SelectOnlyOneNode()
-    SelectNode()
-    SelectNodes()
-    selectAll()
-
-    // [EVENTS]
-    DiagramApp_Paint()
-    DiagramApp_MouseDoubleClick()
-    DiagramApp_MouseDown()
-    DiagramApp_MouseMove()
-    DiagramApp_MouseUp()
-    resetStates()
-    DiagramApp_MouseWheel()
-    ProcessCmdKey()
-    DiagramApp_KeyDown()
-    DiagramApp_KeyUp()
-    DiagramApp_KeyPress()
-    DiagramApp_DragDrop()
-    DiagramApp_DragEnter()
-    DiagramApp_Resize()
-    MoveTimer_Tick()
-    DiagramApp_Deactivate()
-
-    // [LAYER]
-    LayerIn()
-    LayerOut()
-    BuildLayerHistory()
-    isNodeInLayerHistory()
-    layerIn()
-    layerInOrEdit()
-
-    // [SEARCH]
-    Search()
-    SearchFirst()
-    SearchNext()
-    SearchPrev()
-    showSearchPanel()
-    SearchCancel()
-    SearchClose()
-    SearchPanelChanged()
-
-    // [CLIPBOARD]
-    copyLinkToClipboard()
-
-    // [SCROLLBAR]
-    moveScreenHorizontal()
-    getPositionHorizontal()
-    moveScreenVertical()
-    getPositionVertical()
-    positionChangeBottom()
-    positionChangeRight()
-
-    // [FILE]
-    save()
-    saveas()
-    open()
-    openDiagramDirectory()
-
-    // [EXPORT]
-    exportDiagramToPng()
-    exportDiagramToTxt()
-
-    // [DRAW]
-    DrawDiagram()
-    DrawGrid()
-    DrawMiniScreen()
-    DrawCoordinates()
-    DrawAddNode()
-    DrawNodes()
-    DrawLines()
-
-    // [DIAGRAM]
-    setDiagram()
-    getDiagram()
-
-    // [VIEW]
-    DiagramView_FormClosed()
-    DiagramView_Activated()
-    pageUp()
-    pageDown()
-    resetZoom()
-    getMousePosition()
-    fullScreenSwitch()
-
-    // NODE
-    CreateNode()
-    addNodeAfterNode()
-    addNodeBelowNode()
-    openLinkDirectory()
-    DeleteSelectedNodes()
-    goToNode()
-    goToPosition()
-    isOnPosition()
-    goToShift()
-    goToLayer()
-    findNodeInMousePosition()
-    OpenLinkAsync()
-    OpenLink()
-    removeShortcuts()
-    selectColor()
-    changeColor()
-    selectFontColor()
-    selectFont()
-    isSelectionTransparent()
-    makeSelectionTransparent()
-    selectDefaultFont()
-    addImage()
-    removeImagesFromSelection()
-    hasSelectionImage()
-    hasSelectionNotEmbeddedImage()
-    makeImagesEmbedded()
-    copy()
-    cut()
-    paste()
-    pasteToNote()
-    pasteToLink()
-    alignToLine()
-    alignToColumn()
-    alignToGroup()
-    sortNodes()
-    splitNode()
-    alignToLineGroup()
-    alignLeft()
-    alignRight()
-    copyLink()
-    copyNote()
-    evaluateExpression()
-    evaluateDate()
-    promote()
-    random()
-    hideBackground()
-    edit()
-    rename()
-    editLink()
-    moveNodesToForeground()
-    moveNodesToBackground()
-    protectNodes()
-    moveNodesToLeft()
-    moveNodesToRight()
-    moveNodesUp()
-    moveNodesDown()
-    isEditing()
-    cancelEditing()
-    hasSelectionAttachment()
-    attachmentDeploy()
-    attachmentAddFile()
-    attachmentAddDirectory()
-    attachmentRemove()
-    getSelectedLines()
-    switchMarkForSelectedNodes()
-    markSelectedNodes()
-    unMarkSelectedNodes()
-    nextMarkedNode()
-    prevMarkedNode()
-    setNodeNameByLink()
-
-    // [LINE]
-    changeLineColor()
-    changeLineWidth()
-    resizeLineWidth()
-
-    // [SCRIPT]
-    evaluate()
-
-    // [MOVE]
-    goToNodeWithAnimation()
-    animationTimer_Tick()
-
-    // [ZOOM]
-    zoomTimer_Tick()
-
-    // [DEBUG]
-    lastEvent; // remember last event log message for skiping similar messages
-    logEvent() // log events only in debug mode to system console
- 
-*/
 namespace Diagram
 {
 
-    public partial class DiagramView : Form
+    public partial class DiagramView : Form //UID5701725971
     {
         public Main main = null;
         public DiagramView parentView = null;
@@ -4222,7 +3929,7 @@ namespace Diagram
         }
 
         // NODE Open Link
-        public void OpenLinkAsync(Node rec) //d5fd12c855
+        public void OpenLinkAsync(Node rec) //UID3758665113
         {
             Program.log.write("diagram: openlink");
             String clipboard = Os.GetTextFormClipboard();
@@ -4264,7 +3971,7 @@ namespace Diagram
         }
 
         // NODE Open Link
-        public int OpenLink(Node rec, String clipboard = "") //fdb05537c2
+        public int OpenLink(Node rec, String clipboard = "") //UID9292140736
         {
             if (rec != null)
             {
@@ -4406,7 +4113,7 @@ namespace Diagram
                             Program.log.write("open link as file error: " + ex.Message);
                         }
                     }                    
-                    else // run as command
+                    else // run as command 
                     {
 
                         // set current directory to current diagrm file destination
@@ -4437,7 +4144,7 @@ namespace Diagram
                         .Replace("%DIRECTORY%", Os.GetFileDirectory(this.diagram.FileName));
 
                         Program.log.write("diagram: openlink: run command: " + cmd);
-                        Os.RunCommand(cmd, Os.GetFileDirectory(this.diagram.FileName)); // RUN COMMAND
+                        Os.RunCommand(cmd, Os.GetFileDirectory(this.diagram.FileName)); // RUN COMMAND UID5087096741
                     }
                 }
                 else // EDIT NODE

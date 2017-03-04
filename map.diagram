@@ -33,7 +33,7 @@
       <id>49</id>
       <fontcolor>Black</fontcolor>
       <text>Main.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Main.cs</link>
+      <link>UID7118462915</link>
       <layer>0</layer>
       <x>-510</x>
       <y>2121</y>
@@ -41,13 +41,13 @@
       <height>36</height>
       <color>#DC00EB</color>
       <timecreate>2016-12-1 22:11:44</timecreate>
-      <timemodify>2016-12-1 22:11:44</timemodify>
+      <timemodify>2017-3-4 23:17:19</timemodify>
     </rectangle>
     <rectangle>
       <id>50</id>
       <fontcolor>Black</fontcolor>
       <text>Program.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Program.cs</link>
+      <link>UID2573216529</link>
       <layer>0</layer>
       <x>-740</x>
       <y>2121</y>
@@ -55,13 +55,13 @@
       <height>36</height>
       <color>#DC00EB</color>
       <timecreate>2016-12-1 22:11:50</timecreate>
-      <timemodify>2016-12-1 22:11:50</timemodify>
+      <timemodify>2017-3-4 23:16:58</timemodify>
     </rectangle>
     <rectangle>
       <id>51</id>
       <fontcolor>Black</fontcolor>
       <text>ProgramOptions.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\ProgramOptions.cs</link>
+      <link>UID0014460148</link>
       <layer>0</layer>
       <x>-538</x>
       <y>2229</y>
@@ -69,13 +69,13 @@
       <height>36</height>
       <color>#D9CCFF</color>
       <timecreate>2016-12-1 22:12:17</timecreate>
-      <timemodify>2016-12-1 22:12:17</timemodify>
+      <timemodify>2017-3-4 23:16:35</timemodify>
     </rectangle>
     <rectangle>
       <id>52</id>
       <fontcolor>Black</fontcolor>
       <text>KeyMap.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Tools\KeyMap.cs</link>
+      <link>UID6078031921</link>
       <layer>0</layer>
       <x>16</x>
       <y>2185</y>
@@ -83,13 +83,13 @@
       <height>36</height>
       <color>#78FFEB</color>
       <timecreate>2016-12-1 22:13:28</timecreate>
-      <timemodify>2016-12-1 22:13:28</timemodify>
+      <timemodify>2017-3-4 23:19:04</timemodify>
     </rectangle>
     <rectangle>
       <id>53</id>
       <fontcolor>Black</fontcolor>
       <text>Log.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Tools\Log.cs</link>
+      <link>UID8455348623</link>
       <layer>0</layer>
       <x>-719</x>
       <y>2233</y>
@@ -97,13 +97,13 @@
       <height>36</height>
       <color>#78FFEB</color>
       <timecreate>2016-12-1 22:13:28</timecreate>
-      <timemodify>2016-12-1 22:13:28</timemodify>
+      <timemodify>2017-3-4 23:18:25</timemodify>
     </rectangle>
     <rectangle>
       <id>54</id>
       <fontcolor>Black</fontcolor>
       <text>OptionsFile.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Tools\OptionsFile.cs</link>
+      <link>UID8285897740</link>
       <layer>0</layer>
       <x>-473</x>
       <y>2324</y>
@@ -111,13 +111,13 @@
       <height>36</height>
       <color>#78FFEB</color>
       <timecreate>2016-12-1 22:13:28</timecreate>
-      <timemodify>2016-12-1 22:13:28</timemodify>
+      <timemodify>2017-3-4 23:18:09</timemodify>
     </rectangle>
     <rectangle>
       <id>55</id>
       <fontcolor>Black</fontcolor>
       <text>Translations.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Tools\Translations.cs</link>
+      <link>UID1436834852</link>
       <layer>0</layer>
       <x>748</x>
       <y>2431</y>
@@ -125,13 +125,13 @@
       <height>36</height>
       <color>#37BEFF</color>
       <timecreate>2016-12-1 22:13:28</timecreate>
-      <timemodify>2016-12-1 22:13:28</timemodify>
+      <timemodify>2017-3-4 23:17:40</timemodify>
     </rectangle>
     <rectangle>
       <id>56</id>
       <fontcolor>Black</fontcolor>
       <text>ColorType.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Model\ColorType.cs</link>
+      <link>UID6485317568</link>
       <layer>0</layer>
       <x>-313</x>
       <y>2502</y>
@@ -139,13 +139,13 @@
       <height>36</height>
       <color>#F0F019</color>
       <timecreate>2016-12-1 22:13:38</timecreate>
-      <timemodify>2016-12-1 22:13:38</timemodify>
+      <timemodify>2017-3-4 23:26:20</timemodify>
     </rectangle>
     <rectangle>
       <id>57</id>
       <fontcolor>Black</fontcolor>
       <text>Diagram.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Model\Diagram.cs</link>
+      <link>UID2487098516</link>
       <layer>0</layer>
       <x>-161</x>
       <y>2121</y>
@@ -153,13 +153,13 @@
       <height>36</height>
       <color>#F0F019</color>
       <timecreate>2016-12-1 22:13:38</timecreate>
-      <timemodify>2016-12-1 22:13:38</timemodify>
+      <timemodify>2017-3-4 23:26:03</timemodify>
     </rectangle>
     <rectangle>
       <id>58</id>
       <fontcolor>Black</fontcolor>
       <text>DiagramBlock.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Model\DiagramBlock.cs</link>
+      <link>UID6305074892</link>
       <layer>0</layer>
       <x>-270</x>
       <y>2055</y>
@@ -167,13 +167,13 @@
       <height>36</height>
       <color>#F0F019</color>
       <timecreate>2016-12-1 22:13:38</timecreate>
-      <timemodify>2016-12-1 22:13:38</timemodify>
+      <timemodify>2017-3-4 23:25:42</timemodify>
     </rectangle>
     <rectangle>
       <id>59</id>
       <fontcolor>Black</fontcolor>
       <text>Layer.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Model\Layer.cs</link>
+      <link>UID1099250588</link>
       <layer>0</layer>
       <x>-153</x>
       <y>2230</y>
@@ -181,13 +181,13 @@
       <height>36</height>
       <color>#F0F019</color>
       <timecreate>2016-12-1 22:13:38</timecreate>
-      <timemodify>2016-12-1 22:13:38</timemodify>
+      <timemodify>2017-3-4 23:25:13</timemodify>
     </rectangle>
     <rectangle>
       <id>60</id>
       <fontcolor>Black</fontcolor>
       <text>Layers.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Model\Layers.cs</link>
+      <link>UID6548243626</link>
       <layer>0</layer>
       <x>-156</x>
       <y>2172</y>
@@ -195,13 +195,13 @@
       <height>36</height>
       <color>#F0F019</color>
       <timecreate>2016-12-1 22:13:38</timecreate>
-      <timemodify>2016-12-1 22:13:38</timemodify>
+      <timemodify>2017-3-4 23:25:18</timemodify>
     </rectangle>
     <rectangle>
       <id>61</id>
       <fontcolor>Black</fontcolor>
       <text>Line.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Model\Line.cs</link>
+      <link>UID5674116969</link>
       <layer>0</layer>
       <x>-97</x>
       <y>2371</y>
@@ -209,13 +209,13 @@
       <height>36</height>
       <color>#F0F019</color>
       <timecreate>2016-12-1 22:13:38</timecreate>
-      <timemodify>2016-12-1 22:13:38</timemodify>
+      <timemodify>2017-3-4 23:24:27</timemodify>
     </rectangle>
     <rectangle>
       <id>62</id>
       <fontcolor>Black</fontcolor>
       <text>Lines.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Model\Lines.cs</link>
+      <link>UID2846356573</link>
       <layer>0</layer>
       <x>-101</x>
       <y>2285</y>
@@ -223,13 +223,13 @@
       <height>36</height>
       <color>#F0F019</color>
       <timecreate>2016-12-1 22:13:38</timecreate>
-      <timemodify>2016-12-1 22:13:38</timemodify>
+      <timemodify>2017-3-4 23:24:04</timemodify>
     </rectangle>
     <rectangle>
       <id>63</id>
       <fontcolor>Black</fontcolor>
       <text>Node.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Model\Node.cs</link>
+      <link>UID6202169477</link>
       <layer>0</layer>
       <x>-201</x>
       <y>2372</y>
@@ -237,27 +237,27 @@
       <height>36</height>
       <color>#F0F019</color>
       <timecreate>2016-12-1 22:13:38</timecreate>
-      <timemodify>2016-12-1 22:13:38</timemodify>
+      <timemodify>2017-3-4 23:23:44</timemodify>
     </rectangle>
     <rectangle>
       <id>64</id>
       <fontcolor>Black</fontcolor>
       <text>Nodes.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Model\Nodes.cs</link>
+      <link>UID2727152862</link>
       <layer>0</layer>
-      <x>-205</x>
-      <y>2292</y>
+      <x>-204</x>
+      <y>2291</y>
       <width>81</width>
       <height>36</height>
       <color>#F0F019</color>
       <timecreate>2016-12-1 22:13:38</timecreate>
-      <timemodify>2016-12-1 22:13:38</timemodify>
+      <timemodify>2017-3-4 23:23:30</timemodify>
     </rectangle>
     <rectangle>
       <id>65</id>
       <fontcolor>Black</fontcolor>
       <text>Options.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Model\Options.cs</link>
+      <link>UID6652785641</link>
       <layer>0</layer>
       <x>-149</x>
       <y>1984</y>
@@ -265,13 +265,13 @@
       <height>36</height>
       <color>#F0F019</color>
       <timecreate>2016-12-1 22:13:38</timecreate>
-      <timemodify>2016-12-1 22:13:38</timemodify>
+      <timemodify>2017-3-4 23:23:11</timemodify>
     </rectangle>
     <rectangle>
       <id>66</id>
       <fontcolor>Black</fontcolor>
       <text>Position.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Model\Position.cs</link>
+      <link>UID0604640560</link>
       <layer>0</layer>
       <x>-163</x>
       <y>2501</y>
@@ -279,27 +279,27 @@
       <height>36</height>
       <color>#F0F019</color>
       <timecreate>2016-12-1 22:13:38</timecreate>
-      <timemodify>2016-12-1 22:13:38</timemodify>
+      <timemodify>2017-3-4 23:21:49</timemodify>
     </rectangle>
     <rectangle>
       <id>67</id>
       <fontcolor>Black</fontcolor>
       <text>UndoOperations.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Model\UndoOperations.cs</link>
+      <link>UID6178817122</link>
       <layer>0</layer>
-      <x>160</x>
-      <y>1980</y>
+      <x>-57</x>
+      <y>2066</y>
       <width>142</width>
       <height>36</height>
       <color>#F0F019</color>
       <timecreate>2016-12-1 22:13:38</timecreate>
-      <timemodify>2016-12-1 22:13:38</timemodify>
+      <timemodify>2017-3-4 23:21:09</timemodify>
     </rectangle>
     <rectangle>
       <id>68</id>
       <fontcolor>Black</fontcolor>
       <text>Compress.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Lib\Compress.cs</link>
+      <link>UID4089400971</link>
       <layer>0</layer>
       <x>747</x>
       <y>2137</y>
@@ -307,13 +307,13 @@
       <height>36</height>
       <color>#37BEFF</color>
       <timecreate>2016-12-1 22:13:43</timecreate>
-      <timemodify>2016-12-1 22:13:43</timemodify>
+      <timemodify>2017-3-4 23:30:02</timemodify>
     </rectangle>
     <rectangle>
       <id>69</id>
       <fontcolor>Black</fontcolor>
       <text>Encrypt.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Lib\Encrypt.cs</link>
+      <link>UID5102459625</link>
       <layer>0</layer>
       <x>747</x>
       <y>2088</y>
@@ -321,13 +321,13 @@
       <height>36</height>
       <color>#37BEFF</color>
       <timecreate>2016-12-1 22:13:43</timecreate>
-      <timemodify>2016-12-1 22:13:43</timemodify>
+      <timemodify>2017-3-4 23:28:58</timemodify>
     </rectangle>
     <rectangle>
       <id>70</id>
       <fontcolor>Black</fontcolor>
       <text>Fonts.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Lib\Fonts.cs</link>
+      <link>UID1751506871</link>
       <layer>0</layer>
       <x>747</x>
       <y>2235</y>
@@ -335,13 +335,13 @@
       <height>36</height>
       <color>#37BEFF</color>
       <timecreate>2016-12-1 22:13:43</timecreate>
-      <timemodify>2016-12-1 22:13:43</timemodify>
+      <timemodify>2017-3-4 23:28:39</timemodify>
     </rectangle>
     <rectangle>
       <id>71</id>
       <fontcolor>Black</fontcolor>
       <text>Job.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Lib\Job.cs</link>
+      <link>UID8736422044</link>
       <layer>0</layer>
       <x>746</x>
       <y>2382</y>
@@ -349,13 +349,13 @@
       <height>36</height>
       <color>#37BEFF</color>
       <timecreate>2016-12-1 22:13:43</timecreate>
-      <timemodify>2016-12-1 22:13:43</timemodify>
+      <timemodify>2017-3-4 23:28:24</timemodify>
     </rectangle>
     <rectangle>
       <id>72</id>
       <fontcolor>Black</fontcolor>
       <text>Media.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Lib\Media.cs</link>
+      <link>UID0928056661</link>
       <layer>0</layer>
       <x>747</x>
       <y>2186</y>
@@ -363,13 +363,13 @@
       <height>36</height>
       <color>#37BEFF</color>
       <timecreate>2016-12-1 22:13:43</timecreate>
-      <timemodify>2016-12-1 22:13:43</timemodify>
+      <timemodify>2017-3-4 23:28:09</timemodify>
     </rectangle>
     <rectangle>
       <id>73</id>
       <fontcolor>Black</fontcolor>
       <text>Network.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Lib\Network.cs</link>
+      <link>UID6787833981</link>
       <layer>0</layer>
       <x>748</x>
       <y>2039</y>
@@ -377,13 +377,13 @@
       <height>36</height>
       <color>#37BEFF</color>
       <timecreate>2016-12-1 22:13:43</timecreate>
-      <timemodify>2016-12-1 22:13:43</timemodify>
+      <timemodify>2017-3-4 23:27:49</timemodify>
     </rectangle>
     <rectangle>
       <id>74</id>
       <fontcolor>Black</fontcolor>
       <text>Os.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Lib\Os.cs</link>
+      <link>UID8599434163</link>
       <layer>0</layer>
       <x>747</x>
       <y>1990</y>
@@ -391,13 +391,13 @@
       <height>36</height>
       <color>#37BEFF</color>
       <timecreate>2016-12-1 22:13:43</timecreate>
-      <timemodify>2016-12-1 22:13:43</timemodify>
+      <timemodify>2017-3-4 23:27:32</timemodify>
     </rectangle>
     <rectangle>
       <id>75</id>
       <fontcolor>Black</fontcolor>
       <text>Patterns.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Lib\Patterns.cs</link>
+      <link>UID4820527610</link>
       <layer>0</layer>
       <x>748</x>
       <y>2284</y>
@@ -405,13 +405,13 @@
       <height>36</height>
       <color>#37BEFF</color>
       <timecreate>2016-12-1 22:13:43</timecreate>
-      <timemodify>2016-12-1 22:13:43</timemodify>
+      <timemodify>2017-3-4 23:27:14</timemodify>
     </rectangle>
     <rectangle>
       <id>76</id>
       <fontcolor>Black</fontcolor>
       <text>Tick.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Lib\Tick.cs</link>
+      <link>UID9091710163</link>
       <layer>0</layer>
       <x>747</x>
       <y>2333</y>
@@ -419,13 +419,13 @@
       <height>36</height>
       <color>#37BEFF</color>
       <timecreate>2016-12-1 22:13:43</timecreate>
-      <timemodify>2016-12-1 22:13:43</timemodify>
+      <timemodify>2017-3-4 23:26:53</timemodify>
     </rectangle>
     <rectangle>
       <id>77</id>
       <fontcolor>Black</fontcolor>
       <text>AboutForm.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Forms\AboutForm.cs</link>
+      <link>UID4238351112</link>
       <layer>0</layer>
       <x>-899</x>
       <y>2234</y>
@@ -433,27 +433,27 @@
       <height>36</height>
       <color>#FF500A</color>
       <timecreate>2016-12-1 22:13:49</timecreate>
-      <timemodify>2016-12-1 22:13:49</timemodify>
+      <timemodify>2017-3-4 23:34:31</timemodify>
     </rectangle>
     <rectangle>
       <id>78</id>
       <fontcolor>Black</fontcolor>
       <text>ChangePasswordForm.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Forms\ChangePasswordForm.cs</link>
+      <link>UID9355910334</link>
       <layer>0</layer>
-      <x>-420</x>
-      <y>1917</y>
+      <x>-416</x>
+      <y>1970</y>
       <width>182</width>
       <height>36</height>
       <color>#FF500A</color>
       <timecreate>2016-12-1 22:13:49</timecreate>
-      <timemodify>2016-12-1 22:13:49</timemodify>
+      <timemodify>2017-3-4 23:34:05</timemodify>
     </rectangle>
     <rectangle>
       <id>79</id>
       <fontcolor>Black</fontcolor>
       <text>ColorPickerForm.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Forms\ColorPickerForm.cs</link>
+      <link>UID2354438225</link>
       <layer>0</layer>
       <x>200</x>
       <y>2343</y>
@@ -461,7 +461,7 @@
       <height>36</height>
       <color>#FF500A</color>
       <timecreate>2016-12-1 22:13:49</timecreate>
-      <timemodify>2016-12-1 22:13:49</timemodify>
+      <timemodify>2017-3-4 23:34:52</timemodify>
     </rectangle>
     <rectangle>
       <id>98</id>
@@ -480,7 +480,7 @@
       <id>81</id>
       <fontcolor>Black</fontcolor>
       <text>Console.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Forms\Console.cs</link>
+      <link>UID4944902991</link>
       <layer>0</layer>
       <x>-672</x>
       <y>2308</y>
@@ -488,27 +488,27 @@
       <height>36</height>
       <color>#FF500A</color>
       <timecreate>2016-12-1 22:13:49</timecreate>
-      <timemodify>2016-12-1 22:13:49</timemodify>
+      <timemodify>2017-3-4 23:35:16</timemodify>
     </rectangle>
     <rectangle>
       <id>82</id>
       <fontcolor>Black</fontcolor>
-      <text>DiagramView.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Forms\DiagramView.cs</link>
+      <text>DiagramView</text>
+      <link>UID5701725971</link>
       <layer>0</layer>
       <x>83</x>
       <y>2121</y>
-      <width>123</width>
+      <width>106</width>
       <height>36</height>
       <color>#FF500A</color>
       <timecreate>2016-12-1 22:13:49</timecreate>
-      <timemodify>2016-12-1 22:13:49</timemodify>
+      <timemodify>2017-3-4 23:06:57</timemodify>
     </rectangle>
     <rectangle>
       <id>83</id>
       <fontcolor>Black</fontcolor>
       <text>LineWidthForm.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Forms\LineWidthForm.cs</link>
+      <link>UID4672738884</link>
       <layer>0</layer>
       <x>201</x>
       <y>2392</y>
@@ -516,7 +516,7 @@
       <height>36</height>
       <color>#FF500A</color>
       <timecreate>2016-12-1 22:13:49</timecreate>
-      <timemodify>2016-12-1 22:13:49</timemodify>
+      <timemodify>2017-3-4 23:35:41</timemodify>
     </rectangle>
     <rectangle>
       <id>84</id>
@@ -536,35 +536,35 @@
       <id>85</id>
       <fontcolor>Black</fontcolor>
       <text>NewPasswordForm.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Forms\NewPasswordForm.cs</link>
+      <link>UID2816442898</link>
       <layer>0</layer>
-      <x>-419</x>
-      <y>1868</y>
+      <x>-415</x>
+      <y>1921</y>
       <width>161</width>
       <height>36</height>
       <color>#FF500A</color>
       <timecreate>2016-12-1 22:13:49</timecreate>
-      <timemodify>2016-12-1 22:13:49</timemodify>
+      <timemodify>2017-3-4 23:33:47</timemodify>
     </rectangle>
     <rectangle>
       <id>86</id>
       <fontcolor>Black</fontcolor>
       <text>PasswordForm.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Forms\PasswordForm.cs</link>
+      <link>UID8255589531</link>
       <layer>0</layer>
-      <x>-420</x>
-      <y>1819</y>
+      <x>-416</x>
+      <y>1872</y>
       <width>134</width>
       <height>36</height>
       <color>#FF500A</color>
       <timecreate>2016-12-1 22:13:49</timecreate>
-      <timemodify>2016-12-1 22:13:49</timemodify>
+      <timemodify>2017-3-4 23:33:19</timemodify>
     </rectangle>
     <rectangle>
       <id>87</id>
       <fontcolor>Black</fontcolor>
       <text>TextForm.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Forms\TextForm.cs</link>
+      <link>UID6772159546</link>
       <layer>0</layer>
       <x>200</x>
       <y>2294</y>
@@ -572,13 +572,13 @@
       <height>36</height>
       <color>#FF500A</color>
       <timecreate>2016-12-1 22:13:49</timecreate>
-      <timemodify>2016-12-1 22:13:49</timemodify>
+      <timemodify>2017-3-4 23:32:53</timemodify>
     </rectangle>
     <rectangle>
       <id>88</id>
       <fontcolor>Black</fontcolor>
       <text>Breadcrumbs.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Components\Breadcrumbs.cs</link>
+      <link>UID0790776066</link>
       <layer>0</layer>
       <x>475</x>
       <y>2125</y>
@@ -586,13 +586,13 @@
       <height>36</height>
       <color>#A5FF14</color>
       <timecreate>2016-12-1 22:13:55</timecreate>
-      <timemodify>2016-12-1 22:13:55</timemodify>
+      <timemodify>2017-3-4 23:07:58</timemodify>
     </rectangle>
     <rectangle>
       <id>89</id>
       <fontcolor>Black</fontcolor>
       <text>EditLinkPanel.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Components\EditLinkPanel.cs</link>
+      <link>UID4079765418</link>
       <layer>0</layer>
       <x>473</x>
       <y>2272</y>
@@ -600,13 +600,13 @@
       <height>36</height>
       <color>#A5FF14</color>
       <timecreate>2016-12-1 22:13:55</timecreate>
-      <timemodify>2016-12-1 22:13:55</timemodify>
+      <timemodify>2017-3-4 23:09:10</timemodify>
     </rectangle>
     <rectangle>
       <id>90</id>
       <fontcolor>Black</fontcolor>
       <text>EditPanel.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Components\EditPanel.cs</link>
+      <link>UID2281296902</link>
       <layer>0</layer>
       <x>473</x>
       <y>2321</y>
@@ -614,7 +614,7 @@
       <height>36</height>
       <color>#A5FF14</color>
       <timecreate>2016-12-1 22:13:55</timecreate>
-      <timemodify>2016-12-1 22:13:55</timemodify>
+      <timemodify>2017-3-4 23:09:01</timemodify>
     </rectangle>
     <rectangle>
       <id>91</id>
@@ -634,7 +634,7 @@
       <id>92</id>
       <fontcolor>Black</fontcolor>
       <text>Popup.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Components\Popup.cs</link>
+      <link>UID5085107645</link>
       <layer>0</layer>
       <x>474</x>
       <y>1978</y>
@@ -642,13 +642,13 @@
       <height>36</height>
       <color>#A5FF14</color>
       <timecreate>2016-12-1 22:13:55</timecreate>
-      <timemodify>2016-12-1 22:13:55</timemodify>
+      <timemodify>2017-3-4 23:13:36</timemodify>
     </rectangle>
     <rectangle>
       <id>93</id>
       <fontcolor>Black</fontcolor>
       <text>Script.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Components\Script.cs</link>
+      <link>UID6870742772</link>
       <layer>0</layer>
       <x>473</x>
       <y>2174</y>
@@ -656,13 +656,13 @@
       <height>36</height>
       <color>#A5FF14</color>
       <timecreate>2016-12-1 22:13:55</timecreate>
-      <timemodify>2016-12-1 22:13:55</timemodify>
+      <timemodify>2017-3-4 23:14:14</timemodify>
     </rectangle>
     <rectangle>
       <id>94</id>
       <fontcolor>Black</fontcolor>
       <text>ScrollBar.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Components\ScrollBar.cs</link>
+      <link>UID2684111687</link>
       <layer>0</layer>
       <x>473</x>
       <y>2027</y>
@@ -670,13 +670,13 @@
       <height>36</height>
       <color>#A5FF14</color>
       <timecreate>2016-12-1 22:13:55</timecreate>
-      <timemodify>2016-12-1 22:13:55</timemodify>
+      <timemodify>2017-3-4 23:14:54</timemodify>
     </rectangle>
     <rectangle>
       <id>95</id>
       <fontcolor>Black</fontcolor>
       <text>SearchPanel.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Components\SearchPanel.cs</link>
+      <link>UID1308094022</link>
       <layer>0</layer>
       <x>473</x>
       <y>2076</y>
@@ -684,21 +684,21 @@
       <height>36</height>
       <color>#A5FF14</color>
       <timecreate>2016-12-1 22:13:55</timecreate>
-      <timemodify>2016-12-1 22:13:55</timemodify>
+      <timemodify>2017-3-4 23:15:24</timemodify>
     </rectangle>
     <rectangle>
       <id>96</id>
       <fontcolor>Black</fontcolor>
       <text>Server.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Components\Server.cs</link>
+      <link>UID0876993960</link>
       <layer>0</layer>
       <x>-599</x>
-      <y>2072</y>
+      <y>2071</y>
       <width>82</width>
       <height>36</height>
-      <color>#D9CCFF</color>
+      <color>#A5FF14</color>
       <timecreate>2016-12-1 22:13:55</timecreate>
-      <timemodify>2016-12-1 22:13:55</timemodify>
+      <timemodify>2017-3-4 23:16:00</timemodify>
     </rectangle>
     <rectangle>
       <id>97</id>
@@ -731,8 +731,8 @@
       <fontcolor>Black</fontcolor>
       <text>password</text>
       <layer>0</layer>
-      <x>-533</x>
-      <y>1961</y>
+      <x>-529</x>
+      <y>2014</y>
       <width>83</width>
       <height>36</height>
       <color>#A5A5A5</color>
@@ -782,7 +782,7 @@
       <id>104</id>
       <fontcolor>Black</fontcolor>
       <text>MainForm.cs</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Forms\MainForm.cs</link>
+      <link>UID2589432679</link>
       <layer>0</layer>
       <x>-389</x>
       <y>2178</y>
@@ -790,14 +790,14 @@
       <height>36</height>
       <color>#FF500A</color>
       <timecreate>2016-12-1 22:28:43</timecreate>
-      <timemodify>2016-12-1 22:28:43</timemodify>
+      <timemodify>2017-3-4 23:36:11</timemodify>
     </rectangle>
     <rectangle>
       <id>105</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>-458</x>
-      <y>1886</y>
+      <x>-454</x>
+      <y>1939</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -835,7 +835,7 @@
       <id>108</id>
       <fontcolor>Black</fontcolor>
       <text>ReleaseNote.txt</text>
-      <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Doc\ReleaseNote.txt</link>
+      <link>.\Diagram.SRC\Diagram\Doc\ReleaseNote.txt</link>
       <layer>0</layer>
       <x>-860</x>
       <y>2043</y>
@@ -843,7 +843,7 @@
       <height>36</height>
       <color>#F00F00</color>
       <timecreate>2016-12-1 22:37:34</timecreate>
-      <timemodify>2016-12-1 22:37:34</timemodify>
+      <timemodify>2017-3-4 23:45:14</timemodify>
     </rectangle>
     <rectangle>
       <id>109</id>
@@ -1019,7 +1019,7 @@
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>706</x>
-      <y>2484</y>
+      <y>2514</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -1045,7 +1045,7 @@
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>872</x>
-      <y>2484</y>
+      <y>2514</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -1097,7 +1097,7 @@
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>437</x>
-      <y>2365</y>
+      <y>2465</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -1110,7 +1110,7 @@
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>608</x>
-      <y>2365</y>
+      <y>2465</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -1231,23 +1231,23 @@
       <id>142</id>
       <fontcolor>Black</fontcolor>
       <text>server:open file</text>
-      <link>cmd /C scan.py d36c6402df</link>
+      <link>UID7984925616</link>
       <layer>0</layer>
-      <x>-804</x>
-      <y>3121</y>
+      <x>-907</x>
+      <y>3463</y>
       <width>118</width>
       <height>36</height>
       <color>#D9CCFF</color>
       <timecreate>2017-1-23 21:33:48</timecreate>
-      <timemodify>2017-1-23 21:51:48</timemodify>
+      <timemodify>2017-3-4 22:59:59</timemodify>
     </rectangle>
     <rectangle>
       <id>146</id>
       <fontcolor>Black</fontcolor>
       <text>server</text>
       <layer>0</layer>
-      <x>-908</x>
-      <y>3116</y>
+      <x>-875</x>
+      <y>3411</y>
       <width>62</width>
       <height>36</height>
       <color>#00DCE6</color>
@@ -1298,8 +1298,7 @@
       <id>150</id>
       <fontcolor>Black</fontcolor>
       <text>execute command</text>
-      <link>scan.bat b39d265706
-</link>
+      <link>UID5087096741</link>
       <layer>0</layer>
       <x>-636</x>
       <y>3231</y>
@@ -1307,13 +1306,13 @@
       <height>36</height>
       <color>#D9CCFF</color>
       <timecreate>2017-1-23 22:51:59</timecreate>
-      <timemodify>2017-1-23 23:07:57</timemodify>
+      <timemodify>2017-3-4 23:44:36</timemodify>
     </rectangle>
     <rectangle>
       <id>153</id>
       <fontcolor>Black</fontcolor>
       <text>OpenLink</text>
-      <link>scan.bat fdb05537c2</link>
+      <link>UID9292140736</link>
       <layer>0</layer>
       <x>-735</x>
       <y>3232</y>
@@ -1321,13 +1320,13 @@
       <height>36</height>
       <color>#D9CCFF</color>
       <timecreate>2017-1-23 23:08:48</timecreate>
-      <timemodify>2017-1-23 23:09:15</timemodify>
+      <timemodify>2017-3-4 23:42:52</timemodify>
     </rectangle>
     <rectangle>
       <id>154</id>
       <fontcolor>Black</fontcolor>
       <text>OpenLinkAsync</text>
-      <link>scan.bat d5fd12c855</link>
+      <link>UID3758665113</link>
       <layer>0</layer>
       <x>-881</x>
       <y>3228</y>
@@ -1335,7 +1334,205 @@
       <height>36</height>
       <color>#D9CCFF</color>
       <timecreate>2017-1-23 23:19:51</timecreate>
-      <timemodify>2017-1-23 23:20:12</timemodify>
+      <timemodify>2017-3-4 23:42:26</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>159</id>
+      <fontcolor>Black</fontcolor>
+      <text>OpenDiagram</text>
+      <link>UID1771511767</link>
+      <layer>0</layer>
+      <x>-758</x>
+      <y>3462</y>
+      <width>110</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-4 23:01:55</timecreate>
+      <timemodify>2017-3-4 23:02:07</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>156</id>
+      <fontcolor>Black</fontcolor>
+      <text>BringToFront</text>
+      <link>UID0703915427</link>
+      <layer>0</layer>
+      <x>-458</x>
+      <y>3470</y>
+      <width>104</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-4 22:55:56</timecreate>
+      <timemodify>2017-3-4 22:57:25</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>157</id>
+      <fontcolor>Black</fontcolor>
+      <text>front</text>
+      <layer>0</layer>
+      <x>-980</x>
+      <y>3467</y>
+      <width>51</width>
+      <height>36</height>
+      <color>#00DCE6</color>
+      <timecreate>2017-3-4 22:57:36</timecreate>
+      <timemodify>2017-3-4 22:57:36</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>160</id>
+      <fontcolor>Black</fontcolor>
+      <text>if diagram exist focus</text>
+      <link>UID4510272262</link>
+      <layer>0</layer>
+      <x>-629</x>
+      <y>3466</y>
+      <width>153</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-4 23:02:56</timecreate>
+      <timemodify>2017-3-4 23:02:59</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>161</id>
+      <fontcolor>Black</fontcolor>
+      <text>Evaluator</text>
+      <link>UID9411889982</link>
+      <layer>0</layer>
+      <x>477</x>
+      <y>2365</y>
+      <width>82</width>
+      <height>36</height>
+      <color>#A5FF14</color>
+      <timecreate>2017-3-4 23:10:03</timecreate>
+      <timemodify>2017-3-4 23:10:07</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>162</id>
+      <fontcolor>Black</fontcolor>
+      <text>todo: set window normal</text>
+      <layer>0</layer>
+      <x>-528</x>
+      <y>3532</y>
+      <width>172</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-4 23:12:32</timecreate>
+      <timemodify>2017-3-4 23:12:32</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>163</id>
+      <fontcolor>Black</fontcolor>
+      <text>Notifications</text>
+      <link>UID8876272772</link>
+      <layer>0</layer>
+      <x>477</x>
+      <y>2412</y>
+      <width>99</width>
+      <height>36</height>
+      <color>#A5FF14</color>
+      <timecreate>2017-3-4 23:13:09</timecreate>
+      <timemodify>2017-3-4 23:13:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>164</id>
+      <fontcolor>Black</fontcolor>
+      <text>Plugins</text>
+      <link>UID8736657869</link>
+      <layer>0</layer>
+      <x>-559</x>
+      <y>1683</y>
+      <width>69</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-4 23:19:31</timecreate>
+      <timemodify>2017-3-4 23:19:34</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>170</id>
+      <fontcolor>Black</fontcolor>
+      <text>Polygons</text>
+      <link>UID7474399328</link>
+      <layer>0</layer>
+      <x>-6</x>
+      <y>2289</y>
+      <width>81</width>
+      <height>36</height>
+      <color>#F0F019</color>
+      <timecreate>2017-3-4 23:22:06</timecreate>
+      <timemodify>2017-3-4 23:22:13</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>166</id>
+      <fontcolor>Black</fontcolor>
+      <text>INodeOpenPlugin</text>
+      <link>UID0290945800
+</link>
+      <layer>0</layer>
+      <x>-471</x>
+      <y>1710</y>
+      <width>133</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-4 23:19:57</timecreate>
+      <timemodify>2017-3-4 23:20:01</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>168</id>
+      <fontcolor>Black</fontcolor>
+      <text>IDiagramPlugin</text>
+      <link>UID0454615899
+</link>
+      <layer>0</layer>
+      <x>-461</x>
+      <y>1641</y>
+      <width>118</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-4 23:20:20</timecreate>
+      <timemodify>2017-3-4 23:20:24</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>176</id>
+      <fontcolor>Black</fontcolor>
+      <text>Tools</text>
+      <link>UID6975866488</link>
+      <layer>0</layer>
+      <x>561</x>
+      <y>2175</y>
+      <width>58</width>
+      <height>36</height>
+      <color>#A5FF14</color>
+      <timecreate>2017-3-4 23:37:28</timecreate>
+      <timemodify>2017-3-4 23:37:37</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>172</id>
+      <fontcolor>Black</fontcolor>
+      <text>Polygon</text>
+      <link>UID2534425093
+</link>
+      <layer>0</layer>
+      <x>1</x>
+      <y>2367</y>
+      <width>74</width>
+      <height>36</height>
+      <color>#F0F019</color>
+      <timecreate>2017-3-4 23:22:29</timecreate>
+      <timemodify>2017-3-4 23:22:38</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>175</id>
+      <fontcolor>Black</fontcolor>
+      <text>Converter</text>
+      <link>UID8493692592
+</link>
+      <layer>0</layer>
+      <x>752</x>
+      <y>2477</y>
+      <width>84</width>
+      <height>36</height>
+      <color>#37BEFF</color>
+      <timecreate>2017-3-4 23:29:19</timecreate>
+      <timemodify>2017-3-4 23:29:23</timemodify>
     </rectangle>
   </rectangles>
   <lines>
@@ -1394,13 +1591,6 @@
     <line>
       <start>65</start>
       <end>57</end>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>67</start>
-      <end>82</end>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
@@ -1890,6 +2080,90 @@
     <line>
       <start>151</start>
       <end>154</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>142</start>
+      <end>157</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>159</start>
+      <end>142</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>160</start>
+      <end>159</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>156</start>
+      <end>160</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>162</start>
+      <end>156</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>166</start>
+      <end>164</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>168</start>
+      <end>164</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>172</start>
+      <end>170</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>176</start>
+      <end>93</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>170</start>
+      <end>59</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>49</start>
+      <end>164</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>67</start>
+      <end>57</end>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>

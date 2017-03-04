@@ -4,7 +4,7 @@ namespace Diagram
 {
     /// <summary>
     /// Line between two nodes in diagram</summary>
-    public class Line
+    public class Line //UID5674116969
     {
         /*************************************************************************************************************************/
         // POSITION

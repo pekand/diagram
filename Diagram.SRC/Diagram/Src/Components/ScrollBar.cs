@@ -23,7 +23,7 @@ namespace Diagram
         }
     }
 
-    public class ScrollBar
+    public class ScrollBar //UID2684111687
     {
         public object parent;   // okno v ktorom je scrollbar vykreslovany
 

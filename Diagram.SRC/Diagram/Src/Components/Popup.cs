@@ -15,7 +15,7 @@ namespace Diagram
 {
     [System.ComponentModel.DesignerCategory("Code")]
 
-    public class Popup : ContextMenuStrip
+    public class Popup : ContextMenuStrip //UID5085107645
     {
         public DiagramView diagramView = null;       // diagram ktory je previazany z pohladom
 

@@ -10,7 +10,7 @@ namespace Diagram
     /// <summary>
     /// message server between running processies
     /// </summary>
-    public class Server
+    public class Server //UID0876993960
     {
         /*************************************************************************************************************************/
         
@@ -174,11 +174,11 @@ namespace Diagram
             else
             {
 
-                Match match = Regex.Match(Messsage, @"open:(.*)", RegexOptions.IgnoreCase); //UIDd36c6402df
+                Match match = Regex.Match(Messsage, @"open:(.*)", RegexOptions.IgnoreCase); 
                 if (match.Success)
                 {
                     string FileName = match.Groups[1].Value;
-                    main.mainform.Invoke(new Action(() => main.mainform.OpenDiagram(FileName)));
+                    main.mainform.Invoke(new Action(() => main.mainform.OpenDiagram(FileName))); //UID7984925616
 
                     return;
                 }

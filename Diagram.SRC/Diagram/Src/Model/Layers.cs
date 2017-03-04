@@ -8,7 +8,7 @@ namespace Diagram
 {
     /// <summary>
     /// collection of layers</summary>
-    public class Layers
+    public class Layers //UID6548243626
     {
         private int maxid = 0;                    // last used node id
 

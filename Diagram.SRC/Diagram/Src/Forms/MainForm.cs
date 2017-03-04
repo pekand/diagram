@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Diagram
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form //UID2589432679
     {
         // parent
         public Main main = null;

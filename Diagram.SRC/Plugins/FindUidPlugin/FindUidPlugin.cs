@@ -30,9 +30,9 @@ namespace Plugin
             }
         }
 
-        public bool isUid(string text)
+        public bool IsUid(string text)
         {
-            Match matchUid = (new Regex(@"^UID\w{10}$")).Match(text);
+            Match matchUid = (new Regex(@"^UID\d{10}$")).Match(text);
 
             if (matchUid.Success)
             {
@@ -42,14 +42,14 @@ namespace Plugin
             return false;
         }
 
-        public void openFileOnPosition(string file, int pos = 0)
+        public void OpenFileOnPosition(string file, int pos = 0)
         {
             Os.OpenFileOnPosition(file, pos);
         }
 
         public bool ClickOnNodeAction(Diagram.Diagram diagram, Node node)
         {
-            if (diagram.FileName !="" && this.isUid(node.link.Trim())) {
+            if (diagram.FileName !="" && this.IsUid(node.link.Trim())) {
                 string uid = node.link.Trim();
                 if (Os.FileExists(diagram.FileName)) {
                     string diagramDirectory = Os.GetFileDirectory(diagram.FileName);
@@ -62,14 +62,14 @@ namespace Plugin
                             {
                                 if (line.Contains(uid)) {
 
-                                    this.openFileOnPosition(file, pos);
+                                    this.OpenFileOnPosition(file, pos);
                                     return true;
                                 }
                                 pos++;
                             }
                         }
                     } catch (Exception ex) {
-
+                        Program.log.write("FindUidPlugin: " + ex.Message);
                     }
                 }
             }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Diagram 
 {
-    public interface INodeOpenPlugin : IDiagramPlugin
+    public interface INodeOpenPlugin : IDiagramPlugin  //UID0290945800
     {
         bool ClickOnNodeAction(Diagram diagram, Node node);
     }

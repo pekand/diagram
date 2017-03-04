@@ -6,7 +6,7 @@ namespace Diagram
 {
     /// <summary>
     /// repository for font and text related functions</summary>
-    public class Fonts
+    public class Fonts //UID1751506871
     {
         /*************************************************************************************************************************/
         // MEASURE

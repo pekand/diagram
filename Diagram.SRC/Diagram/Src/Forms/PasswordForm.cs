@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Diagram
 {
-    public partial class PasswordForm : Form
+    public partial class PasswordForm : Form //UID8255589531
     {
         public Main main = null;
 

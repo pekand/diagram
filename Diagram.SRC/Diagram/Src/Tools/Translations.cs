@@ -7,7 +7,7 @@ namespace Diagram
 {
     /// <summary>
     /// text translation table</summary> 
-    public static class Translations
+    public static class Translations //UID1436834852
     {
         public static string saveBeforeOpenFile = "Save before open file?";
         public static string confirmOpenOtherFile = "Confirm open other file";
