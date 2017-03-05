@@ -26,7 +26,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // SERVER LOOP
 
-        public Server(Main main)
+        public Server(Main main) //UID9899460299
         {
             this.main = main;
 
@@ -58,7 +58,7 @@ namespace Diagram
 
         }
 
-        // start server loop
+        // start server loop UID8117850972
         public void ListenForClients()
         {
             try
@@ -84,7 +84,7 @@ namespace Diagram
             }
         }
 
-        // process message catched from server
+        // process message catched from server UID1561149138
         private void HandleClientCommunication(object client)
         {
             try
@@ -132,7 +132,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // MESSAGES
 
-        // send message to server
+        // send message to server UID8096061355
         public bool SendMessage(String Messsage)
         {
 			Program.log.Write("Server: SendMessage: "+Messsage);
@@ -189,7 +189,7 @@ namespace Diagram
             return false;
         }
 
-        // parde message from server
+        // parde message from server UID9190377024
         public bool ParseMessage(String Messsage)
         {
             // send message

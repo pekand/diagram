@@ -69,16 +69,16 @@ namespace Diagram
 
         /// <summary>
         /// parse command line arguments and open forms</summary>
-        public Main()
+        public Main() //UID8239288102
         {
-            // inicialize program
+            // inicialize program UID3013916734
             options = new ProgramOptions();
             optionsFile = new OptionsFile(options);
 
-            // load external plugins
+            // load external plugins UID9841812564
             plugins = new Plugins();
 
-            // executable location directory
+            // executable location directory 
             string pluginsLocalDirectory = Os.Combine(Os.GetCurrentApplicationDirectory(), this.pluginsDirectoryName);
             if (Os.DirectoryExists(pluginsLocalDirectory))
             {
@@ -91,7 +91,7 @@ namespace Diagram
                 plugins.LoadPlugins(pluginsGlobalDirectory);
             }
 
-            // create local server for comunication between local instances
+            // create local server for comunication between local instances UID2964640610
             server = new Server(this);
 
             Program.log.Write("Program: Main");
@@ -124,6 +124,7 @@ namespace Diagram
             this.ParseCommandLineArguments(this.args);
 
 #if !MONO
+            // sleep or hibernate event UID7641650028
             SystemEvents.PowerModeChanged += OnPowerChange;
 #endif
 
@@ -137,7 +138,7 @@ namespace Diagram
 
         /// <summary>
         /// process comand line arguments</summary>
-        public void ParseCommandLineArguments(string[] args) // [PARSE] [COMMAND LINE]
+        public void ParseCommandLineArguments(string[] args) // [PARSE] [COMMAND LINE] UID5172911205
         {
 
             // options - create new file with given name if not exist
@@ -241,7 +242,7 @@ namespace Diagram
 
         /// <summary>
         /// close application if not diagram view or node edit form is open </summary>
-        public void CloseEmptyApplication()
+        public void CloseEmptyApplication() //UID0787891060
         {
             Program.log.Write("Program : CloseApplication");
 
@@ -268,7 +269,7 @@ namespace Diagram
 
         /// <summary>
         /// force close application</summary>
-        public void ExitApplication()
+        public void ExitApplication() //UID0090378181
         {
             Program.log.Write("Program : ExitApplication");
 
@@ -625,7 +626,7 @@ namespace Diagram
 
         /// <summary>
         /// lock encrypted diagrams if computer go to sleep or hibernation</summary>
-        private void OnPowerChange(object s, PowerModeChangedEventArgs e)
+        private void OnPowerChange(object s, PowerModeChangedEventArgs e) // UID1864495676
         {
             switch (e.Mode)
             {
@@ -639,7 +640,7 @@ namespace Diagram
 
         /// <summary>
         /// forgot password if diagram is encrypted</summary>
-        public void LockDiagrams()
+        public void LockDiagrams() //UID6105963009
         {
             foreach (Diagram diagram in Diagrams)
             {

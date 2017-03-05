@@ -759,7 +759,7 @@ namespace Diagram
         }
 
         // EVENT Mouse DoubleClick
-        public void DiagramApp_MouseDoubleClick(object sender, MouseEventArgs e)                       // [MOUSE] [DBLCLICK] [EVENT]
+        public void DiagramApp_MouseDoubleClick(object sender, MouseEventArgs e)                       // [MOUSE] [DBLCLICK] [EVENT] UID3769224705
         {
 
 #if DEBUG
@@ -1255,7 +1255,7 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
                 else
-                // KEY DBLCLICK open link or edit window after double click on node [dblclick] [open] [edit] //c1703aa4d2
+                // KEY DBLCLICK open link or edit window after double click on node [dblclick] [open] [edit] //UID8515606919
                 if (dblclick
                     && this.sourceNode != null
                     && !keyctrl
@@ -1583,7 +1583,7 @@ namespace Diagram
             this.ResetStates();
         }
 
-        // EVENT revert states to default
+        // EVENT revert states to default UID5045070650
         private void ResetStates()
         {
             this.MoveTimer.Enabled = false;
@@ -2101,7 +2101,7 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.switchSecurityLock, keyData)) // [KEY] [CTRL+ALT+L] lock encrypted diagram
+            if (KeyMap.parseKey(KeyMap.switchSecurityLock, keyData)) // [KEY] [CTRL+ALT+L] lock encrypted diagram UID6442152339
             {
                 if (this.diagram.IsEncrypted())
                 {
@@ -3768,6 +3768,13 @@ namespace Diagram
 
         }
 
+        // VIEW full screen
+        public void LockView() //UID1708360605
+        {
+            editPanel.closePanel();
+            editLinkPanel.closePanel();
+        }
+        
         /*************************************************************************************************************************/
 
         // NODE create

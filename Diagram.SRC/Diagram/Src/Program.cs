@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Diagnostics;
 
 // [VERSION]
-[assembly: AssemblyVersion("0.5.0.23")]
+[assembly: AssemblyVersion("0.5.0.24")]
 
 /*! \mainpage Infinite diagram
  *
@@ -49,7 +49,7 @@ namespace Diagram
         // MAIN APPLICATION START
 
         [STAThread]
-        private static void Main()
+        private static void Main() //UID4670767500
         {
             Program.log.Write("Start application: " + GetLocation());
 
@@ -70,7 +70,7 @@ namespace Diagram
 #endif
                 main = new Main();
                 if (main.mainform != null) {
-                    Application.Run(main.mainform);
+                    Application.Run(main.mainform); 
                 }
                 Application.Exit();
 #if !DEBUG

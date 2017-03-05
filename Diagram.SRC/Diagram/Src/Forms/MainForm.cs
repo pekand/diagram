@@ -57,7 +57,9 @@ namespace Diagram
             main.ExitApplication();
         }
 
-        public void CloseEmptyApplication()
+        /// <summary>
+        /// close application if not form is open</summary>
+        public void CloseEmptyApplication() //UID4213278976
         {
             main.CloseEmptyApplication();
         }

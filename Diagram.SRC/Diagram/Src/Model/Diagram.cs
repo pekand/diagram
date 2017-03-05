@@ -2551,10 +2551,14 @@ namespace Diagram
         }
 
         // lock diagram - forgot password
-        public void LockDiagram()
+        public void LockDiagram() //UID9013092575
         {
             if (this.encrypted && !this.locked)
             {
+                foreach(DiagramView view in DiagramViews) {
+                    view.LockView();
+                }
+
                 this.locked = true;
                 this.password = null;
                 this.InvalidateDiagram();

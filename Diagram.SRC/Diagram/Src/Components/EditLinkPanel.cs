@@ -134,13 +134,17 @@ namespace Diagram
         // EDITPANEL SAVE
         public void saveNodeLinkPanel(bool selectNode = true)
         {
-            this.editedNode.visible = true;
-
-            if (this.editedNode.link != edit.Text)
+            if (this.editedNode != null)
             {
-                this.diagramView.diagram.undoOperations.add("edit", this.editedNode, this.diagramView.shift, this.diagramView.currentLayer.id);
-                this.editedNode.link = edit.Text;
-                this.diagramView.diagram.Unsave();
+                this.editedNode.visible = true;
+
+
+                if (this.editedNode.link != edit.Text)
+                {
+                    this.diagramView.diagram.undoOperations.add("edit", this.editedNode, this.diagramView.shift, this.diagramView.currentLayer.id);
+                    this.editedNode.link = edit.Text;
+                    this.diagramView.diagram.Unsave();
+                }
             }
 
             this.Hide();
