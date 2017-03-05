@@ -121,7 +121,7 @@ namespace Diagram
         // save diagram
         public bool Save()
         {
-            if (this.FileName != "" && Os.FileExists(this.FileName))
+            if (!this.IsLocked() && this.FileName != "" && Os.FileExists(this.FileName))
             {
                 this.SaveXMLFile(this.FileName);
                 this.NewFile = false;
@@ -138,12 +138,14 @@ namespace Diagram
         // save diagram as
         public void Saveas(String FileName)
         {
-            this.SaveXMLFile(FileName);
-            this.FileName = FileName;
-            this.SavedFile = true;
-            this.NewFile = false;
+            if (this.IsLocked()) {
+                this.SaveXMLFile(FileName);
+                this.FileName = FileName;
+                this.SavedFile = true;
+                this.NewFile = false;
 
-            this.SetTitle();
+                this.SetTitle();
+            }
         }
 
         // set default options for file like new file 

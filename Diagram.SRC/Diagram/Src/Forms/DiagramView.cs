@@ -752,13 +752,13 @@ namespace Diagram
 
         // EVENTS
 
-        // EVENT Paint                                                                                 // [PAINT] [EVENT]
+        // EVENT Paint UID5225221692                                                                   // [PAINT] [EVENT]
         public void DiagramApp_Paint(object sender, PaintEventArgs e)
         {
             this.DrawDiagram(e.Graphics);
         }
 
-        // EVENT Mouse DoubleClick
+        // EVENT Mouse DoubleClick UID5891984730
         public void DiagramApp_MouseDoubleClick(object sender, MouseEventArgs e)                       // [MOUSE] [DBLCLICK] [EVENT] UID3769224705
         {
 
@@ -769,7 +769,7 @@ namespace Diagram
             this.stateDblclick = true;
         }
 
-        // EVENT Mouse Down                                                                            // [MOUSE] [DOWN] [EVENT]
+        // EVENT Mouse Down UID3419722424                                                              // [MOUSE] [DOWN] [EVENT]
         public void DiagramApp_MouseDown(object sender, MouseEventArgs e)
         {
 #if DEBUG
@@ -923,7 +923,7 @@ namespace Diagram
             this.diagram.InvalidateDiagram();
         }
 
-        // EVENT Mouse move                                                                            // [MOUSE] [MOVE] [EVENT]
+        // EVENT Mouse move UID3677213415                                                      // [MOUSE] [MOVE] [EVENT]
         public void DiagramApp_MouseMove(object sender, MouseEventArgs e)
         {
 
@@ -957,7 +957,7 @@ namespace Diagram
             }
         }
 
-        // EVENT Mouse Up                                                                              // [MOUSE] [UP] [EVENT]
+        // EVENT Mouse Up UID3026627853                                                                // [MOUSE] [UP] [EVENT]
         public void DiagramApp_MouseUp(object sender, MouseEventArgs e)
         {
 
@@ -983,6 +983,12 @@ namespace Diagram
             bool finishselecting = mousemove && this.stateSelectingNodes;
 
             MoveTimer.Enabled = false;
+
+            if (this.diagram.IsLocked()) {
+                this.diagram.UnlockDiagram();
+                this.ResetStates();
+                return;
+            }
 
             if(dblclick)
             {
@@ -2029,7 +2035,8 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.layerOut, keyData) || KeyMap.parseKey(KeyMap.layerOut2, keyData)) // [KEY] [BACK] or [MINUS] Layer out
+            // [KEY] [BACK] or [MINUS] Layer out UID1557077053
+            if (KeyMap.parseKey(KeyMap.layerOut, keyData) || KeyMap.parseKey(KeyMap.layerOut2, keyData)) 
             {
                 this.LayerOut();
                 return true;
@@ -2105,18 +2112,7 @@ namespace Diagram
             {
                 if (this.diagram.IsEncrypted())
                 {
-                    if (this.diagram.IsLocked())
-                    {
-                        this.diagram.UnlockDiagram();
-                    }
-                    else
-                    {
-#if !MONO
-                        this.main.LockDiagrams();
-#endif
-                        this.diagram.UnlockDiagram();
-
-                    }
+                    this.main.LockDiagrams();
                 }
                 return true;
             }
@@ -2552,7 +2548,7 @@ namespace Diagram
             this.diagram.InvalidateDiagram();
         }
 
-        // LAYER OUT
+        // LAYER OUT UID4661843385
         public void LayerOut()
         {
             if (this.currentLayer.parentLayer != null) { //this layer is not top layer
@@ -3036,9 +3032,11 @@ namespace Diagram
         // FILE Save - Save diagram
         public void Save()
         {
-            if (!this.diagram.Save())
-            {
-                this.Saveas();
+            if (!this.diagram.IsLocked()) {
+                if (!this.diagram.Save())
+                {
+                    this.Saveas();
+                }
             }
         }
 
@@ -3771,8 +3769,13 @@ namespace Diagram
         // VIEW full screen
         public void LockView() //UID1708360605
         {
-            editPanel.closePanel();
-            editLinkPanel.closePanel();
+            if (editPanel != null && editPanel.Visible) {
+                editPanel.closePanel();
+            }
+
+            if (editLinkPanel != null && editLinkPanel.Visible) {
+                editLinkPanel.closePanel();
+            }
         }
         
         /*************************************************************************************************************************/
