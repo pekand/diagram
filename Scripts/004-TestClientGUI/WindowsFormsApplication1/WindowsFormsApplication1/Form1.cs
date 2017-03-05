@@ -19,6 +19,11 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
+        public void log(string line)
+        {
+            this.textBox2.Text += line + "\r\n";
+        }
+
         public  void Connect(String message,string ip,Int32 port)
         {
             try
@@ -42,20 +47,40 @@ namespace WindowsFormsApplication1
                 // Send the message to the connected TcpServer. 
                 stream.Write(data, 0, data.Length);
 
-                textBox2.Text += "Sent: " + message + "\n";
+                log("Sent: " + message);
 
                 // Receive the TcpServer.response. 
 
-                // Buffer to store the response bytes.
-                data = new Byte[256];
+                /* // Buffer to store the response bytes.
+                 data = new Byte[256];
 
-                // String to store the response ASCII representation.
-                String responseData = String.Empty;
+                 // String to store the response ASCII representation.
+                 String responseData = String.Empty;
 
-                // Read the first batch of the TcpServer response bytes.
-                Int32 bytes = stream.Read(data, 0, data.Length);
-                responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                textBox2.Text += "Received: " + responseData + "\n";
+                 // Read the first batch of the TcpServer response bytes.
+                 Int32 bytes = stream.Read(data, 0, data.Length);
+                 responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                 log("Received: " + responseData);*/
+
+                try
+                {
+                    // get response from server
+                    stream.ReadTimeout = 1000;
+                    byte[] resp = new byte[2048];
+                    var memStream = new MemoryStream();
+                    int bytesread = stream.Read(resp, 0, resp.Length);
+                    while (bytesread > 0)
+                    {
+                        memStream.Write(resp, 0, bytesread);
+                        bytesread = stream.Read(resp, 0, resp.Length);
+                    }
+                    string response = Encoding.UTF8.GetString(memStream.ToArray());
+                    log("Server: SendMessage(" + message + "): response: " + response);
+                }
+                catch (Exception ex)
+                {
+                    log("Server: SendMessage(" + message + "): no response from server: " + ex.Message);
+                }
 
                 // Close everything.
                 stream.Close();
@@ -63,17 +88,82 @@ namespace WindowsFormsApplication1
             }
             catch (ArgumentNullException e)
             {
-                textBox2.Text += "ArgumentNullException:: " + e + "\n";
+                log("ArgumentNullException:: " + e);
             }
             catch (SocketException e)
             {
-                textBox2.Text += "SocketException: " + e + "\n";
+                log("SocketException: " + e);
             }
         }
 
+        // send message to server
+        public bool SendMessage(String Messsage, string ip, Int32 port)
+        {
+            log("Server: SendMessage: " + Messsage);
+
+            try
+            {
+                // connect to server
+                TcpClient client = new TcpClient();
+                //client.SendTimeout = 1000;
+                IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
+                client.Connect(serverEndPoint);
+                NetworkStream clientStream = client.GetStream();
+
+                // prepare message for server
+                /*ASCIIEncoding encoder = new ASCIIEncoding();
+                byte[] buffer = encoder.GetBytes(Messsage);
+
+                // send message
+                clientStream.Write(buffer, 0, buffer.Length);
+                clientStream.Flush();
+
+                try
+                {
+                    // get response from server
+                    clientStream.ReadTimeout = 1000;
+                    byte[] resp = new byte[2048];
+                    var memStream = new MemoryStream();
+                    int bytesread = clientStream.Read(resp, 0, resp.Length);
+                    while (bytesread > 0)
+                    {
+                        memStream.Write(resp, 0, bytesread);
+                        bytesread = clientStream.Read(resp, 0, resp.Length);
+                    }
+                    string response = Encoding.UTF8.GetString(memStream.ToArray());
+                    log("Server: SendMessage(" + Messsage + "): response: " + response);
+                }
+                catch (Exception ex)
+                {
+                    log("Server: SendMessage(" + Messsage + "): no response from server: " + ex.Message);
+                }*/
+
+
+                byte[] bytesToSend = ASCIIEncoding.ASCII.GetBytes(Messsage);
+
+                //---send the text---
+                log("Sending : " + Messsage);
+                clientStream.Write(bytesToSend, 0, bytesToSend.Length);
+
+                //---read back the text---
+                byte[] bytesToRead = new byte[client.ReceiveBufferSize];
+                int bytesRead = clientStream.Read(bytesToRead, 0, client.ReceiveBufferSize);
+                log("Received : " + Encoding.ASCII.GetString(bytesToRead, 0, bytesRead));
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                log("Server: SendMessage(" + Messsage + "): error: " + ex.Message);
+            }
+
+            return false;
+        }
+
+
         private void button1_Click(object sender, EventArgs e)
         {
-            Connect(textBox1.Text,"127.0.0.1",Int32.Parse(this.textBox3.Text));
+            SendMessage(textBox1.Text,"127.0.0.1",Int32.Parse(this.textBox3.Text));
         }
     }
 }
