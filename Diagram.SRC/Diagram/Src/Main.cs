@@ -94,10 +94,10 @@ namespace Diagram
             // create local server for comunication between local instances
             server = new Server(this);
 
-            Program.log.write("Program: Main");
+            Program.log.Write("Program: Main");
 
 #if DEBUG
-            Program.log.write("program: debug mode");
+            Program.log.Write("program: debug mode");
 #else
 			Program.log.write("program: release mode");
 #endif
@@ -127,8 +127,9 @@ namespace Diagram
             SystemEvents.PowerModeChanged += OnPowerChange;
 #endif
 
-// check if this program instance created server
-            if (server.mainProcess)
+            // check if this program instance created server (is main application)
+            // or if running debug console from command line parameter
+            if (server.mainProcess || this.console != null)
             {
                 this.mainform = new MainForm(this);
             }
@@ -143,6 +144,7 @@ namespace Diagram
             bool CommandLineCreateIfNotExistFile = false;
 
             bool ShowCommandLineHelp = false;
+            bool ShowDebugConsole = false;
 
             // list of diagram files names for open
             List<String> CommandLineOpen = new List<String>();
@@ -165,6 +167,10 @@ namespace Diagram
                 {
                     ShowCommandLineHelp = true;
                 }
+                else if (arg == "-c" || arg == "--console")
+                {
+                    ShowDebugConsole = true;
+                } 
                 else if(arg == "-e")
                 {
                     CommandLineCreateIfNotExistFile = true;
@@ -178,9 +184,13 @@ namespace Diagram
                     }
                     else
                     {
-                        Program.log.write("bed commmand line argument: " + arg);
+                        Program.log.Write("bed commmand line argument: " + arg);
                     }
                 }
+            }
+
+            if (ShowDebugConsole) {
+                this.ShowConsole();
             }
 
             // open diagram given as arguments
@@ -188,6 +198,7 @@ namespace Diagram
             {
                 String help =
                 "diagram -h --help /?  >> show this help\n" +
+                "diagram -c --console /?  >> show debug console\n" +
                 "diagram -e {filename} >> create file if not exist\n" +
                 "diagram {filepath} {filepath} >> open existing file\n";
                 MessageBox.Show(help, "Command line parameters");
@@ -208,7 +219,7 @@ namespace Diagram
                         }
                         catch (Exception ex)
                         {
-                            Program.log.write("create empty diagram file error: " + ex.Message);
+                            Program.log.Write("create empty diagram file error: " + ex.Message);
                         }
                     }
 
@@ -232,7 +243,7 @@ namespace Diagram
         /// close application if not diagram view or node edit form is open </summary>
         public void CloseEmptyApplication()
         {
-            Program.log.write("Program : CloseApplication");
+            Program.log.Write("Program : CloseApplication");
 
             bool canclose = true;
 
@@ -241,16 +252,17 @@ namespace Diagram
                 canclose = false;
             }
 
+            if (console != null)
+            {
+                // prevent close application if debug console is open
+                // console must by closed mannualy by user
+                Program.log.Write("Program : Console is still open...");
+                canclose = false;
+            }
+
             if (canclose)
             {
-                if (server.mainProcess)
-                {
-                    server.RequestStop();
-                }
-                else
-                {
-                    ExitApplication();
-                }
+                ExitApplication();
             }
         }
 
@@ -258,7 +270,7 @@ namespace Diagram
         /// force close application</summary>
         public void ExitApplication()
         {
-            Program.log.write("Program : ExitApplication");
+            Program.log.Write("Program : ExitApplication");
 
             if (mainform != null)
             {
@@ -283,6 +295,10 @@ namespace Diagram
             if (console != null)
             {
                 console.Close();
+            }
+
+            if (this.server != null && this.server.mainProcess) {
+                server.RequestStop();
             }
 
             this.optionsFile.SaveConfigFile();
@@ -317,7 +333,7 @@ namespace Diagram
         /// Create diagram model and then open diagram view on this model</summary>
         public void OpenDiagram(String FilePath = "") //UID1771511767
         {
-            Program.log.write("Program : OpenDiagram: " + FilePath);
+            Program.log.Write("Program : OpenDiagram: " + FilePath);
 
             // open new empty diagram
             if (FilePath == "")
@@ -362,20 +378,20 @@ namespace Diagram
 
                         foreach (Diagram diagram in Diagrams)
                         {
-                            if (diagram.FileName == FilePath)
+                            if (diagram.FileName == Os.NormalizedFullPath(FilePath))
                             {
                                 // focus
                                 if (diagram.DiagramViews.Count() > 0)
                                 {
-                                    Program.log.write("window get focus");
-                                    Program.log.write("OpenDiagram: diagramView: setFocus");
+                                    Program.log.Write("window get focus");
+                                    Program.log.Write("OpenDiagram: diagramView: setFocus");
 
                                     if (!diagram.DiagramViews[0].Visible)
                                     {
                                         diagram.DiagramViews[0].Show();
                                     }
 
-                                    Program.log.write("bring focus");
+                                    Program.log.Write("bring focus");
                                         Media.BringToFront(diagram.DiagramViews[0]); //UID4510272262
                                 }
                                 alreadyOpen = true;
@@ -674,20 +690,19 @@ namespace Diagram
             {
                 this.console = new Console(this);
                 this.console.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CloseConsole);
-                Program.log.setConsole(this.console);
+                Program.log.SetConsole(this.console);
             }
 
             this.console.Show();
-
-            this.console = null;
         }
 
         /// <summary>
         /// clean after error console close</summary>
         private void CloseConsole(object sender, FormClosedEventArgs e)
         {
-            Program.log.setConsole(null);
+            Program.log.SetConsole(null);
             this.console = null;
+            this.CloseEmptyApplication();
         }
 
     }

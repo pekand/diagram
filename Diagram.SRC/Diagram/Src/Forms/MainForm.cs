@@ -39,7 +39,7 @@ namespace Diagram
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Program.log.write("Main form: hide");
+            Program.log.Write("Main form: hide");
             this.Hide();
             BeginInvoke(new MethodInvoker(delegate
             {
@@ -55,6 +55,11 @@ namespace Diagram
         public void ExitApplication()
         {
             main.ExitApplication();
+        }
+
+        public void CloseEmptyApplication()
+        {
+            main.CloseEmptyApplication();
         }
     }
 }
