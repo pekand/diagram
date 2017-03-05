@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Security;
 
 #if !MONO
 using Microsoft.Win32;
@@ -15,7 +16,7 @@ namespace Diagram
     /// Processing command line arguments.
     /// Create mainform
     /// </summary>
-    public class Main
+    public class Main //UID7118462915
     {
 
         /*************************************************************************************************************************/
@@ -35,10 +36,18 @@ namespace Diagram
 
         /// <summary>
         /// open directori with global configuration</summary>
-        public void openConfigDir()
+        public void OpenConfigDir()
         {
-            this.optionsFile.showDirectoryWithConfiguration();
+            this.optionsFile.ShowDirectoryWithConfiguration();
         }
+
+        /*************************************************************************************************************************/
+        // Plugins
+
+        /// <summary>
+        /// load plugins</summary>
+        public string pluginsDirectoryName = "plugins";
+        public Plugins plugins = null;
 
         /*************************************************************************************************************************/
         // SERVER
@@ -46,6 +55,7 @@ namespace Diagram
         /// <summary>
         /// local messsaging server for communication between running program instances</summary>
         private Server server = null;
+
 
         /*************************************************************************************************************************/
         // MAIN APPLICATION
@@ -59,21 +69,37 @@ namespace Diagram
 
         /// <summary>
         /// parse command line arguments and open forms</summary>
-        public Main()
+        public Main() //UID8239288102
         {
-            // inicialize program
+            // inicialize program UID3013916734
             options = new ProgramOptions();
             optionsFile = new OptionsFile(options);
 
-            // create local server for comunication between local instances
+            // load external plugins UID9841812564
+            plugins = new Plugins();
+
+            // executable location directory 
+            string pluginsLocalDirectory = Os.Combine(Os.GetCurrentApplicationDirectory(), this.pluginsDirectoryName);
+            if (Os.DirectoryExists(pluginsLocalDirectory))
+            {
+                plugins.LoadPlugins(pluginsLocalDirectory);
+            }
+
+            string pluginsGlobalDirectory = Os.Combine(optionsFile.GetGlobalConfigDirectory(), this.pluginsDirectoryName);
+            if (Os.DirectoryExists(pluginsGlobalDirectory))
+            {
+                plugins.LoadPlugins(pluginsGlobalDirectory);
+            }
+
+            // create local server for comunication between local instances UID2964640610
             server = new Server(this);
 
-            Program.log.write("Program: Main");
+            Program.log.Write("Program: Main");
 
 #if DEBUG
-            Program.log.write("program: debug mode");
+            Program.log.Write("program: debug mode");
 #else
-			Program.log.write("program: release mode");
+			Program.log.Write("program: release mode");
 #endif
 
             // TODO: Load global options file and save it when application is closed
@@ -98,11 +124,13 @@ namespace Diagram
             this.ParseCommandLineArguments(this.args);
 
 #if !MONO
+            // sleep or hibernate event UID7641650028
             SystemEvents.PowerModeChanged += OnPowerChange;
 #endif
 
-// check if this program instance created server
-            if (server.mainProcess)
+            // check if this program instance created server (is main application)
+            // or if running debug console from command line parameter
+            if (server.mainProcess || this.console != null)
             {
                 this.mainform = new MainForm(this);
             }
@@ -110,11 +138,14 @@ namespace Diagram
 
         /// <summary>
         /// process comand line arguments</summary>
-        public void ParseCommandLineArguments(string[] args) // [PARSE] [COMMAND LINE]
+        public void ParseCommandLineArguments(string[] args) // [PARSE] [COMMAND LINE] UID5172911205
         {
 
             // options - create new file with given name if not exist
             bool CommandLineCreateIfNotExistFile = false;
+
+            bool ShowCommandLineHelp = false;
+            bool ShowDebugConsole = false;
 
             // list of diagram files names for open
             List<String> CommandLineOpen = new List<String>();
@@ -133,25 +164,47 @@ namespace Diagram
                 arg = args[i];
 
                 // [COMAND LINE] [CREATE]  oprions create new file with given name if not exist
-                if (arg == "-e")
+                if (arg == "-h" || arg == "--help" || arg == "/?")
+                {
+                    ShowCommandLineHelp = true;
+                }
+                else if (arg == "-c" || arg == "--console")
+                {
+                    ShowDebugConsole = true;
+                } 
+                else if(arg == "-e")
                 {
                     CommandLineCreateIfNotExistFile = true;
                 }
                 else
                 {
                     // [COMAND LINE] [OPEN] check if argument is diagram file
-                    if (Os.getExtension(arg).ToLower() == ".diagram")
+                    if (Os.GetExtension(arg).ToLower() == ".diagram")
                     {
                         CommandLineOpen.Add(arg);
                     }
                     else
                     {
-                        Program.log.write("bed commmand line argument: " + arg);
+                        Program.log.Write("bed commmand line argument: " + arg);
                     }
                 }
             }
 
+            if (ShowDebugConsole) {
+                this.ShowConsole();
+            }
+
             // open diagram given as arguments
+            if (ShowCommandLineHelp)
+            {
+                String help =
+                "diagram -h --help /?  >> show this help\n" +
+                "diagram -c --console /?  >> show debug console\n" +
+                "diagram -e {filename} >> create file if not exist\n" +
+                "diagram {filepath} {filepath} >> open existing file\n";
+                MessageBox.Show(help, "Command line parameters");
+            }
+            else
             if (CommandLineOpen.Count > 0)
             {
                 for (int i = 0; i < CommandLineOpen.Count(); i++)
@@ -163,11 +216,11 @@ namespace Diagram
                     {
                         try
                         {
-                            Os.createEmptyFile(file);
+                            Os.CreateEmptyFile(file);
                         }
                         catch (Exception ex)
                         {
-                            Program.log.write("create empty diagram file error: " + ex.Message);
+                            Program.log.Write("create empty diagram file error: " + ex.Message);
                         }
                     }
 
@@ -189,9 +242,9 @@ namespace Diagram
 
         /// <summary>
         /// close application if not diagram view or node edit form is open </summary>
-        public void CloseEmptyApplication()
+        public void CloseEmptyApplication() //UID0787891060
         {
-            Program.log.write("Program : CloseApplication");
+            Program.log.Write("Program : CloseApplication");
 
             bool canclose = true;
 
@@ -200,24 +253,25 @@ namespace Diagram
                 canclose = false;
             }
 
+            if (console != null)
+            {
+                // prevent close application if debug console is open
+                // console must by closed mannualy by user
+                Program.log.Write("Program : Console is still open...");
+                canclose = false;
+            }
+
             if (canclose)
             {
-                if (server.mainProcess)
-                {
-                    server.RequestStop();
-                }
-                else
-                {
-                    ExitApplication();
-                }
+                ExitApplication();
             }
         }
 
         /// <summary>
         /// force close application</summary>
-        public void ExitApplication()
+        public void ExitApplication() //UID0090378181
         {
-            Program.log.write("Program : ExitApplication");
+            Program.log.Write("Program : ExitApplication");
 
             if (mainform != null)
             {
@@ -244,7 +298,11 @@ namespace Diagram
                 console.Close();
             }
 
-            this.optionsFile.saveConfigFile();
+            if (this.server != null && this.server.mainProcess) {
+                server.RequestStop();
+            }
+
+            this.optionsFile.SaveConfigFile();
             Application.Exit();
             Application.ExitThread();
             Environment.Exit(0);
@@ -259,14 +317,14 @@ namespace Diagram
 
         /// <summary>
         /// add diagram to list of all diagrams</summary>
-        public void addDiagram(Diagram diagram)
+        public void AddDiagram(Diagram diagram)
         {
             this.Diagrams.Add(diagram);
         }
 
         /// <summary>
         /// remove diagram from list of all diagrams</summary>
-        public void removeDiagram(Diagram diagram)
+        public void RemoveDiagram(Diagram diagram)
         {
             this.Diagrams.Remove(diagram);
         }
@@ -274,9 +332,9 @@ namespace Diagram
         /// <summary>
         /// open existing diagram or create new empty diagram
         /// Create diagram model and then open diagram view on this model</summary>
-        public void OpenDiagram(String FilePath = "")
+        public void OpenDiagram(String FilePath = "") //UID1771511767
         {
-            Program.log.write("Program : OpenDiagram: " + FilePath);
+            Program.log.Write("Program : OpenDiagram: " + FilePath);
 
             // open new empty diagram
             if (FilePath == "")
@@ -293,7 +351,7 @@ namespace Diagram
                     Diagram diagram = new Diagram(this);
                     Diagrams.Add(diagram);
                     // open diagram view on diagram model
-                    diagram.openDiagramView();
+                    diagram.OpenDiagramView();
                 }
             }
             // open existing diagram file
@@ -306,7 +364,7 @@ namespace Diagram
 
                 if (Os.FileExists(FilePath))
                 {
-                    FilePath = Os.getFullPath(FilePath);
+                    FilePath = Os.GetFullPath(FilePath);
 
                     // if server already exist in system, send him message whitch open diagram file
                     if (!server.mainProcess)
@@ -321,21 +379,21 @@ namespace Diagram
 
                         foreach (Diagram diagram in Diagrams)
                         {
-                            if (diagram.FileName == FilePath)
+                            if (diagram.FileName == Os.NormalizedFullPath(FilePath))
                             {
                                 // focus
                                 if (diagram.DiagramViews.Count() > 0)
                                 {
-                                    Program.log.write("window get focus");
-                                    Program.log.write("OpenDiagram: diagramView: setFocus");
+                                    Program.log.Write("window get focus");
+                                    Program.log.Write("OpenDiagram: diagramView: setFocus");
 
                                     if (!diagram.DiagramViews[0].Visible)
                                     {
                                         diagram.DiagramViews[0].Show();
                                     }
 
-                                    Program.log.write("bring focus");
-                                    Media.bringToFront(diagram.DiagramViews[0]);
+                                    Program.log.Write("bring focus");
+                                    Media.BringToFront(diagram.DiagramViews[0]); //UID4510272262
                                 }
                                 alreadyOpen = true;
                                 break;
@@ -350,10 +408,13 @@ namespace Diagram
                                 // create new model
                                 if (diagram.OpenFile(FilePath))
                                 {
-                                    this.options.addRecentFile(FilePath);
+                                    this.options.AddRecentFile(FilePath);
                                     Diagrams.Add(diagram);
                                     // open diagram view on diagram model
-                                    diagram.openDiagramView();
+                                    DiagramView newDiagram = diagram.OpenDiagramView();
+
+                                    Program.log.Write("bring focus");
+                                    Media.BringToFront(newDiagram); //UID4510272263
                                 }
                             }
                         }
@@ -371,21 +432,21 @@ namespace Diagram
 
         /// <summary>
         /// add diagram view to list of all views</summary>
-        public void addDiagramView(DiagramView view)
+        public void AddDiagramView(DiagramView view)
         {
             this.DiagramViews.Add(view);
         }
 
         /// <summary>
         /// remove diagram view from list of all diagram views</summary>
-        public void removeDiagramView(DiagramView view)
+        public void RemoveDiagramView(DiagramView view)
         {
             this.DiagramViews.Remove(view);
         }
 
         /// <summary>
         /// hide diagram views except diagramView</summary>
-        public void switchViews(DiagramView diagramView = null)
+        public void SwitchViews(DiagramView diagramView = null)
         {
             bool someIsHidden = false;
             foreach (DiagramView view in DiagramViews)
@@ -399,17 +460,17 @@ namespace Diagram
 
             if (someIsHidden)
             {
-                showViews();
+                ShowViews();
             }
             else
             {
-                hideViews(diagramView);
+                HideViews(diagramView);
             }
         }
 
         /// <summary>
         /// show views if last visible view is closed</summary>
-        public void showIfIsLastViews(DiagramView diagramView = null)
+        public void ShowIfIsLastViews(DiagramView diagramView = null)
         {
             bool someIsVisible = false;
             foreach (DiagramView view in DiagramViews)
@@ -423,13 +484,13 @@ namespace Diagram
 
             if (!someIsVisible)
             {
-                showViews();
+                ShowViews();
             }
         }
 
         /// <summary>
         /// show diagram views</summary>
-        public void showViews()
+        public void ShowViews()
         {
             foreach (DiagramView view in DiagramViews)
             {
@@ -439,7 +500,7 @@ namespace Diagram
 
         /// <summary>
         /// hide diagram views</summary>
-        public void hideViews(DiagramView diagramView = null)
+        public void HideViews(DiagramView diagramView = null)
         {
             foreach (DiagramView view in DiagramViews)
             {
@@ -458,14 +519,14 @@ namespace Diagram
 
         /// <summary>
         /// add text form to list of all text forms</summary>
-        public void addTextWindow(TextForm textWindows)
+        public void AddTextWindow(TextForm textWindows)
         {
             this.TextWindows.Add(textWindows);
         }
 
         /// <summary>
         /// remove text form from list of all text forms</summary>
-        public void removeTextWindow(TextForm textWindows)
+        public void RemoveTextWindow(TextForm textWindows)
         {
             this.TextWindows.Remove(textWindows);
         }
@@ -487,7 +548,7 @@ namespace Diagram
 
         /// <summary>
         /// show dialog for password for diagram unlock</summary>
-        public string getPassword(string subtitle = "")
+        public string GetPassword(string subtitle = "")
         {
             string password = null;
 
@@ -512,7 +573,7 @@ namespace Diagram
 
         /// <summary>
         /// show dialog for new password for diagram</summary>
-        public string getNewPassword()
+        public string GetNewPassword()
         {
             string password = null;
 
@@ -536,7 +597,7 @@ namespace Diagram
 
         /// <summary>
         /// show dialog for change password for diagram</summary>
-        public string changePassword(String currentPassword)
+        public string ChangePassword(SecureString currentPassword)
         {
             string password = null;
 
@@ -565,35 +626,35 @@ namespace Diagram
 
         /// <summary>
         /// lock encrypted diagrams if computer go to sleep or hibernation</summary>
-        private void OnPowerChange(object s, PowerModeChangedEventArgs e)
+        private void OnPowerChange(object s, PowerModeChangedEventArgs e) // UID1864495676
         {
             switch (e.Mode)
             {
                 case PowerModes.Resume:
                     break;
                 case PowerModes.Suspend:
-                    this.lockDiagrams();
+                    this.LockDiagrams();
                     break;
             }
         }
 
         /// <summary>
         /// forgot password if diagram is encrypted</summary>
-        public void lockDiagrams()
+        public void LockDiagrams() //UID6105963009
         {
             foreach (Diagram diagram in Diagrams)
             {
-                diagram.lockDiagram();
+                diagram.LockDiagram();
             }
         }
 
         /// <summary>
         /// prompt for password if diagram is encrypted</summary>
-        public void unlockDiagrams()
+        public void UnlockDiagrams()
         {
             foreach (Diagram diagram in Diagrams)
             {
-                diagram.unlockDiagram();
+                diagram.UnlockDiagram();
             }
         }
 #endif
@@ -606,7 +667,7 @@ namespace Diagram
 
         /// <summary>
         /// show about</summary>
-        public void showAbout()
+        public void ShowAbout()
         {
             if (this.aboutForm == null)
             {
@@ -627,26 +688,25 @@ namespace Diagram
 
         /// <summary>
         /// show error console</summary>
-        public void showConsole()
+        public void ShowConsole()
         {
             if (this.console == null)
             {
                 this.console = new Console(this);
-                this.console.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.closeConsole);
-                Program.log.setConsole(this.console);
+                this.console.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CloseConsole);
+                Program.log.SetConsole(this.console);
             }
 
             this.console.Show();
-
-            this.console = null;
         }
 
         /// <summary>
         /// clean after error console close</summary>
-        private void closeConsole(object sender, FormClosedEventArgs e)
+        private void CloseConsole(object sender, FormClosedEventArgs e)
         {
-            Program.log.setConsole(null);
+            Program.log.SetConsole(null);
             this.console = null;
+            this.CloseEmptyApplication();
         }
 
     }

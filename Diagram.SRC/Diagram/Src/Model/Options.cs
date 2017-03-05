@@ -6,7 +6,7 @@ namespace Diagram
 
     /// <summary>
     /// opened diagram options</summary>
-    public class Options
+    public class Options //UID6652785641
     {
         /*************************************************************************************************************************/
         // POSITION

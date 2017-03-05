@@ -25,7 +25,7 @@ namespace Diagram
         public Node newNode;
     }
 
-    public class Diagram
+    public class Diagram //UID2487098516
     {
         private Main main = null;                 // reference to main form
 
@@ -85,14 +85,14 @@ namespace Diagram
         {
             if (Os.FileExists(FileName))
             {
-                Os.setCurrentDirectory(Os.getFileDirectory(FileName));
+                Os.SetCurrentDirectory(Os.GetFileDirectory(FileName));
 
                 this.CloseFile();
                 this.FileName = FileName;
                 this.NewFile = false;
                 this.SavedFile = true;
 
-                string xml = Os.getFileContent(FileName);
+                string xml = Os.GetFileContent(FileName);
 
                 if (xml == null) {
                     this.CloseFile();
@@ -119,9 +119,9 @@ namespace Diagram
         }
         
         // save diagram
-        public bool save()
+        public bool Save()
         {
-            if (this.FileName != "" && Os.FileExists(this.FileName))
+            if (!this.IsLocked() && this.FileName != "" && Os.FileExists(this.FileName))
             {
                 this.SaveXMLFile(this.FileName);
                 this.NewFile = false;
@@ -136,14 +136,16 @@ namespace Diagram
         }
 
         // save diagram as
-        public void saveas(String FileName)
+        public void Saveas(String FileName)
         {
-            this.SaveXMLFile(FileName);
-            this.FileName = FileName;
-            this.SavedFile = true;
-            this.NewFile = false;
+            if (this.IsLocked()) {
+                this.SaveXMLFile(FileName);
+                this.FileName = FileName;
+                this.SavedFile = true;
+                this.NewFile = false;
 
-            this.SetTitle();
+                this.SetTitle();
+            }
         }
 
         // set default options for file like new file 
@@ -155,7 +157,7 @@ namespace Diagram
             this.FileName = "";
 
             // clear nodes and lines lists
-            this.layers.clear();
+            this.layers.Clear();
 
             this.options.readOnly = false;
             this.options.grid = true;
@@ -170,17 +172,12 @@ namespace Diagram
         // XML SAVE file or encrypted file
         public void SaveXMLFile(string FileName)
         {
-            string diagraxml = "";
+            string diagraxml = this.SaveInnerXMLFile();
 
+            // encrypt data if password is set
             try
             {
-                System.IO.StreamWriter file = new System.IO.StreamWriter(FileName);
-                diagraxml = this.SaveInnerXMLFile();
-                if (this.password == null)
-                {
-                    file.Write(diagraxml);
-                }
-                else
+                if (this.password != null)
                 {
                     XElement root = new XElement("diagram");
                     try
@@ -190,40 +187,54 @@ namespace Diagram
                         // encrypted file is saved allways as different string
                         this.salt = Encrypt.CreateSalt(14);
 
-                        root.Add(new XElement("encrypted", Encrypt.EncryptStringAES(diagraxml, this.getPassword(), this.salt)));
+                        root.Add(new XElement("encrypted", Encrypt.EncryptStringAES(diagraxml, this.password, this.salt)));
                         root.Add(new XElement("salt", Encrypt.GetSalt(this.salt)));
 
                         StringBuilder sb = new StringBuilder();
-                        XmlWriterSettings xws = new XmlWriterSettings();
-                        xws.OmitXmlDeclaration = true;
-                        xws.CheckCharacters = false;
-                        xws.Indent = true;
+                        XmlWriterSettings xws = new XmlWriterSettings
+                        {
+                            OmitXmlDeclaration = true,
+                            CheckCharacters = false,
+                            Indent = true
+                        };
 
                         using (XmlWriter xw = XmlWriter.Create(sb, xws))
                         {
                             root.WriteTo(xw);
                         }
 
-                        file.Write(sb.ToString());
+                        diagraxml = sb.ToString();
                     }
                     catch (Exception ex)
                     {
-                        Program.log.write("save file error: " + ex.Message);
+                        Program.log.Write("save file error: " + ex.Message);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Program.log.Write("save file error: " + ex.Message);
+            }
 
-                file.Close();
+            // save data to file
+            try
+            {
+                if (diagraxml != "") { // prevent acidentaly loos data
+                    System.IO.StreamWriter file = new System.IO.StreamWriter(FileName);
+                    file.Write(diagraxml);
+                    file.Close();
+                }
 
             }
             catch (System.IO.IOException ex)
             {
-                Program.log.write("save file io error: " + ex.Message);
+                Program.log.Write("save file io error: " + ex.Message);
                 MessageBox.Show(Translations.fileIsLocked);
                 this.CloseFile();
             }
             catch (Exception ex)
             {
-                Program.log.write("save file error: " + ex.Message);
+                Program.log.Write("save file error: " + ex.Message);
             }
         }
 
@@ -273,7 +284,7 @@ namespace Diagram
 
                 // Rectangles
                 XElement rectangles = new XElement("rectangles");
-                foreach (Node rec in this.getAllNodes())
+                foreach (Node rec in this.GetAllNodes())
                 {
                     XElement rectangle = new XElement("rectangle");
                     rectangle.Add(new XElement("id", rec.id));
@@ -326,7 +337,7 @@ namespace Diagram
 
                 // Lines
                 XElement lines = new XElement("lines");
-                foreach (Line lin in this.getAllLines())
+                foreach (Line lin in this.GetAllLines())
                 {
                     XElement line = new XElement("line");
                     line.Add(new XElement("start", lin.start));
@@ -346,7 +357,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                Program.log.write("save xml error: " + ex.Message);
+                Program.log.Write("save xml error: " + ex.Message);
             }
 
             if (checkpoint)
@@ -355,10 +366,11 @@ namespace Diagram
                 {
 
                     StringBuilder sb = new StringBuilder();
-                    XmlWriterSettings xws = new XmlWriterSettings();
-                    xws.OmitXmlDeclaration = true;
-                    xws.CheckCharacters = false;
-                    xws.Indent = true;
+                    XmlWriterSettings xws = new XmlWriterSettings { 
+                        OmitXmlDeclaration = true,
+                        CheckCharacters = false,
+                        Indent = true
+                    };
 
                     using (XmlWriter xw = XmlWriter.Create(sb, xws))
                     {
@@ -370,7 +382,7 @@ namespace Diagram
                 }
                 catch (Exception ex)
                 {
-                    Program.log.write("write xml to file error: " + ex.Message);
+                    Program.log.Write("write xml to file error: " + ex.Message);
                 }
 
             }
@@ -382,8 +394,10 @@ namespace Diagram
         public bool LoadXML(string xml)
         {
 
-            XmlReaderSettings xws = new XmlReaderSettings();
-            xws.CheckCharacters = false;
+            XmlReaderSettings xws = new XmlReaderSettings
+            {
+                CheckCharacters = false
+            };
 
             string version = "";
             string salt = "";
@@ -418,7 +432,7 @@ namespace Diagram
             catch (Exception ex)
             {
                 MessageBox.Show(Translations.fileHasWrongFormat);
-                Program.log.write("load xml error: " + ex.Message);
+                Program.log.Write("load xml error: " + ex.Message);
                 this.CloseFile();
             }
 
@@ -429,7 +443,7 @@ namespace Diagram
                 {
                     error = false;
 
-                    string password = this.main.getPassword(Os.getFileNameWithoutExtension(this.FileName));
+                    string password = this.main.GetPassword(Os.GetFileNameWithoutExtension(this.FileName));
                     if (password != null)
                     {
                         try
@@ -437,12 +451,12 @@ namespace Diagram
                             this.salt = Encrypt.SetSalt(salt);
                             this.LoadInnerXML(Encrypt.DecryptStringAES(encrypted, password, this.salt));
                             this.encrypted = true;
-                            this.setPassword(password);
+                            this.SetPassword(password);
                         }
                         catch (Exception e)
                         {
                             // probably invalid password
-                            Program.log.write("LoadXML: Password or file is invalid: " + e.Message);
+                            Program.log.Write("LoadXML: Password or file is invalid: " + e.Message);
                             error = true;
                         }
                     }
@@ -468,8 +482,9 @@ namespace Diagram
         {
             string FontDefaultString = TypeDescriptor.GetConverter(typeof(Font)).ConvertToString(this.FontDefault);
 
-            XmlReaderSettings xws = new XmlReaderSettings();
-            xws.CheckCharacters = false;
+            XmlReaderSettings xws = new XmlReaderSettings {
+                CheckCharacters = false
+            };
 
             Nodes nodes = new Nodes();
             Lines lines = new Lines();
@@ -624,7 +639,7 @@ namespace Diagram
                                     }
                                     catch (Exception ex)
                                     {
-                                        Program.log.write("load xml diagram options: " + ex.Message);
+                                        Program.log.Write("load xml diagram options: " + ex.Message);
                                     }
                                 }
                             }
@@ -636,8 +651,10 @@ namespace Diagram
 
                                     if (block.Name.ToString() == "rectangle")
                                     {
-                                        Node R = new Node();
-                                        R.font = this.FontDefault;
+                                        Node R = new Node
+                                        {
+                                            font = this.FontDefault
+                                        };
 
                                         foreach (XElement el in block.Descendants())
                                         {
@@ -665,7 +682,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "fontcolor")
                                                 {
-                                                    R.fontcolor.set(el.Value.ToString());
+                                                    R.fontcolor.Set(el.Value.ToString());
                                                 }
 
                                                 if (el.Name.ToString() == "text")
@@ -747,7 +764,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "color")
                                                 {
-                                                    R.color.set(el.Value.ToString());
+                                                    R.color.Set(el.Value.ToString());
                                                 }
 
                                                 if (el.Name.ToString() == "transparent")
@@ -794,7 +811,7 @@ namespace Diagram
                                             }
                                             catch (Exception ex)
                                             {
-                                                Program.log.write("load xml nodes error: " + ex.Message);
+                                                Program.log.Write("load xml nodes error: " + ex.Message);
                                             }
                                         }
                                         nodes.Add(R);
@@ -808,8 +825,9 @@ namespace Diagram
                                 {
                                     if (block.Name.ToString() == "line")
                                     {
-                                        Line L = new Line();
-                                        L.layer = -1; // for identification unset layers
+                                        Line L = new Line {
+                                            layer = -1 // for identification unset layers
+                                        };
 
                                         foreach (XElement el in block.Descendants())
                                         {
@@ -832,7 +850,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "color")
                                                 {
-                                                    L.color.set(el.Value.ToString());
+                                                    L.color.Set(el.Value.ToString());
                                                 }
 
                                                 if (el.Name.ToString() == "width")
@@ -848,7 +866,7 @@ namespace Diagram
                                             }
                                             catch (Exception ex)
                                             {
-                                                Program.log.write("load xml lines error: " + ex.Message);
+                                                Program.log.Write("load xml lines error: " + ex.Message);
                                             }
                                         }
 
@@ -864,7 +882,7 @@ namespace Diagram
             catch (Exception ex)
             {
                 MessageBox.Show(Translations.fileHasWrongFormat);
-                Program.log.write("load xml error: " + ex.Message);
+                Program.log.Write("load xml error: " + ex.Message);
                 this.CloseFile();
                 return false;
             }
@@ -873,7 +891,7 @@ namespace Diagram
             int newHeight = 0;
 
             Nodes nodesReordered = new Nodes(); // order nodes parent first (layer must exist when sub node is created)
-            this.nodesReorderNodes(0, null, nodes, nodesReordered);
+            this.NodesReorderNodes(0, null, nodes, nodesReordered);
 
             foreach (Node rec in nodesReordered) // Loop through List with foreach
             {
@@ -898,16 +916,16 @@ namespace Diagram
 
                 }
 
-                this.layers.addNode(rec);
+                this.layers.AddNode(rec);
             }
 
-            this.layers.setLayersParentsReferences();
+            this.layers.SetLayersParentsReferences();
 
             foreach (Line line in lines)
             {
                 this.Connect(
-                    this.layers.getNode(line.start),
-                    this.layers.getNode(line.end),
+                    this.layers.GetNode(line.start),
+                    this.layers.GetNode(line.end),
                     line.arrow,
                     line.color,
                     line.width
@@ -921,13 +939,13 @@ namespace Diagram
         // STATES
 
         // check if file is empty
-        public bool isNew()
+        public bool IsNew()
         {
             return (this.FileName == "" && this.NewFile && this.SavedFile);
         }
 
         // check if file is empty
-        public bool isReadOnly()
+        public bool IsReadOnly()
         {
             return this.options.readOnly;
         }
@@ -935,37 +953,37 @@ namespace Diagram
         /*************************************************************************************************************************/
         // UNSAVE
 
-        public void unsave(string type, Node node, Position position = null, int layer = 0)
+        public void Unsave(string type, Node node, Position position = null, int layer = 0)
         {
             Nodes nodes = new Nodes();
             nodes.Add(node);
-            this.unsave(type, nodes, null, position, layer);
+            this.Unsave(type, nodes, null, position, layer);
         }
 
-        public void unsave(string type, Line line, Position position = null, int layer = 0)
+        public void Unsave(string type, Line line, Position position = null, int layer = 0)
         {
             Lines lines = new Lines();
             lines.Add(line);
-            this.unsave(type, null, lines, position, layer);
+            this.Unsave(type, null, lines, position, layer);
         }
 
-        public void unsave(string type, Node node, Line line, Position position = null, int layer = 0)
+        public void Unsave(string type, Node node, Line line, Position position = null, int layer = 0)
         {
             Nodes nodes = new Nodes();
             nodes.Add(node);
             Lines lines = new Lines();
             lines.Add(line);
-            this.unsave(type, nodes, lines, position, layer);
+            this.Unsave(type, nodes, lines, position, layer);
         }
 
-        public void unsave(string type, Nodes nodes = null, Lines lines = null, Position position = null, int layer = 0)
+        public void Unsave(string type, Nodes nodes = null, Lines lines = null, Position position = null, int layer = 0)
         {
             this.undoOperations.rememberSave();
             this.undoOperations.add(type, nodes, lines, position, layer);
-            this.unsave();
+            this.Unsave();
         }
 
-        public void unsave()
+        public void Unsave()
         {
             this.SavedFile = false;
             this.SetTitle();
@@ -973,7 +991,7 @@ namespace Diagram
             this.InvalidateDiagram();
         }
 
-        public void restoresave()
+        public void Restoresave()
         {
             this.SavedFile = true;
             this.SetTitle();
@@ -985,13 +1003,13 @@ namespace Diagram
         // UNDO
 
         // undo
-        public void doUndo(DiagramView view = null)
+        public void DoUndo(DiagramView view = null)
         {
             this.undoOperations.doUndo(view);
         }
 
         // redo
-        public void doRedo(DiagramView view = null)
+        public void DoRedo(DiagramView view = null)
         {
             this.undoOperations.doRedo(view);
         }
@@ -1002,16 +1020,16 @@ namespace Diagram
         // NODE find node by id
         public Node GetNodeByID(int id)
         {
-            return this.layers.getNode(id);
+            return this.layers.GetNode(id);
         }
 
         // NODE find node by link
-        public Node getNodeByScriptID(string id)
+        public Node GetNodeByScriptID(string id)
         {
             Regex regex = new Regex(@"^\s*@(\w+){1}\s*$");
             Match match = null;
 
-            foreach (Node rec in this.getAllNodes()) // Loop through List with foreach
+            foreach (Node rec in this.GetAllNodes()) // Loop through List with foreach
             {
                 match = regex.Match(rec.link);
                 if (match.Success && match.Groups[1].Value == id) return rec;
@@ -1020,20 +1038,20 @@ namespace Diagram
             return null;
         }
 
-        public Nodes getAllNodes()
+        public Nodes GetAllNodes()
         {
-            return this.layers.getAllNodes();
+            return this.layers.GetAllNodes();
         }
 
-        public Lines getAllLines()
+        public Lines GetAllLines()
         {
-            return this.layers.getAllLines();
+            return this.layers.GetAllLines();
         }
 
         // NODE Najdenie nody podla pozicie myši
-        public Node findNodeInPosition(Position position, int layer, Node skipNode = null)
+        public Node FindNodeInPosition(Position position, int layer, Node skipNode = null)
         {
-            foreach (Node node in this.layers.getLayer(layer).nodes.Reverse<Node>()) // Loop through List with foreach
+            foreach (Node node in this.layers.GetLayer(layer).nodes.Reverse<Node>()) // Loop through List with foreach
             {
                 if (layer == node.layer || layer == node.id)
                 {
@@ -1056,12 +1074,12 @@ namespace Diagram
         // NODES DELETE
 
         // NODE delete all nodes which is not in layer history
-        public bool canDeleteNode(Node node)
+        public bool CanDeleteNode(Node node)
         {
             // sub node is viewed
             foreach (DiagramView view in this.DiagramViews)
             {
-                if (view.isNodeInLayerHistory(node))
+                if (view.IsNodeInLayerHistory(node))
                 {
                     return false;
                 }
@@ -1102,7 +1120,7 @@ namespace Diagram
                     }
                 }
 
-                this.layers.removeNode(rec);
+                this.layers.RemoveNode(rec);
             }
         }
 
@@ -1114,11 +1132,11 @@ namespace Diagram
             Nodes toDeleteNodes = new Nodes();
             Lines toDeleteLines = new Lines();
 
-            this.layers.getAllNodesAndLines(nodes, ref toDeleteNodes, ref toDeleteLines);
+            this.layers.GetAllNodesAndLines(nodes, ref toDeleteNodes, ref toDeleteLines);
 
             foreach (Node node in nodes)
             {
-                if (this.canDeleteNode(node))
+                if (this.CanDeleteNode(node))
                 {
                     canDelete = true;
                 }
@@ -1134,7 +1152,7 @@ namespace Diagram
                 }
 
                 this.InvalidateDiagram();
-                this.unsave();
+                this.Unsave();
             }
         }
 
@@ -1149,7 +1167,7 @@ namespace Diagram
             {
                 if (TextWindows[i].node == rec)
                 {
-                    Media.bringToFront(TextWindows[i]);
+                    Media.BringToFront(TextWindows[i]);
                     found = true;
                     return TextWindows[i];
                 }
@@ -1164,9 +1182,9 @@ namespace Diagram
                     textf.Text = lines[0];
 
                 this.TextWindows.Add(textf);
-                main.addTextWindow(textf);
+                main.AddTextWindow(textf);
                 textf.Show();
-                Media.bringToFront(textf);
+                Media.BringToFront(textf);
                 return textf;
             }
             return null;
@@ -1188,7 +1206,7 @@ namespace Diagram
         // NODES CREATE
 
         // NODE Create Rectangle on point
-        public Node createNode(
+        public Node CreateNode(
             Position position,
             string name = "",
             int layer = 0,
@@ -1216,26 +1234,26 @@ namespace Diagram
             rec.note = "";
             rec.link = "";
 
-            rec.position.set(position);
+            rec.position.Set(position);
 
             if (color != null)
             {
-                rec.color.set(color);
+                rec.color.Set(color);
             }
             else
             {
-                rec.color.set(Media.getColor(this.options.colorNode));
+                rec.color.Set(Media.GetColor(this.options.colorNode));
             }
 
-            return this.layers.createNode(rec);
+            return this.layers.CreateNode(rec);
         }
 
         // NODE add node to diagram (create new id and layer if not exist) 
-        public Node createNode(Node node)
+        public Node CreateNode(Node node)
         {
             if (!this.options.readOnly)
             {
-                return this.layers.createNode(node);
+                return this.layers.CreateNode(node);
             }
 
             return null;
@@ -1245,20 +1263,20 @@ namespace Diagram
         // LINES SELECT
 
         // LINE HASLINE check if line exist between two nodes
-        public bool hasConnection(Node a, Node b)
+        public bool HasConnection(Node a, Node b)
         {
-            Line line = this.layers.getLine(a, b);
+            Line line = this.layers.GetLine(a, b);
             return line != null;
         }
 
-        public Line getLine(Node a, Node b)
+        public Line GetLine(Node a, Node b)
         {
-            return this.layers.getLine(a, b);
+            return this.layers.GetLine(a, b);
         }
 
-        public Line getLine(int a, int b)
+        public Line GetLine(int a, int b)
         {
-            return this.layers.getLine(a, b);
+            return this.layers.GetLine(a, b);
         }
 
         // LINE CONNECT connect two nodes
@@ -1266,7 +1284,7 @@ namespace Diagram
         {
             if (!this.options.readOnly && a != null && b != null)
             {
-                Line line = this.layers.getLine(a, b);
+                Line line = this.layers.GetLine(a, b);
 
                 if (line == null)
                 {
@@ -1292,13 +1310,15 @@ namespace Diagram
                         return null; // invalid connection (nodes are not related or in same layer)
                     }
 
-                    line = new Line();
-                    line.start = a.id;
-                    line.end = b.id;
-                    line.startNode = this.GetNodeByID(line.start);
-                    line.endNode = this.GetNodeByID(line.end);
-                    line.layer = layer;
-                    this.layers.addLine(line);
+                    line = new Line {
+                        start = a.id,
+                        end = b.id,
+                        startNode = this.GetNodeByID(a.id),
+                        endNode = this.GetNodeByID(b.id),
+                        layer = layer
+                    };
+
+                    this.layers.AddLine(line);
 
                     return line;
                 }
@@ -1312,11 +1332,11 @@ namespace Diagram
         {
             if (!this.options.readOnly && a != null && b != null)
             {
-                Line line = this.layers.getLine(a, b);
+                Line line = this.layers.GetLine(a, b);
 
                 if (line != null)
                 {
-                    this.layers.removeLine(line);
+                    this.layers.RemoveLine(line);
                 }
             }
         }
@@ -1331,7 +1351,7 @@ namespace Diagram
                 line.arrow = arrow;
                 if (color != null)
                 {
-                    line.color.set(color);
+                    line.color.Set(color);
                 }
                 
                 line.width = width;
@@ -1498,7 +1518,7 @@ namespace Diagram
         }
 
         // align node to top element and create constant space between nodes and sort items
-        public void sortNodes(Nodes nodes)
+        public void SortNodes(Nodes nodes)
         {
             if (nodes.Count() > 0)
             {
@@ -1550,7 +1570,7 @@ namespace Diagram
         }
 
         // split node to lines
-        public Nodes splitNode(Nodes nodes)
+        public Nodes SplitNode(Nodes nodes)
         {
             if (nodes.Count() > 0)
             {
@@ -1577,7 +1597,7 @@ namespace Diagram
                     {
                         if (line.Trim() != "")
                         {
-                            Node newNode = this.createNode(new Node(node)); // duplicate content of old node
+                            Node newNode = this.CreateNode(new Node(node)); // duplicate content of old node
                             newNode.setName(line);
                             newNode.position.y = posy;
                             posy = posy + newNode.height + 10;
@@ -1620,7 +1640,7 @@ namespace Diagram
                     rec.font = this.FontDefault;
                     rec.resize();
                 }
-                this.unsave();
+                this.Unsave();
                 this.InvalidateDiagram();
             }
         }
@@ -1629,26 +1649,26 @@ namespace Diagram
         // IMAGE
 
         // set image
-        public void setImage(Node rec, string file)
+        public void SetImage(Node rec, string file)
         {
             try
             {
                 rec.isimage = true;
-                rec.image = Media.getImage(file);
-                rec.imagepath = Os.makeRelative(file, this.FileName);
-                string ext = Os.getExtension(file);
+                rec.image = Media.GetImage(file);
+                rec.imagepath = Os.MakeRelative(file, this.FileName);
+                string ext = Os.GetExtension(file);
                 if (ext != ".ico") rec.image.MakeTransparent(Color.White);
                 rec.height = rec.image.Height;
                 rec.width = rec.image.Width;
             }
             catch(Exception e)
             {
-                Program.log.write("setImage: " + e.Message);
+                Program.log.Write("setImage: " + e.Message);
             }
         }
 
         // remove image
-        public void removeImage(Node rec)
+        public void RemoveImage(Node rec)
         {
             rec.isimage = false;
             rec.imagepath = "";
@@ -1658,7 +1678,7 @@ namespace Diagram
         }
 
         // set image embedded
-        public void setImageEmbedded(Node rec)
+        public void SetImageEmbedded(Node rec)
         {
             if (rec.isimage)
             {
@@ -1674,12 +1694,12 @@ namespace Diagram
         {
             if (rec != null)
             {
-                Nodes nodes = this.layers.getLayer(rec.id).nodes;
+                Nodes nodes = this.layers.GetLayer(rec.id).nodes;
                 foreach (Node node in nodes) // Loop through List with foreach
                 {
                     if (node.layer == rec.id)
                     {
-                        node.position.add(vector);
+                        node.position.Add(vector);
 
                         if (node.haslayer)
                         {
@@ -1694,17 +1714,17 @@ namespace Diagram
         // VIEW
 
         // open new view on diagram
-        public DiagramView openDiagramView(DiagramView parent = null, Layer layer = null)
+        public DiagramView OpenDiagramView(DiagramView parent = null, Layer layer = null)
         {
             DiagramView diagramview = new DiagramView(main, this, parent);
-            diagramview.setDiagram(this);
+            diagramview.SetDiagram(this);
             this.DiagramViews.Add(diagramview);
-            main.addDiagramView(diagramview);
+            main.AddDiagramView(diagramview);
 			this.SetTitle();
             diagramview.Show();
             if (layer != null)
             {
-                diagramview.goToLayer(layer.id);
+                diagramview.GoToLayer(layer.id);
             }
             return diagramview;
         }
@@ -1725,7 +1745,7 @@ namespace Diagram
         public void CloseView(DiagramView view)
         {
             this.DiagramViews.Remove(view);
-            main.removeDiagramView(view);
+            main.RemoveDiagramView(view);
 
             foreach (DiagramView diagramView in this.DiagramViews) {
                 if (diagramView.parentView == view) {
@@ -1749,7 +1769,7 @@ namespace Diagram
             if (canclose)
             {
                 this.CloseFile();
-                main.removeDiagram(this);
+                main.RemoveDiagram(this);
                 main.CloseEmptyApplication();
             }
         }
@@ -1764,9 +1784,9 @@ namespace Diagram
         }
 
         // refresh - refresh items depends on external resources like images
-        public void refreshAll()
+        public void RefreshAll()
         {
-            foreach (Node node in this.layers.getAllNodes())
+            foreach (Node node in this.layers.GetAllNodes())
             {
                 
                 if (node.isimage && !node.embeddedimage)
@@ -1783,7 +1803,7 @@ namespace Diagram
         }
 
         // refresh nodes- refresh items depends on external resources like images or hyperlinks names
-        public void refreshNodes(Nodes nodes)
+        public void RefreshNodes(Nodes nodes)
         {
             foreach (Node node in nodes)
             {
@@ -1801,11 +1821,11 @@ namespace Diagram
         }
 
         // refresh background image after background image change
-        public void refreshBackgroundImages()
+        public void RefreshBackgroundImages()
         {
             foreach (DiagramView DiagramView in this.DiagramViews)
             {
-                DiagramView.refreshBackgroundImage();
+                DiagramView.RefreshBackgroundImage();
             }
         }
 
@@ -1818,8 +1838,10 @@ namespace Diagram
             Nodes NewNodes = new Nodes();
             Lines NewLines = new Lines();
 
-            XmlReaderSettings xws = new XmlReaderSettings();
-            xws.CheckCharacters = false;
+            XmlReaderSettings xws = new XmlReaderSettings
+            {
+                CheckCharacters = false
+            };
 
             string xml = DiagramXml;
 
@@ -1841,8 +1863,10 @@ namespace Diagram
 
                                     if (block.Name.ToString() == "rectangle")
                                     {
-                                        Node R = new Node();
-                                        R.font = this.FontDefault;
+                                        Node R = new Node
+                                        {
+                                            font = this.FontDefault
+                                        };
 
                                         foreach (XElement el in block.Descendants())
                                         {
@@ -1876,7 +1900,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "color")
                                                 {
-                                                    R.color.set(el.Value.ToString());
+                                                    R.color.Set(el.Value.ToString());
                                                 }
 
 
@@ -1900,7 +1924,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "fontcolor")
                                                 {
-                                                    R.fontcolor.set(el.Value.ToString());
+                                                    R.fontcolor.Set(el.Value.ToString());
                                                 }
 
                                                 if (el.Name.ToString() == "link")
@@ -1944,11 +1968,11 @@ namespace Diagram
                                                         try
                                                         {
                                                             string ext = "";
-                                                            ext = Os.getExtension(R.imagepath).ToLower();
+                                                            ext = Os.GetExtension(R.imagepath).ToLower();
 
                                                             if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // skratenie cesty k suboru
                                                             {
-                                                                R.image = Media.getImage(R.imagepath);
+                                                                R.image = Media.GetImage(R.imagepath);
                                                                 if (ext != ".ico") R.image.MakeTransparent(Color.White);
                                                                 R.height = R.image.Height;
                                                                 R.width = R.image.Width;
@@ -1957,7 +1981,7 @@ namespace Diagram
                                                         }
                                                         catch (Exception ex)
                                                         {
-                                                            Program.log.write("load image from xml error: " + ex.Message);
+                                                            Program.log.Write("load image from xml error: " + ex.Message);
                                                         }
                                                     }
                                                     else
@@ -1995,7 +2019,7 @@ namespace Diagram
                                             }
                                             catch (Exception ex)
                                             {
-                                                Program.log.write("Data has wrong structure. : error: " + ex.Message);
+                                                Program.log.Write("Data has wrong structure. : error: " + ex.Message);
                                             }
                                         }
 
@@ -2032,7 +2056,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "color")
                                                 {
-                                                    L.color.set(el.Value.ToString());
+                                                    L.color.Set(el.Value.ToString());
                                                 }
 
                                                 if (el.Name.ToString() == "width")
@@ -2047,7 +2071,7 @@ namespace Diagram
                                             }
                                             catch (Exception ex)
                                             {
-                                                Program.log.write("Data has wrong structure. : error: " + ex.Message);
+                                                Program.log.Write("Data has wrong structure. : error: " + ex.Message);
                                             }
                                         }
                                         NewLines.Add(L);
@@ -2061,14 +2085,14 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                Program.log.write("Data has wrong structure. : error: " + ex.Message);
+                Program.log.Write("Data has wrong structure. : error: " + ex.Message);
             }
 
 
             List<MappedNode> maps = new List<MappedNode>();
 
             Nodes NewReorderedNodes = new Nodes(); // order nodes parent first (layer must exist when sub node is created)
-            this.nodesReorderNodes(0, null, NewNodes, NewReorderedNodes);
+            this.NodesReorderNodes(0, null, NewNodes, NewReorderedNodes);
 
             int layerParent = 0;
 
@@ -2096,16 +2120,17 @@ namespace Diagram
                 }
 
                 rec.layer = layerParent;
-                rec.position.add(position);
+                rec.position.Add(position);
                 rec.resize();
 
                 oldId = rec.id;
-                newNode = this.createNode(rec);
+                newNode = this.CreateNode(rec);
 
                 if (newNode != null) {
-                    mappedNode = new MappedNode();
-                    mappedNode.oldId = oldId;
-                    mappedNode.newNode = newNode;
+                    mappedNode = new MappedNode {
+                        oldId = oldId,
+                        newNode = newNode
+                    };
                     createdNodes.Add(newNode);
                     maps.Add(mappedNode);
                 }
@@ -2161,7 +2186,7 @@ namespace Diagram
         }
 
         // Get all layers nodes
-        private void nodesReorderNodes(int layer, Node parent, Nodes nodesIn, Nodes nodesOut)
+        private void NodesReorderNodes(int layer, Node parent, Nodes nodesIn, Nodes nodesOut)
         {
             foreach (Node node in nodesIn)
             {
@@ -2173,20 +2198,20 @@ namespace Diagram
 
                     nodesOut.Add(node);
 
-                    nodesReorderNodes(node.id, node, nodesIn, nodesOut);
+                    NodesReorderNodes(node.id, node, nodesIn, nodesOut);
                 }
             }
         }
 
         // Get all layers nodes
-        public void getLayerNodes(Node node, Nodes nodes)
+        public void GetLayerNodes(Node node, Nodes nodes)
         {
             if (node.haslayer) {
-                foreach(Node subnode in this.layers.getLayer(node.id).nodes) {
+                foreach(Node subnode in this.layers.GetLayer(node.id).nodes) {
                     nodes.Add(subnode);
 
                     if (subnode.haslayer) {
-                        getLayerNodes(subnode, nodes);
+                        GetLayerNodes(subnode, nodes);
                     }
                 }
             }
@@ -2224,7 +2249,7 @@ namespace Diagram
 
                 foreach (Node node in copy)
                 {
-                    getLayerNodes(node, subnodes);
+                    GetLayerNodes(node, subnodes);
                 }
 
                 foreach (Node node in subnodes)
@@ -2269,7 +2294,7 @@ namespace Diagram
                     rectangles.Add(rectangle);
                 }
 
-                foreach (Line li in this.getAllLines())
+                foreach (Line li in this.GetAllLines())
                 {
                     foreach (Node recstart in copy)
                     {
@@ -2303,7 +2328,7 @@ namespace Diagram
             return copyxml;
         }
 
-        public DiagramBlock getPartOfDiagram(Nodes nodes)
+        public DiagramBlock GetPartOfDiagram(Nodes nodes)
         {
             Nodes allNodes = new Nodes();
             Lines lines = new Lines();
@@ -2319,7 +2344,7 @@ namespace Diagram
 
                 foreach (Node node in allNodes)
                 {
-                    getLayerNodes(node, subnodes);
+                    GetLayerNodes(node, subnodes);
                 }
 
                 foreach (Node node in subnodes)
@@ -2327,7 +2352,7 @@ namespace Diagram
                     allNodes.Add(node);
                 }
 
-                foreach (Line li in this.getAllLines())
+                foreach (Line li in this.GetAllLines())
                 {
                     foreach (Node recstart in allNodes)
                     {
@@ -2348,10 +2373,10 @@ namespace Diagram
             return new DiagramBlock(allNodes, lines);
         }
 
-        public DiagramBlock duplicatePartOfDiagram(Nodes nodes, int layer = 0)
+        public DiagramBlock DuplicatePartOfDiagram(Nodes nodes, int layer = 0)
         {
             // get part of diagram for duplicate
-            DiagramBlock diagramPart = this.getPartOfDiagram(nodes);
+            DiagramBlock diagramPart = this.GetPartOfDiagram(nodes);
 
             List<MappedNode> maps = new List<MappedNode>();
 
@@ -2363,7 +2388,7 @@ namespace Diagram
 
             // order nodes parent first (layer must exist when sub node is created)
             Nodes NewReorderedNodes = new Nodes(); 
-            this.nodesReorderNodes(layer, null, duplicatedNodes, NewReorderedNodes);
+            this.NodesReorderNodes(layer, null, duplicatedNodes, NewReorderedNodes);
 
             int layerParent = 0;
 
@@ -2390,13 +2415,16 @@ namespace Diagram
                 rec.resize();
 
                 oldId = rec.id;
-                newNode = this.createNode(rec);
+                newNode = this.CreateNode(rec);
 
                 if (newNode != null)
                 {
-                    mappedNode = new MappedNode();
-                    mappedNode.oldId = oldId;
-                    mappedNode.newNode = newNode;
+                    mappedNode = new MappedNode
+                    {
+                        oldId = oldId,
+                        newNode = newNode
+                    };
+
                     createdNodes.Add(newNode);
                     maps.Add(mappedNode);
                 }
@@ -2456,13 +2484,13 @@ namespace Diagram
         // SECURITY
 
         // encrypt diagram 
-        public bool setPassword(string password = null)
+        public bool SetPassword(string password = null)
         {
             string newPassword = null;
 
             if (password == null)
             {
-                newPassword = this.main.getNewPassword();
+                newPassword = this.main.GetNewPassword();
             }
             else
             {
@@ -2483,15 +2511,15 @@ namespace Diagram
                 if (newPassword != "" && this.password == null)
                 {
                     this.encrypted = true;
-                    this.password = Encrypt.convertToSecureString(newPassword);
+                    this.password = Encrypt.ConvertToSecureString(newPassword);
                     this.passwordHash = Encrypt.CalculateSHAHash(newPassword);
                     return true;
                 }
 
-                if (newPassword != "" && this.password != null && newPassword != this.getPassword())
+                if (newPassword != "" && this.password != null && !Encrypt.CompareSecureString(this.password, newPassword))
                 {
                     this.encrypted = true;
-                    this.password = Encrypt.convertToSecureString(newPassword);
+                    this.password = Encrypt.ConvertToSecureString(newPassword);
                     this.passwordHash = Encrypt.CalculateSHAHash(newPassword);
                     return true;
                 }
@@ -2500,45 +2528,39 @@ namespace Diagram
             return false;
         }
 
-        private string getPassword()
-        {
-            if (this.password != null)
-            {
-                return Encrypt.convertFromSecureString(this.password);
-            }
-
-            return "";
-        } 
-
         // change password
-        public bool changePassword()
+        public bool ChangePassword()
         {
-            string newPassword = this.main.changePassword(this.getPassword());
+            string newPassword = this.main.ChangePassword(this.password);
             if (newPassword != null)
             {
-                return this.setPassword(newPassword);
+                return this.SetPassword(newPassword);
             }
 
             return false;
         }
 
         // check if password is set
-        public bool isEncrypted()
+        public bool IsEncrypted()
         {
             return this.encrypted;
         }
 
         // check if diagram is locked
-        public bool isLocked()
+        public bool IsLocked()
         {
             return this.locked;
         }
 
         // lock diagram - forgot password
-        public void lockDiagram()
+        public void LockDiagram() //UID9013092575
         {
             if (this.encrypted && !this.locked)
             {
+                foreach(DiagramView view in DiagramViews) {
+                    view.LockView();
+                }
+
                 this.locked = true;
                 this.password = null;
                 this.InvalidateDiagram();
@@ -2546,17 +2568,17 @@ namespace Diagram
         }
 
         // unlock diagram - prompt for new password
-        public bool unlockDiagram()
+        public bool UnlockDiagram()
         {
             if (this.encrypted && this.locked)
             {
                 while (true) // while password is not correct or cancel is pressed
                 {
-                    string password = this.main.getPassword();
+                    string password = this.main.GetPassword();
 
                     if (password != null && this.passwordHash == Encrypt.CalculateSHAHash(password))
                     {
-                        this.setPassword(password);
+                        this.SetPassword(password);
                         this.locked = false;
                         this.InvalidateDiagram();
                         return true;

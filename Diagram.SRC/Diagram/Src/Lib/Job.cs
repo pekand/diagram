@@ -15,7 +15,7 @@ namespace Diagram
 {
     /// <summary>
     /// repository for thread related functions</summary>
-    public class Job
+    public class Job //UID8736422044
     {
         /// <summary>
         /// run task in thread </summary>
@@ -50,7 +50,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                Program.log.write("get link name error: " + ex.Message);
+                Program.log.Write("get link name error: " + ex.Message);
             }
         }
     }

@@ -14,21 +14,21 @@ namespace Diagram
 
     /// <summary>
     /// repository for screen and images related functions</summary>
-    public class Media
+    public class Media //UID0928056661
     {
         /*************************************************************************************************************************/
         // SCREEN
 
         /// <summary>
         /// get active form screen width </summary>
-        public static int screenWidth(Form form)
+        public static int ScreenWidth(Form form)
         {
             return ((Screen.FromControl(form).Bounds.Size.Width > 1920) ? 1920 : Screen.FromControl(form).Bounds.Size.Width);
         }
 
         /// <summary>
         /// get active form screenn height </summary>
-        public static int screenHeight(Form form)
+        public static int ScreenHeight(Form form)
         {
             return Screen.FromControl(form).Bounds.Size.Height;
         }
@@ -38,7 +38,7 @@ namespace Diagram
 
         /// <summary>
         /// convert hexidecimal html color to Color object </summary>
-        public static Color getColor(string color)
+        public static Color GetColor(string color)
         {
             return System.Drawing.ColorTranslator.FromHtml(color);
         }
@@ -48,7 +48,7 @@ namespace Diagram
 
         /// <summary>
         /// load image from file </summary>
-        public static Bitmap getImage(string file)
+        public static Bitmap GetImage(string file)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("getImage: " + e.Message);
+                Program.log.Write("getImage: " + e.Message);
             }
 
             return null;
@@ -64,7 +64,7 @@ namespace Diagram
 
         /// <summary>
         /// load icon from file </summary>
-        public static Icon getIcon(string file)
+        public static Icon GetIcon(string file)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("getIcon: " + e.Message);
+                Program.log.Write("getIcon: " + e.Message);
             }
 
             return null;
@@ -92,7 +92,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("BitmapToString error: " + e.Message);
+                Program.log.Write("BitmapToString error: " + e.Message);
                 return "";
             }
         }
@@ -109,7 +109,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("StringToBitmap error: " + e.Message);
+                Program.log.Write("StringToBitmap error: " + e.Message);
                 return null;
             }
         }
@@ -127,7 +127,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("StringToBitmap error: " + e.Message);
+                Program.log.Write("StringToBitmap error: " + e.Message);
                 return null;
             }
         }
@@ -146,39 +146,26 @@ namespace Diagram
         /*************************************************************************************************************************/
         // FOCUS
 
-#if !MONO
-        [DllImport("User32.dll")]
-        public static extern Int32 SetForegroundWindow(int hWnd);
-#endif
-
         /// <summary>
         /// bring form to foreground </summary>
-        public static void bringToFront(Form form)   // [focus]
+        public static void BringToFront(Form form)   // [focus] UID0703915427
         {
-            Program.log.write("bringToFront");
-            Tick.timer(500, (t, args) =>
+            Program.log.Write("bringToFront");
+            Tick.timer(1000, (t, args) =>
             {
                 if (t is Timer)
                 {
-                    Timer timer = t as Timer;
+                    Program.log.Write("bringToFront: tick");
 
-                    Program.log.write("bringToFront: tick");
+                    Timer timer = t as Timer;                    
 					timer.Enabled = false;
 
-                    //diagram bring to top hack in windows
-                    if (form.WindowState == FormWindowState.Minimized)
-                    {
+                    if(form.WindowState == FormWindowState.Minimized) {
                         form.WindowState = FormWindowState.Normal;
                     }
-
-#if !MONO
-                    SetForegroundWindow(form.Handle.ToInt32());
-#endif
                     form.TopMost = true;
-                    form.Focus();
                     form.BringToFront();
                     form.TopMost = false;
-                    form.Activate();
                 }
             });
         }
@@ -188,7 +175,7 @@ namespace Diagram
 
         /// <summary>
         /// extract icon from executable</summary>
-        public static Bitmap extractSystemIcon(string path)
+        public static Bitmap ExtractSystemIcon(string path)
         {
 #if !MONO
             try
@@ -198,7 +185,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("get exe icon error: " + e.Message);
+                Program.log.Write("get exe icon error: " + e.Message);
             }
 
             return null;
@@ -210,7 +197,7 @@ namespace Diagram
 
         /// <summary>
         /// extract icon from link file</summary>
-        public static Bitmap extractLnkIcon(string path)
+        public static Bitmap ExtractLnkIcon(string path)
         {
 #if !MONO
             try
@@ -221,15 +208,14 @@ namespace Diagram
                 var itm = dir.Items().Item(System.IO.Path.GetFileName(lnkPath));
                 var lnk = (Shell32.ShellLinkObject)itm.GetLink;
 
-                String strIcon;
-                lnk.GetIconLocation(out strIcon);
+                lnk.GetIconLocation(out String strIcon);
                 Icon awIcon = Icon.ExtractAssociatedIcon(strIcon);
 
                 return awIcon.ToBitmap();
             }
             catch (Exception e)
             {
-                Program.log.write("get exe icon error: " + e.Message);
+                Program.log.Write("get exe icon error: " + e.Message);
             }
 
             return null;
@@ -254,7 +240,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("IconToString error: " + e.Message);
+                Program.log.Write("IconToString error: " + e.Message);
                 return "";
             }
         }
@@ -273,7 +259,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("StringToIcon error: " + e.Message);
+                Program.log.Write("StringToIcon error: " + e.Message);
                 return null;
             }
         }

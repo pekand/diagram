@@ -4,13 +4,14 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Diagram
 {
     /// <summary>
     /// message server between running processies
     /// </summary>
-    public class Server
+    public class Server //UID0876993960
     {
         /*************************************************************************************************************************/
         
@@ -25,7 +26,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // SERVER LOOP
 
-        public Server(Main main)
+        public Server(Main main) //UID9899460299
         {
             this.main = main;
 
@@ -42,21 +43,22 @@ namespace Diagram
                     this.listenThread = new Thread(new ThreadStart(ListenForClients)); // start thread with server
                     this.listenThread.Start();
 					this.mainProcess = true;
-                    Program.log.write("Server: start on " + main.options.server_default_ip + ":" + main.options.server_default_port);
+                    Program.log.Write("Server: start on " + main.options.server_default_ip + ":" + main.options.server_default_port);
                 }
                 else
                 {
                     this.mainProcess = false;
-                    Program.log.write("Server: already exist");                    
+                    Program.log.Write("Server: already exist");                    
                 }
             }
             catch (Exception ex)
             {
-                Program.log.write("Server: "+ex.Message);
+                Program.log.Write("Server: "+ex.Message);
             }
+
         }
 
-        // start server loop
+        // start server loop UID8117850972
         public void ListenForClients()
         {
             try
@@ -70,128 +72,160 @@ namespace Diagram
 
                     //create a thread to handle communication
                     //with connected client
-                    Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientComm)); // process message from client in thread
+                    Thread clientThread = new Thread(new ParameterizedThreadStart(HandleClientCommunication)); // process message from client in thread
                     clientThread.Start(client);
                 }
 
-                Program.log.write("Server: close");
+                Program.log.Write("Server: close");
             }
             catch (Exception ex)
             {
-				Program.log.write("Server: error: " + ex.Message);
+				Program.log.Write("Server: error: " + ex.Message);
             }
         }
 
-        // process message catched from server
-        private void HandleClientComm(object client)
+        // process message catched from server UID1561149138
+        private void HandleClientCommunication(object client)
         {
-            TcpClient tcpClient = (TcpClient)client;
-            NetworkStream clientStream = tcpClient.GetStream();
-
-            byte[] message = new byte[4096];
-            int bytesRead;
-
-            while (true)
+            try
             {
-                bytesRead = 0;
+                TcpClient tcpClient = (TcpClient)client;
+                NetworkStream clientStream = tcpClient.GetStream();
 
+                int bytesRead;
+
+                bool requestIsValid = true;
+
+                // recive message
+                byte[] data = new byte[tcpClient.ReceiveBufferSize];
+                bytesRead = clientStream.Read(data, 0, tcpClient.ReceiveBufferSize);
+                ASCIIEncoding encoder = new ASCIIEncoding();
+                string message = encoder.GetString(data, 0, bytesRead);                    
+                requestIsValid = this.ParseMessage(message);
+
+                // send response
                 try
                 {
-                    //blocks until a client sends a message
-                    bytesRead = clientStream.Read(message, 0, 4096);
+                    // Send back a response.
+                    string response = "400 Bad Request";
+                    if (requestIsValid)
+                    {
+                        response = "200 OK";
+                    }
+                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(response);
+                    clientStream.Write(msg, 0, msg.Length);
+
+                    Program.log.Write("Server: HandleClientComm: send response:" + response);
                 }
-                catch
-                {
-                    //a socket error has occured
-                    break;
+                catch (Exception ex) {
+                    Program.log.Write("Server: HandleClientComm: client refuse response:" + ex.Message);
                 }
 
-                if (bytesRead == 0)
-                {
-                    //the client has disconnected from the server
-                    break;
-                }
-                
-                ASCIIEncoding encoder = new ASCIIEncoding();
-
-                // process catchet messages
-                this.ParseMessage(
-                    encoder.GetString(message, 0, bytesRead)
-                );
+                tcpClient.Close();
             }
-
-            tcpClient.Close();
+            catch (Exception ex)
+            {
+                Program.log.Write("Server: HandleClientComm: error:" + ex.Message);
+            }
         }
 
         /*************************************************************************************************************************/
         // MESSAGES
 
-        // send message to server
+        // send message to server UID8096061355
         public bool SendMessage(String Messsage)
         {
-			Program.log.write("Server: SendMessage: "+Messsage);
+			Program.log.Write("Server: SendMessage: "+Messsage);
 
             try
             {
+                // connect to server
                 TcpClient client = new TcpClient();
-
+                client.SendTimeout = 1000;
                 IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse(main.options.server_default_ip), main.options.server_default_port);
-
                 client.Connect(serverEndPoint);
-
                 NetworkStream clientStream = client.GetStream();
 
+                // prepare message for server
                 ASCIIEncoding encoder = new ASCIIEncoding();
                 byte[] buffer = encoder.GetBytes(Messsage);
 
+                // send message
                 clientStream.Write(buffer, 0, buffer.Length);
                 clientStream.Flush();
+
+                // if close message is send not response arrive
+                if (Messsage == "stop") {
+                    return true;
+                }
+
+                try
+                {
+                    // get response from server
+                    clientStream.ReadTimeout = 1000;
+                    byte[] resp = new byte[2048];
+                    var memStream = new MemoryStream();
+                    int bytesread = clientStream.Read(resp, 0, resp.Length);
+                    while (bytesread > 0)
+                    {
+                        memStream.Write(resp, 0, bytesread);
+                        bytesread = clientStream.Read(resp, 0, resp.Length);
+                    }
+                    string response = Encoding.UTF8.GetString(memStream.ToArray());
+                    Program.log.Write("Server: SendMessage(" + Messsage + "): response: " + response);
+                }
+                catch (Exception ex)
+                {
+                    Program.log.Write("Server: SendMessage(" + Messsage + "): no response from server: " + ex.Message);
+                }
+
                 return true;
             }
             catch (Exception ex)
             {
-				Program.log.write("Server: SendMessage("+Messsage+"): error: " + ex.Message);
-                return false;
+				Program.log.Write("Server: SendMessage("+Messsage+"): error: " + ex.Message);                
             }
+
+            return false;
         }
 
-        // parde message from server
-        public void ParseMessage(String Messsage)
+        // parde message from server UID9190377024
+        public bool ParseMessage(String Messsage)
         {
             // send message
-			Program.log.write("Server: ParseMessage: "+Messsage);
+			Program.log.Write("Server: ParseMessage: "+Messsage);
 
             if (Messsage == "ping") // check if server is live
             {
-                return;
+                return true;
             }
             else
             if (Messsage == "close")
             {
-                main.mainform.Invoke(new Action(() => main.mainform.ExitApplication()));
-                return;
+                main.mainform.Invoke(new Action(() => main.mainform.CloseEmptyApplication()));
+                return true;
             }
             else
             {
 
-                Match match = Regex.Match(Messsage, @"open:(.*)", RegexOptions.IgnoreCase);
+                Match match = Regex.Match(Messsage, @"open:(.*)", RegexOptions.IgnoreCase); 
                 if (match.Success)
                 {
                     string FileName = match.Groups[1].Value;
-                    main.mainform.Invoke(new Action(() => main.mainform.OpenDiagram(FileName)));
+                    main.mainform.Invoke(new Action(() => main.mainform.OpenDiagram(FileName))); //UID7984925616
 
-                    return;
+                    return true;
                 }
-
-                return;
             }
+
+            return false;
         }
 
         // send close message to server
         public void RequestStop()
         {
             _shouldStop = true;
-            SendMessage("close");
+            SendMessage("stop");
         }
     }
 }

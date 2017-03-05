@@ -22,7 +22,7 @@ namespace Diagram
 {
     /// <summary>    
     /// </summary>
-    public class OptionsFile
+    public class OptionsFile //UID8285897740
     {
         /*************************************************************************************************************************/
 
@@ -36,6 +36,7 @@ namespace Diagram
         public String configFileName = "diagram.json";
 #endif
 
+        // Example: C:\Users\user_name\AppData\Roaming\Diagram\diagram.json
         public String optionsFilePath = ""; // full path to global options json file
 
         public ProgramOptions parameters = null;
@@ -50,102 +51,93 @@ namespace Diagram
         {
             this.parameters = parameters;
 
-            this.optionsFilePath = this.getPortableConfigFilePath();
+            // use local config file
+            this.optionsFilePath = Os.Combine(Os.GetCurrentApplicationDirectory(), this.configFileName);
 
-            // use global if portable version not exist
+            // use global config file if local version not exist
             if (!Os.FileExists(this.optionsFilePath))
             {
-                this.optionsFilePath = this.getFullGlobalConfigFilePath();
+                this.optionsFilePath = Os.Combine(
+                    this.GetGlobalConfigDirectory(),
+                    this.configFileName
+                );
             }
 
+            // open config file if exist
             if (Os.FileExists(this.optionsFilePath))
             {
-                this.loadConfigFile();
+                this.LoadConfigFile();
             }
             else
             {
+                string globalConfigDirectory = Os.Combine(
+                    Os.GetApplicationsDirectory(),
+                    this.configFileDirectory
+                );
+
                 // create global config directory if not exist
-                if (!Os.DirectoryExists(this.getGlobalConfigFileDirectory()))
+                if (!Os.DirectoryExists(globalConfigDirectory))
                 {
-                    Os.createDirectory(this.getGlobalConfigFileDirectory());
+                    Os.CreateDirectory(globalConfigDirectory);
                 }
 
-                this.saveConfigFile();
+                // if config file dosn't exist create one with default values
+                this.SaveConfigFile();
             }
         }
 
 
         /// <summary>
         /// load global config file from json file</summary>
-        private void loadConfigFile()
+        private void LoadConfigFile()
         {
             try
             {
-                Program.log.write("loadConfigFile: path:" + this.optionsFilePath);
-                string inputJSON = Os.readAllText(this.optionsFilePath);
-                this.parameters.setParams(JsonConvert.DeserializeObject<ProgramOptions>(inputJSON));
+                Program.log.Write("loadConfigFile: path:" + this.optionsFilePath);
+                string inputJSON = Os.ReadAllText(this.optionsFilePath);
+                this.parameters.SetParams(JsonConvert.DeserializeObject<ProgramOptions>(inputJSON));
             }
             catch (Exception ex)
             {
-                Program.log.write("loadConfigFile: " + ex.Message);
+                Program.log.Write("loadConfigFile: " + ex.Message);
             }
         }
 
         /// <summary>
         /// save global config file as json</summary>
-        public void saveConfigFile()
+        public void SaveConfigFile()
         {
             try
             {
                 string outputJSON = JsonConvert.SerializeObject(this.parameters);
-                Os.writeAllText(this.optionsFilePath, outputJSON);
+                Os.WriteAllText(this.optionsFilePath, outputJSON);
             }
             catch (Exception ex)
             {
-                Program.log.write("saveConfigFile: " + ex.Message);
+                Program.log.Write("saveConfigFile: " + ex.Message);
             }
         }
 
         /*************************************************************************************************************************/
 
         /// <summary>
-        /// get config file directory when diagram app is used in portable mode</summary> 
-        public String getPortableConfigFilePath()
+        /// open directory with configuration file</summary> 
+        public void ShowDirectoryWithConfiguration()
         {
-            return Os.combine(
-                Os.getDirectoryName(Application.ExecutablePath),
-                this.configFileName
-            );
-        }
-
-        /// <summary>
-        /// get config file directory</summary> 
-        private string getGlobalConfigFileDirectory()
-        {
-			string folderPath = Environment.GetFolderPath (Environment.SpecialFolder.ApplicationData);
-			string configDirectory = Os.combine(
-				folderPath,
-                this.configFileDirectory
-            );
-
-			return configDirectory;
-        }
-
-        /// <summary>
-        /// get full config file path</summary> 
-        private string getFullGlobalConfigFilePath()
-        {
-            return Os.combine(
-                this.getGlobalConfigFileDirectory(),
-                this.configFileName
-            );
+            Os.ShowDirectoryInExternalApplication(Os.GetDirectoryName(optionsFilePath));
         }
 
         /// <summary>
         /// open directory with configuration file</summary> 
-        public void showDirectoryWithConfiguration()
+        public string  GetGlobalConfigDirectory()
         {
-            Os.showDirectoryInExternalApplication(Os.getDirectoryName(optionsFilePath));
+            return Os.Combine(
+                Os.GetApplicationsDirectory(),
+                this.configFileDirectory
+            );
         }
+
+
+       
     }
 }

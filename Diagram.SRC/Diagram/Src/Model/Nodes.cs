@@ -8,7 +8,7 @@ namespace Diagram
 {
     /// <summary>
     /// collection of nodes</summary>
-    public class Nodes : List<Node>
+    public class Nodes : List<Node> //UID2727152862
     {
         /*************************************************************************************************************************/
         // CONSTRUCTORS
@@ -28,7 +28,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // SETTERS AND GETTERS
 
-        public void copy(Nodes nodes)
+        public void Copy(Nodes nodes)
         {
             this.Clear();
 

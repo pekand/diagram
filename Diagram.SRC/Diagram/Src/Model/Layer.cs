@@ -8,7 +8,7 @@ namespace Diagram
 {
     /// <summary>
     /// diagram layer</summary>
-    public class Layer
+    public class Layer //UID1099250588
     {
         public int id = 0; // parent node id, layer owner
 
@@ -21,8 +21,9 @@ namespace Diagram
         /*************************************************************************************************************************/
         // LAYER ITEMS
 
-        public Nodes nodes = new Nodes();          // all layer nodes
-        public Lines lines = new Lines();          // all layer lines
+        public Nodes nodes = new Nodes();               // all layer nodes
+        public Lines lines = new Lines();               // all layer lines
+        //public Polygons ploygons = new Polygons();      // all layer polygons
 
         /*************************************************************************************************************************/
         // CONSTRUCTORS

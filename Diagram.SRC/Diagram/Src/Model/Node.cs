@@ -5,7 +5,7 @@ namespace Diagram
 {
     /// <summary>
     /// Node in diagram</summary>
-    public class Node
+    public class Node //UID6202169477
     {
         public int id = 0; // node unique id
 
@@ -107,16 +107,16 @@ namespace Diagram
         {
             this.id = node.id;
 
-            this.color.set(node.color);
+            this.color.Set(node.color);
             this.font = node.font;
-            this.fontcolor.set(node.fontcolor);
+            this.fontcolor.Set(node.fontcolor);
             this.transparent = node.transparent;
 
             this.name = node.name;
             this.note = node.note;
             this.link = node.link;
 
-            this.position.set(node.position);
+            this.position.Set(node.position);
             this.width = node.width;
             this.height = node.height;
 
@@ -149,9 +149,9 @@ namespace Diagram
         /// node copy from another node to current node</summary>
         public void copyNode(Node node, bool skipPosition = false, bool skipSize = false) 
         {
-            this.color.set(node.color);
+            this.color.Set(node.color);
             this.font = node.font;
-            this.fontcolor.set(node.fontcolor);
+            this.fontcolor.Set(node.fontcolor);
             this.transparent = node.transparent;
 
             this.name = node.name;
@@ -163,7 +163,7 @@ namespace Diagram
 
             if (!skipPosition)
             {
-                this.position.set(node.position);
+                this.position.Set(node.position);
             }
 
             if (!skipSize)
@@ -192,9 +192,9 @@ namespace Diagram
         /// node copy style from another node to current node</summary>
         public void copyNodeStyle(Node node)
         {
-            this.color.set(node.color);
+            this.color.Set(node.color);
             this.font = node.font;
-            this.fontcolor.set(node.fontcolor);
+            this.fontcolor.Set(node.fontcolor);
             this.transparent = node.transparent;
 
             this.isimage = node.isimage;
@@ -304,11 +304,11 @@ namespace Diagram
                 try
                 {
                     string ext = "";
-                    ext = Os.getExtension(this.imagepath).ToLower();
+                    ext = Os.GetExtension(this.imagepath).ToLower();
 
                     if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp")
                     {
-                        this.image = Media.getImage(this.imagepath);
+                        this.image = Media.GetImage(this.imagepath);
                         if (ext != ".ico") this.image.MakeTransparent(Color.White);
                         this.height = this.image.Height;
                         this.width = this.image.Width;
@@ -317,7 +317,7 @@ namespace Diagram
                 }
                 catch (Exception ex)
                 {
-                    Program.log.write("load image from xml error: " + ex.Message);
+                    Program.log.Write("load image from xml error: " + ex.Message);
                 }
             }
             else

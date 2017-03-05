@@ -10,7 +10,7 @@ namespace Diagram
 
     /// <summary>
     /// repository for encryption related functions</summary>
-    public class Encrypt
+    public class Encrypt //UID5102459625
     {
         /*************************************************************************************************************************/
         // GENERATOR
@@ -71,7 +71,7 @@ namespace Diagram
             return sb.ToString();
         }
 
-        public static string getMd5Hash(byte[] buffer)
+        public static string GetMd5Hash(byte[] buffer)
         {
             MD5 md5Hasher = MD5.Create();
 
@@ -114,11 +114,13 @@ namespace Diagram
 
         /// <summary>
         /// encrypt plainText with sharedSecret password using salt</summary>
-        public static string EncryptStringAES(string plainText, string sharedSecret, byte[] salt = null)
+        public static string EncryptStringAES(string plainText, SecureString sharedSecret, byte[] salt = null)
         {
+            String password = ConvertFromSecureString(sharedSecret);
+
 
             if (string.IsNullOrEmpty(plainText)) throw new ArgumentNullException("plainText");
-            if (string.IsNullOrEmpty(sharedSecret)) throw new ArgumentNullException("sharedSecret");
+            if (string.IsNullOrEmpty(password)) throw new ArgumentNullException("sharedSecret");
 
             string outStr = null;                       // Encrypted string to return
             RijndaelManaged aesAlg = null;              // RijndaelManaged object used to encrypt the data.
@@ -126,7 +128,7 @@ namespace Diagram
             try
             {
                 // generate the key from the shared secret and the salt
-                Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(Encrypt.CalculateSHAHash(sharedSecret), salt);
+                Rfc2898DeriveBytes key = new Rfc2898DeriveBytes(Encrypt.CalculateSHAHash(password), salt);
 
                 // Create a RijndaelManaged object
                 aesAlg = new RijndaelManaged();
@@ -239,7 +241,7 @@ namespace Diagram
 
         /// <summary>
         /// Protect string by encryption</summary>
-        public static SecureString convertToSecureString(string str)
+        public static SecureString ConvertToSecureString(string str)
         {
             var secureStr = new SecureString();
 
@@ -253,23 +255,19 @@ namespace Diagram
 
         /// <summary>
         /// Decrypt secure string</summary>
-        public static string convertFromSecureString(SecureString value)
+        private static string ConvertFromSecureString(SecureString value)
         {
             if (value == null)
             {
                 return "";
             }
 
-            IntPtr unmanagedString = IntPtr.Zero;
-            try
-            {
-                unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(value);
-                return Marshal.PtrToStringUni(unmanagedString).ToString();
-            }
-            finally
-            {
-                Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
-            }
+            return new System.Net.NetworkCredential(string.Empty, value).Password;
+        }
+
+        public static bool CompareSecureString(SecureString value, String value2)
+        {
+            return ConvertFromSecureString(value) == value2;
         }
     }
 }

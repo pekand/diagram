@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Diagnostics;
 
 // [VERSION]
-[assembly: AssemblyVersion("0.5.0.14")]
+[assembly: AssemblyVersion("0.5.0.25")]
 
 /*! \mainpage Infinite diagram
  *
@@ -17,7 +17,7 @@ namespace Diagram
 {
     /// <summary>
     /// Application entry point</summary>
-    public static class Program
+    public static class Program //UID2573216529
     {
         /// <summary>
         /// debuging console for loging messages</summary>
@@ -49,15 +49,15 @@ namespace Diagram
         // MAIN APPLICATION START
 
         [STAThread]
-        private static void Main()
+        private static void Main() //UID4670767500
         {
-            Program.log.write("Start application: " + GetLocation());
+            Program.log.Write("Start application: " + GetLocation());
 
-            Program.log.write("Version : " + GetVersion());
+            Program.log.Write("Version : " + GetVersion());
 #if DEBUG
-            Program.log.write("Debug mode");
+            Program.log.Write("Debug mode");
 #else
-            Program.log.write("Production mode");
+            Program.log.Write("Production mode");
 #endif
             // aplication default settings
             Application.EnableVisualStyles();
@@ -70,7 +70,7 @@ namespace Diagram
 #endif
                 main = new Main();
                 if (main.mainform != null) {
-                    Application.Run(main.mainform);
+                    Application.Run(main.mainform); 
                 }
                 Application.Exit();
 #if !DEBUG
@@ -78,8 +78,8 @@ namespace Diagram
             }
             catch (Exception e) // global exception handling
             {
-                log.write("Application crash: message:" + e.Message);
-                log.saveLogToFile();
+                log.Write("Application crash: message:" + e.Message);
+                log.SaveLogToFile();
 
                 MessageBox.Show("Application crash: message:" + e.Message);
 

@@ -2,13 +2,9 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-/*
- 
-*/
-
 namespace Diagram
 {
-    public class EditPanel : Panel
+    public class EditPanel : Panel //UID2281296902
     {
         public DiagramView diagramView = null;       // diagram ktory je previazany z pohladom
 
@@ -126,8 +122,8 @@ namespace Diagram
 
                 this.setPanelSize();
 
-                this.BackColor = this.editedNode.color.get();
-                this.edit.BackColor = this.editedNode.color.get();
+                this.BackColor = this.editedNode.color.Get();
+                this.edit.BackColor = this.editedNode.color.Get();
                 this.editing = true;
                 this.Show();
                 this.edit.Show();
@@ -144,13 +140,13 @@ namespace Diagram
                 this.editedNode = this.diagramView.CreateNode(new Position(this.Left, this.Top));
                 this.editedNode.setName(edit.Text);
                 this.diagramView.diagram.undoOperations.add("create", this.editedNode, this.diagramView.shift, this.diagramView.currentLayer.id);
-                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.Unsave();
             }
             else if (this.editedNode.name != edit.Text)
             {
                 this.diagramView.diagram.undoOperations.add("edit", this.editedNode, this.diagramView.shift, this.diagramView.currentLayer.id);
                 this.editedNode.setName(edit.Text);
-                this.diagramView.diagram.unsave();
+                this.diagramView.diagram.Unsave();
             }
 
             this.editedNode.visible = true;
@@ -214,14 +210,14 @@ namespace Diagram
             {
                 this.saveNodeNamePanel();
                 this.Focus();
-                this.diagramView.addNodeAfterNode();
+                this.diagramView.AddNodeAfterNode();
             }
 
             if (KeyMap.parseKey("TAB", keyData) && e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
                 this.saveNodeNamePanel();
                 this.Focus();
-                this.diagramView.addNodeBelowNode();
+                this.diagramView.AddNodeBelowNode();
             }
 
             if (KeyMap.parseKey("ENTER", keyData) || KeyMap.parseKey("TAB", keyData))

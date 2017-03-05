@@ -27,7 +27,7 @@ namespace Diagram
 
     /// <summary>
     /// repository for compression related functions</summary>
-    public class Compress
+    public class Compress //UID4089400971
     {
         /*************************************************************************************************************************/
         // ZIP STRING
@@ -104,26 +104,26 @@ namespace Diagram
                 return "";
             }
 
-            path = Os.normalizedFullPath(path);
+            path = Os.NormalizedFullPath(path);
 
             List<EDirectory> directories = new List<EDirectory>();
             List<EFile> files = new List<EFile>();
 
-            if (Os.isFile(path)) {
+            if (Os.IsFile(path)) {
                 EFile eFile = new EFile();
-                eFile.name = Os.getFileName(path);
+                eFile.name = Os.GetFileName(path);
                 eFile.data = Convert.ToBase64String(
-                    Os.readAllBytes(path)
+                    Os.ReadAllBytes(path)
                 );
                 files.Add(eFile);
             }
 
-            if (Os.isDirectory(path))
+            if (Os.IsDirectory(path))
             {
                 List<string> filePaths = new List<string>();
                 List<string> directoryPaths = new List<string>();
 
-                Os.search(path, filePaths, directoryPaths);
+                Os.Search(path, filePaths, directoryPaths);
 
                 int pathLength = path.Length + 1;
 
@@ -212,7 +212,7 @@ namespace Diagram
                 return;
             }
 
-            destinationPath = Os.normalizedFullPath(destinationPath);
+            destinationPath = Os.NormalizedFullPath(destinationPath);
 
             string xml = Unzip(compressedData);
 
@@ -302,23 +302,23 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                Program.log.write("decompress file xml error: " + ex.Message);
+                Program.log.Write("decompress file xml error: " + ex.Message);
             }
 
             foreach (EDirectory directory in directories)
             {
-                string newDirPath = Os.combine(destinationPath, directory.name);
+                string newDirPath = Os.Combine(destinationPath, directory.name);
                 if (!Os.Exists(newDirPath))
                 {
-                    Os.createDirectory(newDirPath);
+                    Os.CreateDirectory(newDirPath);
                 }
             }
 
             foreach (EFile file in files)
             {
-                string newFilePath = Os.combine(destinationPath, file.name);
+                string newFilePath = Os.Combine(destinationPath, file.name);
                 if (!Os.Exists(newFilePath)) {
-                    Os.writeAllBytes(
+                    Os.WriteAllBytes(
                         newFilePath,
                         Convert.FromBase64String(
                             file.data

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Diagram
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form //UID2589432679
     {
         // parent
         public Main main = null;
@@ -39,7 +39,7 @@ namespace Diagram
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Program.log.write("Main form: hide");
+            Program.log.Write("Main form: hide");
             this.Hide();
             BeginInvoke(new MethodInvoker(delegate
             {
@@ -55,6 +55,13 @@ namespace Diagram
         public void ExitApplication()
         {
             main.ExitApplication();
+        }
+
+        /// <summary>
+        /// close application if not form is open</summary>
+        public void CloseEmptyApplication() //UID4213278976
+        {
+            main.CloseEmptyApplication();
         }
     }
 }

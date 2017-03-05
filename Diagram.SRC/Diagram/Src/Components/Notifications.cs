@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Timers;
 
-/*
- 
-*/
-
 namespace Diagram
 {
-    class Notifications
+    class Notifications //UID8876272772
     {
         private Timer timer = null;
 

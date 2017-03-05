@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Diagram
 {
-    public partial class LineWidthForm : Form
+    public partial class LineWidthForm : Form //UID4672738884
     {
         public delegate void LineWidthFormTrackbarChangedEventHandler(int value);
         public event LineWidthFormTrackbarChangedEventHandler trackbarStateChanged;

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Diagram
 {
-    public class SearchPanel : Panel
+    public class SearchPanel : Panel //UID1308094022
     {
         public DiagramView diagramView = null;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security;
 using System.Windows.Forms;
 
 /*
@@ -7,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Diagram
 {
-    public class ChangePasswordForm : Form
+    public class ChangePasswordForm : Form //UID9355910334
     {
         public Main main = null;
 
@@ -21,7 +22,7 @@ namespace Diagram
         private System.Windows.Forms.Button buttonCancel;
 
         public bool cancled = false;
-        public string oldpassword = "";
+        public SecureString oldpassword = null;
         public bool buttonok = false;
 
         public ChangePasswordForm(Main main)
@@ -107,7 +108,7 @@ namespace Diagram
             this.buttonOk.TabIndex = 6;
             this.buttonOk.Text = "Ok";
             this.buttonOk.UseVisualStyleBackColor = true;
-            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
+            this.buttonOk.Click += new System.EventHandler(this.ButtonOk_Click);
             //
             // buttonCancel
             //
@@ -118,7 +119,7 @@ namespace Diagram
             this.buttonCancel.TabIndex = 7;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             //
             // ChangePasswordForm
             //
@@ -149,7 +150,7 @@ namespace Diagram
             this.editNewPassword2.Text = "";
             cancled = false;
             buttonok = false;
-            this.oldpassword = "";
+            this.oldpassword = null;
         }
 
         public string GetPassword()
@@ -158,9 +159,9 @@ namespace Diagram
         }
 
 
-        private void buttonOk_Click(object sender, EventArgs e)
+        private void ButtonOk_Click(object sender, EventArgs e)
         {
-            if (this.editOldPassword.Text != oldpassword)
+            if (!Encrypt.CompareSecureString(this.oldpassword, this.editOldPassword.Text))
             {
                 MessageBox.Show("Old password is incorrect!");
                 return;
@@ -182,7 +183,7 @@ namespace Diagram
             this.Close();
         }
 
-        private void buttonCancel_Click(object sender, EventArgs e)
+        private void ButtonCancel_Click(object sender, EventArgs e)
         {
             this.cancled = true;
             this.Close();

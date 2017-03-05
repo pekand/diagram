@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-/*
- 
-*/
-
 namespace Diagram
 {
     // map node structure for copy paste operation
-    public class BreadcrumbItem
+    public class BreadcrumbItem //UID0790776066
     {
         public int layerId;
         public int left;

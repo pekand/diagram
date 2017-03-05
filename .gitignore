@@ -9,3 +9,6 @@ install-windows/files
 Documentation/Doxygen/html
 .vs
 /Diagram.SRC/Diagram/publish
+*.pfx
+/Diagram.SRC/Plugins/FirstPlugin/obj
+/Diagram.SRC/Plugins/FindUidPlugin/obj

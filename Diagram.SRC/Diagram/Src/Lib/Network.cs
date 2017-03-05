@@ -6,7 +6,7 @@ namespace Diagram
 {
     /// <summary>
     /// repository of network and web related functions</summary>
-    public class Network
+    public class Network //UID6787833981
     {
         /*************************************************************************************************************************/
         // GET CONTENT
@@ -38,7 +38,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                Program.log.write("get link name error: " + ex.Message);
+                Program.log.Write("get link name error: " + ex.Message);
             }
 
             return (title.Trim() == "")? url : title.Trim();
@@ -58,7 +58,7 @@ namespace Diagram
             )
         {
 
-            Program.log.write("get title from: " + url);
+            Program.log.Write("get title from: " + url);
 
             if (skiphttps)
             {
@@ -177,7 +177,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                Program.log.write("get link name error: " + ex.Message);
+                Program.log.Write("get link name error: " + ex.Message);
             }
 
             return page;

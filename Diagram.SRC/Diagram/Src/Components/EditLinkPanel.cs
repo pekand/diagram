@@ -2,13 +2,9 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-/*
- 
-*/
-
 namespace Diagram
 {
-    public class EditLinkPanel : Panel
+    public class EditLinkPanel : Panel //UID4079765418
     {
         public DiagramView diagramView = null;       // diagram ktory je previazany z pohladom
 
@@ -125,8 +121,8 @@ namespace Diagram
 
                 this.setPanelSize();
 
-                this.BackColor = this.editedNode.color.get();
-                this.edit.BackColor = this.editedNode.color.get();
+                this.BackColor = this.editedNode.color.Get();
+                this.edit.BackColor = this.editedNode.color.Get();
                 this.editing = true;
                 this.Show();
                 this.edit.Show();
@@ -138,13 +134,17 @@ namespace Diagram
         // EDITPANEL SAVE
         public void saveNodeLinkPanel(bool selectNode = true)
         {
-            this.editedNode.visible = true;
-
-            if (this.editedNode.link != edit.Text)
+            if (this.editedNode != null)
             {
-                this.diagramView.diagram.undoOperations.add("edit", this.editedNode, this.diagramView.shift, this.diagramView.currentLayer.id);
-                this.editedNode.link = edit.Text;
-                this.diagramView.diagram.unsave();
+                this.editedNode.visible = true;
+
+
+                if (this.editedNode.link != edit.Text)
+                {
+                    this.diagramView.diagram.undoOperations.add("edit", this.editedNode, this.diagramView.shift, this.diagramView.currentLayer.id);
+                    this.editedNode.link = edit.Text;
+                    this.diagramView.diagram.Unsave();
+                }
             }
 
             this.Hide();
@@ -199,14 +199,14 @@ namespace Diagram
             {
                 this.saveNodeLinkPanel();
                 this.Focus();
-                this.diagramView.addNodeAfterNode();
+                this.diagramView.AddNodeAfterNode();
             }
 
             if (KeyMap.parseKey("TAB", keyData) && e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
                 this.saveNodeLinkPanel();
                 this.Focus();
-                this.diagramView.addNodeBelowNode();
+                this.diagramView.AddNodeBelowNode();
             }
 
             if (KeyMap.parseKey("ENTER", keyData) || KeyMap.parseKey("TAB", keyData))

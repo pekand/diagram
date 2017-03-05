@@ -8,7 +8,7 @@ namespace Diagram
 {
     /// <summary>
     /// collection of layers</summary>
-    public class Layers
+    public class Layers //UID6548243626
     {
         private int maxid = 0;                    // last used node id
 
@@ -21,12 +21,12 @@ namespace Diagram
 
         public Layers()
         {
-            this.createLayer();
+            this.CreateLayer();
         }
 
-        public Layer createLayer(Node parent = null)
+        public Layer CreateLayer(Node parent = null)
         {
-            Layer layer = getLayer((parent == null) ? 0 : parent.id);
+            Layer layer = GetLayer((parent == null) ? 0 : parent.id);
 
             // create new layer if not exist
             if (layer == null)
@@ -35,7 +35,7 @@ namespace Diagram
 
                 if (parent != null)
                 {
-                    parentLayer = this.getLayer(parent.layer);
+                    parentLayer = this.GetLayer(parent.layer);
                 }
 
                 layer = new Layer(parent, parentLayer);
@@ -49,7 +49,7 @@ namespace Diagram
         /// Add referencies to layers to parents for fast parents search
         /// Is called after load diagram from file or clipboard
         /// </summary>
-        public void setLayersParentsReferences()
+        public void SetLayersParentsReferences()
         {
             foreach (Layer l in this.layers)
             {
@@ -70,7 +70,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // SELECT ITEM
 
-        public Node getNode(int id)
+        public Node GetNode(int id)
         {
             if (this.allNodes.ContainsKey(id)) {
                 return this.allNodes[id];
@@ -79,7 +79,7 @@ namespace Diagram
             return null;
         }
 
-        public Line getLine(Node start, Node end)
+        public Line GetLine(Node start, Node end)
         {
             foreach (Layer l in this.layers)
             {
@@ -93,26 +93,26 @@ namespace Diagram
             return null;
         }
 
-        public Line getLine(int startId, int endId)
+        public Line GetLine(int startId, int endId)
         {
-            Node start = getNode(startId);
+            Node start = GetNode(startId);
 
             if (start == null)
             {
                 return null;
             }
 
-            Node end = getNode(endId);
+            Node end = GetNode(endId);
 
             if (end == null)
             {
                 return null;
             }
 
-            return getLine(start, end);
+            return GetLine(start, end);
         }
 
-        public bool hasLayer(int id = 0)
+        public bool HasLayer(int id = 0)
         {
             foreach (Layer l in this.layers)
             {
@@ -125,7 +125,7 @@ namespace Diagram
             return false;
         }
 
-        public Layer getLayer(int id = 0)
+        public Layer GetLayer(int id = 0)
         {
             foreach (Layer l in this.layers)
             {
@@ -138,10 +138,10 @@ namespace Diagram
             return null;
         }
 
-        public Layer getLayer(Node node)
+        public Layer GetLayer(Node node)
         {
             if (node.layer == 0) {
-                return getLayer(0);
+                return GetLayer(0);
             }
 
             foreach (Layer l in this.layers)
@@ -157,7 +157,7 @@ namespace Diagram
             return null;
         }
 
-        public Nodes getAllNodes()
+        public Nodes GetAllNodes()
         {
             Nodes nodes = new Nodes();
 
@@ -169,13 +169,13 @@ namespace Diagram
             return nodes;
         }
 
-        public Nodes getAllNodes(Node node)
+        public Nodes GetAllNodes(Node node)
         {
             Nodes nodes = new Nodes();
 
             if (node.haslayer)
             {
-                Layer layer = this.getLayer(node.id);
+                Layer layer = this.GetLayer(node.id);
 
                 foreach (Node subNode in layer.nodes)
                 {
@@ -183,7 +183,7 @@ namespace Diagram
 
                     if (subNode.haslayer)
                     {
-                        Nodes subNodes = this.getAllNodes(subNode);
+                        Nodes subNodes = this.GetAllNodes(subNode);
 
                         foreach (Node subNode2 in subNodes)
                         {
@@ -196,7 +196,7 @@ namespace Diagram
             return nodes;
         }
 
-        public Lines getAllLines()
+        public Lines GetAllLines()
         {
             Lines lines = new Lines();
 
@@ -209,7 +209,7 @@ namespace Diagram
         }
 
         // all nodes contain nodes and all sublayer nodes, allLines contain all node lines and all sublayer lines
-        public void getAllNodesAndLines(Nodes nodes, ref Nodes allNodes, ref Lines allLines)
+        public void GetAllNodesAndLines(Nodes nodes, ref Nodes allNodes, ref Lines allLines)
         {
             foreach (Node node in nodes)
             {
@@ -218,11 +218,11 @@ namespace Diagram
 
                 if (node.haslayer)
                 {
-                    Layer layer = this.getLayer(node.id);
-                    getAllNodesAndLines(layer.nodes, ref allNodes, ref allLines);
+                    Layer layer = this.GetLayer(node.id);
+                    GetAllNodesAndLines(layer.nodes, ref allNodes, ref allLines);
                 }
 
-                Lines lines = getAllLinesFromNode(node);
+                Lines lines = GetAllLinesFromNode(node);
                 foreach (Line line in lines)
                 {
                     bool found = false;
@@ -245,13 +245,13 @@ namespace Diagram
         }
 
         // get all lines for all children nodes
-        public Lines getAllSubNodeLines(Node node)
+        public Lines GetAllSubNodeLines(Node node)
         {
             Lines lines = new Lines();
 
             if (node.haslayer)
             {
-                Layer layer = this.getLayer(node.id);
+                Layer layer = this.GetLayer(node.id);
 
                 foreach (Line line in layer.lines)
                 {
@@ -262,7 +262,7 @@ namespace Diagram
                 {
                     if (node.haslayer)
                     {
-                        Lines sublines = this.getAllSubNodeLines(subNode);
+                        Lines sublines = this.GetAllSubNodeLines(subNode);
 
                         foreach (Line line in sublines)
                         {
@@ -275,11 +275,11 @@ namespace Diagram
             return lines;
         }
 
-        public Lines getAllLinesFromNode(Node node)
+        public Lines GetAllLinesFromNode(Node node)
         {
             Lines lines = new Lines();
 
-            Layer layer = this.getLayer(node);
+            Layer layer = this.GetLayer(node);
 
             if (layer != null)
             {
@@ -297,7 +297,7 @@ namespace Diagram
 
         /// <summary>
         /// Search for string in all nodes </summary>        
-        public Nodes searchInAllNodes(string searchFor)
+        public Nodes SearchInAllNodes(string searchFor)
         {
             Nodes nodes = new Nodes();
 
@@ -318,14 +318,14 @@ namespace Diagram
         /*************************************************************************************************************************/
         // ADD ITEM
 
-        public Node createNode(Node node)
+        public Node CreateNode(Node node)
         {
 
             DateTime dt = DateTime.Now;
             node.timecreate = String.Format("{0:yyyy-M-d HH:mm:ss}", dt);
             node.timemodify = node.timecreate;
 
-            Layer layer = this.addNode(node);
+            Layer layer = this.AddNode(node);
 
             if (layer != null)
             {
@@ -335,7 +335,7 @@ namespace Diagram
             return null;
         }
 
-        public Layer addNode(Node node)
+        public Layer AddNode(Node node)
         {
             // prevent duplicate id
             if (node.id == 0)
@@ -345,7 +345,7 @@ namespace Diagram
             else
             {
 
-                Node nodeById = this.getNode(node.id); 
+                Node nodeById = this.GetNode(node.id); 
 
                 if (nodeById != null)
                 {
@@ -357,12 +357,12 @@ namespace Diagram
                 }
             }
 
-            Layer layer = this.getLayer(node.layer);
+            Layer layer = this.GetLayer(node.layer);
 
             if (layer == null)
             {
-                Node parentNode = this.getNode(node.layer);
-                layer = this.createLayer(parentNode);
+                Node parentNode = this.GetNode(node.layer);
+                layer = this.CreateLayer(parentNode);
                 parentNode.haslayer = true;
             }
 
@@ -372,13 +372,13 @@ namespace Diagram
             return layer;
         }
 
-        public Layer addLine(Line line)
+        public Layer AddLine(Line line)
         {
-            Layer layer = this.getLayer(line.layer);
+            Layer layer = this.GetLayer(line.layer);
 
             if (layer == null)
             {
-                layer = this.createLayer(this.getNode(line.layer));
+                layer = this.CreateLayer(this.GetNode(line.layer));
             }
 
             layer.lines.Add(line);
@@ -389,20 +389,20 @@ namespace Diagram
         /*************************************************************************************************************************/
         // REMOVE ITEM
 
-        public void removeNode(int id)
+        public void RemoveNode(int id)
         {
-            Node node = this.getNode(id);
+            Node node = this.GetNode(id);
             if (node != null)
             {
-                this.removeNode(node);
+                this.RemoveNode(node);
             }
         }
 
-        public void removeNode(Node node)
+        public void RemoveNode(Node node)
         {
             this.allNodes.Remove(node.id);
 
-            Layer layer = getLayer(node.layer);
+            Layer layer = GetLayer(node.layer);
 
             foreach (Node n in layer.nodes)
             {
@@ -416,13 +416,13 @@ namespace Diagram
             {
                 if (l.start == node.id || l.end == node.id)
                 {
-                    this.removeLine(l);
+                    this.RemoveLine(l);
                 }
             }
 
             if (node.haslayer) // remove nodes in node layer
             {
-                removeLayer(node.id);
+                RemoveLayer(node.id);
             }
 
             if (layer != null) // remove node from node layer
@@ -432,31 +432,31 @@ namespace Diagram
 
         }
 
-        public Layer removeLine(Line line)
+        public Layer RemoveLine(Line line)
         {
-            Layer layer = this.getLayer(line.layer);
+            Layer layer = this.GetLayer(line.layer);
 
             layer.lines.Remove(line);
 
             return layer;
         }
 
-        public Layer removeLine(int startId, int endId)
+        public Layer RemoveLine(int startId, int endId)
         {
-            Line line = getLine(startId, endId);
+            Line line = GetLine(startId, endId);
 
             if (line != null)
             {
-                return this.removeLine(line);
+                return this.RemoveLine(line);
             }
 
             return null;
         }
 
         // LAYER remove layer and all sub layers
-        public void removeLayer(int layerId)
+        public void RemoveLayer(int layerId)
         {
-            Layer layer = this.getLayer(layerId);
+            Layer layer = this.GetLayer(layerId);
 
             if (layer != null)
             {
@@ -464,7 +464,7 @@ namespace Diagram
                 {
                     if (n.haslayer)
                     {
-                        removeLayer(n.id);
+                        RemoveLayer(n.id);
                     }
 
                     layers.Remove(layer);
@@ -472,7 +472,7 @@ namespace Diagram
             }
         }
 
-        public void clear()
+        public void Clear()
         {
             this.maxid = 0;
 
@@ -484,17 +484,17 @@ namespace Diagram
 
             this.allNodes.Clear();
             this.layers.Clear();
-            this.createLayer();
+            this.CreateLayer();
         }
 
         /*************************************************************************************************************************/
         // MOVE ITEM
 
         // MOVE move node from layer to other layer
-        public void moveNode(Node node, int layer)
+        public void MoveNode(Node node, int layer)
         {
-            Layer outLayer = getLayer(layer);
-            Layer inLayer = getLayer(node.layer);
+            Layer outLayer = GetLayer(layer);
+            Layer inLayer = GetLayer(node.layer);
 
             if (outLayer != null && inLayer != null)
             {
@@ -506,9 +506,9 @@ namespace Diagram
         }
 
         // NODE move nodes to foreground
-        public void moveToForeground(Node node)
+        public void MoveToForeground(Node node)
         {
-            Layer layer = getLayer(node);
+            Layer layer = GetLayer(node);
             if (layer != null)
             {
                 var item = node;
@@ -518,9 +518,9 @@ namespace Diagram
         }
 
         // NODE move nodes to background
-        public void moveToBackground(Node node)
+        public void MoveToBackground(Node node)
         {
-            Layer layer = getLayer(node);
+            Layer layer = GetLayer(node);
             if (layer != null)
             {
                 var item = node;

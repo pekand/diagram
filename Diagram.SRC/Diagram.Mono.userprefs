@@ -1,9 +1,15 @@
 ﻿<Properties StartupItem="Diagram/DiagramMono.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Diagram/Src/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Diagram/Src/Lib/Converter.cs">
     <Files>
-      <File FileName="Diagram/Src/Forms/DiagramView.cs" Line="1" Column="1" />
-      <File FileName="Diagram/Src/Program.cs" Line="34" Column="34" />
+      <File FileName="Diagram/Src/Forms/DiagramView.cs" Line="5323" Column="18" />
+      <File FileName="Diagram/Src/Program.cs" Line="1" Column="1" />
+      <File FileName="Diagram/Src/Model/Diagram.cs" Line="1955" Column="99" />
+      <File FileName="Diagram/Src/Main.cs" Line="1" Column="1" />
+      <File FileName="Diagram/Src/Components/Script.cs" Line="281" Column="21" />
+      <File FileName="Diagram/Src/Lib/Compress.cs" Line="41" Column="10" />
+      <File FileName="Diagram/Src/Model/Layer.cs" Line="26" Column="11" />
+      <File FileName="Diagram/Src/Lib/Converter.cs" Line="6" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

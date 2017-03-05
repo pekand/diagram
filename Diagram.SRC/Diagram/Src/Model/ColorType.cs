@@ -10,7 +10,7 @@ namespace Diagram
 
     /// <summary>
     /// color type encapsulation</summary>
-    public class ColorType
+    public class ColorType //UID6485317568
     {
         public Color color = System.Drawing.Color.Black;
 
@@ -39,22 +39,22 @@ namespace Diagram
         /*************************************************************************************************************************/
         // SETERS AND GETERS
 
-        public void set(ColorType colorType)
+        public void Set(ColorType colorType)
         {
             this.color = colorType.color;
         }
 
-        public void set(string htmlColor)
+        public void Set(string htmlColor)
         {
             this.color = System.Drawing.ColorTranslator.FromHtml(htmlColor);
         }
 
-        public void set(Color color)
+        public void Set(Color color)
         {
             this.color = color;
         }
 
-        public Color get()
+        public Color Get()
         {
             return color;
         }

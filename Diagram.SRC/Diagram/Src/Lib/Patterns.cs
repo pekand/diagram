@@ -5,7 +5,7 @@ namespace Diagram
 {
     /// <summary>
     /// Regex patterns repository</summary>
-    public class Patterns
+    public class Patterns //UID4820527610
     {
         /*************************************************************************************************************************/
         // TYPE
