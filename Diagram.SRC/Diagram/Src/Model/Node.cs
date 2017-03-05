@@ -317,7 +317,7 @@ namespace Diagram
                 }
                 catch (Exception ex)
                 {
-                    Program.log.write("load image from xml error: " + ex.Message);
+                    Program.log.Write("load image from xml error: " + ex.Message);
                 }
             }
             else

@@ -142,7 +142,7 @@ namespace Diagram
         // add mesage to console window
         public void Log(String text)
         {
-            Program.log.write(text);
+            Program.log.Write(text);
         }
 
         // show alert message
@@ -382,11 +382,11 @@ namespace Diagram
                 StreamReader sr = new StreamReader(ms);
                 output = sr.ReadToEnd();
 
-                Program.log.write("Script: output:\n" + output);
+                Program.log.Write("Script: output:\n" + output);
             }
             catch (Exception ex)
             {
-                Program.log.write("Script: error: " + ex.ToString());
+                Program.log.Write("Script: error: " + ex.ToString());
             }
 
             return output;

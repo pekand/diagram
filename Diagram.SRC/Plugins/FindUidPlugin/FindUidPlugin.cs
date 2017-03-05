@@ -69,7 +69,7 @@ namespace Plugin
                             }
                         }
                     } catch (Exception ex) {
-                        Program.log.write("FindUidPlugin: " + ex.Message);
+                        Program.log.Write("FindUidPlugin: " + ex.Message);
                     }
                 }
             }

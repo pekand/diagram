@@ -19,7 +19,7 @@ namespace Diagram
         /// load plugins from path</summary>
         public void LoadPlugins(string path)
         {
-            Program.log.write("Loading plugins");
+            Program.log.Write("Loading plugins");
 
             IEnumerable<string> dllFileNames = null;
             if (Directory.Exists(path))
@@ -88,7 +88,7 @@ namespace Diagram
                     {
                         plugins.Add(plugin);
 
-                        Program.log.write("Loading plugin: " + plugin.Name);
+                        Program.log.Write("Loading plugin: " + plugin.Name);
                     }
                 }
             }
@@ -132,7 +132,7 @@ namespace Diagram
                     }
                     catch (Exception e)
                     {
-                        Program.log.write("Exception in plugin: " + plugin.Name + " : " + e.Message);
+                        Program.log.Write("Exception in plugin: " + plugin.Name + " : " + e.Message);
                     }
                 }
             }

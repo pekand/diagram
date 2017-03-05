@@ -31,7 +31,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                Program.log.write("evaluation error: " + ex.Message);
+                Program.log.Write("evaluation error: " + ex.Message);
             }
 
             return "";

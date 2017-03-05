@@ -93,13 +93,13 @@ namespace Diagram
         {
             try
             {
-                Program.log.write("loadConfigFile: path:" + this.optionsFilePath);
+                Program.log.Write("loadConfigFile: path:" + this.optionsFilePath);
                 string inputJSON = Os.ReadAllText(this.optionsFilePath);
                 this.parameters.SetParams(JsonConvert.DeserializeObject<ProgramOptions>(inputJSON));
             }
             catch (Exception ex)
             {
-                Program.log.write("loadConfigFile: " + ex.Message);
+                Program.log.Write("loadConfigFile: " + ex.Message);
             }
         }
 
@@ -114,7 +114,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                Program.log.write("saveConfigFile: " + ex.Message);
+                Program.log.Write("saveConfigFile: " + ex.Message);
             }
         }
 

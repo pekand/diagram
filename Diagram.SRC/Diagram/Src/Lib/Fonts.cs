@@ -91,7 +91,7 @@ namespace Diagram
                 }
                 catch (Exception ex)
                 {
-                    Program.log.write("load xml font error: " + ex.Message);
+                    Program.log.Write("load xml font error: " + ex.Message);
                 }
             }
 

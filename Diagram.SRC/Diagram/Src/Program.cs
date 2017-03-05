@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Diagnostics;
 
 // [VERSION]
-[assembly: AssemblyVersion("0.5.0.20")]
+[assembly: AssemblyVersion("0.5.0.21")]
 
 /*! \mainpage Infinite diagram
  *
@@ -51,11 +51,11 @@ namespace Diagram
         [STAThread]
         private static void Main()
         {
-            Program.log.write("Start application: " + GetLocation());
+            Program.log.Write("Start application: " + GetLocation());
 
-            Program.log.write("Version : " + GetVersion());
+            Program.log.Write("Version : " + GetVersion());
 #if DEBUG
-            Program.log.write("Debug mode");
+            Program.log.Write("Debug mode");
 #else
             Program.log.write("Production mode");
 #endif

@@ -50,7 +50,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                Program.log.write("get link name error: " + ex.Message);
+                Program.log.Write("get link name error: " + ex.Message);
             }
         }
     }

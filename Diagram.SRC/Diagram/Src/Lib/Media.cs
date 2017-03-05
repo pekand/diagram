@@ -56,7 +56,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("getImage: " + e.Message);
+                Program.log.Write("getImage: " + e.Message);
             }
 
             return null;
@@ -72,7 +72,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("getIcon: " + e.Message);
+                Program.log.Write("getIcon: " + e.Message);
             }
 
             return null;
@@ -92,7 +92,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("BitmapToString error: " + e.Message);
+                Program.log.Write("BitmapToString error: " + e.Message);
                 return "";
             }
         }
@@ -109,7 +109,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("StringToBitmap error: " + e.Message);
+                Program.log.Write("StringToBitmap error: " + e.Message);
                 return null;
             }
         }
@@ -127,7 +127,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("StringToBitmap error: " + e.Message);
+                Program.log.Write("StringToBitmap error: " + e.Message);
                 return null;
             }
         }
@@ -150,12 +150,12 @@ namespace Diagram
         /// bring form to foreground </summary>
         public static void BringToFront(Form form)   // [focus] UID0703915427
         {
-            Program.log.write("bringToFront");
+            Program.log.Write("bringToFront");
             Tick.timer(500, (t, args) =>
             {
                 if (t is Timer)
                 {
-                    Program.log.write("bringToFront: tick");
+                    Program.log.Write("bringToFront: tick");
 
                     Timer timer = t as Timer;                    
 					timer.Enabled = false;
@@ -183,7 +183,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("get exe icon error: " + e.Message);
+                Program.log.Write("get exe icon error: " + e.Message);
             }
 
             return null;
@@ -213,7 +213,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("get exe icon error: " + e.Message);
+                Program.log.Write("get exe icon error: " + e.Message);
             }
 
             return null;
@@ -238,7 +238,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("IconToString error: " + e.Message);
+                Program.log.Write("IconToString error: " + e.Message);
                 return "";
             }
         }
@@ -257,7 +257,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("StringToIcon error: " + e.Message);
+                Program.log.Write("StringToIcon error: " + e.Message);
                 return null;
             }
         }

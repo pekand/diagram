@@ -21,37 +21,37 @@ namespace Diagram
         /// Get message from program and save it to log.
         /// If console windows is updated then update window</summary>
         /// <param name="message">Message witch will by saved in log</param>
-        public void write(string message)
+        public void Write(string message)
         {
             log = message + "\n" + log;
 
             /// If console window is displayes then actualize data
             if (this.console != null)
             {
-                this.console.Invoke(new Action(() => this.console.refreshWindow()));
+                this.console.Invoke(new Action(() => this.console.RefreshWindow()));
             }
         }
 
         /// <summary> 
         /// Get all text in log.</summary>
         /// <returns>String width complete log</returns>
-        public string getText()
+        public string GetText()
         {
             return log;
         }
 
         /// <summary>
         /// clear log test</summary>
-        public void clearLog()
+        public void ClearLog()
         {
             log = "";
-            this.write("Log clear");
+            this.Write("Log clear");
         }
 
         /// <summary>
         /// save  current log to file
         /// for crash log</summary>
-        public void saveLogToFile(string logPath = "")
+        public void SaveLogToFile(string logPath = "")
         {
             if (logPath == "") {
                 string tempDir = Os.GetTempPath();
@@ -64,7 +64,7 @@ namespace Diagram
 
         /// <summary> 
         /// use console form for view errors</summary>
-        public void setConsole(Console console)
+        public void SetConsole(Console console)
         {
             this.console = console;
         }

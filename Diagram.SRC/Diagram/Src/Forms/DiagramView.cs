@@ -619,7 +619,7 @@ namespace Diagram
                 }
                 catch (Exception e)
                 {
-                    Program.log.write("DiagramView: setIcon: error:" + e.Message);
+                    Program.log.Write("DiagramView: setIcon: error:" + e.Message);
                 }
             }
             else
@@ -658,7 +658,7 @@ namespace Diagram
                 }
                 catch (Exception e)
                 {
-                    Program.log.write("DiagramView: setIcon: error:" + e.Message);
+                    Program.log.Write("DiagramView: setIcon: error:" + e.Message);
                 }
             }
             else
@@ -2357,7 +2357,7 @@ namespace Diagram
                             }
                             catch (Exception ex)
                             {
-                                Program.log.write("extract icon from lnk error: " + ex.Message);
+                                Program.log.Write("extract icon from lnk error: " + ex.Message);
                             }
                         }
                         else
@@ -2380,7 +2380,7 @@ namespace Diagram
                 this.diagram.Unsave("create", newNodes, null, this.shift, this.currentLayer.id);
 
             } catch (Exception ex) {
-                Program.log.write("drop file goes wrong: error: " + ex.Message);
+                Program.log.Write("drop file goes wrong: error: " + ex.Message);
             }
         }
 
@@ -3931,7 +3931,7 @@ namespace Diagram
         // NODE Open Link
         public void OpenLinkAsync(Node rec) //UID3758665113
         {
-            Program.log.write("diagram: openlink");
+            Program.log.Write("diagram: openlink");
             String clipboard = Os.GetTextFormClipboard();
 
 #if DEBUG
@@ -4019,7 +4019,7 @@ namespace Diagram
                     }
                     else if (Patterns.isGotoIdCommand(rec.link)) // GOTO position
                     {
-                        Program.log.write("go to position in diagram " + rec.link);
+                        Program.log.Write("go to position in diagram " + rec.link);
                         Node node = this.diagram.GetNodeByID(Patterns.getGotoIdCommand(rec.link));
                         if (node != null) {
                             this.GoToNodeWithAnimation(node);
@@ -4027,7 +4027,7 @@ namespace Diagram
                     }
                     else if (Patterns.isGotoStringCommand(rec.link)) // GOTO position
                     {
-                        Program.log.write("go to position in diagram " + rec.link);
+                        Program.log.Write("go to position in diagram " + rec.link);
                         String searchFor = Patterns.getGotoStringCommand(rec.link);
                         Nodes nodes = this.diagram.layers.SearchInAllNodes(searchFor);
                         if (nodes.Count() >= 2)
@@ -4043,24 +4043,24 @@ namespace Diagram
                     {
                         try
                         {
-                            Program.log.write("diagram: openlink: open url " + rec.link);
+                            Program.log.Write("diagram: openlink: open url " + rec.link);
                             Network.openUrl(rec.link);
                         }
                         catch (Exception ex)
                         {
-                            Program.log.write("open link as url error: " + ex.Message);
+                            Program.log.Write("open link as url error: " + ex.Message);
                         }
                     }
                     else if (Os.DirectoryExists(rec.link))  // OPEN DIRECTORY
                     {
                         try
                         {
-                            Program.log.write("diagram: openlink: open directory " + Os.NormalizePath(rec.link));
+                            Program.log.Write("diagram: openlink: open directory " + Os.NormalizePath(rec.link));
                             Os.RunProcess(rec.link);
                         }
                         catch (Exception ex)
                         {
-                            Program.log.write("open link as directory error: " + ex.Message);
+                            Program.log.Write("open link as directory error: " + ex.Message);
                         }
                     }
                     else if (Os.FileExists(rec.link))       // OPEN FILE
@@ -4069,18 +4069,18 @@ namespace Diagram
                         {
                             if (Os.IsDiagram(rec.link))
                             {
-                                Program.log.write("diagram: openlink: open diagram " + Os.NormalizePath(rec.link));
+                                Program.log.Write("diagram: openlink: open diagram " + Os.NormalizePath(rec.link));
                                 Os.OpenDiagram(rec.link);
                             }
                             else
                             {
-                                Program.log.write("diagram: openlink: open file " + Os.NormalizePath(rec.link));
+                                Program.log.Write("diagram: openlink: open file " + Os.NormalizePath(rec.link));
                                 Os.RunProcess(rec.link);
                             }
                         }
                         catch (Exception ex)
                         {
-                            Program.log.write("open link as file error: " + ex.Message);
+                            Program.log.Write("open link as file error: " + ex.Message);
                         }
                     }
                     else if (Patterns.hasHastag(rec.link.Trim(), ref fileName, ref searchString)
@@ -4105,12 +4105,12 @@ namespace Diagram
                             editFileCmd = editFileCmd.Replace("%FILENAME%", Os.NormalizedFullPath(fileName));
                             editFileCmd = editFileCmd.Replace("%LINE%", searchString);
 
-                            Program.log.write("diagram: openlink: open file on position " + editFileCmd);
+                            Program.log.Write("diagram: openlink: open file on position " + editFileCmd);
                             Os.RunCommand(editFileCmd);
                         }
                         catch (Exception ex)
                         {
-                            Program.log.write("open link as file error: " + ex.Message);
+                            Program.log.Write("open link as file error: " + ex.Message);
                         }
                     }                    
                     else // run as command 
@@ -4143,7 +4143,7 @@ namespace Diagram
                         .Replace("%FILENAME%", this.diagram.FileName)
                         .Replace("%DIRECTORY%", Os.GetFileDirectory(this.diagram.FileName));
 
-                        Program.log.write("diagram: openlink: run command: " + cmd);
+                        Program.log.Write("diagram: openlink: run command: " + cmd);
                         Os.RunCommand(cmd, Os.GetFileDirectory(this.diagram.FileName)); // RUN COMMAND UID5087096741
                     }
                 }
@@ -4637,7 +4637,7 @@ namespace Diagram
                     }
                     catch (Exception e)
                     {
-                        Program.log.write("paste immage error: " + e.Message);
+                        Program.log.Write("paste immage error: " + e.Message);
                     }
                 }
 
@@ -4961,7 +4961,7 @@ namespace Diagram
                     }
                     catch (Exception ex)
                     {
-                        Program.log.write("time span error: " + ex.Message);
+                        Program.log.Write("time span error: " + ex.Message);
                     }
                 }
                 else
@@ -4978,7 +4978,7 @@ namespace Diagram
                     }
                     catch (Exception ex)
                     {
-                        Program.log.write("time diff error: " + ex.Message);
+                        Program.log.Write("time diff error: " + ex.Message);
                     }
                 }
             }
@@ -5791,7 +5791,7 @@ namespace Diagram
         // SCRIPT evaluate python script in node name or in node note in nodes
         private void Evaluate(Nodes nodes, string clipboard = "")
         {
-            Program.log.write("diagram: openlink: run macro");
+            Program.log.Write("diagram: openlink: run macro");
             Script script = new Script();
             script.SetDiagram(this.diagram);
             script.SetDiagramView(this);
@@ -5809,7 +5809,7 @@ namespace Diagram
         private void Evaluate(Node node, string clipboard = "")
         {
             // run macro
-            Program.log.write("diagram: openlink: run macro");
+            Program.log.Write("diagram: openlink: run macro");
             Script script = new Script();
             script.SetDiagram(this.diagram);
             script.SetDiagramView(this);

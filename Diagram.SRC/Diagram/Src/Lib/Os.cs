@@ -137,7 +137,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("os.createDirectory fail: " + path + ": " + e.ToString());
+                Program.log.Write("os.createDirectory fail: " + path + ": " + e.ToString());
             }
             return false;
         }
@@ -280,7 +280,7 @@ namespace Diagram
             }
             catch (Exception e)
             {
-                Program.log.write("GetShortcutTargetFile error: " + e.Message);
+                Program.log.Write("GetShortcutTargetFile error: " + e.Message);
             }
 
             return new string[] { "", "" };
@@ -329,7 +329,7 @@ namespace Diagram
                     string parent_diectory = Os.GetFileDirectory(path);
                     System.Diagnostics.Process.Start(parent_diectory);
                 }
-                catch (Exception ex) { Program.log.write("openPathInSystem open file: error:" + ex.Message); }
+                catch (Exception ex) { Program.log.Write("openPathInSystem open file: error:" + ex.Message); }
             }
             else if (Os.DirectoryExists(path))  // OPEN DIRECTORY
             {
@@ -337,7 +337,7 @@ namespace Diagram
                 {
                     System.Diagnostics.Process.Start(path);
                 }
-                catch (Exception ex) { Program.log.write("openPathInSystem open directory: error:"+ex.Message); }
+                catch (Exception ex) { Program.log.Write("openPathInSystem open directory: error:"+ex.Message); }
             }
         }
 
@@ -354,12 +354,12 @@ namespace Diagram
                     FileName = currentApp,
                     Arguments = "\"" + Escape(diagramPath) + "\""
                 };
-                Program.log.write("diagram: openlink: open diagram: " + currentApp + "\"" + Escape(diagramPath) + "\"");
+                Program.log.Write("diagram: openlink: open diagram: " + currentApp + "\"" + Escape(diagramPath) + "\"");
                 Process.Start(startInfo);
             }
             catch (Exception ex)
             {
-                Program.log.write(ex.Message);
+                Program.log.Write(ex.Message);
             }
         }
 
@@ -373,7 +373,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                Program.log.write("open directory: " + path + ": error: " + ex.Message);
+                Program.log.Write("open directory: " + path + ": error: " + ex.Message);
             }
         }
 
@@ -410,12 +410,12 @@ namespace Diagram
                 string output = process.StandardOutput.ReadToEnd();
                 string error = process.StandardError.ReadToEnd();
                 process.WaitForExit();
-                Program.log.write("output: " + output);
-                Program.log.write("error: " + error);
+                Program.log.Write("output: " + output);
+                Program.log.Write("error: " + error);
             }
             catch (Exception ex)
             {
-                Program.log.write("exception: " + ex.Message);
+                Program.log.Write("exception: " + ex.Message);
             }
         }
 
@@ -450,7 +450,7 @@ namespace Diagram
             editFileCmd = editFileCmd.Replace("%FILENAME%", Os.NormalizedFullPath(fileName));
             editFileCmd = editFileCmd.Replace("%LINE%", pos.ToString());
 
-            Program.log.write("diagram: openlink: open file on position " + editFileCmd);
+            Program.log.Write("diagram: openlink: open file on position " + editFileCmd);
             Os.RunCommand(editFileCmd);
         }
 
@@ -505,7 +505,7 @@ namespace Diagram
             }
             catch (System.Exception ex)
             {
-                Program.log.write(ex.Message);
+                Program.log.Write(ex.Message);
             }
         }
 
@@ -580,7 +580,7 @@ namespace Diagram
             }
             catch (System.IO.IOException ex)
             {
-                Program.log.write(ex.Message);
+                Program.log.Write(ex.Message);
             }
 
             return null;

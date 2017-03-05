@@ -205,13 +205,13 @@ namespace Diagram
                     }
                     catch (Exception ex)
                     {
-                        Program.log.write("save file error: " + ex.Message);
+                        Program.log.Write("save file error: " + ex.Message);
                     }
                 }
             }
             catch (Exception ex)
             {
-                Program.log.write("save file error: " + ex.Message);
+                Program.log.Write("save file error: " + ex.Message);
             }
 
             // save data to file
@@ -226,13 +226,13 @@ namespace Diagram
             }
             catch (System.IO.IOException ex)
             {
-                Program.log.write("save file io error: " + ex.Message);
+                Program.log.Write("save file io error: " + ex.Message);
                 MessageBox.Show(Translations.fileIsLocked);
                 this.CloseFile();
             }
             catch (Exception ex)
             {
-                Program.log.write("save file error: " + ex.Message);
+                Program.log.Write("save file error: " + ex.Message);
             }
         }
 
@@ -355,7 +355,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                Program.log.write("save xml error: " + ex.Message);
+                Program.log.Write("save xml error: " + ex.Message);
             }
 
             if (checkpoint)
@@ -380,7 +380,7 @@ namespace Diagram
                 }
                 catch (Exception ex)
                 {
-                    Program.log.write("write xml to file error: " + ex.Message);
+                    Program.log.Write("write xml to file error: " + ex.Message);
                 }
 
             }
@@ -430,7 +430,7 @@ namespace Diagram
             catch (Exception ex)
             {
                 MessageBox.Show(Translations.fileHasWrongFormat);
-                Program.log.write("load xml error: " + ex.Message);
+                Program.log.Write("load xml error: " + ex.Message);
                 this.CloseFile();
             }
 
@@ -454,7 +454,7 @@ namespace Diagram
                         catch (Exception e)
                         {
                             // probably invalid password
-                            Program.log.write("LoadXML: Password or file is invalid: " + e.Message);
+                            Program.log.Write("LoadXML: Password or file is invalid: " + e.Message);
                             error = true;
                         }
                     }
@@ -637,7 +637,7 @@ namespace Diagram
                                     }
                                     catch (Exception ex)
                                     {
-                                        Program.log.write("load xml diagram options: " + ex.Message);
+                                        Program.log.Write("load xml diagram options: " + ex.Message);
                                     }
                                 }
                             }
@@ -809,7 +809,7 @@ namespace Diagram
                                             }
                                             catch (Exception ex)
                                             {
-                                                Program.log.write("load xml nodes error: " + ex.Message);
+                                                Program.log.Write("load xml nodes error: " + ex.Message);
                                             }
                                         }
                                         nodes.Add(R);
@@ -864,7 +864,7 @@ namespace Diagram
                                             }
                                             catch (Exception ex)
                                             {
-                                                Program.log.write("load xml lines error: " + ex.Message);
+                                                Program.log.Write("load xml lines error: " + ex.Message);
                                             }
                                         }
 
@@ -880,7 +880,7 @@ namespace Diagram
             catch (Exception ex)
             {
                 MessageBox.Show(Translations.fileHasWrongFormat);
-                Program.log.write("load xml error: " + ex.Message);
+                Program.log.Write("load xml error: " + ex.Message);
                 this.CloseFile();
                 return false;
             }
@@ -1661,7 +1661,7 @@ namespace Diagram
             }
             catch(Exception e)
             {
-                Program.log.write("setImage: " + e.Message);
+                Program.log.Write("setImage: " + e.Message);
             }
         }
 
@@ -1979,7 +1979,7 @@ namespace Diagram
                                                         }
                                                         catch (Exception ex)
                                                         {
-                                                            Program.log.write("load image from xml error: " + ex.Message);
+                                                            Program.log.Write("load image from xml error: " + ex.Message);
                                                         }
                                                     }
                                                     else
@@ -2017,7 +2017,7 @@ namespace Diagram
                                             }
                                             catch (Exception ex)
                                             {
-                                                Program.log.write("Data has wrong structure. : error: " + ex.Message);
+                                                Program.log.Write("Data has wrong structure. : error: " + ex.Message);
                                             }
                                         }
 
@@ -2069,7 +2069,7 @@ namespace Diagram
                                             }
                                             catch (Exception ex)
                                             {
-                                                Program.log.write("Data has wrong structure. : error: " + ex.Message);
+                                                Program.log.Write("Data has wrong structure. : error: " + ex.Message);
                                             }
                                         }
                                         NewLines.Add(L);
@@ -2083,7 +2083,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                Program.log.write("Data has wrong structure. : error: " + ex.Message);
+                Program.log.Write("Data has wrong structure. : error: " + ex.Message);
             }
 
 

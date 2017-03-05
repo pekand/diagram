@@ -302,7 +302,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
-                Program.log.write("decompress file xml error: " + ex.Message);
+                Program.log.Write("decompress file xml error: " + ex.Message);
             }
 
             foreach (EDirectory directory in directories)
