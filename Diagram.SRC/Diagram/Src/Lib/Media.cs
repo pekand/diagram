@@ -151,7 +151,7 @@ namespace Diagram
         public static void BringToFront(Form form)   // [focus] UID0703915427
         {
             Program.log.Write("bringToFront");
-            Tick.timer(500, (t, args) =>
+            Tick.timer(1000, (t, args) =>
             {
                 if (t is Timer)
                 {
@@ -163,7 +163,9 @@ namespace Diagram
                     if(form.WindowState == FormWindowState.Minimized) {
                         form.WindowState = FormWindowState.Normal;
                     }
+                    form.TopMost = true;
                     form.BringToFront();
+                    form.TopMost = false;
                 }
             });
         }

@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Diagnostics;
 
 // [VERSION]
-[assembly: AssemblyVersion("0.5.0.22")]
+[assembly: AssemblyVersion("0.5.0.23")]
 
 /*! \mainpage Infinite diagram
  *
@@ -57,7 +57,7 @@ namespace Diagram
 #if DEBUG
             Program.log.Write("Debug mode");
 #else
-            Program.log.write("Production mode");
+            Program.log.Write("Production mode");
 #endif
             // aplication default settings
             Application.EnableVisualStyles();
@@ -78,8 +78,8 @@ namespace Diagram
             }
             catch (Exception e) // global exception handling
             {
-                log.write("Application crash: message:" + e.Message);
-                log.saveLogToFile();
+                log.Write("Application crash: message:" + e.Message);
+                log.SaveLogToFile();
 
                 MessageBox.Show("Application crash: message:" + e.Message);
 

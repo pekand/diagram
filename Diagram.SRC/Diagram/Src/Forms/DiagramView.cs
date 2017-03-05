@@ -3948,7 +3948,7 @@ namespace Diagram
 
             worker.DoWork += (sender, e) =>
             {
-                Program.log.write("diagram: openlink: run worker");
+                Program.log.Write("diagram: openlink: run worker");
                 e.Result = this.OpenLink(rec, clipboard);
             };
             worker.RunWorkerCompleted += (sender, e) =>

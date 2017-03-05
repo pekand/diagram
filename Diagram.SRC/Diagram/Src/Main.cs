@@ -99,7 +99,7 @@ namespace Diagram
 #if DEBUG
             Program.log.Write("program: debug mode");
 #else
-			Program.log.write("program: release mode");
+			Program.log.Write("program: release mode");
 #endif
 
             // TODO: Load global options file and save it when application is closed
@@ -392,7 +392,7 @@ namespace Diagram
                                     }
 
                                     Program.log.Write("bring focus");
-                                        Media.BringToFront(diagram.DiagramViews[0]); //UID4510272262
+                                    Media.BringToFront(diagram.DiagramViews[0]); //UID4510272262
                                 }
                                 alreadyOpen = true;
                                 break;
@@ -410,7 +410,10 @@ namespace Diagram
                                     this.options.AddRecentFile(FilePath);
                                     Diagrams.Add(diagram);
                                     // open diagram view on diagram model
-                                    diagram.OpenDiagramView();
+                                    DiagramView newDiagram = diagram.OpenDiagramView();
+
+                                    Program.log.Write("bring focus");
+                                    Media.BringToFront(newDiagram); //UID4510272263
                                 }
                             }
                         }
