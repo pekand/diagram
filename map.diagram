@@ -1141,8 +1141,8 @@
                     
 #endif</text>
       <layer>0</layer>
-      <x>-926</x>
-      <y>2790</y>
+      <x>-1813</x>
+      <y>2502</y>
       <width>91</width>
       <height>97</height>
       <color>#FFFFB8</color>
@@ -1150,17 +1150,18 @@
       <timemodify>2016-12-1 23:05:26</timemodify>
     </rectangle>
     <rectangle>
-      <id>134</id>
+      <id>1419</id>
       <fontcolor>Black</fontcolor>
-      <text>Snippets</text>
+      <text>Actions</text>
       <layer>0</layer>
-      <x>-919</x>
-      <y>2601</y>
-      <width>77</width>
+      <x>-592</x>
+      <y>2952</y>
+      <width>69</width>
       <height>36</height>
-      <color>#A5A5A5</color>
-      <timecreate>2016-12-1 23:05:38</timecreate>
-      <timemodify>2016-12-1 23:05:38</timemodify>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-3-5 22:30:24</timecreate>
+      <timemodify>2017-3-5 22:30:24</timemodify>
     </rectangle>
     <rectangle>
       <id>135</id>
@@ -1220,8 +1221,8 @@
       <fontcolor>Black</fontcolor>
       <text>foreach(Node node in nodes) {}</text>
       <layer>0</layer>
-      <x>-961</x>
-      <y>2911</y>
+      <x>-1827</x>
+      <y>2641</y>
       <width>214</width>
       <height>36</height>
       <color>#FFFFB8</color>
@@ -1286,7 +1287,7 @@
       <id>148</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>855</x>
+      <x>1555</x>
       <y>2973</y>
       <width>20</width>
       <height>20</height>
@@ -1676,7 +1677,7 @@
       <height>32</height>
       <color>#D9CCFF</color>
       <embeddedimage>true</embeddedimage>
-      <imagedata>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</imagedata>
+      <imagedata>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</imagedata>
       <timecreate>2017-3-5 14:59:04</timecreate>
       <timemodify>2017-3-5 14:59:04</timemodify>
     </rectangle>
@@ -1692,7 +1693,7 @@
       <height>32</height>
       <color>#D9CCFF</color>
       <embeddedimage>true</embeddedimage>
-      <imagedata>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</imagedata>
+      <imagedata>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</imagedata>
       <timecreate>2017-3-5 14:59:04</timecreate>
       <timemodify>2017-3-5 14:59:04</timemodify>
     </rectangle>
@@ -2456,6 +2457,231 @@ and send response</text>
       <timecreate>2017-3-5 21:54:48</timecreate>
       <timemodify>2017-3-5 21:55:07</timemodify>
     </rectangle>
+    <rectangle>
+      <id>1</id>
+      <fontcolor>Black</fontcolor>
+      <text>foreach (Node rec in Nodes)            
+{
+
+}</text>
+      <layer>0</layer>
+      <x>-1828</x>
+      <y>1964</y>
+      <width>196</width>
+      <height>82</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-5 22:28:45</timecreate>
+      <timemodify>2017-3-5 22:28:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2</id>
+      <fontcolor>Black</fontcolor>
+      <text>public void fun(List&lt;Node&gt; Nodes)
+{
+    foreach (Node rec in Nodes)
+    {
+
+    }
+}</text>
+      <layer>0</layer>
+      <x>-1828</x>
+      <y>2067</y>
+      <width>234</width>
+      <height>127</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-5 22:28:45</timecreate>
+      <timemodify>2017-3-5 22:28:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>9</id>
+      <fontcolor>Black</fontcolor>
+      <text>#if MONO
+            
+#else
+            
+#endif</text>
+      <layer>0</layer>
+      <x>-1828</x>
+      <y>2248</y>
+      <width>85</width>
+      <height>97</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-5 22:28:45</timecreate>
+      <timemodify>2017-3-5 22:28:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>10</id>
+      <fontcolor>Black</fontcolor>
+      <text>#if !MONO
+
+#endif</text>
+      <layer>0</layer>
+      <x>-1692</x>
+      <y>2263</y>
+      <width>89</width>
+      <height>66</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-5 22:28:45</timecreate>
+      <timemodify>2017-3-5 22:28:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>13</id>
+      <fontcolor>Black</fontcolor>
+      <text>#if DEBUG
+
+#endif</text>
+      <layer>0</layer>
+      <x>-1587</x>
+      <y>2263</y>
+      <width>91</width>
+      <height>66</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-5 22:28:45</timecreate>
+      <timemodify>2017-3-5 22:28:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1408</id>
+      <fontcolor>Black</fontcolor>
+      <text>Program.log.write("message");</text>
+      <layer>0</layer>
+      <x>-1828</x>
+      <y>2404</y>
+      <width>210</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-5 22:28:45</timecreate>
+      <timemodify>2017-3-5 22:28:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1409</id>
+      <fontcolor>Black</fontcolor>
+      <text>Snippets</text>
+      <layer>0</layer>
+      <x>-1828</x>
+      <y>1874</y>
+      <width>77</width>
+      <height>36</height>
+      <color>Yellow</color>
+      <timecreate>2017-3-5 22:28:45</timecreate>
+      <timemodify>2017-3-5 22:28:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1410</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-1901</x>
+      <y>1810</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-3-5 22:28:45</timecreate>
+      <timemodify>2017-3-5 22:28:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1411</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-1901</x>
+      <y>3085</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-3-5 22:28:45</timecreate>
+      <timemodify>2017-3-5 22:28:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1412</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-1901</x>
+      <y>1882</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-3-5 22:28:45</timecreate>
+      <timemodify>2017-3-5 22:28:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1413</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-1900</x>
+      <y>1995</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-3-5 22:28:45</timecreate>
+      <timemodify>2017-3-5 22:28:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1414</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-1900</x>
+      <y>2120</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-3-5 22:28:45</timecreate>
+      <timemodify>2017-3-5 22:28:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1415</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-1900</x>
+      <y>2286</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-3-5 22:28:45</timecreate>
+      <timemodify>2017-3-5 22:28:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1416</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-1900</x>
+      <y>2412</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-3-5 22:28:45</timecreate>
+      <timemodify>2017-3-5 22:28:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1417</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-1901</x>
+      <y>2540</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-3-5 22:28:57</timecreate>
+      <timemodify>2017-3-5 22:28:57</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1418</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-1901</x>
+      <y>2649</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-3-5 22:29:04</timecreate>
+      <timemodify>2017-3-5 22:29:04</timemodify>
+    </rectangle>
   </rectangles>
   <lines>
     <line>
@@ -2939,13 +3165,6 @@ and send response</text>
     <line>
       <start>136</start>
       <end>135</end>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>134</start>
-      <end>133</end>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
@@ -3464,6 +3683,76 @@ and send response</text>
     <line>
       <start>282</start>
       <end>283</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1411</start>
+      <end>1410</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1412</start>
+      <end>1409</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1413</start>
+      <end>1</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1414</start>
+      <end>2</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1415</start>
+      <end>9</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>9</start>
+      <end>10</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>10</start>
+      <end>13</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1416</start>
+      <end>1408</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1417</start>
+      <end>133</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1418</start>
+      <end>141</end>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
