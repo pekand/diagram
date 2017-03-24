@@ -10,7 +10,7 @@ using System.IO;
 
 namespace Plugin
 {
-    public class FindUidPlugin : INodeOpenPlugin
+    public class FindUidPlugin : INodeOpenPlugin, IOpenDiagramPlugin //UID0290845813
     {
         #region IPlugin Members 
 
@@ -28,6 +28,14 @@ namespace Plugin
             {
                 return "1.0";
             }
+        }
+
+
+        private Log log = null;
+
+        public void setLog(Log log)
+        {
+            this.log = log;
         }
 
         public bool IsUid(string text)
@@ -75,6 +83,11 @@ namespace Plugin
             }
 
             return false;
+        }
+
+        public void OpenDiagramAction(Diagram.Diagram diagram)
+        {
+            this.log.Write("Diagram is changed");
         }
 
         #endregion

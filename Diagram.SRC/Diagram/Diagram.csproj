@@ -186,7 +186,9 @@
     <Compile Include="Src\Model\Position.cs" />
     <Compile Include="Src\Model\UndoOperations.cs" />
     <Compile Include="Src\Plugins\IDiagramPlugin.cs" />
+    <Compile Include="Src\Plugins\IKeyPressPlugin.cs" />
     <Compile Include="Src\Plugins\INodeOpenPlugin.cs" />
+    <Compile Include="Src\Plugins\IOpenDiagramPlugin.cs" />
     <Compile Include="Src\Plugins\Plugins.cs" />
     <Compile Include="Src\ProgramOptions.cs" />
     <Compile Include="Src\Forms\AboutForm.cs">

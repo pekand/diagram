@@ -413,6 +413,8 @@ namespace Diagram
                                     // open diagram view on diagram model
                                     DiagramView newDiagram = diagram.OpenDiagramView();
 
+                                    this.plugins.OpenDiagramAction(diagram); //UID0290845816
+
                                     Program.log.Write("bring focus");
                                     Media.BringToFront(newDiagram); //UID4510272263
                                 }

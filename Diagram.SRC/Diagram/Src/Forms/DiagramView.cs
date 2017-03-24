@@ -2229,6 +2229,8 @@ namespace Diagram
         public void DiagramApp_KeyPress(object sender, KeyPressEventArgs e)
         {
 
+            bool stopNextAction = this.main.plugins.KeyPressAction(this.diagram, ""); //UID0290845814
+
 #if DEBUG
             this.LogEvent("KeyPress");
 #endif
@@ -3986,7 +3988,7 @@ namespace Diagram
             if (rec != null)
             {
 
-                bool stopNextAction = this.main.plugins.ClickOnNodeAction(this.diagram, rec);
+                bool stopNextAction = this.main.plugins.ClickOnNodeAction(this.diagram, rec); //UID0290845815
 
                 if (stopNextAction) {
                     // stop execution from plugin
