@@ -21,69 +21,107 @@ namespace Diagram
         /// load plugins from path</summary>
         public void LoadPlugins(string path)
         {
-            Program.log.Write("Loading plugins");
-
-            IEnumerable<string> dllFileNames = null;
-            if (Directory.Exists(path))
+            try
             {
-                dllFileNames = Directory.EnumerateFiles(path, "*.dll", SearchOption.AllDirectories);
-            }
+                Program.log.Write("Loading plugins from:" + path);
 
-            ICollection<Assembly> assemblies = new List<Assembly>(dllFileNames.Count());
-            foreach (string dllFile in dllFileNames)
-            {
-                AssemblyName an = AssemblyName.GetAssemblyName(dllFile);
-                Assembly assembly = Assembly.Load(an);
-                assemblies.Add(assembly);
-            }
-
-            // proces all assemblies in folder
-            foreach (Assembly assembly in assemblies)
-            {
-                if (assembly != null)
+                IEnumerable<string> dllFileNames = null;
+                if (Directory.Exists(path))
                 {
-                    Type[] types = assembly.GetTypes();
+                    dllFileNames = Directory.EnumerateFiles(path, "*.dll", SearchOption.AllDirectories);
+                }
+
+                ICollection<Assembly> assemblies = new List<Assembly>(dllFileNames.Count());
+                foreach (string dllFile in dllFileNames)
+                {
+                    try
+                    { 
+                        AssemblyName an = AssemblyName.GetAssemblyName(dllFile);
+                        Assembly assembly = Assembly.Load(an);
+                        if (assembly != null)
+                        {
+                            assemblies.Add(assembly);
+                        }
+                    } 
+                    catch (Exception e)
+                    {
+                        Program.log.Write("Load plugin error: " + dllFile + "  : " + e.Message);
+                    }
+                }
+
+                // proces all assemblies in folder
+                foreach (Assembly assembly in assemblies)
+                {
+                    Type[] types;
+
+                    try
+                    {
+                        types = assembly.GetTypes();
+                    }
+                    catch (ReflectionTypeLoadException ex)
+                    {
+                        Program.log.Write("Load types from " + assembly.FullName + "plugin error  : " + ex.Message);
+
+                        foreach (var item in ex.LoaderExceptions)
+                        {                            
+                            Program.log.Write("Loaderexceptoon: " + item.Message);
+                        }
+
+                        Program.log.Write("Skipping plugin due to errors");
+                        continue;
+                    }
+
+                    // proces all elements like classes in assemblie
                     foreach (Type type in types)
                     {
                         if (type.IsInterface || type.IsAbstract)
                         {
                             continue;
                         }
-                        else
+
+                        // get all libraries with IDiagramPlugin interface
+                        if (type.GetInterface(typeof(IDiagramPlugin).FullName) == null)
                         {
-                            // get all libraries with IDiagramPlugin interface
-                            if (type.GetInterface(typeof(IDiagramPlugin).FullName) != null)
-                            {
-                                // create plugin instance
-                                IDiagramPlugin plugin = Activator.CreateInstance(type) as IDiagramPlugin;
-                                if (plugin != null)
-                                {
-                                    plugin.setLog(Program.log);
-
-                                    // assign plugin to collection of all plugins
-                                    plugins.Add(plugin);
-
-                                    Program.log.Write("Loading plugin: " + plugin.Name);
-                                }
-
-                                if (type.GetInterface(typeof(INodeOpenPlugin).FullName) != null)
-                                {
-                                    nodeOpenPlugins.Add(plugin as INodeOpenPlugin);
-                                }
-
-                                if (type.GetInterface(typeof(IKeyPressPlugin).FullName) != null)
-                                {
-                                    keyPressPlugins.Add(plugin as IKeyPressPlugin);
-                                }
-
-                                if (type.GetInterface(typeof(IOpenDiagramPlugin).FullName) != null)
-                                {
-                                    openDiagramPlugins.Add(plugin as IOpenDiagramPlugin);
-                                }
-                            }
+                            continue;
                         }
+
+                        // create plugin instance
+                        IDiagramPlugin plugin = Activator.CreateInstance(type) as IDiagramPlugin;
+                        if (plugin == null)
+                        {
+                            continue;
+                        }
+
+                        // add log object to plugin and allow debug messages from plugin
+                        plugin.setLog(Program.log);
+
+                        // assign plugin to collection of all plugins
+                        plugins.Add(plugin);
+
+                        Program.log.Write("Loading plugin: " + plugin.Name);
+
+
+                        if (type.GetInterface(typeof(INodeOpenPlugin).FullName) != null)
+                        {
+                            nodeOpenPlugins.Add(plugin as INodeOpenPlugin);
+                        }
+
+                        if (type.GetInterface(typeof(IKeyPressPlugin).FullName) != null)
+                        {
+                            keyPressPlugins.Add(plugin as IKeyPressPlugin);
+                        }
+
+                        if (type.GetInterface(typeof(IOpenDiagramPlugin).FullName) != null)
+                        {
+                            openDiagramPlugins.Add(plugin as IOpenDiagramPlugin);
+                        }
+
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                Program.log.Write("Load plugin error : " + e.Message);
             }
         }
 

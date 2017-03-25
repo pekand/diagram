@@ -1,0 +1,25 @@
+0.5.0.27 Plugin error handling
+0.5.0.26 get focus for form after bring to front
+0.5.0.25 unloc diagram on click to view
+0.5.0.24 close edit panels when diagram is closed
+0.5.0.23 fix bring to frond forms
+0.5.0.22 send response from server after message recives with status
+0.5.0.21 focus on fomrm change window state to normal if is minimalized
+0.5.0.20 support for find uid in file plugin
+0.5.0.19 basic blugins infrastructure
+0.5.0.18 improve security string comparison
+0.5.0.17 fix bring form to front function
+0.5.0.16 use strong name keyfile
+0.5.0.15 cleaning code
+0.5.0.14 open recent files
+0.5.0.13 migrate to visual studio 2017
+0.5.0.12 go to node with @end and @home mark in link
+0.5.0.11 add more image types to change diagram icons
+0.5.0.10 change remove backround dialog text
+0.5.0.9  get utf-8 string from clipboard
+0.5.0.8  diagram image background
+0.5.0.7  speedup search nodes
+0.5.0.6  Unsave after insert date
+0.5.0.5  Add link edit to bottom of node textbox
+0.5.0.4  Add ling go to node command type (#)
+0.5.0.3  Add release note for version tracking
