@@ -93,7 +93,7 @@ namespace Diagram
                         }
 
                         // add log object to plugin and allow debug messages from plugin
-                        plugin.setLog(Program.log);
+                        plugin.SetLog(Program.log);
 
                         // assign plugin to collection of all plugins
                         plugins.Add(plugin);

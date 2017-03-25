@@ -33,7 +33,7 @@ namespace Plugin
 
         private Log log = null;
 
-        public void setLog(Log log)
+        public void SetLog(Log log)
         {
             this.log = log;
         }

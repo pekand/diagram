@@ -283,7 +283,6 @@ namespace Diagram
         // FORM Load event -
         public void DiagramViewLoad(object sender, EventArgs e)
         {
-
             // predefined window position
             if (this.diagram.options.restoreWindow)
             {
@@ -1520,6 +1519,15 @@ namespace Diagram
                         TargetNode
                     );
 
+                    if (sourceNode.name == "")
+                    {
+                        sourceNode.transparent = true;
+                    }
+                    if (TargetNode.name == "")
+                    {
+                        TargetNode.transparent = true;
+                    }
+
                     if (newLine != null) {
                         this.diagram.Unsave("create", newLine, this.shift, this.currentLayer.id);
                         this.diagram.InvalidateDiagram();
@@ -1537,6 +1545,12 @@ namespace Diagram
                         newNode
                     );
 
+                    if (sourceNode.name == "")
+                    {
+                        sourceNode.transparent = true;
+                    }
+                    newNode.transparent = true;
+
                     this.diagram.Unsave("create", newNode, newLine, this.shift, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
                 }
@@ -1552,6 +1566,12 @@ namespace Diagram
                         newNode,
                         TargetNode
                     );
+
+                    if (TargetNode.name == "")
+                    {
+                        TargetNode.transparent = true;
+                    }
+                    newNode.transparent = true;
 
                     this.diagram.Unsave("create", newNode, newLine, this.shift, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
@@ -1580,6 +1600,9 @@ namespace Diagram
                         node1,
                         node2
                     ));
+
+                    node1.transparent = true;
+                    node2.transparent = true;
 
                     this.diagram.Unsave("create", nodes, lines, this.shift, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
@@ -3335,8 +3358,6 @@ namespace Diagram
         {
             Pen myPen = new Pen(Color.Black, 1);
 
-
-
             if (this.sourceNode == null)
             {
                 gfx.DrawLine(
@@ -3345,24 +3366,6 @@ namespace Diagram
                     this.shift.y - this.startShift.y + this.startMousePos.y - 2 + 12,
                     this.actualMousePos.x,
                     this.actualMousePos.y
-                );
-
-                gfx.FillEllipse(
-                    new SolidBrush(ColorTranslator.FromHtml("#FFFFB8")),
-                    new Rectangle(
-                        this.shift.x - this.startShift.x + this.startMousePos.x,
-                        this.shift.y - this.startShift.y + this.startMousePos.y,
-                        20,
-                        20
-                    )
-                );
-                gfx.DrawEllipse(
-                    myPen,
-                    new Rectangle(
-                        this.shift.x - this.startShift.x + this.startMousePos.x,
-                        this.shift.y - this.startShift.y + this.startMousePos.y,
-                        20, 20
-                    )
                 );
             }
             else {

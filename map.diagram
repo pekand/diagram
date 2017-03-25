@@ -2337,8 +2337,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>layers</text>
       <layer>0</layer>
-      <x>-513</x>
-      <y>3980</y>
+      <x>-553</x>
+      <y>4020</y>
       <width>61</width>
       <height>36</height>
       <color>#00DCE6</color>
@@ -2351,8 +2351,8 @@ and send response</text>
       <text>LayerOut</text>
       <link>UID4661843385</link>
       <layer>0</layer>
-      <x>-270</x>
-      <y>3985</y>
+      <x>-310</x>
+      <y>4025</y>
       <width>80</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2366,8 +2366,8 @@ and send response</text>
       <link>UID1557077053
 </link>
       <layer>0</layer>
-      <x>-419</x>
-      <y>3984</y>
+      <x>-459</x>
+      <y>4024</y>
       <width>129</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2379,8 +2379,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>DiagramView events</text>
       <layer>0</layer>
-      <x>-537</x>
-      <y>4092</y>
+      <x>-559</x>
+      <y>4176</y>
       <width>150</width>
       <height>36</height>
       <color>#00DCE6</color>
@@ -2393,8 +2393,8 @@ and send response</text>
       <text>MouseUp</text>
       <link>UID3026627853</link>
       <layer>0</layer>
-      <x>-107</x>
-      <y>4217</y>
+      <x>-129</x>
+      <y>4301</y>
       <width>83</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2407,8 +2407,8 @@ and send response</text>
       <text>paint</text>
       <link>UID5225221692</link>
       <layer>0</layer>
-      <x>-333</x>
-      <y>4065</y>
+      <x>-355</x>
+      <y>4149</y>
       <width>54</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2421,8 +2421,8 @@ and send response</text>
       <text>MouseDoubleClick</text>
       <link>UID5891984730</link>
       <layer>0</layer>
-      <x>-242</x>
-      <y>4160</y>
+      <x>-264</x>
+      <y>4244</y>
       <width>139</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2435,8 +2435,8 @@ and send response</text>
       <text>MouseDown</text>
       <link>UID3419722424</link>
       <layer>0</layer>
-      <x>-344</x>
-      <y>4209</y>
+      <x>-366</x>
+      <y>4293</y>
       <width>100</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2449,8 +2449,8 @@ and send response</text>
       <text>MouseMove</text>
       <link>UID3677213415</link>
       <layer>0</layer>
-      <x>-225</x>
-      <y>4219</y>
+      <x>-247</x>
+      <y>4303</y>
       <width>99</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2689,8 +2689,8 @@ and send response</text>
       <link>UID4637488042
 </link>
       <layer>0</layer>
-      <x>-256</x>
-      <y>4062</y>
+      <x>-278</x>
+      <y>4146</y>
       <width>108</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2702,8 +2702,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>plugins</text>
       <layer>0</layer>
-      <x>-555</x>
-      <y>4370</y>
+      <x>-567</x>
+      <y>4443</y>
       <width>68</width>
       <height>36</height>
       <color>#00DCE6</color>
@@ -2730,8 +2730,8 @@ and send response</text>
       <text>Plugins</text>
       <link>UID8736657869</link>
       <layer>0</layer>
-      <x>-424</x>
-      <y>4409</y>
+      <x>-436</x>
+      <y>4482</y>
       <width>69</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2745,8 +2745,8 @@ and send response</text>
       <link>UID0290945800
 </link>
       <layer>0</layer>
-      <x>-161</x>
-      <y>4319</y>
+      <x>-173</x>
+      <y>4392</y>
       <width>133</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2760,8 +2760,8 @@ and send response</text>
       <link>UID0454615899
 </link>
       <layer>0</layer>
-      <x>-305</x>
-      <y>4352</y>
+      <x>-317</x>
+      <y>4425</y>
       <width>118</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2774,8 +2774,8 @@ and send response</text>
       <text>IKeyPressPlugin</text>
       <link>UID0290945802</link>
       <layer>0</layer>
-      <x>-136</x>
-      <y>4439</y>
+      <x>-148</x>
+      <y>4512</y>
       <width>125</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2788,8 +2788,8 @@ and send response</text>
       <text>FindUidPlugin</text>
       <link>UID0290845813</link>
       <layer>0</layer>
-      <x>20</x>
-      <y>4279</y>
+      <x>8</x>
+      <y>4352</y>
       <width>110</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2803,8 +2803,8 @@ and send response</text>
       <link>UID0290845812
 </link>
       <layer>0</layer>
-      <x>-157</x>
-      <y>4384</y>
+      <x>-169</x>
+      <y>4457</y>
       <width>152</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2817,8 +2817,8 @@ and send response</text>
       <text>node open action</text>
       <link>UID0290845815</link>
       <layer>0</layer>
-      <x>20</x>
-      <y>4326</y>
+      <x>8</x>
+      <y>4399</y>
       <width>129</width>
       <height>36</height>
       <color>#D2A0FF</color>
@@ -2832,8 +2832,8 @@ and send response</text>
       <link>UID0290845814
 </link>
       <layer>0</layer>
-      <x>28</x>
-      <y>4488</y>
+      <x>16</x>
+      <y>4561</y>
       <width>89</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2846,8 +2846,8 @@ and send response</text>
       <text>key press action</text>
       <link>UID0290845814</link>
       <layer>0</layer>
-      <x>21</x>
-      <y>4422</y>
+      <x>9</x>
+      <y>4495</y>
       <width>123</width>
       <height>36</height>
       <color>#D2A0FF</color>
@@ -2861,8 +2861,8 @@ and send response</text>
       <link>UID0290845816
 </link>
       <layer>0</layer>
-      <x>20</x>
-      <y>4370</y>
+      <x>8</x>
+      <y>4443</y>
       <width>148</width>
       <height>36</height>
       <color>#D2A0FF</color>

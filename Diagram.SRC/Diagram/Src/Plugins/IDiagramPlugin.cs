@@ -11,7 +11,7 @@ namespace Diagram
         string Name { get; }
         string Version { get; }
 
-        void setLog(Log log);
+        void SetLog(Log log);
 
     }
 }
