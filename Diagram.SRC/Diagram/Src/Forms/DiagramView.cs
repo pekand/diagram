@@ -2690,7 +2690,8 @@ namespace Diagram
             foreach (Node node in this.diagram.GetAllNodes())
             {
                 if (node.note.ToUpper().IndexOf(searchFor.ToUpper()) != -1
-                    || node.name.ToUpper().IndexOf(searchFor.ToUpper()) != -1)
+                    || node.name.ToUpper().IndexOf(searchFor.ToUpper()) != -1
+                    || node.link.ToUpper().IndexOf(searchFor.ToUpper()) != -1)
                 {
                     foundNodes.Add(node);
                 }

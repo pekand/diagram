@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Infinite Diagram"
-#define MyAppVersion "0.5.0.28"
+#define MyAppVersion "0.5.0.29"
 #define MyAppPublisher "pekand@gmail.com"
 #define MyAppURL "http://www.infinite-diagram.com"
 #define MyAppExeName "Diagram.exe"
@@ -45,7 +45,6 @@ Source: "files\IronPython.SQLite.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "files\IronPython.Wpf.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "files\Microsoft.Dynamic.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "files\Microsoft.Scripting.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "files\Microsoft.Scripting.AspNet.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "files\Microsoft.Scripting.Metadata.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "files\NCalc.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "files\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
