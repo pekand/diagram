@@ -136,8 +136,5 @@ namespace Diagram
                 this.configFileDirectory
             );
         }
-
-
-       
     }
 }

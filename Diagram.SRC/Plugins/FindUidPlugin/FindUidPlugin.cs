@@ -30,7 +30,6 @@ namespace Plugin
             }
         }
 
-
         private Log log = null;
 
         public void SetLog(Log log)

@@ -62,7 +62,7 @@ prev = None
 for i in range(100):
     x = int(500 * math.cos(a*i))
     y = int(500 * math.sin(a*i))
-    rec = Diagram.createNode(Position(x, y), "", l)
+    rec = Diagram.CreateNode(Position(x, y), "", l)
     rec.transparent = True
     if prev != None:
         Diagram.Connect(rec, prev)
