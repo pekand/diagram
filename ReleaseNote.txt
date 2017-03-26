@@ -1,3 +1,4 @@
+0.5.0.30 remove new line when node is cut
 0.5.0.29 search in node links
 0.5.0.28 hide node when is created by middle button draging
 0.5.0.27 Plugin error handling

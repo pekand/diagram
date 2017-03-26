@@ -1235,8 +1235,8 @@
       <text>server:open file</text>
       <link>UID7984925616</link>
       <layer>0</layer>
-      <x>-396</x>
-      <y>3625</y>
+      <x>-375</x>
+      <y>4495</y>
       <width>118</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -1248,8 +1248,8 @@
       <fontcolor>Black</fontcolor>
       <text>server</text>
       <layer>0</layer>
-      <x>-339</x>
-      <y>3672</y>
+      <x>-318</x>
+      <y>4542</y>
       <width>62</width>
       <height>36</height>
       <color>#A5A5A5</color>
@@ -1262,8 +1262,8 @@
       <text>dblclick</text>
       <link>scan.bat c1703aa4d2</link>
       <layer>0</layer>
-      <x>-531</x>
-      <y>3471</y>
+      <x>-510</x>
+      <y>4341</y>
       <width>69</width>
       <height>36</height>
       <color>#00DCE6</color>
@@ -1302,8 +1302,8 @@
       <text>execute command</text>
       <link>UID5087096741</link>
       <layer>0</layer>
-      <x>55</x>
-      <y>3469</y>
+      <x>76</x>
+      <y>4339</y>
       <width>136</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -1316,8 +1316,8 @@
       <text>OpenLink</text>
       <link>UID9292140736</link>
       <layer>0</layer>
-      <x>-44</x>
-      <y>3469</y>
+      <x>-23</x>
+      <y>4339</y>
       <width>83</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -1330,8 +1330,8 @@
       <text>OpenLinkAsync</text>
       <link>UID3758665113</link>
       <layer>0</layer>
-      <x>-214</x>
-      <y>3469</y>
+      <x>-193</x>
+      <y>4339</y>
       <width>120</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -1344,8 +1344,8 @@
       <text>OpenDiagram</text>
       <link>UID1771511767</link>
       <layer>0</layer>
-      <x>-247</x>
-      <y>3625</y>
+      <x>-226</x>
+      <y>4495</y>
       <width>110</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -1358,8 +1358,8 @@
       <text>BringToFront</text>
       <link>UID0703915427</link>
       <layer>0</layer>
-      <x>52</x>
-      <y>3625</y>
+      <x>73</x>
+      <y>4495</y>
       <width>104</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -1371,8 +1371,8 @@
       <fontcolor>Black</fontcolor>
       <text>bring to front</text>
       <layer>0</layer>
-      <x>-539</x>
-      <y>3629</y>
+      <x>-518</x>
+      <y>4499</y>
       <width>101</width>
       <height>36</height>
       <color>#00DCE6</color>
@@ -1385,8 +1385,8 @@
       <text>if diagram exist focus</text>
       <link>UID4510272262</link>
       <layer>0</layer>
-      <x>-118</x>
-      <y>3625</y>
+      <x>-97</x>
+      <y>4495</y>
       <width>153</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -1413,8 +1413,8 @@
       <text>create diagram and focus</text>
       <link>UID4510272263</link>
       <layer>0</layer>
-      <x>-118</x>
-      <y>3681</y>
+      <x>-97</x>
+      <y>4551</y>
       <width>178</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2172,8 +2172,8 @@ and send response</text>
       <text>dblclick event</text>
       <link>UID3769224705</link>
       <layer>0</layer>
-      <x>-438</x>
-      <y>3470</y>
+      <x>-417</x>
+      <y>4340</y>
       <width>106</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2187,8 +2187,8 @@ and send response</text>
       <link>UID8515606919
 </link>
       <layer>0</layer>
-      <x>-311</x>
-      <y>3471</y>
+      <x>-290</x>
+      <y>4341</y>
       <width>69</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2200,8 +2200,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>mouse down</text>
       <layer>0</layer>
-      <x>-377</x>
-      <y>3536</y>
+      <x>-356</x>
+      <y>4406</y>
       <width>102</width>
       <height>36</height>
       <color>#A5A5A5</color>
@@ -2214,8 +2214,8 @@ and send response</text>
       <text>reset status</text>
       <link>UID5045070650</link>
       <layer>0</layer>
-      <x>-239</x>
-      <y>3535</y>
+      <x>-218</x>
+      <y>4405</y>
       <width>95</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2227,8 +2227,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>lock diagram</text>
       <layer>0</layer>
-      <x>-539</x>
-      <y>3814</y>
+      <x>-518</x>
+      <y>4684</y>
       <width>102</width>
       <height>36</height>
       <color>#00DCE6</color>
@@ -2241,8 +2241,8 @@ and send response</text>
       <text>set event power change event</text>
       <link>UID7641650028</link>
       <layer>0</layer>
-      <x>-418</x>
-      <y>3814</y>
+      <x>-397</x>
+      <y>4684</y>
       <width>206</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2255,8 +2255,8 @@ and send response</text>
       <text>OnPowerChange</text>
       <link>UID1864495676</link>
       <layer>0</layer>
-      <x>-198</x>
-      <y>3815</y>
+      <x>-177</x>
+      <y>4685</y>
       <width>129</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2269,8 +2269,8 @@ and send response</text>
       <text>lock diagrams</text>
       <link>UID6105963009</link>
       <layer>0</layer>
-      <x>-59</x>
-      <y>3815</y>
+      <x>-38</x>
+      <y>4685</y>
       <width>109</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2283,8 +2283,8 @@ and send response</text>
       <text>lock diagram</text>
       <link>UID9013092575</link>
       <layer>0</layer>
-      <x>60</x>
-      <y>3815</y>
+      <x>81</x>
+      <y>4685</y>
       <width>102</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2297,8 +2297,8 @@ and send response</text>
       <text>lock by keyboard shortcut</text>
       <link>UID6442152339</link>
       <layer>0</layer>
-      <x>-246</x>
-      <y>3866</y>
+      <x>-225</x>
+      <y>4736</y>
       <width>179</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2310,8 +2310,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>lock by shortcut</text>
       <layer>0</layer>
-      <x>-388</x>
-      <y>3868</y>
+      <x>-367</x>
+      <y>4738</y>
       <width>119</width>
       <height>36</height>
       <color>#00DCE6</color>
@@ -2324,8 +2324,8 @@ and send response</text>
       <text>lock views</text>
       <link>UID1708360605</link>
       <layer>0</layer>
-      <x>172</x>
-      <y>3815</y>
+      <x>193</x>
+      <y>4685</y>
       <width>87</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2337,8 +2337,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>layers</text>
       <layer>0</layer>
-      <x>-553</x>
-      <y>4020</y>
+      <x>-501</x>
+      <y>4830</y>
       <width>61</width>
       <height>36</height>
       <color>#00DCE6</color>
@@ -2351,8 +2351,8 @@ and send response</text>
       <text>LayerOut</text>
       <link>UID4661843385</link>
       <layer>0</layer>
-      <x>-310</x>
-      <y>4025</y>
+      <x>-258</x>
+      <y>4830</y>
       <width>80</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2366,8 +2366,8 @@ and send response</text>
       <link>UID1557077053
 </link>
       <layer>0</layer>
-      <x>-459</x>
-      <y>4024</y>
+      <x>-407</x>
+      <y>4830</y>
       <width>129</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2379,8 +2379,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>DiagramView events</text>
       <layer>0</layer>
-      <x>-559</x>
-      <y>4176</y>
+      <x>-551</x>
+      <y>3422</y>
       <width>150</width>
       <height>36</height>
       <color>#00DCE6</color>
@@ -2393,8 +2393,8 @@ and send response</text>
       <text>MouseUp</text>
       <link>UID3026627853</link>
       <layer>0</layer>
-      <x>-129</x>
-      <y>4301</y>
+      <x>-86</x>
+      <y>3903</y>
       <width>83</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2407,8 +2407,8 @@ and send response</text>
       <text>paint</text>
       <link>UID5225221692</link>
       <layer>0</layer>
-      <x>-355</x>
-      <y>4149</y>
+      <x>-137</x>
+      <y>3598</y>
       <width>54</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2422,8 +2422,8 @@ and send response</text>
       <note>UID5891984730</note>
       <link>UID5891984730</link>
       <layer>0</layer>
-      <x>-264</x>
-      <y>4244</y>
+      <x>-221</x>
+      <y>3846</y>
       <width>139</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2436,8 +2436,8 @@ and send response</text>
       <text>MouseDown</text>
       <link>UID3419722424</link>
       <layer>0</layer>
-      <x>-366</x>
-      <y>4293</y>
+      <x>-323</x>
+      <y>3895</y>
       <width>100</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2450,8 +2450,8 @@ and send response</text>
       <text>MouseMove</text>
       <link>UID3677213415</link>
       <layer>0</layer>
-      <x>-247</x>
-      <y>4303</y>
+      <x>-204</x>
+      <y>3905</y>
       <width>99</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2690,8 +2690,8 @@ and send response</text>
       <link>UID4637488042
 </link>
       <layer>0</layer>
-      <x>-278</x>
-      <y>4146</y>
+      <x>-26</x>
+      <y>3612</y>
       <width>108</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2703,8 +2703,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>plugins</text>
       <layer>0</layer>
-      <x>-567</x>
-      <y>4443</y>
+      <x>-493</x>
+      <y>4982</y>
       <width>68</width>
       <height>36</height>
       <color>#00DCE6</color>
@@ -2731,8 +2731,8 @@ and send response</text>
       <text>Plugins</text>
       <link>UID8736657869</link>
       <layer>0</layer>
-      <x>-436</x>
-      <y>4482</y>
+      <x>-365</x>
+      <y>4978</y>
       <width>69</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2746,8 +2746,8 @@ and send response</text>
       <link>UID0290945800
 </link>
       <layer>0</layer>
-      <x>-173</x>
-      <y>4392</y>
+      <x>-99</x>
+      <y>4931</y>
       <width>133</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2761,8 +2761,8 @@ and send response</text>
       <link>UID0454615899
 </link>
       <layer>0</layer>
-      <x>-317</x>
-      <y>4425</y>
+      <x>-243</x>
+      <y>4976</y>
       <width>118</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2775,8 +2775,8 @@ and send response</text>
       <text>IKeyPressPlugin</text>
       <link>UID0290945802</link>
       <layer>0</layer>
-      <x>-148</x>
-      <y>4512</y>
+      <x>-74</x>
+      <y>5051</y>
       <width>125</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2789,8 +2789,8 @@ and send response</text>
       <text>FindUidPlugin</text>
       <link>UID0290845813</link>
       <layer>0</layer>
-      <x>8</x>
-      <y>4352</y>
+      <x>82</x>
+      <y>4891</y>
       <width>110</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2804,8 +2804,8 @@ and send response</text>
       <link>UID0290845812
 </link>
       <layer>0</layer>
-      <x>-169</x>
-      <y>4457</y>
+      <x>-95</x>
+      <y>4996</y>
       <width>152</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2818,8 +2818,8 @@ and send response</text>
       <text>node open action</text>
       <link>UID0290845815</link>
       <layer>0</layer>
-      <x>8</x>
-      <y>4399</y>
+      <x>82</x>
+      <y>4938</y>
       <width>129</width>
       <height>36</height>
       <color>#D2A0FF</color>
@@ -2833,8 +2833,8 @@ and send response</text>
       <link>UID0290845814
 </link>
       <layer>0</layer>
-      <x>16</x>
-      <y>4561</y>
+      <x>90</x>
+      <y>5100</y>
       <width>89</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -2847,8 +2847,8 @@ and send response</text>
       <text>key press action</text>
       <link>UID0290845814</link>
       <layer>0</layer>
-      <x>9</x>
-      <y>4495</y>
+      <x>83</x>
+      <y>5034</y>
       <width>123</width>
       <height>36</height>
       <color>#D2A0FF</color>
@@ -2862,8 +2862,8 @@ and send response</text>
       <link>UID0290845816
 </link>
       <layer>0</layer>
-      <x>8</x>
-      <y>4443</y>
+      <x>82</x>
+      <y>4982</y>
       <width>148</width>
       <height>36</height>
       <color>#D2A0FF</color>
@@ -3047,8 +3047,8 @@ DiagramView.Invalidate();
 print 'uid created'</note>
       <link>$</link>
       <layer>0</layer>
-      <x>-765</x>
-      <y>4746</y>
+      <x>-907</x>
+      <y>5051</y>
       <width>99</width>
       <height>39</height>
       <color>#FFFFB8</color>
@@ -3056,135 +3056,502 @@ print 'uid created'</note>
       <timemodify>2017-3-26 11:33:51</timemodify>
     </rectangle>
     <rectangle>
-      <id>1472</id>
+      <id>1487</id>
       <fontcolor>Black</fontcolor>
-      <text>UID1444131132</text>
+      <text>KeyDown</text>
+      <link>UID3114212444
+</link>
       <layer>0</layer>
-      <x>-638</x>
-      <y>4710</y>
+      <x>-172</x>
+      <y>3996</y>
+      <width>83</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:16:38</timecreate>
+      <timemodify>2017-3-26 12:16:43</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1488</id>
+      <fontcolor>Black</fontcolor>
+      <text>KeyUp</text>
+      <link>UID4343244331
+</link>
+      <layer>0</layer>
+      <x>-66</x>
+      <y>3996</y>
+      <width>65</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:17:27</timecreate>
+      <timemodify>2017-3-26 12:17:34</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1489</id>
+      <fontcolor>Black</fontcolor>
+      <text>KeyPress</text>
+      <link>UID1343430442
+</link>
+      <layer>0</layer>
+      <x>33</x>
+      <y>3996</y>
+      <width>83</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:18:04</timecreate>
+      <timemodify>2017-3-26 12:18:24</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1490</id>
+      <fontcolor>Black</fontcolor>
+      <text>DragDrop</text>
+      <link>UID3440232213
+</link>
+      <layer>0</layer>
+      <x>-323</x>
+      <y>4047</y>
+      <width>83</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:18:37</timecreate>
+      <timemodify>2017-3-26 12:18:49</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1491</id>
+      <fontcolor>Black</fontcolor>
+      <text>DragEnter</text>
+      <link>UID0040214033
+</link>
+      <layer>0</layer>
+      <x>-221</x>
+      <y>4071</y>
+      <width>87</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:19:19</timecreate>
+      <timemodify>2017-3-26 12:19:28</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1492</id>
+      <fontcolor>Black</fontcolor>
+      <text>Resize</text>
+      <link>UID2004324112
+</link>
+      <layer>0</layer>
+      <x>-177</x>
+      <y>3531</y>
+      <width>66</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:19:49</timecreate>
+      <timemodify>2017-3-26 12:19:54</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1506</id>
+      <fontcolor>Black</fontcolor>
+      <text>Deactivate</text>
+      <link>UID0104120032
+</link>
+      <layer>0</layer>
+      <x>5</x>
+      <y>3723</y>
+      <width>89</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:23:15</timecreate>
+      <timemodify>2017-3-26 12:23:23</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1486</id>
+      <fontcolor>Black</fontcolor>
+      <text>ProcessCmdKey</text>
+      <link>UID1444131132
+</link>
+      <layer>0</layer>
+      <x>-329</x>
+      <y>3972</y>
+      <width>126</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:15:41</timecreate>
+      <timemodify>2017-3-26 12:15:46</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1485</id>
+      <fontcolor>Black</fontcolor>
+      <text>MouseWheel</text>
+      <link>UID1111344210
+</link>
+      <layer>0</layer>
+      <x>15</x>
+      <y>3901</y>
+      <width>104</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:14:30</timecreate>
+      <timemodify>2017-3-26 12:14:54</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1522</id>
+      <fontcolor>Black</fontcolor>
+      <text>cut</text>
+      <link>UID4343312404</link>
+      <layer>0</layer>
+      <x>-186</x>
+      <y>5209</y>
+      <width>42</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:48:40</timecreate>
+      <timemodify>2017-3-26 12:48:46</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1524</id>
+      <fontcolor>Black</fontcolor>
+      <text>UID3101342400</text>
+      <layer>0</layer>
+      <x>-754</x>
+      <y>4883</y>
       <width>124</width>
       <height>36</height>
       <color>#FFFFB8</color>
-      <timecreate>2017-3-26 11:31:48</timecreate>
-      <timemodify>2017-3-26 11:31:48</timemodify>
+      <timecreate>2017-3-26 12:52:49</timecreate>
+      <timemodify>2017-3-26 12:52:49</timemodify>
     </rectangle>
     <rectangle>
-      <id>1474</id>
+      <id>1496</id>
       <fontcolor>Black</fontcolor>
-      <text>UID3114212444</text>
+      <text>UID4211424233</text>
       <layer>0</layer>
-      <x>-638</x>
-      <y>4756</y>
+      <x>-756</x>
+      <y>5295</y>
       <width>124</width>
       <height>36</height>
       <color>#FFFFB8</color>
-      <timecreate>2017-3-26 11:31:53</timecreate>
-      <timemodify>2017-3-26 11:31:53</timemodify>
+      <timecreate>2017-3-26 12:21:57</timecreate>
+      <timemodify>2017-3-26 12:21:57</timemodify>
     </rectangle>
     <rectangle>
-      <id>1475</id>
+      <id>1497</id>
       <fontcolor>Black</fontcolor>
-      <text>UID4343244331</text>
+      <text>UID0344201104</text>
       <layer>0</layer>
-      <x>-638</x>
-      <y>4802</y>
+      <x>-756</x>
+      <y>5341</y>
       <width>124</width>
       <height>36</height>
       <color>#FFFFB8</color>
-      <timecreate>2017-3-26 11:31:56</timecreate>
-      <timemodify>2017-3-26 11:31:56</timemodify>
+      <timecreate>2017-3-26 12:21:59</timecreate>
+      <timemodify>2017-3-26 12:21:59</timemodify>
     </rectangle>
     <rectangle>
-      <id>1477</id>
+      <id>1508</id>
       <fontcolor>Black</fontcolor>
-      <text>UID1343430442</text>
+      <text>Activated</text>
+      <link>UID0421401402
+</link>
       <layer>0</layer>
-      <x>-638</x>
-      <y>4848</y>
-      <width>124</width>
+      <x>-91</x>
+      <y>3723</y>
+      <width>81</width>
       <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 11:31:59</timecreate>
-      <timemodify>2017-3-26 11:31:59</timemodify>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:26:35</timecreate>
+      <timemodify>2017-3-26 12:26:44</timemodify>
     </rectangle>
     <rectangle>
-      <id>1478</id>
+      <id>1507</id>
       <fontcolor>Black</fontcolor>
-      <text>UID3440232213</text>
+      <text>FormClosed</text>
+      <link>UID2411004144</link>
       <layer>0</layer>
-      <x>-638</x>
-      <y>4894</y>
-      <width>124</width>
+      <x>-56</x>
+      <y>3662</y>
+      <width>99</width>
       <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 11:32:01</timecreate>
-      <timemodify>2017-3-26 11:32:01</timemodify>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:26:00</timecreate>
+      <timemodify>2017-3-26 12:26:09</timemodify>
     </rectangle>
     <rectangle>
-      <id>1479</id>
+      <id>1510</id>
       <fontcolor>Black</fontcolor>
-      <text>UID0040214033</text>
+      <text>form</text>
       <layer>0</layer>
-      <x>-638</x>
-      <y>4940</y>
-      <width>124</width>
+      <x>-297</x>
+      <y>3588</y>
+      <width>51</width>
       <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 11:32:02</timecreate>
-      <timemodify>2017-3-26 11:32:02</timemodify>
+      <color>#A5A5A5</color>
+      <timecreate>2017-3-26 12:29:01</timecreate>
+      <timemodify>2017-3-26 12:29:01</timemodify>
     </rectangle>
     <rectangle>
-      <id>1480</id>
+      <id>1509</id>
       <fontcolor>Black</fontcolor>
-      <text>UID2004324112</text>
+      <text>Load</text>
+      <link>UID0112423443</link>
       <layer>0</layer>
-      <x>-638</x>
-      <y>4986</y>
-      <width>124</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 11:32:04</timecreate>
-      <timemodify>2017-3-26 11:32:04</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1481</id>
-      <fontcolor>Black</fontcolor>
-      <text>UID1111344210</text>
-      <layer>0</layer>
-      <x>-638</x>
-      <y>4664</y>
-      <width>124</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 11:32:34</timecreate>
-      <timemodify>2017-3-26 11:32:34</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1482</id>
-      <fontcolor>Black</fontcolor>
-      <text>events</text>
-      <layer>0</layer>
-      <x>-429</x>
-      <y>4716</y>
-      <width>64</width>
-      <height>36</height>
-      <color>#00DCE6</color>
-      <timecreate>2017-3-26 11:32:57</timecreate>
-      <timemodify>2017-3-26 11:32:57</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1483</id>
-      <fontcolor>Black</fontcolor>
-      <text>paint</text>
-      <link>UID5225221692</link>
-      <layer>0</layer>
-      <x>-302</x>
-      <y>4683</y>
+      <x>-142</x>
+      <y>3662</y>
       <width>54</width>
       <height>36</height>
       <color>#D9CCFF</color>
-      <timecreate>2017-3-26 11:41:23</timecreate>
-      <timemodify>2017-3-26 11:41:23</timemodify>
+      <timecreate>2017-3-26 12:28:29</timecreate>
+      <timemodify>2017-3-26 12:28:37</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1513</id>
+      <fontcolor>Black</fontcolor>
+      <text>InitializeComponent</text>
+      <link>UID4012344444</link>
+      <layer>0</layer>
+      <x>-54</x>
+      <y>3457</y>
+      <width>145</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:40:52</timecreate>
+      <timemodify>2017-3-26 12:41:15</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1514</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-486</x>
+      <y>3596</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-3-26 12:42:47</timecreate>
+      <timemodify>2017-3-26 12:42:47</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1521</id>
+      <fontcolor>Black</fontcolor>
+      <text>copy</text>
+      <link>UID4434132203</link>
+      <layer>0</layer>
+      <x>-186</x>
+      <y>5147</y>
+      <width>53</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:48:18</timecreate>
+      <timemodify>2017-3-26 12:48:22</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1505</id>
+      <fontcolor>Black</fontcolor>
+      <text>MoveTimer_Tick</text>
+      <link>UID2144001341</link>
+      <layer>0</layer>
+      <x>-83</x>
+      <y>3542</y>
+      <width>126</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:22:49</timecreate>
+      <timemodify>2017-3-26 12:23:01</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1512</id>
+      <fontcolor>Black</fontcolor>
+      <text>Constructor</text>
+      <link>UID0302011231
+</link>
+      <layer>0</layer>
+      <x>-185</x>
+      <y>3461</y>
+      <width>95</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:39:56</timecreate>
+      <timemodify>2017-3-26 12:40:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1515</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-486</x>
+      <y>3901</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-3-26 12:42:49</timecreate>
+      <timemodify>2017-3-26 12:42:49</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1516</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-486</x>
+      <y>3985</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-3-26 12:42:50</timecreate>
+      <timemodify>2017-3-26 12:42:50</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1517</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-486</x>
+      <y>4058</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-3-26 12:42:51</timecreate>
+      <timemodify>2017-3-26 12:42:51</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1518</id>
+      <fontcolor>Black</fontcolor>
+      <text>clipboard operations</text>
+      <layer>0</layer>
+      <x>-511</x>
+      <y>5206</y>
+      <width>148</width>
+      <height>36</height>
+      <color>#00DCE6</color>
+      <timecreate>2017-3-26 12:47:00</timecreate>
+      <timemodify>2017-3-26 12:47:00</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1520</id>
+      <fontcolor>Black</fontcolor>
+      <text>DiagramView</text>
+      <link>UID5701725971</link>
+      <layer>0</layer>
+      <x>-330</x>
+      <y>5204</y>
+      <width>106</width>
+      <height>36</height>
+      <color>#FF500A</color>
+      <timecreate>2017-3-26 12:47:59</timecreate>
+      <timemodify>2017-3-26 12:47:59</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1523</id>
+      <fontcolor>Black</fontcolor>
+      <text>Paste</text>
+      <link>UID3240032142</link>
+      <layer>0</layer>
+      <x>-186</x>
+      <y>5275</y>
+      <width>59</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-3-26 12:48:55</timecreate>
+      <timemodify>2017-3-26 12:49:09</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1525</id>
+      <fontcolor>Black</fontcolor>
+      <text>UID1440244333</text>
+      <layer>0</layer>
+      <x>-754</x>
+      <y>4929</y>
+      <width>124</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-26 12:52:51</timecreate>
+      <timemodify>2017-3-26 12:52:51</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1526</id>
+      <fontcolor>Black</fontcolor>
+      <text>UID3132133201</text>
+      <layer>0</layer>
+      <x>-754</x>
+      <y>4975</y>
+      <width>124</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-26 12:52:52</timecreate>
+      <timemodify>2017-3-26 12:52:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1527</id>
+      <fontcolor>Black</fontcolor>
+      <text>UID1014143422</text>
+      <layer>0</layer>
+      <x>-754</x>
+      <y>5021</y>
+      <width>124</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-26 12:52:53</timecreate>
+      <timemodify>2017-3-26 12:52:53</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1528</id>
+      <fontcolor>Black</fontcolor>
+      <text>UID2410114104</text>
+      <layer>0</layer>
+      <x>-754</x>
+      <y>5067</y>
+      <width>124</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-26 12:52:55</timecreate>
+      <timemodify>2017-3-26 12:52:55</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1529</id>
+      <fontcolor>Black</fontcolor>
+      <text>UID3204111432</text>
+      <layer>0</layer>
+      <x>-754</x>
+      <y>5113</y>
+      <width>124</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-26 12:52:59</timecreate>
+      <timemodify>2017-3-26 12:52:59</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1530</id>
+      <fontcolor>Black</fontcolor>
+      <text>UID4112021202</text>
+      <layer>0</layer>
+      <x>-754</x>
+      <y>5159</y>
+      <width>124</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-26 12:53:01</timecreate>
+      <timemodify>2017-3-26 12:53:01</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1531</id>
+      <fontcolor>Black</fontcolor>
+      <text>UID1120313432</text>
+      <layer>0</layer>
+      <x>-754</x>
+      <y>5205</y>
+      <width>124</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-26 12:53:02</timecreate>
+      <timemodify>2017-3-26 12:53:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1532</id>
+      <fontcolor>Black</fontcolor>
+      <text>UID2341324212</text>
+      <layer>0</layer>
+      <x>-754</x>
+      <y>5251</y>
+      <width>124</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-3-26 12:53:05</timecreate>
+      <timemodify>2017-3-26 12:53:05</timemodify>
     </rectangle>
   </rectangles>
   <lines>
@@ -4150,13 +4517,6 @@ print 'uid created'</note>
       <layer>0</layer>
     </line>
     <line>
-      <start>281</start>
-      <end>279</end>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
       <start>285</start>
       <end>280</end>
       <arrow>0</arrow>
@@ -4166,13 +4526,6 @@ print 'uid created'</note>
     <line>
       <start>283</start>
       <end>285</end>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>283</start>
-      <end>279</end>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
@@ -4381,8 +4734,183 @@ print 'uid created'</note>
       <layer>0</layer>
     </line>
     <line>
-      <start>1483</start>
-      <end>1482</end>
+      <start>1485</start>
+      <end>280</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1487</start>
+      <end>1486</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1488</start>
+      <end>1487</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1489</start>
+      <end>1488</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1491</start>
+      <end>1490</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>281</start>
+      <end>1510</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1509</start>
+      <end>1510</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1508</start>
+      <end>1509</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1506</start>
+      <end>1508</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1507</start>
+      <end>1509</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1505</start>
+      <end>281</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1492</start>
+      <end>1510</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1512</start>
+      <end>1510</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1513</start>
+      <end>1512</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1514</start>
+      <end>279</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1514</start>
+      <end>1510</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1515</start>
+      <end>283</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1516</start>
+      <end>1486</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1517</start>
+      <end>1490</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1517</start>
+      <end>279</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1516</start>
+      <end>279</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1515</start>
+      <end>279</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1520</start>
+      <end>1518</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1521</start>
+      <end>1520</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1522</start>
+      <end>1520</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1523</start>
+      <end>1520</end>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>

@@ -139,7 +139,7 @@ namespace Diagram
         
         public bool isFullScreen = false;
 
-        private void InitializeComponent()
+        private void InitializeComponent() //UID4012344444
         {
             this.components = new System.ComponentModel.Container();
             this.DSave = new System.Windows.Forms.SaveFileDialog();
@@ -230,7 +230,7 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // FORM Constructor
+        // FORM Constructor UID0302011231
         public DiagramView(Main main, Diagram diagram, DiagramView parentView = null)
         {
             this.main = main;
@@ -280,7 +280,7 @@ namespace Diagram
             }           
         }
 
-        // FORM Load event -
+        // FORM Load event - UID0112423443
         public void DiagramViewLoad(object sender, EventArgs e)
         {
             // predefined window position
@@ -1627,7 +1627,7 @@ namespace Diagram
             this.stateCoping = false;
         }
 
-        // EVENT Mouse Whell
+        // EVENT Mouse Whell UID1111344210
         public void DiagramApp_MouseWheel(object sender, MouseEventArgs e)                             // [MOUSE] [WHELL] [EVENT]
         {
 #if DEBUG
@@ -1712,7 +1712,7 @@ namespace Diagram
             }
         }
 
-        // EVENT Shortcuts
+        // EVENT Shortcuts UID1444131132
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)                           // [KEYBOARD] [EVENT]
         {
 
@@ -2143,7 +2143,7 @@ namespace Diagram
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        // EVENT Key down
+        // EVENT Key down UID3114212444
         public void DiagramApp_KeyDown(object sender, KeyEventArgs e)                                  // [KEYBOARD] [DOWN] [EVENT]
         {
 
@@ -2205,7 +2205,7 @@ namespace Diagram
 
         }
 
-        // EVENT Key up
+        // EVENT Key up UID4343244331
         public void DiagramApp_KeyUp(object sender, KeyEventArgs e)
         {
 
@@ -2248,7 +2248,7 @@ namespace Diagram
             }
         }                                 // [KEYBOARD] [UP] [EVENT]
 
-        // EVENT Keypress
+        // EVENT Keypress UID1343430442
         public void DiagramApp_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -2293,7 +2293,7 @@ namespace Diagram
             }
         }                         // [KEYBOARD] [PRESS] [EVENT]
 
-        // EVENT DROP file
+        // EVENT DROP file UID3440232213
         public void DiagramApp_DragDrop(object sender, DragEventArgs e)                                // [DROP] [DROP-FILE] [EVENT]
         {
 
@@ -2405,7 +2405,7 @@ namespace Diagram
             }
         }
 
-        // EVENT DROP drag enter
+        // EVENT DROP drag enter UID0040214033
         public void DiagramApp_DragEnter(object sender, DragEventArgs e)                               // [DRAG] [EVENT]
         {
 
@@ -2416,7 +2416,7 @@ namespace Diagram
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
 
-        // EVENT Resize
+        // EVENT Resize UID2004324112
         public void DiagramApp_Resize(object sender, EventArgs e)                                      // [RESIZE] [EVENT]
         {
 
@@ -2444,7 +2444,7 @@ namespace Diagram
 			}
         }
 
-        // EVENT MOVE TIMER for move view when node is draged to window edge
+        // EVENT MOVE TIMER for move view when node is draged to window edge UID2144001341
         public void MoveTimer_Tick(object sender, EventArgs e)
         {
 
@@ -2525,7 +2525,7 @@ namespace Diagram
             }
         }                                      // [MOVE] [TIMER] [EVENT]
 
-        // EVENT Deactivate - lost focus
+        // EVENT Deactivate - lost focus UID0104120032
         public void DiagramApp_Deactivate(object sender, EventArgs e)                                  // [FOCUS]
         {
 
@@ -3705,13 +3705,13 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // VIEW CLOSE
+        // VIEW CLOSE UID2411004144
         private void DiagramView_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.diagram.CloseView(this);
         }
 
-        // VIEW REFRESH
+        // VIEW REFRESH UID0421401402
         private void DiagramView_Activated(object sender, EventArgs e)
         {
             /*if (this.diagram.isLocked())
@@ -4452,7 +4452,7 @@ namespace Diagram
             }
         }
 
-        // NODE copy
+        // NODE copy UID4434132203
         public bool Copy()
         {
             if (this.selectedNodes.Count() > 0)
@@ -4482,7 +4482,7 @@ namespace Diagram
             return false;
         }
 
-        // NODE cut
+        // NODE cut UID4343312404
         public bool Cut()
         {
             DataObject data = new DataObject();
@@ -4491,7 +4491,12 @@ namespace Diagram
                 string copytext = "";
                 foreach (Node rec in this.selectedNodes)
                 {
-                    copytext = copytext + rec.name + "\n";
+                    copytext = copytext + rec.name;
+
+                    if (this.selectedNodes.Count() > 1)
+                    {
+                        copytext = copytext + "\n";
+                    }
                 }
 
                 data.SetData(copytext);
@@ -4507,7 +4512,7 @@ namespace Diagram
             return true;
         }
 
-        // NODE paste
+        // NODE paste UID3240032142
         public bool Paste(Position position)
         {
             DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
