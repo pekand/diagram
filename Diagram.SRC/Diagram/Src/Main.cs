@@ -84,12 +84,14 @@ namespace Diagram
             {
                 plugins.LoadPlugins(pluginsLocalDirectory);
             }
-
+            
+#if !DEBUG
             string pluginsGlobalDirectory = Os.Combine(optionsFile.GetGlobalConfigDirectory(), this.pluginsDirectoryName);
             if (Os.DirectoryExists(pluginsGlobalDirectory))
             {
                 plugins.LoadPlugins(pluginsGlobalDirectory);
             }
+#endif
 
             // create local server for comunication between local instances UID2964640610
             server = new Server(this);

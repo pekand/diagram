@@ -60,7 +60,7 @@ namespace Diagram
                     }
                     catch (ReflectionTypeLoadException ex)
                     {
-                        Program.log.Write("Load types from " + assembly.FullName + "plugin error  : " + ex.Message);
+                        Program.log.Write("Load types from " + assembly.FullName + ": location:"+ assembly.Location + "plugin error  : " + ex.Message);
 
                         foreach (var item in ex.LoaderExceptions)
                         {                            
@@ -92,6 +92,9 @@ namespace Diagram
                             continue;
                         }
 
+                        // original assembly location for mapping resources
+                        plugin.SetLocation(assembly.Location);
+
                         // add log object to plugin and allow debug messages from plugin
                         plugin.SetLog(Program.log);
 
@@ -100,6 +103,7 @@ namespace Diagram
 
                         Program.log.Write("Loading plugin: " + plugin.Name);
 
+                        // add plugin to category
 
                         if (type.GetInterface(typeof(INodeOpenPlugin).FullName) != null)
                         {
@@ -127,7 +131,7 @@ namespace Diagram
 
         /// <summary>
         /// run event for all registred plugins in NodeOpenPlugins </summary>
-        public bool ClickOnNodeAction(Diagram diagram, Node node) 
+        public bool ClickOnNodeAction(Diagram diagram, DiagramView diagramView, Node node) 
         {
             bool stopNextAction = false;
                            
@@ -137,7 +141,7 @@ namespace Diagram
                 {
                     try
                     {
-                        stopNextAction = plugin.ClickOnNodeAction(diagram, node);
+                        stopNextAction = plugin.ClickOnNodeAction(diagram, diagramView, node);
                         if (stopNextAction)
                         {
                             break;
@@ -155,7 +159,7 @@ namespace Diagram
 
         /// <summary>
         /// run event for all registred plugins in KeyPressPlugins </summary>
-        public bool KeyPressAction(Diagram diagram, String key)
+        public bool KeyPressAction(Diagram diagram, DiagramView diagramView, String key)
         {
             bool stopNextAction = false;
 
@@ -165,7 +169,7 @@ namespace Diagram
                 {
                     try
                     {
-                        stopNextAction = plugin.KeyPressAction(diagram, key);
+                        stopNextAction = plugin.KeyPressAction(diagram, diagramView, key);
                         if (stopNextAction)
                         {
                             break;

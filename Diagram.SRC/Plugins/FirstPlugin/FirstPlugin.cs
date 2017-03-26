@@ -10,8 +10,6 @@ namespace Plugin
 {
     public class FirstPlugin : INodeOpenPlugin, IKeyPressPlugin, IOpenDiagramPlugin //UID0290845814
     {
-        #region IPlugin Members 
-
         private static int counter = 0;
 
         public string Name
@@ -30,6 +28,13 @@ namespace Plugin
             }
         }
 
+        private string location = null;
+
+        public void SetLocation(string location)
+        {
+            this.location = location;
+        }
+
         private Log log = null;
 
         public void SetLog(Log log)
@@ -37,25 +42,23 @@ namespace Plugin
             this.log = log;
         }
 
-        public bool ClickOnNodeAction(Diagram.Diagram diagram, Node node)
+        public bool ClickOnNodeAction(Diagram.Diagram diagram, DiagramView diagramview, Node node)
         {
             log.Write("Do Something in First Plugin:" + (counter++).ToString());
 
-            return true;
+            return false;
         }
 
-        public bool KeyPressAction(Diagram.Diagram diagram, String key)
+        public bool KeyPressAction(Diagram.Diagram diagram, DiagramView diagramview, String Key)
         {
             log.Write("Do Something in First Plugin:" + (counter++).ToString());
 
-            return true;
+            return false;
         }
 
         public void OpenDiagramAction(Diagram.Diagram diagram)
         {
             log.Write("Open diagram action fired from first plugin");
         }
-
-        #endregion
     }
 }

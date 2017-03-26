@@ -8,6 +8,6 @@ namespace Diagram
 {
     public interface IKeyPressPlugin : IDiagramPlugin  //UID0290945802
     {
-        bool KeyPressAction(Diagram diagram, String key);
+        bool KeyPressAction(Diagram diagram, DiagramView diagramview, String Key);
     }
 }

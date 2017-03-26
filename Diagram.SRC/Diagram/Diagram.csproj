@@ -158,7 +158,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Src\Components\Server.cs" />
-    <Compile Include="Src\Components\Script.cs" />
     <Compile Include="Src\Forms\ColorPickerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,13 +232,7 @@
     <Compile Include="Src\Tools\Translations.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="IronPython, Version=2.7.7.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
-    <Reference Include="IronPython.Modules, Version=2.7.7.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
-    <Reference Include="IronPython.SQLite, Version=2.7.7.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
-    <Reference Include="IronPython.Wpf, Version=2.7.7.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Scripting, Version=1.1.2.22, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Scripting.Metadata, Version=1.1.2.22, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
     <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
       <HintPath>dll\Ncalc 1.3.8\NCalc.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>

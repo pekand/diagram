@@ -9,7 +9,6 @@ using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Drawing.Imaging;
 using System.Collections.Specialized;
-using System.Text;
 
 #if DEBUG
 using System.Diagnostics;
@@ -1725,8 +1724,12 @@ namespace Diagram
                 return false;
             }
 
+            string key = KeyMap.parseKey(keyData);
+
+            bool stopNextAction = this.main.plugins.KeyPressAction(this.diagram, this, key); //UID0290845814
+
             /*
-             * [doc] order : ProcessCmdKey, DiagramApp_KeyDown, DiagramApp_KeyPress, DiagramApp_KeyUp;
+             * order : ProcessCmdKey, DiagramApp_KeyDown, DiagramApp_KeyPress, DiagramApp_KeyUp;
              */
 
             if (KeyMap.parseKey(KeyMap.selectAllElements, keyData) ) // [KEY] [CTRL+A] select all
@@ -2020,12 +2023,6 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.evaluateNodes, keyData)) // [KEY] [F9] evaluate python script for selected nodes by stamp in link
-            {
-                this.Evaluate();
-                return true;
-            }
-
             if (KeyMap.parseKey(KeyMap.fullScreean, keyData)) // [KEY] [F11] evaluate python script for selected nodes by stamp in link
             {
                 this.FullScreenSwitch();
@@ -2251,8 +2248,6 @@ namespace Diagram
         // EVENT Keypress UID1343430442
         public void DiagramApp_KeyPress(object sender, KeyPressEventArgs e)
         {
-
-            bool stopNextAction = this.main.plugins.KeyPressAction(this.diagram, ""); //UID0290845814
 
 #if DEBUG
             this.LogEvent("KeyPress");
@@ -3952,7 +3947,7 @@ namespace Diagram
 
 #if DEBUG
             var result = 0;
-            result = this.OpenLink(rec, clipboard);
+            result = this.OpenLink(rec);
             if ((int)result == 1)
             {
                 this.diagram.EditNode(rec);
@@ -3987,12 +3982,12 @@ namespace Diagram
         }
 
         // NODE Open Link
-        public int OpenLink(Node rec, String clipboard = "") //UID9292140736
+        public int OpenLink(Node rec) //UID9292140736
         {
             if (rec != null)
             {
 
-                bool stopNextAction = this.main.plugins.ClickOnNodeAction(this.diagram, rec); //UID0290845815
+                bool stopNextAction = this.main.plugins.ClickOnNodeAction(this.diagram, this, rec); //UID0290845815
 
                 if (stopNextAction) {
                     // stop execution from plugin
@@ -4029,11 +4024,7 @@ namespace Diagram
                     string fileName = "";
                     string searchString = "";
 
-                    if (rec.link.Trim() == "script" || rec.link.Trim() == "macro" || rec.link.Trim() == "$")  // OPEN SCRIPT node with link "script" is executed as script
-                    {
-                        this.Evaluate(rec, clipboard);
-                    }
-                    else if (Patterns.isGotoIdCommand(rec.link)) // GOTO position
+                    if (Patterns.isGotoIdCommand(rec.link)) // GOTO position
                     {
                         Program.log.Write("go to position in diagram " + rec.link);
                         Node node = this.diagram.GetNodeByID(Patterns.getGotoIdCommand(rec.link));
@@ -4921,7 +4912,6 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
 
-
                 return true;
             }
             else
@@ -5768,75 +5758,6 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
             }
-        }
-
-        /*************************************************************************************************************************/
-
-        // SCRIPT evaluate python script in nodes signed with stamp in node link [F9]
-        private void Evaluate()
-        {
-            Nodes nodes = null;
-
-            if (this.selectedNodes.Count() > 0) {
-                nodes = new Nodes(this.selectedNodes);
-            } else {
-                nodes = new Nodes(this.diagram.GetAllNodes());
-            }
-            // remove nodes whit link other then [ ! | eval | evaluate | !#num_order | eval#num_order |  evaluate#num_order]
-            // higest number is executed first
-            Regex regex = new Regex(@"^\s*(eval(uate)|!){1}(#\w+){0,1}\s*$");
-            nodes.RemoveAll(n => !regex.Match(n.link).Success);
-
-            nodes.OrderByLink();
-            nodes.Reverse();
-
-            String clipboard = Os.GetTextFormClipboard();
-
-#if !DEBUG
-            var worker = new BackgroundWorker
-            {
-                WorkerSupportsCancellation = true
-            };
-
-            worker.DoWork += (sender, e) =>
-            {
-#endif
-            this.Evaluate(nodes, clipboard);
-#if !DEBUG
-            };
-            worker.RunWorkerAsync();
-#endif
-
-        }
-
-        // SCRIPT evaluate python script in node name or in node note in nodes
-        private void Evaluate(Nodes nodes, string clipboard = "")
-        {
-            Program.log.Write("diagram: openlink: run macro");
-            Script script = new Script();
-            script.SetDiagram(this.diagram);
-            script.SetDiagramView(this);
-            script.SetClipboard(clipboard);
-            string body = "";
-
-            foreach (Node node in nodes)
-            {
-                body = node.note.Trim() != "" ? node.note : node.name;
-                script.RunScript(body);
-            }
-        }
-
-        // SCRIPT evaluate python script in node name or in node note in node
-        private void Evaluate(Node node, string clipboard = "")
-        {
-            // run macro
-            Program.log.Write("diagram: openlink: run macro");
-            Script script = new Script();
-            script.SetDiagram(this.diagram);
-            script.SetDiagramView(this);
-            script.SetClipboard(clipboard);
-            string body = node.note.Trim() != "" ? node.note : node.name;
-            script.RunScript(body);
         }
 
         /*************************************************************************************************************************/
