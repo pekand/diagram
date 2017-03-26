@@ -52,7 +52,6 @@ namespace Diagram
         public static string pageDown = "PAGEDOWN";
         public static string editNodeName =  "F2";
         public static string editNodeLink = "F4";
-        public static string evaluateNodes = "F9";
         public static string fullScreean = "F11";
         public static string openEditForm = "CTRL+E";
         public static string editOrLayerIn = "ENTER";
@@ -227,6 +226,33 @@ namespace Diagram
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// conver pressed key to string</summary>
+        public static string parseKey(Keys keyData)
+        {
+
+            KeysConverter kc = new KeysConverter();
+            string keyChar = kc.ConvertToString(keyData);
+
+            keyChar = keyChar.Replace("Control", "CTRL");
+            keyChar = keyChar.Replace("Alt", "ALT");
+            keyChar = keyChar.Replace("Shift", "SHIFT");
+            keyChar = keyChar.Replace("Left", "LEFT");
+            keyChar = keyChar.Replace("Right", "RIGHT");
+            keyChar = keyChar.Replace("Up", "UP");
+            keyChar = keyChar.Replace("Down", "DOWN");
+
+            keyChar = keyChar.Replace("Del", "UP");
+            keyChar = keyChar.Replace("Ins", "INS");
+            keyChar = keyChar.Replace("End", "END");
+            keyChar = keyChar.Replace("Home", "HOME");
+            keyChar = keyChar.Replace("PgDn", "PAGEDOWN");
+            keyChar = keyChar.Replace("PgUP", "PAGEUP");
+
+            Program.log.Write("Key pressed:"+ keyChar);
+            return keyChar;
         }
     }
 }

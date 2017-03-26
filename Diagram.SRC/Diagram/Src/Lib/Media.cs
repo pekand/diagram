@@ -163,9 +163,10 @@ namespace Diagram
                     if(form.WindowState == FormWindowState.Minimized) {
                         form.WindowState = FormWindowState.Normal;
                     }
-                    form.TopMost = true;
-                    form.BringToFront();
+                    form.TopMost = true;                    
                     form.TopMost = false;
+                    form.BringToFront();
+                    form.Focus();
                 }
             });
         }

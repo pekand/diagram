@@ -10,10 +10,8 @@ using System.IO;
 
 namespace Plugin
 {
-    public class FindUidPlugin : INodeOpenPlugin
+    public class FindUidPlugin : INodeOpenPlugin, IOpenDiagramPlugin //UID0290845813
     {
-        #region IPlugin Members 
-
         public string Name
         {
             get
@@ -28,6 +26,20 @@ namespace Plugin
             {
                 return "1.0";
             }
+        }
+
+        private string location = null;
+
+        public void SetLocation(string location)
+        {
+            this.location = location;
+        }
+
+        private Log log = null;
+
+        public void SetLog(Log log)
+        {
+            this.log = log;
         }
 
         public bool IsUid(string text)
@@ -47,7 +59,7 @@ namespace Plugin
             Os.OpenFileOnPosition(file, pos);
         }
 
-        public bool ClickOnNodeAction(Diagram.Diagram diagram, Node node)
+        public bool ClickOnNodeAction(Diagram.Diagram diagram, DiagramView diagramview, Node node)
         {
             if (diagram.FileName !="" && this.IsUid(node.link.Trim())) {
                 string uid = node.link.Trim();
@@ -77,6 +89,9 @@ namespace Plugin
             return false;
         }
 
-        #endregion
+        public void OpenDiagramAction(Diagram.Diagram diagram)
+        {
+            this.log.Write("Diagram is changed");
+        }
     }
 }

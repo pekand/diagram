@@ -12,3 +12,4 @@ Documentation/Doxygen/html
 *.pfx
 /Diagram.SRC/Plugins/FirstPlugin/obj
 /Diagram.SRC/Plugins/FindUidPlugin/obj
+/Diagram.SRC/Plugins/ScriptingPlugin/obj

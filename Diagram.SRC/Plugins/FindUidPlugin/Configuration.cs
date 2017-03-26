@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Diagram
+namespace Plugin
 {
-    public interface IPlugin
+    class Configuration
     {
-        string Name { get; }
-        void Do();
     }
 }

@@ -9,7 +9,6 @@ using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Drawing.Imaging;
 using System.Collections.Specialized;
-using System.Text;
 
 #if DEBUG
 using System.Diagnostics;
@@ -139,7 +138,7 @@ namespace Diagram
         
         public bool isFullScreen = false;
 
-        private void InitializeComponent()
+        private void InitializeComponent() //UID4012344444
         {
             this.components = new System.ComponentModel.Container();
             this.DSave = new System.Windows.Forms.SaveFileDialog();
@@ -230,7 +229,7 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // FORM Constructor
+        // FORM Constructor UID0302011231
         public DiagramView(Main main, Diagram diagram, DiagramView parentView = null)
         {
             this.main = main;
@@ -280,10 +279,9 @@ namespace Diagram
             }           
         }
 
-        // FORM Load event -
+        // FORM Load event - UID0112423443
         public void DiagramViewLoad(object sender, EventArgs e)
         {
-
             // predefined window position
             if (this.diagram.options.restoreWindow)
             {
@@ -763,7 +761,7 @@ namespace Diagram
         {
 
 #if DEBUG
-            this.LogEvent("MouseDouble");
+            this.LogEvent("MouseDoubleClick");
 #endif
 
             this.stateDblclick = true;
@@ -1479,7 +1477,7 @@ namespace Diagram
                 if (this.sourceNode == TargetNode
                     && this.stateSourceNodeAlreadySelected)
                 {
-                    this.Rename();
+                    this.Rename(); //UID3101342400
                 }
 
             }
@@ -1520,6 +1518,15 @@ namespace Diagram
                         TargetNode
                     );
 
+                    if (sourceNode.name == "")
+                    {
+                        sourceNode.transparent = true;
+                    }
+                    if (TargetNode.name == "")
+                    {
+                        TargetNode.transparent = true;
+                    }
+
                     if (newLine != null) {
                         this.diagram.Unsave("create", newLine, this.shift, this.currentLayer.id);
                         this.diagram.InvalidateDiagram();
@@ -1537,6 +1544,12 @@ namespace Diagram
                         newNode
                     );
 
+                    if (sourceNode.name == "")
+                    {
+                        sourceNode.transparent = true;
+                    }
+                    newNode.transparent = true;
+
                     this.diagram.Unsave("create", newNode, newLine, this.shift, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
                 }
@@ -1552,6 +1565,12 @@ namespace Diagram
                         newNode,
                         TargetNode
                     );
+
+                    if (TargetNode.name == "")
+                    {
+                        TargetNode.transparent = true;
+                    }
+                    newNode.transparent = true;
 
                     this.diagram.Unsave("create", newNode, newLine, this.shift, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
@@ -1581,6 +1600,9 @@ namespace Diagram
                         node2
                     ));
 
+                    node1.transparent = true;
+                    node2.transparent = true;
+
                     this.diagram.Unsave("create", nodes, lines, this.shift, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
                 }
@@ -1604,7 +1626,7 @@ namespace Diagram
             this.stateCoping = false;
         }
 
-        // EVENT Mouse Whell
+        // EVENT Mouse Whell UID1111344210
         public void DiagramApp_MouseWheel(object sender, MouseEventArgs e)                             // [MOUSE] [WHELL] [EVENT]
         {
 #if DEBUG
@@ -1689,7 +1711,7 @@ namespace Diagram
             }
         }
 
-        // EVENT Shortcuts
+        // EVENT Shortcuts UID1444131132
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)                           // [KEYBOARD] [EVENT]
         {
 
@@ -1702,8 +1724,12 @@ namespace Diagram
                 return false;
             }
 
+            string key = KeyMap.parseKey(keyData);
+
+            bool stopNextAction = this.main.plugins.KeyPressAction(this.diagram, this, key); //UID0290845814
+
             /*
-             * [doc] order : ProcessCmdKey, DiagramApp_KeyDown, DiagramApp_KeyPress, DiagramApp_KeyUp;
+             * order : ProcessCmdKey, DiagramApp_KeyDown, DiagramApp_KeyPress, DiagramApp_KeyUp;
              */
 
             if (KeyMap.parseKey(KeyMap.selectAllElements, keyData) ) // [KEY] [CTRL+A] select all
@@ -1997,12 +2023,6 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.evaluateNodes, keyData)) // [KEY] [F9] evaluate python script for selected nodes by stamp in link
-            {
-                this.Evaluate();
-                return true;
-            }
-
             if (KeyMap.parseKey(KeyMap.fullScreean, keyData)) // [KEY] [F11] evaluate python script for selected nodes by stamp in link
             {
                 this.FullScreenSwitch();
@@ -2120,7 +2140,7 @@ namespace Diagram
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        // EVENT Key down
+        // EVENT Key down UID3114212444
         public void DiagramApp_KeyDown(object sender, KeyEventArgs e)                                  // [KEYBOARD] [DOWN] [EVENT]
         {
 
@@ -2182,7 +2202,7 @@ namespace Diagram
 
         }
 
-        // EVENT Key up
+        // EVENT Key up UID4343244331
         public void DiagramApp_KeyUp(object sender, KeyEventArgs e)
         {
 
@@ -2225,7 +2245,7 @@ namespace Diagram
             }
         }                                 // [KEYBOARD] [UP] [EVENT]
 
-        // EVENT Keypress
+        // EVENT Keypress UID1343430442
         public void DiagramApp_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -2268,7 +2288,7 @@ namespace Diagram
             }
         }                         // [KEYBOARD] [PRESS] [EVENT]
 
-        // EVENT DROP file
+        // EVENT DROP file UID3440232213
         public void DiagramApp_DragDrop(object sender, DragEventArgs e)                                // [DROP] [DROP-FILE] [EVENT]
         {
 
@@ -2380,7 +2400,7 @@ namespace Diagram
             }
         }
 
-        // EVENT DROP drag enter
+        // EVENT DROP drag enter UID0040214033
         public void DiagramApp_DragEnter(object sender, DragEventArgs e)                               // [DRAG] [EVENT]
         {
 
@@ -2391,7 +2411,7 @@ namespace Diagram
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
 
-        // EVENT Resize
+        // EVENT Resize UID2004324112
         public void DiagramApp_Resize(object sender, EventArgs e)                                      // [RESIZE] [EVENT]
         {
 
@@ -2419,7 +2439,7 @@ namespace Diagram
 			}
         }
 
-        // EVENT MOVE TIMER for move view when node is draged to window edge
+        // EVENT MOVE TIMER for move view when node is draged to window edge UID2144001341
         public void MoveTimer_Tick(object sender, EventArgs e)
         {
 
@@ -2500,7 +2520,7 @@ namespace Diagram
             }
         }                                      // [MOVE] [TIMER] [EVENT]
 
-        // EVENT Deactivate - lost focus
+        // EVENT Deactivate - lost focus UID0104120032
         public void DiagramApp_Deactivate(object sender, EventArgs e)                                  // [FOCUS]
         {
 
@@ -2665,7 +2685,8 @@ namespace Diagram
             foreach (Node node in this.diagram.GetAllNodes())
             {
                 if (node.note.ToUpper().IndexOf(searchFor.ToUpper()) != -1
-                    || node.name.ToUpper().IndexOf(searchFor.ToUpper()) != -1)
+                    || node.name.ToUpper().IndexOf(searchFor.ToUpper()) != -1
+                    || node.link.ToUpper().IndexOf(searchFor.ToUpper()) != -1)
                 {
                     foundNodes.Add(node);
                 }
@@ -3184,7 +3205,7 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // DRAW                                                                                      // [DRAW]
+        // DRAW UID4637488042                                                                                     // [DRAW]
         private void DrawDiagram(Graphics gfx, Position correction = null, bool export = false)
         {
             gfx.SmoothingMode = SmoothingMode.AntiAlias;
@@ -3333,8 +3354,6 @@ namespace Diagram
         {
             Pen myPen = new Pen(Color.Black, 1);
 
-
-
             if (this.sourceNode == null)
             {
                 gfx.DrawLine(
@@ -3343,24 +3362,6 @@ namespace Diagram
                     this.shift.y - this.startShift.y + this.startMousePos.y - 2 + 12,
                     this.actualMousePos.x,
                     this.actualMousePos.y
-                );
-
-                gfx.FillEllipse(
-                    new SolidBrush(ColorTranslator.FromHtml("#FFFFB8")),
-                    new Rectangle(
-                        this.shift.x - this.startShift.x + this.startMousePos.x,
-                        this.shift.y - this.startShift.y + this.startMousePos.y,
-                        20,
-                        20
-                    )
-                );
-                gfx.DrawEllipse(
-                    myPen,
-                    new Rectangle(
-                        this.shift.x - this.startShift.x + this.startMousePos.x,
-                        this.shift.y - this.startShift.y + this.startMousePos.y,
-                        20, 20
-                    )
                 );
             }
             else {
@@ -3699,13 +3700,13 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // VIEW CLOSE
+        // VIEW CLOSE UID2411004144
         private void DiagramView_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.diagram.CloseView(this);
         }
 
-        // VIEW REFRESH
+        // VIEW REFRESH UID0421401402
         private void DiagramView_Activated(object sender, EventArgs e)
         {
             /*if (this.diagram.isLocked())
@@ -3946,7 +3947,7 @@ namespace Diagram
 
 #if DEBUG
             var result = 0;
-            result = this.OpenLink(rec, clipboard);
+            result = this.OpenLink(rec);
             if ((int)result == 1)
             {
                 this.diagram.EditNode(rec);
@@ -3959,7 +3960,7 @@ namespace Diagram
             worker.DoWork += (sender, e) =>
             {
                 Program.log.Write("diagram: openlink: run worker");
-                e.Result = this.OpenLink(rec, clipboard);
+                e.Result = this.OpenLink(rec);
             };
             worker.RunWorkerCompleted += (sender, e) =>
             {
@@ -3981,12 +3982,12 @@ namespace Diagram
         }
 
         // NODE Open Link
-        public int OpenLink(Node rec, String clipboard = "") //UID9292140736
+        public int OpenLink(Node rec) //UID9292140736
         {
             if (rec != null)
             {
 
-                bool stopNextAction = this.main.plugins.ClickOnNodeAction(this.diagram, rec);
+                bool stopNextAction = this.main.plugins.ClickOnNodeAction(this.diagram, this, rec); //UID0290845815
 
                 if (stopNextAction) {
                     // stop execution from plugin
@@ -4023,11 +4024,7 @@ namespace Diagram
                     string fileName = "";
                     string searchString = "";
 
-                    if (rec.link.Trim() == "script" || rec.link.Trim() == "macro" || rec.link.Trim() == "$")  // OPEN SCRIPT node with link "script" is executed as script
-                    {
-                        this.Evaluate(rec, clipboard);
-                    }
-                    else if (Patterns.isGotoIdCommand(rec.link)) // GOTO position
+                    if (Patterns.isGotoIdCommand(rec.link)) // GOTO position
                     {
                         Program.log.Write("go to position in diagram " + rec.link);
                         Node node = this.diagram.GetNodeByID(Patterns.getGotoIdCommand(rec.link));
@@ -4446,7 +4443,7 @@ namespace Diagram
             }
         }
 
-        // NODE copy
+        // NODE copy UID4434132203
         public bool Copy()
         {
             if (this.selectedNodes.Count() > 0)
@@ -4476,7 +4473,7 @@ namespace Diagram
             return false;
         }
 
-        // NODE cut
+        // NODE cut UID4343312404
         public bool Cut()
         {
             DataObject data = new DataObject();
@@ -4485,7 +4482,12 @@ namespace Diagram
                 string copytext = "";
                 foreach (Node rec in this.selectedNodes)
                 {
-                    copytext = copytext + rec.name + "\n";
+                    copytext = copytext + rec.name;
+
+                    if (this.selectedNodes.Count() > 1)
+                    {
+                        copytext = copytext + "\n";
+                    }
                 }
 
                 data.SetData(copytext);
@@ -4501,7 +4503,7 @@ namespace Diagram
             return true;
         }
 
-        // NODE paste
+        // NODE paste UID3240032142
         public bool Paste(Position position)
         {
             DataObject retrievedData = (DataObject)Clipboard.GetDataObject();
@@ -4909,7 +4911,6 @@ namespace Diagram
 
                     this.diagram.InvalidateDiagram();
                 }
-
 
                 return true;
             }
@@ -5757,75 +5758,6 @@ namespace Diagram
                     this.diagram.InvalidateDiagram();
                 }
             }
-        }
-
-        /*************************************************************************************************************************/
-
-        // SCRIPT evaluate python script in nodes signed with stamp in node link [F9]
-        private void Evaluate()
-        {
-            Nodes nodes = null;
-
-            if (this.selectedNodes.Count() > 0) {
-                nodes = new Nodes(this.selectedNodes);
-            } else {
-                nodes = new Nodes(this.diagram.GetAllNodes());
-            }
-            // remove nodes whit link other then [ ! | eval | evaluate | !#num_order | eval#num_order |  evaluate#num_order]
-            // higest number is executed first
-            Regex regex = new Regex(@"^\s*(eval(uate)|!){1}(#\w+){0,1}\s*$");
-            nodes.RemoveAll(n => !regex.Match(n.link).Success);
-
-            nodes.OrderByLink();
-            nodes.Reverse();
-
-            String clipboard = Os.GetTextFormClipboard();
-
-#if !DEBUG
-            var worker = new BackgroundWorker
-            {
-                WorkerSupportsCancellation = true
-            };
-
-            worker.DoWork += (sender, e) =>
-            {
-#endif
-            this.Evaluate(nodes, clipboard);
-#if !DEBUG
-            };
-            worker.RunWorkerAsync();
-#endif
-
-        }
-
-        // SCRIPT evaluate python script in node name or in node note in nodes
-        private void Evaluate(Nodes nodes, string clipboard = "")
-        {
-            Program.log.Write("diagram: openlink: run macro");
-            Script script = new Script();
-            script.SetDiagram(this.diagram);
-            script.SetDiagramView(this);
-            script.SetClipboard(clipboard);
-            string body = "";
-
-            foreach (Node node in nodes)
-            {
-                body = node.note.Trim() != "" ? node.note : node.name;
-                script.RunScript(body);
-            }
-        }
-
-        // SCRIPT evaluate python script in node name or in node note in node
-        private void Evaluate(Node node, string clipboard = "")
-        {
-            // run macro
-            Program.log.Write("diagram: openlink: run macro");
-            Script script = new Script();
-            script.SetDiagram(this.diagram);
-            script.SetDiagramView(this);
-            script.SetClipboard(clipboard);
-            string body = node.note.Trim() != "" ? node.note : node.name;
-            script.RunScript(body);
         }
 
         /*************************************************************************************************************************/

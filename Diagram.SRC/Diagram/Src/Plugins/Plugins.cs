@@ -12,119 +12,136 @@ namespace Diagram
     /// load plugins</summary>
     public class Plugins //UID8736657869
     {
-        public ICollection<IDiagramPlugin> plugins = null;
-        public ICollection<INodeOpenPlugin> nodeOpenPlugins = null;
+        public ICollection<IDiagramPlugin> plugins = new List<IDiagramPlugin>();
+        public ICollection<INodeOpenPlugin> nodeOpenPlugins = new List<INodeOpenPlugin>();
+        public ICollection<IKeyPressPlugin> keyPressPlugins = new List<IKeyPressPlugin>();
+        public ICollection<IOpenDiagramPlugin> openDiagramPlugins = new List<IOpenDiagramPlugin>();
 
         /// <summary>
         /// load plugins from path</summary>
         public void LoadPlugins(string path)
         {
-            Program.log.Write("Loading plugins");
-
-            IEnumerable<string> dllFileNames = null;
-            if (Directory.Exists(path))
+            try
             {
-                dllFileNames = Directory.EnumerateFiles(path, "*.dll", SearchOption.AllDirectories);
-            }
+                Program.log.Write("Loading plugins from:" + path);
 
-            ICollection<Assembly> assemblies = new List<Assembly>(dllFileNames.Count());
-            foreach (string dllFile in dllFileNames)
-            {
-                AssemblyName an = AssemblyName.GetAssemblyName(dllFile);
-                Assembly assembly = Assembly.Load(an);
-                assemblies.Add(assembly);
-            }
-
-            Type pluginType = typeof(IDiagramPlugin);            
-            ICollection<Type> pluginTypes = new List<Type>();
-
-            Type nodeOpenType = typeof(INodeOpenPlugin);
-            ICollection<Type> nodeOpenTypes = new List<Type>();
-
-            // proces all assemblies in folder
-            foreach (Assembly assembly in assemblies)
-            {
-                if (assembly != null)
+                IEnumerable<string> dllFileNames = null;
+                if (Directory.Exists(path))
                 {
-                    Type[] types = assembly.GetTypes();
+                    dllFileNames = Directory.EnumerateFiles(path, "*.dll", SearchOption.AllDirectories);
+                }
+
+                ICollection<Assembly> assemblies = new List<Assembly>(dllFileNames.Count());
+                foreach (string dllFile in dllFileNames)
+                {
+                    try
+                    { 
+                        AssemblyName an = AssemblyName.GetAssemblyName(dllFile);
+                        Assembly assembly = Assembly.Load(an);
+                        if (assembly != null)
+                        {
+                            assemblies.Add(assembly);
+                        }
+                    } 
+                    catch (Exception e)
+                    {
+                        Program.log.Write("Load plugin error: " + dllFile + "  : " + e.Message);
+                    }
+                }
+
+                // proces all assemblies in folder
+                foreach (Assembly assembly in assemblies)
+                {
+                    Type[] types;
+
+                    try
+                    {
+                        types = assembly.GetTypes();
+                    }
+                    catch (ReflectionTypeLoadException ex)
+                    {
+                        Program.log.Write("Load types from " + assembly.FullName + ": location:"+ assembly.Location + "plugin error  : " + ex.Message);
+
+                        foreach (var item in ex.LoaderExceptions)
+                        {                            
+                            Program.log.Write("Loaderexceptoon: " + item.Message);
+                        }
+
+                        Program.log.Write("Skipping plugin due to errors");
+                        continue;
+                    }
+
+                    // proces all elements like classes in assemblie
                     foreach (Type type in types)
                     {
                         if (type.IsInterface || type.IsAbstract)
                         {
                             continue;
                         }
-                        else
+
+                        // get all libraries with IDiagramPlugin interface
+                        if (type.GetInterface(typeof(IDiagramPlugin).FullName) == null)
                         {
-
-                            // sort plugins to categories
-
-                            if (type.GetInterface(pluginType.FullName) != null)
-                            {
-                                pluginTypes.Add(type);
-                            }
-
-                            if (type.GetInterface(nodeOpenType.FullName) != null)
-                            {
-                                nodeOpenTypes.Add(type);
-                            }
+                            continue;
                         }
-                    }
-                }
-            }
 
-            ///TODO: create one instance for all types of interfaces
+                        // create plugin instance
+                        IDiagramPlugin plugin = Activator.CreateInstance(type) as IDiagramPlugin;
+                        if (plugin == null)
+                        {
+                            continue;
+                        }
 
-            // create instances of plugin
-            if (pluginTypes.Count > 0) {
-                if (this.plugins == null)
-                { 
-                    this.plugins = new List<IDiagramPlugin>(pluginTypes.Count);
-                }
+                        // original assembly location for mapping resources
+                        plugin.SetLocation(assembly.Location);
 
-                foreach (Type type in pluginTypes)
-                {
-                    IDiagramPlugin plugin = (IDiagramPlugin)Activator.CreateInstance(type);
-                    if (plugin != null)
-                    {
+                        // add log object to plugin and allow debug messages from plugin
+                        plugin.SetLog(Program.log);
+
+                        // assign plugin to collection of all plugins
                         plugins.Add(plugin);
 
                         Program.log.Write("Loading plugin: " + plugin.Name);
+
+                        // add plugin to category
+
+                        if (type.GetInterface(typeof(INodeOpenPlugin).FullName) != null)
+                        {
+                            nodeOpenPlugins.Add(plugin as INodeOpenPlugin);
+                        }
+
+                        if (type.GetInterface(typeof(IKeyPressPlugin).FullName) != null)
+                        {
+                            keyPressPlugins.Add(plugin as IKeyPressPlugin);
+                        }
+
+                        if (type.GetInterface(typeof(IOpenDiagramPlugin).FullName) != null)
+                        {
+                            openDiagramPlugins.Add(plugin as IOpenDiagramPlugin);
+                        }
+
                     }
                 }
             }
-
-            // create instances of plugin
-            if (nodeOpenTypes.Count > 0)
+            catch (Exception e)
             {
-                if (this.nodeOpenPlugins == null)
-                {
-                    this.nodeOpenPlugins = new List<INodeOpenPlugin>(nodeOpenTypes.Count);
-                }
-
-                foreach (Type type in nodeOpenTypes)
-                {
-                    INodeOpenPlugin plugin = (INodeOpenPlugin)Activator.CreateInstance(type);
-                    if (plugin != null)
-                    {
-                        nodeOpenPlugins.Add(plugin);
-                    }
-                }
+                Program.log.Write("Load plugin error : " + e.Message);
             }
         }
 
         /// <summary>
         /// run event for all registred plugins in NodeOpenPlugins </summary>
-        public bool ClickOnNodeAction(Diagram diagram, Node node) {
+        public bool ClickOnNodeAction(Diagram diagram, DiagramView diagramView, Node node) 
+        {
             bool stopNextAction = false;
-
                            
-            if (plugins != null)
+            if (nodeOpenPlugins.Count > 0)
             {
                 foreach (INodeOpenPlugin plugin in nodeOpenPlugins)
                 {
                     try
                     {
-                        stopNextAction = plugin.ClickOnNodeAction(diagram, node);
+                        stopNextAction = plugin.ClickOnNodeAction(diagram, diagramView, node);
                         if (stopNextAction)
                         {
                             break;
@@ -138,6 +155,55 @@ namespace Diagram
             }
             
             return stopNextAction;
+        }
+
+        /// <summary>
+        /// run event for all registred plugins in KeyPressPlugins </summary>
+        public bool KeyPressAction(Diagram diagram, DiagramView diagramView, String key)
+        {
+            bool stopNextAction = false;
+
+            if (keyPressPlugins.Count > 0)
+            {
+                foreach (IKeyPressPlugin plugin in keyPressPlugins)
+                {
+                    try
+                    {
+                        stopNextAction = plugin.KeyPressAction(diagram, diagramView, key);
+                        if (stopNextAction)
+                        {
+                            break;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Program.log.Write("Exception in plugin: " + plugin.Name + " : " + e.Message);
+                    }
+                }
+            }
+
+            return stopNextAction;
+        }
+
+        /// <summary>
+        /// run event for all registred plugins in KeyPressPlugins </summary>
+        public void OpenDiagramAction(Diagram diagram)
+        {
+            if (openDiagramPlugins.Count > 0)
+            {
+                foreach (IOpenDiagramPlugin plugin in openDiagramPlugins)
+                {
+                    try
+                    {
+                        plugin.OpenDiagramAction(diagram);
+
+                    }
+                    catch (Exception e)
+                    {
+                        Program.log.Write("Exception in plugin: " + plugin.Name + " : " + e.Message);
+                    }
+                }
+            }
         }
     }
 }

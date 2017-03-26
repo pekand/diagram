@@ -84,12 +84,14 @@ namespace Diagram
             {
                 plugins.LoadPlugins(pluginsLocalDirectory);
             }
-
+            
+#if !DEBUG
             string pluginsGlobalDirectory = Os.Combine(optionsFile.GetGlobalConfigDirectory(), this.pluginsDirectoryName);
             if (Os.DirectoryExists(pluginsGlobalDirectory))
             {
                 plugins.LoadPlugins(pluginsGlobalDirectory);
             }
+#endif
 
             // create local server for comunication between local instances UID2964640610
             server = new Server(this);
@@ -412,6 +414,8 @@ namespace Diagram
                                     Diagrams.Add(diagram);
                                     // open diagram view on diagram model
                                     DiagramView newDiagram = diagram.OpenDiagramView();
+
+                                    this.plugins.OpenDiagramAction(diagram); //UID0290845816
 
                                     Program.log.Write("bring focus");
                                     Media.BringToFront(newDiagram); //UID4510272263

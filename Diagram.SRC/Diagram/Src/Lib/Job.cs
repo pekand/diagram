@@ -42,7 +42,9 @@ namespace Diagram
         {
             try
             {
-                BackgroundWorker bw = new BackgroundWorker();
+                BackgroundWorker bw = new BackgroundWorker {
+                    WorkerSupportsCancellation = true
+                };
                 bw.WorkerReportsProgress = true;
                 bw.DoWork += doJob;
                 bw.RunWorkerCompleted += afterJob;
