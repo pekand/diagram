@@ -16,7 +16,7 @@ namespace Plugin
         {
             get
             {
-                return "Script Plugin";
+                return "Scripting Plugin";
             }
         }
 

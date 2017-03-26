@@ -761,7 +761,7 @@ namespace Diagram
         {
 
 #if DEBUG
-            this.LogEvent("MouseDouble");
+            this.LogEvent("MouseDoubleClick");
 #endif
 
             this.stateDblclick = true;
@@ -1477,7 +1477,7 @@ namespace Diagram
                 if (this.sourceNode == TargetNode
                     && this.stateSourceNodeAlreadySelected)
                 {
-                    this.Rename();
+                    this.Rename(); //UID3101342400
                 }
 
             }
