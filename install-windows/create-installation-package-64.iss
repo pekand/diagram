@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Infinite Diagram"
-#define MyAppVersion "0.5.0.31"
+#define MyAppVersion "0.5.0.32"
 #define MyAppPublisher "pekand@gmail.com"
 #define MyAppURL "http://www.infinite-diagram.com"
 #define MyAppExeName "Diagram.exe"
@@ -39,13 +39,6 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "files\Diagram.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "files\diagram.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "files\IronPython.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "files\IronPython.Modules.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "files\IronPython.SQLite.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "files\IronPython.Wpf.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "files\Microsoft.Dynamic.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "files\Microsoft.Scripting.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "files\Microsoft.Scripting.Metadata.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "files\NCalc.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "files\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
 

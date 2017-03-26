@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Diagram;
 using System.Text.RegularExpressions;
+using System.ComponentModel;
 
 namespace Plugin
 {
@@ -88,20 +89,17 @@ namespace Plugin
             String clipboard = Os.GetTextFormClipboard();
 
 #if !DEBUG
-            var worker = new BackgroundWorker
-            {
-                WorkerSupportsCancellation = true
-            };
-
-            worker.DoWork += (sender, e) =>
-            {
+            Job.doJob(
+                new DoWorkEventHandler(
+                    delegate (object o, DoWorkEventArgs args)
+                    {
 #endif
-            this.Evaluate(diagram, diagramView, nodes, clipboard);
+                        this.Evaluate(diagram, diagramView, nodes, clipboard);
 #if !DEBUG
-            };
-            worker.RunWorkerAsync();
+                    }
+                )
+            );
 #endif
-
         }
 
         public string getStandardLibraryPath()
