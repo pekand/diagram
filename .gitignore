@@ -1,6 +1,7 @@
 Diagram.SRC/Diagram/bin
 Diagram.SRC/Diagram/obj
 Diagram.SRC/.vs
+Diagram.SRC/packages
 install-linux/Output
 install-linux/infinite-diagram.deb
 install-linux/infinite-diagram
