@@ -251,7 +251,6 @@ namespace Diagram
             keyChar = keyChar.Replace("PgDn", "PAGEDOWN");
             keyChar = keyChar.Replace("PgUP", "PAGEUP");
 
-            Program.log.Write("Key pressed:"+ keyChar);
             return keyChar;
         }
     }
