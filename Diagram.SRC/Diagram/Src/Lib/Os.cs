@@ -453,6 +453,19 @@ namespace Diagram
             Program.log.Write("diagram: openlink: open file on position " + editFileCmd);
             Os.RunCommand(editFileCmd);
         }
+        
+        /// <summary>
+        /// open email </summary>
+        public static void OpenEmail(string email)
+        {
+            Program.log.Write("open email: " + email);
+            
+            System.Diagnostics.Process proc = new System.Diagnostics.Process();
+            proc.StartInfo.FileName = "mailto:"+email;
+            proc.Start();
+        }
+        
+        
 
         /*************************************************************************************************************************/
         // TOOLS

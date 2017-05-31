@@ -1,3 +1,4 @@
+0.5.0.33 open email
 0.5.0.32 run script in thread
 0.5.0.31 move script engine to plugin
 0.5.0.30 remove new line when node is cut

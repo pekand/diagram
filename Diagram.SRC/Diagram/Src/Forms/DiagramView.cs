@@ -4046,6 +4046,10 @@ namespace Diagram
                             }
                         }
                     }
+                    else if (Patterns.isEmail(rec.link)) // OPEN URL
+                    {
+                    	Os.OpenEmail(rec.link);
+                    }
                     else if (Patterns.isURL(rec.link)) // OPEN URL
                     {
                         try
