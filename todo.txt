@@ -1,0 +1,11 @@
+grid nech sa prisposobuje a rozpocitava sa pre velke cisla
+nech sa nezobrazuju nody ak su prilis male
+osetrit vykreslovanie ciary
+
+prevent save diagram if is locked
+
+vycentrovat kurzor pri zoome
+-calculate cursor on pointer
+
+-ak sa zazoomuje spacom vzdy dat *10 rozhlad
+-skontrolovat ci sa uklada scale do suboru

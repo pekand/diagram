@@ -74,7 +74,7 @@ namespace Diagram
                 this.edit.Top = padding + 0;
 
                 Font defaultFont = this.diagramView.diagram.FontDefault;
-                Font font = new Font(defaultFont.FontFamily, defaultFont.Size / this.diagramView.scale, defaultFont.Style);
+                Font font = new Font(defaultFont.FontFamily, defaultFont.Size, defaultFont.Style);
 
                 this.edit.Font = font;
 
@@ -115,7 +115,7 @@ namespace Diagram
                 this.edit.Top = padding + 0;
 
                 Font nodeFont = this.editedNode.font;
-                Font font = new Font(nodeFont.FontFamily, nodeFont.Size / this.diagramView.scale, nodeFont.Style);
+                Font font = new Font(nodeFont.FontFamily, (int)(nodeFont.Size / this.diagramView.scale), nodeFont.Style);
 
                 this.edit.Font = font;
                 this.edit.Text = this.editedNode.name; // add first character

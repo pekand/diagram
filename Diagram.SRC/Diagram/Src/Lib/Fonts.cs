@@ -52,7 +52,7 @@ namespace Diagram
             bool italic = false;
             bool underline = false;
             bool strikeout = false;
-            float fontSize = 12F;
+            double fontSize = 12F;
 
             foreach (XElement el in element.Descendants())
             {
@@ -65,7 +65,7 @@ namespace Diagram
 
                     if (el.Name.ToString() == "size")
                     {
-                        fontSize = float.Parse(el.Value.Replace(',', '.'));
+                        fontSize = double.Parse(el.Value.Replace(',', '.'));
                     }
 
                     if (el.Name.ToString() == "bold")
@@ -117,7 +117,7 @@ namespace Diagram
                 fontStyle = fontStyle | FontStyle.Strikeout;
             }
 
-            Font font = new Font(fontName, fontSize, fontStyle);
+            Font font = new Font(fontName, (int)fontSize, fontStyle);
             return font;
         }
 

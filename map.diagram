@@ -78,7 +78,7 @@
       <link>UID6078031921</link>
       <layer>0</layer>
       <x>16</x>
-      <y>2185</y>
+      <y>2184</y>
       <width>92</width>
       <height>36</height>
       <color>#78FFEB</color>
@@ -231,7 +231,7 @@
       <text>Node.cs</text>
       <link>UID6202169477</link>
       <layer>0</layer>
-      <x>-243</x>
+      <x>-245</x>
       <y>2374</y>
       <width>74</width>
       <height>36</height>
@@ -2543,11 +2543,11 @@ and send response</text>
     <rectangle>
       <id>1408</id>
       <fontcolor>Black</fontcolor>
-      <text>Program.log.write("message");</text>
+      <text>Program.log.Write("message");</text>
       <layer>0</layer>
       <x>-1828</x>
       <y>2404</y>
-      <width>210</width>
+      <width>213</width>
       <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2017-3-5 22:28:45</timecreate>
@@ -2690,8 +2690,8 @@ and send response</text>
       <link>UID4637488042
 </link>
       <layer>0</layer>
-      <x>-26</x>
-      <y>3612</y>
+      <x>208</x>
+      <y>3596</y>
       <width>108</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -3044,16 +3044,17 @@ l = DiagramView.currentLayer.id
 selected = DiagramView.selectedNodes[0]
 rec = Diagram.CreateNode(Position(selected.position.x+selected.width+20, selected.position.y), out, l)
 DiagramView.Invalidate();
+rec.link = out
 print 'uid created'</note>
       <link>$</link>
       <layer>0</layer>
-      <x>-907</x>
-      <y>5051</y>
+      <x>-721</x>
+      <y>3560</y>
       <width>99</width>
       <height>39</height>
-      <color>#FFFFB8</color>
+      <color>#EB0005</color>
       <timecreate>2017-3-26 11:31:46</timecreate>
-      <timemodify>2017-3-26 11:33:51</timemodify>
+      <timemodify>2017-6-25 16:14:02</timemodify>
     </rectangle>
     <rectangle>
       <id>1487</id>
@@ -3205,43 +3206,45 @@ print 'uid created'</note>
       <timemodify>2017-3-26 12:48:46</timemodify>
     </rectangle>
     <rectangle>
-      <id>1552</id>
+      <id>1577</id>
       <fontcolor>Black</fontcolor>
-      <text>UID0113143324</text>
+      <text>DrawGrid</text>
+      <link>UID4224241033</link>
       <layer>0</layer>
-      <x>-798</x>
-      <y>5051</y>
-      <width>124</width>
+      <x>435</x>
+      <y>3713</y>
+      <width>82</width>
       <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 23:47:54</timecreate>
-      <timemodify>2017-3-26 23:47:54</timemodify>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-25 16:14:08</timecreate>
+      <timemodify>2017-6-25 16:14:32</timemodify>
     </rectangle>
     <rectangle>
-      <id>1496</id>
+      <id>1563</id>
       <fontcolor>Black</fontcolor>
-      <text>UID4211424233</text>
+      <text>LoadInnerXML</text>
+      <link>UID2410114104</link>
       <layer>0</layer>
-      <x>-798</x>
-      <y>5465</y>
-      <width>124</width>
+      <x>-142</x>
+      <y>5695</y>
+      <width>114</width>
       <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:21:57</timecreate>
-      <timemodify>2017-3-26 12:21:57</timemodify>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-18 22:24:29</timecreate>
+      <timemodify>2017-6-18 22:25:15</timemodify>
     </rectangle>
     <rectangle>
-      <id>1497</id>
+      <id>1556</id>
       <fontcolor>Black</fontcolor>
-      <text>UID0344201104</text>
+      <text>file</text>
       <layer>0</layer>
-      <x>-798</x>
-      <y>5511</y>
-      <width>124</width>
+      <x>-523</x>
+      <y>5701</y>
+      <width>42</width>
       <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:21:59</timecreate>
-      <timemodify>2017-3-26 12:21:59</timemodify>
+      <color>#00DCE6</color>
+      <timecreate>2017-6-18 22:21:52</timecreate>
+      <timemodify>2017-6-18 22:21:52</timemodify>
     </rectangle>
     <rectangle>
       <id>1508</id>
@@ -3450,108 +3453,101 @@ print 'uid created'</note>
       <timemodify>2017-3-26 12:49:09</timemodify>
     </rectangle>
     <rectangle>
-      <id>1525</id>
+      <id>1590</id>
       <fontcolor>Black</fontcolor>
-      <text>UID1440244333</text>
       <layer>0</layer>
-      <x>-798</x>
-      <y>5099</y>
-      <width>124</width>
-      <height>36</height>
+      <x>616</x>
+      <y>3552</y>
+      <width>20</width>
+      <height>20</height>
       <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:52:51</timecreate>
-      <timemodify>2017-3-26 12:52:51</timemodify>
+      <transparent>true</transparent>
+      <timecreate>2017-6-25 16:17:40</timecreate>
+      <timemodify>2017-6-25 16:17:40</timemodify>
     </rectangle>
     <rectangle>
-      <id>1526</id>
+      <id>1566</id>
       <fontcolor>Black</fontcolor>
-      <text>UID3132133201</text>
+      <text>ZoomTimer_Tick</text>
+      <link>UID3132133201</link>
       <layer>0</layer>
-      <x>-798</x>
-      <y>5145</y>
-      <width>124</width>
+      <x>-317</x>
+      <y>5555</y>
+      <width>127</width>
       <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:52:52</timecreate>
-      <timemodify>2017-3-26 12:52:52</timemodify>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-25 04:10:44</timecreate>
+      <timemodify>2017-6-25 04:10:53</timemodify>
     </rectangle>
     <rectangle>
-      <id>1527</id>
+      <id>1565</id>
       <fontcolor>Black</fontcolor>
-      <text>UID1014143422</text>
+      <text>OpenFile</text>
+      <link>UID1014143422</link>
       <layer>0</layer>
-      <x>-798</x>
-      <y>5191</y>
-      <width>124</width>
+      <x>-400</x>
+      <y>5700</y>
+      <width>80</width>
       <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:52:53</timecreate>
-      <timemodify>2017-3-26 12:52:53</timemodify>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-18 22:28:40</timecreate>
+      <timemodify>2017-6-18 22:28:54</timemodify>
     </rectangle>
     <rectangle>
-      <id>1528</id>
+      <id>1562</id>
       <fontcolor>Black</fontcolor>
-      <text>UID2410114104</text>
+      <text>LoadXML</text>
+      <link>UID3204111432</link>
       <layer>0</layer>
-      <x>-798</x>
-      <y>5237</y>
-      <width>124</width>
+      <x>-266</x>
+      <y>5695</y>
+      <width>83</width>
       <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:52:55</timecreate>
-      <timemodify>2017-3-26 12:52:55</timemodify>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-18 22:24:05</timecreate>
+      <timemodify>2017-6-18 22:24:14</timemodify>
     </rectangle>
     <rectangle>
-      <id>1529</id>
+      <id>1561</id>
       <fontcolor>Black</fontcolor>
-      <text>UID3204111432</text>
+      <text>SaveInnerXMLFile</text>
+      <link>UID4112021202</link>
       <layer>0</layer>
-      <x>-798</x>
-      <y>5283</y>
-      <width>124</width>
+      <x>-120</x>
+      <y>5625</y>
+      <width>137</width>
       <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:52:59</timecreate>
-      <timemodify>2017-3-26 12:52:59</timemodify>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-18 22:23:42</timecreate>
+      <timemodify>2017-6-18 22:23:51</timemodify>
     </rectangle>
     <rectangle>
-      <id>1530</id>
+      <id>1560</id>
       <fontcolor>Black</fontcolor>
-      <text>UID4112021202</text>
+      <text>SaveXMLFile</text>
+      <link>UID1120313432</link>
       <layer>0</layer>
-      <x>-798</x>
-      <y>5329</y>
-      <width>124</width>
+      <x>-258</x>
+      <y>5627</y>
+      <width>106</width>
       <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:53:01</timecreate>
-      <timemodify>2017-3-26 12:53:01</timemodify>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-18 22:23:17</timecreate>
+      <timemodify>2017-6-18 22:23:28</timemodify>
     </rectangle>
     <rectangle>
-      <id>1531</id>
+      <id>1559</id>
       <fontcolor>Black</fontcolor>
-      <text>UID1120313432</text>
+      <text>CloseFile</text>
+      <link>UID2341324212</link>
       <layer>0</layer>
-      <x>-798</x>
-      <y>5375</y>
-      <width>124</width>
+      <x>-428</x>
+      <y>5757</y>
+      <width>81</width>
       <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:53:02</timecreate>
-      <timemodify>2017-3-26 12:53:02</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1532</id>
-      <fontcolor>Black</fontcolor>
-      <text>UID2341324212</text>
-      <layer>0</layer>
-      <x>-798</x>
-      <y>5421</y>
-      <width>124</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:53:05</timecreate>
-      <timemodify>2017-3-26 12:53:05</timemodify>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-18 22:22:50</timecreate>
+      <timemodify>2017-6-18 22:23:00</timemodify>
     </rectangle>
     <rectangle>
       <id>1534</id>
@@ -3700,6 +3696,250 @@ DiagramView.Invalidate();</note>
       <transparent>true</transparent>
       <timecreate>2017-3-26 23:42:48</timecreate>
       <timemodify>2017-3-26 23:42:48</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1553</id>
+      <fontcolor>Black</fontcolor>
+      <text>zoom</text>
+      <layer>0</layer>
+      <x>-524</x>
+      <y>5563</y>
+      <width>58</width>
+      <height>36</height>
+      <color>#00DCE6</color>
+      <timecreate>2017-6-18 11:42:25</timecreate>
+      <timemodify>2017-6-18 11:42:25</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1557</id>
+      <fontcolor>Black</fontcolor>
+      <text>Save</text>
+      <link>UID0344201104</link>
+      <layer>0</layer>
+      <x>-437</x>
+      <y>5647</y>
+      <width>55</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-18 22:21:57</timecreate>
+      <timemodify>2017-6-18 22:22:06</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1555</id>
+      <fontcolor>Black</fontcolor>
+      <text>MouseWheel</text>
+      <link>UID1111344210
+</link>
+      <layer>0</layer>
+      <x>-447</x>
+      <y>5558</y>
+      <width>104</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-18 16:02:59</timecreate>
+      <timemodify>2017-6-18 16:02:59</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1558</id>
+      <fontcolor>Black</fontcolor>
+      <text>Saveas</text>
+      <link>UID4211424233</link>
+      <layer>0</layer>
+      <x>-348</x>
+      <y>5632</y>
+      <width>70</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-18 22:22:14</timecreate>
+      <timemodify>2017-6-18 22:22:29</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1578</id>
+      <fontcolor>Black</fontcolor>
+      <text>DrawMiniScreen</text>
+      <link>UID2024023214</link>
+      <layer>0</layer>
+      <x>435</x>
+      <y>3814</y>
+      <width>125</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-25 16:14:40</timecreate>
+      <timemodify>2017-6-25 16:14:55</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1579</id>
+      <fontcolor>Black</fontcolor>
+      <text>DrawCoordinates</text>
+      <link>UID1321232103</link>
+      <layer>0</layer>
+      <x>435</x>
+      <y>3761</y>
+      <width>130</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-25 16:15:04</timecreate>
+      <timemodify>2017-6-25 16:15:13</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1582</id>
+      <fontcolor>Black</fontcolor>
+      <text>DrawNodesSelectArea</text>
+      <link>UID4401141100</link>
+      <layer>0</layer>
+      <x>432</x>
+      <y>3624</y>
+      <width>163</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-25 16:15:30</timecreate>
+      <timemodify>2017-6-25 16:15:42</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1583</id>
+      <fontcolor>Black</fontcolor>
+      <text>DrawAddNode</text>
+      <link>UID0142004302</link>
+      <layer>0</layer>
+      <x>432</x>
+      <y>3574</y>
+      <width>113</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-25 16:15:51</timecreate>
+      <timemodify>2017-6-25 16:16:05</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1584</id>
+      <fontcolor>Black</fontcolor>
+      <text>DrawNodes</text>
+      <link>UID3421003104</link>
+      <layer>0</layer>
+      <x>438</x>
+      <y>3456</y>
+      <width>96</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-25 16:16:13</timecreate>
+      <timemodify>2017-6-25 16:16:22</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1585</id>
+      <fontcolor>Black</fontcolor>
+      <text>DrawLines</text>
+      <link>UID2340203301</link>
+      <layer>0</layer>
+      <x>438</x>
+      <y>3512</y>
+      <width>89</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-6-25 16:16:23</timecreate>
+      <timemodify>2017-6-25 16:16:38</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1587</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>389</x>
+      <y>3680</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-6-25 16:17:31</timecreate>
+      <timemodify>2017-6-25 16:17:31</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1588</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>618</x>
+      <y>3681</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-6-25 16:17:31</timecreate>
+      <timemodify>2017-6-25 16:17:31</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1589</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>390</x>
+      <y>3553</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-6-25 16:17:40</timecreate>
+      <timemodify>2017-6-25 16:17:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1591</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>452</x>
+      <y>3438</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-6-25 16:17:42</timecreate>
+      <timemodify>2017-6-25 16:17:42</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1592</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>388</x>
+      <y>3437</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-6-25 16:17:42</timecreate>
+      <timemodify>2017-6-25 16:17:42</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1593</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>392</x>
+      <y>3865</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-6-25 16:17:45</timecreate>
+      <timemodify>2017-6-25 16:17:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1594</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>495</x>
+      <y>3866</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-6-25 16:17:46</timecreate>
+      <timemodify>2017-6-25 16:17:46</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1595</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>389</x>
+      <y>3643</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-6-25 16:19:02</timecreate>
+      <timemodify>2017-6-25 16:19:02</timemodify>
     </rectangle>
   </rectangles>
   <lines>
@@ -5101,6 +5341,118 @@ DiagramView.Invalidate();</note>
     <line>
       <start>1551</start>
       <end>1537</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1555</start>
+      <end>1553</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1557</start>
+      <end>1556</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1558</start>
+      <end>1557</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1560</start>
+      <end>1558</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1561</start>
+      <end>1560</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1563</start>
+      <end>1562</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1559</start>
+      <end>1556</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1565</start>
+      <end>1556</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1562</start>
+      <end>1565</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1566</start>
+      <end>1555</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1587</start>
+      <end>1588</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1589</start>
+      <end>1590</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1591</start>
+      <end>1592</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1592</start>
+      <end>1593</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1593</start>
+      <end>1594</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1421</start>
+      <end>1595</end>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>

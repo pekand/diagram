@@ -11,10 +11,7 @@ using System.Windows.Forms;
 using System.Drawing.Text;
 using System.Text.RegularExpressions;
 using System.Security;
-
-/*
- 
-*/
+using System.Globalization;
 
 namespace Diagram
 {
@@ -80,7 +77,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // FILE OPERATIONS
 
-        // open file. If file is invalid return false
+        // open file. If file is invalid return false UID1014143422
         public bool OpenFile(string FileName)
         {
             if (Os.FileExists(FileName))
@@ -118,7 +115,7 @@ namespace Diagram
             return false;
         }
         
-        // save diagram
+        // save diagram UID0344201104
         public bool Save()
         {
             if (!this.IsLocked() && this.FileName != "" && Os.FileExists(this.FileName))
@@ -135,10 +132,11 @@ namespace Diagram
             return false;
         }
 
-        // save diagram as
+        // save diagram as UID4211424233
         public void Saveas(String FileName)
         {
-            if (this.IsLocked()) {
+            bool islocked = this.IsLocked();
+            if (!islocked) {
                 this.SaveXMLFile(FileName);
                 this.FileName = FileName;
                 this.SavedFile = true;
@@ -148,7 +146,7 @@ namespace Diagram
             }
         }
 
-        // set default options for file like new file 
+        // set default options for file like new file UID2341324212
         public void CloseFile()
         {
             // Prednadstavenie atributov
@@ -169,7 +167,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // XML OPERATIONS
 
-        // XML SAVE file or encrypted file
+        // XML SAVE file or encrypted file UID1120313432
         public void SaveXMLFile(string FileName)
         {
             string diagraxml = this.SaveInnerXMLFile();
@@ -238,7 +236,7 @@ namespace Diagram
             }
         }
 
-        // XML SAVE create xml from current diagram file state
+        // XML SAVE create xml from current diagram file state UID4112021202
         public string SaveInnerXMLFile()
         {
             bool checkpoint = false;
@@ -314,6 +312,7 @@ namespace Diagram
                     rectangle.Add(new XElement("y", rec.position.y));
                     rectangle.Add(new XElement("width", rec.width));
                     rectangle.Add(new XElement("height", rec.height));
+                    rectangle.Add(new XElement("scale", rec.scale));
                     rectangle.Add(new XElement("color", rec.color));
                     if (rec.transparent) rectangle.Add(new XElement("transparent", rec.transparent));
                     if (rec.embeddedimage) rectangle.Add(new XElement("embeddedimage", rec.embeddedimage));
@@ -390,7 +389,7 @@ namespace Diagram
             return "";
         }
 
-        // XML LOAD If file is invalid return false
+        // XML LOAD If file is invalid return false UID3204111432
         public bool LoadXML(string xml)
         {
 
@@ -477,7 +476,7 @@ namespace Diagram
             }
         }
 
-        // XML LOAD inner part of diagram file. If file is invalid return false
+        // XML LOAD inner part of diagram file. If file is invalid return false UID2410114104
         public bool LoadInnerXML(string xml)
         {
             string FontDefaultString = TypeDescriptor.GetConverter(typeof(Font)).ConvertToString(this.FontDefault);
@@ -755,6 +754,11 @@ namespace Diagram
                                                 if (el.Name.ToString() == "width")
                                                 {
                                                     R.width = Int32.Parse(el.Value);
+                                                }
+                                                
+                                                if (el.Name.ToString() == "scale")
+                                                {
+                                                    R.scale = double.Parse(el.Value, CultureInfo.InvariantCulture);
                                                 }
 
                                                 if (el.Name.ToString() == "height")
@@ -1057,8 +1061,8 @@ namespace Diagram
                 {
                     if
                     (
-                        node.position.x <= position.x && position.x <= node.position.x + node.width &&
-                        node.position.y <= position.y && position.y <= node.position.y + node.height &&
+                        node.position.x <= position.x && position.x <= node.position.x + (node.width * node.scale) &&
+                        node.position.y <= position.y && position.y <= node.position.y + (node.height * node.scale) &&
                         (skipNode == null || skipNode.id != node.id)
                     )
                     {
@@ -1244,6 +1248,8 @@ namespace Diagram
             {
                 rec.color.Set(Media.GetColor(this.options.colorNode));
             }
+            
+            rec.scale = 1;
 
             return this.layers.CreateNode(rec);
         }

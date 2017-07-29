@@ -107,7 +107,7 @@ namespace Diagram
 
         // <summary>
         /// add vector</summary>
-        public Position Add(float a, float b)
+        public Position Add(double a, double b)
         {
             this.x += (int)a;
             this.y += (int)b;
@@ -144,7 +144,7 @@ namespace Diagram
 
         // <summary>
         /// subtract vector</summary>
-        public Position Subtract(float a, float b)
+        public Position Subtract(double a, double b)
         {
             this.x -= (int)a;
             this.y -= (int)b;
@@ -204,7 +204,7 @@ namespace Diagram
 
         // <summary>
         /// zoom vector</summary>
-        public Position Split(float scale)
+        public Position Split(double scale)
         {
             this.x = (int)(this.x / scale);
             this.y = (int)(this.y / scale);

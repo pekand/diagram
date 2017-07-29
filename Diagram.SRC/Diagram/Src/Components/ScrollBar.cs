@@ -12,12 +12,12 @@ namespace Diagram
 
     public class PositionEventArgs : EventArgs
     {
-        private float ScrollPosition;
-        public PositionEventArgs(float position)
+        private double ScrollPosition;
+        public PositionEventArgs(double position)
         {
             ScrollPosition = position;
         }
-        public float GetPosition()
+        public double GetPosition()
         {
             return ScrollPosition;
         }
@@ -43,7 +43,7 @@ namespace Diagram
         public int barmarginbottom = 20;
 
         // track
-        public float position = 0.5F;
+        public double position = 0.5F;
         public int trackwidth = 50;
         public int trackpos = 150;
         public int trackposold = 150;
@@ -63,7 +63,7 @@ namespace Diagram
         // event change position
         public event PositionChangeEventHandler OnChangePosition;
 
-        public ScrollBar(object parent, int width, int height, bool horizontalOrientation = true, float per = 0.5F)
+        public ScrollBar(object parent, int width, int height, bool horizontalOrientation = true, double per = 0.5F)
         {
             this.parent = parent;
 
@@ -188,7 +188,7 @@ namespace Diagram
                         trackpos = barx + barwidth - trackwidth;
                     }
 
-                    position = (float)(trackpos - barx) / (barwidth - trackwidth);
+                    position = (double)(trackpos - barx) / (barwidth - trackwidth);
                 }
 
                 if (vertical)
@@ -214,7 +214,7 @@ namespace Diagram
                         trackpos = bary + barheight - trackwidth;
                     }
 
-                    position = (float)(trackpos - bary) / (barheight - trackwidth);
+                    position = (double)(trackpos - bary) / (barheight - trackwidth);
                 }
 
                 return true;
@@ -241,7 +241,7 @@ namespace Diagram
                         trackpos = barx + barwidth - trackwidth;
                     }
 
-                    position = (float)(trackpos - barx) / (barwidth - trackwidth);
+                    position = (double)(trackpos - barx) / (barwidth - trackwidth);
                 }
 
                 if (vertical)
@@ -258,7 +258,7 @@ namespace Diagram
                         trackpos = bary + barheight - trackwidth;
                     }
 
-                    position = (float)(trackpos - bary) / (barheight - trackwidth);
+                    position = (double)(trackpos - bary) / (barheight - trackwidth);
                 }
 
                 if (trackposold != trackpos)
@@ -321,13 +321,13 @@ namespace Diagram
 
                     if (horizontal)
                     {
-                        position = (float)(trackpos - barx) / (barwidth - trackwidth);
+                        position = (double)(trackpos - barx) / (barwidth - trackwidth);
                     }
 
 
                     if (vertical)
                     {
-                        position = (float)(trackpos - bary) / (barheight - trackwidth);
+                        position = (double)(trackpos - bary) / (barheight - trackwidth);
                     }
 
                     if (OnChangePosition != null)
@@ -376,7 +376,7 @@ namespace Diagram
             ((Form)this.parent).Invalidate();
 		}
 
-        public void setPosition(float per)
+        public void setPosition(double per)
         {
             position = per;
             if (horizontal)

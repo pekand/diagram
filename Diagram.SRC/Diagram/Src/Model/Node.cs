@@ -15,6 +15,7 @@ namespace Diagram
         public Position position = new Position(); // node position in canvas
         public int width = 0; // node size counted from current font
         public int height = 0;
+        public double scale = 1;
 
         /*************************************************************************************************************************/
         // FLAGS
@@ -119,6 +120,7 @@ namespace Diagram
             this.position.Set(node.position);
             this.width = node.width;
             this.height = node.height;
+            this.scale = node.scale;
 
             this.layer = node.layer;
             this.haslayer = node.haslayer;
@@ -170,6 +172,7 @@ namespace Diagram
             {
                 this.width = node.width;
                 this.height = node.height;
+                this.scale = node.scale;
             }
 
             this.isimage = node.isimage;

@@ -73,10 +73,9 @@ namespace Diagram
 
         // ATTRIBUTES ZOOMING
         public Position zoomShift = new Position();// zoom view - left corner position before zoom space press
-        public float zoomingDefaultScale = 1;      // zoom view - normal scale
-        public float zoomingScale = 4;             // zoom view - scale in space preview
-        public float currentScale = 1;             // zoom viev - scale before space zoom
-        public float scale = 1;                    // zoom view - actual scale
+        public double zoomingDefaultScale = 1;      // zoom view - normal scale
+        public double currentScale = 1;             // zoom viev - scale before space zoom
+        public double scale = 1;                    // zoom view - actual scale
 
         // ATTRIBUTES Diagram
         public Diagram diagram = null;             // diagram assigned to current view
@@ -124,8 +123,8 @@ namespace Diagram
 
         // ZOOMTIMER
         private Timer zoomTimer = new Timer(); //zooming animation
-        public float zoomTimerScale = 1;
-        public float zoomTimerStep = 0;
+        public double zoomTimerScale = 1;
+        public double zoomTimerStep = 0;
 
         // LINEWIDTHFORM
         private LineWidthForm lineWidthForm = new LineWidthForm();
@@ -806,7 +805,7 @@ namespace Diagram
 
             if (e.Button == MouseButtons.Left)
             {
-                this.sourceNode = this.FindNodeInMousePosition(new Position(e.X, e.Y));
+                this.sourceNode = this.FindNodeInMousePosition(this.actualMousePos);
 
                 this.stateSourceNodeAlreadySelected = this.sourceNode != null && this.sourceNode.selected;
 
@@ -1307,8 +1306,8 @@ namespace Diagram
                             .Scale(this.scale)
                             )
                         .Add(
-                            (this.ClientSize.Width * this.scale) / 2,
-                            (this.ClientSize.Height * this.scale) / 2
+                            (int)((this.ClientSize.Width * this.scale) / 2),
+                            (int)((this.ClientSize.Height * this.scale) / 2)
                         );
                     this.diagram.InvalidateDiagram();
                 }
@@ -1632,27 +1631,22 @@ namespace Diagram
 #if DEBUG
             this.LogEvent("MouseWheel");
 #endif
-            float newScale = 0;
+            double newScale = 0;
             //throw new NotImplementedException();
             if (e.Delta > 0) // MWHELL
             {
                 if (this.keyctrl) // zoom
                 {
-                    if (this.scale > 0) // down
-                    {
-                        int a = (int)((this.shift.x - (this.ClientSize.Width / 2 * this.scale)));
-                        int b = (int)((this.shift.y - (this.ClientSize.Height / 2 * this.scale)));
-                        if (this.scale > 1)
-                            newScale = this.scale - 1;
-                        else
-                        if (this.scale > 0.1f)
-                            newScale = this.scale - 0.1f;
-
-                        this.shift.x = (int)((a + (this.ClientSize.Width / 2 * this.scale)));
-                        this.shift.y = (int)((b + (this.ClientSize.Height / 2 * this.scale)));
-                    }
-
-                    if (newScale < 0.1f) newScale = 0.1f;
+                    int a = (int)((this.shift.x - (this.ClientSize.Width / 2 * this.scale)));
+                    int b = (int)((this.shift.y - (this.ClientSize.Height / 2 * this.scale)));   
+                                      
+                    double t = Math.Truncate(Math.Log10(this.scale)) - 1;
+                    newScale = this.scale - Math.Pow(10, t);
+					
+					Program.log.Write("newscale"+newScale.ToString());
+					
+                    this.shift.x = (int)((a + (this.ClientSize.Width / 2 * this.scale)));
+                    this.shift.y = (int)((b + (this.ClientSize.Height / 2 * this.scale)));
                 }
                 else
                 if (this.keyshift) // move view
@@ -1670,21 +1664,16 @@ namespace Diagram
             {
                 if (this.keyctrl) // zoom
                 {
-                    if (this.scale < 7) //up
-                    {
-                        int a = (int)((this.shift.x - (this.ClientSize.Width / 2 * this.scale)));
-                        int b = (int)((this.shift.y - (this.ClientSize.Height / 2 * this.scale)));
-                        if (this.scale >= 1)
-                            newScale = this.scale + 1;
-                        else
-                            if (this.scale < 1)
-                            newScale = this.scale + 0.1f;
+                    int a = (int)((this.shift.x - (this.ClientSize.Width / 2 * this.scale)));
+                    int b = (int)((this.shift.y - (this.ClientSize.Height / 2 * this.scale)));
+                    
+                    double t = Math.Truncate(Math.Log10(this.scale)) - 1;
+                    newScale = this.scale + Math.Pow(10, t);
+                    
+                    Program.log.Write("newscale"+newScale.ToString());
 
-                        this.shift.x = (int)((a + (this.ClientSize.Width / 2 * this.scale)));
-                        this.shift.y = (int)((b + (this.ClientSize.Height / 2 * this.scale)));
-                    }
-
-                    if (newScale > 7) newScale = 7;
+                    this.shift.x = (int)((a + (this.ClientSize.Width / 2 * this.scale)));
+                    this.shift.y = (int)((b + (this.ClientSize.Height / 2 * this.scale)));
                 }
                 else
                 if (this.keyshift) // move view
@@ -2188,7 +2177,7 @@ namespace Diagram
                 );
 
                 this.currentScale = this.scale;
-                this.scale = this.zoomingScale;
+                this.scale = this.scale * 4;
 
                 tmp.Add(
                     (int)(+(this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / this.scale) * this.scale),
@@ -2202,7 +2191,7 @@ namespace Diagram
 
         }
 
-        // EVENT Key up UID4343244331
+        // EVENT Key up UID4343244331  // [KEYBOARD] [UP] [EVENT]
         public void DiagramApp_KeyUp(object sender, KeyEventArgs e)
         {
 
@@ -2243,7 +2232,7 @@ namespace Diagram
 
                 this.diagram.InvalidateDiagram();
             }
-        }                                 // [KEYBOARD] [UP] [EVENT]
+        }                                 
 
         // EVENT Keypress UID1343430442
         public void DiagramApp_KeyPress(object sender, KeyPressEventArgs e)
@@ -2924,7 +2913,7 @@ namespace Diagram
         /*************************************************************************************************************************/
 
         // SCROLLBAR MOVE LEFT-RIGHT set current position in view with relative (0-1) number          // SCROLLBAR
-        public void MoveScreenHorizontal(float per)
+        public void MoveScreenHorizontal(double per)
         {
             int minx = int.MaxValue;
             int maxx = int.MinValue;
@@ -2950,9 +2939,9 @@ namespace Diagram
         }
 
         // SCROLLBAR GET POSITION LEFT-RIGHT calculate current position in view as relative (0-1) number
-        public float GetPositionHorizontal()
+        public double GetPositionHorizontal()
         {
-            float per = 0;
+            double per = 0;
             int minx = int.MaxValue;
             int maxx = int.MinValue;
             foreach (Node rec in this.currentLayer.nodes)
@@ -2968,7 +2957,7 @@ namespace Diagram
             {
                 minx = minx - 100;
                 maxx = maxx + 100 - this.ClientSize.Width;
-                per = (float)(-this.shift.x - minx) / (maxx - minx);
+                per = (double)(-this.shift.x - minx) / (maxx - minx);
                 if (per < 0) per = 0;
                 if (per > 1) per = 1;
                 return per;
@@ -2981,7 +2970,7 @@ namespace Diagram
         }
 
         // SCROLLBAR MOVE UP-DOWN set current position in view with relative (0-1) number
-        public void MoveScreenVertical(float per)
+        public void MoveScreenVertical(double per)
         {
             int miny = int.MaxValue;
             int maxy = int.MinValue;
@@ -3007,9 +2996,9 @@ namespace Diagram
         }
 
         // SCROLLBAR GET POSITION LEFT-RIGHT calculate current position in view as relative (0-1) number
-        public float GetPositionVertical()
+        public double GetPositionVertical()
         {
-            float per = 0;
+            double per = 0;
             int miny = int.MaxValue;
             int maxy = int.MinValue;
             foreach (Node rec in this.currentLayer.nodes)
@@ -3025,7 +3014,7 @@ namespace Diagram
             {
                 miny = miny - 100;
                 maxy = maxy + 100 - this.ClientSize.Height;
-                per = (float)(-this.shift.y - miny) / (maxy - miny);
+                per = (double)(-this.shift.y - miny) / (maxy - miny);
                 if (per < 0) per = 0;
                 if (per > 1) per = 1;
                 return per;
@@ -3264,35 +3253,52 @@ namespace Diagram
             }
         }
 
-        // DRAW grid
-        private void DrawGrid(Graphics gfx)
+        // DRAW grid UID4224241033
+        private void DrawGrid(Graphics gfx) 
         {
-            float s = this.scale;
+            double s = this.scale;
             Pen myPen = new Pen(Color.FromArgb(201, 201, 201), 1);
 
-            float m = 100 / s;
-            float sw = this.ClientSize.Width;
-            float sh = this.ClientSize.Height;
-            float lwc = sw / m + 1;
-            float lhc = sh / m + 1;
-            float six = this.shift.x / s % m;
-            float siy = this.shift.y / s % m;
+			double sw = this.ClientSize.Width;  // get windows dize
+            double sh = this.ClientSize.Height;
+            
+            double sqaresize = 100;
+            double m = sqaresize / s; // get 100px size in current scale
+            while(m<20){
+            	sqaresize *= 10;
+            	m = sqaresize / s;
+            }
+            
+            while(m>sw){
+            	sqaresize /= 10;
+            	m = sqaresize / s;
+            }
+            
+            // skip drawwing to small pr to high grid
+            if (m<5 ||  sw<m || sh<m) {
+            	return;
+            }
+            
+            double lwc = sw / m + 1; // count how meny lines can by written in current view
+            double lhc = sh / m + 1;
+            double six = this.shift.x / s % m; // calculate first line position
+            double siy = this.shift.y / s % m;
 
-            for (int i = 0; i <= lwc; i++)
+            for (int i = 0; i <= lwc; i++) // dreaw vertical lines
             {
-                gfx.DrawLine(myPen, six + i * m, 0, six + i * m, sh);
+                gfx.DrawLine(myPen, (int)(six + i * m), 0, (int)(six + i * m), (int)sh);
             }
 
-            for (int i = 0; i <= lhc; i++)
+            for (int i = 0; i <= lhc; i++) // draw horizontal lines
             {
-                gfx.DrawLine(myPen, 0, siy + i * m, sw, siy + i * m);
+                gfx.DrawLine(myPen, 0, (int)(siy + i * m), (int)sw, (int)(siy + i * m));
             }
         }
 
-        // DRAW diagram mini screen in zoom mode
+        // DRAW diagram mini screen in zoom mode UID2024023214
         private void DrawMiniScreen(Graphics gfx)
         {
-            float s = this.scale;
+            double s = this.scale;
             Pen myPen = new Pen(Color.FromArgb(201, 201, 201), 1);
 
             myPen = new Pen(Color.Gray, 1);
@@ -3307,10 +3313,10 @@ namespace Diagram
             );
         }
 
-        // DRAW coordinates for debuging
+        // DRAW coordinates for debuging UID1321232103
         private void DrawCoordinates(Graphics gfx)
         {
-            float s = this.scale;
+            double s = this.scale;
 
             Font drawFont = new Font("Arial", 10);
             SolidBrush drawBrush = new SolidBrush(Color.Black);
@@ -3326,7 +3332,7 @@ namespace Diagram
             );
         }
 
-        // DRAW select node by mouse drag (blue rectangle)
+        // DRAW select node by mouse drag (blue rectangle)  UID4401141100
         private void DrawNodesSelectArea(Graphics gfx)
         {
             SolidBrush brush = new SolidBrush(Color.FromArgb(100, 10, 200, 200));
@@ -3349,7 +3355,7 @@ namespace Diagram
             );
         }
 
-        // DRAW add new node by drag
+        // DRAW add new node by drag UID0142004302
         private void DrawAddNode(Graphics gfx)
         {
             Pen myPen = new Pen(Color.Black, 1);
@@ -3375,11 +3381,11 @@ namespace Diagram
             }
         }
 
-        // DRAW nodes
+        // DRAW nodes UID3421003104
         private void DrawNodes(Graphics gfx, Nodes nodes, Position correction = null, bool export = false)
         {
             bool isvisible = false; // drawonly visible elements
-            float s = this.scale;
+            double s = this.scale;
 
             Pen nodeBorder = new Pen(Color.Black, 1);
             Pen nodeSelectBorder = new Pen(Color.Black, 3);
@@ -3461,23 +3467,26 @@ namespace Diagram
                     {
                         if (this.diagram.options.coordinates) // draw debug information
                         {
-                            Font drawFont = new Font("Arial", 10 / s);
-                            SolidBrush drawBrush = new SolidBrush(Color.Black);
-                            gfx.DrawString(
-                                rec.id.ToString() + "i:" + (rec.position.x).ToString() + "x," + (rec.position.y).ToString()+"y",
-                                drawFont,
-                                drawBrush,
-                                (this.shift.x + rec.position.x) / s,
-                                (this.shift.y + rec.position.y - 20) / s
-                            );
+                            int size = (int)(10 / (s / rec.scale));
+                            if (size>0) { 
+                                Font drawFont = new Font("Arial", size);
+                                SolidBrush drawBrush = new SolidBrush(Color.Black);
+                                gfx.DrawString(
+                                    rec.id.ToString() + "i:" + (rec.position.x).ToString() + "x," + (rec.position.y).ToString() + "y",
+                                    drawFont,
+                                    drawBrush,
+                                    (int)((this.shift.x + rec.position.x) / s),
+                                    (int)((this.shift.y + rec.position.y - 20) / s)
+                                );
+                            }
                         }
 
                         // DRAW rectangle
                         Rectangle rect1 = new Rectangle(
                             (int)((this.shift.x + cx + rec.position.x) / s),
                             (int)((this.shift.y + cy + rec.position.y) / s),
-                            (int)((rec.width) / s),
-                            (int)((rec.height) / s)
+                            (int)((rec.width) / (s / rec.scale)),
+                            (int)((rec.height) / (s / rec.scale))
                         );
 
                         // DRAW border
@@ -3495,8 +3504,8 @@ namespace Diagram
                                 gfx.DrawEllipse(nodeBorder, new Rectangle(
                                         (int)((this.shift.x + cx + rec.position.x - 2) / s),
                                         (int)((this.shift.y + cy + rec.position.y - 2) / s),
-                                        (int)((rec.width + 4) / s),
-                                        (int)((rec.height + 4) / s)
+                                        (int)((rec.width + 4) / (s / rec.scale)),
+                                        (int)((rec.height + 4) / (s / rec.scale))
                                     )
                                 );
                             }
@@ -3508,8 +3517,8 @@ namespace Diagram
                                     new Rectangle(
                                         (int)((this.shift.x + cx + rec.position.x - 2) / s),
                                         (int)((this.shift.y + cy + rec.position.y - 2) / s),
-                                        (int)((rec.width + 4) / s),
-                                        (int)((rec.height + 4) / s)
+                                        (int)((rec.width + 4) / (s / rec.scale)),
+                                        (int)((rec.height + 4) / (s / rec.scale))
                                     )
                                 );
                             }
@@ -3531,8 +3540,8 @@ namespace Diagram
                                     new Rectangle(
                                         (int)((this.shift.x + cx + rec.position.x - 2) / s),
                                         (int)((this.shift.y + cy + rec.position.y - 2) / s),
-                                        (int)((rec.width + 4) / s),
-                                        (int)((rec.height + 4) / s)
+                                        (int)((rec.width + 4) / (s / rec.scale)),
+                                        (int)((rec.height + 4) / (s / rec.scale))
                                     )
                                 );
                             }
@@ -3545,8 +3554,8 @@ namespace Diagram
                                     new Rectangle(
                                         (int)((this.shift.x + cx + rec.position.x - 2) / s),
                                         (int)((this.shift.y + cy + rec.position.y - 2) / s),
-                                        (int)((rec.width + 4) / s),
-                                        (int)((rec.height + 4) / s)
+                                        (int)((rec.width + 4) / (s / rec.scale)),
+                                        (int)((rec.height + 4) / (s / rec.scale))
                                     )
                                 );
                             }
@@ -3554,36 +3563,39 @@ namespace Diagram
 
                             // DRAW text
                             RectangleF rect2 = new RectangleF(
-                                (int)((this.shift.x + cx + rec.position.x + Node.NodePadding) / s),
-                                (int)((this.shift.y + cy + rec.position.y + Node.NodePadding) / s),
-                                (int)((rec.width - Node.NodePadding) / s),
-                                (int)((rec.height - Node.NodePadding) / s)
+                                (int)((this.shift.x + cx + rec.position.x + (Node.NodePadding * rec.scale)) / s),
+                                (int)((this.shift.y + cy + rec.position.y + (Node.NodePadding * rec.scale)) / s),
+                                (int)((rec.width - Node.NodePadding) / (s / rec.scale)),
+                                (int)((rec.height - Node.NodePadding) / (s / rec.scale))
                             );
 
-
-                            gfx.DrawString(
-                                (rec.protect) ? Node.protectedName : rec.name,
-                                new Font(
-                                    rec.font.FontFamily,
-                                    rec.font.Size / s,
-                                    rec.font.Style,
-                                    GraphicsUnit.Point,
-                                    ((byte)(0))
-                                ),
-                                new SolidBrush(rec.fontcolor.color),
-                                rect2
-                            );
+                            int size = (int)(rec.font.Size / (s / rec.scale));
+                            if (size>0) //check if is not to small after zoom
+                            {
+                                gfx.DrawString(
+                                    (rec.protect) ? Node.protectedName : rec.name,
+                                    new Font(
+                                        rec.font.FontFamily,
+                                        size,
+                                        rec.font.Style,
+                                        GraphicsUnit.Point,
+                                        ((byte)(0))
+                                    ),
+                                    new SolidBrush(rec.fontcolor.color),
+                                    rect2
+                                );
+                            }
                         }
                     }
                 }
             }
         }
 
-        // DRAW lines
+        // DRAW lines UID2340203301
         private void DrawLines(Graphics gfx, Lines lines, Position correction = null, bool export = false)
         {
             bool isvisible = false; // drawonly visible elements
-            float s = this.scale;
+            double s = this.scale;
 
             // fix position for image file export
             int cx = 0;
@@ -3637,25 +3649,25 @@ namespace Diagram
 
                     if (lin.arrow) // draw line as arrow
                     {
-                        float x1 = (this.shift.x + cx + r1.position.x + r1.width / 2) / s;
-                        float y1 = (this.shift.y + cy + r1.position.y + r1.height / 2) / s;
-                        float x2 = (this.shift.x + cx + r2.position.x + r2.width / 2) / s;
-                        float y2 = (this.shift.y + cy + r2.position.y + r2.height / 2) / s;
+                        double x1 = (this.shift.x + cx + r1.position.x + (r1.width * r1.scale) / 2) / s;
+                        double y1 = (this.shift.y + cy + r1.position.y + (r1.height * r1.scale) / 2) / s;
+                        double x2 = (this.shift.x + cx + r2.position.x + (r2.width * r2.scale) / 2) / s;
+                        double y2 = (this.shift.y + cy + r2.position.y + (r2.height * r2.scale) / 2) / s;
                         double nx1 = (Math.Cos(Math.PI / 2) * (x2 - x1) - Math.Sin(Math.PI / 2) * (y2 - y1) + x1);
                         double ny1 = (Math.Sin(Math.PI / 2) * (x2 - x1) + Math.Cos(Math.PI / 2) * (y2 - y1) + y1);
                         double nx2 = (Math.Cos(-Math.PI / 2) * (x2 - x1) - Math.Sin(-Math.PI / 2) * (y2 - y1) + x1);
                         double ny2 = (Math.Sin(-Math.PI / 2) * (x2 - x1) + Math.Cos(-Math.PI / 2) * (y2 - y1) + y1);
                         double size = Math.Sqrt((nx1 - x1) * (nx1 - x1) + (ny1 - y1) * (ny1 - y1));
-                        nx1 = x1 + (((nx1 - x1) / size) * 7) / s;
-                        ny1 = y1 + (((ny1 - y1) / size) * 7) / s;
-                        nx2 = x1 + (((nx2 - x1) / size) * 7) / s;
-                        ny2 = y1 + (((ny2 - y1) / size) * 7) / s;
+                        nx1 = x1 + (((nx1 - x1) / size) * (7 * r1.scale)) / s;
+                        ny1 = y1 + (((ny1 - y1) / size) * (7 * r1.scale)) / s;
+                        nx2 = x1 + (((nx2 - x1) / size) * (7 * r1.scale)) / s;
+                        ny2 = y1 + (((ny2 - y1) / size) * (7 * r1.scale)) / s;
 
                         // Create points that define polygon.
-                        PointF point1 = new PointF((float)nx1, (float)ny1);
-                        PointF point2 = new PointF((float)nx2, (float)ny2);
-                        PointF point3 = new PointF(x2, y2);
-                        PointF[] curvePoints = { point1, point2, point3 };
+                        Point point1 = new Point((int)nx1, (int)ny1);
+                        Point point2 = new Point((int)nx2, (int)ny2);
+                        Point point3 = new Point((int)x2, (int)y2);
+                        Point[] curvePoints = { point1, point2, point3 };
 
                         // Define fill mode.
                         FillMode newFillMode = FillMode.Winding;
@@ -3671,11 +3683,11 @@ namespace Diagram
                     {
                         // draw line
                         gfx.DrawLine(
-                            new Pen(lin.color.color, lin.width / s > 1 ? (int)lin.width / s : 1),
-                            (this.shift.x + cx + r1.position.x + r1.width / 2) / s,
-                            (this.shift.y + cy + r1.position.y + r1.height / 2) / s,
-                            (this.shift.x + cx + r2.position.x + r2.width / 2) / s,
-                            (this.shift.y + cy + r2.position.y + r2.height / 2) / s
+                            new Pen(lin.color.color, lin.width / s > 1 ? (int)(lin.width / s) : 1),
+                            (int)((this.shift.x + cx + r1.position.x + (r1.width * r1.scale) / 2) / s),
+                            (int)((this.shift.y + cy + r1.position.y + (r1.height * r1.scale) / 2) / s),
+                            (int)((this.shift.x + cx + r2.position.x + (r2.width * r2.scale) / 2) / s),
+                            (int)((this.shift.y + cy + r2.position.y + (r2.height * r2.scale) / 2) / s)
                         );
                     }
 
@@ -3779,6 +3791,15 @@ namespace Diagram
             }
         }
         
+        // VIEW Convert mouse position to diagram coordinates 
+        public Position MouseToDiagramPosition(Position mousePosition)
+        {
+            return new Position(
+                (int)(mousePosition.x * this.scale - this.shift.x),
+                (int)(mousePosition.y * this.scale - this.shift.y)
+            );
+        }
+        
         /*************************************************************************************************************************/
 
         // NODE create
@@ -3792,6 +3813,7 @@ namespace Diagram
 
             if (rec != null)
             {
+            	rec.scale = this.scale;
                 if (SelectAfterCreate) this.SelectOnlyOneNode(rec);
             }
 
@@ -3925,15 +3947,12 @@ namespace Diagram
             this.currentLayer = this.diagram.layers.GetLayer(layer);
             this.BuildLayerHistory(layer);
         }
-
+        
         // NODE find node in mouse cursor position
-        public Node FindNodeInMousePosition(Position position, Node skipNode = null)
+        public Node FindNodeInMousePosition(Position mousePosition, Node skipNode = null)
         {
             return this.diagram.FindNodeInPosition(
-                new Position(
-                    (int)(position.x * this.scale - this.shift.x),
-                    (int)(position.y * this.scale - this.shift.y)
-                ),
+                this.MouseToDiagramPosition(mousePosition),
                 this.currentLayer.id,
                 skipNode
             );
@@ -4921,14 +4940,14 @@ namespace Diagram
             else
             if (this.selectedNodes.Count() > 1)  // SUM sum nodes with numbers
             {
-                float sum = 0;
+                double sum = 0;
                 Match match = null;
                 foreach (Node rec in this.selectedNodes)
                 {
                     match = Regex.Match(rec.name, @"([-]{0,1}\d+[\.,]{0,1}\d*)", RegexOptions.IgnoreCase);
                     if (match.Success)
                     {
-                        sum = sum + float.Parse(match.Groups[1].Value.Replace(",", "."), CultureInfo.InvariantCulture);
+                        sum = sum + double.Parse(match.Groups[1].Value.Replace(",", "."), CultureInfo.InvariantCulture);
                     }
                 }
 
@@ -5056,7 +5075,7 @@ namespace Diagram
                 else if (matchesFloat.Count > 0) //add to number
                 {
                     string number = matchesFloat[0].Groups[1].Value;
-                    string newnumber = (float.Parse(number) + 1).ToString();
+                    string newnumber = (double.Parse(number) + 1).ToString();
                     newrec.setName(expression.Replace(number, newnumber));
                 }
 
@@ -5811,7 +5830,7 @@ namespace Diagram
             this.diagram.InvalidateDiagram();
         }
 
-        // ZOOM TIMER zoom animation
+        // ZOOM TIMER zoom animation UID3132133201
         public void ZoomTimer_Tick(object sender, EventArgs e)
         {
 
@@ -5846,19 +5865,6 @@ namespace Diagram
             else
             {
                 this.zoomTimer.Enabled = false; // prevent infinite animation
-            }
-
-            // border
-            if (this.scale < 0.1f) {
-                this.scale = 0.1f;
-                this.zoomTimer.Enabled = false;
-            }
-
-            // border
-            if (this.scale > 7)
-            {
-                this.scale = 7;
-                this.zoomTimer.Enabled = false;
             }
         }
 
