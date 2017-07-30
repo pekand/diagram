@@ -14,3 +14,5 @@ Documentation/Doxygen/html
 /Diagram.SRC/Plugins/FirstPlugin/obj
 /Diagram.SRC/Plugins/FindUidPlugin/obj
 /Diagram.SRC/Plugins/ScriptingPlugin/obj
+
+Diagram.SRC/Plugins/ScriptingPlugin/IronPython.zip
