@@ -2872,14 +2872,6 @@ and send response</text>
     </rectangle>
     <rectangle>
       <id>1455</id>
-      <font type="font">
-        <name>Open Sans</name>
-        <size>10</size>
-        <bold>false</bold>
-        <italic>false</italic>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-      </font>
       <fontcolor>Black</fontcolor>
       <text>script version</text>
       <note>import clr
@@ -2893,10 +2885,10 @@ rec = Diagram.CreateNode(Position(selected.position.x+200, selected.position.y),
 DiagramView.Invalidate();</note>
       <link>$</link>
       <layer>0</layer>
-      <x>-1209</x>
-      <y>2756</y>
-      <width>110</width>
-      <height>39</height>
+      <x>-1207</x>
+      <y>2757</y>
+      <width>105</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2017-3-25 17:49:18</timecreate>
       <timemodify>2017-3-25 17:49:43</timemodify>
@@ -2983,14 +2975,6 @@ DiagramView.Invalidate();</note>
     </rectangle>
     <rectangle>
       <id>1469</id>
-      <font type="font">
-        <name>Open Sans</name>
-        <size>10</size>
-        <bold>false</bold>
-        <italic>false</italic>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-      </font>
       <fontcolor>Black</fontcolor>
       <text>random uid</text>
       <note>import clr
@@ -3010,24 +2994,16 @@ DiagramView.Invalidate();
 print 'uid created'</note>
       <link>$</link>
       <layer>0</layer>
-      <x>-1207</x>
-      <y>2815</y>
-      <width>99</width>
-      <height>39</height>
+      <x>-1204</x>
+      <y>2816</y>
+      <width>93</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2017-3-25 19:42:21</timecreate>
       <timemodify>2017-3-26 11:34:02</timemodify>
     </rectangle>
     <rectangle>
       <id>1471</id>
-      <font type="font">
-        <name>Open Sans</name>
-        <size>10</size>
-        <bold>false</bold>
-        <italic>false</italic>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-      </font>
       <fontcolor>Black</fontcolor>
       <text>random uid</text>
       <note>import clr
@@ -3047,10 +3023,10 @@ DiagramView.Invalidate();
 print 'uid created'</note>
       <link>$</link>
       <layer>0</layer>
-      <x>-907</x>
-      <y>5051</y>
-      <width>99</width>
-      <height>39</height>
+      <x>-775</x>
+      <y>5466</y>
+      <width>93</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2017-3-26 11:31:46</timecreate>
       <timemodify>2017-3-26 11:33:51</timemodify>
@@ -3203,45 +3179,6 @@ print 'uid created'</note>
       <color>#D9CCFF</color>
       <timecreate>2017-3-26 12:48:40</timecreate>
       <timemodify>2017-3-26 12:48:46</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1552</id>
-      <fontcolor>Black</fontcolor>
-      <text>UID0113143324</text>
-      <layer>0</layer>
-      <x>-798</x>
-      <y>5051</y>
-      <width>124</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 23:47:54</timecreate>
-      <timemodify>2017-3-26 23:47:54</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1496</id>
-      <fontcolor>Black</fontcolor>
-      <text>UID4211424233</text>
-      <layer>0</layer>
-      <x>-798</x>
-      <y>5465</y>
-      <width>124</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:21:57</timecreate>
-      <timemodify>2017-3-26 12:21:57</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1497</id>
-      <fontcolor>Black</fontcolor>
-      <text>UID0344201104</text>
-      <layer>0</layer>
-      <x>-798</x>
-      <y>5511</y>
-      <width>124</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:21:59</timecreate>
-      <timemodify>2017-3-26 12:21:59</timemodify>
     </rectangle>
     <rectangle>
       <id>1508</id>
@@ -3450,119 +3387,7 @@ print 'uid created'</note>
       <timemodify>2017-3-26 12:49:09</timemodify>
     </rectangle>
     <rectangle>
-      <id>1525</id>
-      <fontcolor>Black</fontcolor>
-      <text>UID1440244333</text>
-      <layer>0</layer>
-      <x>-798</x>
-      <y>5099</y>
-      <width>124</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:52:51</timecreate>
-      <timemodify>2017-3-26 12:52:51</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1526</id>
-      <fontcolor>Black</fontcolor>
-      <text>UID3132133201</text>
-      <layer>0</layer>
-      <x>-798</x>
-      <y>5145</y>
-      <width>124</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:52:52</timecreate>
-      <timemodify>2017-3-26 12:52:52</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1527</id>
-      <fontcolor>Black</fontcolor>
-      <text>UID1014143422</text>
-      <layer>0</layer>
-      <x>-798</x>
-      <y>5191</y>
-      <width>124</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:52:53</timecreate>
-      <timemodify>2017-3-26 12:52:53</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1528</id>
-      <fontcolor>Black</fontcolor>
-      <text>UID2410114104</text>
-      <layer>0</layer>
-      <x>-798</x>
-      <y>5237</y>
-      <width>124</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:52:55</timecreate>
-      <timemodify>2017-3-26 12:52:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1529</id>
-      <fontcolor>Black</fontcolor>
-      <text>UID3204111432</text>
-      <layer>0</layer>
-      <x>-798</x>
-      <y>5283</y>
-      <width>124</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:52:59</timecreate>
-      <timemodify>2017-3-26 12:52:59</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1530</id>
-      <fontcolor>Black</fontcolor>
-      <text>UID4112021202</text>
-      <layer>0</layer>
-      <x>-798</x>
-      <y>5329</y>
-      <width>124</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:53:01</timecreate>
-      <timemodify>2017-3-26 12:53:01</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1531</id>
-      <fontcolor>Black</fontcolor>
-      <text>UID1120313432</text>
-      <layer>0</layer>
-      <x>-798</x>
-      <y>5375</y>
-      <width>124</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:53:02</timecreate>
-      <timemodify>2017-3-26 12:53:02</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1532</id>
-      <fontcolor>Black</fontcolor>
-      <text>UID2341324212</text>
-      <layer>0</layer>
-      <x>-798</x>
-      <y>5421</y>
-      <width>124</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-3-26 12:53:05</timecreate>
-      <timemodify>2017-3-26 12:53:05</timemodify>
-    </rectangle>
-    <rectangle>
       <id>1534</id>
-      <font type="font">
-        <name>Open Sans</name>
-        <size>10</size>
-        <bold>false</bold>
-        <italic>false</italic>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-      </font>
       <fontcolor>Black</fontcolor>
       <text>circle</text>
       <note>import clr
@@ -3585,9 +3410,9 @@ DiagramView.Invalidate();</note>
       <link>$</link>
       <layer>0</layer>
       <x>-1201</x>
-      <y>2683</y>
-      <width>57</width>
-      <height>39</height>
+      <y>2684</y>
+      <width>56</width>
+      <height>36</height>
       <color>#FFFFB8</color>
       <timecreate>2017-3-26 22:31:30</timecreate>
       <timemodify>2017-3-26 22:31:30</timemodify>

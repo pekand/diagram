@@ -151,7 +151,7 @@ namespace Diagram
         public static void BringToFront(Form form)   // [focus] UID0703915427
         {
             Program.log.Write("bringToFront");
-            Tick.timer(1000, (t, args) =>
+            Tick.Timer(1000, (t, args) =>
             {
                 if (t is Timer)
                 {

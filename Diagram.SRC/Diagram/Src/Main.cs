@@ -96,6 +96,14 @@ namespace Diagram
             // create local server for comunication between local instances UID2964640610
             server = new Server(this);
 
+            if(server.StartServer())
+            {
+                if (Update.UpdateApplication())
+                {
+                    this.ExitApplication();
+                }
+            }
+
             Program.log.Write("Program: Main");
 
 #if DEBUG

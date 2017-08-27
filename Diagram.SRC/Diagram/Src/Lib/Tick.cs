@@ -31,7 +31,7 @@ namespace Diagram
         /// </code>
         /// </example>
         /// <returns></returns>
-        public static Timer timer(int interval, EventHandler tick)
+        public static Timer Timer(int interval, EventHandler tick)
         {
             Timer timer = new Timer();            
             timer.Interval = 200;
