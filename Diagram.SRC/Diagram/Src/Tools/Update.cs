@@ -44,12 +44,24 @@ namespace Diagram
 
         public static bool CheckCurrentVersion(string availableVersion)
         {
-            string currentApplicationVersion = Program.GetVersion();
+            if (availableVersion.Trim() == "") {
+                return false;
+            }
 
-            var local = new Version(currentApplicationVersion);
-            var remote = new Version(availableVersion);
+            int result = 0;
 
-            var result = remote.CompareTo(local);
+            try
+            {
+                string currentApplicationVersion = Program.GetVersion();
+                var local = new Version(currentApplicationVersion);
+                var remote = new Version(availableVersion);
+                result = remote.CompareTo(local);
+            }
+            catch (Exception e)
+            {
+                Program.log.Write("CheckCurrentVersion: " + e.Message);
+            }
+
             if (result > 0) {
                 return true;
             }
