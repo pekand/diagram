@@ -421,7 +421,7 @@ namespace Diagram
 
         /// <summary>
         /// run command in system and discard output </summary>
-        public static void RunCommandAndExit(string cmd)
+        public static void RunCommandAndExit(string cmd, string parameters = "")
         {
 
             Process process = new Process();
@@ -434,7 +434,7 @@ namespace Diagram
 			startInfo.Arguments =  "-c \"" + cmd + "\"";
 #else
             startInfo.FileName = "cmd.exe";
-            startInfo.Arguments = "/C " + "\"" + cmd + "\"";
+            startInfo.Arguments = "/C " + "\"" + cmd + ((parameters!="")?" "+ parameters:"") + "\"";
 #endif
 
             process.StartInfo = startInfo;
@@ -453,6 +453,19 @@ namespace Diagram
             Program.log.Write("diagram: openlink: open file on position " + editFileCmd);
             Os.RunCommand(editFileCmd);
         }
+        
+        /// <summary>
+        /// open email </summary>
+        public static void OpenEmail(string email)
+        {
+            Program.log.Write("open email: " + email);
+            
+            System.Diagnostics.Process proc = new System.Diagnostics.Process();
+            proc.StartInfo.FileName = "mailto:"+email;
+            proc.Start();
+        }
+        
+        
 
         /*************************************************************************************************************************/
         // TOOLS

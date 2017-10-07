@@ -138,7 +138,8 @@ namespace Diagram
         // save diagram as
         public void Saveas(String FileName)
         {
-            if (this.IsLocked()) {
+            if (!this.IsLocked())
+            {
                 this.SaveXMLFile(FileName);
                 this.FileName = FileName;
                 this.SavedFile = true;

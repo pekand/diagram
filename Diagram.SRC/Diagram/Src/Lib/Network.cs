@@ -183,6 +183,24 @@ namespace Diagram
             return page;
         }
 
+        public static bool DownloadFile(string sourceUrl, string pathToSave)
+        {
+            try
+            {
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile(sourceUrl, pathToSave);
+                }
+
+                return true;
+
+            } catch (Exception ex)
+            {
+                Program.log.Write("download file error: " + ex.Message);
+            }
+
+            return false;
+        }
         /*************************************************************************************************************************/
         // OPEN
 

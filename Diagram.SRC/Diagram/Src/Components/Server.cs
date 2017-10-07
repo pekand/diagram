@@ -31,31 +31,49 @@ namespace Diagram
             this.main = main;
 
             this.mainProcess = false;
+        }
 
+
+        public bool ServerExists()
+        {
+            if (SendMessage("ping")) // check if server exists
+            { 
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool StartServer()
+        {
             try
             {
-                if (!SendMessage("ping")) // check if server exists
-                {
+                if (!this.ServerExists()) // check if server exists
+                {                    
                     Int32 port = main.options.server_default_port;
                     IPAddress localAddr = IPAddress.Parse(main.options.server_default_ip);
 
                     this.tcpListener = new TcpListener(localAddr, port);
                     this.listenThread = new Thread(new ThreadStart(ListenForClients)); // start thread with server
                     this.listenThread.Start();
-					this.mainProcess = true;
+                    this.mainProcess = true;
                     Program.log.Write("Server: start on " + main.options.server_default_ip + ":" + main.options.server_default_port);
+
+                    return true;
                 }
                 else
                 {
                     this.mainProcess = false;
-                    Program.log.Write("Server: already exist");                    
+                    Program.log.Write("Server: already exist");   
+                    return false;                 
                 }
             }
             catch (Exception ex)
             {
                 Program.log.Write("Server: "+ex.Message);
-            }
-
+            }  
+            
+            return false;   
         }
 
         // start server loop UID8117850972

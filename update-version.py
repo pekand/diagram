@@ -49,5 +49,7 @@ description = input("Description: ").strip()
 confirmAction()
 prependToFile("./ReleaseNote.txt", newVersion + " " + description)
 replaceInFile("./Diagram.SRC/Diagram/Src/Program.cs", oldVersion, newVersion)
+replaceInFile("./Diagram.SRC/Diagram/Diagram.csproj", oldVersion, newVersion)
 replaceInFile("./install-windows/create-installation-package-32.iss", oldVersion, newVersion)
 replaceInFile("./install-windows/create-installation-package-64.iss", oldVersion, newVersion)
+

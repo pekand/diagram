@@ -76,7 +76,7 @@ namespace Diagram
         /// Parse node link to file for open on position</summary>
         public static bool hasHastag(string link, ref string fileName, ref string searchString)
         {
-            Match matchFileOpenOnPosition = (new Regex("^([^#]+)#(.*)$")).Match(link.Trim());
+            Match matchFileOpenOnPosition = (new Regex(@"^([^#]+)#(.*)$")).Match(link.Trim());
 
             if (matchFileOpenOnPosition.Success)
             {
@@ -92,7 +92,7 @@ namespace Diagram
         /// check if string start with hash</summary>
         public static bool isGotoIdCommand(string text)
         {
-            Match matchNumber = (new Regex("#(\\d+)")).Match(text);
+            Match matchNumber = (new Regex(@"^\s*#(\\d+)\s*$")).Match(text);
 
             if (matchNumber.Success)
             {
@@ -106,7 +106,7 @@ namespace Diagram
         ///  parse integer (representing node id) from goto command string </summary>
         public static int getGotoIdCommand(string text)
         {
-            Match match = Regex.Match(text, "#(\\d+)", RegexOptions.IgnoreCase);
+            Match match = Regex.Match(text, @"^\s*#(\\d+)\s*$", RegexOptions.IgnoreCase);
 
 	        if (match.Success)
 	        {
@@ -122,7 +122,7 @@ namespace Diagram
         ///  Example: #search for string</summary>
         public static bool isGotoStringCommand(string text)
         {
-            Match matchNumber = (new Regex("#([\\w ]+)")).Match(text);
+            Match matchNumber = (new Regex(@"^\s*#([\\w ]+)\s*$")).Match(text);
 
             if (matchNumber.Success)
             {
@@ -137,7 +137,7 @@ namespace Diagram
         ///  Example: #search for string</summary>
         public static String getGotoStringCommand(string text)
         {
-            Match match = Regex.Match(text, "#([\\w ]+)", RegexOptions.IgnoreCase);
+            Match match = Regex.Match(text, @"^\s*#([\\w ]+)\s*$", RegexOptions.IgnoreCase);
 
             if (match.Success)
             {
@@ -162,6 +162,19 @@ namespace Diagram
         public static bool isHttpsURL(String url)
         {
             return (Regex.IsMatch(url, @"^(https)://[^ ]*$"));
+        }
+        
+        /// <summary>
+        /// check if url start on https </summary>
+        public static bool isEmail(String email)
+        {
+            string validEmailPattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
+            + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)"
+            + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
+
+            Regex ValidEmailRegex = new Regex(validEmailPattern, RegexOptions.IgnoreCase);
+
+            return ValidEmailRegex.IsMatch(email);
         }
 
         /// <summary>

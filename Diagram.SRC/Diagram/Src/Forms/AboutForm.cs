@@ -65,7 +65,7 @@ namespace Diagram
             this.buttonOk.TabIndex = 1;
             this.buttonOk.Text = "OK";
             this.buttonOk.UseVisualStyleBackColor = true;
-            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
+            this.buttonOk.Click += new System.EventHandler(this.ButtonOk_Click);
             // 
             // labelLicence
             // 
@@ -107,7 +107,7 @@ namespace Diagram
             this.linkLabelMe.TabIndex = 5;
             this.linkLabelMe.TabStop = true;
             this.linkLabelMe.Text = "Author";
-            this.linkLabelMe.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMe_LinkClicked);
+            this.linkLabelMe.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabelMe_LinkClicked);
             // 
             // labelVersion
             // 
@@ -137,7 +137,7 @@ namespace Diagram
             this.labelHomepage.Name = "labelHomepage";
             this.labelHomepage.Size = new System.Drawing.Size(0, 13);
             this.labelHomepage.TabIndex = 3;
-            this.labelHomepage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.labelHomepage_HomepageClicked);
+            this.labelHomepage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LabelHomepage_HomepageClicked);
             // 
             // AboutForm
             // 
@@ -172,17 +172,17 @@ namespace Diagram
         {
         }
 
-        private void buttonOk_Click(object sender, EventArgs e)
+        private void ButtonOk_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void linkLabelMe_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabelMe_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("mailto:pekand@gmail.com");
         }
 
-        private void labelHomepage_HomepageClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LabelHomepage_HomepageClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(this.main.options.home_page);
         }
