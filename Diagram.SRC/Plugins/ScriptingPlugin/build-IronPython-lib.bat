@@ -1,1 +1,2 @@
-zip -r .\IronPython.zip .\Lib\*
+cd lib
+zip -r ..\IronPython.zip *
