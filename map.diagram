@@ -1098,7 +1098,7 @@
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>437</x>
-      <y>2465</y>
+      <y>2422</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -1111,7 +1111,7 @@
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>632</x>
-      <y>2465</y>
+      <y>2422</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -1394,20 +1394,6 @@
       <timemodify>2017-3-4 23:02:59</timemodify>
     </rectangle>
     <rectangle>
-      <id>161</id>
-      <fontcolor>Black</fontcolor>
-      <text>Evaluator</text>
-      <link>UID9411889982</link>
-      <layer>0</layer>
-      <x>477</x>
-      <y>2365</y>
-      <width>82</width>
-      <height>36</height>
-      <color>#A5FF14</color>
-      <timecreate>2017-3-4 23:10:03</timecreate>
-      <timemodify>2017-3-4 23:10:07</timemodify>
-    </rectangle>
-    <rectangle>
       <id>192</id>
       <fontcolor>Black</fontcolor>
       <text>create diagram and focus</text>
@@ -1428,7 +1414,7 @@
       <link>UID8876272772</link>
       <layer>0</layer>
       <x>477</x>
-      <y>2412</y>
+      <y>2369</y>
       <width>99</width>
       <height>36</height>
       <color>#A5FF14</color>
@@ -3864,8 +3850,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>Uninstall-Package PCKG_NAME</text>
       <layer>0</layer>
-      <x>1633</x>
-      <y>1344</y>
+      <x>1510</x>
+      <y>1349</y>
       <width>225</width>
       <height>36</height>
       <color>#FFFFB8</color>

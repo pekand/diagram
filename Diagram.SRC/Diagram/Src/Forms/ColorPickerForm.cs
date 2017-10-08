@@ -23,7 +23,6 @@ namespace Diagram
 
         bool selecting = false;
 
-        private int b = 0;
         private PictureBox pictureBox1;
         private Position position = new Position();
 
@@ -59,10 +58,26 @@ namespace Diagram
             this.MaximizeBox = false;
             this.Name = "ColorPickerForm";
             this.Text = "Color";
+            this.Load += new System.EventHandler(this.ColorPickerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
 		}
+
+        private int cv(int i)
+        {
+            return (int)(255.0 * ((i * 5.0) / 255.0));
+        }
+
+        private SolidBrush br(int r, int g, int b)
+        {
+            return new SolidBrush(Color.FromArgb(r, g, b));
+        }
+
+        private void rc(Graphics gr, int r, int g, int b, int x, int y)
+        {
+            gr.FillRectangle(br(r, g, b), x, y, 5, 5);
+        }
 
         public void render()
         {
@@ -72,39 +87,39 @@ namespace Diagram
 
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                    g.FillRectangle(new SolidBrush(Color.FromArgb(0 + b, i * 5, j * 5)), i * 5, j * 5, 5, 5);
+                    rc(g, 0, cv(i), cv(j), i * 5, j * 5);
 
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                    g.FillRectangle(new SolidBrush(Color.FromArgb(j * 5, i * 5, 0 + b)), 255 + i * 5, j * 5, 5, 5);
+                    rc(g, cv(j), cv(i), 0, 255 + i * 5, j * 5);
 
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                    g.FillRectangle(new SolidBrush(Color.FromArgb(i * 5, 0 + b, j * 5)), 255 * 2 + i * 5, j * 5, 5, 5);
+                    rc(g, cv(i), 0, cv(j), 255 * 2 + i * 5, j * 5);
 
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                    g.FillRectangle(new SolidBrush(Color.FromArgb(i * 5, j * 5, j * 5)), i * 5, 255 + j * 5, 5, 5);
+                   rc(g, cv(i), cv(j), cv(j), i * 5, 255 + j * 5);
 
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                    g.FillRectangle(new SolidBrush(Color.FromArgb(i * 5, i * 5, j * 5)), 255 + i * 5, 255 + j * 5, 5, 5);
+                    rc(g, cv(i), cv(i), cv(j), 255 + i * 5, 255 + j * 5);
 
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                    g.FillRectangle(new SolidBrush(Color.FromArgb(i * 5, i * 5, i * 5)), 255 * 2 + i * 5, 255 + j * 5, 5, 5);
+                    rc(g, cv(i), cv(i), cv(i), 255 * 2 + i * 5, 255 + j * 5);
 
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                    g.FillRectangle(new SolidBrush(Color.FromArgb(255 - b, i * 5, j * 5)), i * 5, 255 * 2 + j * 5, 5, 5);
+                    rc(g, 255, cv(i), cv(j), i * 5, 255 * 2 + j * 5);
 
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                    g.FillRectangle(new SolidBrush(Color.FromArgb(j * 5, i * 5, 255 - b)), 255 + i * 5, 255 * 2 + j * 5, 5, 5);
+                    rc(g, cv(j), cv(i), 255, 255 + i * 5, 255 * 2 + j * 5);
 
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                    g.FillRectangle(new SolidBrush(Color.FromArgb(i * 5, 255 - b, j * 5)), 255 * 2 + i * 5, 255 * 2 + j * 5, 5, 5);
+                    rc(g, cv(i), 255, cv(j), 255 * 2 + i * 5, 255 * 2 + j * 5);
 
             g.Flush();
         }
@@ -180,6 +195,11 @@ namespace Diagram
                 if (this.changeColor != null)
                     this.changeColor(this.color);
             }
+        }
+
+        private void ColorPickerForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
