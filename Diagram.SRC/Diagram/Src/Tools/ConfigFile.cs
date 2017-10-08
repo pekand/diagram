@@ -136,7 +136,7 @@ namespace Diagram
             XElement currentElement = root;
             XElement child = null;
             int i = 0;
-            for (i = 0; i < parts.Length; i++)
+            for (i = 0; i < parts.Length - 1; i++)
             {
                 child = currentElement.Element(parts[i]);
 
@@ -155,7 +155,14 @@ namespace Diagram
                 currentElement = partKey;
             }
 
+            XElement node = currentElement.Element(Value.Name);
+            if (node != null)
+            {
+                node.Remove();
+            }
+           
             currentElement.Add(Value);
+
         }
 
         public XElement GetElement(String Name)

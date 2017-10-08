@@ -22,7 +22,9 @@ namespace Diagram
             string xml = configFile.Save();
             configFile.Open(xml);
 
-            Assert.IsTrue(configFile.Get("item1/item2/item5") == "value5");
+            string value = configFile.Get("item1/item2/item5");
+
+            Assert.IsTrue(value == "value5");
         }
     }
 }
