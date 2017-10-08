@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindUidPlugin", "Plugins\Fi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptingPlugin", "Plugins\ScriptingPlugin\ScriptingPlugin.csproj", "{5C06BDAC-0A87-4B24-83BB-5A784D3A83F1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0F160889-33D6-4BE2-8F4E-4810AE74EE39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diagram.Tests", "Tests\Diagram.Tests\Diagram.Tests.csproj", "{3AC096D0-A1C2-E12C-1390-A8335801FDAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +113,28 @@ Global
 		{5C06BDAC-0A87-4B24-83BB-5A784D3A83F1}.Release|x64.Build.0 = Release|x64
 		{5C06BDAC-0A87-4B24-83BB-5A784D3A83F1}.Release|x86.ActiveCfg = Release|x86
 		{5C06BDAC-0A87-4B24-83BB-5A784D3A83F1}.Release|x86.Build.0 = Release|x86
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Debug|x64.ActiveCfg = Debug|x64
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Debug|x64.Build.0 = Debug|x64
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Debug|x86.ActiveCfg = Debug|x86
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Debug|x86.Build.0 = Debug|x86
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Mono Debug|Any CPU.ActiveCfg = Release|x86
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Mono Debug|Any CPU.Build.0 = Release|x86
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Mono Debug|x64.ActiveCfg = Debug|x64
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Mono Debug|x64.Build.0 = Debug|x64
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Mono Debug|x86.ActiveCfg = Debug|x86
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Mono Debug|x86.Build.0 = Debug|x86
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Mono Release|Any CPU.ActiveCfg = Release|x86
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Mono Release|Any CPU.Build.0 = Release|x86
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Mono Release|x64.ActiveCfg = Release|x64
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Mono Release|x64.Build.0 = Release|x64
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Mono Release|x86.ActiveCfg = Release|x86
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Mono Release|x86.Build.0 = Release|x86
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Release|Any CPU.ActiveCfg = Release|x86
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Release|x64.ActiveCfg = Release|x64
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Release|x64.Build.0 = Release|x64
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Release|x86.ActiveCfg = Release|x86
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,6 +143,7 @@ Global
 		{5F1AA8FD-2B7A-4E1C-93FE-83F9CC339A5D} = {E96CFA64-2919-4C5B-ABE9-EAEBC751DEA7}
 		{5FB42E1A-3501-426F-8112-13BE1C415F67} = {E96CFA64-2919-4C5B-ABE9-EAEBC751DEA7}
 		{5C06BDAC-0A87-4B24-83BB-5A784D3A83F1} = {E96CFA64-2919-4C5B-ABE9-EAEBC751DEA7}
+		{3AC096D0-A1C2-E12C-1390-A8335801FDAB} = {0F160889-33D6-4BE2-8F4E-4810AE74EE39}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Diagram\Diagram.csproj

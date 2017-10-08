@@ -3532,7 +3532,7 @@ DiagramView.Invalidate();</note>
       <text>update python</text>
       <layer>0</layer>
       <x>1221</x>
-      <y>1969</y>
+      <y>1769</y>
       <width>111</width>
       <height>36</height>
       <color>#EBEB0A</color>
@@ -3546,7 +3546,7 @@ DiagramView.Invalidate();</note>
       <link>http://ironpython.net/download/</link>
       <layer>0</layer>
       <x>1318</x>
-      <y>2021</y>
+      <y>1821</y>
       <width>186</width>
       <height>36</height>
       <color>#F2FFCC</color>
@@ -3559,7 +3559,7 @@ DiagramView.Invalidate();</note>
       <text>2.7.7</text>
       <layer>0</layer>
       <x>1301</x>
-      <y>1901</y>
+      <y>1701</y>
       <width>54</width>
       <height>36</height>
       <color>#FFFFB8</color>
@@ -3572,7 +3572,7 @@ DiagramView.Invalidate();</note>
       <text>download zip</text>
       <layer>0</layer>
       <x>1357</x>
-      <y>1971</y>
+      <y>1771</y>
       <width>104</width>
       <height>36</height>
       <color>#EBEB0A</color>
@@ -3602,7 +3602,7 @@ DiagramView.Invalidate();</note>
       <link>$</link>
       <layer>0</layer>
       <x>1306</x>
-      <y>1848</y>
+      <y>1648</y>
       <width>110</width>
       <height>39</height>
       <color>#FFFFB8</color>
@@ -3615,7 +3615,7 @@ DiagramView.Invalidate();</note>
       <text>compres lib to </text>
       <layer>0</layer>
       <x>1471</x>
-      <y>1971</y>
+      <y>1771</y>
       <width>109</width>
       <height>36</height>
       <color>#EBEB0A</color>
@@ -3628,7 +3628,7 @@ DiagramView.Invalidate();</note>
       <text>IronPython.zip</text>
       <layer>0</layer>
       <x>1537</x>
-      <y>2016</y>
+      <y>1816</y>
       <width>112</width>
       <height>36</height>
       <color>#FFFFB8</color>
@@ -3641,7 +3641,7 @@ DiagramView.Invalidate();</note>
       <text>infinite-diagram\Diagram.SRC\Diagram\dll\IronPython.zip</text>
       <layer>0</layer>
       <x>1496</x>
-      <y>1919</y>
+      <y>1719</y>
       <width>372</width>
       <height>36</height>
       <color>#FFFFB8</color>
@@ -3654,7 +3654,7 @@ DiagramView.Invalidate();</note>
       <text>C:\Users\USER_NAME\AppData\Roaming\Diagram\plugins</text>
       <layer>0</layer>
       <x>1243</x>
-      <y>2210</y>
+      <y>2010</y>
       <width>386</width>
       <height>36</height>
       <color>#AF92FF</color>
@@ -3667,7 +3667,7 @@ DiagramView.Invalidate();</note>
       <text>C:\Users\USER_NAME\AppData\Roaming\Diagram\plugins\diagram.debug.json</text>
       <layer>0</layer>
       <x>1202</x>
-      <y>2277</y>
+      <y>2077</y>
       <width>511</width>
       <height>36</height>
       <color>#AF92FF</color>
@@ -3680,7 +3680,7 @@ DiagramView.Invalidate();</note>
       <text>C:\Users\USER_NAME\AppData\Roaming\Diagram\plugins\diagram.json</text>
       <layer>0</layer>
       <x>1243</x>
-      <y>2414</y>
+      <y>2214</y>
       <width>469</width>
       <height>36</height>
       <color>#AF92FF</color>
@@ -3700,7 +3700,7 @@ DiagramView.Invalidate();</note>
 }</text>
       <layer>0</layer>
       <x>1753</x>
-      <y>2208</y>
+      <y>2008</y>
       <width>324</width>
       <height>142</height>
       <color>#FFFFB8</color>
@@ -3720,7 +3720,7 @@ DiagramView.Invalidate();</note>
 }</text>
       <layer>0</layer>
       <x>1741</x>
-      <y>2368</y>
+      <y>2168</y>
       <width>379</width>
       <height>142</height>
       <color>#FFFFB8</color>
@@ -3732,7 +3732,7 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>1112</x>
-      <y>2118</y>
+      <y>1918</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -3745,7 +3745,7 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>1112</x>
-      <y>2537</y>
+      <y>2337</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -3758,7 +3758,7 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>2392</x>
-      <y>2537</y>
+      <y>2337</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -3771,7 +3771,7 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>2392</x>
-      <y>2118</y>
+      <y>1918</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -3784,7 +3784,7 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>1112</x>
-      <y>1799</y>
+      <y>1599</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -3797,7 +3797,7 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>1112</x>
-      <y>2071</y>
+      <y>1871</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -3810,7 +3810,7 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>2392</x>
-      <y>2071</y>
+      <y>1871</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -3823,7 +3823,7 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>2392</x>
-      <y>1799</y>
+      <y>1599</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -3837,7 +3837,7 @@ DiagramView.Invalidate();</note>
       <text>nuget install packages automaticaly</text>
       <layer>0</layer>
       <x>2155</x>
-      <y>1403</y>
+      <y>1203</y>
       <width>241</width>
       <height>36</height>
       <color>#FFFFB8</color>
@@ -3852,7 +3852,7 @@ DiagramView.Invalidate();</note>
       <link>Diagram.SRC\Diagram\packages.config</link>
       <layer>0</layer>
       <x>1145</x>
-      <y>1458</y>
+      <y>1258</y>
       <width>123</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -3865,7 +3865,7 @@ DiagramView.Invalidate();</note>
       <text>Uninstall-Package PCKG_NAME</text>
       <layer>0</layer>
       <x>1633</x>
-      <y>1544</y>
+      <y>1344</y>
       <width>225</width>
       <height>36</height>
       <color>#FFFFB8</color>
@@ -3878,7 +3878,7 @@ DiagramView.Invalidate();</note>
       <text>Get-Package</text>
       <layer>0</layer>
       <x>1633</x>
-      <y>1435</y>
+      <y>1235</y>
       <width>104</width>
       <height>36</height>
       <color>#FFFFB8</color>
@@ -3891,8 +3891,8 @@ DiagramView.Invalidate();</note>
       <text>NuGet Package Manager Console Guide | Microsoft Docs</text>
       <link>https://docs.microsoft.com/en-us/nuget/tools/package-manager-console</link>
       <layer>0</layer>
-      <x>1791</x>
-      <y>1497</y>
+      <x>1818</x>
+      <y>1288</y>
       <width>375</width>
       <height>36</height>
       <color>#F2FFCC</color>
@@ -3904,7 +3904,7 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>1112</x>
-      <y>1383</y>
+      <y>1183</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -3917,7 +3917,7 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>1112</x>
-      <y>1718</y>
+      <y>1518</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -3930,7 +3930,7 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>2392</x>
-      <y>1718</y>
+      <y>1518</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -3943,7 +3943,7 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
       <x>2392</x>
-      <y>1383</y>
+      <y>1183</y>
       <width>20</width>
       <height>20</height>
       <color>#FFFFB8</color>
@@ -3957,7 +3957,7 @@ DiagramView.Invalidate();</note>
       <text>Get-Package -updates</text>
       <layer>0</layer>
       <x>1633</x>
-      <y>1487</y>
+      <y>1287</y>
       <width>161</width>
       <height>36</height>
       <color>#FFFFB8</color>
@@ -3971,7 +3971,7 @@ DiagramView.Invalidate();</note>
 </text>
       <layer>0</layer>
       <x>1633</x>
-      <y>1592</y>
+      <y>1392</y>
       <width>208</width>
       <height>36</height>
       <color>#FFFFB8</color>
@@ -3985,7 +3985,7 @@ DiagramView.Invalidate();</note>
       <link>https://www.nuget.org/packages</link>
       <layer>0</layer>
       <x>1145</x>
-      <y>1412</y>
+      <y>1212</y>
       <width>111</width>
       <height>36</height>
       <color>#F2FFCC</color>
@@ -3999,7 +3999,7 @@ DiagramView.Invalidate();</note>
       <link>Diagram.SRC\Plugins\ScriptingPlugin\packages.config</link>
       <layer>0</layer>
       <x>1145</x>
-      <y>1505</y>
+      <y>1305</y>
       <width>123</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -4013,7 +4013,7 @@ DiagramView.Invalidate();</note>
       <link>Diagram.SRC\Plugins\ScriptingPlugin</link>
       <layer>0</layer>
       <x>1289</x>
-      <y>1505</y>
+      <y>1305</y>
       <width>116</width>
       <height>36</height>
       <color>#AF92FF</color>
@@ -4027,7 +4027,7 @@ DiagramView.Invalidate();</note>
       <link>Diagram.SRC</link>
       <layer>0</layer>
       <x>1289</x>
-      <y>1455</y>
+      <y>1255</y>
       <width>109</width>
       <height>36</height>
       <color>#AF92FF</color>
@@ -4041,7 +4041,7 @@ DiagramView.Invalidate();</note>
       <link>https://www.nuget.org/packages/DynamicLanguageRuntime/</link>
       <layer>0</layer>
       <x>1330</x>
-      <y>1552</y>
+      <y>1352</y>
       <width>224</width>
       <height>36</height>
       <color>#F2FFCC</color>
@@ -4055,7 +4055,7 @@ DiagramView.Invalidate();</note>
       <link>https://www.nuget.org/packages/IronPython/</link>
       <layer>0</layer>
       <x>1394</x>
-      <y>1599</y>
+      <y>1399</y>
       <width>125</width>
       <height>36</height>
       <color>#F2FFCC</color>
@@ -4069,7 +4069,7 @@ DiagramView.Invalidate();</note>
       <link>https://www.nuget.org/packages/IronPython.StdLib/</link>
       <layer>0</layer>
       <x>1357</x>
-      <y>1648</y>
+      <y>1448</y>
       <width>167</width>
       <height>36</height>
       <color>#F2FFCC</color>
@@ -4083,7 +4083,7 @@ DiagramView.Invalidate();</note>
       <link>https://www.nuget.org/packages/ncalc/</link>
       <layer>0</layer>
       <x>1467</x>
-      <y>1409</y>
+      <y>1209</y>
       <width>56</width>
       <height>36</height>
       <color>#F2FFCC</color>
@@ -4097,7 +4097,7 @@ DiagramView.Invalidate();</note>
       <link>https://www.nuget.org/packages/Newtonsoft.Json/</link>
       <layer>0</layer>
       <x>1443</x>
-      <y>1459</y>
+      <y>1259</y>
       <width>167</width>
       <height>36</height>
       <color>#F2FFCC</color>
@@ -4111,7 +4111,7 @@ DiagramView.Invalidate();</note>
       <link>Diagram.SRC\Plugins\ScriptingPlugin\build-IronPython-lib.bat</link>
       <layer>0</layer>
       <x>1557</x>
-      <y>1661</y>
+      <y>1461</y>
       <width>165</width>
       <height>36</height>
       <color>#D9CCFF</color>
@@ -4124,12 +4124,119 @@ DiagramView.Invalidate();</note>
       <text>build stdlib</text>
       <layer>0</layer>
       <x>1732</x>
-      <y>1661</y>
+      <y>1461</y>
       <width>89</width>
       <height>36</height>
       <color>#878787</color>
       <timecreate>2017-10-7 12:53:33</timecreate>
       <timemodify>2017-10-7 12:53:33</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1581</id>
+      <fontcolor>Black</fontcolor>
+      <text>Tests</text>
+      <link>Diagram.SRC\Tests</link>
+      <layer>0</layer>
+      <x>1148</x>
+      <y>2402</y>
+      <width>58</width>
+      <height>36</height>
+      <color>#AF92FF</color>
+      <timecreate>2017-10-8 10:27:52</timecreate>
+      <timemodify>2017-10-8 10:27:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1582</id>
+      <fontcolor>Black</fontcolor>
+      <text>Diagram.Tests</text>
+      <link>Diagram.SRC\Tests\Diagram.Tests</link>
+      <layer>0</layer>
+      <x>1229</x>
+      <y>2400</y>
+      <width>113</width>
+      <height>36</height>
+      <color>#AF92FF</color>
+      <timecreate>2017-10-8 10:27:54</timecreate>
+      <timemodify>2017-10-8 10:27:54</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1583</id>
+      <fontcolor>Black</fontcolor>
+      <text>test.xml</text>
+      <link>Diagram.SRC\Tests\Diagram.Tests\bin\x64\Debug\test.xml</link>
+      <layer>0</layer>
+      <x>1362</x>
+      <y>2397</y>
+      <width>71</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-10-8 10:28:14</timecreate>
+      <timemodify>2017-10-8 10:28:14</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1584</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>1110</x>
+      <y>2789</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-10-8 11:34:53</timecreate>
+      <timemodify>2017-10-8 11:34:53</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1585</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>1110</x>
+      <y>2370</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-10-8 11:34:53</timecreate>
+      <timemodify>2017-10-8 11:34:53</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1586</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>2390</x>
+      <y>2789</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-10-8 11:34:53</timecreate>
+      <timemodify>2017-10-8 11:34:53</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1587</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>2390</x>
+      <y>2370</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-10-8 11:34:53</timecreate>
+      <timemodify>2017-10-8 11:34:53</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1588</id>
+      <fontcolor>Black</fontcolor>
+      <text>subnodes</text>
+      <layer>0</layer>
+      <x>1357</x>
+      <y>2661</y>
+      <width>84</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-8 11:35:17</timecreate>
+      <timemodify>2017-10-8 11:35:17</timemodify>
     </rectangle>
   </rectangles>
   <lines>
@@ -5741,6 +5848,34 @@ DiagramView.Invalidate();</note>
     <line>
       <start>1579</start>
       <end>1580</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1585</start>
+      <end>1584</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1584</start>
+      <end>1586</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1586</start>
+      <end>1587</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1587</start>
+      <end>1585</end>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>

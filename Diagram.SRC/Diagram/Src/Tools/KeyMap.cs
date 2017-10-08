@@ -79,7 +79,7 @@ namespace Diagram
 
         /// <summary>
         /// check if key string match keyData representing key pressed code</summary>
-        public static bool parseKey(string key, Keys keyData)
+        public static bool ParseKey(string key, Keys keyData)
         {
 
             string[] parts = key.Split('+');
@@ -230,7 +230,7 @@ namespace Diagram
 
         /// <summary>
         /// conver pressed key to string</summary>
-        public static string parseKey(Keys keyData)
+        public static string ParseKey(Keys keyData)
         {
 
             KeysConverter kc = new KeysConverter();

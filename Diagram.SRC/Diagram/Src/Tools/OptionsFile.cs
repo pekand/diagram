@@ -4,7 +4,6 @@ using System.Xml.Linq;
 using System.Xml;
 using System.IO;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 
 /*
     class OptionsFile
@@ -30,10 +29,10 @@ namespace Diagram
 
 #if DEBUG
         // global configuration file name in debug mode
-        public String configFileName = "diagram.debug.json";
+        public String configFileName = "diagram.debug.xml";
 #else
         // global configuration file name
-        public String configFileName = "diagram.json";
+        public String configFileName = "diagram.xml";
 #endif
 
         // Example: C:\Users\user_name\AppData\Roaming\Diagram\diagram.json
@@ -86,7 +85,6 @@ namespace Diagram
             }
         }
 
-
         /// <summary>
         /// load global config file from json file</summary>
         private void LoadConfigFile()
@@ -95,7 +93,11 @@ namespace Diagram
             {
                 Program.log.Write("loadConfigFile: path:" + this.optionsFilePath);
                 string inputJSON = Os.ReadAllText(this.optionsFilePath);
-                this.parameters.SetParams(JsonConvert.DeserializeObject<ProgramOptions>(inputJSON));
+
+                ConfigFile configFile = new ConfigFile("configuration");
+                configFile.OpenFile(this.optionsFilePath);
+
+                this.parameters.LoadParams(configFile);
             }
             catch (Exception ex)
             {
@@ -109,8 +111,9 @@ namespace Diagram
         {
             try
             {
-                string outputJSON = JsonConvert.SerializeObject(this.parameters);
-                Os.WriteAllText(this.optionsFilePath, outputJSON);
+                ConfigFile configFile = new ConfigFile("configuration");
+                this.parameters.SaveParams(configFile);               
+                configFile.SaveFile(this.optionsFilePath);
             }
             catch (Exception ex)
             {

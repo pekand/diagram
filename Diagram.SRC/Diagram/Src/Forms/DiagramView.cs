@@ -1724,7 +1724,7 @@ namespace Diagram
                 return false;
             }
 
-            string key = KeyMap.parseKey(keyData);
+            string key = KeyMap.ParseKey(keyData);
 
             bool stopNextAction = this.main.plugins.KeyPressAction(this.diagram, this, key); //UID0290845814
 
@@ -1732,81 +1732,81 @@ namespace Diagram
              * order : ProcessCmdKey, DiagramApp_KeyDown, DiagramApp_KeyPress, DiagramApp_KeyUp;
              */
 
-            if (KeyMap.parseKey(KeyMap.selectAllElements, keyData) ) // [KEY] [CTRL+A] select all
+            if (KeyMap.ParseKey(KeyMap.selectAllElements, keyData) ) // [KEY] [CTRL+A] select all
             {
                 this.SelectAll();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.alignToLine, keyData)) // [KEY] [CTRL+L] align to line
+            if (KeyMap.ParseKey(KeyMap.alignToLine, keyData)) // [KEY] [CTRL+L] align to line
             {
                 this.AlignToLine();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.alignToColumn, keyData)) // [KEY] [CTRL+H] align to column
+            if (KeyMap.ParseKey(KeyMap.alignToColumn, keyData)) // [KEY] [CTRL+H] align to column
             {
                 this.AlignToColumn();
                 return true;
             }
 
 
-            if (KeyMap.parseKey(KeyMap.alignToGroup, keyData)) // [KEY] [CTRL+K] align to group
+            if (KeyMap.ParseKey(KeyMap.alignToGroup, keyData)) // [KEY] [CTRL+K] align to group
             {
                 this.AlignToGroup();
 
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.markNodes, keyData)) // [KEY] [CTRL+M] mark node for navigation history
+            if (KeyMap.ParseKey(KeyMap.markNodes, keyData)) // [KEY] [CTRL+M] mark node for navigation history
             {
                 this.SwitchMarkForSelectedNodes();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.prevMarkNode, keyData)) // [KEY] [ALT+LEFT] find prev marked node
+            if (KeyMap.ParseKey(KeyMap.prevMarkNode, keyData)) // [KEY] [ALT+LEFT] find prev marked node
             {
                 this.PrevMarkedNode();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.nextMarkNode, keyData)) // [KEY] [ALT+RIGHT] find next marked node
+            if (KeyMap.ParseKey(KeyMap.nextMarkNode, keyData)) // [KEY] [ALT+RIGHT] find next marked node
             {
                 this.NextMarkedNode();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.alignToLineGroup, keyData)) // [KEY] [CTRL+SHIFT+K] align to group
+            if (KeyMap.ParseKey(KeyMap.alignToLineGroup, keyData)) // [KEY] [CTRL+SHIFT+K] align to group
             {
                 this.AlignToLineGroup();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.copy, keyData))  // [KEY] [CTRL+C]
+            if (KeyMap.ParseKey(KeyMap.copy, keyData))  // [KEY] [CTRL+C]
             {
                 this.Copy();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.copyLinks, keyData))  // [KEY] [CTRL+SHIFT+C] copy links from selected nodes
+            if (KeyMap.ParseKey(KeyMap.copyLinks, keyData))  // [KEY] [CTRL+SHIFT+C] copy links from selected nodes
             {
                 this.CopyLink();
                 return true;
             }
 
-			if (KeyMap.parseKey(KeyMap.copyNotes, keyData))  // [KEY] [CTRL+ALT+SHIFT+C] copy notes from selected nodes
+			if (KeyMap.ParseKey(KeyMap.copyNotes, keyData))  // [KEY] [CTRL+ALT+SHIFT+C] copy notes from selected nodes
 			{
                 this.CopyNote();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.cut, keyData))  // [KEY] [CTRL+X] Cut diagram
+            if (KeyMap.ParseKey(KeyMap.cut, keyData))  // [KEY] [CTRL+X] Cut diagram
             {
                 this.Cut();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.paste, keyData))  // [KEY] [CTRL+V] [PASTE] Paste text from clipboard
+            if (KeyMap.ParseKey(KeyMap.paste, keyData))  // [KEY] [CTRL+V] [PASTE] Paste text from clipboard
             {
                 Point ptCursor = Cursor.Position;
                 ptCursor = PointToClient(ptCursor);
@@ -1814,67 +1814,67 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.pasteToNote, keyData))  // [KEY] [CTRL+SHIFT+V] paste to note
+            if (KeyMap.ParseKey(KeyMap.pasteToNote, keyData))  // [KEY] [CTRL+SHIFT+V] paste to note
             {
                 this.PasteToNote();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.pasteToLink, keyData))  // [KEY] [CTRL+SHIFT+INS] paste to node link
+            if (KeyMap.ParseKey(KeyMap.pasteToLink, keyData))  // [KEY] [CTRL+SHIFT+INS] paste to node link
             {
                 this.PasteToLink();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.undo, keyData))  // [KEY] [CTRL+Z]
+            if (KeyMap.ParseKey(KeyMap.undo, keyData))  // [KEY] [CTRL+Z]
             {
                 this.diagram.DoUndo(this);
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.redo, keyData))  // [KEY] [CTRL+SHIFT+Z]
+            if (KeyMap.ParseKey(KeyMap.redo, keyData))  // [KEY] [CTRL+SHIFT+Z]
             {
                 this.diagram.DoRedo(this);
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.newDiagram, keyData))  // [KEY] [CTRL+N] New Diagram
+            if (KeyMap.ParseKey(KeyMap.newDiagram, keyData))  // [KEY] [CTRL+N] New Diagram
             {
                 main.OpenDiagram();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.newDiagramView, keyData))  // [KEY] [F7] New Diagram view
+            if (KeyMap.ParseKey(KeyMap.newDiagramView, keyData))  // [KEY] [F7] New Diagram view
             {
                 this.diagram.OpenDiagramView(this);
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.switchViews, keyData))  // [KEY] [F8] hide views
+            if (KeyMap.ParseKey(KeyMap.switchViews, keyData))  // [KEY] [F8] hide views
             {
                 this.main.SwitchViews(this);
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.save, keyData))  // [KEY] [CTRL+S] save diagram
+            if (KeyMap.ParseKey(KeyMap.save, keyData))  // [KEY] [CTRL+S] save diagram
             {
                 this.Save();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.open, keyData))  // [KEY] [CTRL+O] open diagram dialog window
+            if (KeyMap.ParseKey(KeyMap.open, keyData))  // [KEY] [CTRL+O] open diagram dialog window
             {
                 this.Open();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.search, keyData))  // [KEY] [CTRL+F] Search form
+            if (KeyMap.ParseKey(KeyMap.search, keyData))  // [KEY] [CTRL+F] Search form
             {
                 this.ShowSearchPanel();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.evaluateExpression, keyData))  // [KEY] [CTRL+G] Evaluate expresion or generate random value
+            if (KeyMap.ParseKey(KeyMap.evaluateExpression, keyData))  // [KEY] [CTRL+G] Evaluate expresion or generate random value
             {
                 if (this.selectedNodes.Count() == 0)
                 {
@@ -1886,19 +1886,19 @@ namespace Diagram
                 }
             }
 
-            if (KeyMap.parseKey(KeyMap.date, keyData))  // [KEY] [CTRL+D] date
+            if (KeyMap.ParseKey(KeyMap.date, keyData))  // [KEY] [CTRL+D] date
             {
                 this.EvaluateDate();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.promote, keyData)) // [KEY] [CTRL+P] Promote node
+            if (KeyMap.ParseKey(KeyMap.promote, keyData)) // [KEY] [CTRL+P] Promote node
             {
                 this.Promote();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.refresh, keyData)) // [KEY] [CTRL+R] Refresh
+            if (KeyMap.ParseKey(KeyMap.refresh, keyData)) // [KEY] [CTRL+R] Refresh
             {
                 if (this.selectedNodes.Count > 0)
                 {
@@ -1912,13 +1912,13 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.hideBackground, keyData)) // [KEY] [F6] Hide background
+            if (KeyMap.ParseKey(KeyMap.hideBackground, keyData)) // [KEY] [F6] Hide background
             {
                 this.HideBackground();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.searchNext, keyData)) // [KEY] [F3] reverse search
+            if (KeyMap.ParseKey(KeyMap.searchNext, keyData)) // [KEY] [F3] reverse search
             {
                 if (this.searhPanel != null) {
                     this.searhPanel.searchNext();
@@ -1926,43 +1926,43 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.reverseSearch, keyData)) // [KEY] [SHIFT+F3] reverse search
+            if (KeyMap.ParseKey(KeyMap.reverseSearch, keyData)) // [KEY] [SHIFT+F3] reverse search
             {
                 this.SearchPrev();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.home, keyData)) // KEY [HOME] go to home position
+            if (KeyMap.ParseKey(KeyMap.home, keyData)) // KEY [HOME] go to home position
             {
                 this.GoToHome();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.openViewHome, keyData)) // KEY [CTRL+HOME] open view and go to home position
+            if (KeyMap.ParseKey(KeyMap.openViewHome, keyData)) // KEY [CTRL+HOME] open view and go to home position
             {
                 this.OpenViewAndGoToHome();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.setHome, keyData))  // [KEY] [SHIFT+HOME] Move start point
+            if (KeyMap.ParseKey(KeyMap.setHome, keyData))  // [KEY] [SHIFT+HOME] Move start point
             {
                 this.SetCurentPositionAsHomePosition();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.end, keyData)) // KEY [END] go to end position
+            if (KeyMap.ParseKey(KeyMap.end, keyData)) // KEY [END] go to end position
             {
                 this.GoToEnd();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.setEnd, keyData))  // [KEY] [SHIFT+END] Move end point
+            if (KeyMap.ParseKey(KeyMap.setEnd, keyData))  // [KEY] [SHIFT+END] Move end point
             {
                 this.SetCurentPositionAsEndPosition();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.openViewEnd, keyData)) // KEY [CTRL+END] open view and go to home position
+            if (KeyMap.ParseKey(KeyMap.openViewEnd, keyData)) // KEY [CTRL+END] open view and go to home position
             {
                 this.OpenViewAndGoToEnd();
                 return true;
@@ -1975,62 +1975,62 @@ namespace Diagram
             -prejdu sa vybrane nody a ak je to adresar alebo subor otvori sa adresar
             -ak nie su vybrane ziadne nody otvori sa adresar diagrammu
             */
-            if (KeyMap.parseKey(KeyMap.openDrectory, keyData)) // KEY [F5] Open link directory or diagram directory
+            if (KeyMap.ParseKey(KeyMap.openDrectory, keyData)) // KEY [F5] Open link directory or diagram directory
             {
                 OpenLinkDirectory();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.console, keyData)) // [KEY] [F12] show Debug console
+            if (KeyMap.ParseKey(KeyMap.console, keyData)) // [KEY] [F12] show Debug console
             {
                 this.main.ShowConsole();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.moveNodeUp, keyData)) // KEY [CTRL+PAGEUP] move node up to foreground
+            if (KeyMap.ParseKey(KeyMap.moveNodeUp, keyData)) // KEY [CTRL+PAGEUP] move node up to foreground
             {
                 this.MoveNodesToForeground();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.moveNodeDown, keyData)) // [KEY] [CTRL+PAGEDOWN] move node down to background
+            if (KeyMap.ParseKey(KeyMap.moveNodeDown, keyData)) // [KEY] [CTRL+PAGEDOWN] move node down to background
             {
                 this.MoveNodesToBackground();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.pageUp, keyData)) // [KEY] [PAGEUP] change current position in diagram view
+            if (KeyMap.ParseKey(KeyMap.pageUp, keyData)) // [KEY] [PAGEUP] change current position in diagram view
             {
                 this.PageUp();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.pageDown, keyData)) // [KEY] [PAGEDOWN] change current position in diagram view
+            if (KeyMap.ParseKey(KeyMap.pageDown, keyData)) // [KEY] [PAGEDOWN] change current position in diagram view
             {
                 this.PageDown();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.editNodeName, keyData)) // [KEY] [F2] edit node name
+            if (KeyMap.ParseKey(KeyMap.editNodeName, keyData)) // [KEY] [F2] edit node name
             {
                 this.Rename();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.editNodeLink, keyData)) // [KEY] [F4] edit node name
+            if (KeyMap.ParseKey(KeyMap.editNodeLink, keyData)) // [KEY] [F4] edit node name
             {
                 this.EditLink();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.fullScreean, keyData)) // [KEY] [F11] evaluate python script for selected nodes by stamp in link
+            if (KeyMap.ParseKey(KeyMap.fullScreean, keyData)) // [KEY] [F11] evaluate python script for selected nodes by stamp in link
             {
                 this.FullScreenSwitch();
                 return true;
             }
 
 
-            if (KeyMap.parseKey(KeyMap.openEditForm, keyData)) // [KEY] [CTRL+E] open edit form
+            if (KeyMap.ParseKey(KeyMap.openEditForm, keyData)) // [KEY] [CTRL+E] open edit form
             {
                 this.Edit();
                 return true;
@@ -2042,27 +2042,27 @@ namespace Diagram
                 return false;
             }
 
-            if (KeyMap.parseKey(KeyMap.editOrLayerIn, keyData)) // [KEY] [ENTER] open edit form or layer in
+            if (KeyMap.ParseKey(KeyMap.editOrLayerIn, keyData)) // [KEY] [ENTER] open edit form or layer in
             {
                 this.LayerInOrEdit();
                 return true;
             }
 
 
-            if (KeyMap.parseKey(KeyMap.layerIn, keyData)) // [KEY] [PLUS] Layer in
+            if (KeyMap.ParseKey(KeyMap.layerIn, keyData)) // [KEY] [PLUS] Layer in
             {
                 this.LayerIn();
                 return true;
             }
 
             // [KEY] [BACK] or [MINUS] Layer out UID1557077053
-            if (KeyMap.parseKey(KeyMap.layerOut, keyData) || KeyMap.parseKey(KeyMap.layerOut2, keyData)) 
+            if (KeyMap.ParseKey(KeyMap.layerOut, keyData) || KeyMap.ParseKey(KeyMap.layerOut2, keyData)) 
             {
                 this.LayerOut();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.minimalize, keyData)) // [KEY] [ESC] minimalize diagram view
+            if (KeyMap.ParseKey(KeyMap.minimalize, keyData)) // [KEY] [ESC] minimalize diagram view
             {
                 if (this.animationTimer.Enabled)
                 {
@@ -2079,56 +2079,56 @@ namespace Diagram
                 }
             }
 
-            if (KeyMap.parseKey(KeyMap.delete, keyData)) // [KEY] [DEL] [DELETE] delete
+            if (KeyMap.ParseKey(KeyMap.delete, keyData)) // [KEY] [DEL] [DELETE] delete
             {
                 this.DeleteSelectedNodes(this);
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.moveLeft, keyData) || KeyMap.parseKey(KeyMap.moveLeftFast, keyData))  // [KEY] [left] [SHIFT+LEFT] [ARROW] Move node
+            if (KeyMap.ParseKey(KeyMap.moveLeft, keyData) || KeyMap.ParseKey(KeyMap.moveLeftFast, keyData))  // [KEY] [left] [SHIFT+LEFT] [ARROW] Move node
             {
 
-                this.MoveNodesToLeft(KeyMap.parseKey(KeyMap.moveLeftFast, keyData));
+                this.MoveNodesToLeft(KeyMap.ParseKey(KeyMap.moveLeftFast, keyData));
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.moveRight, keyData) || KeyMap.parseKey(KeyMap.moveRightFast, keyData))  // [KEY] [right] [SHIFT+RIGHT] [ARROW] Move node
+            if (KeyMap.ParseKey(KeyMap.moveRight, keyData) || KeyMap.ParseKey(KeyMap.moveRightFast, keyData))  // [KEY] [right] [SHIFT+RIGHT] [ARROW] Move node
             {
-                this.MoveNodesToRight(KeyMap.parseKey(KeyMap.moveRightFast, keyData));
+                this.MoveNodesToRight(KeyMap.ParseKey(KeyMap.moveRightFast, keyData));
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.moveUp, keyData) || KeyMap.parseKey(KeyMap.moveUpFast, keyData))  // [KEY] [up] [SHIFT+UP] [ARROW] Move node
+            if (KeyMap.ParseKey(KeyMap.moveUp, keyData) || KeyMap.ParseKey(KeyMap.moveUpFast, keyData))  // [KEY] [up] [SHIFT+UP] [ARROW] Move node
             {
-                this.MoveNodesUp(KeyMap.parseKey(KeyMap.moveUpFast, keyData));
+                this.MoveNodesUp(KeyMap.ParseKey(KeyMap.moveUpFast, keyData));
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.moveDown, keyData) || KeyMap.parseKey(KeyMap.moveDownFast, keyData))  // [KEY] [down] [SHIFT+DOWN] [ARROW] Move node
+            if (KeyMap.ParseKey(KeyMap.moveDown, keyData) || KeyMap.ParseKey(KeyMap.moveDownFast, keyData))  // [KEY] [down] [SHIFT+DOWN] [ARROW] Move node
             {
-                this.MoveNodesDown(KeyMap.parseKey(KeyMap.moveDownFast, keyData));
+                this.MoveNodesDown(KeyMap.ParseKey(KeyMap.moveDownFast, keyData));
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.alignLeft, keyData)) // [KEY] [TAB] align selected nodes to left
+            if (KeyMap.ParseKey(KeyMap.alignLeft, keyData)) // [KEY] [TAB] align selected nodes to left
             {
                 this.AlignLeft();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.alignRight, keyData))  // [KEY] [SHIFT+TAB] align selected nodes to right
+            if (KeyMap.ParseKey(KeyMap.alignRight, keyData))  // [KEY] [SHIFT+TAB] align selected nodes to right
             {
                 this.AlignRight();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.resetZoom, keyData))  // [KEY] [CTRL+0] reset zoom level to default
+            if (KeyMap.ParseKey(KeyMap.resetZoom, keyData))  // [KEY] [CTRL+0] reset zoom level to default
             {
                 this.ResetZoom();
                 return true;
             }
 
-            if (KeyMap.parseKey(KeyMap.switchSecurityLock, keyData)) // [KEY] [CTRL+ALT+L] lock encrypted diagram UID6442152339
+            if (KeyMap.ParseKey(KeyMap.switchSecurityLock, keyData)) // [KEY] [CTRL+ALT+L] lock encrypted diagram UID6442152339
             {
                 if (this.diagram.IsEncrypted())
                 {

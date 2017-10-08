@@ -33,7 +33,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <ApplicationRevision>35</ApplicationRevision>
-    <ApplicationVersion>0.5.0.36</ApplicationVersion>
+    <ApplicationVersion>0.5.0.37</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -189,6 +189,7 @@
     <Compile Include="Src\Lib\Media.cs" />
     <Compile Include="Src\Lib\Os.cs" />
     <Compile Include="Src\Lib\Patterns.cs" />
+    <Compile Include="Src\Lib\Serialization.cs" />
     <Compile Include="Src\Lib\Tick.cs" />
     <Compile Include="Src\Main.cs" />
     <Compile Include="Src\Model\ColorType.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="Src\Model\Line.cs" />
     <Compile Include="Src\Model\Node.cs" />
     <Compile Include="Src\Model\Options.cs" />
+    <Compile Include="Src\Tools\ConfigFile.cs" />
     <Compile Include="Src\Tools\KeyMap.cs" />
     <Compile Include="Src\Tools\OptionsFile.cs" />
     <Compile Include="Src\Tools\Log.cs" />
@@ -253,10 +255,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">
       <HintPath>..\packages\ncalc.1.3.8\lib\NCalc.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

@@ -183,33 +183,33 @@ namespace Diagram
 
             Keys keyData = e.KeyCode;
 
-            if (KeyMap.parseKey("ESCAPE", keyData)) // zrusenie editácie v panely
+            if (KeyMap.ParseKey("ESCAPE", keyData)) // zrusenie editácie v panely
             {
                 this.saveNodeLinkPanel();
                 this.Focus();
             }
 
-            if (KeyMap.parseKey("ENTER", keyData) && !e.Shift) // zvretie panelu a vytvorenie novej editacie
+            if (KeyMap.ParseKey("ENTER", keyData) && !e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
                 this.saveNodeLinkPanel();
                 this.Focus();
             }
 
-            if (KeyMap.parseKey("TAB", keyData) && !e.Shift) // zvretie panelu a vytvorenie novej editacie
+            if (KeyMap.ParseKey("TAB", keyData) && !e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
                 this.saveNodeLinkPanel();
                 this.Focus();
                 this.diagramView.AddNodeAfterNode();
             }
 
-            if (KeyMap.parseKey("TAB", keyData) && e.Shift) // zvretie panelu a vytvorenie novej editacie
+            if (KeyMap.ParseKey("TAB", keyData) && e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
                 this.saveNodeLinkPanel();
                 this.Focus();
                 this.diagramView.AddNodeBelowNode();
             }
 
-            if (KeyMap.parseKey("ENTER", keyData) || KeyMap.parseKey("TAB", keyData))
+            if (KeyMap.ParseKey("ENTER", keyData) || KeyMap.ParseKey("TAB", keyData))
             {
                 if (!e.Shift)
                 {

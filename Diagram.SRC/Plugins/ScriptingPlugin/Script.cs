@@ -276,7 +276,7 @@ namespace Plugin
         // convert string to int
         public int Val(string s)
         {			
-			return Converter.ToInt (s);
+			return Converter.ToInt(s);
         }
 
         // convert int to string
