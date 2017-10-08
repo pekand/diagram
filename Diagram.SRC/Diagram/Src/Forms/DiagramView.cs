@@ -1724,9 +1724,8 @@ namespace Diagram
                 return false;
             }
 
-            string key = KeyMap.ParseKey(keyData);
 
-            bool stopNextAction = this.main.plugins.KeyPressAction(this.diagram, this, key); //UID0290845814
+            bool stopNextAction = this.main.plugins.KeyPressAction(this.diagram, this, keyData); //UID0290845814
 
             /*
              * order : ProcessCmdKey, DiagramApp_KeyDown, DiagramApp_KeyPress, DiagramApp_KeyUp;
@@ -1872,18 +1871,6 @@ namespace Diagram
             {
                 this.ShowSearchPanel();
                 return true;
-            }
-
-            if (KeyMap.ParseKey(KeyMap.evaluateExpression, keyData))  // [KEY] [CTRL+G] Evaluate expresion or generate random value
-            {
-                if (this.selectedNodes.Count() == 0)
-                {
-                    this.Random();
-                }
-                else
-                {
-                    this.EvaluateExpression();
-                }
             }
 
             if (KeyMap.ParseKey(KeyMap.date, keyData))  // [KEY] [CTRL+D] date
@@ -4891,58 +4878,6 @@ namespace Diagram
             return true;
         }
 
-        // NODE evaluate masth expression
-        public bool EvaluateExpression()
-        {
-            if (this.selectedNodes.Count() == 1)
-            {
-                string expression = this.selectedNodes[0].name;
-                string expressionResult = "";
-
-                if (Regex.IsMatch(expression, @"^\d+$"))
-                {
-                    expression = expression + "+1";
-                }
-
-                Evaluator ev = new Evaluator();
-                expressionResult = ev.Evaluate(expression);
-
-                if (expressionResult != "")
-                {
-                    Node newrec = this.CreateNode(this.GetMousePosition());
-                    newrec.setName(expressionResult);
-                    newrec.color.Set("#8AC5FF");
-
-                    this.diagram.InvalidateDiagram();
-                }
-
-                return true;
-            }
-            else
-            if (this.selectedNodes.Count() > 1)  // SUM sum nodes with numbers
-            {
-                float sum = 0;
-                Match match = null;
-                foreach (Node rec in this.selectedNodes)
-                {
-                    match = Regex.Match(rec.name, @"([-]{0,1}\d+[\.,]{0,1}\d*)", RegexOptions.IgnoreCase);
-                    if (match.Success)
-                    {
-                        sum = sum + float.Parse(match.Groups[1].Value.Replace(",", "."), CultureInfo.InvariantCulture);
-                    }
-                }
-
-                Node newrec = this.CreateNode(this.GetMousePosition());
-                newrec.setName(sum.ToString());
-                newrec.color.Set("#8AC5FF");
-
-                this.diagram.InvalidateDiagram();
-                return true;
-            }
-
-            return false;
-        }
-
         // NODE evaluate date
         public bool EvaluateDate()
         {
@@ -5065,16 +5000,6 @@ namespace Diagram
 
             }
             return true;
-        }
-
-        // NODE random
-        public void Random()
-        {
-            Node node = this.CreateNode(this.GetMousePosition(), true);
-            node.setName(Encrypt.GetRandomString());
-
-            this.diagram.Unsave("create", node, this.shift, this.currentLayer.id);
-            this.diagram.InvalidateDiagram();
         }
 
         // NODE hide background

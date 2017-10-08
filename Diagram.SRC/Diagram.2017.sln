@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0F160889
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diagram.Tests", "Tests\Diagram.Tests\Diagram.Tests.csproj", "{3AC096D0-A1C2-E12C-1390-A8335801FDAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NcalcPlugin", "Plugins\NcalcPlugin\NcalcPlugin.csproj", "{FA8BD7F1-1864-4980-A229-E99ED7B7E245}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,26 @@ Global
 		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Release|x64.Build.0 = Release|x64
 		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Release|x86.ActiveCfg = Release|x86
 		{3AC096D0-A1C2-E12C-1390-A8335801FDAB}.Release|x86.Build.0 = Release|x86
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Debug|x64.ActiveCfg = Debug|x64
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Debug|x64.Build.0 = Debug|x64
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Debug|x86.ActiveCfg = Debug|x86
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Debug|x86.Build.0 = Debug|x86
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Mono Debug|Any CPU.ActiveCfg = Mono Debug|x86
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Mono Debug|x64.ActiveCfg = Mono Debug|x64
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Mono Debug|x64.Build.0 = Mono Debug|x64
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Mono Debug|x86.ActiveCfg = Mono Debug|x86
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Mono Debug|x86.Build.0 = Mono Debug|x86
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Mono Release|Any CPU.ActiveCfg = Mono Release|x86
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Mono Release|x64.ActiveCfg = Mono Release|x64
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Mono Release|x64.Build.0 = Mono Release|x64
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Mono Release|x86.ActiveCfg = Mono Release|x86
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Mono Release|x86.Build.0 = Mono Release|x86
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Release|Any CPU.ActiveCfg = Release|x86
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Release|x64.ActiveCfg = Release|x64
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Release|x64.Build.0 = Release|x64
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Release|x86.ActiveCfg = Release|x86
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -144,6 +166,7 @@ Global
 		{5FB42E1A-3501-426F-8112-13BE1C415F67} = {E96CFA64-2919-4C5B-ABE9-EAEBC751DEA7}
 		{5C06BDAC-0A87-4B24-83BB-5A784D3A83F1} = {E96CFA64-2919-4C5B-ABE9-EAEBC751DEA7}
 		{3AC096D0-A1C2-E12C-1390-A8335801FDAB} = {0F160889-33D6-4BE2-8F4E-4810AE74EE39}
+		{FA8BD7F1-1864-4980-A229-E99ED7B7E245} = {E96CFA64-2919-4C5B-ABE9-EAEBC751DEA7}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Diagram\Diagram.csproj

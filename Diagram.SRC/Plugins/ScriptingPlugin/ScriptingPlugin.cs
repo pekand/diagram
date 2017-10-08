@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Diagram;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace Plugin
 {
@@ -53,10 +54,10 @@ namespace Plugin
             return false;
         }
 
-        public bool KeyPressAction(Diagram.Diagram diagram, DiagramView diagramView, String key)
+        public bool KeyPressAction(Diagram.Diagram diagram, DiagramView diagramView, Keys keyData)
         {
 
-            if ("F9" == key) // [KEY] [F9] evaluate python script for selected nodes by stamp in link
+            if (KeyMap.ParseKey("F9", keyData)) // [KEY] [F9] evaluate python script for selected nodes by stamp in link
             {
                 this.Evaluate(diagram, diagramView); 
                 return true;

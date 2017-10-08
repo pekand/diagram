@@ -49,7 +49,7 @@ namespace Plugin
             return false;
         }
 
-        public bool KeyPressAction(Diagram.Diagram diagram, DiagramView diagramview, String Key)
+        public bool KeyPressAction(Diagram.Diagram diagram, DiagramView diagramview, Keys keyData)
         {
             log.Write("Do Something in First Plugin:" + (counter++).ToString());
 

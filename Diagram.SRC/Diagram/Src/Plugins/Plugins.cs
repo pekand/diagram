@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Diagram
 {
@@ -159,7 +160,7 @@ namespace Diagram
 
         /// <summary>
         /// run event for all registred plugins in KeyPressPlugins </summary>
-        public bool KeyPressAction(Diagram diagram, DiagramView diagramView, String key)
+        public bool KeyPressAction(Diagram diagram, DiagramView diagramView, Keys keyData)
         {
             bool stopNextAction = false;
 
@@ -169,7 +170,7 @@ namespace Diagram
                 {
                     try
                     {
-                        stopNextAction = plugin.KeyPressAction(diagram, diagramView, key);
+                        stopNextAction = plugin.KeyPressAction(diagram, diagramView, keyData);
                         if (stopNextAction)
                         {
                             break;

@@ -1,3 +1,4 @@
+0.5.0.38 move ncalc to plugin
 0.5.0.37 remove newton json and configfile class
 0.5.0.36 Check for updates
 0.5.0.35 fix save diagram

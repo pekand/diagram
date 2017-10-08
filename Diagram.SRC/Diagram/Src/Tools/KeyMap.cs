@@ -32,7 +32,6 @@ namespace Diagram
         public static string open = "CTRL+O";
         public static string search = "CTRL+F";
         public static string searchNext = "F3";
-        public static string evaluateExpression = "CTRL+G";
         public static string date = "CTRL+D";
         public static string promote = "CTRL+P";
         public static string refresh = "CTRL+R";
