@@ -38,8 +38,6 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "files\Diagram.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "files\diagram.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "files\NCalc.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "files\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
