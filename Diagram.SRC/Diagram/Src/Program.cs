@@ -51,6 +51,8 @@ namespace Diagram
         [STAThread]
         private static void Main() //UID4670767500
         {
+            System.AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionTrapper;
+
             Program.log.Write("Start application: " + GetLocation());
 
             Program.log.Write("Version : " + GetVersion());
@@ -87,5 +89,11 @@ namespace Diagram
             }
 #endif
         }
-    }
+
+        static void UnhandledExceptionTrapper(object sender, UnhandledExceptionEventArgs e)
+        {
+            Program.log.Write("Fatal error: " + e.ExceptionObject.ToString());
+            log.SaveLogToFile();
+            Environment.Exit(1);
+        }
 }

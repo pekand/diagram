@@ -55,7 +55,7 @@ namespace Diagram
         {
             if (logPath == "") {
                 string tempDir = Os.GetTempPath();
-                string tempFile = "infinite-diagram-crash-log.txt";
+                string tempFile = "infinite-diagram-" + DateTime.Now.ToString("MM-dd-yyyy-HH-MM-ss") + ".log";
                 logPath = Os.Combine(tempDir, tempFile);
             }
 
