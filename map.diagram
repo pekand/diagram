@@ -4595,6 +4595,103 @@ print 'uid created'</note>
       <timecreate>2017-10-14 22:51:32</timecreate>
       <timemodify>2017-10-14 22:51:38</timemodify>
     </rectangle>
+    <rectangle>
+      <id>1638</id>
+      <fontcolor>Black</fontcolor>
+      <text>plugins</text>
+      <layer>0</layer>
+      <x>-598</x>
+      <y>6210</y>
+      <width>68</width>
+      <height>36</height>
+      <color>#00DCE6</color>
+      <timecreate>2017-10-14 23:24:05</timecreate>
+      <timemodify>2017-10-14 23:24:05</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1639</id>
+      <fontcolor>Black</fontcolor>
+      <text>IKeyPressPlugin</text>
+      <link>UID0290945802</link>
+      <layer>0</layer>
+      <x>-499</x>
+      <y>6169</y>
+      <width>125</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:24:32</timecreate>
+      <timemodify>2017-10-14 23:24:38</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1640</id>
+      <fontcolor>Black</fontcolor>
+      <text>KeyPressAction</text>
+      <link>UID0290845814</link>
+      <layer>0</layer>
+      <x>-353</x>
+      <y>6162</y>
+      <width>121</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:24:46</timecreate>
+      <timemodify>2017-10-14 23:24:53</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1641</id>
+      <fontcolor>Black</fontcolor>
+      <text>INodeOpenPlugin</text>
+      <link>UID0290945800</link>
+      <layer>0</layer>
+      <x>-499</x>
+      <y>6229</y>
+      <width>133</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:25:10</timecreate>
+      <timemodify>2017-10-14 23:25:17</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1642</id>
+      <fontcolor>Black</fontcolor>
+      <text>IOpenDiagramPlugin</text>
+      <link>UID0290845812</link>
+      <layer>0</layer>
+      <x>-499</x>
+      <y>6286</y>
+      <width>152</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:25:33</timecreate>
+      <timemodify>2017-10-14 23:25:39</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1643</id>
+      <fontcolor>Black</fontcolor>
+      <text>OpenDiagramAction</text>
+      <link>UID0290845816</link>
+      <layer>0</layer>
+      <x>-319</x>
+      <y>6292</y>
+      <width>148</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:26:32</timecreate>
+      <timemodify>2017-10-14 23:26:42</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1644</id>
+      <fontcolor>Black</fontcolor>
+      <text>ClickOnNodeAction</text>
+      <link>UID6935831875</link>
+      <layer>0</layer>
+      <x>-337</x>
+      <y>6224</y>
+      <width>143</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:27:11</timecreate>
+      <timemodify>2017-10-14 23:27:18</timemodify>
+    </rectangle>
   </rectangles>
   <lines>
     <line>
@@ -6394,6 +6491,48 @@ print 'uid created'</note>
     <line>
       <start>1636</start>
       <end>1551</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1639</start>
+      <end>1638</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1640</start>
+      <end>1639</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1641</start>
+      <end>1638</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1642</start>
+      <end>1638</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1643</start>
+      <end>1642</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1644</start>
+      <end>1641</end>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>

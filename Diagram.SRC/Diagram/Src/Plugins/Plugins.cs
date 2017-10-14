@@ -142,7 +142,7 @@ namespace Diagram
                 {
                     try
                     {
-                        stopNextAction = plugin.ClickOnNodeAction(diagram, diagramView, node);
+                        stopNextAction = plugin.ClickOnNodeAction(diagram, diagramView, node); //UID6935831875
                         if (stopNextAction)
                         {
                             break;
