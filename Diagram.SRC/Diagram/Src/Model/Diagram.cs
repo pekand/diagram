@@ -119,7 +119,7 @@ namespace Diagram
         }
         
         // save diagram
-        public bool Save()
+        public bool Save() //UID8354947577
         {
             if (!this.IsLocked() && this.FileName != "" && Os.FileExists(this.FileName))
             {
@@ -136,7 +136,7 @@ namespace Diagram
         }
 
         // save diagram as
-        public void Saveas(String FileName)
+        public void Saveas(String FileName) //UID9358805584
         {
             if (!this.IsLocked())
             {
@@ -150,7 +150,7 @@ namespace Diagram
         }
 
         // set default options for file like new file 
-        public void CloseFile()
+        public void CloseFile() //UID3849853197
         {
             // Prednadstavenie atributov
             this.NewFile = true;
@@ -171,7 +171,7 @@ namespace Diagram
         // XML OPERATIONS
 
         // XML SAVE file or encrypted file
-        public void SaveXMLFile(string FileName)
+        public void SaveXMLFile(string FileName) //UID6023051509
         {
             string diagraxml = this.SaveInnerXMLFile();
 
@@ -240,7 +240,7 @@ namespace Diagram
         }
 
         // XML SAVE create xml from current diagram file state
-        public string SaveInnerXMLFile()
+        public string SaveInnerXMLFile() //UID8716692347
         {
             bool checkpoint = false;
             XElement root = new XElement("diagram");
@@ -1715,7 +1715,7 @@ namespace Diagram
         // VIEW
 
         // open new view on diagram
-        public DiagramView OpenDiagramView(DiagramView parent = null, Layer layer = null)
+        public DiagramView OpenDiagramView(DiagramView parent = null, Layer layer = null) //UID8210770134
         {
             DiagramView diagramview = new DiagramView(main, this, parent);
             diagramview.SetDiagram(this);

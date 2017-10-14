@@ -338,63 +338,52 @@ namespace Diagram
         }
 
         // FORM Quit Close
-        public void DiagramApp_FormClosing(object sender, FormClosingEventArgs e)
+        public void DiagramApp_FormClosing(object sender, FormClosingEventArgs e) //UID8741811919
         {
+            // save as new file
             bool close = true;
-            if (!this.diagram.SavedFile && (this.diagram.FileName == "" || !Os.FileExists(this.diagram.FileName))) // Ulozi ako novy subor
+            if (!this.diagram.SavedFile && 
+                (this.diagram.FileName == "" || !Os.FileExists(this.diagram.FileName)) &&
+                this.diagram.DiagramViews.Count() == 1 // can't close if other views alredy opened
+            ) 
             {
-
-                if (this.diagram.DiagramViews.Count() == 1) // can close if other views alredy opened
+                var res = MessageBox.Show(Translations.saveBeforeExit, Translations.confirmExit, MessageBoxButtons.YesNoCancel);
+                
+                if (res == DialogResult.Yes)
                 {
-                    var res = MessageBox.Show(Translations.saveBeforeExit, Translations.confirmExit, MessageBoxButtons.YesNoCancel);
-                    if (res == DialogResult.Yes)
+                    close = false;
+                    if (DSave.ShowDialog() == DialogResult.OK)
                     {
-                        if (DSave.ShowDialog() == DialogResult.OK)
-                        {
-                            this.diagram.SaveXMLFile(this.DSave.FileName);
-                            this.diagram.SetTitle();
-                            close = true;
-                        }
-                        else
-                        {
-                            close = false;
-                        }
-                    }
-                    else if (res == DialogResult.Cancel)
-                    {
-                        close = false;
-                    }
-                    else
-                    {
+                        this.diagram.SaveXMLFile(this.DSave.FileName);
+                        this.diagram.SetTitle();
                         close = true;
                     }
                 }
-                else
+
+                if (res == DialogResult.Cancel)
                 {
-                    close = true;
+                    close = false;
                 }
             }
-            else if (!this.diagram.SavedFile && this.diagram.FileName != "" && Os.FileExists(this.diagram.FileName)) //ulozenie do aktualne otvoreneho suboru
+            
+            //save to current file
+            if (!this.diagram.SavedFile && 
+                this.diagram.FileName != "" && 
+                Os.FileExists(this.diagram.FileName) &&
+                this.diagram.DiagramViews.Count() == 1 // can close if other views alredy opened
+            ) 
             {
-                if (this.diagram.DiagramViews.Count() == 1) // can close if other views alredy opened
+
+                var res = MessageBox.Show(Translations.saveBeforeExit, Translations.confirmExit, MessageBoxButtons.YesNoCancel);
+                
+                if (res == DialogResult.Yes)
                 {
-                    var res = MessageBox.Show(Translations.saveBeforeExit, Translations.confirmExit, MessageBoxButtons.YesNoCancel);
-                    if (res == DialogResult.Yes)
-                    {
-                        this.diagram.SaveXMLFile(this.diagram.FileName);
-                    }
-                    else if (res == DialogResult.Cancel)
-                    {
-                        close = false;
-                    }
-                    else
-                    {
-                        close = true;
-                    }
+                    this.diagram.SaveXMLFile(this.diagram.FileName);
                 }
-                else
+                
+                if (res == DialogResult.Cancel)
                 {
-                    close = true;
+                    close = false;
                 }
             }
 
@@ -403,7 +392,6 @@ namespace Diagram
             }
 
             e.Cancel = !close;
-
         }
 
         // FORM Title - set windows title
@@ -446,7 +434,7 @@ namespace Diagram
         }
 
         // FORM open view and go to home position
-        public void OpenViewAndGoToHome()
+        public void OpenViewAndGoToHome() //UID2147390186
         {
             DiagramView child = this.diagram.OpenDiagramView(this);
             child.GoToHome();
@@ -491,7 +479,7 @@ namespace Diagram
         }
 
         // FORM open view and go to home position
-        public void OpenViewAndGoToEnd()
+        public void OpenViewAndGoToEnd() //UID0905369008
         {
             DiagramView child = this.diagram.OpenDiagramView(this);
             child.GoToEnd();
@@ -3980,7 +3968,7 @@ namespace Diagram
                     // stop execution from plugin
                     return 0;
                 } else if (rec.haslayer) {
-                    if (this.diagram.options.openLayerInNewView)
+                    if (this.diagram.options.openLayerInNewView) //UID1964118363
                     {
                         this.diagram.OpenDiagramView(
                             this,
@@ -5077,7 +5065,7 @@ namespace Diagram
         }
 
         // NODE rename
-        public void Rename()
+        public void Rename() //UID1498635893
         {
             if (this.selectedNodes.Count() == 1)
             {

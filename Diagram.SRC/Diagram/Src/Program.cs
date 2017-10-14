@@ -65,16 +65,17 @@ namespace Diagram
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-// prevent catch global exception in debug mode
+            // prevent catch global exception in debug mode
 #if !DEBUG
             try
             {
 #endif
-                main = new Main();
-                if (main.mainform != null) {
-                    Application.Run(main.mainform); 
-                }
-                Application.Exit();
+            main = new Main();
+            if (main.mainform != null)
+            {
+                Application.Run(main.mainform);
+            }
+            Application.Exit();
 #if !DEBUG
             // catch all exception globaly in release mode and prevent application crash
             }
@@ -96,4 +97,5 @@ namespace Diagram
             log.SaveLogToFile();
             Environment.Exit(1);
         }
+    }
 }

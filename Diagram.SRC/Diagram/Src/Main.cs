@@ -177,27 +177,29 @@ namespace Diagram
                 if (arg == "-h" || arg == "--help" || arg == "/?")
                 {
                     ShowCommandLineHelp = true;
+                    break;
+                    
                 }
-                else if (arg == "-c" || arg == "--console")
+                if (arg == "-c" || arg == "--console")
                 {
                     ShowDebugConsole = true;
+                    break;
                 } 
-                else if(arg == "-e")
+                
+                if(arg == "-e")
                 {
                     CommandLineCreateIfNotExistFile = true;
+                    break;
                 }
-                else
+                
+                // [COMAND LINE] [OPEN] check if argument is diagram file
+                if (Os.GetExtension(arg).ToLower() == ".diagram")
                 {
-                    // [COMAND LINE] [OPEN] check if argument is diagram file
-                    if (Os.GetExtension(arg).ToLower() == ".diagram")
-                    {
-                        CommandLineOpen.Add(arg);
-                    }
-                    else
-                    {
-                        Program.log.Write("bed commmand line argument: " + arg);
-                    }
+                    CommandLineOpen.Add(arg);
+                    break;
                 }
+                
+                Program.log.Write("bed commmand line argument: " + arg);
             }
 
             if (ShowDebugConsole) {
@@ -213,41 +215,41 @@ namespace Diagram
                 "diagram -e {filename} >> create file if not exist\n" +
                 "diagram {filepath} {filepath} >> open existing file\n";
                 MessageBox.Show(help, "Command line parameters");
+                return;
             }
-            else
-            if (CommandLineOpen.Count > 0)
-            {
-                for (int i = 0; i < CommandLineOpen.Count(); i++)
-                {
-                    string file = CommandLineOpen[i];
 
-                    // tray create diagram file if command line option is set
-                    if (CommandLineCreateIfNotExistFile && !Os.FileExists(file))
-                    {
-                        try
-                        {
-                            Os.CreateEmptyFile(file);
-                        }
-                        catch (Exception ex)
-                        {
-                            Program.log.Write("create empty diagram file error: " + ex.Message);
-                        }
-                    }
-
-                    if (Os.FileExists(file))
-                    {
-                        this.OpenDiagram(file);
-                    }
-                }
-
-                // cose application if is not diagram model opened
-                this.CloseEmptyApplication();
-            }
-            else
+            if (CommandLineOpen.Count == 0)
             {
                 //open empty diagram
                 this.OpenDiagram();
+                return;
             }
+            
+            for (int i = 0; i < CommandLineOpen.Count(); i++)
+            {
+                string file = CommandLineOpen[i];
+
+                // tray create diagram file if command line option is set
+                if (CommandLineCreateIfNotExistFile && !Os.FileExists(file))
+                {
+                    try
+                    {
+                        Os.CreateEmptyFile(file);
+                    }
+                    catch (Exception ex)
+                    {
+                        Program.log.Write("create empty diagram file error: " + ex.Message);
+                    }
+                }
+
+                if (Os.FileExists(file))
+                {
+                    this.OpenDiagram(file);
+                }
+            }
+
+            // cose application if is not diagram model opened
+            this.CloseEmptyApplication();
         }
 
         /// <summary>
@@ -313,9 +315,22 @@ namespace Diagram
             }
 
             this.optionsFile.SaveConfigFile();
-            Application.Exit();
-            Application.ExitThread();
-            Environment.Exit(0);
+            TerminateApplication();
+        }
+
+        public void TerminateApplication()
+        {
+            try
+            {
+                Application.Exit();
+                Application.ExitThread();
+                Environment.Exit(0);
+            }
+            catch (Exception e)
+            {
+                Program.log.Write("Terminate aplication exception: " + e.Message);
+                Program.log.Write("Terminate aplication trace: " + e.StackTrace);
+            }
         }
 
         /*************************************************************************************************************************/
@@ -346,92 +361,96 @@ namespace Diagram
         {
             Program.log.Write("Program : OpenDiagram: " + FilePath);
 
+            if (passwordForm != null) // prevent open diagram if another diagram triing open 
+            {
+                return;
+            }
+            
             // open new empty diagram
-            if (FilePath == "")
+            if (FilePath == "" && !server.mainProcess)
             {
                 // if server already exist in system, send him message whitch open empty diagram
-                if (!server.mainProcess)
-                {
-                    server.SendMessage("open:");
-                }
-                // open diagram in current program instance
-                else
-                {
-                    // create new model
-                    Diagram diagram = new Diagram(this);
-                    Diagrams.Add(diagram);
-                    // open diagram view on diagram model
-                    diagram.OpenDiagramView();
-                }
+                server.SendMessage("open:");
+                return;
             }
-            // open existing diagram file
-            else
+            
+            // open diagram in current program instance
+            if (FilePath == "" && server.mainProcess)
             {
-                if (passwordForm != null) // prevent open diagram if another diagram triing open 
+                // create new model
+                Diagram emptyDiagram = new Diagram(this);
+                Diagrams.Add(emptyDiagram);
+                // open diagram view on diagram model
+                emptyDiagram.OpenDiagramView();
+                return;
+            }
+              
+            // open existing diagram file
+            
+            if (!Os.FileExists(FilePath))
+            {
+                return;
+            }
+            
+            FilePath = Os.NormalizedFullPath(FilePath);
+            
+            // if server already exist in system, send him message whitch open diagram file
+            if (!server.mainProcess)
+            {
+                FilePath = Os.GetFullPath(FilePath);
+                server.SendMessage("open:" + FilePath);
+                return;
+            }  
+
+            // open diagram in current program instance
+
+            // check if file is already opened in current instance
+            bool alreadyOpen = false;
+            foreach (Diagram openedDiagram in Diagrams)
+            {
+                if (openedDiagram.FileName != FilePath)
+                {
+                    continue;
+                }
+
+                Program.log.Write("window get focus");
+                Program.log.Write("OpenDiagram: diagramView: setFocus");
+
+                if (openedDiagram.DiagramViews.Count() != 0 && !openedDiagram.DiagramViews[0].Visible)
+                {
+                    openedDiagram.DiagramViews[0].Show();
+                }
+
+                Program.log.Write("bring focus");
+                Media.BringToFront(openedDiagram.DiagramViews[0]); //UID4510272262
+                    
+                alreadyOpen = true;
+                break;
+            }
+
+            if (alreadyOpen)
+            {
+                return;
+            }
+            
+            Diagram diagram = new Diagram(this);
+            lock (diagram)
+            {
+                // create new model
+                if (!diagram.OpenFile(FilePath))
                 {
                     return;
                 }
+                
+                this.options.AddRecentFile(FilePath);
+                Diagrams.Add(diagram);
+                // open diagram view on diagram model
+                DiagramView newDiagram = diagram.OpenDiagramView();
 
-                if (Os.FileExists(FilePath))
-                {
-                    FilePath = Os.GetFullPath(FilePath);
+                this.plugins.OpenDiagramAction(diagram); //UID0290845816
 
-                    // if server already exist in system, send him message whitch open diagram file
-                    if (!server.mainProcess)
-                    {
-                        server.SendMessage("open:" + FilePath);
-                    }
-                    // open diagram in current program instance
-                    else
-                    {
-                        // check if file is already opened in current instance
-                        bool alreadyOpen = false;
-
-                        foreach (Diagram diagram in Diagrams)
-                        {
-                            if (diagram.FileName == Os.NormalizedFullPath(FilePath))
-                            {
-                                // focus
-                                if (diagram.DiagramViews.Count() > 0)
-                                {
-                                    Program.log.Write("window get focus");
-                                    Program.log.Write("OpenDiagram: diagramView: setFocus");
-
-                                    if (!diagram.DiagramViews[0].Visible)
-                                    {
-                                        diagram.DiagramViews[0].Show();
-                                    }
-
-                                    Program.log.Write("bring focus");
-                                    Media.BringToFront(diagram.DiagramViews[0]); //UID4510272262
-                                }
-                                alreadyOpen = true;
-                                break;
-                            }
-                        }
-
-                        if (!alreadyOpen)
-                        {
-                            Diagram diagram = new Diagram(this);
-                            lock (diagram)
-                            {
-                                // create new model
-                                if (diagram.OpenFile(FilePath))
-                                {
-                                    this.options.AddRecentFile(FilePath);
-                                    Diagrams.Add(diagram);
-                                    // open diagram view on diagram model
-                                    DiagramView newDiagram = diagram.OpenDiagramView();
-
-                                    this.plugins.OpenDiagramAction(diagram); //UID0290845816
-
-                                    Program.log.Write("bring focus");
-                                    Media.BringToFront(newDiagram); //UID4510272263
-                                }
-                            }
-                        }
-                    }
-                }
+                Program.log.Write("bring focus");
+                Media.BringToFront(newDiagram); //UID4510272263
             }
         }
 
@@ -458,7 +477,7 @@ namespace Diagram
 
         /// <summary>
         /// hide diagram views except diagramView</summary>
-        public void SwitchViews(DiagramView diagramView = null)
+        public void SwitchViews(DiagramView diagramView = null) //UID9164062779
         {
             bool someIsHidden = false;
             foreach (DiagramView view in DiagramViews)
@@ -472,7 +491,7 @@ namespace Diagram
 
             if (someIsHidden)
             {
-                ShowViews();
+                ShowAllViews();
             }
             else
             {
@@ -482,37 +501,34 @@ namespace Diagram
 
         /// <summary>
         /// show views if last visible view is closed</summary>
-        public void ShowIfIsLastViews(DiagramView diagramView = null)
+        public void ShowIfIsLastViews(DiagramView diagramView = null) //UID3969703093
         {
-            bool someIsVisible = false;
             foreach (DiagramView view in DiagramViews)
             {
-                if (view.Visible && diagramView != view)
+                if (!view.Visible && diagramView != view)
                 {
-                    someIsVisible = true;
+                    view.Show();
                     break;
                 }
-            }
-
-            if (!someIsVisible)
-            {
-                ShowViews();
             }
         }
 
         /// <summary>
         /// show diagram views</summary>
-        public void ShowViews()
+        public void ShowAllViews() //UID5230996149
         {
             foreach (DiagramView view in DiagramViews)
             {
-                view.Show();
+                if (!view.Visible)
+                {
+                    view.Show();
+                }
             }
         }
 
         /// <summary>
         /// hide diagram views</summary>
-        public void HideViews(DiagramView diagramView = null)
+        public void HideViews(DiagramView diagramView = null) //UID3131107610
         {
             foreach (DiagramView view in DiagramViews)
             {
