@@ -79,47 +79,110 @@ namespace Diagram
             gr.FillRectangle(br(r, g, b), x, y, 5, 5);
         }
 
+        
         public void render()
         {
             bmp = new Bitmap(51 * 5 * 3, 51 * 5 * 3);
             Graphics g = Graphics.FromImage(bmp);
 
-
+            // 1,1
+            int px = 255 * 0;
+            int py = 255 * 0;            
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                    rc(g, 0, cv(i), cv(j), i * 5, j * 5);
+                    rc(g, 
+                        0, cv(j), cv(i), 
+                        px + i * 5, 
+                        py + j * 5
+                    );
 
+            // 1,2
+            px = 255 * 1;
+            py = 255 * 0;
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                    rc(g, cv(j), cv(i), 0, 255 + i * 5, j * 5);
+                    rc(g, 
+                        cv(j), 0, cv(i), 
+                        px + i * 5, 
+                        py + j * 5
+                    );
 
+            // 1,3
+            px = 255 * 2;
+            py = 255 * 0;
+            for (int i = 0; i < 51; i++)
+                 for (int j = 0; j < 51; j++)
+                     rc(g, 
+                         cv(j), cv(i), 0, 
+                         px + i * 5, 
+                         py + j * 5
+                     );
+
+            // 2,1
+            px = 255 * 0;
+            py = 255 * 1;
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                    rc(g, cv(i), 0, cv(j), 255 * 2 + i * 5, j * 5);
+                   rc(g, 
+                       128, cv(j), cv(i), 
+                       px + i * 5, 
+                       py + j * 5
+                   );
 
+            // 2,2
+            px = 255 * 1;
+            py = 255 * 1;
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                   rc(g, cv(i), cv(j), cv(j), i * 5, 255 + j * 5);
+                    rc(g,
+                        cv(j), 128, cv(i), 
+                        px + i * 5, 
+                        py + j * 5
+                    );
 
+            // 2,3
+            px = 255 * 2;
+            py = 255 * 1;
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                    rc(g, cv(i), cv(i), cv(j), 255 + i * 5, 255 + j * 5);
+                    rc(g, 
+                        cv(j), cv(i), 128, 
+                        px + i * 5, 
+                        py + j * 5
+                    );
 
+            // 3,1
+            px = 255 * 0;
+            py = 255 * 2;
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                    rc(g, cv(i), cv(i), cv(i), 255 * 2 + i * 5, 255 + j * 5);
+                    rc(g, 
+                        255, cv(j), cv(i), 
+                        px + i * 5, 
+                        py + j * 5
+                    );
 
+            // 3,2
+            px = 255 * 1;
+            py = 255 * 2;
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                    rc(g, 255, cv(i), cv(j), i * 5, 255 * 2 + j * 5);
+                    rc(g,
+                        cv(j), 255, cv(i),
+                        px + i * 5, 
+                        py + j * 5
+                    );
 
+            // 3,3
+            px = 255 * 2;
+            py = 255 * 2;
             for (int i = 0; i < 51; i++)
                 for (int j = 0; j < 51; j++)
-                    rc(g, cv(j), cv(i), 255, 255 + i * 5, 255 * 2 + j * 5);
-
-            for (int i = 0; i < 51; i++)
-                for (int j = 0; j < 51; j++)
-                    rc(g, cv(i), 255, cv(j), 255 * 2 + i * 5, 255 * 2 + j * 5);
+                   rc(g,
+                        cv(j), cv(i), 255,
+                        px + i * 5, 
+                        py + j * 5
+                   );
 
             g.Flush();
         }
