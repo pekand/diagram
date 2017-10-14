@@ -4500,35 +4500,6 @@ DiagramView.Invalidate();</note>
       <timemodify>2017-10-14 22:44:20</timemodify>
     </rectangle>
     <rectangle>
-      <id>1630</id>
-      <fontcolor>Black</fontcolor>
-      <text>random uid</text>
-      <note>import clr
-import sys
-import random
-clr.AddReference('Diagram')
-from Diagram import Position
-
-out = 'UID'
-for i in range(10):
-    out += random.choice('0123456789')
-
-l = DiagramView.currentLayer.id
-selected = DiagramView.selectedNodes[0]
-rec = Diagram.CreateNode(Position(selected.position.x+selected.width+20, selected.position.y), out, l)
-DiagramView.Invalidate();
-print 'uid created'</note>
-      <link>$</link>
-      <layer>0</layer>
-      <x>-800</x>
-      <y>5908</y>
-      <width>93</width>
-      <height>36</height>
-      <color>#FFFFB8</color>
-      <timecreate>2017-10-14 22:45:52</timecreate>
-      <timemodify>2017-10-14 22:45:52</timemodify>
-    </rectangle>
-    <rectangle>
       <id>1633</id>
       <fontcolor>Black</fontcolor>
       <text>CTRL+END</text>
@@ -4600,8 +4571,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>plugins</text>
       <layer>0</layer>
-      <x>-598</x>
-      <y>6210</y>
+      <x>-432</x>
+      <y>6217</y>
       <width>68</width>
       <height>36</height>
       <color>#00DCE6</color>
@@ -4614,11 +4585,11 @@ print 'uid created'</note>
       <text>IKeyPressPlugin</text>
       <link>UID0290945802</link>
       <layer>0</layer>
-      <x>-499</x>
-      <y>6169</y>
+      <x>-245</x>
+      <y>6175</y>
       <width>125</width>
       <height>36</height>
-      <color>#FFFFB8</color>
+      <color>#D9CCFF</color>
       <timecreate>2017-10-14 23:24:32</timecreate>
       <timemodify>2017-10-14 23:24:38</timemodify>
     </rectangle>
@@ -4628,11 +4599,11 @@ print 'uid created'</note>
       <text>KeyPressAction</text>
       <link>UID0290845814</link>
       <layer>0</layer>
-      <x>-353</x>
-      <y>6162</y>
+      <x>-99</x>
+      <y>6168</y>
       <width>121</width>
       <height>36</height>
-      <color>#FFFFB8</color>
+      <color>#D9CCFF</color>
       <timecreate>2017-10-14 23:24:46</timecreate>
       <timemodify>2017-10-14 23:24:53</timemodify>
     </rectangle>
@@ -4642,11 +4613,11 @@ print 'uid created'</note>
       <text>INodeOpenPlugin</text>
       <link>UID0290945800</link>
       <layer>0</layer>
-      <x>-499</x>
-      <y>6229</y>
+      <x>-245</x>
+      <y>6235</y>
       <width>133</width>
       <height>36</height>
-      <color>#FFFFB8</color>
+      <color>#D9CCFF</color>
       <timecreate>2017-10-14 23:25:10</timecreate>
       <timemodify>2017-10-14 23:25:17</timemodify>
     </rectangle>
@@ -4656,11 +4627,11 @@ print 'uid created'</note>
       <text>IOpenDiagramPlugin</text>
       <link>UID0290845812</link>
       <layer>0</layer>
-      <x>-499</x>
-      <y>6286</y>
+      <x>-246</x>
+      <y>6280</y>
       <width>152</width>
       <height>36</height>
-      <color>#FFFFB8</color>
+      <color>#D9CCFF</color>
       <timecreate>2017-10-14 23:25:33</timecreate>
       <timemodify>2017-10-14 23:25:39</timemodify>
     </rectangle>
@@ -4670,11 +4641,11 @@ print 'uid created'</note>
       <text>OpenDiagramAction</text>
       <link>UID0290845816</link>
       <layer>0</layer>
-      <x>-319</x>
-      <y>6292</y>
+      <x>-65</x>
+      <y>6298</y>
       <width>148</width>
       <height>36</height>
-      <color>#FFFFB8</color>
+      <color>#D9CCFF</color>
       <timecreate>2017-10-14 23:26:32</timecreate>
       <timemodify>2017-10-14 23:26:42</timemodify>
     </rectangle>
@@ -4684,13 +4655,1440 @@ print 'uid created'</note>
       <text>ClickOnNodeAction</text>
       <link>UID6935831875</link>
       <layer>0</layer>
-      <x>-337</x>
-      <y>6224</y>
+      <x>-83</x>
+      <y>6230</y>
+      <width>143</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-10-14 23:27:11</timecreate>
+      <timemodify>2017-10-14 23:27:18</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1648</id>
+      <fontcolor>Black</fontcolor>
+      <text>context menu</text>
+      <layer>0</layer>
+      <x>1415</x>
+      <y>3109</y>
+      <width>106</width>
+      <height>36</height>
+      <color>#00DCE6</color>
+      <timecreate>2017-10-14 23:33:46</timecreate>
+      <timemodify>2017-10-14 23:33:46</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1647</id>
+      <fontcolor>Black</fontcolor>
+      <text>Plugins</text>
+      <link>UID8736657869</link>
+      <layer>0</layer>
+      <x>-340</x>
+      <y>6219</y>
+      <width>69</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-10-14 23:33:14</timecreate>
+      <timemodify>2017-10-14 23:33:18</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1649</id>
+      <fontcolor>Black</fontcolor>
+      <text>Popup</text>
+      <link>UID5085107645</link>
+      <layer>0</layer>
+      <x>1546</x>
+      <y>3108</y>
+      <width>64</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-10-14 23:34:38</timecreate>
+      <timemodify>2017-10-14 23:34:44</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1650</id>
+      <fontcolor>Black</fontcolor>
+      <text>constructor</text>
+      <link>UID1752805239</link>
+      <layer>0</layer>
+      <x>1620</x>
+      <y>3108</y>
+      <width>92</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-10-14 23:35:00</timecreate>
+      <timemodify>2017-10-14 23:35:20</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1652</id>
+      <fontcolor>Black</fontcolor>
+      <text>InitializeComponent</text>
+      <link>UID7904769190</link>
+      <layer>0</layer>
+      <x>1729</x>
+      <y>3108</y>
+      <width>145</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-10-14 23:35:48</timecreate>
+      <timemodify>2017-10-14 23:35:55</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1654</id>
+      <fontcolor>Black</fontcolor>
+      <text>PopupMenu_Opening</text>
+      <link>UID0017225057</link>
+      <layer>0</layer>
+      <x>1891</x>
+      <y>3107</y>
+      <width>158</width>
+      <height>36</height>
+      <color>#D9CCFF</color>
+      <timecreate>2017-10-14 23:36:21</timecreate>
+      <timemodify>2017-10-14 23:36:34</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1681</id>
+      <fontcolor>Black</fontcolor>
+      <text>LeftItem_Click</text>
+      <link>UID3723301860</link>
+      <layer>0</layer>
+      <x>1784</x>
+      <y>3422</y>
+      <width>111</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:44:50</timecreate>
+      <timemodify>2017-10-14 23:44:56</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1667</id>
+      <fontcolor>Black</fontcolor>
+      <text>OpenLinkDirectoryItem_Click</text>
+      <link>UID9061148695</link>
+      <layer>0</layer>
+      <x>1783</x>
+      <y>3362</y>
+      <width>202</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:42:38</timecreate>
+      <timemodify>2017-10-14 23:42:47</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1666</id>
+      <fontcolor>Black</fontcolor>
+      <text>OpenlinkItem_Click</text>
+      <link>UID8259578882</link>
+      <layer>0</layer>
+      <x>1783</x>
+      <y>3313</y>
       <width>143</width>
       <height>36</height>
       <color>#FFFFB8</color>
-      <timecreate>2017-10-14 23:27:11</timecreate>
-      <timemodify>2017-10-14 23:27:18</timemodify>
+      <timecreate>2017-10-14 23:42:24</timecreate>
+      <timemodify>2017-10-14 23:42:33</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1664</id>
+      <fontcolor>Black</fontcolor>
+      <text>ColorItem_Click</text>
+      <link>UID4476972922</link>
+      <layer>0</layer>
+      <x>1651</x>
+      <y>3255</y>
+      <width>121</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-14 23:41:53</timecreate>
+      <timemodify>2017-10-14 23:42:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1663</id>
+      <fontcolor>Black</fontcolor>
+      <text>EditItem_Click</text>
+      <link>UID7223285114</link>
+      <layer>0</layer>
+      <x>1651</x>
+      <y>3209</y>
+      <width>112</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-14 23:41:36</timecreate>
+      <timemodify>2017-10-14 23:41:41</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1665</id>
+      <fontcolor>Black</fontcolor>
+      <text>RemoveShortcutItem_Click</text>
+      <link>UID3987406806</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>5020</y>
+      <width>190</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:42:11</timecreate>
+      <timemodify>2017-10-14 23:42:19</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1734</id>
+      <fontcolor>Black</fontcolor>
+      <text>LineColorItem_Click</text>
+      <link>UID2597097201</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>5143</y>
+      <width>147</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:54:29</timecreate>
+      <timemodify>2017-10-14 23:54:42</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1680</id>
+      <fontcolor>Black</fontcolor>
+      <text>SortItem_Click</text>
+      <link>UID8063135807</link>
+      <layer>0</layer>
+      <x>1784</x>
+      <y>3719</y>
+      <width>113</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:44:31</timecreate>
+      <timemodify>2017-10-14 23:44:38</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1679</id>
+      <fontcolor>Black</fontcolor>
+      <text>GroupHorizontalItem_Click</text>
+      <link>UID4865517556</link>
+      <layer>0</layer>
+      <x>1784</x>
+      <y>3670</y>
+      <width>188</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:44:18</timecreate>
+      <timemodify>2017-10-14 23:44:23</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1678</id>
+      <fontcolor>Black</fontcolor>
+      <text>GroupVericalItem_Click</text>
+      <link>UID5565272429</link>
+      <layer>0</layer>
+      <x>1784</x>
+      <y>3622</y>
+      <width>168</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:44:04</timecreate>
+      <timemodify>2017-10-14 23:44:13</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1677</id>
+      <fontcolor>Black</fontcolor>
+      <text>InColumnItem_Click</text>
+      <link>UID6421466918</link>
+      <layer>0</layer>
+      <x>1784</x>
+      <y>3573</y>
+      <width>147</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:43:49</timecreate>
+      <timemodify>2017-10-14 23:43:55</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1675</id>
+      <fontcolor>Black</fontcolor>
+      <text>RightItem_Click</text>
+      <link>UID3530533003</link>
+      <layer>0</layer>
+      <x>1784</x>
+      <y>3474</y>
+      <width>120</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:43:18</timecreate>
+      <timemodify>2017-10-14 23:43:25</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1676</id>
+      <fontcolor>Black</fontcolor>
+      <text>ToLineItem_Click</text>
+      <link>UID3603051682</link>
+      <layer>0</layer>
+      <x>1784</x>
+      <y>3526</y>
+      <width>130</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:43:31</timecreate>
+      <timemodify>2017-10-14 23:43:41</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1689</id>
+      <fontcolor>Black</fontcolor>
+      <text>NewItem_Click</text>
+      <link>UID8052745540</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4017</y>
+      <width>116</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:45:15</timecreate>
+      <timemodify>2017-10-14 23:45:19</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1694</id>
+      <fontcolor>Black</fontcolor>
+      <text>OpenItem_Click</text>
+      <link>UID1150105418</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4201</y>
+      <width>122</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:46:18</timecreate>
+      <timemodify>2017-10-14 23:46:22</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1693</id>
+      <fontcolor>Black</fontcolor>
+      <text>ExportToPngItem_Click</text>
+      <link>UID4836284357</link>
+      <layer>0</layer>
+      <x>1913</x>
+      <y>4185</y>
+      <width>168</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:46:06</timecreate>
+      <timemodify>2017-10-14 23:46:10</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1692</id>
+      <fontcolor>Black</fontcolor>
+      <text>TextItem_Click</text>
+      <link>UID6650610161</link>
+      <layer>0</layer>
+      <x>1913</x>
+      <y>4139</y>
+      <width>115</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:45:52</timecreate>
+      <timemodify>2017-10-14 23:45:56</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1691</id>
+      <fontcolor>Black</fontcolor>
+      <text>SaveAsItem_Click</text>
+      <link>UID3588710029</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4109</y>
+      <width>135</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:45:38</timecreate>
+      <timemodify>2017-10-14 23:45:42</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1690</id>
+      <fontcolor>Black</fontcolor>
+      <text>SaveItem_Click</text>
+      <link>UID9649741776</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4063</y>
+      <width>119</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:45:26</timecreate>
+      <timemodify>2017-10-14 23:45:30</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1719</id>
+      <fontcolor>Black</fontcolor>
+      <text>TransparentItem_Click</text>
+      <link>UID0380589581</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4698</y>
+      <width>162</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:50:13</timecreate>
+      <timemodify>2017-10-14 23:50:22</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1718</id>
+      <fontcolor>Black</fontcolor>
+      <text>PasteToNoteItem_Click</text>
+      <link>UID7415891621</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4606</y>
+      <width>168</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:49:51</timecreate>
+      <timemodify>2017-10-14 23:49:56</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1717</id>
+      <fontcolor>Black</fontcolor>
+      <text>PasteToLinkItem_Click</text>
+      <link>UID9249220502</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4560</y>
+      <width>165</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:49:37</timecreate>
+      <timemodify>2017-10-14 23:49:42</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1716</id>
+      <fontcolor>Black</fontcolor>
+      <text>CopyNoteItem_Click</text>
+      <link>UID6551958449</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4514</y>
+      <width>149</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:49:16</timecreate>
+      <timemodify>2017-10-14 23:49:27</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1715</id>
+      <fontcolor>Black</fontcolor>
+      <text>RedoItem_Click</text>
+      <link>UID5586948047</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4422</y>
+      <width>121</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:48:43</timecreate>
+      <timemodify>2017-10-14 23:48:47</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1714</id>
+      <fontcolor>Black</fontcolor>
+      <text>UndoItem_Click</text>
+      <link>UID3923079972</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4376</y>
+      <width>121</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:48:18</timecreate>
+      <timemodify>2017-10-14 23:48:24</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1713</id>
+      <fontcolor>Black</fontcolor>
+      <text>CopyLinkItem_Click</text>
+      <link>UID8346428952</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4468</y>
+      <width>145</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:48:05</timecreate>
+      <timemodify>2017-10-14 23:48:10</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1712</id>
+      <fontcolor>Black</fontcolor>
+      <text>PasteItem_Click</text>
+      <link>UID0613534707</link>
+      <layer>0</layer>
+      <x>1646</x>
+      <y>3924</y>
+      <width>123</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-14 23:47:51</timecreate>
+      <timemodify>2017-10-14 23:47:56</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1711</id>
+      <fontcolor>Black</fontcolor>
+      <text>CutItem_Click</text>
+      <link>UID3013972101</link>
+      <layer>0</layer>
+      <x>1646</x>
+      <y>3874</y>
+      <width>110</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-14 23:47:36</timecreate>
+      <timemodify>2017-10-14 23:47:46</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1710</id>
+      <fontcolor>Black</fontcolor>
+      <text>CopyItem_Click</text>
+      <link>UID5971111226</link>
+      <layer>0</layer>
+      <x>1646</x>
+      <y>3821</y>
+      <width>120</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-14 23:47:24</timecreate>
+      <timemodify>2017-10-14 23:47:29</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1709</id>
+      <fontcolor>Black</fontcolor>
+      <text>ExitItem_Click</text>
+      <link>UID6941677987</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4293</y>
+      <width>111</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:47:02</timecreate>
+      <timemodify>2017-10-14 23:47:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1708</id>
+      <fontcolor>Black</fontcolor>
+      <text>RecentItem_Click</text>
+      <link>UID3280882177</link>
+      <layer>0</layer>
+      <x>1889</x>
+      <y>4248</y>
+      <width>132</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:46:53</timecreate>
+      <timemodify>2017-10-15 00:48:49</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1733</id>
+      <fontcolor>Black</fontcolor>
+      <text>ProtectItem_Click</text>
+      <link>UID9793719013</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>5066</y>
+      <width>132</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:54:14</timecreate>
+      <timemodify>2017-10-14 23:54:20</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1732</id>
+      <fontcolor>Black</fontcolor>
+      <text>BringBottomItem_Click</text>
+      <link>UID2153145961</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4974</y>
+      <width>164</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:54:01</timecreate>
+      <timemodify>2017-10-14 23:54:06</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1731</id>
+      <fontcolor>Black</fontcolor>
+      <text>BringTopItem_Click</text>
+      <link>UID0233830733</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4928</y>
+      <width>144</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:53:43</timecreate>
+      <timemodify>2017-10-14 23:53:50</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1730</id>
+      <fontcolor>Black</fontcolor>
+      <text>EditLinkItem_Click</text>
+      <link>UID9954689045</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4882</y>
+      <width>137</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:53:28</timecreate>
+      <timemodify>2017-10-14 23:53:39</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1729</id>
+      <fontcolor>Black</fontcolor>
+      <text>FontColorItem_Click</text>
+      <link>UID8784417583</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4836</y>
+      <width>149</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:53:16</timecreate>
+      <timemodify>2017-10-14 23:53:21</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1728</id>
+      <fontcolor>Black</fontcolor>
+      <text>FontItem_Click</text>
+      <link>UID0168436072</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4790</y>
+      <width>116</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:53:02</timecreate>
+      <timemodify>2017-10-15 00:18:51</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1727</id>
+      <fontcolor>Black</fontcolor>
+      <text>FontItem_Click</text>
+      <link>UID0168436072</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4744</y>
+      <width>116</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:52:45</timecreate>
+      <timemodify>2017-10-14 23:52:55</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1766</id>
+      <fontcolor>Black</fontcolor>
+      <text>SplitNodeItem_Click</text>
+      <link>UID1436745968</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6216</y>
+      <width>148</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:59:09</timecreate>
+      <timemodify>2017-10-14 23:59:20</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1747</id>
+      <fontcolor>Black</fontcolor>
+      <text>IncludeFileItem_Click</text>
+      <link>UID4450324996</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>5527</y>
+      <width>155</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:55:57</timecreate>
+      <timemodify>2017-10-14 23:56:03</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1746</id>
+      <fontcolor>Black</fontcolor>
+      <text>DeploayAttachmentItem_Click</text>
+      <link>UID5589053079</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>5481</y>
+      <width>208</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:55:45</timecreate>
+      <timemodify>2017-10-14 23:55:49</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1745</id>
+      <fontcolor>Black</fontcolor>
+      <text>ImageEmbeddedItem_Click</text>
+      <link>UID5459560991</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>5365</y>
+      <width>193</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:55:33</timecreate>
+      <timemodify>2017-10-14 23:55:38</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1744</id>
+      <fontcolor>Black</fontcolor>
+      <text>ImageRemoveItem_Click</text>
+      <link>UID5686987514</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>5316</y>
+      <width>177</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:55:21</timecreate>
+      <timemodify>2017-10-14 23:55:27</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1743</id>
+      <fontcolor>Black</fontcolor>
+      <text>ImageAddItem_Click</text>
+      <link>UID2469843788</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>5270</y>
+      <width>151</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:54:59</timecreate>
+      <timemodify>2017-10-14 23:55:04</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1742</id>
+      <fontcolor>Black</fontcolor>
+      <text>LineWidthItem_Click</text>
+      <link>UID9637709557</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>5183</y>
+      <width>149</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:54:49</timecreate>
+      <timemodify>2017-10-14 23:54:53</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1765</id>
+      <fontcolor>Black</fontcolor>
+      <text>OpenDiagramDirectoryItem_Click</text>
+      <link>UID8883607610</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6164</y>
+      <width>229</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:58:56</timecreate>
+      <timemodify>2017-10-14 23:59:00</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1764</id>
+      <fontcolor>Black</fontcolor>
+      <text>OutItem_Click</text>
+      <link>UID2210293088</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6013</y>
+      <width>110</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:58:46</timecreate>
+      <timemodify>2017-10-15 00:43:57</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1763</id>
+      <fontcolor>Black</fontcolor>
+      <text>InItem_Click</text>
+      <link>UID9204174888</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>5962</y>
+      <width>100</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:58:31</timecreate>
+      <timemodify>2017-10-14 23:58:36</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1762</id>
+      <fontcolor>Black</fontcolor>
+      <text>RefreshItem_Click</text>
+      <link>UID7176007006</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>5873</y>
+      <width>136</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:58:14</timecreate>
+      <timemodify>2017-10-14 23:58:19</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1761</id>
+      <fontcolor>Black</fontcolor>
+      <text>SetStartPositionItem_Click</text>
+      <link>UID2244493951</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>5822</y>
+      <width>187</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:57:59</timecreate>
+      <timemodify>2017-10-14 23:58:09</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1759</id>
+      <fontcolor>Black</fontcolor>
+      <text>NewViewItem_Click</text>
+      <link>UID5872215491</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>5721</y>
+      <width>145</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:57:18</timecreate>
+      <timemodify>2017-10-14 23:57:26</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1760</id>
+      <fontcolor>Black</fontcolor>
+      <text>CenterItem_Click</text>
+      <link>UID6631268419</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>5772</y>
+      <width>129</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:57:33</timecreate>
+      <timemodify>2017-10-14 23:57:39</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1758</id>
+      <fontcolor>Black</fontcolor>
+      <text>RemoveFileItem_Click</text>
+      <link>UID1291567591</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>5619</y>
+      <width>162</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:56:41</timecreate>
+      <timemodify>2017-10-14 23:56:51</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1757</id>
+      <fontcolor>Black</fontcolor>
+      <text>IncludeDirectoryItem_Click</text>
+      <link>UID3536207534</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>5573</y>
+      <width>188</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:56:29</timecreate>
+      <timemodify>2017-10-14 23:56:33</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1796</id>
+      <fontcolor>Black</fontcolor>
+      <text>VisitWebsiteItem_Click</text>
+      <link>UID6474020819</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>7015</y>
+      <width>164</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:03:18</timecreate>
+      <timemodify>2017-10-15 00:03:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1775</id>
+      <fontcolor>Black</fontcolor>
+      <text>RestoreWindowItem_Click</text>
+      <link>UID1381135212</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6470</y>
+      <width>185</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:00:30</timecreate>
+      <timemodify>2017-10-15 00:00:39</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1774</id>
+      <fontcolor>Black</fontcolor>
+      <text>ReadonlyItem_Click</text>
+      <link>UID4803037156</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6424</y>
+      <width>146</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:00:08</timecreate>
+      <timemodify>2017-10-15 00:00:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1773</id>
+      <fontcolor>Black</fontcolor>
+      <text>ChangePasswordItem_Click</text>
+      <link>UID8349505191</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6378</y>
+      <width>197</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:59:55</timecreate>
+      <timemodify>2017-10-14 23:59:59</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1772</id>
+      <fontcolor>Black</fontcolor>
+      <text>EncryptItem_Click</text>
+      <link>UID3914074702</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6332</y>
+      <width>135</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-14 23:59:28</timecreate>
+      <timemodify>2017-10-14 23:59:37</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1795</id>
+      <fontcolor>Black</fontcolor>
+      <text>ConsoleItem_Click</text>
+      <link>UID3607589960</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6969</y>
+      <width>139</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:03:05</timecreate>
+      <timemodify>2017-10-15 00:03:10</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1794</id>
+      <fontcolor>Black</fontcolor>
+      <text>OpenConfigDirItem_Click</text>
+      <link>UID8429947533</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6884</y>
+      <width>179</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:02:55</timecreate>
+      <timemodify>2017-10-15 00:02:59</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1793</id>
+      <fontcolor>Black</fontcolor>
+      <text>OpenLayerInNewViewItem_Click</text>
+      <link>UID9903539710</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6838</y>
+      <width>225</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:02:42</timecreate>
+      <timemodify>2017-10-15 00:02:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1792</id>
+      <fontcolor>Black</fontcolor>
+      <text>SetBackgroundItem_Click</text>
+      <link>UID5641879391</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6792</y>
+      <width>182</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:02:25</timecreate>
+      <timemodify>2017-10-15 00:02:30</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1791</id>
+      <fontcolor>Black</fontcolor>
+      <text>SetIconItem_Click</text>
+      <link>UID8410362372</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6746</y>
+      <width>135</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:02:10</timecreate>
+      <timemodify>2017-10-15 00:02:14</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1790</id>
+      <fontcolor>Black</fontcolor>
+      <text>ResetFontItem_Click</text>
+      <link>UID6952845622</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6700</y>
+      <width>151</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:01:54</timecreate>
+      <timemodify>2017-10-15 00:02:00</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1789</id>
+      <fontcolor>Black</fontcolor>
+      <text>DefaultFontItem_Click</text>
+      <link>UID8175529111</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6654</y>
+      <width>159</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:01:38</timecreate>
+      <timemodify>2017-10-15 00:01:47</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1788</id>
+      <fontcolor>Black</fontcolor>
+      <text>BordersItem_Click</text>
+      <link>UID5362447098</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6608</y>
+      <width>136</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:01:26</timecreate>
+      <timemodify>2017-10-15 00:01:31</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1787</id>
+      <fontcolor>Black</fontcolor>
+      <text>CoordinatesItem_Click</text>
+      <link>UID1609350123</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6562</y>
+      <width>162</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:01:11</timecreate>
+      <timemodify>2017-10-15 00:01:16</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1786</id>
+      <fontcolor>Black</fontcolor>
+      <text>GridItem_Click</text>
+      <link>UID1216267651</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>6516</y>
+      <width>114</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:00:54</timecreate>
+      <timemodify>2017-10-15 00:00:59</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1799</id>
+      <fontcolor>Black</fontcolor>
+      <text>AboutItem_Click</text>
+      <link>UID7115733373</link>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>7061</y>
+      <width>124</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:04:07</timecreate>
+      <timemodify>2017-10-15 00:04:16</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1800</id>
+      <fontcolor>Black</fontcolor>
+      <text>linkItem</text>
+      <layer>0</layer>
+      <x>1651</x>
+      <y>3331</y>
+      <width>71</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-15 00:05:38</timecreate>
+      <timemodify>2017-10-15 00:05:38</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1801</id>
+      <fontcolor>Black</fontcolor>
+      <text>alignItem</text>
+      <layer>0</layer>
+      <x>1646</x>
+      <y>3584</y>
+      <width>80</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-15 00:06:58</timecreate>
+      <timemodify>2017-10-15 00:06:58</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1802</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>1515</x>
+      <y>3976</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-10-15 00:08:24</timecreate>
+      <timemodify>2017-10-15 00:08:24</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1803</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>2104</x>
+      <y>3974</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-10-15 00:08:24</timecreate>
+      <timemodify>2017-10-15 00:08:24</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1804</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>1515</x>
+      <y>3786</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-10-15 00:08:25</timecreate>
+      <timemodify>2017-10-15 00:08:25</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1805</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>2104</x>
+      <y>3784</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-10-15 00:08:25</timecreate>
+      <timemodify>2017-10-15 00:08:25</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1827</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>1174</x>
+      <y>3027</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-10-15 00:37:35</timecreate>
+      <timemodify>2017-10-15 00:37:35</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1828</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>2258</x>
+      <y>3027</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-10-15 00:37:35</timecreate>
+      <timemodify>2017-10-15 00:37:35</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1808</id>
+      <fontcolor>Black</fontcolor>
+      <text>exportItem</text>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4155</y>
+      <width>89</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-15 00:08:59</timecreate>
+      <timemodify>2017-10-15 00:08:59</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1809</id>
+      <fontcolor>Black</fontcolor>
+      <text>recentItem</text>
+      <layer>0</layer>
+      <x>1758</x>
+      <y>4247</y>
+      <width>89</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-15 00:09:26</timecreate>
+      <timemodify>2017-10-15 00:09:26</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1810</id>
+      <fontcolor>Black</fontcolor>
+      <text>fileItem</text>
+      <layer>0</layer>
+      <x>1615</x>
+      <y>4163</y>
+      <width>68</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-15 00:10:38</timecreate>
+      <timemodify>2017-10-15 00:10:38</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1811</id>
+      <fontcolor>Black</fontcolor>
+      <text>editMenuItem</text>
+      <layer>0</layer>
+      <x>1615</x>
+      <y>4497</y>
+      <width>107</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-15 00:11:54</timecreate>
+      <timemodify>2017-10-15 00:11:54</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1812</id>
+      <fontcolor>Black</fontcolor>
+      <text>nodeItem</text>
+      <layer>0</layer>
+      <x>1615</x>
+      <y>4864</y>
+      <width>81</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-15 00:16:38</timecreate>
+      <timemodify>2017-10-15 00:16:38</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1814</id>
+      <fontcolor>Black</fontcolor>
+      <text>lineItem</text>
+      <layer>0</layer>
+      <x>1615</x>
+      <y>5157</y>
+      <width>72</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-15 00:21:14</timecreate>
+      <timemodify>2017-10-15 00:21:14</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1815</id>
+      <fontcolor>Black</fontcolor>
+      <text>imageItem</text>
+      <layer>0</layer>
+      <x>1615</x>
+      <y>5323</y>
+      <width>88</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-15 00:21:40</timecreate>
+      <timemodify>2017-10-15 00:21:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1816</id>
+      <fontcolor>Black</fontcolor>
+      <text>attachmentItem</text>
+      <layer>0</layer>
+      <x>1615</x>
+      <y>5553</y>
+      <width>119</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-15 00:22:35</timecreate>
+      <timemodify>2017-10-15 00:22:35</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1817</id>
+      <fontcolor>Black</fontcolor>
+      <text>viewItem</text>
+      <layer>0</layer>
+      <x>1615</x>
+      <y>5812</y>
+      <width>78</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-15 00:23:23</timecreate>
+      <timemodify>2017-10-15 00:23:23</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1818</id>
+      <fontcolor>Black</fontcolor>
+      <text>layerItem</text>
+      <layer>0</layer>
+      <x>1615</x>
+      <y>5999</y>
+      <width>80</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-15 00:23:44</timecreate>
+      <timemodify>2017-10-15 00:23:44</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1819</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>1387</x>
+      <y>6065</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-10-15 00:23:52</timecreate>
+      <timemodify>2017-10-15 00:23:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1820</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>2104</x>
+      <y>6066</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-10-15 00:23:52</timecreate>
+      <timemodify>2017-10-15 00:23:52</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1821</id>
+      <fontcolor>Black</fontcolor>
+      <text>toolsItem</text>
+      <layer>0</layer>
+      <x>1615</x>
+      <y>6205</y>
+      <width>80</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-15 00:24:12</timecreate>
+      <timemodify>2017-10-15 00:24:12</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1822</id>
+      <fontcolor>Black</fontcolor>
+      <text>optionItem</text>
+      <layer>0</layer>
+      <x>1615</x>
+      <y>6566</y>
+      <width>88</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-15 00:25:25</timecreate>
+      <timemodify>2017-10-15 00:25:25</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1823</id>
+      <fontcolor>Black</fontcolor>
+      <text>helpItem</text>
+      <layer>0</layer>
+      <x>1615</x>
+      <y>7016</y>
+      <width>77</width>
+      <height>36</height>
+      <color>#5F5F9B</color>
+      <timecreate>2017-10-15 00:25:59</timecreate>
+      <timemodify>2017-10-15 00:25:59</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1824</id>
+      <fontcolor>Black</fontcolor>
+      <text>quickActionSeparator</text>
+      <layer>0</layer>
+      <x>1448</x>
+      <y>3703</y>
+      <width>155</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:27:46</timecreate>
+      <timemodify>2017-10-15 00:27:46</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1825</id>
+      <fontcolor>Black</fontcolor>
+      <text>editSeparator</text>
+      <layer>0</layer>
+      <x>1472</x>
+      <y>3891</y>
+      <width>106</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:28:19</timecreate>
+      <timemodify>2017-10-15 00:28:19</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1826</id>
+      <fontcolor>Black</fontcolor>
+      <text>helpSeparator</text>
+      <layer>0</layer>
+      <x>1341</x>
+      <y>5967</y>
+      <width>110</width>
+      <height>36</height>
+      <color>#FFFFB8</color>
+      <timecreate>2017-10-15 00:29:39</timecreate>
+      <timemodify>2017-10-15 00:29:39</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1829</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>2258</x>
+      <y>7135</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-10-15 00:37:40</timecreate>
+      <timemodify>2017-10-15 00:37:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1830</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>1174</x>
+      <y>7135</y>
+      <width>20</width>
+      <height>20</height>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-10-15 00:37:42</timecreate>
+      <timemodify>2017-10-15 00:37:42</timemodify>
     </rectangle>
   </rectangles>
   <lines>
@@ -6496,29 +7894,8 @@ print 'uid created'</note>
       <layer>0</layer>
     </line>
     <line>
-      <start>1639</start>
-      <end>1638</end>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
       <start>1640</start>
       <end>1639</end>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1641</start>
-      <end>1638</end>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1642</start>
-      <end>1638</end>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
@@ -6533,6 +7910,601 @@ print 'uid created'</note>
     <line>
       <start>1644</start>
       <end>1641</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1647</start>
+      <end>1638</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1647</start>
+      <end>1639</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1647</start>
+      <end>1641</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1647</start>
+      <end>1642</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1649</start>
+      <end>1648</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1649</start>
+      <end>1650</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1652</start>
+      <end>1650</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1654</start>
+      <end>1652</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1800</start>
+      <end>1666</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1800</start>
+      <end>1667</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1801</start>
+      <end>1681</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1801</start>
+      <end>1675</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1801</start>
+      <end>1676</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1801</start>
+      <end>1677</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1801</start>
+      <end>1678</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1801</start>
+      <end>1679</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1801</start>
+      <end>1680</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1802</start>
+      <end>1803</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1804</start>
+      <end>1805</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1808</start>
+      <end>1692</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1808</start>
+      <end>1693</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1810</start>
+      <end>1689</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1810</start>
+      <end>1690</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1810</start>
+      <end>1691</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1810</start>
+      <end>1808</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1810</start>
+      <end>1694</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1810</start>
+      <end>1809</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1810</start>
+      <end>1709</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1811</start>
+      <end>1714</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1811</start>
+      <end>1715</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1811</start>
+      <end>1713</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1811</start>
+      <end>1716</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1811</start>
+      <end>1717</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1811</start>
+      <end>1718</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1719</start>
+      <end>1812</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1727</start>
+      <end>1812</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1728</start>
+      <end>1812</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1729</start>
+      <end>1812</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1730</start>
+      <end>1812</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1731</start>
+      <end>1812</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1732</start>
+      <end>1812</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1665</start>
+      <end>1812</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1733</start>
+      <end>1812</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1814</start>
+      <end>1734</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1814</start>
+      <end>1742</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1815</start>
+      <end>1743</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1815</start>
+      <end>1744</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1815</start>
+      <end>1745</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1816</start>
+      <end>1746</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1816</start>
+      <end>1747</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1816</start>
+      <end>1757</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1816</start>
+      <end>1758</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1817</start>
+      <end>1759</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1817</start>
+      <end>1760</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1817</start>
+      <end>1761</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1817</start>
+      <end>1762</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1818</start>
+      <end>1763</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1818</start>
+      <end>1764</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1819</start>
+      <end>1820</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1821</start>
+      <end>1765</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1821</start>
+      <end>1766</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1772</start>
+      <end>1822</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1773</start>
+      <end>1822</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1774</start>
+      <end>1822</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1775</start>
+      <end>1822</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1786</start>
+      <end>1822</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1787</start>
+      <end>1822</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1788</start>
+      <end>1822</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1789</start>
+      <end>1822</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1790</start>
+      <end>1822</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1791</start>
+      <end>1822</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1792</start>
+      <end>1822</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1793</start>
+      <end>1822</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1794</start>
+      <end>1822</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1823</start>
+      <end>1795</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1823</start>
+      <end>1796</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1823</start>
+      <end>1799</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1819</start>
+      <end>1826</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1802</start>
+      <end>1825</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1804</start>
+      <end>1824</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1827</start>
+      <end>1828</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1828</start>
+      <end>1829</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1829</start>
+      <end>1830</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1830</start>
+      <end>1827</end>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>1708</start>
+      <end>1809</end>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
