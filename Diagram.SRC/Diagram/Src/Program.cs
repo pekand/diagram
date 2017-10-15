@@ -75,7 +75,7 @@ namespace Diagram
             {
                 Application.Run(main.mainform);
             }
-            Application.Exit();
+            //Application.Exit();
 #if !DEBUG
             // catch all exception globaly in release mode and prevent application crash
             }

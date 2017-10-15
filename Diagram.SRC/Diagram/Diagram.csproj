@@ -204,6 +204,7 @@
     <Compile Include="Src\Plugins\IDiagramPlugin.cs" />
     <Compile Include="Src\Plugins\IKeyPressPlugin.cs" />
     <Compile Include="Src\Plugins\INodeOpenPlugin.cs" />
+    <Compile Include="Src\Plugins\IPopupPlugin.cs" />
     <Compile Include="Src\Plugins\IOpenDiagramPlugin.cs" />
     <Compile Include="Src\Plugins\Plugins.cs" />
     <Compile Include="Src\ProgramOptions.cs" />

@@ -22,6 +22,9 @@ namespace Diagram
         private Dictionary<string, ToolStripMenuItem> items = new Dictionary<string, ToolStripMenuItem>();
         private Dictionary<string, ToolStripSeparator> separators = new Dictionary<string, ToolStripSeparator>();
 
+        public ToolStripItem[] recentItems = null;
+        private System.Windows.Forms.ToolStripMenuItem pluginItems = null;
+
         public Popup(System.ComponentModel.IContainer container, DiagramView diagramView) : base(container) //UID1752805239
         {
             this.diagramView = diagramView;
@@ -39,7 +42,11 @@ namespace Diagram
             items["readonlyItem"].Checked = this.diagramView.diagram.options.readOnly;
         }
 
-        public ToolStripItem[] recentItems = null;
+
+        public ToolStripMenuItem GetPluginsItem()
+        {
+            return this.pluginItems;
+        }
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -570,6 +577,17 @@ namespace Diagram
             items["splitNodeItem"].Name = "openDiagramDirectoryItem";
             items["splitNodeItem"].Text = "Split node";
             items["splitNodeItem"].Click += new System.EventHandler(this.SplitNodeItem_Click);
+
+            //
+            // toolsItem
+            //
+            this.pluginItems = new System.Windows.Forms.ToolStripMenuItem();
+            items.Add("pluginsItem", this.pluginItems);
+            items["pluginsItem"].DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            });
+            items["pluginsItem"].Name = "pluginsItem";
+            items["pluginsItem"].Text = "Plugins";
+
             //
             // toolsItem
             //
@@ -757,12 +775,18 @@ namespace Diagram
                 items["viewItem"],
                 items["layerItem"],
                 separators["helpSeparator"],
+                items["pluginsItem"],
                 items["toolsItem"],
                 items["optionItem"],
                 items["helpItem"]
 			});
             this.Name = "popupMenu";
             this.Opening += new System.ComponentModel.CancelEventHandler(this.PopupMenu_Opening);
+
+            // add plugins to popup
+            this.diagramView.main.plugins.PopupAddItemsAction(diagramView, this);
+
+
             //
             // Popup
             //
@@ -1022,6 +1046,8 @@ namespace Diagram
             }
 
             items["recentItem"].DropDownItems.AddRange(recentItems);
+            
+            this.diagramView.main.plugins.PopupOpenAction(diagramView, this);
         }
 
         // QUICK ACTIONS

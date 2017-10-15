@@ -17,6 +17,7 @@ namespace Diagram
         public ICollection<INodeOpenPlugin> nodeOpenPlugins = new List<INodeOpenPlugin>();
         public ICollection<IKeyPressPlugin> keyPressPlugins = new List<IKeyPressPlugin>();
         public ICollection<IOpenDiagramPlugin> openDiagramPlugins = new List<IOpenDiagramPlugin>();
+        public ICollection<IPopupPlugin> popupPlugins = new List<IPopupPlugin>();
 
         /// <summary>
         /// load plugins from path</summary>
@@ -121,6 +122,10 @@ namespace Diagram
                             openDiagramPlugins.Add(plugin as IOpenDiagramPlugin);
                         }
 
+                        if (type.GetInterface(typeof(IPopupPlugin).FullName) != null)
+                        {
+                            popupPlugins.Add(plugin as IPopupPlugin);
+                        }
                     }
                 }
             }
@@ -197,6 +202,48 @@ namespace Diagram
                     try
                     {
                         plugin.OpenDiagramAction(diagram);
+
+                    }
+                    catch (Exception e)
+                    {
+                        Program.log.Write("Exception in plugin: " + plugin.Name + " : " + e.Message);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        public void PopupAddItemsAction(DiagramView diagramView, Popup popup)
+        {
+            if (popupPlugins.Count > 0)
+            {
+                foreach (IPopupPlugin plugin in popupPlugins)
+                {
+                    try
+                    {
+                        plugin.PopupAddItemsAction(diagramView, popup.GetPluginsItem());
+
+                    }
+                    catch (Exception e)
+                    {
+                        Program.log.Write("Exception in plugin: " + plugin.Name + " : " + e.Message);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        public void PopupOpenAction(DiagramView diagramView, Popup popup)
+        {
+            if (popupPlugins.Count > 0)
+            {
+                foreach (IPopupPlugin plugin in popupPlugins)
+                {
+                    try
+                    {
+                        plugin.PopupOpenAction(diagramView, popup.GetPluginsItem());
 
                     }
                     catch (Exception e)
