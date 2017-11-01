@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Diagnostics;
 
 // [VERSION]
-[assembly: AssemblyVersion("0.5.0.39")]
+[assembly: AssemblyVersion("0.5.0.40")]
 
 /*! \mainpage Infinite diagram
  *
@@ -51,7 +51,10 @@ namespace Diagram
         [STAThread]
         private static void Main() //UID4670767500
         {
+
+#if !DEBUG
             System.AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionTrapper;
+#endif
 
             Program.log.Write("Start application: " + GetLocation());
 

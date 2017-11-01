@@ -50,11 +50,11 @@ namespace Diagram
 #if DEBUG
         /// <summary>
         /// debug local messaging server port</summary>
-        public int server_default_port = 13001;
+        public long server_default_port = 13001;
 #else
         /// <summary>
         /// release local messaging server port</summary>
-        public Int32 server_default_port = 13000;
+        public long server_default_port = 13000;
 #endif
 
 #if MONO

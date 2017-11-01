@@ -10,7 +10,7 @@ namespace Plugin
 {
     public class FirstPlugin : INodeOpenPlugin, IKeyPressPlugin, IOpenDiagramPlugin //UID0290845814
     {
-        private static int counter = 0;
+        private static long counter = 0;
 
         public string Name
         {

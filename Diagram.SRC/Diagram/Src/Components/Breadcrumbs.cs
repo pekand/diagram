@@ -8,11 +8,11 @@ namespace Diagram
     // map node structure for copy paste operation
     public class BreadcrumbItem //UID0790776066
     {
-        public int layerId;
-        public int left;
-        public int top;
-        public int width;
-        public int height;
+        public long layerId;
+        public long left;
+        public long top;
+        public long width;
+        public long height;
         public string name;
     }
 
@@ -33,11 +33,11 @@ namespace Diagram
         private SolidBrush barBrash =  new SolidBrush(Color.FromArgb(50, 0, 0, 0));
         private SolidBrush separatorBrash = new SolidBrush(Color.FromArgb(100, 0, 0, 0));
 
-        private int left = 10;
-        private int top = 10;
-        private int width = 0;
-        private int height = 0;
-        private int itemSpace = 5;
+        private long left = 10;
+        private long top = 10;
+        private long width = 0;
+        private long height = 0;
+        private long itemSpace = 5;
 
         public Breadcrumbs(DiagramView diagramView)
         {
@@ -55,7 +55,7 @@ namespace Diagram
             {
                 this.items.Clear();
 
-                int i = 0;
+                long i = 0;
                 foreach (Layer layer in this.diagramView.layersHistory)
                 {
                     //skip first top layer because logo is showed insted
@@ -118,7 +118,7 @@ namespace Diagram
             this.top = 10;
 
             // logo
-            int logopadding = (this.height > 10) ? this.height / 10 : 1;
+            long logopadding = (this.height > 10) ? this.height / 10 : 1;
 
             // draw bar
             g.FillRectangle(

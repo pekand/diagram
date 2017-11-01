@@ -10,9 +10,9 @@ namespace Diagram
     /// collection of layers</summary>
     public class Layers //UID6548243626
     {
-        private int maxid = 0;                    // last used node id
+        private long maxid = 0;                    // last used node id
 
-        private Dictionary<int, Node> allNodes = new Dictionary<int, Node>();
+        private Dictionary<long, Node> allNodes = new Dictionary<long, Node>();
 
         private List<Layer> layers = new List<Layer>();
 
@@ -70,7 +70,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // SELECT ITEM
 
-        public Node GetNode(int id)
+        public Node GetNode(long id)
         {
             if (this.allNodes.ContainsKey(id)) {
                 return this.allNodes[id];
@@ -93,7 +93,7 @@ namespace Diagram
             return null;
         }
 
-        public Line GetLine(int startId, int endId)
+        public Line GetLine(long startId, long endId)
         {
             Node start = GetNode(startId);
 
@@ -112,7 +112,7 @@ namespace Diagram
             return GetLine(start, end);
         }
 
-        public bool HasLayer(int id = 0)
+        public bool HasLayer(long id = 0)
         {
             foreach (Layer l in this.layers)
             {
@@ -125,7 +125,7 @@ namespace Diagram
             return false;
         }
 
-        public Layer GetLayer(int id = 0)
+        public Layer GetLayer(long id = 0)
         {
             foreach (Layer l in this.layers)
             {
@@ -389,7 +389,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // REMOVE ITEM
 
-        public void RemoveNode(int id)
+        public void RemoveNode(long id)
         {
             Node node = this.GetNode(id);
             if (node != null)
@@ -441,7 +441,7 @@ namespace Diagram
             return layer;
         }
 
-        public Layer RemoveLine(int startId, int endId)
+        public Layer RemoveLine(long startId, long endId)
         {
             Line line = GetLine(startId, endId);
 
@@ -454,7 +454,7 @@ namespace Diagram
         }
 
         // LAYER remove layer and all sub layers
-        public void RemoveLayer(int layerId)
+        public void RemoveLayer(long layerId)
         {
             Layer layer = this.GetLayer(layerId);
 
@@ -491,7 +491,7 @@ namespace Diagram
         // MOVE ITEM
 
         // MOVE move node from layer to other layer
-        public void MoveNode(Node node, int layer)
+        public void MoveNode(Node node, long layer)
         {
             Layer outLayer = GetLayer(layer);
             Layer inLayer = GetLayer(node.layer);

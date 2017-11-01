@@ -12,12 +12,12 @@ namespace Diagram
 
     public class PositionEventArgs : EventArgs
     {
-        private float ScrollPosition;
-        public PositionEventArgs(float position)
+        private double ScrollPosition;
+        public PositionEventArgs(double position)
         {
             ScrollPosition = position;
         }
-        public float GetPosition()
+        public double GetPosition()
         {
             return ScrollPosition;
         }
@@ -28,33 +28,33 @@ namespace Diagram
         public object parent;   // okno v ktorom je scrollbar vykreslovany
 
         // position
-        public int barx = 10;
-        public int bary = 100;
-        public int barwidth = 1000;
-        public int barheight = 30;
+        public long barx = 10;
+        public long bary = 100;
+        public long barwidth = 1000;
+        public long barheight = 30;
 
         // scroll bar orientation
         public bool vertical = true;
         public bool horizontal = true;
 
         // margin
-        public int barmarginleft = 40;
-        public int barmarginright = 40;
-        public int barmarginbottom = 20;
+        public long barmarginleft = 40;
+        public long barmarginright = 40;
+        public long barmarginbottom = 20;
 
         // track
-        public float position = 0.5F;
-        public int trackwidth = 50;
-        public int trackpos = 150;
-        public int trackposold = 150;
+        public double position = 0.5F;
+        public long trackwidth = 50;
+        public long trackpos = 150;
+        public long trackposold = 150;
 
         // mouse click
         public bool mousedown = false; // mouse click on scrollbar
-        public int delta = 0;
+        public long delta = 0;
 
         // timer - animation
         Timer timer = new Timer(); // timer pre animaciu
-        public int opacity = 0;
+        public long opacity = 0;
         public bool animation = false; // animation is running
         public bool active = false; // scrolbarr is visible
         public bool fadein = true; // running dade in animation
@@ -63,7 +63,7 @@ namespace Diagram
         // event change position
         public event PositionChangeEventHandler OnChangePosition;
 
-        public ScrollBar(object parent, int width, int height, bool horizontalOrientation = true, float per = 0.5F)
+        public ScrollBar(object parent, long width, long height, bool horizontalOrientation = true, double per = 0.5F)
         {
             this.parent = parent;
 
@@ -80,7 +80,7 @@ namespace Diagram
                 bary = height - barheight - barmarginbottom;
                 barwidth = width - barx - barmarginright;
 
-                trackpos = barx + (int)((barwidth - trackwidth) * position);
+                trackpos = barx + (long)((barwidth - trackwidth) * position);
             }
 
             if (vertical)
@@ -90,7 +90,7 @@ namespace Diagram
                 barwidth = barheight;
                 barheight = height - bary - barmarginright;
 
-                trackpos = bary + (int)((barheight - trackwidth) * position);
+                trackpos = bary + (long)((barheight - trackwidth) * position);
             }
 
             timer.Tick += new EventHandler(Tick);
@@ -98,7 +98,7 @@ namespace Diagram
             timer.Enabled = false;
         }
 
-        public bool Resize(int width, int height)
+        public bool Resize(long width, long height)
         {
             if (horizontal)
             {
@@ -131,31 +131,31 @@ namespace Diagram
 
                 if (horizontal)
                 {
-                    bar.X = barx;
-                    bar.Y = bary;
-                    bar.Width = barwidth;
-                    bar.Height = barheight;
+                    bar.X = (int)barx;
+                    bar.Y = (int)bary;
+                    bar.Width = (int)barwidth;
+                    bar.Height = (int)barheight;
 
-                    tracker.X = trackpos;
-                    tracker.Y = bary;
-                    tracker.Width = trackwidth;
-                    tracker.Height = barheight;
+                    tracker.X = (int)trackpos;
+                    tracker.Y = (int)bary;
+                    tracker.Width = (int)trackwidth;
+                    tracker.Height = (int)barheight;
                 }
 
                 if (vertical)
                 {
-                    bar.X = barx;
-                    bar.Y = bary;
-                    bar.Width = barwidth;
-                    bar.Height = barheight;
+                    bar.X = (int)barx;
+                    bar.Y = (int)bary;
+                    bar.Width = (int)barwidth;
+                    bar.Height = (int)barheight;
 
-                    tracker.X = barx;
-                    tracker.Y = trackpos;
-                    tracker.Width = barwidth;
-                    tracker.Height = trackwidth;
+                    tracker.X = (int)barx;
+                    tracker.Y = (int)trackpos;
+                    tracker.Width = (int)barwidth;
+                    tracker.Height = (int)trackwidth;
                 }
-                g.FillRectangle(new SolidBrush(Color.FromArgb(this.opacity, 0, 0, 0)), bar);
-                g.FillRectangle(new SolidBrush(Color.FromArgb(this.opacity * 2, 0, 0, 0)), tracker);
+                g.FillRectangle(new SolidBrush(Color.FromArgb((int)this.opacity, 0, 0, 0)), bar);
+                g.FillRectangle(new SolidBrush(Color.FromArgb((int)this.opacity * 2, 0, 0, 0)), tracker);
             }
         }
 
@@ -188,7 +188,7 @@ namespace Diagram
                         trackpos = barx + barwidth - trackwidth;
                     }
 
-                    position = (float)(trackpos - barx) / (barwidth - trackwidth);
+                    position = (double)(trackpos - barx) / (barwidth - trackwidth);
                 }
 
                 if (vertical)
@@ -214,7 +214,7 @@ namespace Diagram
                         trackpos = bary + barheight - trackwidth;
                     }
 
-                    position = (float)(trackpos - bary) / (barheight - trackwidth);
+                    position = (double)(trackpos - bary) / (barheight - trackwidth);
                 }
 
                 return true;
@@ -241,7 +241,7 @@ namespace Diagram
                         trackpos = barx + barwidth - trackwidth;
                     }
 
-                    position = (float)(trackpos - barx) / (barwidth - trackwidth);
+                    position = (double)(trackpos - barx) / (barwidth - trackwidth);
                 }
 
                 if (vertical)
@@ -258,7 +258,7 @@ namespace Diagram
                         trackpos = bary + barheight - trackwidth;
                     }
 
-                    position = (float)(trackpos - bary) / (barheight - trackwidth);
+                    position = (double)(trackpos - bary) / (barheight - trackwidth);
                 }
 
                 if (trackposold != trackpos)
@@ -321,13 +321,13 @@ namespace Diagram
 
                     if (horizontal)
                     {
-                        position = (float)(trackpos - barx) / (barwidth - trackwidth);
+                        position = (double)(trackpos - barx) / (barwidth - trackwidth);
                     }
 
 
                     if (vertical)
                     {
-                        position = (float)(trackpos - bary) / (barheight - trackwidth);
+                        position = (double)(trackpos - bary) / (barheight - trackwidth);
                     }
 
                     if (OnChangePosition != null)
@@ -376,7 +376,7 @@ namespace Diagram
             ((Form)this.parent).Invalidate();
 		}
 
-        public void setPosition(float per)
+        public void setPosition(double per)
         {
             position = per;
             if (horizontal)

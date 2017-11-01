@@ -13,13 +13,13 @@ namespace Diagram
     {
         public string type = ""; // type of undo operation (delete, create, edit, move, changeLineColor, changeLineWidth, changeNodeColor)
 
-        public int group = 0; // undo operations group. Undo operations in some group are undo as one operation
+        public long group = 0; // undo operations group. Undo operations in some group are undo as one operation
         
         public Nodes nodes = new Nodes(); // affected nodes
         public Lines lines = new Lines(); // affected lines
 
         public Position position = new Position(); // position in diagram when change occurred
-        public int layer = 0; // layer in diagram when change occurred
+        public long layer = 0; // layer in diagram when change occurred
 
         /*************************************************************************************************************************/
         // CONSTRUCTORS
@@ -27,10 +27,10 @@ namespace Diagram
         public UndoOperation(
             string type, 
             Nodes nodes = null, 
-            Lines lines = null, 
-            int group = 0, 
-            Position position = null, 
-            int layer = 0
+            Lines lines = null,
+            long group = 0, 
+            Position position = null,
+            long layer = 0
         ) {
             this.type = type;
             this.group = group;
@@ -59,9 +59,9 @@ namespace Diagram
     /// container for UndoOperations and undo manipulation</summary> 
     public class UndoOperations
     {
-        public int group = 0; // if two operations is in same group then undo restore both operations
+        public long group = 0; // if two operations is in same group then undo restore both operations
 
-        public int saved = 0; // if is 0 then indicate saved
+        public long saved = 0; // if is 0 then indicate saved
         public bool saveLost = false; // if save is in redo and redo is cleared then save position is lost
         public bool grouping = false; // if grouping is true and new undo is added then new undo is same group as previous undo
 
@@ -81,7 +81,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // ADD UNDO OPERATIONS
 
-        public void add(string type, Node node, Position position = null, int layer = 0)
+        public void add(string type, Node node, Position position = null, long layer = 0)
         {
             Nodes nodes = new Nodes();
             if (node != null)
@@ -91,7 +91,7 @@ namespace Diagram
             this.add(type, nodes, null, position, layer);
         }
 
-        public void add(string type, Line line, Position position = null, int layer = 0)
+        public void add(string type, Line line, Position position = null, long layer = 0)
         {
             Lines lines = new Lines();
             if (line != null)
@@ -101,7 +101,7 @@ namespace Diagram
             this.add(type, null, lines, position, layer);
         }
 
-        public void add(string type, Node node, Line line, Position position = null, int layer = 0)
+        public void add(string type, Node node, Line line, Position position = null, long layer = 0)
         {
             Nodes nodes = new Nodes();
             if (node != null)
@@ -117,7 +117,7 @@ namespace Diagram
             this.add(type, nodes, lines, position, layer);
         }
 
-        public void add(string type, Nodes nodes = null, Lines lines = null, Position position = null, int layer = 0)
+        public void add(string type, Nodes nodes = null, Lines lines = null, Position position = null, long layer = 0)
         {
             operations.Push(
                 new UndoOperation(
@@ -164,7 +164,7 @@ namespace Diagram
                 return false;
             }
 
-            int group = 0;
+            long group = 0;
 
             bool result = false;
 
@@ -260,7 +260,7 @@ namespace Diagram
                 return false;
             }
 
-            int group = 0;
+            long group = 0;
             bool result = false;
 
             do
@@ -429,13 +429,13 @@ namespace Diagram
         /*************************************************************************************************************************/
         // GROUPING OF UNDO OPERATIONS
 
-        public int startGroup()
+        public long startGroup()
         {
             grouping = true;
             return ++this.group;
         }
 
-        public int endGroup()
+        public long endGroup()
         {
             grouping = false;
             return ++this.group;

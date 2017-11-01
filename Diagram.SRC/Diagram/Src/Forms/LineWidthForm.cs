@@ -73,9 +73,9 @@ namespace Diagram
                 this.trackbarStateChanged(this.trackBar1.Value);
         }
 
-        public void setValue(int value)
+        public void setValue(long value)
         {
-            this.trackBar1.Value = value;
+            this.trackBar1.Value = (int)value; // TODO: scale long to int
         }
         
     }

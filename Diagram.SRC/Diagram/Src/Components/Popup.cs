@@ -1032,7 +1032,7 @@ namespace Diagram
             }
 
             recentItems = new System.Windows.Forms.ToolStripItem[this.diagramView.main.options.recentFiles.Count()];
-            int i = 0;
+            long i = 0;
             foreach (String path in this.diagramView.main.options.recentFiles)
             {
                 recentItems[i] = new ToolStripMenuItem

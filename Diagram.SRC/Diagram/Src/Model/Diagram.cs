@@ -11,17 +11,14 @@ using System.Windows.Forms;
 using System.Drawing.Text;
 using System.Text.RegularExpressions;
 using System.Security;
-
-/*
- 
-*/
+using System.Globalization;
 
 namespace Diagram
 {
     // map node structure for copy paste operation
     public struct MappedNode
     {
-        public int oldId;
+        public long oldId;
         public Node newNode;
     }
 
@@ -250,8 +247,10 @@ namespace Diagram
                 XElement option = new XElement("option");
                 option.Add(new XElement("shiftx", this.options.homePosition.x));
                 option.Add(new XElement("shifty", this.options.homePosition.y));
+                option.Add(new XElement("scale", this.options.homeScale));
                 option.Add(new XElement("endPositionx", this.options.endPosition.x));
                 option.Add(new XElement("endPositiony", this.options.endPosition.y));
+                option.Add(new XElement("endScale", this.options.endScale));
                 option.Add(new XElement("firstLayereShift.x", this.options.firstLayereShift.x));
                 option.Add(new XElement("firstLayereShift.y", this.options.firstLayereShift.y));
                 if (this.options.openLayerInNewView) option.Add(new XElement("openLayerInNewView", this.options.openLayerInNewView));
@@ -315,6 +314,7 @@ namespace Diagram
                     rectangle.Add(new XElement("y", rec.position.y));
                     rectangle.Add(new XElement("width", rec.width));
                     rectangle.Add(new XElement("height", rec.height));
+                    rectangle.Add(new XElement("scale", rec.scale));
                     rectangle.Add(new XElement("color", rec.color));
                     if (rec.transparent) rectangle.Add(new XElement("transparent", rec.transparent));
                     if (rec.embeddedimage) rectangle.Add(new XElement("embeddedimage", rec.embeddedimage));
@@ -343,6 +343,7 @@ namespace Diagram
                     XElement line = new XElement("line");
                     line.Add(new XElement("start", lin.start));
                     line.Add(new XElement("end", lin.end));
+                    line.Add(new XElement("scale", lin.scale));
                     line.Add(new XElement("arrow", (lin.arrow) ? "1" : "0"));
                     line.Add(new XElement("color", lin.color));
                     if (lin.width != 1) line.Add(new XElement("width", lin.width));
@@ -509,42 +510,52 @@ namespace Diagram
                                     {
                                         if (el.Name.ToString() == "shiftx")
                                         {
-                                            this.options.homePosition.x = Int32.Parse(el.Value);
+                                            this.options.homePosition.x = Int64.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "shifty")
                                         {
-                                            this.options.homePosition.y = Int32.Parse(el.Value);
+                                            this.options.homePosition.y = Int64.Parse(el.Value);
+                                        }
+
+                                        if (el.Name.ToString() == "scale")
+                                        {
+                                            this.options.homeScale = Int64.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "homelayer")
                                         {
-                                            options.homeLayer = Int32.Parse(el.Value);
+                                            options.homeLayer = Int64.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "endlayer")
                                         {
-                                            options.endLayer = Int32.Parse(el.Value);
+                                            options.endLayer = Int64.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "endPositionx")
                                         {
-                                            this.options.endPosition.x = Int32.Parse(el.Value);
+                                            this.options.endPosition.x = Int64.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "endPositiony")
                                         {
-                                            this.options.endPosition.y = Int32.Parse(el.Value);
+                                            this.options.endPosition.y = Int64.Parse(el.Value);
+                                        }
+
+                                        if (el.Name.ToString() == "endScale")
+                                        {
+                                            this.options.homeScale = Int64.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "startShiftX")
                                         {
-                                            options.homePosition.x = Int32.Parse(el.Value);
+                                            options.homePosition.x = Int64.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "startShiftY")
                                         {
-                                            options.homePosition.y = Int32.Parse(el.Value);
+                                            options.homePosition.y = Int64.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "diagramreadonly")
@@ -584,12 +595,12 @@ namespace Diagram
 
                                         if (el.Name.ToString() == "firstLayereShift.x")
                                         {
-                                            this.options.firstLayereShift.x = Int32.Parse(el.Value);
+                                            this.options.firstLayereShift.x = Int64.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "firstLayereShift.y")
                                         {
-                                            this.options.firstLayereShift.y = Int32.Parse(el.Value);
+                                            this.options.firstLayereShift.y = Int64.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "openLayerInNewView")
@@ -604,27 +615,27 @@ namespace Diagram
 
                                         if (el.Name.ToString() == "window.position.x")
                                         {
-                                            this.options.Left = Int32.Parse(el.Value);
+                                            this.options.Left = Int64.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "window.position.y")
                                         {
-                                            this.options.Top = Int32.Parse(el.Value);
+                                            this.options.Top = Int64.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "window.position.width")
                                         {
-                                            this.options.Width = Int32.Parse(el.Value);
+                                            this.options.Width = Int64.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "window.position.height")
                                         {
-                                            this.options.Height = Int32.Parse(el.Value);
+                                            this.options.Height = Int64.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "window.state")
                                         {
-                                            this.options.WindowState = Int32.Parse(el.Value);
+                                            this.options.WindowState = Int64.Parse(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "icon")
@@ -663,7 +674,7 @@ namespace Diagram
                                             {
                                                 if (el.Name.ToString() == "id")
                                                 {
-                                                    R.id = Int32.Parse(el.Value);
+                                                    R.id = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "font")
@@ -710,7 +721,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "shortcut")
                                                 {
-                                                    R.shortcut = Int32.Parse(el.Value);
+                                                    R.shortcut = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "mark")
@@ -725,7 +736,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "layer")
                                                 {
-                                                    R.layer = Int32.Parse(el.Value);
+                                                    R.layer = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "haslayer")
@@ -735,32 +746,37 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "layershiftx")
                                                 {
-                                                    R.layerShift.x = Int32.Parse(el.Value);
+                                                    R.layerShift.x = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "layershifty")
                                                 {
-                                                    R.layerShift.y = Int32.Parse(el.Value);
+                                                    R.layerShift.y = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "x")
                                                 {
-                                                    R.position.x = Int32.Parse(el.Value);
+                                                    R.position.x = decimal.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "y")
                                                 {
-                                                    R.position.y = Int32.Parse(el.Value);
+                                                    R.position.y = decimal.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "width")
                                                 {
-                                                    R.width = Int32.Parse(el.Value);
+                                                    R.width = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "height")
                                                 {
-                                                    R.height = Int32.Parse(el.Value);
+                                                    R.height = Int64.Parse(el.Value);
+                                                }
+
+                                                if (el.Name.ToString() == "scale")
+                                                {
+                                                    R.scale = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "color")
@@ -836,12 +852,17 @@ namespace Diagram
                                             {
                                                 if (el.Name.ToString() == "start")
                                                 {
-                                                    L.start = Int32.Parse(el.Value);
+                                                    L.start = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "end")
                                                 {
-                                                    L.end = Int32.Parse(el.Value);
+                                                    L.end = Int64.Parse(el.Value);
+                                                }
+
+                                                if (el.Name.ToString() == "scale")
+                                                {
+                                                    L.scale = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "arrow")
@@ -856,12 +877,12 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "width")
                                                 {
-                                                    L.width = Int32.Parse(el.Value);
+                                                    L.width = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "layer")
                                                 {
-                                                    L.layer = Int32.Parse(el.Value);
+                                                    L.layer = Int64.Parse(el.Value);
                                                 }
 
                                             }
@@ -954,21 +975,21 @@ namespace Diagram
         /*************************************************************************************************************************/
         // UNSAVE
 
-        public void Unsave(string type, Node node, Position position = null, int layer = 0)
+        public void Unsave(string type, Node node, Position position = null, long layer = 0)
         {
             Nodes nodes = new Nodes();
             nodes.Add(node);
             this.Unsave(type, nodes, null, position, layer);
         }
 
-        public void Unsave(string type, Line line, Position position = null, int layer = 0)
+        public void Unsave(string type, Line line, Position position = null, long layer = 0)
         {
             Lines lines = new Lines();
             lines.Add(line);
             this.Unsave(type, null, lines, position, layer);
         }
 
-        public void Unsave(string type, Node node, Line line, Position position = null, int layer = 0)
+        public void Unsave(string type, Node node, Line line, Position position = null, long layer = 0)
         {
             Nodes nodes = new Nodes();
             nodes.Add(node);
@@ -977,7 +998,7 @@ namespace Diagram
             this.Unsave(type, nodes, lines, position, layer);
         }
 
-        public void Unsave(string type, Nodes nodes = null, Lines lines = null, Position position = null, int layer = 0)
+        public void Unsave(string type, Nodes nodes = null, Lines lines = null, Position position = null, long layer = 0)
         {
             this.undoOperations.rememberSave();
             this.undoOperations.add(type, nodes, lines, position, layer);
@@ -1019,7 +1040,7 @@ namespace Diagram
         // NODES SELECT
 
         // NODE find node by id
-        public Node GetNodeByID(int id)
+        public Node GetNodeByID(long id)
         {
             return this.layers.GetNode(id);
         }
@@ -1050,16 +1071,19 @@ namespace Diagram
         }
 
         // NODE Najdenie nody podla pozicie myši
-        public Node FindNodeInPosition(Position position, int layer, Node skipNode = null)
+        public Node FindNodeInPosition(Position position, long layer, Node skipNode = null)
         {
+            decimal scale = 0;
+
             foreach (Node node in this.layers.GetLayer(layer).nodes.Reverse<Node>()) // Loop through List with foreach
             {
                 if (layer == node.layer || layer == node.id)
                 {
+                    scale = (decimal)Math.Pow(2, node.scale);
                     if
-                    (
-                        node.position.x <= position.x && position.x <= node.position.x + node.width &&
-                        node.position.y <= position.y && position.y <= node.position.y + node.height &&
+                    (                       
+                        node.position.x <= position.x && position.x <= node.position.x + (node.width * scale) &&
+                        node.position.y <= position.y && position.y <= node.position.y + (node.height * scale) &&
                         (skipNode == null || skipNode.id != node.id)
                     )
                     {
@@ -1126,7 +1150,7 @@ namespace Diagram
         }
 
         // NODE delete multiple nodes and set undo operation
-        public void DeleteNodes(Nodes nodes, Position position = null, int layer = 0)
+        public void DeleteNodes(Nodes nodes, Position position = null, long layer = 0)
         {
             bool canDelete = false;
 
@@ -1210,7 +1234,7 @@ namespace Diagram
         public Node CreateNode(
             Position position,
             string name = "",
-            int layer = 0,
+            long layer = 0,
             ColorType color = null,
             Font font = null
         ) {
@@ -1245,6 +1269,8 @@ namespace Diagram
             {
                 rec.color.Set(Media.GetColor(this.options.colorNode));
             }
+            
+            rec.scale = 1;
 
             return this.layers.CreateNode(rec);
         }
@@ -1275,7 +1301,7 @@ namespace Diagram
             return this.layers.GetLine(a, b);
         }
 
-        public Line GetLine(int a, int b)
+        public Line GetLine(long a, long b)
         {
             return this.layers.GetLine(a, b);
         }
@@ -1291,7 +1317,7 @@ namespace Diagram
                 {
 
                     // calculate line layer from node layers
-                    int layer = 0;
+                    long layer = 0;
                     if (a.layer == b.layer) // nodes are in same layer
                     {
                         layer = a.layer;
@@ -1314,6 +1340,7 @@ namespace Diagram
                     line = new Line {
                         start = a.id,
                         end = b.id,
+                        scale = a.scale,
                         startNode = this.GetNodeByID(a.id),
                         endNode = this.GetNodeByID(b.id),
                         layer = layer
@@ -1343,7 +1370,7 @@ namespace Diagram
         }
 
         // LINE CONNECT connect two nodes and add arrow or set color
-        public Line Connect(Node a, Node b, bool arrow = false, ColorType color = null, int width = 1)
+        public Line Connect(Node a, Node b, bool arrow = false, ColorType color = null, long width = 1)
         {
             Line line = this.Connect(a, b);
 
@@ -1369,8 +1396,8 @@ namespace Diagram
         {
             if (Nodes.Count() > 0)
             {
-                int minx = Nodes[0].position.x;
-                int topy = Nodes[0].position.y;
+                decimal minx = Nodes[0].position.x;
+                decimal topy = Nodes[0].position.y;
                 foreach (Node rec in Nodes)
                 {
                     if (rec.position.x <= minx)
@@ -1392,8 +1419,8 @@ namespace Diagram
         {
             if (nodes.Count() > 0)
             {
-                int minx = nodes[0].position.x;
-                int miny = nodes[0].position.y;
+                decimal minx = nodes[0].position.x;
+                decimal miny = nodes[0].position.y;
                 foreach (Node rec in nodes)
                 {
                     if (rec.position.y <= miny) // find most top element
@@ -1411,7 +1438,7 @@ namespace Diagram
                 // sort elements by y coordinate
                 nodes.OrderByPositionY();
 
-                int posy = miny;
+                decimal posy = miny;
                 foreach (Node rec in nodes) // change space between nodes
                 {
                     rec.position.y = posy;
@@ -1425,8 +1452,8 @@ namespace Diagram
         {
             if (Nodes.Count() > 0)
             {
-                int miny = Nodes[0].position.y;
-                int topx = Nodes[0].position.x;
+                decimal miny = Nodes[0].position.y;
+                decimal topx = Nodes[0].position.x;
                 foreach (Node rec in Nodes)
                 {
                     if (rec.position.y <= miny)
@@ -1448,8 +1475,8 @@ namespace Diagram
         {
             if (nodes.Count() > 0)
             {
-                int minx = nodes[0].position.x;
-                int miny = nodes[0].position.y;
+                decimal minx = nodes[0].position.x;
+                decimal miny = nodes[0].position.y;
                 foreach (Node rec in nodes)
                 {
                     if (rec.position.x <= minx) // find top left element
@@ -1467,7 +1494,7 @@ namespace Diagram
                 // sort elements by y coordinate
                 nodes.OrderByPositionX();
 
-                int posx = minx;
+                decimal posx = minx;
                 foreach (Node rec in nodes) // zmensit medzeru medzi objektami
                 {
                     rec.position.x = posx;
@@ -1481,7 +1508,7 @@ namespace Diagram
         {
             if (Nodes.Count() > 0)
             {
-                int maxx = Nodes[0].position.x + Nodes[0].width;
+                decimal maxx = Nodes[0].position.x + Nodes[0].width;
                 foreach (Node rec in Nodes)
                 {
                     if (rec.position.x + rec.width >= maxx)
@@ -1502,7 +1529,7 @@ namespace Diagram
         {
             if (Nodes.Count() > 0)
             {
-                int minx = Nodes[0].position.x;
+                decimal minx = Nodes[0].position.x;
                 foreach (Node rec in Nodes)
                 {
                     if (rec.position.x <= minx)
@@ -1523,8 +1550,8 @@ namespace Diagram
         {
             if (nodes.Count() > 0)
             {
-                int minx = nodes[0].position.x;
-                int miny = nodes[0].position.y;
+                decimal minx = nodes[0].position.x;
+                decimal miny = nodes[0].position.y;
                 foreach (Node rec in nodes)
                 {
                     if (rec.position.y <= miny) // find most top element
@@ -1561,7 +1588,7 @@ namespace Diagram
                     nodes.OrderByNameAsc();
                 }
 
-                int posy = miny;
+                decimal posy = miny;
                 foreach (Node rec in nodes) // change space between nodes
                 {
                     rec.position.y = posy;
@@ -1577,8 +1604,8 @@ namespace Diagram
             {
                 Nodes newNodes = new Nodes();
 
-                int minx = nodes[0].position.x;
-                int miny = nodes[0].position.y;
+                decimal minx = nodes[0].position.x;
+                decimal miny = nodes[0].position.y;
                 foreach (Node rec in nodes)
                 {
                     if (rec.position.y <= miny) // find most top element
@@ -1592,7 +1619,7 @@ namespace Diagram
                 {
                     string[] lines = node.name.Split(new string[] { "\n" }, StringSplitOptions.None);
 
-                    int posy = node.position.y + node.height + 10;
+                    decimal posy = node.position.y + node.height + 10;
 
                     foreach (String line in lines)
                     {
@@ -1632,7 +1659,7 @@ namespace Diagram
         // NODE FONTS
 
         // NODE Reset font to default font for group of nodes
-        public void ResetFont(Nodes nodes, Position position = null, int layer = 0)
+        public void ResetFont(Nodes nodes, Position position = null, long layer = 0)
         {
             if (nodes.Count>0) {
                 this.undoOperations.add("edit", nodes, null, position, layer);
@@ -1834,7 +1861,7 @@ namespace Diagram
         // CLIPBOARD
 
         // paste part of diagram from clipboard                                   
-        public DiagramBlock AddDiagramPart(string DiagramXml, Position position, int layer)
+        public DiagramBlock AddDiagramPart(string DiagramXml, Position position, long layer)
         {
             Nodes NewNodes = new Nodes();
             Lines NewLines = new Lines();
@@ -1875,7 +1902,7 @@ namespace Diagram
                                             {
                                                 if (el.Name.ToString() == "id")
                                                 {
-                                                    R.id = Int32.Parse(el.Value);
+                                                    R.id = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "text")
@@ -1891,12 +1918,17 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "x")
                                                 {
-                                                    R.position.x = Int32.Parse(el.Value);
+                                                    R.position.x = decimal.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "y")
                                                 {
-                                                    R.position.y = Int32.Parse(el.Value);
+                                                    R.position.y = decimal.Parse(el.Value);
+                                                }
+
+                                                if (el.Name.ToString() == "scale")
+                                                {
+                                                    R.scale = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "color")
@@ -1935,7 +1967,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "shortcut")
                                                 {
-                                                    R.shortcut = Int32.Parse(el.Value);
+                                                    R.shortcut = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "mark")
@@ -2009,7 +2041,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "layer")
                                                 {
-                                                    R.layer = Int32.Parse(el.Value);
+                                                    R.layer = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "protect")
@@ -2042,12 +2074,17 @@ namespace Diagram
                                             {
                                                 if (el.Name.ToString() == "start")
                                                 {
-                                                    L.start = Int32.Parse(el.Value);
+                                                    L.start = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "end")
                                                 {
-                                                    L.end = Int32.Parse(el.Value);
+                                                    L.end = Int64.Parse(el.Value);
+                                                }
+
+                                                if (el.Name.ToString() == "scale")
+                                                {
+                                                    L.scale = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "arrow")
@@ -2062,12 +2099,12 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "width")
                                                 {
-                                                    L.width = Int32.Parse(el.Value);
+                                                    L.width = Int64.Parse(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "layer")
                                                 {
-                                                    L.layer = Int32.Parse(el.Value);
+                                                    L.layer = Int64.Parse(el.Value);
                                                 }
                                             }
                                             catch (Exception ex)
@@ -2095,12 +2132,12 @@ namespace Diagram
             Nodes NewReorderedNodes = new Nodes(); // order nodes parent first (layer must exist when sub node is created)
             this.NodesReorderNodes(0, null, NewNodes, NewReorderedNodes);
 
-            int layerParent = 0;
+            long layerParent = 0;
 
             MappedNode mappedNode;
             Nodes createdNodes = new Nodes();
             Node newNode = null;
-            int oldId = 0;
+            long oldId = 0;
             foreach (Node rec in NewReorderedNodes)
             {
                 layerParent = 0;
@@ -2187,7 +2224,7 @@ namespace Diagram
         }
 
         // Get all layers nodes
-        private void NodesReorderNodes(int layer, Node parent, Nodes nodesIn, Nodes nodesOut)
+        private void NodesReorderNodes(long layer, Node parent, Nodes nodesIn, Nodes nodesOut)
         {
             foreach (Node node in nodesIn)
             {
@@ -2235,9 +2272,9 @@ namespace Diagram
                 XElement rectangles = new XElement("rectangles");
                 XElement lines = new XElement("lines");
 
-                int minx = copy[0].position.x;
-                int miny = copy[0].position.y;
-                int minid = copy[0].id;
+                decimal minx = copy[0].position.x;
+                decimal miny = copy[0].position.y;
+                decimal minid = copy[0].id;
 
                 foreach (Node node in copy)
                 {
@@ -2264,6 +2301,7 @@ namespace Diagram
                     rectangle.Add(new XElement("id", rec.id - minid + 1));
                     rectangle.Add(new XElement("x", rec.position.x - minx));
                     rectangle.Add(new XElement("y", rec.position.y - miny));
+                    rectangle.Add(new XElement("scale", rec.scale));
                     rectangle.Add(new XElement("text", rec.name));
                     rectangle.Add(new XElement("note", rec.note));
                     rectangle.Add(new XElement("color", rec.color));
@@ -2308,6 +2346,7 @@ namespace Diagram
                                     XElement line = new XElement("line");
                                     line.Add(new XElement("start", li.start - minid + 1));
                                     line.Add(new XElement("end", li.end - minid + 1));
+                                    line.Add(new XElement("scale", li.scale));
                                     line.Add(new XElement("arrow", (li.arrow) ? "1" : "0"));
                                     line.Add(new XElement("color", li.color));
                                     if (li.width != 1) line.Add(new XElement("width", li.width));
@@ -2374,7 +2413,7 @@ namespace Diagram
             return new DiagramBlock(allNodes, lines);
         }
 
-        public DiagramBlock DuplicatePartOfDiagram(Nodes nodes, int layer = 0)
+        public DiagramBlock DuplicatePartOfDiagram(Nodes nodes, long layer = 0)
         {
             // get part of diagram for duplicate
             DiagramBlock diagramPart = this.GetPartOfDiagram(nodes);
@@ -2391,12 +2430,12 @@ namespace Diagram
             Nodes NewReorderedNodes = new Nodes(); 
             this.NodesReorderNodes(layer, null, duplicatedNodes, NewReorderedNodes);
 
-            int layerParent = 0;
+            long layerParent = 0;
 
             MappedNode mappedNode;
             Nodes createdNodes = new Nodes();
             Node newNode = null;
-            int oldId = 0;
+            long oldId = 0;
             foreach (Node rec in NewReorderedNodes)
             {
                 layerParent = layer;

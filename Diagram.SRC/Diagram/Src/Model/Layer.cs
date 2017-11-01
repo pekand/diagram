@@ -10,7 +10,7 @@ namespace Diagram
     /// diagram layer</summary>
     public class Layer //UID1099250588
     {
-        public int id = 0; // parent node id, layer owner
+        public long id = 0; // parent node id, layer owner
 
         /*************************************************************************************************************************/
         // PARENTS

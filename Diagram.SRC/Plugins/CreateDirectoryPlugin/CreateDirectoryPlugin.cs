@@ -42,7 +42,7 @@ namespace Plugin
             this.log = log;
         }
 
-        public void OpenFileOnPosition(string file, int pos = 0)
+        public void OpenFileOnPosition(string file, long pos = 0)
         {
             Os.OpenFileOnPosition(file, pos);
         }

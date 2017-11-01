@@ -125,7 +125,7 @@ namespace Diagram
             this.centerPanel();
         }
 
-        public void searchNext()
+        public void searchNext() //UID3222624449
         {
             string currentText = textBoxSearch.Text;
 

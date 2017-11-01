@@ -48,13 +48,13 @@ namespace Diagram
                 return false;
             }
 
-            int result = 0;
+            long result = 0;
 
             try
             {
                 string currentApplicationVersion = Program.GetVersion();
-                var local = new Version(currentApplicationVersion);
-                var remote = new Version(availableVersion);
+                Version local = new Version(currentApplicationVersion);
+                Version remote = new Version(availableVersion);
                 result = remote.CompareTo(local);
             }
             catch (Exception e)

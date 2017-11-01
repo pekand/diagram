@@ -443,7 +443,7 @@ namespace Diagram
 
         /// <summary>
         /// open file on position </summary>
-        public static void OpenFileOnPosition(string fileName, int pos = 0)
+        public static void OpenFileOnPosition(string fileName, long pos = 0)
         {
 
             String editFileCmd = "subl \"%FILENAME%\":%LINE%"; ;

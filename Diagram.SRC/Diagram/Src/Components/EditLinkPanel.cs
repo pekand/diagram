@@ -66,14 +66,14 @@ namespace Diagram
             if (!this.Visible)
             {
                 int padding = Node.NodePadding;
-                this.Left = currentPosition.x;
-                this.Top = currentPosition.y;
+                this.Left = (int)currentPosition.x; // TODO: scale long to int
+                this.Top = (int)currentPosition.y;
 
                 this.edit.Left = padding + 1;
                 this.edit.Top = padding + 0;
 
                 Font defaultFont = this.diagramView.diagram.FontDefault;
-                Font font = new Font(defaultFont.FontFamily, defaultFont.Size / this.diagramView.scale, defaultFont.Style);
+                Font font = new Font(defaultFont.FontFamily, defaultFont.Size, defaultFont.Style);
 
                 this.edit.Font = font;
 
@@ -107,14 +107,14 @@ namespace Diagram
                 this.editedNode.visible = false;
                 this.diagramView.diagram.InvalidateDiagram();
 
-                this.Left = currentPosition.x;
-                this.Top = currentPosition.y;
+                this.Left = (int)currentPosition.x; // TODO: scale long to int
+                this.Top = (int)currentPosition.y;
 
                 this.edit.Left = padding + 1;
                 this.edit.Top = padding + 0;
 
                 Font nodeFont = this.editedNode.font;
-                Font font = new Font(nodeFont.FontFamily, nodeFont.Size / this.diagramView.scale, nodeFont.Style);
+                Font font = new Font(nodeFont.FontFamily, (int)(nodeFont.Size / this.diagramView.scale), nodeFont.Style);
 
                 this.edit.Font = font;
                 this.edit.Text = this.editedNode.link; // add first character

@@ -7,14 +7,15 @@ namespace Diagram
     /// Node in diagram</summary>
     public class Node //UID6202169477
     {
-        public int id = 0; // node unique id
+        public long id = 0; // node unique id
 
         /*************************************************************************************************************************/
         // SIZE AND POSITION
 
         public Position position = new Position(); // node position in canvas
-        public int width = 0; // node size counted from current font
-        public int height = 0;
+        public decimal width = 0; // node size counted from current font
+        public decimal height = 0;
+        public long scale = 0;
 
         /*************************************************************************************************************************/
         // FLAGS
@@ -40,14 +41,14 @@ namespace Diagram
         /*************************************************************************************************************************/
         // LAYER
 
-        public int layer = 0; // layer id or parent node id
+        public long layer = 0; // layer id or parent node id
         public bool haslayer = false; // nose has one or more childrens
         public Position layerShift = new Position(); // last position in layer
 
         /*************************************************************************************************************************/
         // SHORTCUT
 
-        public int shortcut = 0; // node id whitch is linked with this node
+        public long shortcut = 0; // node id whitch is linked with this node
         public bool mark = false; // mark node position for navigation history
 
         /*************************************************************************************************************************/
@@ -57,8 +58,8 @@ namespace Diagram
         public bool embeddedimage = false; // image is imported to xml file as string
         public string imagepath = ""; // path to node image
         public Bitmap image = null; // loaded image
-        public int iwidth = 0; //image size
-        public int iheight = 0;
+        public long iwidth = 0; //image size
+        public long iheight = 0;
 
         /*************************************************************************************************************************/
         // ATTACHMENT
@@ -119,6 +120,7 @@ namespace Diagram
             this.position.Set(node.position);
             this.width = node.width;
             this.height = node.height;
+            this.scale = node.scale;
 
             this.layer = node.layer;
             this.haslayer = node.haslayer;
@@ -170,6 +172,7 @@ namespace Diagram
             {
                 this.width = node.width;
                 this.height = node.height;
+                this.scale = node.scale;
             }
 
             this.isimage = node.isimage;
@@ -350,6 +353,5 @@ namespace Diagram
 
             return false;
         }
-
     }
 }
