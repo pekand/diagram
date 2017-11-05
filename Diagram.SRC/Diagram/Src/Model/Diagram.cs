@@ -1860,7 +1860,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // CLIPBOARD
 
-        // paste part of diagram from clipboard                                   
+        // paste part of diagram from clipboard UID4178168001
         public DiagramBlock AddDiagramPart(string DiagramXml, Position position, long layer)
         {
             Nodes NewNodes = new Nodes();

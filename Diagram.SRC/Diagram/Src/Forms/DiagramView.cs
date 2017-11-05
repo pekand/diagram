@@ -2929,10 +2929,10 @@ namespace Diagram
                 }
             }
 
-            if (minx != int.MaxValue && maxx != int.MinValue)
+            if (minx != decimal.MaxValue && maxx != decimal.MinValue)
             {
-                minx = minx - 100;
-                maxx = maxx + 100 - this.ClientSize.Width;
+                minx = minx - 100 * this.GetScale();
+                maxx = maxx + 100 * this.GetScale() - this.ClientSize.Width * this.GetScale();
                 this.shift.x = (-(minx + (maxx - minx) * (decimal)per));
             }
             else
@@ -2956,10 +2956,10 @@ namespace Diagram
                 }
             }
 
-            if (minx != int.MaxValue && maxx != int.MinValue)
+            if (minx != decimal.MaxValue && maxx != decimal.MinValue)
             {
-                minx = minx - 100;
-                maxx = maxx + 100 - this.ClientSize.Width;
+                minx = minx - 100 * this.GetScale();
+                maxx = maxx + 100 * this.GetScale() - this.ClientSize.Width * this.GetScale();
                 per = (-this.shift.x - minx) / (maxx - minx);
                 if (per < 0) per = 0;
                 if (per > 1) per = 1;
@@ -2986,10 +2986,10 @@ namespace Diagram
                 }
             }
 
-            if (miny != int.MaxValue && maxy != int.MinValue)
+            if (miny != decimal.MaxValue && maxy != decimal.MinValue)
             {
-                miny = miny - 100;
-                maxy = maxy + 100 - this.ClientSize.Height;
+                miny = miny - 100 * this.GetScale();
+                maxy = maxy + 100 * this.GetScale() - this.ClientSize.Height * this.GetScale();
                 this.shift.y = -(miny + (maxy - miny) * (decimal)per);
             }
             else
@@ -3013,10 +3013,10 @@ namespace Diagram
                 }
             }
 
-            if (miny != int.MaxValue && maxy != int.MinValue)
+            if (miny != decimal.MaxValue && maxy != decimal.MinValue)
             {
-                miny = miny - 100;
-                maxy = maxy + 100 - this.ClientSize.Height;
+                miny = miny - 100 * this.GetScale();
+                maxy = maxy + 100 * this.GetScale() - this.ClientSize.Height * this.GetScale();
                 per = (decimal)(-this.shift.y - miny) / (maxy - miny);
                 if (per < 0) per = 0;
                 if (per > 1) per = 1;
