@@ -2275,12 +2275,14 @@ namespace Diagram
                 decimal minx = copy[0].position.x;
                 decimal miny = copy[0].position.y;
                 decimal minid = copy[0].id;
+                decimal minlayer = copy[0].layer;
 
                 foreach (Node node in copy)
                 {
                     if (node.position.x < minx) minx = node.position.x;
                     if (node.position.y < miny) miny = node.position.y;
                     if (node.id < minid) minid = node.id;
+                    if (node.layer < minlayer) minlayer = node.layer;
                 }
 
                 Nodes subnodes = new Nodes();
@@ -2327,7 +2329,7 @@ namespace Diagram
                     rectangle.Add(new XElement("timecreate", rec.timecreate));
                     rectangle.Add(new XElement("timemodify", rec.timemodify));
                     rectangle.Add(new XElement("attachment", rec.attachment));
-                    if (rec.layer != 0 && rec.layer - minid + 1 > 0)  rectangle.Add(new XElement("layer", rec.layer - minid + 1));
+                    if (rec.layer != 0 && rec.layer - minlayer >= 0)  rectangle.Add(new XElement("layer", rec.layer - minlayer));
                     if (rec.protect) rectangle.Add(new XElement("protect", rec.protect));
 
                     rectangles.Add(rectangle);
