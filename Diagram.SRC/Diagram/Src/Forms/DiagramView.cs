@@ -73,10 +73,10 @@ namespace Diagram
 
         // ATTRIBUTES ZOOMING
         public Position zoomShift = new Position();// zoom view - left corner position before zoom space press
-        public long zoomingDefaultScale = 0;      // zoom view - normal scale
-        public long zoomingScale = 4;             // zoom view - scale in space preview
-        public long currentScale = 0;             // zoom viev - scale before space zoom
-        public long scale = 0;                    // zoom view - actual scale
+        public decimal zoomingDefaultScale = 0;      // zoom view - normal scale
+        public decimal zoomingScale = 4;             // zoom view - scale in space preview
+        public decimal currentScale = 0;             // zoom viev - scale before space zoom
+        public decimal scale = 0;                    // zoom view - actual scale
 
         // ATTRIBUTES Diagram
         public Diagram diagram = null;             // diagram assigned to current view
@@ -882,7 +882,7 @@ namespace Diagram
 
                         this.vmouse
                             .Set(this.actualMousePos)
-                            .Scale(this.GetScale())
+                            .Scale(Tools.GetScale(this.scale))
                             .Subtract(this.shift)
                             .Subtract(this.sourceNode.position); // mouse position in node
 
@@ -934,8 +934,8 @@ namespace Diagram
             else
             if (this.stateMoveView) // screen moving
             {
-                this.shift.x = this.startShift.x + (e.X - this.startMousePos.x) * this.GetScale();
-                this.shift.y = this.startShift.y + (e.Y - this.startMousePos.y) * this.GetScale();
+                this.shift.x = this.startShift.x + (e.X - this.startMousePos.x) * Tools.GetScale(this.scale);
+                this.shift.y = this.startShift.y + (e.Y - this.startMousePos.y) * Tools.GetScale(this.scale);
                 this.diagram.InvalidateDiagram();
             }
             else
@@ -1020,11 +1020,11 @@ namespace Diagram
                 if (mousemove)
                 {
                     Position a = new Position(this.startMousePos)
-                        .Scale(this.GetScale())
+                        .Scale(Tools.GetScale(this.scale))
                         .Subtract(this.startShift);
 
                     Position b = new Position(this.actualMousePos)
-                        .Scale(this.GetScale())
+                        .Scale(Tools.GetScale(this.scale))
                         .Subtract(this.shift);
 
                     decimal temp;
@@ -1037,9 +1037,9 @@ namespace Diagram
                         if (
                             (rec.layer == this.currentLayer.id || rec.id == this.currentLayer.id)
                             && a.x <= rec.position.x
-                            && rec.position.x + rec.width * this.GetScale(rec.scale) <= b.x
+                            && rec.position.x + rec.width * Tools.GetScale(rec.scale) <= b.x
                             && a.y <= rec.position.y
-                            && rec.position.y + rec.height * this.GetScale(rec.scale) <= + b.y) // get all nodes in selection rectangle
+                            && rec.position.y + rec.height * Tools.GetScale(rec.scale) <= + b.y) // get all nodes in selection rectangle
                         {
                             if (keyshift && !keyctrl && !keyalt) // KEY SHIFT+MLEFT Invert selection
                             {
@@ -1088,7 +1088,7 @@ namespace Diagram
                     DiagramBlock newBlock = this.diagram.DuplicatePartOfDiagram(this.selectedNodes, this.currentLayer.id);
 
                     Position vector = new Position(this.actualMousePos)
-                        .Scale(this.GetScale())
+                        .Scale(Tools.GetScale(this.scale))
                         .Subtract(this.vmouse)
                         .Subtract(this.shift)
                         .Subtract(this.sourceNode.position);
@@ -1186,7 +1186,7 @@ namespace Diagram
                 )
                 {
                     Position vector = new Position(this.actualMousePos)
-                        .Scale(this.GetScale())
+                        .Scale(Tools.GetScale(this.scale))
                         .Subtract(this.vmouse)
                         .Subtract(this.shift)
                         .Subtract(this.sourceNode.position);
@@ -1296,11 +1296,11 @@ namespace Diagram
                         .Subtract(
                             this.actualMousePos
                             .Clone()
-                            .Scale(this.GetScale())
+                            .Scale(Tools.GetScale(this.scale))
                             )
                         .Add(
-                            (this.ClientSize.Width * this.GetScale()) / 2,
-                            (this.ClientSize.Height * this.GetScale()) / 2
+                            (this.ClientSize.Width * Tools.GetScale(this.scale)) / 2,
+                            (this.ClientSize.Height * Tools.GetScale(this.scale)) / 2
                         );
                     this.diagram.InvalidateDiagram();
                 }
@@ -1494,8 +1494,8 @@ namespace Diagram
                     PopupMenu.Show(this.Left + e.X, this.Top + e.Y); // [POPUP] show popup
                 }
                 else { // KEY DRAG+MRIGHT move view
-                    this.shift.x = this.startShift.x + (e.X - this.startMousePos.x) * this.GetScale();
-                    this.shift.y = this.startShift.y + (e.Y - this.startMousePos.y) * this.GetScale();
+                    this.shift.x = this.startShift.x + (e.X - this.startMousePos.x) * Tools.GetScale(this.scale);
+                    this.shift.y = this.startShift.y + (e.Y - this.startMousePos.y) * Tools.GetScale(this.scale);
                     this.diagram.InvalidateDiagram();
                 }
             }
@@ -1614,37 +1614,28 @@ namespace Diagram
             this.stateCoping = false;
         }
 
-        public decimal GetScale() {
-           return (decimal)Math.Pow(2, this.scale);
-        }
-
-        public decimal GetScale(long scale)
-        {
-            return (decimal)Math.Pow(2, scale);
-        }
-
         // EVENT Mouse Whell UID1111344210
         public void DiagramApp_MouseWheel(object sender, MouseEventArgs e)                             // [MOUSE] [WHELL] [EVENT]
         {
 #if DEBUG
             this.LogEvent("MouseWheel");
 #endif
-            long newScale = 0;
+            decimal newScale = 0;
             //throw new NotImplementedException();
             if (e.Delta > 0) // MWHELL
             {
                 if (this.keyctrl) // zoom in
                 {                      
                     Position m = this.GetMousePosition();
-                    Position r = m.Clone().Scale(this.GetScale()).Subtract(this.shift);
+                    Position r = m.Clone().Scale(Tools.GetScale(this.scale)).Subtract(this.shift);
 
                     newScale = this.scale + 1;
                     
-                    if(newScale > 30) {
-                        newScale = 30;
+                    if(newScale > 80) {
+                        newScale = 80;
                     }
                     
-                    Position sh = m.Scale(this.GetScale(newScale)).Subtract(r);
+                    Position sh = m.Scale(Tools.GetScale(newScale)).Subtract(r);
                            
                     this.scale = newScale;
                     this.shift.x = sh.x;
@@ -1657,12 +1648,12 @@ namespace Diagram
                 else
                 if (this.keyshift) // move view
                 {
-                    this.shift.x += (int)(50 * this.GetScale());
+                    this.shift.x += 50 * Tools.GetScale(this.scale);
                     this.diagram.InvalidateDiagram();
                 }
                 else // move view
                 {
-                    this.shift.y += (int)(50 * this.GetScale());
+                    this.shift.y += 50 * Tools.GetScale(this.scale);
                     this.diagram.InvalidateDiagram();
                 }
             }
@@ -1671,15 +1662,15 @@ namespace Diagram
                 if (this.keyctrl) // zoom out
                 {
                     Position m = this.GetMousePosition();
-                    Position r = m.Clone().Scale(this.GetScale()).Subtract(this.shift);
+                    Position r = m.Clone().Scale(Tools.GetScale(this.scale)).Subtract(this.shift);
                    
                     newScale = this.scale - 1;
                     
-                    if(newScale < -30) {
-                        newScale = -30;
+                    if(newScale < -80) {
+                        newScale = -80;
                     }
 
-                    Position sh = m.Scale(this.GetScale(newScale)).Subtract(r);
+                    Position sh = m.Scale(Tools.GetScale(newScale)).Subtract(r);
 
                     this.scale = newScale;
                     this.shift.x = sh.x;
@@ -1692,20 +1683,20 @@ namespace Diagram
                 else
                 if (this.keyshift) // move view
                 {
-                    this.shift.x -= (int)(50 * this.GetScale());
+                    this.shift.x -= 50 * Tools.GetScale(this.scale);
                     this.diagram.InvalidateDiagram();
                 }
                 else // move view
                 {
-                    this.shift.y -= (int)(50 * this.GetScale());
+                    this.shift.y -= 50 * Tools.GetScale(this.scale);
                     this.diagram.InvalidateDiagram();
                 }
             }
 
-            if (newScale != 0 && newScale != this.GetScale())
+            if (newScale != 0 && newScale != Tools.GetScale(this.scale))
             {
                 /*this.scale = newScale;
-                this.zoomTimerStep = Math.Abs((newScale - this.GetScale()) / 30);
+                this.zoomTimerStep = Math.Abs((newScale - Tools.GetScale(this.scale)) / 30);
                 if (this.zoomTimerStep <= 0) {
                     this.zoomTimerStep = 0.001f;
                 }
@@ -2175,16 +2166,16 @@ namespace Diagram
                 Position tmp = new Position(this.shift);
 
                 tmp.Add(
-                    -(this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / this.GetScale()) * this.GetScale(),
-                    -(this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / this.GetScale()) * this.GetScale()
+                    -(this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / Tools.GetScale(this.scale)) * Tools.GetScale(this.scale),
+                    -(this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / Tools.GetScale(this.scale)) * Tools.GetScale(this.scale)
                 );
 
                 this.currentScale = this.scale;
                 this.scale = this.scale + 2;
 
                 tmp.Add(
-                    (this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / this.GetScale()) * this.GetScale(),
-                    (this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / this.GetScale()) * this.GetScale()
+                    (this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / Tools.GetScale(this.scale)) * Tools.GetScale(this.scale),
+                    (this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / Tools.GetScale(this.scale)) * Tools.GetScale(this.scale)
                 );
 
                 this.shift.Set(tmp);
@@ -2222,15 +2213,15 @@ namespace Diagram
                 this.stateZooming = false; // KEY SPACE cancel space zoom and restore prev zoom
 
                 shift.Add(
-                    -(this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / this.GetScale()) * this.GetScale(),
-                    -(this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / this.GetScale()) * this.GetScale()
+                    -(this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / Tools.GetScale(this.scale)) * Tools.GetScale(this.scale),
+                    -(this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / Tools.GetScale(this.scale)) * Tools.GetScale(this.scale)
                 );
 
                 this.scale = this.currentScale;
 
                 shift.Add(
-                    (this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / this.GetScale()) * this.GetScale(),
-                    (this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / this.GetScale()) * this.GetScale()
+                    (this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / Tools.GetScale(this.scale)) * Tools.GetScale(this.scale),
+                    (this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / Tools.GetScale(this.scale)) * Tools.GetScale(this.scale)
                 );
 
                 this.diagram.InvalidateDiagram();
@@ -2445,25 +2436,25 @@ namespace Diagram
 
                 if (this.ClientSize.Width - 20 < this.actualMousePos.x)
                 {
-                    this.shift.x -= (int)(10 * this.GetScale());
+                    this.shift.x -= 10 * Tools.GetScale(this.scale);
                     changed = true;
                 }
 
                 if (this.actualMousePos.x < 20)
                 {
-                    this.shift.x += (int)(10 * this.GetScale());
+                    this.shift.x += 10 * Tools.GetScale(this.scale);
                     changed = true;
                 }
 
                 if (this.ClientSize.Height - 50 < this.actualMousePos.y)
                 {
-                    this.shift.y -= (int)(10 * this.GetScale());
+                    this.shift.y -= 10 * Tools.GetScale(this.scale);
                     changed = true;
                 }
 
                 if (this.actualMousePos.y < 10)
                 {
-                    this.shift.y += (int)(10 * this.GetScale());
+                    this.shift.y += 10 * Tools.GetScale(this.scale);
                     changed = true;
                 }
 
@@ -2477,7 +2468,7 @@ namespace Diagram
                             // calculate shift between start node position and current sourceNode position
                             vector
                                 .Set(this.actualMousePos)
-                                .Scale(this.GetScale())
+                                .Scale(Tools.GetScale(this.scale))
                                 .Subtract(this.vmouse)
                                 .Subtract(this.shift)
                                 .Subtract(this.copySourceNode.position);
@@ -2493,7 +2484,7 @@ namespace Diagram
                             // calculate shift between start node position and current sourceNode position
                             vector
                                 .Set(this.actualMousePos)
-                                .Scale(this.GetScale())
+                                .Scale(Tools.GetScale(this.scale))
                                 .Subtract(this.vmouse)
                                 .Subtract(this.shift)
                                 .Subtract(this.sourceNode.position);
@@ -2931,8 +2922,8 @@ namespace Diagram
 
             if (minx != decimal.MaxValue && maxx != decimal.MinValue)
             {
-                minx = minx - 100 * this.GetScale();
-                maxx = maxx + 100 * this.GetScale() - this.ClientSize.Width * this.GetScale();
+                minx = minx - 100 * Tools.GetScale(this.scale);
+                maxx = maxx + 100 * Tools.GetScale(this.scale) - this.ClientSize.Width * Tools.GetScale(this.scale);
                 this.shift.x = (-(minx + (maxx - minx) * (decimal)per));
             }
             else
@@ -2958,8 +2949,8 @@ namespace Diagram
 
             if (minx != decimal.MaxValue && maxx != decimal.MinValue)
             {
-                minx = minx - 100 * this.GetScale();
-                maxx = maxx + 100 * this.GetScale() - this.ClientSize.Width * this.GetScale();
+                minx = minx - 100 * Tools.GetScale(this.scale);
+                maxx = maxx + 100 * Tools.GetScale(this.scale) - this.ClientSize.Width * Tools.GetScale(this.scale);
                 per = (-this.shift.x - minx) / (maxx - minx);
                 if (per < 0) per = 0;
                 if (per > 1) per = 1;
@@ -2988,8 +2979,8 @@ namespace Diagram
 
             if (miny != decimal.MaxValue && maxy != decimal.MinValue)
             {
-                miny = miny - 100 * this.GetScale();
-                maxy = maxy + 100 * this.GetScale() - this.ClientSize.Height * this.GetScale();
+                miny = miny - 100 * Tools.GetScale(this.scale);
+                maxy = maxy + 100 * Tools.GetScale(this.scale) - this.ClientSize.Height * Tools.GetScale(this.scale);
                 this.shift.y = -(miny + (maxy - miny) * (decimal)per);
             }
             else
@@ -3015,8 +3006,8 @@ namespace Diagram
 
             if (miny != decimal.MaxValue && maxy != decimal.MinValue)
             {
-                miny = miny - 100 * this.GetScale();
-                maxy = maxy + 100 * this.GetScale() - this.ClientSize.Height * this.GetScale();
+                miny = miny - 100 * Tools.GetScale(this.scale);
+                maxy = maxy + 100 * Tools.GetScale(this.scale) - this.ClientSize.Height * Tools.GetScale(this.scale);
                 per = (decimal)(-this.shift.y - miny) / (maxy - miny);
                 if (per < 0) per = 0;
                 if (per > 1) per = 1;
@@ -3265,7 +3256,7 @@ namespace Diagram
         // DRAW grid UID7187365714
         private void DrawGrid(Graphics gfx)
         {
-            decimal s = this.GetScale();
+            decimal s = Tools.GetScale(this.scale);
             Pen myPen = new Pen(Color.FromArgb(201, 201, 201), 1);
 
             decimal sw = this.ClientSize.Width;  // get windows dize
@@ -3319,16 +3310,16 @@ namespace Diagram
         // DRAW diagram mini screen in zoom mode UID9733202717
         private void DrawMiniScreen(Graphics gfx)
         {
-            decimal s = this.GetScale();
+            decimal s = Tools.GetScale(this.scale);
             Pen myPen = new Pen(Color.FromArgb(201, 201, 201), 1);
 
             myPen = new Pen(Color.Gray, 1);
 
             RectangleF rectBorder = new RectangleF(
-                (float)((this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / s * this.GetScale(this.currentScale))),
-                (float)((this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / s * this.GetScale(this.currentScale))),
-                (float)(this.ClientSize.Width / s * this.GetScale(this.currentScale)),
-                (float)(this.ClientSize.Height / s * this.GetScale(this.currentScale))
+                (float)((this.ClientSize.Width / 2 - this.ClientSize.Width / 2 / s * Tools.GetScale(this.currentScale))),
+                (float)((this.ClientSize.Height / 2 - this.ClientSize.Height / 2 / s * Tools.GetScale(this.currentScale))),
+                (float)(this.ClientSize.Width / s * Tools.GetScale(this.currentScale)),
+                (float)(this.ClientSize.Height / s * Tools.GetScale(this.currentScale))
             );
 
             RectangleF[] rects = { rectBorder };
@@ -3342,7 +3333,7 @@ namespace Diagram
         // DRAW coordinates for debuging UID7119976091
         private void DrawCoordinates(Graphics gfx)
         {
-            decimal s = this.GetScale();
+            decimal s = Tools.GetScale(this.scale);
 
             Font drawFont = new Font("Arial", 10);
             SolidBrush drawBrush = new SolidBrush(Color.Black);
@@ -3378,23 +3369,25 @@ namespace Diagram
         {
             SolidBrush brush = new SolidBrush(Color.FromArgb(100, 10, 200, 200));
 
-            long a = (long)(+this.shift.x - this.startShift.x + this.startMousePos.x * this.GetScale());
-            long b = (long)(+this.shift.y - this.startShift.y + this.startMousePos.y * this.GetScale());
-            long c = (long)(this.actualMousePos.x * this.GetScale());
-            long d = (long)(this.actualMousePos.y * this.GetScale());
-            long temp;
+            decimal a = this.shift.x - this.startShift.x + this.startMousePos.x * Tools.GetScale(this.scale);
+            decimal b = this.shift.y - this.startShift.y + this.startMousePos.y * Tools.GetScale(this.scale);
+            decimal c = this.actualMousePos.x * Tools.GetScale(this.scale);
+            decimal d = this.actualMousePos.y * Tools.GetScale(this.scale);
+            decimal temp;
             if (c < a) { temp = a; a = c; c = temp; }
             if (d < b) { temp = d; d = b; b = temp; }
 
-            gfx.FillRectangle(
-                brush,
-                new Rectangle(
-                    (int)(a / this.GetScale()), 
-                    (int)(b / this.GetScale()),
-                    (int)((c - a) / this.GetScale()),
-                    (int)((d - b) / this.GetScale())
-                )
+
+            RectangleF rect = new RectangleF(
+                    (float)(a / Tools.GetScale(this.scale)),
+                    (float)(b / Tools.GetScale(this.scale)),
+                    (float)((c - a) / Tools.GetScale(this.scale)),
+                    (float)((d - b) / Tools.GetScale(this.scale))
             );
+
+            RectangleF[] rects = { rect };
+
+            gfx.FillRectangle(brush, rect);
         }
 
         // DRAW add new node by drag UID3527460113
@@ -3407,7 +3400,7 @@ namespace Diagram
                 Position p = this.startMousePos.Clone()
                     .Subtract(this.startShift)
                     .Add(this.shift)
-                    .Add(10);
+                    .Add(10);// TODO: missing scale
 
                 PointF[] points =
                 {
@@ -3424,7 +3417,7 @@ namespace Diagram
             {              
                 Position p = this.sourceNode.position.Clone()
                     .Add(this.shift)
-                    .Split(this.GetScale())
+                    .Split(Tools.GetScale(this.scale))
                     .Add(10);
 
                 PointF[] points =
@@ -3444,7 +3437,7 @@ namespace Diagram
         private void DrawNodes(Graphics gfx, Nodes nodes, Position correction = null, bool export = false)
         {
             bool isvisible = false; // drawonly visible elements
-            decimal s = this.GetScale();
+            decimal s = Tools.GetScale(this.scale);
 
             Pen nodeBorder = new Pen(Color.Black, 1);
             Pen nodeSelectBorder = new Pen(Color.Black, 3);
@@ -3530,7 +3523,7 @@ namespace Diagram
                     {
                         if (this.diagram.options.coordinates) // draw debug information
                         {
-                            decimal size = 10 / (s / this.GetScale(rec.scale));
+                            decimal size = 10 / (s / Tools.GetScale(rec.scale));
                             if (0 < size && size < 200) { 
                                 Font drawFont = new Font("Arial", (float)size);
                                 SolidBrush drawBrush = new SolidBrush(Color.Black);
@@ -3560,8 +3553,8 @@ namespace Diagram
                                 RectangleF rect1 = new RectangleF(
                                     (float)((this.shift.x + cx + rec.position.x) / s),
                                     (float)((this.shift.y + cy + rec.position.y) / s),
-                                    (float)((rec.width) / (s / this.GetScale(rec.scale))),
-                                    (float)((rec.height) / (s / this.GetScale(rec.scale)))
+                                    (float)((rec.width) / (s / Tools.GetScale(rec.scale))),
+                                    (float)((rec.height) / (s / Tools.GetScale(rec.scale)))
                                 );
 
                                 gfx.FillEllipse(new SolidBrush(rec.color.color), rect1);
@@ -3573,8 +3566,8 @@ namespace Diagram
                                 gfx.DrawEllipse(nodeBorder, new RectangleF(
                                         (float)((this.shift.x + cx + rec.position.x) / s),
                                         (float)((this.shift.y + cy + rec.position.y) / s),
-                                        (float)((rec.width) / (s / this.GetScale(rec.scale))),
-                                        (float)((rec.height) / (s / this.GetScale(rec.scale)))
+                                        (float)((rec.width) / (s / Tools.GetScale(rec.scale))),
+                                        (float)((rec.height) / (s / Tools.GetScale(rec.scale)))
                                     )
                                 );
                             }
@@ -3586,8 +3579,8 @@ namespace Diagram
                                     new RectangleF(
                                         (float)((this.shift.x + cx + rec.position.x) / s),
                                         (float)((this.shift.y + cy + rec.position.y ) / s),
-                                        (float)((rec.width) / (s / this.GetScale(rec.scale))),
-                                        (float)((rec.height) / (s / this.GetScale(rec.scale)))
+                                        (float)((rec.width) / (s / Tools.GetScale(rec.scale))),
+                                        (float)((rec.height) / (s / Tools.GetScale(rec.scale)))
                                     )
                                 );
                             }
@@ -3600,8 +3593,8 @@ namespace Diagram
                                 RectangleF rect1 = new RectangleF(
                                     (float)((this.shift.x + cx + rec.position.x) / s),
                                     (float)((this.shift.y + cy + rec.position.y) / s),
-                                    (float)((rec.width) / (s / this.GetScale(rec.scale))),
-                                    (float)((rec.height) / (s / this.GetScale(rec.scale)))
+                                    (float)((rec.width) / (s / Tools.GetScale(rec.scale))),
+                                    (float)((rec.height) / (s / Tools.GetScale(rec.scale)))
                                 );
 
                                 RectangleF[] rects = { rect1 };
@@ -3618,8 +3611,8 @@ namespace Diagram
                                      new RectangleF(
                                         (float)((this.shift.x + cx + rec.position.x - 2) / s),
                                         (float)((this.shift.y + cy + rec.position.y - 2) / s),
-                                        (float)((rec.width + 4) / (s / this.GetScale(rec.scale))),
-                                        (float)((rec.height + 4) / (s / this.GetScale(rec.scale)))
+                                        (float)((rec.width + 4) / (s / Tools.GetScale(rec.scale))),
+                                        (float)((rec.height + 4) / (s / Tools.GetScale(rec.scale)))
                                     )
                                  };
 
@@ -3637,8 +3630,8 @@ namespace Diagram
                                      new RectangleF(
                                         (float)((this.shift.x + cx + rec.position.x) / s),
                                         (float)((this.shift.y + cy + rec.position.y) / s),
-                                        (float)((rec.width) / (s / this.GetScale(rec.scale))),
-                                        (float)((rec.height) / (s / this.GetScale(rec.scale)))
+                                        (float)((rec.width) / (s / Tools.GetScale(rec.scale))),
+                                        (float)((rec.height) / (s / Tools.GetScale(rec.scale)))
                                     )
                                  };
 
@@ -3651,13 +3644,13 @@ namespace Diagram
 
                             // DRAW text
                             RectangleF rect2 = new RectangleF(
-                                (float)((this.shift.x + cx + rec.position.x + (Node.NodePadding * this.GetScale(rec.scale))) / s),
-                                (float)((this.shift.y + cy + rec.position.y + (Node.NodePadding * this.GetScale(rec.scale))) / s),
-                                (float)((rec.width - Node.NodePadding) / (s / this.GetScale(rec.scale))),
-                                (float)((rec.height - Node.NodePadding) / (s / this.GetScale(rec.scale)))
+                                (float)((this.shift.x + cx + rec.position.x + (Node.NodePadding * Tools.GetScale(rec.scale))) / s),
+                                (float)((this.shift.y + cy + rec.position.y + (Node.NodePadding * Tools.GetScale(rec.scale))) / s),
+                                (float)((rec.width - Node.NodePadding) / (s / Tools.GetScale(rec.scale))),
+                                (float)((rec.height - Node.NodePadding) / (s / Tools.GetScale(rec.scale)))
                             );
 
-                            decimal size = (decimal)rec.font.Size / (s / this.GetScale(rec.scale));
+                            decimal size = (decimal)rec.font.Size / (s / Tools.GetScale(rec.scale));
                             if (0 < size && size < 100) //check if is not to small after zoom or too big
                             {
                                 gfx.DrawString(
@@ -3683,7 +3676,7 @@ namespace Diagram
         private void DrawLines(Graphics gfx, Lines lines, Position correction = null, bool export = false)
         {
             bool isvisible = false; // drawonly visible elements
-            decimal s = this.GetScale();
+            decimal s = Tools.GetScale(this.scale);
 
             // fix position for image file export
             decimal cx = 0;
@@ -3742,19 +3735,19 @@ namespace Diagram
 
                     if (lin.arrow) // draw line as arrow
                     {
-                        decimal x1 = (this.shift.x + cx + r1.position.x + (r1.width * this.GetScale(r1.scale)) / 2) / s;
-                        decimal y1 = (this.shift.y + cy + r1.position.y + (r1.height * this.GetScale(r1.scale)) / 2) / s;
-                        decimal x2 = (this.shift.x + cx + r2.position.x + (r2.width * this.GetScale(r2.scale)) / 2) / s;
-                        decimal y2 = (this.shift.y + cy + r2.position.y + (r2.height * this.GetScale(r2.scale)) / 2) / s;
+                        decimal x1 = (this.shift.x + cx + r1.position.x + (r1.width * Tools.GetScale(r1.scale)) / 2) / s;
+                        decimal y1 = (this.shift.y + cy + r1.position.y + (r1.height * Tools.GetScale(r1.scale)) / 2) / s;
+                        decimal x2 = (this.shift.x + cx + r2.position.x + (r2.width * Tools.GetScale(r2.scale)) / 2) / s;
+                        decimal y2 = (this.shift.y + cy + r2.position.y + (r2.height * Tools.GetScale(r2.scale)) / 2) / s;
                         decimal nx1 = ((decimal)Math.Cos(Math.PI / 2) * (x2 - x1) - (decimal)Math.Sin(Math.PI / 2) * (y2 - y1) + x1);
                         decimal ny1 = ((decimal)Math.Sin(Math.PI / 2) * (x2 - x1) + (decimal)Math.Cos(Math.PI / 2) * (y2 - y1) + y1);
                         decimal nx2 = ((decimal)Math.Cos(-Math.PI / 2) * (x2 - x1) - (decimal)Math.Sin(-Math.PI / 2) * (y2 - y1) + x1);
                         decimal ny2 = ((decimal)Math.Sin(-Math.PI / 2) * (x2 - x1) + (decimal)Math.Cos(-Math.PI / 2) * (y2 - y1) + y1);
                         decimal size = (decimal)Math.Sqrt((double)((nx1 - x1) * (nx1 - x1) + (ny1 - y1) * (ny1 - y1)));
-                        nx1 = x1 + (((nx1 - x1) / size) * (7 * this.GetScale(r1.scale))) / s;
-                        ny1 = y1 + (((ny1 - y1) / size) * (7 * this.GetScale(r1.scale))) / s;
-                        nx2 = x1 + (((nx2 - x1) / size) * (7 * this.GetScale(r1.scale))) / s;
-                        ny2 = y1 + (((ny2 - y1) / size) * (7 * this.GetScale(r1.scale))) / s;
+                        nx1 = x1 + (((nx1 - x1) / size) * (7 * Tools.GetScale(r1.scale))) / s;
+                        ny1 = y1 + (((ny1 - y1) / size) * (7 * Tools.GetScale(r1.scale))) / s;
+                        nx2 = x1 + (((nx2 - x1) / size) * (7 * Tools.GetScale(r1.scale))) / s;
+                        ny2 = y1 + (((ny2 - y1) / size) * (7 * Tools.GetScale(r1.scale))) / s;
 
                         // Create points that define polygon.
                         Point point1 = new Point((int)nx1, (int)ny1);
@@ -3774,7 +3767,7 @@ namespace Diagram
                     }
                     else
                     {
-                        int linewidth = linewidth = lin.width * this.GetScale(lin.scale) / s > 1 ? (int)(lin.width * this.GetScale(lin.scale) / s) : 1;
+                        int linewidth = linewidth = lin.width * Tools.GetScale(lin.scale) / s > 1 ? (int)(lin.width * Tools.GetScale(lin.scale) / s) : 1;
 
                         if (linewidth>100) {
                             linewidth = 100;
@@ -3784,12 +3777,12 @@ namespace Diagram
                         PointF[] points =
                          {
                              new PointF(
-                                 (float)((this.shift.x + cx + r1.position.x + (r1.width * this.GetScale(r1.scale)) / 2) / s),
-                                 (float)((this.shift.y + cy + r1.position.y + (r1.height * this.GetScale(r1.scale)) / 2) / s)
+                                 (float)((this.shift.x + cx + r1.position.x + (r1.width * Tools.GetScale(r1.scale)) / 2) / s),
+                                 (float)((this.shift.y + cy + r1.position.y + (r1.height * Tools.GetScale(r1.scale)) / 2) / s)
                              ),
                              new PointF(
-                                 (float)((this.shift.x + cx + r2.position.x + (r2.width * this.GetScale(r2.scale)) / 2) / s),
-                                 (float)((this.shift.y + cy + r2.position.y + (r2.height * this.GetScale(r2.scale)) / 2) / s)
+                                 (float)((this.shift.x + cx + r2.position.x + (r2.width * Tools.GetScale(r2.scale)) / 2) / s),
+                                 (float)((this.shift.y + cy + r2.position.y + (r2.height * Tools.GetScale(r2.scale)) / 2) / s)
                              )                             
                          };
 
@@ -3903,7 +3896,7 @@ namespace Diagram
         // VIEW Convert mouse position to diagram coordinates 
         public Position MouseToDiagramPosition(Position mousePosition)
         {
-            return mousePosition.Clone().Scale(this.GetScale()).Subtract(this.shift);
+            return mousePosition.Clone().Scale(Tools.GetScale(this.scale)).Subtract(this.shift);
         }
         
         /*************************************************************************************************************************/
@@ -3912,7 +3905,7 @@ namespace Diagram
         public Node CreateNode(Position position, bool SelectAfterCreate = true)
         {
             var rec = this.diagram.CreateNode(
-                position.Clone().Scale(this.GetScale()).Subtract(this.shift),
+                position.Clone().Scale(Tools.GetScale(this.scale)).Subtract(this.shift),
                 "",
                 this.currentLayer.id
             );
@@ -4025,7 +4018,7 @@ namespace Diagram
             if (position != null)
             {
                 Position temp = new Position(this.ClientSize.Width, this.ClientSize.Height);
-                temp.Split(2).Scale(this.GetScale()).Subtract(position);
+                temp.Split(2).Scale(Tools.GetScale(this.scale)).Subtract(position);
                 this.shift.Set(temp);
             }
         }
@@ -4641,8 +4634,9 @@ namespace Diagram
             {
                 DiagramBlock newBlock = this.diagram.AddDiagramPart(
                     retrievedData.GetData("DiagramXml") as string,
-                    position.Clone().Scale(this.GetScale()).Subtract(this.shift),
-                    this.currentLayer.id
+                    position.Clone().Scale(Tools.GetScale(this.scale)).Subtract(this.shift),
+                    this.currentLayer.id,
+                    this.scale
                 );
 
                 this.diagram.Unsave("create", newBlock.nodes, newBlock.lines);
@@ -5220,7 +5214,7 @@ namespace Diagram
             if (this.selectedNodes.Count() == 1)
             {
                 Node rec = this.selectedNodes[0];
-                Position position = new Position(this.shift).Add(rec.position).Split(this.GetScale());
+                Position position = new Position(this.shift).Add(rec.position).Split(Tools.GetScale(this.scale));
                 this.editPanel.editNode(position, this.selectedNodes[0]);
             }
         }
@@ -5231,7 +5225,7 @@ namespace Diagram
             if (this.selectedNodes.Count() == 1)
             {
                 Node rec = this.selectedNodes[0];
-                Position position = this.shift.Clone().Add(rec.position).Split(this.GetScale());
+                Position position = this.shift.Clone().Add(rec.position).Split(Tools.GetScale(this.scale));
                 this.editLinkPanel.editNode(position, this.selectedNodes[0]);
             }
         }

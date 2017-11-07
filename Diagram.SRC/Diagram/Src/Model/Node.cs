@@ -15,7 +15,7 @@ namespace Diagram
         public Position position = new Position(); // node position in canvas
         public decimal width = 0; // node size counted from current font
         public decimal height = 0;
-        public long scale = 0;
+        public decimal scale = 0;
 
         /*************************************************************************************************************************/
         // FLAGS

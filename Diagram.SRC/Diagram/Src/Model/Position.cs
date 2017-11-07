@@ -149,8 +149,8 @@ namespace Diagram
         /// add vector</summary>
         public Position Add(double a, double b)
         {
-            this.x += (long)a;
-            this.y += (long)b;
+            this.x += (decimal)a;
+            this.y += (decimal)b;
             return this;
         }
 

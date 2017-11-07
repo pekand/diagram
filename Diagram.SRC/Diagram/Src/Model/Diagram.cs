@@ -8,10 +8,8 @@ using System.Xml;
 using System.IO;
 using System.ComponentModel;
 using System.Windows.Forms;
-using System.Drawing.Text;
 using System.Text.RegularExpressions;
 using System.Security;
-using System.Globalization;
 
 namespace Diagram
 {
@@ -67,7 +65,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // CONSTRUCTORS
 
-        public Diagram(Main main)
+        public Diagram(Main main = null)
         {
             this.main = main;
             this.FontDefault = new Font("Open Sans", 10);
@@ -510,17 +508,17 @@ namespace Diagram
                                     {
                                         if (el.Name.ToString() == "shiftx")
                                         {
-                                            this.options.homePosition.x = Int64.Parse(el.Value);
+                                            this.options.homePosition.x = Tools.StringToDecimal(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "shifty")
                                         {
-                                            this.options.homePosition.y = Int64.Parse(el.Value);
+                                            this.options.homePosition.y = Tools.StringToDecimal(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "scale")
                                         {
-                                            this.options.homeScale = Int64.Parse(el.Value);
+                                            this.options.homeScale = Tools.StringToDecimal(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "homelayer")
@@ -535,27 +533,27 @@ namespace Diagram
 
                                         if (el.Name.ToString() == "endPositionx")
                                         {
-                                            this.options.endPosition.x = Int64.Parse(el.Value);
+                                            this.options.endPosition.x = Tools.StringToDecimal(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "endPositiony")
                                         {
-                                            this.options.endPosition.y = Int64.Parse(el.Value);
+                                            this.options.endPosition.y = Tools.StringToDecimal(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "endScale")
                                         {
-                                            this.options.homeScale = Int64.Parse(el.Value);
+                                            this.options.homeScale = Tools.StringToDecimal(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "startShiftX")
                                         {
-                                            options.homePosition.x = Int64.Parse(el.Value);
+                                            options.homePosition.x = Tools.StringToDecimal(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "startShiftY")
                                         {
-                                            options.homePosition.y = Int64.Parse(el.Value);
+                                            options.homePosition.y = Tools.StringToDecimal(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "diagramreadonly")
@@ -595,12 +593,12 @@ namespace Diagram
 
                                         if (el.Name.ToString() == "firstLayereShift.x")
                                         {
-                                            this.options.firstLayereShift.x = Int64.Parse(el.Value);
+                                            this.options.firstLayereShift.x = Tools.StringToDecimal(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "firstLayereShift.y")
                                         {
-                                            this.options.firstLayereShift.y = Int64.Parse(el.Value);
+                                            this.options.firstLayereShift.y = Tools.StringToDecimal(el.Value);
                                         }
 
                                         if (el.Name.ToString() == "openLayerInNewView")
@@ -746,37 +744,37 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "layershiftx")
                                                 {
-                                                    R.layerShift.x = Int64.Parse(el.Value);
+                                                    R.layerShift.x = Tools.StringToDecimal(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "layershifty")
                                                 {
-                                                    R.layerShift.y = Int64.Parse(el.Value);
+                                                    R.layerShift.y = Tools.StringToDecimal(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "x")
                                                 {
-                                                    R.position.x = decimal.Parse(el.Value);
+                                                    R.position.x = Tools.StringToDecimal(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "y")
                                                 {
-                                                    R.position.y = decimal.Parse(el.Value);
+                                                    R.position.y = Tools.StringToDecimal(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "width")
                                                 {
-                                                    R.width = Int64.Parse(el.Value);
+                                                    R.width = Tools.StringToDecimal(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "height")
                                                 {
-                                                    R.height = Int64.Parse(el.Value);
+                                                    R.height = Tools.StringToDecimal(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "scale")
                                                 {
-                                                    R.scale = Int64.Parse(el.Value);
+                                                    R.scale = Tools.StringToDecimal(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "color")
@@ -862,7 +860,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "scale")
                                                 {
-                                                    L.scale = Int64.Parse(el.Value);
+                                                    L.scale = Tools.StringToDecimal(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "arrow")
@@ -1079,7 +1077,7 @@ namespace Diagram
             {
                 if (layer == node.layer || layer == node.id)
                 {
-                    scale = (decimal)Math.Pow(2, node.scale);
+                    scale = Tools.GetScale(node.scale);
                     if
                     (                       
                         node.position.x <= position.x && position.x <= node.position.x + (node.width * scale) &&
@@ -1199,7 +1197,7 @@ namespace Diagram
             }
 
             if (!found) {
-                TextForm textf = new TextForm(main);
+                TextForm textf = new TextForm(this.main);
                 textf.setDiagram(this);
                 textf.node = rec;
                 string[] lines = rec.name.Split(Environment.NewLine.ToCharArray()).ToArray();
@@ -1207,7 +1205,7 @@ namespace Diagram
                     textf.Text = lines[0];
 
                 this.TextWindows.Add(textf);
-                main.AddTextWindow(textf);
+                this.main.AddTextWindow(textf);
                 textf.Show();
                 Media.BringToFront(textf);
                 return textf;
@@ -1744,10 +1742,10 @@ namespace Diagram
         // open new view on diagram
         public DiagramView OpenDiagramView(DiagramView parent = null, Layer layer = null) //UID8210770134
         {
-            DiagramView diagramview = new DiagramView(main, this, parent);
+            DiagramView diagramview = new DiagramView(this.main, this, parent);
             diagramview.SetDiagram(this);
             this.DiagramViews.Add(diagramview);
-            main.AddDiagramView(diagramview);
+            this.main.AddDiagramView(diagramview);
 			this.SetTitle();
             diagramview.Show();
             if (layer != null)
@@ -1773,7 +1771,7 @@ namespace Diagram
         public void CloseView(DiagramView view)
         {
             this.DiagramViews.Remove(view);
-            main.RemoveDiagramView(view);
+            this.main.RemoveDiagramView(view);
 
             foreach (DiagramView diagramView in this.DiagramViews) {
                 if (diagramView.parentView == view) {
@@ -1797,8 +1795,8 @@ namespace Diagram
             if (canclose)
             {
                 this.CloseFile();
-                main.RemoveDiagram(this);
-                main.CloseEmptyApplication();
+                this.main.RemoveDiagram(this);
+                this.main.CloseEmptyApplication();
             }
         }
 
@@ -1861,7 +1859,7 @@ namespace Diagram
         // CLIPBOARD
 
         // paste part of diagram from clipboard UID4178168001
-        public DiagramBlock AddDiagramPart(string DiagramXml, Position position, long layer)
+        public DiagramBlock AddDiagramPart(string DiagramXml, Position position, long layer, decimal scale = 0)
         {
             Nodes NewNodes = new Nodes();
             Lines NewLines = new Lines();
@@ -1918,17 +1916,17 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "x")
                                                 {
-                                                    R.position.x = decimal.Parse(el.Value);
+                                                    R.position.x = Tools.StringToDecimal(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "y")
                                                 {
-                                                    R.position.y = decimal.Parse(el.Value);
+                                                    R.position.y = Tools.StringToDecimal(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "scale")
                                                 {
-                                                    R.scale = Int64.Parse(el.Value);
+                                                    R.scale = Tools.StringToDecimal(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "color")
@@ -2084,7 +2082,7 @@ namespace Diagram
 
                                                 if (el.Name.ToString() == "scale")
                                                 {
-                                                    L.scale = Int64.Parse(el.Value);
+                                                    L.scale = Tools.StringToDecimal(el.Value);
                                                 }
 
                                                 if (el.Name.ToString() == "arrow")
@@ -2138,6 +2136,14 @@ namespace Diagram
             Nodes createdNodes = new Nodes();
             Node newNode = null;
             long oldId = 0;
+
+            decimal maxScale = 0;
+            Position topCorner = new Position(); 
+            if (NewReorderedNodes.Count > 0) {
+                maxScale = NewReorderedNodes[0].scale;
+                topCorner.Set(NewReorderedNodes[0].position);                
+            }
+
             foreach (Node rec in NewReorderedNodes)
             {
                 layerParent = 0;
@@ -2158,7 +2164,7 @@ namespace Diagram
                 }
 
                 rec.layer = layerParent;
-                rec.position.Add(position);
+                //rec.position.Add(position);
                 rec.resize();
 
                 oldId = rec.id;
@@ -2171,6 +2177,21 @@ namespace Diagram
                     };
                     createdNodes.Add(newNode);
                     maps.Add(mappedNode);
+                }
+
+
+                if (rec.scale > maxScale) {
+                    maxScale = rec.scale;
+                }
+
+                if (rec.position.x > topCorner.x)
+                {
+                    topCorner.x = rec.position.x;
+                }
+
+                if (rec.position.y > topCorner.y)
+                {
+                    topCorner.y = rec.position.y;
                 }
             }
 
@@ -2189,6 +2210,16 @@ namespace Diagram
                     }
                 }
             }
+
+
+            // scale layer
+            decimal deltaScale = maxScale - scale;
+            foreach (Node rec in NewNodes)
+            {
+                rec.scale -= deltaScale;
+                rec.position.Scale(Tools.GetScale(rec.scale - maxScale)).Add(position);
+            }
+
 
             Lines createdLines = new Lines();
             Line newLine = null;
@@ -2258,7 +2289,7 @@ namespace Diagram
         // copy part of diagram to text xml string
         public string GetDiagramPart(Nodes nodes)
         {
-            Nodes copy = new Nodes();
+           Nodes copy = new Nodes();
             foreach (Node node in nodes)
             {
                 copy.Add(node);

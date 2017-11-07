@@ -20,10 +20,10 @@ namespace Diagram
 
         public Position homePosition = new Position();     // diagram start and home key position
         public long homeLayer = 0;                          // startup layer after diagram open
-        public long homeScale = 0;                          // startup scale after diagram open
+        public decimal homeScale = 0;                          // startup scale after diagram open
         public Position endPosition = new Position();      // diagram end key position seet by end key
         public long endLayer = 0;                           // startup layer after diagram open
-        public long endScale = 0;                           // startup scale after diagram open
+        public decimal endScale = 0;                           // startup scale after diagram open
 
         /*************************************************************************************************************************/
         // STATES

@@ -11,7 +11,7 @@ namespace Diagram
 
         public long start = 0; // node id 
         public long end = 0; // node id 
-        public long scale = 0;
+        public decimal scale = 0;
 
         public Node startNode = null; // linked start node for quick access
         public Node endNode = null; // linked end node for quick access

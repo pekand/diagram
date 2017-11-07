@@ -33,7 +33,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <ApplicationRevision>35</ApplicationRevision>
-    <ApplicationVersion>0.5.0.41</ApplicationVersion>
+    <ApplicationVersion>0.5.0.42</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -248,6 +248,7 @@
     <Compile Include="Src\Forms\TextForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Src\Lib\Tools.cs" />
     <Compile Include="Src\Tools\Translations.cs" />
     <Compile Include="Src\Tools\Update.cs" />
   </ItemGroup>
