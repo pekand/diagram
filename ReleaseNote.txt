@@ -1,3 +1,4 @@
+0.5.0.43 close thread after application exit
 0.5.0.42 scale diagram
 0.5.0.41 fix copy layer
 0.5.0.40 scale diagram

@@ -315,7 +315,7 @@ namespace Diagram
             }
 
             this.optionsFile.SaveConfigFile();
-            //TerminateApplication();
+            TerminateApplication();
         }
 
         public void TerminateApplication()

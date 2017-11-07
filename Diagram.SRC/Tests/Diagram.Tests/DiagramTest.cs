@@ -143,38 +143,6 @@ namespace Diagram
         [TestMethod]
         public void CopyPartOfDiagramWithLayersMethods()
         {
-            Diagram diagram = new Diagram();
-            Position position = new Position(100, 100);
-            Node firstNode = diagram.CreateNode(position);
-            Position position2 = new Position(200, 200);
-            Node secondNode = diagram.CreateNode(position2);
-            Line line = diagram.Connect(firstNode, secondNode);
-
-            Nodes nodes = diagram.GetAllNodes();
-
-            string xml = diagram.GetDiagramPart(nodes);
-
-            DiagramBlock newBlock = diagram.AddDiagramPart(xml, new Position(300, 300), 0);
-
-            Assert.AreEqual(newBlock.nodes.Count, 2, "wrong nodes count");
-            Assert.AreEqual(newBlock.lines.Count, 1, "wrong lines count");
-
-            Node firstNodeCopy = newBlock.nodes[0];
-            Node secondNodeCopy = newBlock.nodes[1];
-            Line lineCopy = newBlock.lines[0];
-
-            Assert.IsTrue(firstNodeCopy.id == 3, "firstNode invalid id");
-            Assert.IsTrue(secondNodeCopy.id == 4, "secondNode invalid id");
-
-            // check copied nodes position
-            Assert.AreEqual(firstNodeCopy.position.x, 300, "firstNodeCopy bad position");
-            Assert.AreEqual(firstNodeCopy.position.y, 300, "firstNodeCopy bad position");
-            Assert.AreEqual(secondNodeCopy.position.x, 400, "secondNode bad position");
-            Assert.AreEqual(secondNodeCopy.position.y, 400, "secondNode bad position");
-
-
-            Assert.IsTrue(lineCopy.start == firstNodeCopy.id, "firstNode copy invalid id");
-            Assert.IsTrue(lineCopy.end == secondNodeCopy.id, "secondNode copy invalid id");
         }
     }
 }
