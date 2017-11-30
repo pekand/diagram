@@ -1629,7 +1629,7 @@ namespace Diagram
                     Position m = this.GetMousePosition();
                     Position r = m.Clone().Scale(Tools.GetScale(this.scale)).Subtract(this.shift);
 
-                    newScale = this.scale + 1;
+                    newScale = this.scale + 0.5m;
                     
                     if(newScale > 80) {
                         newScale = 80;
@@ -1664,7 +1664,7 @@ namespace Diagram
                     Position m = this.GetMousePosition();
                     Position r = m.Clone().Scale(Tools.GetScale(this.scale)).Subtract(this.shift);
                    
-                    newScale = this.scale - 1;
+                    newScale = this.scale - 0.5m;
                     
                     if(newScale < -80) {
                         newScale = -80;
@@ -3462,7 +3462,7 @@ namespace Diagram
                 {
                     isvisible = true;
                 }else
-                if (rec.scale < this.scale - 4 || this.scale + 4 < rec.scale) // remove to small or to big objects
+                if (rec.scale < this.scale - 6 || this.scale + 6 < rec.scale) // remove to small or to big objects
                 {
                     isvisible = false;
                 }
@@ -3700,7 +3700,7 @@ namespace Diagram
                     isvisible = true;
                 }
                 else
-                if ((r1.scale < this.scale - 4 || this.scale + 4 < r1.scale) && (r2.scale < this.scale - 4 || this.scale + 4 < r2.scale)) // remove to small or to big objects
+                if ((r1.scale < this.scale - 6 || this.scale + 6 < r1.scale) && (r2.scale < this.scale - 6 || this.scale + 6 < r2.scale)) // remove to small or to big objects
                 {
                     isvisible = false;
                 }
