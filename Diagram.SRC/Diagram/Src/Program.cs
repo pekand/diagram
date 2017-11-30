@@ -98,6 +98,9 @@ namespace Diagram
         {
             Program.log.Write("Fatal error: " + e.ExceptionObject.ToString());
             log.SaveLogToFile();
+
+            MessageBox.Show(e.ExceptionObject.ToString());
+
             Environment.Exit(1);
         }
     }

@@ -98,10 +98,7 @@ namespace Diagram
 
             if(server.StartServer())
             {
-                if (Update.UpdateApplication())
-                {
-                    this.ExitApplication();
-                }
+                Update.UpdateApplication(this);
             }
 
             Program.log.Write("Program: Main");

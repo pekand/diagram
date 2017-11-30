@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Diagram
 {
@@ -12,29 +13,39 @@ namespace Diagram
         public static string architecture = "win64/";
         public static string advailableVersionFile = "current-version";
 
-        public static bool UpdateApplication()
+        public static void UpdateApplication(Main main)
         {
-            string availableVersion = Update.GetAvailableVersion();
-
-            if (Update.CheckCurrentVersion(availableVersion))
-            {
-                // show dialog
-                //run update
-                UpdateForm updateForm = new UpdateForm();
-                updateForm.ShowDialog();
-
-                if (updateForm.CanUpdate())
-                {
-                    string installerPath = Update.downloadUpdate(availableVersion);
-                    if (installerPath != null)
+            Job.doJob(
+                new DoWorkEventHandler(
+                    delegate (object o, DoWorkEventArgs args)
                     {
-                        Os.RunCommandAndExit(installerPath, "/SILENT");
-                        return true;
-                    }
-                }
-            }
+                        string availableVersion = Update.GetAvailableVersion();
 
-            return false;
+                        if (Update.CheckCurrentVersion(availableVersion))
+                        {
+                            // show dialog
+                            //run update
+                            UpdateForm updateForm = new UpdateForm();
+                            updateForm.ShowDialog();
+
+                            if (updateForm.CanUpdate())
+                            {
+                                string installerPath = Update.downloadUpdate(availableVersion);
+                                if (installerPath != null)
+                                {
+                                    Os.RunCommandAndExit(installerPath, "/SILENT");
+                                    main.ExitApplication();
+                                }
+                            }
+                        }
+                    }
+                ),
+                new RunWorkerCompletedEventHandler(
+                    delegate (object o, RunWorkerCompletedEventArgs args)
+                    {
+                    }
+                )
+            );
         }
 
         public static string GetAvailableVersion()
@@ -87,11 +98,6 @@ namespace Diagram
             }
 
             return null;
-        }
-
-        public static void updateApplication(string advailableVersion)
-        {
-
         }
     }
 }
