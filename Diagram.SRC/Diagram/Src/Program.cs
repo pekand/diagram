@@ -27,26 +27,20 @@ namespace Diagram
         /// create main class which oppening forms</summary>
         private static Main main = null;
 
-        /*************************************************************************************************************************/
-        // TOOLS
-
         /// <summary>
-        /// get current app version</summary>
-        public static string GetVersion()
+        /// Process global unhandled global exceptions</summary>
+        static void UnhandledExceptionTrapper(object sender, UnhandledExceptionEventArgs e)
         {
-            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-            return fvi.FileVersion;
-        }
+            Program.log.Write("Fatal error: " + e.ExceptionObject.ToString());
+            log.SaveLogToFile();
 
-        /// get current app executable path</summary>
-        public static string GetLocation()
-        {
-            return System.Reflection.Assembly.GetExecutingAssembly().Location;
+            MessageBox.Show(e.ExceptionObject.ToString());
+
+            Environment.Exit(1);
         }
 
         /*************************************************************************************************************************/
-        // MAIN APPLICATION START
+        // MAIN APPLICATION START        
 
         [STAThread]
         private static void Main() //UID4670767500
@@ -56,9 +50,9 @@ namespace Diagram
             System.AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionTrapper;
 #endif
 
-            Program.log.Write("Start application: " + GetLocation());
+            Program.log.Write("Start application: " + Os.GetThisAssemblyLocation());
 
-            Program.log.Write("Version : " + GetVersion());
+            Program.log.Write("Version : " + Os.GetThisAssemblyVersion());
 #if DEBUG
             Program.log.Write("Debug mode");
 #else
@@ -78,7 +72,7 @@ namespace Diagram
             {
                 Application.Run(main.mainform);
             }
-            //Application.Exit();
+
 #if !DEBUG
             // catch all exception globaly in release mode and prevent application crash
             }
@@ -92,16 +86,6 @@ namespace Diagram
                 System.Environment.Exit(1); //close application with error code 1
             }
 #endif
-        }
-
-        static void UnhandledExceptionTrapper(object sender, UnhandledExceptionEventArgs e)
-        {
-            Program.log.Write("Fatal error: " + e.ExceptionObject.ToString());
-            log.SaveLogToFile();
-
-            MessageBox.Show(e.ExceptionObject.ToString());
-
-            Environment.Exit(1);
         }
     }
 }

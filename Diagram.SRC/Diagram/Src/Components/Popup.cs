@@ -1179,7 +1179,7 @@ namespace Diagram
         public void RecentItem_Click(object sender, EventArgs e) //UID3280882177
         {
             String path = (string)((ToolStripMenuItem)sender).Tag;
-            this.diagramView.Open(path);
+            this.diagramView.OpenDiagramFromFile(path);
         }
 
         // MENU sort items
@@ -1234,7 +1234,7 @@ namespace Diagram
         // MENU Open
         public void OpenItem_Click(object sender, EventArgs e) //UID1150105418
         {
-            this.diagramView.Open();
+            this.diagramView.OpenFileDialog();
         }
         
         // MENU Exit

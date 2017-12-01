@@ -208,7 +208,7 @@ namespace Diagram
             return lines;
         }
 
-        // all nodes contain nodes and all sublayer nodes, allLines contain all node lines and all sublayer lines
+        // all nodes contain nodes and all sublayer nodes, allLines contain all node lines and all sublayer lines UID4508113260
         public void GetAllNodesAndLines(Nodes nodes, ref Nodes allNodes, ref Lines allLines)
         {
             foreach (Node node in nodes)
@@ -275,7 +275,7 @@ namespace Diagram
             return lines;
         }
 
-        public Lines GetAllLinesFromNode(Node node)
+        public Lines GetAllLinesFromNode(Node node) //UID1353555007
         {
             Lines lines = new Lines();
 
@@ -288,6 +288,30 @@ namespace Diagram
                     if (line.start == node.id || line.end == node.id)
                     {
                         lines.Add(line);
+                    }
+                }
+            }
+
+            return lines;
+        }
+
+        public Lines GetAllLinesFromNodes(Nodes nodes)
+        {
+            Lines lines = new Lines();
+
+            foreach (Line li in this.GetAllLines())
+            {
+                foreach (Node recstart in nodes)
+                {
+                    if (li.start == recstart.id)
+                    {
+                        foreach (Node recend in nodes)
+                        {
+                            if (li.end == recend.id)
+                            {
+                                lines.Add(li);
+                            }
+                        }
                     }
                 }
             }
@@ -398,7 +422,7 @@ namespace Diagram
             }
         }
 
-        public void RemoveNode(Node node)
+        public void RemoveNode(Node node) //UID6631907739
         {
             this.allNodes.Remove(node.id);
 

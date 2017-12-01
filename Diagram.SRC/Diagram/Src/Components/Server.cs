@@ -218,15 +218,15 @@ namespace Diagram
                 return true;
             }
             else
-            if (Messsage == "close")
+            if (Messsage == "close") //UID5024907634
             {
-                main.mainform.Invoke(new Action(() => main.mainform.CloseEmptyApplication()));
+                main.mainform.Invoke(new Action(() => main.mainform.TerminateApplication()));
                 return true;
             }
             else
             {
 
-                Match match = Regex.Match(Messsage, @"open:(.*)", RegexOptions.IgnoreCase); 
+                Match match = Regex.Match(Messsage, @"open:(.*)", RegexOptions.IgnoreCase); //UID0548148814
                 if (match.Success)
                 {
                     string FileName = match.Groups[1].Value;
@@ -239,7 +239,7 @@ namespace Diagram
             return false;
         }
 
-        // send close message to server
+        // send close message to server UID3713513860
         public void RequestStop()
         {
             _shouldStop = true;

@@ -63,7 +63,7 @@ namespace Diagram
 
             try
             {
-                string currentApplicationVersion = Program.GetVersion();
+                string currentApplicationVersion = Os.GetThisAssemblyVersion();
                 Version local = new Version(currentApplicationVersion);
                 Version remote = new Version(availableVersion);
                 result = remote.CompareTo(local);

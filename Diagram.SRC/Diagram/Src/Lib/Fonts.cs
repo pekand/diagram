@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Xml.Linq;
 
@@ -148,6 +149,20 @@ namespace Diagram
             if (font1.Size != font2.Size) return false;
             if (font1.Style != font2.Style) return false;
             return true;
+        }
+
+        /// <summary>
+        /// convert font to string</summary>
+        public static string FontToString(Font font)
+        {
+            return TypeDescriptor.GetConverter(typeof(Font)).ConvertToString(font);
+        }
+
+        /// <summary>
+        /// convert font to string</summary>
+        public static Font StringToFont(string font)
+        {
+            return (Font)TypeDescriptor.GetConverter(typeof(Font)).ConvertFromString(font);
         }
 
     }

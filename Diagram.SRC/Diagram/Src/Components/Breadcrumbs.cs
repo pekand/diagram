@@ -44,7 +44,7 @@ namespace Diagram
             this.diagramView = diagramView;
         }
 
-        public void Update()
+        public void Update() //UID2139429132
         {
             this.width = 0;
             this.height = 0;
@@ -106,7 +106,7 @@ namespace Diagram
             }
         }
 
-        // EVENT Paint                                                                                 
+        // EVENT Paint UID1441007106                                                                                
         public void Draw(Graphics g)
         {
             if (!this.isVisible)

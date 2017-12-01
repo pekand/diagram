@@ -236,10 +236,6 @@ namespace Diagram
             this.diagram = diagram;
             this.parentView = parentView;
 
-            // initialize layer history
-            this.currentLayer = this.diagram.layers.GetLayer(0);
-            this.layersHistory.Add(this.currentLayer);
-
             this.InitializeComponent();
 
             // initialize popup menu
@@ -255,6 +251,10 @@ namespace Diagram
 
             // initialize breadcrumbs
             this.breadcrumbs = new Breadcrumbs(this);
+            
+            // initialize layer history
+            this.currentLayer = this.diagram.layers.GetLayer(0);
+            this.BuildLayerHistory(0);
 
             // move timer
             this.animationTimer.Tick += new EventHandler(AnimationTimer_Tick);
@@ -340,58 +340,22 @@ namespace Diagram
         // FORM Quit Close
         public void DiagramApp_FormClosing(object sender, FormClosingEventArgs e) //UID8741811919
         {
-            // save as new file
             bool close = true;
-            if (!this.diagram.SavedFile && 
-                (this.diagram.FileName == "" || !Os.FileExists(this.diagram.FileName)) &&
-                this.diagram.DiagramViews.Count() == 1 // can't close if other views alredy opened
-            ) 
+
+            close = this.diagram.CloseDiagramWithDialog(this);
+
+            if (close)
             {
-                var res = MessageBox.Show(Translations.saveBeforeExit, Translations.confirmExit, MessageBoxButtons.YesNoCancel);
-                
-                if (res == DialogResult.Yes)
-                {
-                    close = false;
-                    if (DSave.ShowDialog() == DialogResult.OK)
-                    {
-                        this.diagram.SaveXMLFile(this.DSave.FileName);
-                        this.diagram.SetTitle();
-                        close = true;
-                    }
-                }
-
-                if (res == DialogResult.Cancel)
-                {
-                    close = false;
-                }
-            }
-            
-            //save to current file
-            if (!this.diagram.SavedFile && 
-                this.diagram.FileName != "" && 
-                Os.FileExists(this.diagram.FileName) &&
-                this.diagram.DiagramViews.Count() == 1 // can close if other views alredy opened
-            ) 
-            {
-
-                var res = MessageBox.Show(Translations.saveBeforeExit, Translations.confirmExit, MessageBoxButtons.YesNoCancel);
-                
-                if (res == DialogResult.Yes)
-                {
-                    this.diagram.SaveXMLFile(this.diagram.FileName);
-                }
-                
-                if (res == DialogResult.Cancel)
-                {
-                    close = false;
-                }
-            }
-
-            if (close) {
-                this.main.ShowIfIsLastViews(this);
+                this.main.ShowFirstHiddenView(this);
             }
 
             e.Cancel = !close;
+        }
+
+        // FORM CLOSE UID2411004144
+        private void DiagramView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.diagram.CloseView(this);
         }
 
         // FORM Title - set windows title
@@ -407,7 +371,7 @@ namespace Diagram
                 this.Text = "*" + this.Text;
         }
 
-        // FORM go to home position - center window to home position
+        // FORM go to home position - center window to home position UID5474632736
         public void GoToHome()
         {
             Nodes nodes = this.diagram.layers.SearchInAllNodes("@home");
@@ -430,7 +394,8 @@ namespace Diagram
                 this.shift.Set(diagram.options.homePosition);
                 this.scale = diagram.options.homeScale;
                 this.GoToLayer(diagram.options.homeLayer);
-            }            
+            }   
+                     
             this.diagram.InvalidateDiagram();
         }
 
@@ -684,7 +649,7 @@ namespace Diagram
             }
         }
 
-        // SELECTION Remove Node from  selection
+        // SELECTION Remove Node from  selection UID2688115953
         public void RemoveNodeFromSelection(Node a)
         {
             if (this.selectedNodes.Count() > 0 && a!=null) // odstranenie mulitvyberu
@@ -1857,9 +1822,9 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.ParseKey(KeyMap.open, keyData))  // [KEY] [CTRL+O] open diagram dialog window
+            if (KeyMap.ParseKey(KeyMap.open, keyData))  // [KEY] [CTRL+O] open diagram dialog window UID7674842403
             {
-                this.Open();
+                this.OpenFileDialog();
                 return true;
             }
 
@@ -2025,7 +1990,7 @@ namespace Diagram
                 return false;
             }
 
-            if (KeyMap.ParseKey(KeyMap.editOrLayerIn, keyData)) // [KEY] [ENTER] open edit form or layer in
+            if (KeyMap.ParseKey(KeyMap.editOrLayerIn, keyData)) // [KEY] [ENTER] open edit form or layer in UID6919250456
             {
                 this.LayerInOrEdit();
                 return true;
@@ -2529,7 +2494,32 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // LAYER IN                                                                                    // [LAYER]
+        // LAYER layer in or open edit form UID4538903767
+        public void LayerInOrEdit()
+        {
+            if (this.selectedNodes.Count() == 1)
+            {
+                if (this.selectedNodes[0].haslayer)
+                {
+                    this.LayerIn(this.selectedNodes[0]);
+                }
+                else
+                {
+                    TextForm textform = this.diagram.EditNode(this.selectedNodes[0]);
+                }
+            }
+        }
+
+        // LAYER layer in UID5010004621
+        public void LayerIn()
+        {
+            if (this.selectedNodes.Count() == 1)
+            {
+                this.LayerIn(this.selectedNodes[0]);
+            }
+        }
+
+        // LAYER IN UID3904383109                                                                     // [LAYER]
         public void LayerIn(Node node)
         {
             if (this.currentLayer.parentNode == null)
@@ -2581,12 +2571,18 @@ namespace Diagram
             }
         }
 
-        // LAYER HISTORY Buld laier history from
+	        // LAYER HISTORY Buld laier history from UID3310785252
         public void BuildLayerHistory(long id)
-        {
-            layersHistory.Clear();
+        {    
+        	Layer layer = this.diagram.layers.GetLayer(id);
 
-            this.currentLayer = this.diagram.layers.GetLayer(id);
+            if (layer == null) {
+            	return;
+            }
+            
+            this.currentLayer = layer;
+            
+			layersHistory.Clear();
 
             Layer temp = this.currentLayer;
             while (temp != null)
@@ -2600,7 +2596,7 @@ namespace Diagram
             this.breadcrumbs.Update();
         }
 
-        // LAYER check if node is parent trought layer history
+        // LAYER check if node is parent trought layer history UID4653357181
         public bool IsNodeInLayerHistory(Node rec)
         {
             foreach (Layer layer in this.layersHistory)
@@ -2613,30 +2609,7 @@ namespace Diagram
             return false;
         }
 
-        // LAYER layer in
-        public void LayerIn()
-        {
-            if (this.selectedNodes.Count() == 1)
-            {
-                this.LayerIn(this.selectedNodes[0]);
-            }
-        }
-
-        // LAYER layer in or open edit form
-        public void LayerInOrEdit()
-        {
-            if (this.selectedNodes.Count() == 1)
-            {
-                if (this.selectedNodes[0].haslayer)
-                {
-                    this.LayerIn(this.selectedNodes[0]);
-                }
-                else
-                {
-                    TextForm textform = this.diagram.EditNode(this.selectedNodes[0]);
-                }
-            }
-        }
+        
 
         /*************************************************************************************************************************/
 
@@ -3059,8 +3032,8 @@ namespace Diagram
             }
         }
 
-        // FILE Open - Open diagram dialog
-        public void Open()
+        // FILE Open - Open diagram dialog UID5922343203
+        public void OpenFileDialog()
         {
             if (DOpen.ShowDialog() == DialogResult.OK)
             {
@@ -3068,7 +3041,7 @@ namespace Diagram
                 {
                     if (Os.GetExtension(DOpen.FileName).ToLower() == ".diagram")
                     {                        
-                        this.Open(DOpen.FileName);
+                        this.OpenDiagramFromFile(DOpen.FileName);
                     }
                     else
                     {
@@ -3078,8 +3051,8 @@ namespace Diagram
             }
         }
 
-        // FILE Open - Open diagram dialog
-        public void Open(String path)
+        // FILE Open - Open diagram UID4892447333
+        public void OpenDiagramFromFile(String path)
         {
             if (Os.FileExists(path))
             {
@@ -3814,12 +3787,6 @@ namespace Diagram
 
         /*************************************************************************************************************************/
 
-        // VIEW CLOSE UID2411004144
-        private void DiagramView_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.diagram.CloseView(this);
-        }
-
         // VIEW REFRESH UID0421401402
         private void DiagramView_Activated(object sender, EventArgs e)
         {
@@ -3989,7 +3956,7 @@ namespace Diagram
             }
         }
 
-        // NODES DELETE SELECTION
+        // NODES DELETE SELECTION UID6677508921
         public void DeleteSelectedNodes(DiagramView DiagramView)
         {
             if (!this.diagram.options.readOnly)
@@ -3997,6 +3964,7 @@ namespace Diagram
                 if (DiagramView.selectedNodes.Count() > 0)
                 {
                     this.diagram.DeleteNodes(DiagramView.selectedNodes, this.shift, this.currentLayer.id);
+                    this.ClearSelection();
                 }
             }
         }
@@ -4042,7 +4010,8 @@ namespace Diagram
                 this.shift.Set(shift);
             }
         }
-        // NODE Go to node layer
+        
+        // NODE Go to node layer UID5640777236
         public void GoToLayer(long layer = 0)
         {
             this.currentLayer = this.diagram.layers.GetLayer(layer);
@@ -4597,30 +4566,14 @@ namespace Diagram
 
         // NODE cut UID4343312404
         public bool Cut()
-        {
-            DataObject data = new DataObject();
+        {            
             if (this.selectedNodes.Count() > 0)  // kopirovanie textu objektu
             {
-                string copytext = "";
-                foreach (Node rec in this.selectedNodes)
-                {
-                    copytext = copytext + rec.name;
-
-                    if (this.selectedNodes.Count() > 1)
-                    {
-                        copytext = copytext + "\n";
-                    }
-                }
-
-                data.SetData(copytext);
-
-                data.SetData("DiagramXml", this.diagram.GetDiagramPart(this.selectedNodes)); //create and copy xml
+           	
+                this.Copy();
                 this.DeleteSelectedNodes(this);
-                this.ClearSelection();
                 this.diagram.InvalidateDiagram();
             }
-
-            Clipboard.SetDataObject(data);
 
             return true;
         }

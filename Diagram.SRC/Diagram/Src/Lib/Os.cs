@@ -16,6 +16,25 @@ namespace Diagram
     /// OS and path related functions repository</summary>
     public class Os //UID8599434163
     {
+
+        /*************************************************************************************************************************/
+        // ASSEMBLY
+
+        /// <summary>
+        /// get current app version</summary>
+        public static string GetThisAssemblyVersion()
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+            return fvi.FileVersion;
+        }
+
+        /// get current app executable path</summary>
+        public static string GetThisAssemblyLocation()
+        {
+            return System.Reflection.Assembly.GetExecutingAssembly().Location;
+        }
+
         /*************************************************************************************************************************/
         // FILE EXTENSION
 

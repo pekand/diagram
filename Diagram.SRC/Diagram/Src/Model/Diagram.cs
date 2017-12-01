@@ -6,7 +6,6 @@ using System.Linq;
 using System.Xml.Linq;
 using System.Xml;
 using System.IO;
-using System.ComponentModel;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Security;
@@ -75,7 +74,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // FILE OPERATIONS
 
-        // open file. If file is invalid return false
+        // open file. If file is invalid return false UID4610064109
         public bool OpenFile(string FileName)
         {
             if (Os.FileExists(FileName))
@@ -226,7 +225,6 @@ namespace Diagram
             {
                 Program.log.Write("save file io error: " + ex.Message);
                 MessageBox.Show(Translations.fileIsLocked);
-                this.CloseFile();
             }
             catch (Exception ex)
             {
@@ -234,6 +232,127 @@ namespace Diagram
             }
         }
 
+        public XElement SaveInnerXmlOptions() 
+        {
+            // [options] [config]
+            XElement option = new XElement("option");
+            option.Add(new XElement("shiftx", this.options.homePosition.x));
+            option.Add(new XElement("shifty", this.options.homePosition.y));
+            option.Add(new XElement("scale", this.options.homeScale));
+            option.Add(new XElement("endPositionx", this.options.endPosition.x));
+            option.Add(new XElement("endPositiony", this.options.endPosition.y));
+            option.Add(new XElement("endScale", this.options.endScale));
+            option.Add(new XElement("firstLayereShift.x", this.options.firstLayereShift.x));
+            option.Add(new XElement("firstLayereShift.y", this.options.firstLayereShift.y));
+            if (this.options.openLayerInNewView) option.Add(new XElement("openLayerInNewView", this.options.openLayerInNewView));
+            option.Add(new XElement("homelayer", this.options.homeLayer));
+            option.Add(new XElement("endlayer", this.options.endLayer));
+            option.Add(new XElement("diagramreadonly", this.options.readOnly));
+            option.Add(new XElement("grid", this.options.grid));
+            option.Add(new XElement("borders", this.options.borders));
+            option.Add(Fonts.FontToXml(this.FontDefault, "defaultfont"));
+            option.Add(new XElement("coordinates", this.options.coordinates));
+            option.Add(new XElement("window.position.restore", this.options.restoreWindow));
+            option.Add(new XElement("window.position.x", this.options.Left));
+            option.Add(new XElement("window.position.y", this.options.Top));
+            option.Add(new XElement("window.position.width", this.options.Width));
+            option.Add(new XElement("window.position.height", this.options.Height));
+            option.Add(new XElement("window.state", this.options.WindowState));
+            
+            if (this.options.icon != "")
+            {
+                option.Add(new XElement("icon", this.options.icon));
+            }
+
+            if (this.options.backgroundImage != null)
+            {
+                option.Add(new XElement(
+                    "backgroundImage", 
+                    Media.ImageToString(this.options.backgroundImage)
+                    )
+                );
+            }
+            
+            return option;
+        }
+        
+        public XElement SaveInnerXmlRectangles(Nodes nodes) 
+        {
+            XElement rectangles = new XElement("rectangles");
+            foreach (Node rec in nodes)
+            {
+                XElement rectangle = new XElement("rectangle");
+                rectangle.Add(new XElement("id", rec.id));
+                if (!Fonts.compare(this.FontDefault, rec.font))
+                {
+                    rectangle.Add(Fonts.FontToXml(rec.font));
+                }
+                rectangle.Add(new XElement("fontcolor", rec.fontcolor));
+                if (rec.name != "") rectangle.Add(new XElement("text", rec.name));
+                if (rec.note != "") rectangle.Add(new XElement("note", rec.note));
+                if (rec.link != "") rectangle.Add(new XElement("link", rec.link));
+                if (rec.scriptid != "") rectangle.Add(new XElement("scriptid", rec.scriptid));
+                if (rec.shortcut != 0) rectangle.Add(new XElement("shortcut", rec.shortcut));
+                if (rec.mark) rectangle.Add(new XElement("mark", rec.mark));
+                if (rec.attachment != "") rectangle.Add(new XElement("attachment", rec.attachment));
+
+                rectangle.Add(new XElement("layer", rec.layer));
+
+                if (rec.haslayer)
+                {
+                    rectangle.Add(new XElement("haslayer", rec.haslayer));
+                    rectangle.Add(new XElement("layershiftx", rec.layerShift.x));
+                    rectangle.Add(new XElement("layershifty", rec.layerShift.y));
+                }
+
+                rectangle.Add(new XElement("x", rec.position.x));
+                rectangle.Add(new XElement("y", rec.position.y));
+                rectangle.Add(new XElement("width", rec.width));
+                rectangle.Add(new XElement("height", rec.height));
+                rectangle.Add(new XElement("scale", rec.scale));
+                rectangle.Add(new XElement("color", rec.color));
+                if (rec.transparent) rectangle.Add(new XElement("transparent", rec.transparent));
+                if (rec.embeddedimage) rectangle.Add(new XElement("embeddedimage", rec.embeddedimage));
+
+                if (rec.embeddedimage && rec.image != null) // image is inserted directly to file
+                {
+                    rectangle.Add(new XElement("imagedata", Media.BitmapToString(rec.image)));
+                }
+                else if (rec.imagepath != "")
+                {
+                    rectangle.Add(new XElement("image", rec.imagepath));
+                }
+
+                if (rec.protect) rectangle.Add(new XElement("protect", rec.protect));
+
+                rectangle.Add(new XElement("timecreate", rec.timecreate));
+                rectangle.Add(new XElement("timemodify", rec.timemodify));
+
+                rectangles.Add(rectangle);
+            }
+            
+            return rectangles;
+        }
+        
+        public XElement SaveInnerXmlLines(Lines lines) 
+        {
+            XElement xlines = new XElement("lines");
+            foreach (Line lin in lines)
+            {
+                XElement line = new XElement("line");
+                line.Add(new XElement("start", lin.start));
+                line.Add(new XElement("end", lin.end));
+                line.Add(new XElement("scale", lin.scale));
+                line.Add(new XElement("arrow", (lin.arrow) ? "1" : "0"));
+                line.Add(new XElement("color", lin.color));
+                if (lin.width != 1) line.Add(new XElement("width", lin.width));
+                line.Add(new XElement("layer", lin.layer));
+                xlines.Add(line);
+            }
+
+            return xlines;
+        }
+        
         // XML SAVE create xml from current diagram file state
         public string SaveInnerXMLFile() //UID8716692347
         {
@@ -241,114 +360,10 @@ namespace Diagram
             XElement root = new XElement("diagram");
             try
             {
-                // [options] [config]
-                XElement option = new XElement("option");
-                option.Add(new XElement("shiftx", this.options.homePosition.x));
-                option.Add(new XElement("shifty", this.options.homePosition.y));
-                option.Add(new XElement("scale", this.options.homeScale));
-                option.Add(new XElement("endPositionx", this.options.endPosition.x));
-                option.Add(new XElement("endPositiony", this.options.endPosition.y));
-                option.Add(new XElement("endScale", this.options.endScale));
-                option.Add(new XElement("firstLayereShift.x", this.options.firstLayereShift.x));
-                option.Add(new XElement("firstLayereShift.y", this.options.firstLayereShift.y));
-                if (this.options.openLayerInNewView) option.Add(new XElement("openLayerInNewView", this.options.openLayerInNewView));
-                option.Add(new XElement("homelayer", this.options.homeLayer));
-                option.Add(new XElement("endlayer", this.options.endLayer));
-                option.Add(new XElement("diagramreadonly", this.options.readOnly));
-                option.Add(new XElement("grid", this.options.grid));
-                option.Add(new XElement("borders", this.options.borders));
-                option.Add(Fonts.FontToXml(this.FontDefault, "defaultfont"));
-                option.Add(new XElement("coordinates", this.options.coordinates));
-                option.Add(new XElement("window.position.restore", this.options.restoreWindow));
-                option.Add(new XElement("window.position.x", this.options.Left));
-                option.Add(new XElement("window.position.y", this.options.Top));
-                option.Add(new XElement("window.position.width", this.options.Width));
-                option.Add(new XElement("window.position.height", this.options.Height));
-                option.Add(new XElement("window.state", this.options.WindowState));
-
-                if (this.options.icon != "")
-                {
-                    option.Add(new XElement("icon", this.options.icon));
-                }
-
-                if (this.options.backgroundImage != null)
-                {
-                    option.Add(new XElement(
-                        "backgroundImage", 
-                        Media.ImageToString(this.options.backgroundImage)
-                        )
-                    );
-                }
-
-                // Rectangles
-                XElement rectangles = new XElement("rectangles");
-                foreach (Node rec in this.GetAllNodes())
-                {
-                    XElement rectangle = new XElement("rectangle");
-                    rectangle.Add(new XElement("id", rec.id));
-                    if (!Fonts.compare(this.FontDefault, rec.font))
-                    {
-                        rectangle.Add(Fonts.FontToXml(rec.font));
-                    }
-                    rectangle.Add(new XElement("fontcolor", rec.fontcolor));
-                    if (rec.name != "") rectangle.Add(new XElement("text", rec.name));
-                    if (rec.note != "") rectangle.Add(new XElement("note", rec.note));
-                    if (rec.link != "") rectangle.Add(new XElement("link", rec.link));
-                    if (rec.scriptid != "") rectangle.Add(new XElement("scriptid", rec.scriptid));
-                    if (rec.shortcut != 0) rectangle.Add(new XElement("shortcut", rec.shortcut));
-                    if (rec.mark) rectangle.Add(new XElement("mark", rec.mark));
-                    if (rec.attachment != "") rectangle.Add(new XElement("attachment", rec.attachment));
-
-                    rectangle.Add(new XElement("layer", rec.layer));
-
-                    if (rec.haslayer)
-                    {
-                        rectangle.Add(new XElement("haslayer", rec.haslayer));
-                        rectangle.Add(new XElement("layershiftx", rec.layerShift.x));
-                        rectangle.Add(new XElement("layershifty", rec.layerShift.y));
-                    }
-
-                    rectangle.Add(new XElement("x", rec.position.x));
-                    rectangle.Add(new XElement("y", rec.position.y));
-                    rectangle.Add(new XElement("width", rec.width));
-                    rectangle.Add(new XElement("height", rec.height));
-                    rectangle.Add(new XElement("scale", rec.scale));
-                    rectangle.Add(new XElement("color", rec.color));
-                    if (rec.transparent) rectangle.Add(new XElement("transparent", rec.transparent));
-                    if (rec.embeddedimage) rectangle.Add(new XElement("embeddedimage", rec.embeddedimage));
-
-                    if (rec.embeddedimage && rec.image != null) // image is inserted directly to file
-                    {
-                        rectangle.Add(new XElement("imagedata", Media.BitmapToString(rec.image)));
-                    }
-                    else if (rec.imagepath != "")
-                    {
-                        rectangle.Add(new XElement("image", rec.imagepath));
-                    }
-
-                    if (rec.protect) rectangle.Add(new XElement("protect", rec.protect));
-
-                    rectangle.Add(new XElement("timecreate", rec.timecreate));
-                    rectangle.Add(new XElement("timemodify", rec.timemodify));
-
-                    rectangles.Add(rectangle);
-                }
-
-                // Lines
-                XElement lines = new XElement("lines");
-                foreach (Line lin in this.GetAllLines())
-                {
-                    XElement line = new XElement("line");
-                    line.Add(new XElement("start", lin.start));
-                    line.Add(new XElement("end", lin.end));
-                    line.Add(new XElement("scale", lin.scale));
-                    line.Add(new XElement("arrow", (lin.arrow) ? "1" : "0"));
-                    line.Add(new XElement("color", lin.color));
-                    if (lin.width != 1) line.Add(new XElement("width", lin.width));
-                    line.Add(new XElement("layer", lin.layer));
-                    lines.Add(line);
-                }
-
+                XElement option = this.SaveInnerXmlOptions();
+                XElement rectangles = this.SaveInnerXmlRectangles(this.GetAllNodes());
+                XElement lines = this.SaveInnerXmlLines(this.GetAllLines());
+                
                 root.Add(option);
                 root.Add(rectangles);
                 root.Add(lines);
@@ -390,7 +405,7 @@ namespace Diagram
             return "";
         }
 
-        // XML LOAD If file is invalid return false
+        // XML LOAD If file is invalid return false UID9397528693
         public bool LoadXML(string xml)
         {
 
@@ -433,7 +448,6 @@ namespace Diagram
             {
                 MessageBox.Show(Translations.fileHasWrongFormat);
                 Program.log.Write("load xml error: " + ex.Message);
-                this.CloseFile();
             }
 
             if (version == "1" && salt != "" && encrypted != "")
@@ -477,10 +491,405 @@ namespace Diagram
             }
         }
 
-        // XML LOAD inner part of diagram file. If file is invalid return false
+        public void LoadInnerXmlOptions(XElement diagram, string FontDefaultString)
+        {
+            foreach (XElement el in diagram.Descendants())
+            {
+                try
+                {
+                    if (el.Name.ToString() == "shiftx")
+                    {
+                        this.options.homePosition.x = Tools.StringToDecimal(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "shifty")
+                    {
+                        this.options.homePosition.y = Tools.StringToDecimal(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "scale")
+                    {
+                        this.options.homeScale = Tools.StringToDecimal(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "homelayer")
+                    {
+                        options.homeLayer = Int64.Parse(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "endlayer")
+                    {
+                        options.endLayer = Int64.Parse(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "endPositionx")
+                    {
+                        this.options.endPosition.x = Tools.StringToDecimal(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "endPositiony")
+                    {
+                        this.options.endPosition.y = Tools.StringToDecimal(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "endScale")
+                    {
+                        this.options.homeScale = Tools.StringToDecimal(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "startShiftX")
+                    {
+                        options.homePosition.x = Tools.StringToDecimal(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "startShiftY")
+                    {
+                        options.homePosition.y = Tools.StringToDecimal(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "diagramreadonly")
+                    {
+                        this.options.readOnly = bool.Parse(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "grid")
+                    {
+                        this.options.grid = bool.Parse(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "borders")
+                    {
+                        this.options.borders = bool.Parse(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "defaultfont")
+                    {
+                        if (el.Attribute("type").Value == "font")
+                        {
+                            this.FontDefault = Fonts.XmlToFont(el);
+                        }
+                        else
+                        {
+                            if (FontDefaultString != el.Value)
+                            {
+                                this.FontDefault = Fonts.StringToFont(el.Value);
+                            }
+                        }
+                    }
+
+                    if (el.Name.ToString() == "coordinates")
+                    {
+                        this.options.coordinates = bool.Parse(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "firstLayereShift.x")
+                    {
+                        this.options.firstLayereShift.x = Tools.StringToDecimal(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "firstLayereShift.y")
+                    {
+                        this.options.firstLayereShift.y = Tools.StringToDecimal(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "openLayerInNewView")
+                    {
+                        this.options.openLayerInNewView = bool.Parse(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "window.position.restore")
+                    {
+                        this.options.restoreWindow = bool.Parse(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "window.position.x")
+                    {
+                        this.options.Left = Int64.Parse(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "window.position.y")
+                    {
+                        this.options.Top = Int64.Parse(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "window.position.width")
+                    {
+                        this.options.Width = Int64.Parse(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "window.position.height")
+                    {
+                        this.options.Height = Int64.Parse(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "window.state")
+                    {
+                        this.options.WindowState = Int64.Parse(el.Value);
+                    }
+
+                    if (el.Name.ToString() == "icon")
+                    {
+                        this.options.icon = el.Value;
+                    }
+
+                    if (el.Name.ToString() == "backgroundImage")
+                    {
+                        this.options.backgroundImage = Media.StringToImage(el.Value);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Program.log.Write("load xml diagram options: " + ex.Message);
+                }
+            }
+        }
+        
+        public void LoadInnerXmlRectangles(Nodes nodes, XElement diagram, string FontDefaultString)
+        {
+            foreach (XElement block in diagram.Descendants())
+            {
+
+                if (block.Name.ToString() == "rectangle")
+                {
+                    Node R = new Node
+                    {
+                        font = this.FontDefault
+                    };
+
+                    foreach (XElement el in block.Descendants())
+                    {
+                        try
+                        {
+                            if (el.Name.ToString() == "id")
+                            {
+                                R.id = Int64.Parse(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "font")
+                            {
+                                if (el.Attribute("type").Value == "font")
+                                {
+                                    R.font = Fonts.XmlToFont(el);
+                                }
+                                else
+                                {
+                                    if (FontDefaultString != el.Value)
+                                    {
+                                        R.font = Fonts.StringToFont(el.Value);
+                                    }
+                                }
+                            }
+
+                            if (el.Name.ToString() == "fontcolor")
+                            {
+                                R.fontcolor.Set(el.Value.ToString());
+                            }
+
+                            if (el.Name.ToString() == "text")
+                            {
+                                R.name = el.Value;
+                            }
+
+
+                            if (el.Name.ToString() == "note")
+                            {
+                                R.note = el.Value;
+                            }
+
+
+                            if (el.Name.ToString() == "link")
+                            {
+                                R.link = el.Value;
+                            }
+
+                            if (el.Name.ToString() == "scriptid")
+                            {
+                                R.scriptid = el.Value;
+                            }
+
+                            if (el.Name.ToString() == "shortcut")
+                            {
+                                R.shortcut = Int64.Parse(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "mark")
+                            {
+                                R.mark = bool.Parse(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "attachment")
+                            {
+                                R.attachment = el.Value;
+                            }
+
+                            if (el.Name.ToString() == "layer")
+                            {
+                                R.layer = Int64.Parse(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "haslayer")
+                            {
+                                R.haslayer = bool.Parse(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "layershiftx")
+                            {
+                                R.layerShift.x = Tools.StringToDecimal(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "layershifty")
+                            {
+                                R.layerShift.y = Tools.StringToDecimal(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "x")
+                            {
+                                R.position.x = Tools.StringToDecimal(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "y")
+                            {
+                                R.position.y = Tools.StringToDecimal(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "width")
+                            {
+                                R.width = Tools.StringToDecimal(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "height")
+                            {
+                                R.height = Tools.StringToDecimal(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "scale")
+                            {
+                                R.scale = Tools.StringToDecimal(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "color")
+                            {
+                                R.color.Set(el.Value.ToString());
+                            }
+
+                            if (el.Name.ToString() == "transparent")
+                            {
+                                R.transparent = bool.Parse(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "embeddedimage")
+                            {
+                                R.embeddedimage = bool.Parse(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "imagedata")
+                            {
+                                R.image = Media.StringToBitmap(el.Value);
+                                R.height = R.image.Height;
+                                R.width = R.image.Width;
+                                R.isimage = true;
+                            }
+
+                            if (el.Name.ToString() == "image")
+                            {
+                                R.imagepath = el.Value.ToString();
+                                R.loadImage();
+                            }
+
+
+                            if (el.Name.ToString() == "timecreate")
+                            {
+                                R.timecreate = el.Value;
+                            }
+
+
+                            if (el.Name.ToString() == "timemodify")
+                            {
+                                R.timemodify = el.Value;
+                            }
+
+                            if (el.Name.ToString() == "protect")
+                            {
+                                R.protect = bool.Parse(el.Value);
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Program.log.Write("load xml nodes error: " + ex.Message);
+                        }
+                    }
+                    nodes.Add(R);
+                }
+            }
+        }
+        
+        public void LoadInnerXmlLines(Lines lines, XElement diagram)
+        {
+            foreach (XElement block in diagram.Descendants())
+            {
+                if (block.Name.ToString() == "line")
+                {
+                    Line L = new Line {
+                        layer = -1 // for identification unset layers
+                    };
+
+                    foreach (XElement el in block.Descendants())
+                    {
+                        try
+                        {
+                            if (el.Name.ToString() == "start")
+                            {
+                                L.start = Int64.Parse(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "end")
+                            {
+                                L.end = Int64.Parse(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "scale")
+                            {
+                                L.scale = Tools.StringToDecimal(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "arrow")
+                            {
+                                L.arrow = el.Value == "1" ? true : false;
+                            }
+
+                            if (el.Name.ToString() == "color")
+                            {
+                                L.color.Set(el.Value.ToString());
+                            }
+
+                            if (el.Name.ToString() == "width")
+                            {
+                                L.width = Int64.Parse(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "layer")
+                            {
+                                L.layer = Int64.Parse(el.Value);
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Program.log.Write("load xml lines error: " + ex.Message);
+                        }
+                    }
+
+                    lines.Add(L);
+                }
+            }
+        }
+            
+        // XML LOAD inner part of diagram file. If file is invalid return false UID3586094034
         public bool LoadInnerXML(string xml)
         {
-            string FontDefaultString = TypeDescriptor.GetConverter(typeof(Font)).ConvertToString(this.FontDefault);
+            string FontDefaultString = Fonts.FontToString(this.FontDefault);
 
             XmlReaderSettings xws = new XmlReaderSettings {
                 CheckCharacters = false
@@ -502,398 +911,17 @@ namespace Diagram
 
                             if (diagram.Name.ToString() == "option") // [options] [config]
                             {
-                                foreach (XElement el in diagram.Descendants())
-                                {
-                                    try
-                                    {
-                                        if (el.Name.ToString() == "shiftx")
-                                        {
-                                            this.options.homePosition.x = Tools.StringToDecimal(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "shifty")
-                                        {
-                                            this.options.homePosition.y = Tools.StringToDecimal(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "scale")
-                                        {
-                                            this.options.homeScale = Tools.StringToDecimal(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "homelayer")
-                                        {
-                                            options.homeLayer = Int64.Parse(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "endlayer")
-                                        {
-                                            options.endLayer = Int64.Parse(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "endPositionx")
-                                        {
-                                            this.options.endPosition.x = Tools.StringToDecimal(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "endPositiony")
-                                        {
-                                            this.options.endPosition.y = Tools.StringToDecimal(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "endScale")
-                                        {
-                                            this.options.homeScale = Tools.StringToDecimal(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "startShiftX")
-                                        {
-                                            options.homePosition.x = Tools.StringToDecimal(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "startShiftY")
-                                        {
-                                            options.homePosition.y = Tools.StringToDecimal(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "diagramreadonly")
-                                        {
-                                            this.options.readOnly = bool.Parse(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "grid")
-                                        {
-                                            this.options.grid = bool.Parse(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "borders")
-                                        {
-                                            this.options.borders = bool.Parse(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "defaultfont")
-                                        {
-                                            if (el.Attribute("type").Value == "font")
-                                            {
-                                                this.FontDefault = Fonts.XmlToFont(el);
-                                            }
-                                            else
-                                            {
-                                                if (FontDefaultString != el.Value)
-                                                {
-                                                    this.FontDefault = (Font)TypeDescriptor.GetConverter(typeof(Font)).ConvertFromString(el.Value);
-                                                }
-                                            }
-                                        }
-
-                                        if (el.Name.ToString() == "coordinates")
-                                        {
-                                            this.options.coordinates = bool.Parse(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "firstLayereShift.x")
-                                        {
-                                            this.options.firstLayereShift.x = Tools.StringToDecimal(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "firstLayereShift.y")
-                                        {
-                                            this.options.firstLayereShift.y = Tools.StringToDecimal(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "openLayerInNewView")
-                                        {
-                                            this.options.openLayerInNewView = bool.Parse(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "window.position.restore")
-                                        {
-                                            this.options.restoreWindow = bool.Parse(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "window.position.x")
-                                        {
-                                            this.options.Left = Int64.Parse(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "window.position.y")
-                                        {
-                                            this.options.Top = Int64.Parse(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "window.position.width")
-                                        {
-                                            this.options.Width = Int64.Parse(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "window.position.height")
-                                        {
-                                            this.options.Height = Int64.Parse(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "window.state")
-                                        {
-                                            this.options.WindowState = Int64.Parse(el.Value);
-                                        }
-
-                                        if (el.Name.ToString() == "icon")
-                                        {
-                                            this.options.icon = el.Value;
-                                        }
-
-                                        if (el.Name.ToString() == "backgroundImage")
-                                        {
-                                            this.options.backgroundImage = Media.StringToImage(el.Value);
-                                        }
-
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Program.log.Write("load xml diagram options: " + ex.Message);
-                                    }
-                                }
+                                this.LoadInnerXmlOptions(diagram, FontDefaultString);
                             }
 
                             if (diagram.Name.ToString() == "rectangles")
                             {
-                                foreach (XElement block in diagram.Descendants())
-                                {
-
-                                    if (block.Name.ToString() == "rectangle")
-                                    {
-                                        Node R = new Node
-                                        {
-                                            font = this.FontDefault
-                                        };
-
-                                        foreach (XElement el in block.Descendants())
-                                        {
-                                            try
-                                            {
-                                                if (el.Name.ToString() == "id")
-                                                {
-                                                    R.id = Int64.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "font")
-                                                {
-                                                    if (el.Attribute("type").Value == "font")
-                                                    {
-                                                        R.font = Fonts.XmlToFont(el);
-                                                    }
-                                                    else
-                                                    {
-                                                        if (FontDefaultString != el.Value)
-                                                        {
-                                                            R.font = (Font)TypeDescriptor.GetConverter(typeof(Font)).ConvertFromString(el.Value);
-                                                        }
-                                                    }
-                                                }
-
-                                                if (el.Name.ToString() == "fontcolor")
-                                                {
-                                                    R.fontcolor.Set(el.Value.ToString());
-                                                }
-
-                                                if (el.Name.ToString() == "text")
-                                                {
-                                                    R.name = el.Value;
-                                                }
-
-
-                                                if (el.Name.ToString() == "note")
-                                                {
-                                                    R.note = el.Value;
-                                                }
-
-
-                                                if (el.Name.ToString() == "link")
-                                                {
-                                                    R.link = el.Value;
-                                                }
-
-                                                if (el.Name.ToString() == "scriptid")
-                                                {
-                                                    R.scriptid = el.Value;
-                                                }
-
-                                                if (el.Name.ToString() == "shortcut")
-                                                {
-                                                    R.shortcut = Int64.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "mark")
-                                                {
-                                                    R.mark = bool.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "attachment")
-                                                {
-                                                    R.attachment = el.Value;
-                                                }
-
-                                                if (el.Name.ToString() == "layer")
-                                                {
-                                                    R.layer = Int64.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "haslayer")
-                                                {
-                                                    R.haslayer = bool.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "layershiftx")
-                                                {
-                                                    R.layerShift.x = Tools.StringToDecimal(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "layershifty")
-                                                {
-                                                    R.layerShift.y = Tools.StringToDecimal(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "x")
-                                                {
-                                                    R.position.x = Tools.StringToDecimal(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "y")
-                                                {
-                                                    R.position.y = Tools.StringToDecimal(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "width")
-                                                {
-                                                    R.width = Tools.StringToDecimal(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "height")
-                                                {
-                                                    R.height = Tools.StringToDecimal(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "scale")
-                                                {
-                                                    R.scale = Tools.StringToDecimal(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "color")
-                                                {
-                                                    R.color.Set(el.Value.ToString());
-                                                }
-
-                                                if (el.Name.ToString() == "transparent")
-                                                {
-                                                    R.transparent = bool.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "embeddedimage")
-                                                {
-                                                    R.embeddedimage = bool.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "imagedata")
-                                                {
-                                                    R.image = Media.StringToBitmap(el.Value);
-                                                    R.height = R.image.Height;
-                                                    R.width = R.image.Width;
-                                                    R.isimage = true;
-                                                }
-
-                                                if (el.Name.ToString() == "image")
-                                                {
-                                                    R.imagepath = el.Value.ToString();
-                                                    R.loadImage();
-                                                }
-
-
-                                                if (el.Name.ToString() == "timecreate")
-                                                {
-                                                    R.timecreate = el.Value;
-                                                }
-
-
-                                                if (el.Name.ToString() == "timemodify")
-                                                {
-                                                    R.timemodify = el.Value;
-                                                }
-
-                                                if (el.Name.ToString() == "protect")
-                                                {
-                                                    R.protect = bool.Parse(el.Value);
-                                                }
-
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                Program.log.Write("load xml nodes error: " + ex.Message);
-                                            }
-                                        }
-                                        nodes.Add(R);
-                                    }
-                                }
+                                this.LoadInnerXmlRectangles(nodes, diagram, FontDefaultString);
                             }
 
                             if (diagram.Name.ToString() == "lines")
                             {
-                                foreach (XElement block in diagram.Descendants())
-                                {
-                                    if (block.Name.ToString() == "line")
-                                    {
-                                        Line L = new Line {
-                                            layer = -1 // for identification unset layers
-                                        };
-
-                                        foreach (XElement el in block.Descendants())
-                                        {
-                                            try
-                                            {
-                                                if (el.Name.ToString() == "start")
-                                                {
-                                                    L.start = Int64.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "end")
-                                                {
-                                                    L.end = Int64.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "scale")
-                                                {
-                                                    L.scale = Tools.StringToDecimal(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "arrow")
-                                                {
-                                                    L.arrow = el.Value == "1" ? true : false;
-                                                }
-
-                                                if (el.Name.ToString() == "color")
-                                                {
-                                                    L.color.Set(el.Value.ToString());
-                                                }
-
-                                                if (el.Name.ToString() == "width")
-                                                {
-                                                    L.width = Int64.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "layer")
-                                                {
-                                                    L.layer = Int64.Parse(el.Value);
-                                                }
-
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                Program.log.Write("load xml lines error: " + ex.Message);
-                                            }
-                                        }
-
-                                        lines.Add(L);
-                                    }
-
-                                }
+                                this.LoadInnerXmlLines(lines, diagram);
                             }
                         }
                     }
@@ -1096,7 +1124,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // NODES DELETE
 
-        // NODE delete all nodes which is not in layer history
+        // NODE delete all nodes which is not in layer history UID0424081301
         public bool CanDeleteNode(Node node)
         {
             // sub node is viewed
@@ -1112,23 +1140,13 @@ namespace Diagram
         }
 
         // NODE delete node
-        public void DeleteNode(Node rec)
+        public void DeleteNode(Node rec) //UID6856126776
         {
             if (rec != null && !this.options.readOnly)
             {
-                foreach (DiagramView DiagramView in this.DiagramViews) //remove node from selected nodes in views
+                foreach (DiagramView diagramView in this.DiagramViews) //remove node from selected nodes in views
                 {
-                    if (DiagramView.selectedNodes.Count() > 0)
-                    {
-                        for (int i = DiagramView.selectedNodes.Count() - 1; i >= 0; i--)
-                        {
-                            if (DiagramView.selectedNodes[i] == rec)
-                            {
-                                DiagramView.selectedNodes.RemoveAt(i);
-                                break;
-                            }
-                        }
-                    }
+                    diagramView.RemoveNodeFromSelection(rec);
                 }
 
                 if (this.TextWindows.Count() > 0) // close text edit to node
@@ -1147,7 +1165,7 @@ namespace Diagram
             }
         }
 
-        // NODE delete multiple nodes and set undo operation
+        // NODE delete multiple nodes and set undo operation UID3218416151
         public void DeleteNodes(Nodes nodes, Position position = null, long layer = 0)
         {
             bool canDelete = false;
@@ -1767,7 +1785,7 @@ namespace Diagram
             }
         }
 
-        // close view
+        // close view UID2584689730
         public void CloseView(DiagramView view)
         {
             this.DiagramViews.Remove(view);
@@ -1782,7 +1800,60 @@ namespace Diagram
             this.CloseDiagram();
         }
 
-        // close diagram
+        // UID3110763859
+        public bool CloseDiagramWithDialog(DiagramView diagramView)
+        {
+            // save as new file
+            bool close = true;
+            if (!this.SavedFile &&
+                (this.FileName == "" || !Os.FileExists(this.FileName)) &&
+                this.DiagramViews.Count() == 1 // can't close if other views alredy opened
+            )
+            {
+                var res = MessageBox.Show(Translations.saveBeforeExit, Translations.confirmExit, MessageBoxButtons.YesNoCancel);
+
+                if (res == DialogResult.Yes)
+                {
+                    close = false;
+                    if (diagramView.DSave.ShowDialog() == DialogResult.OK)
+                    {
+                        this.SaveXMLFile(diagramView.DSave.FileName);
+                        this.SetTitle();
+                        close = true;
+                    }
+                }
+
+                if (res == DialogResult.Cancel)
+                {
+                    close = false;
+                }
+            }
+
+            //save to current file
+            if (!this.SavedFile &&
+                this.FileName != "" &&
+                Os.FileExists(this.FileName) &&
+                this.DiagramViews.Count() == 1 // can close if other views alredy opened
+            )
+            {
+
+                var res = MessageBox.Show(Translations.saveBeforeExit, Translations.confirmExit, MessageBoxButtons.YesNoCancel);
+
+                if (res == DialogResult.Yes)
+                {
+                    this.SaveXMLFile(this.FileName);
+                }
+
+                if (res == DialogResult.Cancel)
+                {
+                    close = false;
+                }
+            }
+
+            return close;
+        }
+
+        // close diagram UID4103426891
         public void CloseDiagram()
         {
             bool canclose = true;
@@ -1855,12 +1926,42 @@ namespace Diagram
             }
         }
 
+        // check if view to diagram exist and show diagram view
+        public bool FocusToView()
+        {
+            Program.log.Write("window get focus");
+            Program.log.Write("OpenDiagram: diagramView: setFocus");
+
+            if (this.DiagramViews.Count() != 0 && !this.DiagramViews[0].Visible)
+            {
+                this.DiagramViews[0].Show();
+                Media.BringToFront(this.DiagramViews[0]); //UID4510272262
+                return true;
+            }
+
+            Program.log.Write("bring focus");
+            
+
+            return false;
+        }
+
+        /*************************************************************************************************************************/
+
+        // TextForm
+        public void RemoveTextForm(TextForm textForm)
+        {
+           this.TextWindows.Remove(textForm);
+        }
+
+
         /*************************************************************************************************************************/
         // CLIPBOARD
 
         // paste part of diagram from clipboard UID4178168001
         public DiagramBlock AddDiagramPart(string DiagramXml, Position position, long layer, decimal scale = 0)
         {
+            string FontDefaultString = Fonts.FontToString(this.FontDefault);
+
             Nodes NewNodes = new Nodes();
             Lines NewLines = new Lines();
 
@@ -1881,239 +1982,14 @@ namespace Diagram
                     {
                         if (diagram.HasElements)
                         {
-
                             if (diagram.Name.ToString() == "rectangles")
                             {
-                                foreach (XElement block in diagram.Descendants())
-                                {
-
-                                    if (block.Name.ToString() == "rectangle")
-                                    {
-                                        Node R = new Node
-                                        {
-                                            font = this.FontDefault
-                                        };
-
-                                        foreach (XElement el in block.Descendants())
-                                        {
-                                            try
-                                            {
-                                                if (el.Name.ToString() == "id")
-                                                {
-                                                    R.id = Int64.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "text")
-                                                {
-                                                    R.name = el.Value;
-                                                }
-
-
-                                                if (el.Name.ToString() == "note")
-                                                {
-                                                    R.note = el.Value;
-                                                }
-
-                                                if (el.Name.ToString() == "x")
-                                                {
-                                                    R.position.x = Tools.StringToDecimal(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "y")
-                                                {
-                                                    R.position.y = Tools.StringToDecimal(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "scale")
-                                                {
-                                                    R.scale = Tools.StringToDecimal(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "color")
-                                                {
-                                                    R.color.Set(el.Value.ToString());
-                                                }
-
-
-                                                if (el.Name.ToString() == "timecreate")
-                                                {
-                                                    R.timecreate = el.Value;
-                                                }
-
-
-                                                if (el.Name.ToString() == "timemodify")
-                                                {
-                                                    R.timemodify = el.Value;
-                                                }
-
-
-                                                if (el.Name.ToString() == "font")
-                                                {
-                                                    R.font = Fonts.XmlToFont(el);
-                                                }
-
-
-                                                if (el.Name.ToString() == "fontcolor")
-                                                {
-                                                    R.fontcolor.Set(el.Value.ToString());
-                                                }
-
-                                                if (el.Name.ToString() == "link")
-                                                {
-                                                    R.link = el.Value;
-                                                }
-
-                                                if (el.Name.ToString() == "shortcut")
-                                                {
-                                                    R.shortcut = Int64.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "mark")
-                                                {
-                                                    R.mark = bool.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "transparent")
-                                                {
-                                                    R.transparent = bool.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "embeddedimage")
-                                                {
-                                                    R.embeddedimage = bool.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "imagedata")
-                                                {
-                                                    R.image = new Bitmap(new MemoryStream(Convert.FromBase64String(el.Value)));
-                                                    R.height = R.image.Height;
-                                                    R.width = R.image.Width;
-                                                    R.isimage = true;
-                                                }
-
-                                                if (el.Name.ToString() == "image")
-                                                {
-                                                    R.imagepath = el.Value.ToString();
-                                                    if (Os.FileExists(R.imagepath))
-                                                    {
-                                                        try
-                                                        {
-                                                            string ext = "";
-                                                            ext = Os.GetExtension(R.imagepath).ToLower();
-
-                                                            if (ext == ".jpg" || ext == ".png" || ext == ".ico" || ext == ".bmp") // skratenie cesty k suboru
-                                                            {
-                                                                R.image = Media.GetImage(R.imagepath);
-                                                                if (ext != ".ico") R.image.MakeTransparent(Color.White);
-                                                                R.height = R.image.Height;
-                                                                R.width = R.image.Width;
-                                                                R.isimage = true;
-                                                            }
-                                                        }
-                                                        catch (Exception ex)
-                                                        {
-                                                            Program.log.Write("load image from xml error: " + ex.Message);
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        R.imagepath = "";
-                                                    }
-                                                }
-
-                                                if (el.Name.ToString() == "timecreate")
-                                                {
-                                                    R.timecreate = el.Value;
-                                                }
-
-
-                                                if (el.Name.ToString() == "timemodify")
-                                                {
-                                                    R.timemodify = el.Value;
-                                                }
-
-                                                if (el.Name.ToString() == "attachment")
-                                                {
-                                                    R.attachment = el.Value;
-                                                }
-
-                                                if (el.Name.ToString() == "layer")
-                                                {
-                                                    R.layer = Int64.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "protect")
-                                                {
-                                                    R.protect = bool.Parse(el.Value);
-                                                }
-
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                Program.log.Write("Data has wrong structure. : error: " + ex.Message);
-                                            }
-                                        }
-
-                                        NewNodes.Add(R);
-                                    }
-                                }
+                                this.LoadInnerXmlRectangles(NewNodes, diagram, FontDefaultString);
                             }
 
                             if (diagram.Name.ToString() == "lines")
                             {
-                                foreach (XElement block in diagram.Descendants())
-                                {
-                                    if (block.Name.ToString() == "line")
-                                    {
-                                        Line L = new Line();
-                                        foreach (XElement el in block.Descendants())
-                                        {
-                                            try
-                                            {
-                                                if (el.Name.ToString() == "start")
-                                                {
-                                                    L.start = Int64.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "end")
-                                                {
-                                                    L.end = Int64.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "scale")
-                                                {
-                                                    L.scale = Tools.StringToDecimal(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "arrow")
-                                                {
-                                                    L.arrow = el.Value == "1" ? true : false;
-                                                }
-
-                                                if (el.Name.ToString() == "color")
-                                                {
-                                                    L.color.Set(el.Value.ToString());
-                                                }
-
-                                                if (el.Name.ToString() == "width")
-                                                {
-                                                    L.width = Int64.Parse(el.Value);
-                                                }
-
-                                                if (el.Name.ToString() == "layer")
-                                                {
-                                                    L.layer = Int64.Parse(el.Value);
-                                                }
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                Program.log.Write("Data has wrong structure. : error: " + ex.Message);
-                                            }
-                                        }
-                                        NewLines.Add(L);
-                                    }
-
-                                }
+                                this.LoadInnerXmlLines(NewLines, diagram);
                             }
                         }
                     }
@@ -2286,117 +2162,75 @@ namespace Diagram
             }
         }
 
-        // copy part of diagram to text xml string
+        // copy part of diagram to text xml string UID4762897496
         public string GetDiagramPart(Nodes nodes)
         {
-           Nodes copy = new Nodes();
-            foreach (Node node in nodes)
+            if (nodes.Count() == 0)
             {
-                copy.Add(node);
+                return "";
             }
+            
+            Nodes copy = new Nodes();
+            copy.Copy(nodes);
 
             string copyxml = "";
 
-            if (copy.Count() > 0)
+            XElement root = new XElement("diagram");
+
+            decimal minx = copy[0].position.x;
+            decimal miny = copy[0].position.y;
+            long minid = copy[0].id;
+            long minlayer = copy[0].layer;
+
+            foreach (Node node in copy)
             {
-                XElement root = new XElement("diagram");
-                XElement rectangles = new XElement("rectangles");
-                XElement lines = new XElement("lines");
-
-                decimal minx = copy[0].position.x;
-                decimal miny = copy[0].position.y;
-                decimal minid = copy[0].id;
-                decimal minlayer = copy[0].layer;
-
-                foreach (Node node in copy)
-                {
-                    if (node.position.x < minx) minx = node.position.x;
-                    if (node.position.y < miny) miny = node.position.y;
-                    if (node.id < minid) minid = node.id;
-                    if (node.layer < minlayer) minlayer = node.layer;
-                }
-
-                Nodes subnodes = new Nodes();
-
-                foreach (Node node in copy)
-                {
-                    GetLayerNodes(node, subnodes);
-                }
-
-                foreach (Node node in subnodes)
-                {
-                    copy.Add(node);
-                }
-
-                foreach (Node rec in copy)
-                {
-                    XElement rectangle = new XElement("rectangle");
-                    rectangle.Add(new XElement("id", rec.id - minid + 1));
-                    rectangle.Add(new XElement("x", rec.position.x - minx));
-                    rectangle.Add(new XElement("y", rec.position.y - miny));
-                    rectangle.Add(new XElement("scale", rec.scale));
-                    rectangle.Add(new XElement("text", rec.name));
-                    rectangle.Add(new XElement("note", rec.note));
-                    rectangle.Add(new XElement("color", rec.color));
-                    rectangle.Add(Fonts.FontToXml(rec.font));
-                    rectangle.Add(new XElement("fontcolor", rec.fontcolor));
-                    if (rec.link != "") rectangle.Add(new XElement("link", rec.link));
-                    if (rec.shortcut != 0 && rec.shortcut - minid + 1 > 0) rectangle.Add(new XElement("shortcut", rec.shortcut + 1));
-                    if (rec.mark) rectangle.Add(new XElement("mark", rec.mark));
-                    rectangle.Add(new XElement("transparent", rec.transparent));
-
-                    if (rec.embeddedimage) rectangle.Add(new XElement("embeddedimage", rec.embeddedimage));
-
-                    if (rec.embeddedimage && rec.image != null)
-                    {
-                        TypeConverter converter = TypeDescriptor.GetConverter(typeof(Bitmap));
-                        rectangle.Add(new XElement("imagedata", Convert.ToBase64String((byte[])converter.ConvertTo(rec.image, typeof(byte[])))));
-                    }
-                    else if (rec.imagepath != "")
-                    {
-                        rectangle.Add(new XElement("image", rec.imagepath));
-                    }
-
-                    rectangle.Add(new XElement("timecreate", rec.timecreate));
-                    rectangle.Add(new XElement("timemodify", rec.timemodify));
-                    rectangle.Add(new XElement("attachment", rec.attachment));
-                    if (rec.layer != 0 && rec.layer - minlayer >= 0)  rectangle.Add(new XElement("layer", rec.layer - minlayer));
-                    if (rec.protect) rectangle.Add(new XElement("protect", rec.protect));
-
-                    rectangles.Add(rectangle);
-                }
-
-                foreach (Line li in this.GetAllLines())
-                {
-                    foreach (Node recstart in copy)
-                    {
-                        if (li.start == recstart.id)
-                        {
-                            foreach (Node recend in copy)
-                            {
-                                if (li.end == recend.id)
-                                {
-                                    XElement line = new XElement("line");
-                                    line.Add(new XElement("start", li.start - minid + 1));
-                                    line.Add(new XElement("end", li.end - minid + 1));
-                                    line.Add(new XElement("scale", li.scale));
-                                    line.Add(new XElement("arrow", (li.arrow) ? "1" : "0"));
-                                    line.Add(new XElement("color", li.color));
-                                    if (li.width != 1) line.Add(new XElement("width", li.width));
-                                    if (li.layer - minid +1 > 0) {
-                                        line.Add(new XElement("layer", li.layer - minid + 1));
-                                    }
-                                    lines.Add(line);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                root.Add(rectangles);
-                root.Add(lines);
-                copyxml = root.ToString();
+                if (node.position.x < minx) minx = node.position.x;
+                if (node.position.y < miny) miny = node.position.y;
+                if (node.id < minid) minid = node.id;
+                if (node.layer < minlayer) minlayer = node.layer;
             }
+
+            foreach (Node rec in copy)
+            {
+                rec.position.x = rec.position.x - minx;
+                rec.position.y = rec.position.y - miny;
+            }
+            
+            Nodes subnodes = new Nodes();
+
+            foreach (Node node in nodes)
+            {
+                GetLayerNodes(node, subnodes);
+            }
+
+            foreach (Node node in subnodes)
+            {
+                copy.Add(node.clone());
+            }            
+
+            foreach (Node rec in copy)
+            {
+                rec.id = rec.id - minid + 1;
+                if (rec.shortcut != 0 && rec.shortcut - minid + 1 > 0) rec.shortcut = rec.shortcut + 1;
+                if (rec.layer != 0 && rec.layer - minlayer >= 0)  rec.layer = rec.layer - minlayer;
+            }
+            
+            Lines lines = new Lines();
+            lines.Copy(this.layers.GetAllLinesFromNodes(nodes));
+
+            foreach (Line li in lines)
+            {
+                li.start = li.start - minid + 1;
+                li.end = li.end - minid + 1;
+                li.layer = li.layer - minid + 1;
+            }
+
+            XElement xrectangles = this.SaveInnerXmlRectangles(copy);
+            XElement xlines = this.SaveInnerXmlLines(lines);
+                
+            root.Add(xrectangles);
+            root.Add(xlines);
+            copyxml = root.ToString();
 
             return copyxml;
         }
