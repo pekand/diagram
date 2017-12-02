@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
-using System.Globalization;
 using System.Drawing.Imaging;
 using System.Collections.Specialized;
 

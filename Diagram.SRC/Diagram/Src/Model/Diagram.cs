@@ -7,7 +7,6 @@ using System.Xml.Linq;
 using System.Xml;
 using System.IO;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 using System.Security;
 
 namespace Diagram
@@ -1074,13 +1073,12 @@ namespace Diagram
         // NODE find node by link
         public Node GetNodeByScriptID(string id)
         {
-            Regex regex = new Regex(@"^\s*@(\w+){1}\s*$");
-            Match match = null;
-
             foreach (Node rec in this.GetAllNodes()) // Loop through List with foreach
             {
-                match = regex.Match(rec.link);
-                if (match.Success && match.Groups[1].Value == id) return rec;
+                if (Patterns.isScriptId(rec.link, id))
+                {
+                    return rec;
+                }
             }
 
             return null;

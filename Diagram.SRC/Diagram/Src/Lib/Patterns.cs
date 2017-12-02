@@ -210,5 +210,17 @@ namespace Diagram
             ).Groups["url"].Value;
         }
 
+        /// <summary>
+        /// check if url start on http or https </summary>
+        public static bool isScriptId(String link, string id)
+        {
+            Regex regex = new Regex(@"^\s*@(\w+){1}\s*$");
+            Match match = regex.Match(link);
+            if (match.Success && match.Groups[1].Value == id)
+                return true;
+
+            return false;
+        }
+
     }
 }

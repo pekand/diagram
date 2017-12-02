@@ -2,10 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-/*
- 
-*/
-
 namespace Diagram
 {
     public delegate void PositionChangeEventHandler(object source, PositionEventArgs e);

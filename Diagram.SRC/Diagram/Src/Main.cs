@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using System.Security;
 
@@ -555,7 +554,7 @@ namespace Diagram
             List<String> CommandLineOpen = new List<String>();
 
             String arg = "";
-            for (int i = 0; i < args.Count(); i++)
+            for (int i = 0; i < args.Length; i++)
             {
 
                 //skip application name
@@ -620,7 +619,7 @@ namespace Diagram
                 return;
             }
 
-            for (int i = 0; i < CommandLineOpen.Count(); i++)
+            for (int i = 0; i < CommandLineOpen.Count; i++)
             {
                 string file = CommandLineOpen[i];
 

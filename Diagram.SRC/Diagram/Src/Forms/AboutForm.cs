@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 
-/*
- 
-*/
-
 namespace Diagram
 {
     public partial class AboutForm : Form //UID4238351112

@@ -1,21 +1,4 @@
 ﻿using System;
-using System.Text;
-using System.Xml.Linq;
-using System.Xml;
-using System.IO;
-using System.Windows.Forms;
-
-/*
-    class OptionsFile
-        OptionsFile()
-        loadConfigFile()
-        saveConfigFile()
-        getPortableConfigFilePath()
-        getGlobalConfigFileDirectory()
-        getGlobalConfigFilePath()
-        openConfigDir()
-        
-*/
 
 namespace Diagram
 {

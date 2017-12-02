@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 
-/*
- 
-*/
-
 namespace Diagram
 {
     public class SearchPanel : Panel //UID1308094022

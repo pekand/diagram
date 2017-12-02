@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Reflection;
-using System.Diagnostics;
+using System.Windows.Forms;
 
 // [VERSION]
 [assembly: AssemblyVersion("0.5.0.43")]

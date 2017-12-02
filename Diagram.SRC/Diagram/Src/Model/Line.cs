@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace Diagram
+﻿namespace Diagram
 {
     /// <summary>
     /// Line between two nodes in diagram</summary>

@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 
-/*
- 
-*/
-
 namespace Diagram
 {
     public partial class NewPasswordForm : Form //UID2816442898

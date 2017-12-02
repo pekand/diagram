@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
-using System.IO.Compression;
 using System.ComponentModel;
 
 #if !MONO
