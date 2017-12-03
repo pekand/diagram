@@ -4524,20 +4524,6 @@ DiagramView.Invalidate();</note>
       <timemodify>2017-10-8 11:35:17</timemodify>
     </rectangle>
     <rectangle>
-      <id>1590</id>
-      <fontcolor>Black</fontcolor>
-      <text>clode application</text>
-      <layer>0</layer>
-      <x>-665.0000000000000000</x>
-      <y>3861.00</y>
-      <width>126</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#00DCE6</color>
-      <timecreate>2017-10-14 21:09:03</timecreate>
-      <timemodify>2017-10-14 21:09:03</timemodify>
-    </rectangle>
-    <rectangle>
       <id>1937</id>
       <fontcolor>Black</fontcolor>
       <text>open diagram from existing file</text>
@@ -4566,111 +4552,6 @@ DiagramView.Invalidate();</note>
       <color>#D9CCFF</color>
       <timecreate>2017-10-14 22:30:22</timecreate>
       <timemodify>2017-10-14 22:30:29</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1604</id>
-      <fontcolor>Black</fontcolor>
-      <text>Saveas</text>
-      <link>UID9358805584</link>
-      <layer>0</layer>
-      <x>4.0000000000000000</x>
-      <y>3783.00</y>
-      <width>70</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-10-14 21:42:02</timecreate>
-      <timemodify>2017-10-14 21:42:10</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1603</id>
-      <fontcolor>Black</fontcolor>
-      <text>Save</text>
-      <link>UID8354947577</link>
-      <layer>0</layer>
-      <x>-94.0000000000000000</x>
-      <y>3796.00</y>
-      <width>55</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-10-14 21:41:39</timecreate>
-      <timemodify>2017-10-14 21:41:47</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1602</id>
-      <fontcolor>Black</fontcolor>
-      <text>SaveInnerXMLFile</text>
-      <link>UID8716692347</link>
-      <layer>0</layer>
-      <x>-142.0000000000000000000000000</x>
-      <y>3923.0000000000000000000000000</y>
-      <width>137</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-10-14 21:36:39</timecreate>
-      <timemodify>2017-10-14 21:36:44</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1601</id>
-      <fontcolor>Black</fontcolor>
-      <text>SaveXMLFile</text>
-      <link>UID6023051509</link>
-      <layer>0</layer>
-      <x>-82.0000000000000000000000000</x>
-      <y>3857.0000000000000000000000000</y>
-      <width>106</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-10-14 21:36:13</timecreate>
-      <timemodify>2017-10-14 21:36:23</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1599</id>
-      <fontcolor>Black</fontcolor>
-      <text>DiagramView_FormClosed</text>
-      <link>UID2411004144</link>
-      <layer>0</layer>
-      <x>174.0000000000000000</x>
-      <y>3855.00</y>
-      <width>188</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-10-14 21:12:00</timecreate>
-      <timemodify>2017-10-14 21:12:10</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1598</id>
-      <fontcolor>Black</fontcolor>
-      <text>DiagramApp_FormClosing</text>
-      <link>UID8741811919</link>
-      <layer>0</layer>
-      <x>-516.0000000000000000</x>
-      <y>3861.00</y>
-      <width>186</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-10-14 21:10:17</timecreate>
-      <timemodify>2017-10-14 21:10:33</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1600</id>
-      <fontcolor>Black</fontcolor>
-      <text>ShowIfIsLastViews</text>
-      <link>UID3969703093</link>
-      <layer>0</layer>
-      <x>-522.0000000000000000</x>
-      <y>3937.00</y>
-      <width>139</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-10-14 21:27:06</timecreate>
-      <timemodify>2017-10-14 21:27:11</timemodify>
     </rectangle>
     <rectangle>
       <id>1607</id>
@@ -4995,18 +4876,18 @@ DiagramView.Invalidate();</note>
       <timemodify>2017-10-14 23:27:18</timemodify>
     </rectangle>
     <rectangle>
-      <id>2123</id>
+      <id>2150</id>
       <fontcolor>Black</fontcolor>
       <text>clode application</text>
       <layer>0</layer>
-      <x>1083.68750000000000000000000</x>
-      <y>3847.234375000000000000000000</y>
+      <x>-607.970055134198932200000000</x>
+      <y>3816.0539097545409162000000000</y>
       <width>126</width>
       <height>36</height>
-      <scale>1</scale>
+      <scale>0.0</scale>
       <color>#00DCE6</color>
-      <timecreate>2017-12-2 00:23:32</timecreate>
-      <timemodify>2017-12-2 00:23:32</timemodify>
+      <timecreate>2017-12-2 22:14:21</timecreate>
+      <timemodify>2017-12-2 22:14:21</timemodify>
     </rectangle>
     <rectangle>
       <id>1647</id>
@@ -5029,8 +4910,8 @@ DiagramView.Invalidate();</note>
       <text>Saveas</text>
       <link>UID9358805584</link>
       <layer>0</layer>
-      <x>1438.8125000000000000000000000</x>
-      <y>3865.7343750000000000000000000</y>
+      <x>-355.1875000000000000000000000</x>
+      <y>3873.7343750000000000000000000</y>
       <width>70</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5044,8 +4925,8 @@ DiagramView.Invalidate();</note>
       <text>Save</text>
       <link>UID8354947577</link>
       <layer>0</layer>
-      <x>1426.5625000000000000000000000</x>
-      <y>3867.3593750000000000000000000</y>
+      <x>-367.4375000000000000000000000</x>
+      <y>3875.3593750000000000000000000</y>
       <width>55</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5059,8 +4940,8 @@ DiagramView.Invalidate();</note>
       <text>SaveInnerXMLFile</text>
       <link>UID8716692347</link>
       <layer>0</layer>
-      <x>1420.5625000000000000000000000</x>
-      <y>3883.2343750000000000000000000</y>
+      <x>-373.4375000000000000000000000</x>
+      <y>3891.2343750000000000000000000</y>
       <width>137</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5074,8 +4955,8 @@ DiagramView.Invalidate();</note>
       <text>SaveXMLFile</text>
       <link>UID6023051509</link>
       <layer>0</layer>
-      <x>1428.0625000000000000000000000</x>
-      <y>3874.9843750000000000000000000</y>
+      <x>-365.9375000000000000000000000</x>
+      <y>3882.9843750000000000000000000</y>
       <width>106</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5089,8 +4970,8 @@ DiagramView.Invalidate();</note>
       <text>DiagramView_FormClosed</text>
       <link>UID2411004144</link>
       <layer>0</layer>
-      <x>1460.0625000000000000000000000</x>
-      <y>3874.7343750000000000000000000</y>
+      <x>-333.9375000000000000000000000</x>
+      <y>3882.7343750000000000000000000</y>
       <width>188</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5104,8 +4985,8 @@ DiagramView.Invalidate();</note>
       <text>DiagramApp_FormClosing</text>
       <link>UID8741811919</link>
       <layer>0</layer>
-      <x>1373.8125000000000000000000000</x>
-      <y>3875.4843750000000000000000000</y>
+      <x>-421.0625000000000000000000000</x>
+      <y>3882.8593750000000000000000000</y>
       <width>186</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5119,8 +5000,8 @@ DiagramView.Invalidate();</note>
       <text>ShowIfIsLastViews</text>
       <link>UID3969703093</link>
       <layer>0</layer>
-      <x>1373.0625000000000000000000000</x>
-      <y>3884.9843750000000000000000000</y>
+      <x>-420.9375000000000000000000000</x>
+      <y>3892.9843750000000000000000000</y>
       <width>139</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5134,8 +5015,8 @@ DiagramView.Invalidate();</note>
       <text>CloseView</text>
       <link>UID2584689730</link>
       <layer>0</layer>
-      <x>1486.5351562499999963125000000</x>
-      <y>3874.3593750000000000000000000</y>
+      <x>-307.4648437500000036875000000</x>
+      <y>3882.3593750000000000000000000</y>
       <width>89</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5149,8 +5030,8 @@ DiagramView.Invalidate();</note>
       <text>CloseDiagram</text>
       <link>UID4103426891</link>
       <layer>0</layer>
-      <x>1500.5351562499999963125000000</x>
-      <y>3874.1093750000000000000000000</y>
+      <x>-293.4648437500000036875000000</x>
+      <y>3882.1093750000000000000000000</y>
       <width>111</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5164,8 +5045,8 @@ DiagramView.Invalidate();</note>
       <text>CloseDiagramWithDialog</text>
       <link>UID3110763859</link>
       <layer>0</layer>
-      <x>1401.0351562499999963125000000</x>
-      <y>3874.9843750000000000000000000</y>
+      <x>-392.9648437500000036875000000</x>
+      <y>3882.9843750000000000000000000</y>
       <width>178</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5178,8 +5059,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>canclose</text>
       <layer>0</layer>
-      <x>1446.6601562499999963125000000</x>
-      <y>3875.1093750000000000000000000</y>
+      <x>-347.3398437500000036875000000</x>
+      <y>3883.1093750000000000000000000</y>
       <width>78</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5193,8 +5074,8 @@ DiagramView.Invalidate();</note>
       <text>CloseFile</text>
       <link>UID3849853197</link>
       <layer>0</layer>
-      <x>1495.1875000000000000000000000</x>
-      <y>3865.2343750000000000000000000</y>
+      <x>-298.8125000000000000000000000</x>
+      <y>3873.2343750000000000000000000</y>
       <width>81</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5208,8 +5089,8 @@ DiagramView.Invalidate();</note>
       <text>RemoveDiagram</text>
       <link>UID1434097522</link>
       <layer>0</layer>
-      <x>1506.6601562499999963125000000</x>
-      <y>3865.6093750000000000000000000</y>
+      <x>-287.3398437500000036875000000</x>
+      <y>3873.6093750000000000000000000</y>
       <width>127</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5223,8 +5104,8 @@ DiagramView.Invalidate();</note>
       <text>CloseEmptyApplication</text>
       <link>UID0787891060</link>
       <layer>0</layer>
-      <x>1519.4101562499999963125000000</x>
-      <y>3873.6093750000000000000000000</y>
+      <x>-274.5898437500000036875000000</x>
+      <y>3881.6093750000000000000000000</y>
       <width>165</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5237,8 +5118,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>main</text>
       <layer>0</layer>
-      <x>1510.4101562499999963125000000</x>
-      <y>3859.3593750000000000000000000</y>
+      <x>-283.5898437500000036875000000</x>
+      <y>3867.3593750000000000000000000</y>
       <width>54</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5252,8 +5133,8 @@ DiagramView.Invalidate();</note>
       <text>ExitApplication</text>
       <link>UID0090378181</link>
       <layer>0</layer>
-      <x>1545.4101562499999963125000000</x>
-      <y>3873.3593750000000000000000000</y>
+      <x>-248.5898437500000036875000000</x>
+      <y>3881.3593750000000000000000000</y>
       <width>114</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5267,8 +5148,8 @@ DiagramView.Invalidate();</note>
       <text>RequestStop</text>
       <link>UID3713513860</link>
       <layer>0</layer>
-      <x>1562.9101562499999963125000000</x>
-      <y>3873.2343750000000000000000000</y>
+      <x>-231.0898437500000036875000000</x>
+      <y>3881.2343750000000000000000000</y>
       <width>103</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5281,8 +5162,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>sever</text>
       <layer>0</layer>
-      <x>1565.9101562499999963125000000</x>
-      <y>3880.4843750000000000000000000</y>
+      <x>-228.0898437500000036875000000</x>
+      <y>3888.4843750000000000000000000</y>
       <width>58</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5296,8 +5177,8 @@ DiagramView.Invalidate();</note>
       <text>close message process</text>
       <link>UID5024907634</link>
       <layer>0</layer>
-      <x>1580.4101562499999963125000000</x>
-      <y>3872.9843750000000000000000000</y>
+      <x>-213.5898437500000036875000000</x>
+      <y>3880.9843750000000000000000000</y>
       <width>167</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5311,8 +5192,8 @@ DiagramView.Invalidate();</note>
       <text>TerminateApplication</text>
       <link>UID4213278976</link>
       <layer>0</layer>
-      <x>1603.5351562499999963125000000</x>
-      <y>3873.1093750000000000000000000</y>
+      <x>-190.4648437500000036875000000</x>
+      <y>3881.1093750000000000000000000</y>
       <width>153</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5325,8 +5206,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>main</text>
       <layer>0</layer>
-      <x>1526.5351562499999963125000000</x>
-      <y>3867.1093750000000000000000000</y>
+      <x>-267.4648437500000036875000000</x>
+      <y>3875.1093750000000000000000000</y>
       <width>54</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5339,8 +5220,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>MainForm</text>
       <layer>0</layer>
-      <x>1613.1601562499999963125000000</x>
-      <y>3879.3593750000000000000000000</y>
+      <x>-180.8398437500000036875000000</x>
+      <y>3887.3593750000000000000000000</y>
       <width>86</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5354,8 +5235,8 @@ DiagramView.Invalidate();</note>
       <text>TerminateApplication</text>
       <link>UID4067187261</link>
       <layer>0</layer>
-      <x>1625.5351562499999963125000000</x>
-      <y>3873.1093750000000000000000000</y>
+      <x>-168.4648437500000036875000000</x>
+      <y>3881.1093750000000000000000000</y>
       <width>153</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5368,8 +5249,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>main</text>
       <layer>0</layer>
-      <x>1639.9101562499999963125000000</x>
-      <y>3879.3593750000000000000000000</y>
+      <x>-154.0898437500000036875000000</x>
+      <y>3887.3593750000000000000000000</y>
       <width>54</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5382,8 +5263,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>server</text>
       <layer>0</layer>
-      <x>1587.0351562499999963125000000</x>
-      <y>3879.2343750000000000000000000</y>
+      <x>-206.9648437500000036875000000</x>
+      <y>3887.2343750000000000000000000</y>
       <width>62</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5396,8 +5277,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>main</text>
       <layer>0</layer>
-      <x>1550.4101562499999963125000000</x>
-      <y>3866.7343750000000000000000000</y>
+      <x>-243.5898437500000036875000000</x>
+      <y>3874.7343750000000000000000000</y>
       <width>54</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5409,8 +5290,8 @@ DiagramView.Invalidate();</note>
       <id>2146</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>1347.31250000000000000000000</x>
-      <y>3914.859375000000000000000000</y>
+      <x>-446.68750000000000000000000</x>
+      <y>3922.859375000000000000000000</y>
       <width>20</width>
       <height>20</height>
       <scale>0</scale>
@@ -5423,8 +5304,8 @@ DiagramView.Invalidate();</note>
       <id>2147</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>1658.31250000000000000000000</x>
-      <y>3909.859375000000000000000000</y>
+      <x>-135.68750000000000000000000</x>
+      <y>3917.859375000000000000000000</y>
       <width>20</width>
       <height>20</height>
       <scale>0</scale>
@@ -5437,8 +5318,8 @@ DiagramView.Invalidate();</note>
       <id>2148</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>1670.31250000000000000000000</x>
-      <y>3815.859375000000000000000000</y>
+      <x>-123.68750000000000000000000</x>
+      <y>3823.859375000000000000000000</y>
       <width>20</width>
       <height>20</height>
       <scale>0</scale>
@@ -5451,8 +5332,8 @@ DiagramView.Invalidate();</note>
       <id>2149</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>1347.31250000000000000000000</x>
-      <y>3816.859375000000000000000000</y>
+      <x>-446.68750000000000000000000</x>
+      <y>3824.859375000000000000000000</y>
       <width>20</width>
       <height>20</height>
       <scale>0</scale>
@@ -5900,7 +5781,7 @@ print 'uid created'</note>
       <text>AddDiagramPart</text>
       <link>UID4178168001</link>
       <layer>0</layer>
-      <x>-174.0000000000000000000000010</x>
+      <x>-173.0000000000000000000000010</x>
       <y>6368.0000000000000000000000010</y>
       <width>126</width>
       <height>36</height>
@@ -5966,168 +5847,6 @@ print 'uid created'</note>
       <timemodify>2017-12-1 17:14:12</timemodify>
     </rectangle>
     <rectangle>
-      <id>1906</id>
-      <fontcolor>Black</fontcolor>
-      <text>CloseView</text>
-      <link>UID2584689730</link>
-      <layer>0</layer>
-      <x>385.7812499999999705</x>
-      <y>3852.00</y>
-      <width>89</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-1 17:54:03</timecreate>
-      <timemodify>2017-12-1 17:54:15</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1907</id>
-      <fontcolor>Black</fontcolor>
-      <text>CloseDiagram</text>
-      <link>UID4103426891</link>
-      <layer>0</layer>
-      <x>497.7812499999999705</x>
-      <y>3850.00</y>
-      <width>111</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-1 17:57:51</timecreate>
-      <timemodify>2017-12-1 17:58:03</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1909</id>
-      <fontcolor>Black</fontcolor>
-      <text>CloseDiagramWithDialog</text>
-      <link>UID3110763859</link>
-      <layer>0</layer>
-      <x>-298.2187500000000295</x>
-      <y>3857.00</y>
-      <width>178</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-1 17:59:54</timecreate>
-      <timemodify>2017-12-1 18:00:10</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1911</id>
-      <fontcolor>Black</fontcolor>
-      <text>canclose</text>
-      <layer>0</layer>
-      <x>66.7812499999999705</x>
-      <y>3858.00</y>
-      <width>78</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#A5A5A5</color>
-      <timecreate>2017-12-1 18:01:41</timecreate>
-      <timemodify>2017-12-1 18:01:41</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1912</id>
-      <fontcolor>Black</fontcolor>
-      <text>CloseFile</text>
-      <link>UID3849853197</link>
-      <layer>0</layer>
-      <x>455.0000000000000000</x>
-      <y>3779.00</y>
-      <width>81</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-1 18:03:27</timecreate>
-      <timemodify>2017-12-1 18:03:27</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1913</id>
-      <fontcolor>Black</fontcolor>
-      <text>RemoveDiagram</text>
-      <link>UID1434097522</link>
-      <layer>0</layer>
-      <x>546.7812499999999705</x>
-      <y>3782.00</y>
-      <width>127</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-1 18:03:47</timecreate>
-      <timemodify>2017-12-1 18:04:04</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1914</id>
-      <fontcolor>Black</fontcolor>
-      <text>CloseEmptyApplication</text>
-      <link>UID0787891060</link>
-      <layer>0</layer>
-      <x>648.7812499999999705</x>
-      <y>3846.00</y>
-      <width>165</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-1 18:03:52</timecreate>
-      <timemodify>2017-12-1 18:04:48</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1918</id>
-      <fontcolor>Black</fontcolor>
-      <text>main</text>
-      <layer>0</layer>
-      <x>576.7812499999999705</x>
-      <y>3732.00</y>
-      <width>54</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#A5A5A5</color>
-      <timecreate>2017-12-1 18:05:01</timecreate>
-      <timemodify>2017-12-1 18:05:01</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1919</id>
-      <fontcolor>Black</fontcolor>
-      <text>ExitApplication</text>
-      <link>UID0090378181</link>
-      <layer>0</layer>
-      <x>856.7812499999999705</x>
-      <y>3844.00</y>
-      <width>114</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-1 18:05:54</timecreate>
-      <timemodify>2017-12-1 18:06:22</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1920</id>
-      <fontcolor>Black</fontcolor>
-      <text>RequestStop</text>
-      <link>UID3713513860</link>
-      <layer>0</layer>
-      <x>862.7812499999999705</x>
-      <y>3956.00</y>
-      <width>103</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-1 18:07:21</timecreate>
-      <timemodify>2017-12-1 18:07:46</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1921</id>
-      <fontcolor>Black</fontcolor>
-      <text>sever</text>
-      <layer>0</layer>
-      <x>886.7812499999999705</x>
-      <y>4014.00</y>
-      <width>58</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#A5A5A5</color>
-      <timecreate>2017-12-1 18:07:30</timecreate>
-      <timemodify>2017-12-1 18:07:30</timemodify>
-    </rectangle>
-    <rectangle>
       <id>1945</id>
       <fontcolor>Black</fontcolor>
       <text>open diagram from dialog</text>
@@ -6140,121 +5859,6 @@ print 'uid created'</note>
       <color>#00DCE6</color>
       <timecreate>2017-12-1 18:57:37</timecreate>
       <timemodify>2017-12-1 18:57:37</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1925</id>
-      <fontcolor>Black</fontcolor>
-      <text>close message process</text>
-      <link>UID5024907634</link>
-      <layer>0</layer>
-      <x>674.7812499999999705</x>
-      <y>3959.00</y>
-      <width>167</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-1 18:09:36</timecreate>
-      <timemodify>2017-12-1 18:09:54</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1926</id>
-      <fontcolor>Black</fontcolor>
-      <text>TerminateApplication</text>
-      <link>UID4213278976</link>
-      <layer>0</layer>
-      <x>489.7812499999999705</x>
-      <y>3962.00</y>
-      <width>153</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-1 18:10:03</timecreate>
-      <timemodify>2017-12-1 18:24:22</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1927</id>
-      <fontcolor>Black</fontcolor>
-      <text>main</text>
-      <layer>0</layer>
-      <x>705.7812499999999705</x>
-      <y>3794.00</y>
-      <width>54</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#A5A5A5</color>
-      <timecreate>2017-12-1 18:10:56</timecreate>
-      <timemodify>2017-12-1 18:10:56</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1928</id>
-      <fontcolor>Black</fontcolor>
-      <text>MainForm</text>
-      <layer>0</layer>
-      <x>566.7812499999999705</x>
-      <y>4012.00</y>
-      <width>86</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#A5A5A5</color>
-      <timecreate>2017-12-1 18:11:21</timecreate>
-      <timemodify>2017-12-1 18:11:21</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1929</id>
-      <fontcolor>Black</fontcolor>
-      <text>TerminateApplication</text>
-      <link>UID4067187261</link>
-      <layer>0</layer>
-      <x>313.7812499999999705</x>
-      <y>3964.00</y>
-      <width>153</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-1 18:14:40</timecreate>
-      <timemodify>2017-12-1 18:15:16</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1931</id>
-      <fontcolor>Black</fontcolor>
-      <text>main</text>
-      <layer>0</layer>
-      <x>428.7812499999999705</x>
-      <y>4014.00</y>
-      <width>54</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#A5A5A5</color>
-      <timecreate>2017-12-1 18:24:28</timecreate>
-      <timemodify>2017-12-1 18:24:28</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1932</id>
-      <fontcolor>Black</fontcolor>
-      <text>server</text>
-      <layer>0</layer>
-      <x>727.7812499999999705</x>
-      <y>4009.00</y>
-      <width>62</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#A5A5A5</color>
-      <timecreate>2017-12-1 18:24:38</timecreate>
-      <timemodify>2017-12-1 18:24:38</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1933</id>
-      <fontcolor>Black</fontcolor>
-      <text>main</text>
-      <layer>0</layer>
-      <x>896.7812499999999705</x>
-      <y>3791.00</y>
-      <width>54</width>
-      <height>36</height>
-      <scale>0</scale>
-      <color>#A5A5A5</color>
-      <timecreate>2017-12-1 18:24:48</timecreate>
-      <timemodify>2017-12-1 18:24:48</timemodify>
     </rectangle>
     <rectangle>
       <id>1936</id>
@@ -10476,46 +10080,6 @@ print 'uid created'</note>
       <layer>0</layer>
     </line>
     <line>
-      <start>1598</start>
-      <end>1590</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1602</start>
-      <end>1601</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1603</start>
-      <end>1601</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1604</start>
-      <end>1601</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1600</start>
-      <end>1598</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
       <start>1617</start>
       <end>1607</end>
       <scale>0</scale>
@@ -10886,174 +10450,6 @@ print 'uid created'</note>
     <line>
       <start>1899</start>
       <end>1523</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1906</start>
-      <end>1599</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1907</start>
-      <end>1906</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1909</start>
-      <end>1598</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1601</start>
-      <end>1909</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1911</start>
-      <end>1601</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1599</start>
-      <end>1911</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1918</start>
-      <end>1913</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1919</start>
-      <end>1914</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1920</start>
-      <end>1919</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1921</start>
-      <end>1920</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1925</start>
-      <end>1920</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1926</start>
-      <end>1925</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1927</start>
-      <end>1914</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1928</start>
-      <end>1926</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1929</start>
-      <end>1926</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1912</start>
-      <end>1907</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1913</start>
-      <end>1907</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1914</start>
-      <end>1907</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1931</start>
-      <end>1929</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1932</start>
-      <end>1925</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>1933</start>
-      <end>1919</end>
       <scale>0</scale>
       <arrow>0</arrow>
       <color>Black</color>
@@ -12534,6 +11930,14 @@ print 'uid created'</note>
     <line>
       <start>2149</start>
       <end>2146</end>
+      <scale>0</scale>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>2149</start>
+      <end>2150</end>
       <scale>0</scale>
       <arrow>0</arrow>
       <color>Black</color>

@@ -1968,8 +1968,8 @@ namespace Diagram
                 CheckCharacters = false
             };
 
+            // parse xml file
             string xml = DiagramXml;
-
             try
             {
                 using (XmlReader xr = XmlReader.Create(new StringReader(xml), xws))
@@ -1997,29 +1997,25 @@ namespace Diagram
             {
                 Program.log.Write("Data has wrong structure. : error: " + ex.Message);
             }
-
-
-            List<MappedNode> maps = new List<MappedNode>();
-
+            
+            // order nodes
             Nodes NewReorderedNodes = new Nodes(); // order nodes parent first (layer must exist when sub node is created)
             this.NodesReorderNodes(0, null, NewNodes, NewReorderedNodes);
 
-            long layerParent = 0;
-
-            MappedNode mappedNode;
-            Nodes createdNodes = new Nodes();
-            Node newNode = null;
-            long oldId = 0;
-
+            // set first item for searching max scale and left corner
             decimal maxScale = 0;
-            Position topCorner = new Position(); 
             if (NewReorderedNodes.Count > 0) {
-                maxScale = NewReorderedNodes[0].scale;
-                topCorner.Set(NewReorderedNodes[0].position);                
+                maxScale = NewReorderedNodes[0].scale;              
             }
 
+            List<MappedNode> maps = new List<MappedNode>();
+            long layerParent = 0;
+            long oldId = 0;
+            Node newNode = null;
+            Nodes createdNodes = new Nodes();
             foreach (Node rec in NewReorderedNodes)
             {
+                // remap layer ids
                 layerParent = 0;
                 if (rec.layer == 0)
                 {
@@ -2038,13 +2034,15 @@ namespace Diagram
                 }
 
                 rec.layer = layerParent;
+                
                 //rec.position.Add(position);
-                rec.resize();
+                //rec.resize();
 
                 oldId = rec.id;
                 newNode = this.CreateNode(rec);
-
+                MappedNode mappedNode;
                 if (newNode != null) {
+                    // remember id in old diagram and current diagram
                     mappedNode = new MappedNode {
                         oldId = oldId,
                         newNode = newNode
@@ -2052,20 +2050,10 @@ namespace Diagram
                     createdNodes.Add(newNode);
                     maps.Add(mappedNode);
                 }
-
-
+                
+                // search for max sxale in selection
                 if (rec.scale > maxScale) {
                     maxScale = rec.scale;
-                }
-
-                if (rec.position.x > topCorner.x)
-                {
-                    topCorner.x = rec.position.x;
-                }
-
-                if (rec.position.y > topCorner.y)
-                {
-                    topCorner.y = rec.position.y;
                 }
             }
 
@@ -2074,29 +2062,34 @@ namespace Diagram
             {
                 if (rec.shortcut != 0)
                 {
+                    bool foundMappedNode = false;
                     foreach (MappedNode mapednode in maps)
                     {
                         if (rec.shortcut == mapednode.oldId)
                         {
                             rec.shortcut = mapednode.newNode.id;
+                            foundMappedNode = true;
                             break;
                         }
                     }
+                    
+                    if(!foundMappedNode) 
+                    {
+                        rec.shortcut = 0;
+                    }
                 }
             }
-
 
             // scale layer
             decimal deltaScale = maxScale - scale;
             foreach (Node rec in NewNodes)
             {
                 rec.scale -= deltaScale;
-                rec.position.Scale(Tools.GetScale(rec.scale - maxScale)).Add(position);
+                rec.position.Split(Tools.GetScale(deltaScale)).Add(position);
             }
 
-
-            Lines createdLines = new Lines();
             Line newLine = null;
+            Lines createdLines = new Lines();
             foreach (Line line in NewLines)
             {
                 foreach (MappedNode mapbegin in maps)
