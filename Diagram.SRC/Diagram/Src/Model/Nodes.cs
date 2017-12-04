@@ -35,6 +35,17 @@ namespace Diagram
 
         }
 
+        public void Set(Nodes nodes)
+        {
+            this.Clear();
+
+            foreach (Node node in nodes)
+            {
+                this.Add(node);
+            }
+
+        }
+
         /*************************************************************************************************************************/
         // SORT
 
@@ -66,6 +77,11 @@ namespace Diagram
         public void OrderByPositionX()
         {
             this.Sort((a, b) => a.position.x.CompareTo(b.position.x));
+        }
+        
+        public Node Find(long id)
+        {
+            return this.Find(n => n.id == id);
         }
         
     }

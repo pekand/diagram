@@ -29,7 +29,7 @@ namespace Diagram
         public static string search = "CTRL+F";
         public static string searchNext = "F3";
         public static string date = "CTRL+D";
-        public static string promote = "CTRL+P";
+        public static string promote = "CTRL+SHIFT+P";
         public static string refresh = "CTRL+R";
         public static string hideBackground = "F6";
         public static string reverseSearch = "SHIFT+F3";
@@ -71,6 +71,7 @@ namespace Diagram
         public static string nextMarkNode = "ALT+RIGHT";
         public static string prevMarkNode = "ALT+LEFT";
         public static string switchSecurityLock = "CTRL+ALT+L";
+        public static string createPolygon = "CTRL+P";
 
         /// <summary>
         /// check if key string match keyData representing key pressed code</summary>

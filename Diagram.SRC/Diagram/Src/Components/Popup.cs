@@ -448,6 +448,30 @@ namespace Diagram
             items["imageItem"].Name = "imageItem";
             items["imageItem"].Text = "Image";
             //
+            // polygonCreateItem
+            //
+            items.Add("polygonCreateItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["polygonCreateItem"].Name = "polygonCreateItem";
+            items["polygonCreateItem"].Text = "Create polygon";
+            items["polygonCreateItem"].Click += new System.EventHandler(this.PolygonCreateItem_Click);
+            //
+            // polygonRemoveItem
+            //
+            items.Add("polygonRemoveItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["polygonRemoveItem"].Name = "polygonRemoveItem";
+            items["polygonRemoveItem"].Text = "Remove polygon";
+            items["polygonRemoveItem"].Click += new System.EventHandler(this.PolygonRemoveItem_Click);
+            //
+            // imageItem
+            //
+            items.Add("polygonItem", new System.Windows.Forms.ToolStripMenuItem());
+            items["polygonItem"].DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                items["polygonCreateItem"],
+                items["polygonRemoveItem"]
+            });
+            items["polygonItem"].Name = "polygonItem";
+            items["polygonItem"].Text = "Polygon";
+            //
             // deploayAttachmentItem
             //
             items.Add("deploayAttachmentItem", new System.Windows.Forms.ToolStripMenuItem());
@@ -764,6 +788,7 @@ namespace Diagram
                 items["nodeItem"],
                 items["lineItem"],
                 items["imageItem"],
+                items["polygonItem"],
                 items["attachmentItem"],
                 items["viewItem"],
                 items["layerItem"],
@@ -1337,25 +1362,41 @@ namespace Diagram
             this.diagramView.ChangeLineWidth();
         }
 
-        // ATTACHMENT
+        // IMAGE
 
-        // MENU NODE add image
+        // MENU IMAGE add image
         private void ImageAddItem_Click(object sender, EventArgs e) //UID2469843788
         {
             this.diagramView.AddImage();
         }
 
-        // MENU NODE image remove from diagram
+        // MENU IMAGE image remove from diagram
         private void ImageRemoveItem_Click(object sender, EventArgs e) //UID5686987514
         {
             this.diagramView.RemoveImagesFromSelection();
         }
 
-        // MENU NODE image embedded to diagram
+        // MENU IMAGE image embedded to diagram
         private void ImageEmbeddedItem_Click(object sender, EventArgs e) //UID5459560991
         {
             this.diagramView.MakeImagesEmbedded();
         }
+
+        // POLYGON
+
+        // MENU POLYGON image embedded to diagram
+        private void PolygonCreateItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.SwitchPolygon();
+        }
+
+        // MENU POLYGON image embedded to diagram
+        private void PolygonRemoveItem_Click(object sender, EventArgs e)
+        {
+            this.diagramView.RemovePolygon();
+        }
+
+        // ATTACHMENT
 
         // MENU NODE deploy attachment to system
         private void DeploayAttachmentItem_Click(object sender, EventArgs e) //UID5589053079

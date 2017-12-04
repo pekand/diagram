@@ -4905,444 +4905,6 @@ DiagramView.Invalidate();</note>
       <timemodify>2017-10-14 23:33:18</timemodify>
     </rectangle>
     <rectangle>
-      <id>1808</id>
-      <fontcolor>Black</fontcolor>
-      <text>Saveas</text>
-      <link>UID9358805584</link>
-      <layer>0</layer>
-      <x>-355.1875000000000000000000000</x>
-      <y>3873.7343750000000000000000000</y>
-      <width>70</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1809</id>
-      <fontcolor>Black</fontcolor>
-      <text>Save</text>
-      <link>UID8354947577</link>
-      <layer>0</layer>
-      <x>-367.4375000000000000000000000</x>
-      <y>3875.3593750000000000000000000</y>
-      <width>55</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1810</id>
-      <fontcolor>Black</fontcolor>
-      <text>SaveInnerXMLFile</text>
-      <link>UID8716692347</link>
-      <layer>0</layer>
-      <x>-373.4375000000000000000000000</x>
-      <y>3891.2343750000000000000000000</y>
-      <width>137</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1811</id>
-      <fontcolor>Black</fontcolor>
-      <text>SaveXMLFile</text>
-      <link>UID6023051509</link>
-      <layer>0</layer>
-      <x>-365.9375000000000000000000000</x>
-      <y>3882.9843750000000000000000000</y>
-      <width>106</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1812</id>
-      <fontcolor>Black</fontcolor>
-      <text>DiagramView_FormClosed</text>
-      <link>UID2411004144</link>
-      <layer>0</layer>
-      <x>-333.9375000000000000000000000</x>
-      <y>3882.7343750000000000000000000</y>
-      <width>188</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1813</id>
-      <fontcolor>Black</fontcolor>
-      <text>DiagramApp_FormClosing</text>
-      <link>UID8741811919</link>
-      <layer>0</layer>
-      <x>-421.0625000000000000000000000</x>
-      <y>3882.8593750000000000000000000</y>
-      <width>186</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>1814</id>
-      <fontcolor>Black</fontcolor>
-      <text>ShowIfIsLastViews</text>
-      <link>UID3969703093</link>
-      <layer>0</layer>
-      <x>-420.9375000000000000000000000</x>
-      <y>3892.9843750000000000000000000</y>
-      <width>139</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2131</id>
-      <fontcolor>Black</fontcolor>
-      <text>CloseView</text>
-      <link>UID2584689730</link>
-      <layer>0</layer>
-      <x>-307.4648437500000036875000000</x>
-      <y>3882.3593750000000000000000000</y>
-      <width>89</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2132</id>
-      <fontcolor>Black</fontcolor>
-      <text>CloseDiagram</text>
-      <link>UID4103426891</link>
-      <layer>0</layer>
-      <x>-293.4648437500000036875000000</x>
-      <y>3882.1093750000000000000000000</y>
-      <width>111</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2133</id>
-      <fontcolor>Black</fontcolor>
-      <text>CloseDiagramWithDialog</text>
-      <link>UID3110763859</link>
-      <layer>0</layer>
-      <x>-392.9648437500000036875000000</x>
-      <y>3882.9843750000000000000000000</y>
-      <width>178</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2134</id>
-      <fontcolor>Black</fontcolor>
-      <text>canclose</text>
-      <layer>0</layer>
-      <x>-347.3398437500000036875000000</x>
-      <y>3883.1093750000000000000000000</y>
-      <width>78</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#A5A5A5</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2135</id>
-      <fontcolor>Black</fontcolor>
-      <text>CloseFile</text>
-      <link>UID3849853197</link>
-      <layer>0</layer>
-      <x>-298.8125000000000000000000000</x>
-      <y>3873.2343750000000000000000000</y>
-      <width>81</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2136</id>
-      <fontcolor>Black</fontcolor>
-      <text>RemoveDiagram</text>
-      <link>UID1434097522</link>
-      <layer>0</layer>
-      <x>-287.3398437500000036875000000</x>
-      <y>3873.6093750000000000000000000</y>
-      <width>127</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2137</id>
-      <fontcolor>Black</fontcolor>
-      <text>CloseEmptyApplication</text>
-      <link>UID0787891060</link>
-      <layer>0</layer>
-      <x>-274.5898437500000036875000000</x>
-      <y>3881.6093750000000000000000000</y>
-      <width>165</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2138</id>
-      <fontcolor>Black</fontcolor>
-      <text>main</text>
-      <layer>0</layer>
-      <x>-283.5898437500000036875000000</x>
-      <y>3867.3593750000000000000000000</y>
-      <width>54</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#A5A5A5</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2139</id>
-      <fontcolor>Black</fontcolor>
-      <text>ExitApplication</text>
-      <link>UID0090378181</link>
-      <layer>0</layer>
-      <x>-248.5898437500000036875000000</x>
-      <y>3881.3593750000000000000000000</y>
-      <width>114</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2140</id>
-      <fontcolor>Black</fontcolor>
-      <text>RequestStop</text>
-      <link>UID3713513860</link>
-      <layer>0</layer>
-      <x>-231.0898437500000036875000000</x>
-      <y>3881.2343750000000000000000000</y>
-      <width>103</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2141</id>
-      <fontcolor>Black</fontcolor>
-      <text>sever</text>
-      <layer>0</layer>
-      <x>-228.0898437500000036875000000</x>
-      <y>3888.4843750000000000000000000</y>
-      <width>58</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#A5A5A5</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2142</id>
-      <fontcolor>Black</fontcolor>
-      <text>close message process</text>
-      <link>UID5024907634</link>
-      <layer>0</layer>
-      <x>-213.5898437500000036875000000</x>
-      <y>3880.9843750000000000000000000</y>
-      <width>167</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2143</id>
-      <fontcolor>Black</fontcolor>
-      <text>TerminateApplication</text>
-      <link>UID4213278976</link>
-      <layer>0</layer>
-      <x>-190.4648437500000036875000000</x>
-      <y>3881.1093750000000000000000000</y>
-      <width>153</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>22</id>
-      <fontcolor>Black</fontcolor>
-      <text>main</text>
-      <layer>0</layer>
-      <x>-267.4648437500000036875000000</x>
-      <y>3875.1093750000000000000000000</y>
-      <width>54</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#A5A5A5</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>23</id>
-      <fontcolor>Black</fontcolor>
-      <text>MainForm</text>
-      <layer>0</layer>
-      <x>-180.8398437500000036875000000</x>
-      <y>3887.3593750000000000000000000</y>
-      <width>86</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#A5A5A5</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>24</id>
-      <fontcolor>Black</fontcolor>
-      <text>TerminateApplication</text>
-      <link>UID4067187261</link>
-      <layer>0</layer>
-      <x>-168.4648437500000036875000000</x>
-      <y>3881.1093750000000000000000000</y>
-      <width>153</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#D9CCFF</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>26</id>
-      <fontcolor>Black</fontcolor>
-      <text>main</text>
-      <layer>0</layer>
-      <x>-154.0898437500000036875000000</x>
-      <y>3887.3593750000000000000000000</y>
-      <width>54</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#A5A5A5</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>27</id>
-      <fontcolor>Black</fontcolor>
-      <text>server</text>
-      <layer>0</layer>
-      <x>-206.9648437500000036875000000</x>
-      <y>3887.2343750000000000000000000</y>
-      <width>62</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#A5A5A5</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2144</id>
-      <fontcolor>Black</fontcolor>
-      <text>main</text>
-      <layer>0</layer>
-      <x>-243.5898437500000036875000000</x>
-      <y>3874.7343750000000000000000000</y>
-      <width>54</width>
-      <height>36</height>
-      <scale>-3</scale>
-      <color>#A5A5A5</color>
-      <timecreate>2017-12-2 00:23:55</timecreate>
-      <timemodify>2017-12-2 00:23:55</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2146</id>
-      <fontcolor>Black</fontcolor>
-      <layer>0</layer>
-      <x>-446.68750000000000000000000</x>
-      <y>3922.859375000000000000000000</y>
-      <width>20</width>
-      <height>20</height>
-      <scale>0</scale>
-      <color>#FFFFB8</color>
-      <transparent>true</transparent>
-      <timecreate>2017-12-2 00:24:04</timecreate>
-      <timemodify>2017-12-2 00:24:04</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2147</id>
-      <fontcolor>Black</fontcolor>
-      <layer>0</layer>
-      <x>-135.68750000000000000000000</x>
-      <y>3917.859375000000000000000000</y>
-      <width>20</width>
-      <height>20</height>
-      <scale>0</scale>
-      <color>#FFFFB8</color>
-      <transparent>true</transparent>
-      <timecreate>2017-12-2 00:24:07</timecreate>
-      <timemodify>2017-12-2 00:24:07</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2148</id>
-      <fontcolor>Black</fontcolor>
-      <layer>0</layer>
-      <x>-123.68750000000000000000000</x>
-      <y>3823.859375000000000000000000</y>
-      <width>20</width>
-      <height>20</height>
-      <scale>0</scale>
-      <color>#FFFFB8</color>
-      <transparent>true</transparent>
-      <timecreate>2017-12-2 00:24:07</timecreate>
-      <timemodify>2017-12-2 00:24:07</timemodify>
-    </rectangle>
-    <rectangle>
-      <id>2149</id>
-      <fontcolor>Black</fontcolor>
-      <layer>0</layer>
-      <x>-446.68750000000000000000000</x>
-      <y>3824.859375000000000000000000</y>
-      <width>20</width>
-      <height>20</height>
-      <scale>0</scale>
-      <color>#FFFFB8</color>
-      <transparent>true</transparent>
-      <timecreate>2017-12-2 00:24:09</timecreate>
-      <timemodify>2017-12-2 00:24:09</timemodify>
-    </rectangle>
-    <rectangle>
       <id>1896</id>
       <fontcolor>Black</fontcolor>
       <text>GoToNode</text>
@@ -8284,6 +7846,388 @@ print 'uid created'</note>
       <transparent>true</transparent>
       <timecreate>2017-12-2 00:22:14</timecreate>
       <timemodify>2017-12-2 00:22:14</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1787</id>
+      <fontcolor>Black</fontcolor>
+      <text>Saveas</text>
+      <link>UID9358805584</link>
+      <layer>0</layer>
+      <x>93.9330582617584076000000000</x>
+      <y>3754.0000000000000000000000000</y>
+      <width>70</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1788</id>
+      <fontcolor>Black</fontcolor>
+      <text>Save</text>
+      <link>UID8354947577</link>
+      <layer>0</layer>
+      <x>-4.0669417382415924000000000</x>
+      <y>3767.0000000000000000000000000</y>
+      <width>55</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1789</id>
+      <fontcolor>Black</fontcolor>
+      <text>SaveInnerXMLFile</text>
+      <link>UID8716692347</link>
+      <layer>0</layer>
+      <x>-52.0669417382415924000000000</x>
+      <y>3894.0000000000000000000000000</y>
+      <width>137</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1790</id>
+      <fontcolor>Black</fontcolor>
+      <text>SaveXMLFile</text>
+      <link>UID6023051509</link>
+      <layer>0</layer>
+      <x>7.9330582617584076000000000</x>
+      <y>3828.0000000000000000000000000</y>
+      <width>106</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1791</id>
+      <fontcolor>Black</fontcolor>
+      <text>DiagramView_FormClosed</text>
+      <link>UID2411004144</link>
+      <layer>0</layer>
+      <x>263.9330582617584076000000000</x>
+      <y>3826.0000000000000000000000000</y>
+      <width>188</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1792</id>
+      <fontcolor>Black</fontcolor>
+      <text>DiagramApp_FormClosing</text>
+      <link>UID8741811919</link>
+      <layer>0</layer>
+      <x>-433.0669417382415924000000000</x>
+      <y>3827.0000000000000000000000000</y>
+      <width>186</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>1793</id>
+      <fontcolor>Black</fontcolor>
+      <text>ShowIfIsLastViews</text>
+      <link>UID3969703093</link>
+      <layer>0</layer>
+      <x>-432.0669417382415924000000000</x>
+      <y>3908.0000000000000000000000000</y>
+      <width>139</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2151</id>
+      <fontcolor>Black</fontcolor>
+      <text>CloseView</text>
+      <link>UID2584689730</link>
+      <layer>0</layer>
+      <x>475.7143082617583781000000000</x>
+      <y>3823.0000000000000000000000000</y>
+      <width>89</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2152</id>
+      <fontcolor>Black</fontcolor>
+      <text>CloseDiagram</text>
+      <link>UID4103426891</link>
+      <layer>0</layer>
+      <x>587.7143082617583781000000000</x>
+      <y>3821.0000000000000000000000000</y>
+      <width>111</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2153</id>
+      <fontcolor>Black</fontcolor>
+      <text>CloseDiagramWithDialog</text>
+      <link>UID3110763859</link>
+      <layer>0</layer>
+      <x>-208.2856917382416219000000000</x>
+      <y>3828.0000000000000000000000000</y>
+      <width>178</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2154</id>
+      <fontcolor>Black</fontcolor>
+      <text>canclose</text>
+      <layer>0</layer>
+      <x>156.7143082617583781000000000</x>
+      <y>3829.0000000000000000000000000</y>
+      <width>78</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#A5A5A5</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2155</id>
+      <fontcolor>Black</fontcolor>
+      <text>CloseFile</text>
+      <link>UID3849853197</link>
+      <layer>0</layer>
+      <x>544.9330582617584076000000000</x>
+      <y>3750.0000000000000000000000000</y>
+      <width>81</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2156</id>
+      <fontcolor>Black</fontcolor>
+      <text>RemoveDiagram</text>
+      <link>UID1434097522</link>
+      <layer>0</layer>
+      <x>636.7143082617583781000000000</x>
+      <y>3753.0000000000000000000000000</y>
+      <width>127</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2157</id>
+      <fontcolor>Black</fontcolor>
+      <text>CloseEmptyApplication</text>
+      <link>UID0787891060</link>
+      <layer>0</layer>
+      <x>738.7143082617583781000000000</x>
+      <y>3817.0000000000000000000000000</y>
+      <width>165</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2158</id>
+      <fontcolor>Black</fontcolor>
+      <text>main</text>
+      <layer>0</layer>
+      <x>666.7143082617583781000000000</x>
+      <y>3703.0000000000000000000000000</y>
+      <width>54</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#A5A5A5</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2159</id>
+      <fontcolor>Black</fontcolor>
+      <text>ExitApplication</text>
+      <link>UID0090378181</link>
+      <layer>0</layer>
+      <x>946.7143082617583781000000000</x>
+      <y>3815.0000000000000000000000000</y>
+      <width>114</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2160</id>
+      <fontcolor>Black</fontcolor>
+      <text>RequestStop</text>
+      <link>UID3713513860</link>
+      <layer>0</layer>
+      <x>1086.7143082617583781000000000</x>
+      <y>3814.0000000000000000000000000</y>
+      <width>103</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2161</id>
+      <fontcolor>Black</fontcolor>
+      <text>sever</text>
+      <layer>0</layer>
+      <x>1110.7143082617583781000000000</x>
+      <y>3872.0000000000000000000000000</y>
+      <width>58</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#A5A5A5</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2162</id>
+      <fontcolor>Black</fontcolor>
+      <text>close message process</text>
+      <link>UID5024907634</link>
+      <layer>0</layer>
+      <x>1226.7143082617583781000000000</x>
+      <y>3812.0000000000000000000000000</y>
+      <width>167</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2163</id>
+      <fontcolor>Black</fontcolor>
+      <text>TerminateApplication</text>
+      <link>UID4213278976</link>
+      <layer>0</layer>
+      <x>1411.7143082617583781000000000</x>
+      <y>3813.0000000000000000000000000</y>
+      <width>153</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2164</id>
+      <fontcolor>Black</fontcolor>
+      <text>main</text>
+      <layer>0</layer>
+      <x>795.7143082617583781000000000</x>
+      <y>3765.0000000000000000000000000</y>
+      <width>54</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#A5A5A5</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2165</id>
+      <fontcolor>Black</fontcolor>
+      <text>MainForm</text>
+      <layer>0</layer>
+      <x>1488.7143082617583781000000000</x>
+      <y>3863.0000000000000000000000000</y>
+      <width>86</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#A5A5A5</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2166</id>
+      <fontcolor>Black</fontcolor>
+      <text>TerminateApplication</text>
+      <link>UID4067187261</link>
+      <layer>0</layer>
+      <x>1587.7143082617583781000000000</x>
+      <y>3813.0000000000000000000000000</y>
+      <width>153</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2167</id>
+      <fontcolor>Black</fontcolor>
+      <text>main</text>
+      <layer>0</layer>
+      <x>1702.7143082617583781000000000</x>
+      <y>3863.0000000000000000000000000</y>
+      <width>54</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#A5A5A5</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2168</id>
+      <fontcolor>Black</fontcolor>
+      <text>server</text>
+      <layer>0</layer>
+      <x>1279.7143082617583781000000000</x>
+      <y>3862.0000000000000000000000000</y>
+      <width>62</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#A5A5A5</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2123</id>
+      <fontcolor>Black</fontcolor>
+      <text>main</text>
+      <layer>0</layer>
+      <x>986.7143082617583781000000000</x>
+      <y>3762.0000000000000000000000000</y>
+      <width>54</width>
+      <height>36</height>
+      <scale>0.0</scale>
+      <color>#A5A5A5</color>
+      <timecreate>2017-12-3 16:52:40</timecreate>
+      <timemodify>2017-12-3 16:52:40</timemodify>
     </rectangle>
   </rectangles>
   <lines>
@@ -11696,249 +11640,209 @@ print 'uid created'</note>
       <layer>0</layer>
     </line>
     <line>
-      <start>1810</start>
-      <end>1811</end>
-      <scale>-3</scale>
+      <start>1789</start>
+      <end>1790</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>1809</start>
-      <end>1811</end>
-      <scale>-3</scale>
+      <start>1788</start>
+      <end>1790</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>1808</start>
-      <end>1811</end>
-      <scale>-3</scale>
+      <start>1787</start>
+      <end>1790</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>1814</start>
-      <end>1813</end>
-      <scale>-3</scale>
+      <start>1793</start>
+      <end>1792</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>2131</start>
-      <end>1812</end>
-      <scale>-3</scale>
+      <start>2151</start>
+      <end>1791</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>2132</start>
-      <end>2131</end>
-      <scale>-3</scale>
+      <start>2152</start>
+      <end>2151</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>2133</start>
-      <end>1813</end>
-      <scale>-3</scale>
+      <start>2153</start>
+      <end>1792</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>1811</start>
-      <end>2133</end>
-      <scale>-3</scale>
+      <start>1790</start>
+      <end>2153</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>2134</start>
-      <end>1811</end>
-      <scale>-3</scale>
+      <start>2154</start>
+      <end>1790</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>1812</start>
-      <end>2134</end>
-      <scale>-3</scale>
+      <start>1791</start>
+      <end>2154</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>2138</start>
-      <end>2136</end>
-      <scale>-3</scale>
+      <start>2158</start>
+      <end>2156</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>2139</start>
-      <end>2137</end>
-      <scale>-3</scale>
+      <start>2159</start>
+      <end>2157</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>2140</start>
-      <end>2139</end>
-      <scale>-3</scale>
+      <start>2160</start>
+      <end>2159</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>2141</start>
-      <end>2140</end>
-      <scale>-3</scale>
+      <start>2161</start>
+      <end>2160</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>2142</start>
-      <end>2140</end>
-      <scale>-3</scale>
+      <start>2162</start>
+      <end>2160</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>2143</start>
-      <end>2142</end>
-      <scale>-3</scale>
+      <start>2163</start>
+      <end>2162</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>22</start>
-      <end>2137</end>
-      <scale>-3</scale>
+      <start>2164</start>
+      <end>2157</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>23</start>
-      <end>2143</end>
-      <scale>-3</scale>
+      <start>2165</start>
+      <end>2163</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>24</start>
-      <end>2143</end>
-      <scale>-3</scale>
+      <start>2166</start>
+      <end>2163</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>2135</start>
-      <end>2132</end>
-      <scale>-3</scale>
+      <start>2155</start>
+      <end>2152</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>2136</start>
-      <end>2132</end>
-      <scale>-3</scale>
+      <start>2156</start>
+      <end>2152</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>2137</start>
-      <end>2132</end>
-      <scale>-3</scale>
+      <start>2157</start>
+      <end>2152</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>26</start>
-      <end>24</end>
-      <scale>-3</scale>
+      <start>2167</start>
+      <end>2166</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>27</start>
-      <end>2142</end>
-      <scale>-3</scale>
+      <start>2168</start>
+      <end>2162</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>2144</start>
-      <end>2139</end>
-      <scale>-3</scale>
+      <start>2123</start>
+      <end>2159</end>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
     </line>
     <line>
-      <start>2146</start>
-      <end>2146</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>2146</start>
-      <end>2147</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>2147</start>
-      <end>2148</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>2148</start>
-      <end>2149</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>2149</start>
-      <end>2146</end>
-      <scale>0</scale>
-      <arrow>0</arrow>
-      <color>Black</color>
-      <layer>0</layer>
-    </line>
-    <line>
-      <start>2149</start>
+      <start>1792</start>
       <end>2150</end>
-      <scale>0</scale>
+      <scale>0.0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>

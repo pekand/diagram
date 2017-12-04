@@ -5,8 +5,40 @@
     /// Polygons is defined by nodes and lines making circle</summary>
     public class Polygon //UID2534425093
     {
-        public ColorType color = new ColorType();
+        public long layer = 0;
+        public ColorType color = new ColorType("#000000");
         public Nodes nodes = new Nodes();
-        public Lines lines = new Lines();
+
+        /*************************************************************************************************************************/
+        // CONSTRUCTORS
+
+        public Polygon()
+        {
+        }
+
+        public Polygon(Polygon polygon)
+        {
+            this.set(polygon);
+        }
+
+        /*************************************************************************************************************************/
+        // SETTERS AND GETTERS
+
+        public void set(Polygon polygon)
+        {
+            this.layer = polygon.layer;
+            this.color = polygon.color;
+
+            foreach (Node node in polygon.nodes) {
+                this.nodes.Add(node.clone());
+            }
+        }
+
+        /// <summary>
+        /// clone line to new line</summary>
+        public Polygon clone()
+        {
+            return new Polygon(this);
+        }
     }
 }

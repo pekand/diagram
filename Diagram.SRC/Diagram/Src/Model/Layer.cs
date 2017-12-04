@@ -17,7 +17,7 @@
 
         public Nodes nodes = new Nodes();               // all layer nodes
         public Lines lines = new Lines();               // all layer lines
-        //public Polygons ploygons = new Polygons();      // all layer polygons
+        public Polygons polygons = new Polygons();      // all layer polygons
 
         /*************************************************************************************************************************/
         // CONSTRUCTORS

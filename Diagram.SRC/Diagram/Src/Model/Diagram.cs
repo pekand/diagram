@@ -352,6 +352,28 @@ namespace Diagram
             return xlines;
         }
         
+        public XElement SaveInnerXmlPolygons(Polygons polygons) 
+        {
+            XElement xpolygons = new XElement("polygons");
+            foreach (Polygon polygon in polygons)
+            {
+                XElement xpolygon = new XElement("polygon");
+                xpolygon.Add(new XElement("layer", polygon.layer));
+                xpolygon.Add(new XElement("color", polygon.color));  
+                XElement xnodes = new XElement("nodes");    
+                foreach (Node node in polygon.nodes)
+                {
+                    XElement xnode = new XElement("node");
+                    xnode.Add(new XElement("id", node.id));
+                    xnodes.Add(xnode);
+                }  
+                xpolygon.Add(xnodes);
+                xpolygons.Add(xpolygon);
+            }
+
+            return xpolygons;
+        }
+        
         // XML SAVE create xml from current diagram file state
         public string SaveInnerXMLFile() //UID8716692347
         {
@@ -362,10 +384,12 @@ namespace Diagram
                 XElement option = this.SaveInnerXmlOptions();
                 XElement rectangles = this.SaveInnerXmlRectangles(this.GetAllNodes());
                 XElement lines = this.SaveInnerXmlLines(this.GetAllLines());
+                XElement polygons = this.SaveInnerXmlPolygons(this.GetAllPolygons());
                 
                 root.Add(option);
                 root.Add(rectangles);
                 root.Add(lines);
+                root.Add(polygons);
 
                 checkpoint = true;
             }
@@ -378,7 +402,6 @@ namespace Diagram
             {
                 try
                 {
-
                     StringBuilder sb = new StringBuilder();
                     XmlWriterSettings xws = new XmlWriterSettings { 
                         OmitXmlDeclaration = true,
@@ -823,8 +846,8 @@ namespace Diagram
                 }
             }
         }
-        
-        public void LoadInnerXmlLines(Lines lines, XElement diagram)
+               
+        public void LoadInnerXmlLines(Lines lines, Nodes nodes, XElement diagram)
         {
             foreach (XElement block in diagram.Descendants())
             {
@@ -880,11 +903,127 @@ namespace Diagram
                         }
                     }
 
+                    if (L.start <= 0)
+                    {
+                        continue;
+                    }
+
+
+                    Node startNode = nodes.Find(L.start);
+                    if (startNode == null) {
+                        continue;
+                    }
+
+                    L.startNode = startNode;
+
+                    if (L.end <= 0)
+                    {
+                        continue;
+                    }
+
+
+                    Node endNode = nodes.Find(L.end);
+                    if (endNode == null)
+                    {
+                        continue;
+                    }
+
+
+                    L.endNode = endNode;
+
                     lines.Add(L);
                 }
             }
         }
-            
+        
+        public void LoadInnerXmlPolygons(Polygons polygons, Nodes nodes, XElement diagram)
+        {
+            foreach (XElement block in diagram.Descendants())
+            {
+
+                if (block.Name.ToString() == "polygon")
+                {
+                    Polygon P = new Polygon();
+
+                    foreach (XElement el in block.Descendants())
+                    {
+                        try
+                        {
+                            if (el.Name.ToString() == "layer")
+                            {
+                                P.layer = Int64.Parse(el.Value);
+                                
+                                
+                                if (P.layer < 0)
+                                {
+                                    continue;
+                                }
+
+                                if (P.layer != 0) {
+                                    Node node = nodes.Find(P.layer);
+                                    if (node == null) {
+                                        continue;
+                                    }
+
+                                    if (!node.haslayer) {
+                                        continue;
+                                    }
+                                }
+                            }
+
+                            if (el.Name.ToString() == "color")
+                            {
+                                P.color.Set(el.Value.ToString());
+                            }
+                            
+                            if (el.Name.ToString() == "nodes")
+                            {
+                                foreach (XElement subblock in el.Descendants())
+                                {
+                                    if (subblock.Name.ToString() == "node")
+                                    {
+                                        long nodeId = 0;
+
+                                        foreach (XElement subel in subblock.Descendants())
+                                        {
+                                            try
+                                            {
+                                                if (subel.Name.ToString() == "id")
+                                                {
+                                                    nodeId = Int64.Parse(subel.Value);
+                                                }
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                Program.log.Write("load xml nodes error: " + ex.Message);
+                                            }
+                                        }
+
+                                        if (nodeId > 0) {
+                                            Node node = nodes.Find(nodeId);
+
+                                            if (node != null) {
+                                                P.nodes.Add(node);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Program.log.Write("load xml nodes error: " + ex.Message);
+                        }
+                    }
+                    
+                    if (P.nodes.Count > 0)
+                    {
+                        polygons.Add(P);
+                    }
+                }
+            }
+        }    
+        
         // XML LOAD inner part of diagram file. If file is invalid return false UID3586094034
         public bool LoadInnerXML(string xml)
         {
@@ -896,6 +1035,7 @@ namespace Diagram
 
             Nodes nodes = new Nodes();
             Lines lines = new Lines();
+            Polygons polygons = new Polygons();
 
             try
             {
@@ -920,7 +1060,12 @@ namespace Diagram
 
                             if (diagram.Name.ToString() == "lines")
                             {
-                                this.LoadInnerXmlLines(lines, diagram);
+                                this.LoadInnerXmlLines(lines, nodes, diagram);
+                            }
+                            
+                            if (diagram.Name.ToString() == "polygons")
+                            {
+                                this.LoadInnerXmlPolygons(polygons, nodes, diagram);
                             }
                         }
                     }
@@ -934,19 +1079,19 @@ namespace Diagram
                 return false;
             }
 
-            int newWidth = 0;
-            int newHeight = 0;
+            decimal newWidth = 0;
+            decimal newHeight = 0;
 
             Nodes nodesReordered = new Nodes(); // order nodes parent first (layer must exist when sub node is created)
             this.NodesReorderNodes(0, null, nodes, nodesReordered);
 
-            foreach (Node rec in nodesReordered) // Loop through List with foreach
+            foreach (Node rec in nodesReordered)
             {
                 if (!rec.isimage)
                 {
                     SizeF s = rec.measure();
-                    newWidth = (int)s.Width;
-                    newHeight = (int)s.Height;
+                    newWidth = (decimal)s.Width;
+                    newHeight = (decimal)s.Height;
 
                     // font change correction > center node
                     if (rec.width != 0 && newWidth != rec.width)
@@ -979,6 +1124,11 @@ namespace Diagram
                 );
             }
 
+            foreach (Polygon polygon in polygons)
+            {
+                this.layers.AddPolygon(polygon);
+            }
+            
             return true;
         }
 
@@ -1092,6 +1242,11 @@ namespace Diagram
         public Lines GetAllLines()
         {
             return this.layers.GetAllLines();
+        }
+        
+        public Polygons GetAllPolygons()
+        {
+            return this.layers.GetAllPolygons();
         }
 
         // NODE Najdenie nody podla pozicie myši
@@ -1729,6 +1884,53 @@ namespace Diagram
         }
 
         /*************************************************************************************************************************/
+        // POLYGON
+
+        // create polygon
+        public void CreatePolygon(Nodes Nodes, long layer = 0)
+        {
+            if (Nodes.Count() > 0)
+            {
+                this.layers.CreatePolygon(Nodes, layer);
+            }
+        }
+
+        // remove polygon
+        public void RemovePolygon(Nodes Nodes, long layer = 0)
+        {
+            if (Nodes.Count() > 0)
+            {
+                Polygons polygons = this.layers.GetAllPolygonsFromNodes(Nodes);
+                if (polygons.Count > 0)
+                {
+                    foreach (Polygon polygon in polygons)
+                    {
+                        this.layers.RemovePolygon(polygon);
+                    }
+                }
+            }
+        }
+
+        // remove polygon
+        public void SwitchPolygon(Nodes Nodes, long layer = 0)
+        {
+            if (Nodes.Count() > 0)
+            {
+                Polygons polygons = this.layers.GetAllPolygonsFromNodes(Nodes);
+                if (polygons.Count > 0)
+                {
+                    foreach (Polygon polygon in polygons) {
+                        this.layers.RemovePolygon(polygon);
+                    }
+                }
+                else
+                {
+                    this.layers.CreatePolygon(Nodes, layer);
+                }
+            }
+        }
+        
+        /*************************************************************************************************************************/
         // LAYERS
 
         // LAYER MOVE posunie rekurzivne layer a jeho nody OBSOLATE
@@ -1962,6 +2164,7 @@ namespace Diagram
 
             Nodes NewNodes = new Nodes();
             Lines NewLines = new Lines();
+            Polygons NewPolygons = new Polygons();
 
             XmlReaderSettings xws = new XmlReaderSettings
             {
@@ -1987,7 +2190,12 @@ namespace Diagram
 
                             if (diagram.Name.ToString() == "lines")
                             {
-                                this.LoadInnerXmlLines(NewLines, diagram);
+                                this.LoadInnerXmlLines(NewLines, NewNodes, diagram);
+                            }
+
+                            if (diagram.Name.ToString() == "polygons")
+                            {
+                                this.LoadInnerXmlPolygons(NewPolygons, NewNodes, diagram);
                             }
                         }
                     }
@@ -2080,12 +2288,15 @@ namespace Diagram
                 }
             }
 
-            // scale layer
+            // move nodes in top layer relative to paste position
+            // nodes inside layers are still on own position
             decimal deltaScale = maxScale - scale;
             foreach (Node rec in NewNodes)
             {
-                rec.scale -= deltaScale;
-                rec.position.Split(Tools.GetScale(deltaScale)).Add(position);
+                if (rec.layer == layer) {
+                    rec.scale -= deltaScale;
+                    rec.position.Split(Tools.GetScale(deltaScale)).Add(position);
+                }
             }
 
             Line newLine = null;
@@ -2117,8 +2328,33 @@ namespace Diagram
                     }
                 }
             }
+            
+            foreach (Polygon NewPolygon in NewPolygons)
+            {
+                // remap layer ids
+                long polygonLayer = 0;
+                if (NewPolygon.layer == 0)
+                {
+                    polygonLayer = layer;
+                }
+                else
+                {
+                    foreach (MappedNode mapednode in maps)
+                    {
+                        if (NewPolygon.layer == mapednode.oldId)
+                        {
+                            polygonLayer = mapednode.newNode.id;
+                            break;
+                        }
+                    }
+                }
 
-            return new DiagramBlock(NewNodes, createdLines);
+                NewPolygon.layer = polygonLayer;
+
+                this.layers.AddPolygon(NewPolygon);
+            }
+
+            return new DiagramBlock(NewNodes, createdLines, NewPolygons);
         }
 
         // Get all layers nodes
@@ -2216,11 +2452,26 @@ namespace Diagram
                 li.layer = li.layer - minid + 1;
             }
 
+            Polygons polygons = new Polygons();
+            polygons.Copy(this.layers.GetAllPolygonsFromNodes(nodes));
+            
+            foreach (Polygon polygon in polygons)
+            {
+                if (polygon.layer != 0 && polygon.layer - minlayer >= 0)  polygon.layer = polygon.layer - minlayer;
+
+                foreach (Node node in polygon.nodes)
+                {
+                    node.id = node.id - minid + 1;
+                }
+            }
+            
             XElement xrectangles = this.SaveInnerXmlRectangles(copy);
             XElement xlines = this.SaveInnerXmlLines(lines);
+            XElement xpolygons = this.SaveInnerXmlPolygons(polygons);
                 
             root.Add(xrectangles);
             root.Add(xlines);
+            root.Add(xpolygons);
             copyxml = root.ToString();
 
             return copyxml;

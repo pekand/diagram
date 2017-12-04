@@ -6,11 +6,13 @@
     {
         public Nodes nodes = new Nodes();
         public Lines lines = new Lines();
+        public Polygons polygons = new Polygons();
 
-        public DiagramBlock(Nodes nodes = null, Lines lines = null)
+        public DiagramBlock(Nodes nodes = null, Lines lines = null, Polygons polygons = null)
         {
             this.nodes = nodes;
             this.lines = lines;
+            this.polygons = polygons;
         }
     }
 }

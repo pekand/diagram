@@ -1839,7 +1839,7 @@ namespace Diagram
                 return true;
             }
 
-            if (KeyMap.ParseKey(KeyMap.promote, keyData)) // [KEY] [CTRL+P] Promote node
+            if (KeyMap.ParseKey(KeyMap.promote, keyData)) // [KEY] [CTRL+SHIFT+P] Promote node
             {
                 this.Promote();
                 return true;
@@ -2081,6 +2081,12 @@ namespace Diagram
                 {
                     this.main.LockDiagrams();
                 }
+                return true;
+            }
+
+            if (KeyMap.ParseKey(KeyMap.createPolygon, keyData)) // [KEY] [CTRL+P] create polygon
+            {
+                this.SwitchPolygon();
                 return true;
             }
 
@@ -3175,12 +3181,16 @@ namespace Diagram
                 return;
             }
 
+            this.DrawPolygons(gfx, this.currentLayer.polygons, correction, export);
+
             this.DrawLines(gfx, this.currentLayer.lines, correction, export);
 
             if (!export && this.stateCoping)
             {
                 this.DrawLines(gfx, this.copySelectedLines, correction, export);
             }
+
+            
 
             // DRAW addingnode
             if (!export && this.stateAddingNode && !this.stateZooming && (this.actualMousePos.x != this.startMousePos.x || this.actualMousePos.y != this.startMousePos.y))
@@ -3402,6 +3412,49 @@ namespace Diagram
                     myPen,
                     points
                 );
+            }
+        }
+
+        // DRAW lines UID4936881338
+        private void DrawPolygons(Graphics gfx, Polygons polygons, Position correction = null, bool export = false)
+        {
+            bool isvisible = false; // drawonly visible elements
+            decimal s = Tools.GetScale(this.scale);
+
+            // fix position for image file export
+            decimal cx = 0;
+            decimal cy = 0;
+            if (correction != null)
+            {
+                cx = correction.x;
+                cy = correction.y;
+            }
+
+            FillMode newFillMode = FillMode.Winding;
+
+            // DRAW polygons
+            foreach (Polygon polygon in polygons) // Loop through List with foreach
+            {
+                // Create pen.
+                Pen blackPen = new Pen(Color.Black, 3);
+
+
+                List<PointF> polyPoints = new List<PointF>();
+
+                foreach (Node node in polygon.nodes) {
+                    polyPoints.Add(
+                        new PointF(
+                           (float)((this.shift.x + cx + node.position.x + (node.width * Tools.GetScale(node.scale)) / 2) / s),
+                           (float)((this.shift.y + cy + node.position.y + (node.height * Tools.GetScale(node.scale)) / 2) / s)
+                        )
+                     );
+                }
+                gfx.FillPolygon(
+                    new SolidBrush(polygon.color.color),
+                    polyPoints.ToArray(),
+                    newFillMode
+                );
+
             }
         }
 
@@ -3725,7 +3778,7 @@ namespace Diagram
                         Point point1 = new Point((int)nx1, (int)ny1);
                         Point point2 = new Point((int)nx2, (int)ny2);
                         Point point3 = new Point((int)x2, (int)y2);
-                        Point[] curvePoints = { point1, point2, point3 };
+                        PointF[] curvePoints = { point1, point2, point3 };
 
                         // Define fill mode.
                         FillMode newFillMode = FillMode.Winding;
@@ -5866,8 +5919,39 @@ namespace Diagram
         }
 
         /*************************************************************************************************************************/
-#if DEBUG
+        // POLYGON Create polygon
+        public void CreatePolygon()
+        {
+            if (selectedNodes.Count() > 1 && !this.diagram.options.readOnly)
+            {
+                this.diagram.CreatePolygon(selectedNodes, currentLayer.id);
+                this.diagram.InvalidateDiagram();
+            }
+        }
 
+        // POLYGON Remove polygon
+        public void RemovePolygon()
+        {
+            if (selectedNodes.Count() > 1 && !this.diagram.options.readOnly)
+            {
+
+                this.diagram.RemovePolygon(selectedNodes);
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        // POLYGON Remove polygon
+        public void SwitchPolygon()
+        {
+            if (selectedNodes.Count() > 1 && !this.diagram.options.readOnly)
+            {                
+                this.diagram.SwitchPolygon(selectedNodes);
+                this.diagram.InvalidateDiagram();
+            }
+        }
+
+        /*************************************************************************************************************************/
+#if DEBUG
         // DEBUG log event to output console and prevent duplicate events display
         public void LogEvent(string lastEvetMessage = "")
         {
