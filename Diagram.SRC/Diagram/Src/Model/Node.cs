@@ -124,7 +124,7 @@ namespace Diagram
 
             this.layer = node.layer;
             this.haslayer = node.haslayer;
-            this.layerShift = node.layerShift;
+            this.layerShift.Set(node.layerShift);
 
             this.shortcut = node.shortcut;
             this.mark = node.mark;

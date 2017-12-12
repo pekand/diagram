@@ -14,6 +14,8 @@ namespace Diagram
         
         public Nodes nodes = new Nodes(); // affected nodes
         public Lines lines = new Lines(); // affected lines
+        public Polygons polygons = new Polygons(); // affected polygons
+        public decimal scale = 0;
 
         public Position position = new Position(); // position in diagram when change occurred
         public long layer = 0; // layer in diagram when change occurred
@@ -23,15 +25,18 @@ namespace Diagram
 
         public UndoOperation(
             string type, 
-            Nodes nodes = null, 
-            Lines lines = null,
-            long group = 0, 
-            Position position = null,
-            long layer = 0
+            Nodes nodes, 
+            Lines lines,
+            Polygons polygons,
+            long group, 
+            Position position,
+            decimal scale,
+            long layer
         ) {
             this.type = type;
             this.group = group;
             this.position.Set(position);
+            this.scale = scale;
             this.layer = layer;
 
             if (nodes != null)
@@ -47,6 +52,14 @@ namespace Diagram
                 foreach (Line line in lines)
                 {
                     this.lines.Add(new Line(line));
+                }
+            }
+            
+            if (polygons != null)
+            {
+                foreach (Polygon polygon in polygons)
+                {
+                    this.polygons.Add(new Polygon(polygon));
                 }
             }
         }
@@ -78,27 +91,27 @@ namespace Diagram
         /*************************************************************************************************************************/
         // ADD UNDO OPERATIONS
 
-        public void add(string type, Node node, Position position = null, long layer = 0)
+        public void add(string type, Node node, Position position = null, decimal scale = 0, long layer = 0)
         {
             Nodes nodes = new Nodes();
             if (node != null)
             {
                 nodes.Add(new Node(node));
             }
-            this.add(type, nodes, null, position, layer);
+            this.add(type, nodes, null, null, position, scale, layer);
         }
 
-        public void add(string type, Line line, Position position = null, long layer = 0)
+        public void add(string type, Line line, Position position = null, decimal scale = 0, long layer = 0)
         {
             Lines lines = new Lines();
             if (line != null)
             {
                 lines.Add(new Line(line));
             }
-            this.add(type, null, lines, position, layer);
+            this.add(type, null, lines, null, position, scale, layer);
         }
 
-        public void add(string type, Node node, Line line, Position position = null, long layer = 0)
+        public void add(string type, Node node, Line line, Position position = null, decimal scale = 0, long layer = 0)
         {
             Nodes nodes = new Nodes();
             if (node != null)
@@ -111,18 +124,25 @@ namespace Diagram
             {
                 lines.Add(new Line(line));
             }
-            this.add(type, nodes, lines, position, layer);
+            this.add(type, nodes, lines, null, position, scale, layer);
         }
 
-        public void add(string type, Nodes nodes = null, Lines lines = null, Position position = null, long layer = 0)
+        public void add(string type, Nodes nodes = null, Lines lines = null, Position position = null, decimal scale = 0, long layer = 0)
+        {
+            this.add(type, nodes, lines, null, position, scale, layer);
+        }
+
+        public void add(string type, Nodes nodes = null, Lines lines = null, Polygons polygons = null, Position position = null, decimal scale = 0, long layer = 0)
         {
             operations.Push(
                 new UndoOperation(
                     type, 
                     (nodes != null) ? new Nodes(nodes) : null, 
-                    (lines != null) ? new Lines(lines) : null, 
+                    (lines != null) ? new Lines(lines) : null,
+                    (polygons != null) ? new Polygons(polygons) : null,
                     (grouping) ? group : 0, // add multiple operations into one undo group
-                    position,
+                    position.Clone(),
+                    scale,
                     layer
                 )
             );
@@ -170,10 +190,9 @@ namespace Diagram
                 UndoOperation operation = operations.First();
 
                 // first restore position where change occurred
-                if (view != null && !view.IsOnPosition(operation.position, operation.layer))
+                if (view != null && !view.IsOnPosition(operation.position, operation.scale, operation.layer))
                 {
-                    view.GoToShift(operation.position);
-                    view.GoToLayer(operation.layer);
+                    view.GoToPosition(operation.position, operation.scale, operation.layer);
                     view.Invalidate();
                     return false;
                 }
@@ -222,8 +241,10 @@ namespace Diagram
                         operation.type,
                         nodes,
                         lines,
+                        null,
                         operation.group,
                         operation.position,
+                        operation.scale,
                         operation.layer
                     );
                     reverseOperations.Push(roperation);
@@ -265,10 +286,9 @@ namespace Diagram
                 UndoOperation operation = reverseOperations.First();
 
                 // first restore position where change occurred
-                if (view != null && !view.IsOnPosition(operation.position, operation.layer))
+                if (view != null && !view.IsOnPosition(operation.position, operation.scale, operation.layer))
                 {
-                    view.GoToShift(operation.position);
-                    view.GoToLayer(operation.layer);
+                    view.GoToPosition(operation.position, operation.scale, operation.layer);
                     view.Invalidate();
                     return false;
                 }
@@ -313,12 +333,15 @@ namespace Diagram
                         lines.Add(this.diagram.GetLine(line.start, line.end));
                     }
 
+
                     UndoOperation roperation = new UndoOperation(
                         operation.type,
                         nodes,
                         lines,
+                        null,
                         operation.group,
                         operation.position,
+                        operation.scale,
                         operation.layer
                     );
 
@@ -371,6 +394,14 @@ namespace Diagram
                 }
             }
 
+            if (operation.polygons != null)
+            {
+                foreach (Polygon polygon in operation.polygons)
+                {
+                    this.diagram.layers.AddPolygon(polygon);
+                }
+            }
+
         }
 
         private void doUndoCreate(UndoOperation operation)
@@ -388,6 +419,14 @@ namespace Diagram
                 foreach (Node node in operation.nodes)
                 {
                     this.diagram.layers.RemoveNode(node.id);
+                }
+            }
+
+            if (operation.polygons != null)
+            {
+                foreach (Polygon polygon in operation.polygons)
+                {
+                    this.diagram.layers.RemovePolygon(polygon);
                 }
             }
         }

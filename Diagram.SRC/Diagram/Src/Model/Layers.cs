@@ -617,7 +617,7 @@ namespace Diagram
             }
         }
 
-        public void CreatePolygon(Nodes Nodes, long layerId = 0)
+        public Polygon CreatePolygon(Nodes Nodes, long layerId = 0)
         {
             Layer layer = GetLayer(layerId);
 
@@ -627,8 +627,10 @@ namespace Diagram
                 polygon.layer = layerId;
                 polygon.nodes.Set(Nodes);
                 layer.polygons.Add(polygon);
-
+                return polygon;
             }
+
+            return null;
         }
 
         public void AddPolygon(Polygon polygon)

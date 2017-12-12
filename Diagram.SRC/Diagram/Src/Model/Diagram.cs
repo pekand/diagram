@@ -1150,33 +1150,40 @@ namespace Diagram
         /*************************************************************************************************************************/
         // UNSAVE
 
-        public void Unsave(string type, Node node, Position position = null, long layer = 0)
+        public void Unsave(string type, Node node, Position position = null, decimal scale = 0, long layer = 0)
         {
             Nodes nodes = new Nodes();
             nodes.Add(node);
-            this.Unsave(type, nodes, null, position, layer);
+            this.Unsave(type, nodes, null, position, scale, layer);
         }
 
-        public void Unsave(string type, Line line, Position position = null, long layer = 0)
+        public void Unsave(string type, Line line, Position position = null, decimal scale = 0, long layer = 0)
         {
             Lines lines = new Lines();
             lines.Add(line);
-            this.Unsave(type, null, lines, position, layer);
+            this.Unsave(type, null, lines, position, scale, layer);
         }
 
-        public void Unsave(string type, Node node, Line line, Position position = null, long layer = 0)
+        public void Unsave(string type, Node node, Line line, Position position = null, decimal scale = 0, long layer = 0)
         {
             Nodes nodes = new Nodes();
             nodes.Add(node);
             Lines lines = new Lines();
             lines.Add(line);
-            this.Unsave(type, nodes, lines, position, layer);
+            this.Unsave(type, nodes, lines, position, scale, layer);
         }
 
-        public void Unsave(string type, Nodes nodes = null, Lines lines = null, Position position = null, long layer = 0)
+        public void Unsave(string type, Nodes nodes = null, Lines lines = null, Position position = null, decimal scale = 0, long layer = 0)
         {
             this.undoOperations.rememberSave();
-            this.undoOperations.add(type, nodes, lines, position, layer);
+            this.undoOperations.add(type, nodes, lines, position, scale, layer);
+            this.Unsave();
+        }
+
+        public void Unsave(string type, Nodes nodes = null, Lines lines = null, Polygons polygons = null, Position position = null, decimal scale = 0, long layer = 0)
+        {
+            this.undoOperations.rememberSave();
+            this.undoOperations.add(type, nodes, lines, polygons, position, scale, layer);
             this.Unsave();
         }
 
@@ -1887,7 +1894,7 @@ namespace Diagram
         // POLYGON
 
         // create polygon
-        public void CreatePolygon(Nodes Nodes, long layer = 0)
+        public void CreatePolygon(Nodes Nodes, long layer)
         {
             if (Nodes.Count() > 0)
             {
@@ -1896,7 +1903,7 @@ namespace Diagram
         }
 
         // remove polygon
-        public void RemovePolygon(Nodes Nodes, long layer = 0)
+        public void RemovePolygon(Nodes Nodes)
         {
             if (Nodes.Count() > 0)
             {
@@ -1912,7 +1919,7 @@ namespace Diagram
         }
 
         // remove polygon
-        public void SwitchPolygon(Nodes Nodes, long layer = 0)
+        public void SwitchPolygon(Nodes Nodes, Position position, decimal scale, long layer)
         {
             if (Nodes.Count() > 0)
             {
@@ -1922,10 +1929,14 @@ namespace Diagram
                     foreach (Polygon polygon in polygons) {
                         this.layers.RemovePolygon(polygon);
                     }
+                    this.Unsave("delete", null, null, polygons, position, scale, layer);
                 }
                 else
                 {
-                    this.layers.CreatePolygon(Nodes, layer);
+                    Polygon newPolygon = this.layers.CreatePolygon(Nodes, layer);
+                    Polygons newPolygons = new Polygons();
+                    newPolygons.Add(newPolygon);
+                    this.Unsave("create", null, null, newPolygons, position, scale, layer);
                 }
             }
         }

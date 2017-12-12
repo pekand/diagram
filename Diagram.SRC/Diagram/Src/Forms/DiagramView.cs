@@ -1073,7 +1073,7 @@ namespace Diagram
                         node.position.Add(vector);
                     }
 
-                    this.diagram.Unsave("create", newBlock.nodes, newBlock.lines);
+                    this.diagram.Unsave("create", newBlock.nodes, newBlock.lines, this.shift, this.scale, this.currentLayer.id);
 
                     this.SelectNodes(topNodes);
 
@@ -1114,7 +1114,7 @@ namespace Diagram
                     var node = this.CreateNode(newNodePosition);
                     node.shortcut = s.id;
                     this.diagram.Connect(s, node);
-                    this.diagram.Unsave("create", node, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("create", node, this.shift, this.scale, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
                 }
                 else
@@ -1127,7 +1127,7 @@ namespace Diagram
                     && this.sourceNode != null
                     && TargetNode != this.sourceNode)
                 {
-                    this.diagram.Unsave("edit", this.sourceNode, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("edit", this.sourceNode, this.shift, this.scale, this.currentLayer.id);
                     this.sourceNode.link = "#" + TargetNode.id.ToString();
                     this.diagram.Unsave();
                     this.diagram.InvalidateDiagram();
@@ -1157,7 +1157,7 @@ namespace Diagram
 
                     if (this.selectedNodes.Count > 0)
                     {
-                        this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                        this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
 
                         foreach (Node node in this.selectedNodes)
                         {
@@ -1190,7 +1190,7 @@ namespace Diagram
                         TargetNode
                     );
 
-                    this.diagram.Unsave("create", node, line, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("create", node, line, this.shift, this.scale, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
                 }
                 else
@@ -1211,7 +1211,7 @@ namespace Diagram
                     );
 
                     newrec.link = "#" + TargetNode.id;
-                    this.diagram.Unsave("create", newrec, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("create", newrec, this.shift, this.scale, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
                 }
                 else
@@ -1295,11 +1295,11 @@ namespace Diagram
                     }
 
                     this.SelectOnlyOneNode(newrec);
-                    this.diagram.Unsave("create", newNodes, newLines, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("create", newNodes, newLines, this.shift, this.scale, this.currentLayer.id);
                 }
                 else
                 // KEY ALT+MLEFT
-                // KEY DBLCLICK create new node
+                // KEY DBLCLICK create new node UID6734640900
                 if (!isreadonly
                     && (dblclick || keyalt)
                     && !keyshift
@@ -1309,8 +1309,8 @@ namespace Diagram
                     && e.X == this.startMousePos.x
                     && e.Y == this.startMousePos.y)
                 {
-                    Node newNode = this.CreateNode(this.actualMousePos.Clone().Subtract(10), false);
-                    this.diagram.Unsave("create", newNode, this.shift, this.currentLayer.id);
+                    Node newNode = this.CreateNode(this.actualMousePos.Clone().Subtract(10), false); 
+                    this.diagram.Unsave("create", newNode, this.shift, this.scale, this.currentLayer.id);
                 }
                 else
                 // KEY DRAG+ALT copy style from node to other node
@@ -1324,7 +1324,7 @@ namespace Diagram
                 {
                     if (this.selectedNodes.Count() > 1)
                     {
-                        this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                        this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
                         foreach (Node rec in this.selectedNodes)
                         {
                             rec.copyNodeStyle(TargetNode);
@@ -1335,7 +1335,7 @@ namespace Diagram
                     if (this.selectedNodes.Count() == 1
                         || (this.selectedNodes.Count() == 0 && this.sourceNode != null))
                     {
-                        this.diagram.undoOperations.add("edit", TargetNode, this.shift, this.currentLayer.id);
+                        this.diagram.undoOperations.add("edit", TargetNode, this.shift, this.scale, this.currentLayer.id);
 
                         TargetNode.copyNodeStyle(this.sourceNode);
 
@@ -1389,18 +1389,18 @@ namespace Diagram
                     if (newLines.Count() > 0 && removeLines.Count() > 0)
                     {
                         this.diagram.undoOperations.startGroup();
-                        this.diagram.undoOperations.add("create", null, newLines, this.shift, this.currentLayer.id);
-                        this.diagram.undoOperations.add("delete", null, removeLines, this.shift, this.currentLayer.id);
+                        this.diagram.undoOperations.add("create", null, newLines, this.shift, this.scale, this.currentLayer.id);
+                        this.diagram.undoOperations.add("delete", null, removeLines, this.shift, this.scale, this.currentLayer.id);
                         this.diagram.undoOperations.endGroup();
                         this.diagram.Unsave();
                     }
                     else if (newLines.Count() > 0)
                     {
-                        this.diagram.undoOperations.add("create", null, newLines, this.shift, this.currentLayer.id);
+                        this.diagram.undoOperations.add("create", null, newLines, this.shift, this.scale, this.currentLayer.id);
                     }
                     else if (removeLines.Count() > 0)
                     {
-                        this.diagram.undoOperations.add("delete", null, removeLines, this.shift, this.currentLayer.id);
+                        this.diagram.undoOperations.add("delete", null, removeLines, this.shift, this.scale, this.currentLayer.id);
                     }
 
 
@@ -1484,7 +1484,7 @@ namespace Diagram
                     }
 
                     if (newLine != null) {
-                        this.diagram.Unsave("create", newLine, this.shift, this.currentLayer.id);
+                        this.diagram.Unsave("create", newLine, this.shift, this.scale, this.currentLayer.id);
                         this.diagram.InvalidateDiagram();
                     }
                 }
@@ -1506,7 +1506,7 @@ namespace Diagram
                     }
                     newNode.transparent = true;
 
-                    this.diagram.Unsave("create", newNode, newLine, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("create", newNode, newLine, this.shift, this.scale, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
                 }
                 else
@@ -1524,7 +1524,7 @@ namespace Diagram
 
                     newNode.transparent = true;
 
-                    this.diagram.Unsave("create", newNode, newLine, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("create", newNode, newLine, this.shift, this.scale, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
                 }
                 else
@@ -1555,7 +1555,7 @@ namespace Diagram
                     node1.transparent = true;
                     node2.transparent = true;
 
-                    this.diagram.Unsave("create", nodes, lines, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("create", nodes, lines, this.shift, this.scale, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
                 }
             }
@@ -2346,7 +2346,7 @@ namespace Diagram
                     }
                 }
 
-                this.diagram.Unsave("create", newNodes, null, this.shift, this.currentLayer.id);
+                this.diagram.Unsave("create", newNodes, null, this.shift, this.scale, this.currentLayer.id);
 
             } catch (Exception ex) {
                 Program.log.Write("drop file goes wrong: error: " + ex.Message);
@@ -4043,10 +4043,21 @@ namespace Diagram
             }
         }
 
-        // NODE Check to shift
-        public bool IsOnPosition(Position shift, long layer)
+        // NODE Go to position
+        public void GoToPosition(Position shift = null, decimal scale = 0, long layerid = 0)
         {
-            if (shift.x == this.shift.x && shift.y == this.shift.y && this.currentLayer.id == layer)
+            if (shift != null)
+            {
+                this.GoToLayer(layerid);
+                this.shift.Set(shift);
+                this.scale = scale;                
+            }
+        }
+
+        // NODE Check to shift
+        public bool IsOnPosition(Position shift, decimal scale,  long layer)
+        {
+            if (shift.x == this.shift.x && shift.y == this.shift.y && this.scale == scale && this.currentLayer.id == layer)
             {
                 return true;
             }
@@ -4358,7 +4369,7 @@ namespace Diagram
                 {
                     if (!this.diagram.undoOperations.isSame("changeNodeColor", this.selectedNodes, null))
                     {
-                        this.diagram.Unsave("changeNodeColor", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                        this.diagram.Unsave("changeNodeColor", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
                     }
 
                     foreach (Node rec in this.selectedNodes)
@@ -4479,7 +4490,7 @@ namespace Diagram
             {
                 if (this.DImage.ShowDialog() == DialogResult.OK && Os.FileExists(this.DImage.FileName))
                 {
-                    this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                    this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
 
                     foreach (Node rec in this.selectedNodes)
                     {
@@ -4498,7 +4509,7 @@ namespace Diagram
 
                     Node newrec = this.CreateNode(this.startMousePos);
                     this.diagram.SetImage(newrec, this.DImage.FileName);
-                    this.diagram.Unsave("create", newrec, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("create", newrec, this.shift, this.scale, this.currentLayer.id);
                 }
 
                 this.diagram.InvalidateDiagram();
@@ -4510,7 +4521,7 @@ namespace Diagram
         {
             if (selectedNodes.Count() > 0 && !this.diagram.options.readOnly)
             {
-                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
                 foreach (Node rec in this.selectedNodes)
                 {
                     if (rec.isimage)
@@ -4572,7 +4583,7 @@ namespace Diagram
                 bool hasImage = this.HasSelectionNotEmbeddedImage();
 
                 if (hasImage) {
-                    this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                    this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
 
                     foreach (Node rec in this.selectedNodes)
                     {
@@ -4644,7 +4655,7 @@ namespace Diagram
                     this.scale
                 );
 
-                this.diagram.Unsave("create", newBlock.nodes, newBlock.lines);
+                this.diagram.Unsave("create", newBlock.nodes, newBlock.lines, null, this.shift, this.scale, this.currentLayer.id);
 
                 // filter only top nodes fromm all new created nodes. NewNodes containing sublayer nodes.
                 Nodes topNodes = new Nodes();
@@ -4669,7 +4680,7 @@ namespace Diagram
                 if (Patterns.isColor(ClipText)) {
                     newrec.setName(ClipText);
                     newrec.color.Set(Media.GetColor(ClipText));
-                    this.diagram.Unsave("create", newrec, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("create", newrec, this.shift, this.scale, this.currentLayer.id);
                 }
                 else if (Patterns.isURL(ClipText))  // [PASTE] [URL] [LINK] paste link from clipboard
                 {
@@ -4678,7 +4689,7 @@ namespace Diagram
 
                     this.SetNodeNameByLink(newrec, ClipText);
 
-                    this.diagram.Unsave("create", newrec, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("create", newrec, this.shift, this.scale, this.currentLayer.id);
                 }
                 else
                 {
@@ -4700,7 +4711,7 @@ namespace Diagram
                         newrec.color.Set(Media.GetColor(diagram.options.colorDirectory));
                     }
 
-                    this.diagram.Unsave("create", newrec, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("create", newrec, this.shift, this.scale, this.currentLayer.id);
                 }
 
                 this.diagram.InvalidateDiagram();
@@ -4750,7 +4761,7 @@ namespace Diagram
 
                 if (nodes.Count() > 0)
                 {
-                    this.diagram.Unsave("create", nodes, null, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("create", nodes, null, this.shift, this.scale, this.currentLayer.id);
                     this.diagram.InvalidateDiagram();
                 }
             }
@@ -4771,7 +4782,7 @@ namespace Diagram
                         newrec.isimage = true;
                         newrec.embeddedimage = true;
 
-                        this.diagram.Unsave("create", newrec, this.shift, this.currentLayer.id);
+                        this.diagram.Unsave("create", newrec, this.shift, this.scale, this.currentLayer.id);
                         this.diagram.InvalidateDiagram();
 
                     }
@@ -4801,12 +4812,12 @@ namespace Diagram
                     Node newrec = this.CreateNode(this.GetMousePosition());
 
                     newrec.note = ClipText;
-                    this.diagram.Unsave("create", newrec, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("create", newrec, this.shift, this.scale, this.currentLayer.id);
                 }
                 else
                 {
                     // append text to all selected nodes
-                    this.diagram.undoOperations.add("edit", this.selectedNodes);
+                    this.diagram.undoOperations.add("edit", this.selectedNodes, null, null, this.shift, this.scale, this.currentLayer.id);
                     foreach (Node rec in this.selectedNodes)
                     {
                         if (rec.note != "") // append to end of note
@@ -4838,11 +4849,11 @@ namespace Diagram
                     Node newrec = this.CreateNode(this.GetMousePosition());
 
                     newrec.link = ClipText;
-                    this.diagram.Unsave("create", newrec, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("create", newrec, this.shift, this.scale, this.currentLayer.id);
                 }
                 else
                 {
-                    this.diagram.undoOperations.add("edit", this.selectedNodes);
+                    this.diagram.undoOperations.add("edit", this.selectedNodes, null, null, this.shift, this.scale, this.currentLayer.id);
                     foreach (Node rec in this.selectedNodes)
                     {
 
@@ -4861,7 +4872,7 @@ namespace Diagram
         {
             if (this.selectedNodes.Count() > 0)
             {
-                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
                 this.diagram.AlignToLine(this.selectedNodes);
                 this.diagram.Unsave();
                 this.diagram.InvalidateDiagram();
@@ -4873,7 +4884,7 @@ namespace Diagram
         {
             if (this.selectedNodes.Count() > 0)
             {
-                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
                 this.diagram.AlignToColumn(this.selectedNodes);
                 this.diagram.Unsave();
                 this.diagram.InvalidateDiagram();
@@ -4885,7 +4896,7 @@ namespace Diagram
         {
             if (this.selectedNodes.Count() > 0)
             {
-                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
                 this.diagram.AlignCompact(this.selectedNodes);
                 this.diagram.Unsave();
                 this.diagram.InvalidateDiagram();
@@ -4897,7 +4908,7 @@ namespace Diagram
         {
             if (this.selectedNodes.Count() > 0)
             {
-                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
                 this.diagram.SortNodes(this.selectedNodes);
                 this.diagram.Unsave();
                 this.diagram.InvalidateDiagram();
@@ -4910,7 +4921,7 @@ namespace Diagram
             if (this.selectedNodes.Count() > 0)
             {
                 Nodes newNodes = this.diagram.SplitNode(this.selectedNodes);
-                this.diagram.Unsave("create", newNodes, null, this.shift, this.currentLayer.id);
+                this.diagram.Unsave("create", newNodes, null, this.shift, this.scale, this.currentLayer.id);
                 this.diagram.InvalidateDiagram();
             }
         }
@@ -4920,7 +4931,7 @@ namespace Diagram
         {
             if (this.selectedNodes.Count() > 0)
             {
-                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
                 this.diagram.AlignCompactLine(this.selectedNodes);
                 this.diagram.Unsave();
                 this.diagram.InvalidateDiagram();
@@ -4932,7 +4943,7 @@ namespace Diagram
         {
             if (this.selectedNodes.Count() > 1)
             {
-                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
                 this.diagram.AlignLeft(this.selectedNodes);
                 this.diagram.Unsave();
                 this.diagram.InvalidateDiagram();
@@ -4948,7 +4959,7 @@ namespace Diagram
         {
             if (this.selectedNodes.Count() > 1)
             {
-                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
                 this.diagram.AlignRight(this.selectedNodes);
                 this.diagram.Unsave();
                 this.diagram.InvalidateDiagram();
@@ -5086,7 +5097,7 @@ namespace Diagram
             newrec.setName(insertdatestring);
             newrec.color.Set("#8AC5FF");
 
-            this.diagram.Unsave("create", newrec, this.shift, this.currentLayer.id);
+            this.diagram.Unsave("create", newrec, this.shift, this.scale, this.currentLayer.id);
             this.diagram.InvalidateDiagram();
             return true;
         }
@@ -5144,7 +5155,7 @@ namespace Diagram
         {
             if (this.selectedNodes.Count > 0)
             {
-                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
 
                 //first all hide then show
                 bool allHidden = true;
@@ -5291,7 +5302,7 @@ namespace Diagram
             {
                 if (!this.diagram.undoOperations.isSame("move", this.selectedNodes, null))
                 {
-                    this.diagram.undoOperations.add("move", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                    this.diagram.undoOperations.add("move", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
                 }
                 long speed = (quick) ? this.diagram.options.keyArrowFastMoveNodeSpeed : this.diagram.options.keyArrowSlowMoveNodeSpeed;
                 foreach (Node rec in this.selectedNodes)
@@ -5316,7 +5327,7 @@ namespace Diagram
             {
                 if (!this.diagram.undoOperations.isSame("move", this.selectedNodes, null))
                 {
-                    this.diagram.undoOperations.add("move", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                    this.diagram.undoOperations.add("move", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
                 }
                 long speed = (quick) ? this.diagram.options.keyArrowFastMoveNodeSpeed : this.diagram.options.keyArrowSlowMoveNodeSpeed;
                 foreach (Node rec in this.selectedNodes)
@@ -5341,7 +5352,7 @@ namespace Diagram
             {
                 if (!this.diagram.undoOperations.isSame("move", this.selectedNodes, null))
                 {
-                    this.diagram.undoOperations.add("move", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                    this.diagram.undoOperations.add("move", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
                 }
                 long speed = (quick) ? this.diagram.options.keyArrowFastMoveNodeSpeed : this.diagram.options.keyArrowSlowMoveNodeSpeed;
                 foreach (Node rec in this.selectedNodes)
@@ -5366,7 +5377,7 @@ namespace Diagram
             {
                 if (!this.diagram.undoOperations.isSame("move", this.selectedNodes, null))
                 {
-                    this.diagram.undoOperations.add("move", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                    this.diagram.undoOperations.add("move", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
                 }
                 long speed = (quick) ? this.diagram.options.keyArrowFastMoveNodeSpeed : this.diagram.options.keyArrowSlowMoveNodeSpeed;
                 foreach (Node rec in this.selectedNodes)
@@ -5453,7 +5464,7 @@ namespace Diagram
 
                 if (this.selectedNodes.Count() > 0)
                 {
-                    this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                    this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
                     foreach (Node node in this.selectedNodes)
                     {
                         node.attachment = data;
@@ -5466,7 +5477,7 @@ namespace Diagram
                     newrec.attachment = data;
                     newrec.color.Set(diagram.options.colorAttachment);
                     newrec.setName(Os.GetFileName(this.DSelectFileAttachment.FileName));
-                    this.diagram.Unsave("create", newrec, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("create", newrec, this.shift, this.scale, this.currentLayer.id);
                 }
 
                 this.diagram.InvalidateDiagram();
@@ -5482,7 +5493,7 @@ namespace Diagram
 
                 if (this.selectedNodes.Count() > 0)
                 {
-                    this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                    this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
                     foreach (Node node in this.selectedNodes)
                     {
                         node.attachment = data;
@@ -5495,7 +5506,7 @@ namespace Diagram
                     newrec.attachment = data;
                     newrec.color.Set(diagram.options.colorAttachment);
                     newrec.setName(Os.GetFileName(this.DSelectDirectoryAttachment.SelectedPath));
-                    this.diagram.Unsave("create", newrec, this.shift, this.currentLayer.id);
+                    this.diagram.Unsave("create", newrec, this.shift, this.scale, this.currentLayer.id);
                 }
 
                 this.diagram.InvalidateDiagram();
@@ -5551,7 +5562,7 @@ namespace Diagram
         {
             if (this.selectedNodes.Count > 0)
             {
-                this.diagram.Unsave("edit", this.selectedNodes, null, this.shift, this.currentLayer.id);
+                this.diagram.Unsave("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
 
                 bool found = false;
                 foreach (Node node in this.selectedNodes)
@@ -5770,7 +5781,7 @@ namespace Diagram
                     {
                         if (!this.diagram.undoOperations.isSame("changeLineColor", null, SelectedLines))
                         {
-                            this.diagram.Unsave("changeLineColor", null, SelectedLines, this.shift, this.currentLayer.id);
+                            this.diagram.Unsave("changeLineColor", null, SelectedLines, this.shift, this.scale, this.currentLayer.id);
                         }
 
                         foreach (Line lin in SelectedLines)
@@ -5810,7 +5821,7 @@ namespace Diagram
 
                     if (!this.diagram.undoOperations.isSame("changeLineWidth", null, SelectedLines))
                     {
-                        this.diagram.Unsave("changeLineWidth", null, SelectedLines, this.shift, this.currentLayer.id);
+                        this.diagram.Unsave("changeLineWidth", null, SelectedLines, this.shift, this.scale, this.currentLayer.id);
                     }
 
                     foreach (Line lin in SelectedLines)
@@ -5945,7 +5956,7 @@ namespace Diagram
         {
             if (selectedNodes.Count() > 1 && !this.diagram.options.readOnly)
             {                
-                this.diagram.SwitchPolygon(selectedNodes);
+                this.diagram.SwitchPolygon(selectedNodes, this.shift, this.scale, this.currentLayer.id);
                 this.diagram.InvalidateDiagram();
             }
         }

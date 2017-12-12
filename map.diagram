@@ -1093,8 +1093,8 @@
       <id>125</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>706</x>
-      <y>2514</y>
+      <x>710.0</x>
+      <y>2494.0</y>
       <width>20</width>
       <height>20</height>
       <scale>0</scale>
@@ -1121,8 +1121,8 @@
       <id>126</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>872</x>
-      <y>2514</y>
+      <x>876.0</x>
+      <y>2494.0</y>
       <width>20</width>
       <height>20</height>
       <scale>0</scale>
@@ -8229,6 +8229,399 @@ print 'uid created'</note>
       <timecreate>2017-12-3 16:52:40</timecreate>
       <timemodify>2017-12-3 16:52:40</timemodify>
     </rectangle>
+    <rectangle>
+      <id>2169</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>270.0</x>
+      <y>1246.0</y>
+      <width>20</width>
+      <height>20</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-12-5 16:59:09</timecreate>
+      <timemodify>2017-12-5 16:59:09</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2170</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>270.0</x>
+      <y>1511.0</y>
+      <width>20</width>
+      <height>20</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-12-5 16:59:09</timecreate>
+      <timemodify>2017-12-5 16:59:09</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2171</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>108.0</x>
+      <y>1378.0</y>
+      <width>20</width>
+      <height>20</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-12-5 16:59:11</timecreate>
+      <timemodify>2017-12-5 16:59:11</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2172</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>464.0</x>
+      <y>1378.0</y>
+      <width>20</width>
+      <height>20</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-12-5 16:59:11</timecreate>
+      <timemodify>2017-12-5 16:59:11</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2173</id>
+      <fontcolor>Black</fontcolor>
+      <text>y</text>
+      <layer>0</layer>
+      <x>296.0</x>
+      <y>1256.0</y>
+      <width>31</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <timecreate>2017-12-5 16:59:14</timecreate>
+      <timemodify>2017-12-5 16:59:14</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2174</id>
+      <fontcolor>Black</fontcolor>
+      <text>-y</text>
+      <layer>0</layer>
+      <x>295.0</x>
+      <y>1484.0</y>
+      <width>35</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <timecreate>2017-12-5 16:59:20</timecreate>
+      <timemodify>2017-12-5 16:59:20</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2175</id>
+      <fontcolor>Black</fontcolor>
+      <text>x</text>
+      <layer>0</layer>
+      <x>113.0</x>
+      <y>1400.0</y>
+      <width>31</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <timecreate>2017-12-5 16:59:24</timecreate>
+      <timemodify>2017-12-5 16:59:24</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2176</id>
+      <fontcolor>Black</fontcolor>
+      <text>-x</text>
+      <layer>0</layer>
+      <x>457.0</x>
+      <y>1396.0</y>
+      <width>35</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <timecreate>2017-12-5 16:59:31</timecreate>
+      <timemodify>2017-12-5 16:59:31</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2177</id>
+      <fontcolor>Black</fontcolor>
+      <text>diagram</text>
+      <layer>0</layer>
+      <x>174.0</x>
+      <y>1327.0</y>
+      <width>74</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <timecreate>2017-12-5 16:59:40</timecreate>
+      <timemodify>2017-12-5 16:59:40</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2178</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>60.0</x>
+      <y>1200.0</y>
+      <width>20</width>
+      <height>20</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-12-5 16:59:44</timecreate>
+      <timemodify>2017-12-5 16:59:44</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2179</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>60.0</x>
+      <y>1556.0</y>
+      <width>20</width>
+      <height>20</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-12-5 16:59:44</timecreate>
+      <timemodify>2017-12-5 16:59:44</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2180</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>520.0</x>
+      <y>1556.0</y>
+      <width>20</width>
+      <height>20</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-12-5 16:59:45</timecreate>
+      <timemodify>2017-12-5 16:59:45</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2181</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>520.0</x>
+      <y>1200.0</y>
+      <width>20</width>
+      <height>20</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-12-5 16:59:46</timecreate>
+      <timemodify>2017-12-5 16:59:46</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2182</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>958.0</x>
+      <y>1556.0</y>
+      <width>20</width>
+      <height>20</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-12-5 16:59:54</timecreate>
+      <timemodify>2017-12-5 16:59:54</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2183</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>958.0</x>
+      <y>1200.0</y>
+      <width>20</width>
+      <height>20</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-12-5 16:59:56</timecreate>
+      <timemodify>2017-12-5 16:59:56</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2184</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>721.0</x>
+      <y>1235.0</y>
+      <width>20</width>
+      <height>20</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-12-5 17:00:02</timecreate>
+      <timemodify>2017-12-5 17:00:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2185</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>721.0</x>
+      <y>1500.0</y>
+      <width>20</width>
+      <height>20</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-12-5 17:00:02</timecreate>
+      <timemodify>2017-12-5 17:00:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2186</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>559.0</x>
+      <y>1367.0</y>
+      <width>20</width>
+      <height>20</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-12-5 17:00:02</timecreate>
+      <timemodify>2017-12-5 17:00:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2187</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>915.0</x>
+      <y>1367.0</y>
+      <width>20</width>
+      <height>20</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2017-12-5 17:00:02</timecreate>
+      <timemodify>2017-12-5 17:00:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2188</id>
+      <fontcolor>Black</fontcolor>
+      <text>y</text>
+      <layer>0</layer>
+      <x>751.0</x>
+      <y>1482.0</y>
+      <width>31</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <timecreate>2017-12-5 17:00:02</timecreate>
+      <timemodify>2017-12-5 17:00:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2189</id>
+      <fontcolor>Black</fontcolor>
+      <text>-y</text>
+      <layer>0</layer>
+      <x>742.0</x>
+      <y>1248.0</y>
+      <width>35</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <timecreate>2017-12-5 17:00:02</timecreate>
+      <timemodify>2017-12-5 17:00:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2190</id>
+      <fontcolor>Black</fontcolor>
+      <text>x</text>
+      <layer>0</layer>
+      <x>898.0</x>
+      <y>1394.0</y>
+      <width>31</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <timecreate>2017-12-5 17:00:02</timecreate>
+      <timemodify>2017-12-5 17:00:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2191</id>
+      <fontcolor>Black</fontcolor>
+      <text>-x</text>
+      <layer>0</layer>
+      <x>573.0</x>
+      <y>1396.0</y>
+      <width>35</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <timecreate>2017-12-5 17:00:02</timecreate>
+      <timemodify>2017-12-5 17:00:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2192</id>
+      <fontcolor>Black</fontcolor>
+      <text>screen</text>
+      <layer>0</layer>
+      <x>629.0</x>
+      <y>1313.0</y>
+      <width>65</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <timecreate>2017-12-5 17:00:02</timecreate>
+      <timemodify>2017-12-5 17:00:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2193</id>
+      <fontcolor>Black</fontcolor>
+      <text>Displey = ( Shift  + Rectangle ) / Scale</text>
+      <layer>0</layer>
+      <x>573.0</x>
+      <y>1572.0</y>
+      <width>255</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <timecreate>2017-12-5 17:01:23</timecreate>
+      <timemodify>2017-12-5 17:01:23</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2194</id>
+      <fontcolor>Black</fontcolor>
+      <text>-s + d* s = r</text>
+      <layer>0</layer>
+      <x>858.0</x>
+      <y>1575.0</y>
+      <width>94</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <timecreate>2017-12-5 17:01:54</timecreate>
+      <timemodify>2017-12-5 17:02:02</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2197</id>
+      <fontcolor>Black</fontcolor>
+      <text>create node</text>
+      <layer>0</layer>
+      <x>-412.0000000000000000</x>
+      <y>8248.00</y>
+      <width>96</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#00DCE6</color>
+      <timecreate>2017-12-12 22:43:10</timecreate>
+      <timemodify>2017-12-12 22:43:10</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2198</id>
+      <fontcolor>Black</fontcolor>
+      <text>doubleclick</text>
+      <link>UID6734640900</link>
+      <layer>0</layer>
+      <x>-267.0</x>
+      <y>8220.0</y>
+      <width>92</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <timecreate>2017-12-12 22:43:21</timecreate>
+      <timemodify>2017-12-12 22:43:26</timemodify>
+    </rectangle>
   </rectangles>
   <lines>
     <line>
@@ -11843,6 +12236,102 @@ print 'uid created'</note>
       <start>1792</start>
       <end>2150</end>
       <scale>0.0</scale>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>2169</start>
+      <end>2170</end>
+      <scale>0</scale>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>2171</start>
+      <end>2172</end>
+      <scale>0</scale>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>2178</start>
+      <end>2179</end>
+      <scale>0</scale>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>2179</start>
+      <end>2180</end>
+      <scale>0</scale>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>2180</start>
+      <end>2181</end>
+      <scale>0</scale>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>2181</start>
+      <end>2178</end>
+      <scale>0</scale>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>2180</start>
+      <end>2182</end>
+      <scale>0</scale>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>2182</start>
+      <end>2183</end>
+      <scale>0</scale>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>2183</start>
+      <end>2181</end>
+      <scale>0</scale>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>2184</start>
+      <end>2185</end>
+      <scale>0</scale>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>2186</start>
+      <end>2187</end>
+      <scale>0</scale>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>2198</start>
+      <end>2197</end>
+      <scale>0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
