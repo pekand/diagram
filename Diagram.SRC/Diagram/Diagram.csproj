@@ -202,6 +202,7 @@
     <Compile Include="Src\Model\Position.cs" />
     <Compile Include="Src\Model\UndoOperations.cs" />
     <Compile Include="Src\Plugins\IDiagramPlugin.cs" />
+    <Compile Include="Src\Plugins\IDropPlugin.cs" />
     <Compile Include="Src\Plugins\IKeyPressPlugin.cs" />
     <Compile Include="Src\Plugins\INodeOpenPlugin.cs" />
     <Compile Include="Src\Plugins\IPopupPlugin.cs" />

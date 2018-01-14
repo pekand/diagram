@@ -16,6 +16,7 @@ namespace Diagram
         public ICollection<IKeyPressPlugin> keyPressPlugins = new List<IKeyPressPlugin>();
         public ICollection<IOpenDiagramPlugin> openDiagramPlugins = new List<IOpenDiagramPlugin>();
         public ICollection<IPopupPlugin> popupPlugins = new List<IPopupPlugin>();
+        public ICollection<IDropPlugin> dropPlugins = new List<IDropPlugin>();
 
         /// <summary>
         /// load plugins from path</summary>
@@ -123,6 +124,11 @@ namespace Diagram
                         if (type.GetInterface(typeof(IPopupPlugin).FullName) != null)
                         {
                             popupPlugins.Add(plugin as IPopupPlugin);
+                        }
+
+                        if (type.GetInterface(typeof(IDropPlugin).FullName) != null)
+                        {
+                            dropPlugins.Add(plugin as IDropPlugin);
                         }
                     }
                 }
@@ -250,6 +256,38 @@ namespace Diagram
                     }
                 }
             }
+        }
+
+
+        /// <summary>
+        /// </summary>
+        public bool DropAction(DiagramView diagramView)
+        {
+            if (dropPlugins.Count > 0)
+            {
+                bool acceptAction = false;
+
+                foreach (IDropPlugin plugin in dropPlugins)
+                {
+                    try
+                    {
+                        acceptAction = plugin.DropAction(diagramView);
+
+                        if (acceptAction) {
+                            return true;
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        Program.log.Write("Exception in plugin: " + plugin.Name + " : " + e.Message);
+                    }
+                }
+
+                return acceptAction;
+            }
+
+            return false;
         }
     }
 }

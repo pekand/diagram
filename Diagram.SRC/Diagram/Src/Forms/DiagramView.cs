@@ -2249,6 +2249,12 @@ namespace Diagram
             this.LogEvent("DragDrop");
 #endif
 
+            bool acceptedAction = this.main.plugins.DropAction(this);
+
+            if (acceptedAction) {
+                return;
+            }
+
             try
             {
                 Nodes newNodes = new Nodes();
