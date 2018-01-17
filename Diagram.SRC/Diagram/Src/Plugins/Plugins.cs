@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Diagram
 {
@@ -17,6 +18,8 @@ namespace Diagram
         public ICollection<IOpenDiagramPlugin> openDiagramPlugins = new List<IOpenDiagramPlugin>();
         public ICollection<IPopupPlugin> popupPlugins = new List<IPopupPlugin>();
         public ICollection<IDropPlugin> dropPlugins = new List<IDropPlugin>();
+        public ICollection<ISavePlugin> savePlugins = new List<ISavePlugin>();
+        public ICollection<ILoadPlugin> loadPlugins = new List<ILoadPlugin>();
 
         /// <summary>
         /// load plugins from path</summary>
@@ -129,6 +132,16 @@ namespace Diagram
                         if (type.GetInterface(typeof(IDropPlugin).FullName) != null)
                         {
                             dropPlugins.Add(plugin as IDropPlugin);
+                        }
+
+                        if (type.GetInterface(typeof(ISavePlugin).FullName) != null)
+                        {
+                            savePlugins.Add(plugin as ISavePlugin);
+                        }
+
+                        if (type.GetInterface(typeof(ILoadPlugin).FullName) != null)
+                        {
+                           loadPlugins.Add(plugin as ILoadPlugin);
                         }
                     }
                 }
@@ -261,7 +274,7 @@ namespace Diagram
 
         /// <summary>
         /// </summary>
-        public bool DropAction(DiagramView diagramView)
+        public bool DropAction(DiagramView diagramView, DragEventArgs ev)
         {
             if (dropPlugins.Count > 0)
             {
@@ -271,9 +284,73 @@ namespace Diagram
                 {
                     try
                     {
-                        acceptAction = plugin.DropAction(diagramView);
+                        acceptAction = plugin.DropAction(diagramView, ev);
 
                         if (acceptAction) {
+                            return true;
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        Program.log.Write("Exception in plugin: " + plugin.Name + " : " + e.Message);
+                    }
+                }
+
+                return acceptAction;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// </summary>
+        public bool SaveAction(Diagram diagram, XElement root)
+        {
+            if (dropPlugins.Count > 0)
+            {
+                bool acceptAction = false;
+
+                foreach (ISavePlugin plugin in savePlugins)
+                {
+                    try
+                    {
+                        acceptAction = plugin.SaveAction(diagram, root);
+
+                        if (acceptAction)
+                        {
+                            return true;
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        Program.log.Write("Exception in plugin: " + plugin.Name + " : " + e.Message);
+                    }
+                }
+
+                return acceptAction;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// </summary>
+        public bool LoadAction(Diagram diagram, XElement root)
+        {
+            if (dropPlugins.Count > 0)
+            {
+                bool acceptAction = false;
+
+                foreach (ILoadPlugin plugin in loadPlugins)
+                {
+                    try
+                    {
+                        acceptAction = plugin.LoadAction(diagram, root);
+
+                        if (acceptAction)
+                        {
                             return true;
                         }
 

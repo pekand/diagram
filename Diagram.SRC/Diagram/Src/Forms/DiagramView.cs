@@ -2249,7 +2249,7 @@ namespace Diagram
             this.LogEvent("DragDrop");
 #endif
 
-            bool acceptedAction = this.main.plugins.DropAction(this);
+            bool acceptedAction = this.main.plugins.DropAction(this, e);
 
             if (acceptedAction) {
                 return;

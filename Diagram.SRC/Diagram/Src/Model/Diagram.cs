@@ -61,6 +61,11 @@ namespace Diagram
         public Font FontDefault = null; // default font
 
         /*************************************************************************************************************************/
+        // PLUGINS
+
+        public DataStorage dataStorage = new DataStorage(); // default font
+
+        /*************************************************************************************************************************/
         // CONSTRUCTORS
 
         public Diagram(Main main = null)
@@ -390,6 +395,8 @@ namespace Diagram
                 root.Add(rectangles);
                 root.Add(lines);
                 root.Add(polygons);
+                
+                this.main.plugins.SaveAction(this, root);
 
                 checkpoint = true;
             }
@@ -1069,6 +1076,8 @@ namespace Diagram
                             }
                         }
                     }
+                    
+                    this.main.plugins.LoadAction(this, root);
                 }
             }
             catch (Exception ex)

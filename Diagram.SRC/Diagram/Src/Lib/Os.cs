@@ -112,6 +112,30 @@ namespace Diagram
             return null;
         }
 
+        /// <summary>
+        /// copy file or directory </summary>
+        public static bool Copy(string SourcePath, string DestinationPath)
+        {
+            try
+            {
+                if (Directory.Exists(SourcePath))
+                {
+                    foreach (string dirPath in Directory.GetDirectories(SourcePath, "*", SearchOption.AllDirectories))
+                        Os.CreateDirectory(dirPath.Replace(SourcePath, DestinationPath));
+
+                    foreach (string newPath in Directory.GetFiles(SourcePath, "*.*", SearchOption.AllDirectories))
+                        File.Copy(newPath, newPath.Replace(SourcePath, DestinationPath), true);
+                }
+                else if (File.Exists(SourcePath)) {
+                    File.Copy(SourcePath, Os.Combine(DestinationPath, Os.GetFileName(SourcePath)), true);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         /*************************************************************************************************************************/
         // DIRECTORY OPERATIONS
 

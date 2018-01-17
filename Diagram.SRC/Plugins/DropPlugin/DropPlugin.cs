@@ -4,14 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using Diagram;
+using System.Drawing;
 
-namespace Plugin
+namespace DropPlugin
 {
-    public class DropPlugin : IDropPlugin
+    public class DropPluginStorage : IStorage
     {
-        private static long counter = 0;
+        public string saveDataDirectory = null;
+    }
 
+    public class DropPlugin : Plugin, IDropPlugin, ISavePlugin, ILoadPlugin, IPopupPlugin
+    {
+        
         public string Name
         {
             get
@@ -28,25 +34,167 @@ namespace Plugin
             }
         }
 
-        private string location = null;
-
-        public void SetLocation(string location)
+        public DropPluginStorage getStorage(Diagram.Diagram diagram)
         {
-            this.location = location;
+            IStorage storage = diagram.dataStorage.getStorage("DropPlugin");
+
+            if (storage == null) {
+                storage = new DropPluginStorage();
+                diagram.dataStorage.setStorage("DropPlugin", storage);
+            }
+
+            return storage as DropPluginStorage;
         }
 
-        private Log log = null;
-
-        public void SetLog(Log log)
+        public bool DropAction(DiagramView diagramview, DragEventArgs e)
         {
-            this.log = log;
-        }
 
-        public bool DropAction(DiagramView diagramview)
-        {
-            log.Write("Do Something in Drop Plugin:" + (counter++).ToString());
+            if (getStorage(diagramview.diagram).saveDataDirectory == null) {
+                return false;
+            }
+
+            if (!Os.DirectoryExists(getStorage(diagramview.diagram).saveDataDirectory))
+            {
+                return false;
+            }
+
+            try
+            {
+                Nodes newNodes = new Nodes();
+
+                string[] formats = e.Data.GetFormats();
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+
+                string datedir = Os.Combine(getStorage(diagramview.diagram).saveDataDirectory, DateTime.Now.ToString("yyyy-dd-MM"));
+                Os.CreateDirectory(datedir);
+
+                int counter = 1;
+                while (Os.DirectoryExists(Os.Combine(datedir, counter.ToString().PadLeft(4, '0'))) && counter < 9999) {
+                    counter++;
+                }
+
+                string dropdir = Os.Combine(datedir, counter.ToString().PadLeft(4, '0'));
+                Os.CreateDirectory(dropdir);
+
+                foreach (string file in files)
+                {
+                    Node newrec = diagramview.CreateNode(diagramview.GetMousePosition());
+                    newNodes.Add(newrec);
+                    newrec.setName(Os.GetFileName(file));
+
+                    newrec.link = file;
+                    if (Os.DirectoryExists(file) || Os.Exists(file)) // directory
+                    {
+                        Os.Copy(file, dropdir);
+                        newrec.link = Os.MakeRelative(dropdir, diagramview.diagram.FileName);
+                    }
+                }
+
+                diagramview.diagram.Unsave("create", newNodes, null, diagramview.shift, diagramview.scale, diagramview.currentLayer.id);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Program.log.Write("drop file goes wrong: error: " + ex.Message);
+            }
+
 
             return false;
+        }
+
+        public bool SaveAction(Diagram.Diagram diagram, XElement root)
+        {
+            if (getStorage(diagram).saveDataDirectory == null)
+            {
+                return false;
+            }
+
+            //find plugin element if exists
+
+            XElement plugins = null;
+            foreach (XElement el in root.Descendants())
+            {
+                if (el.Name.ToString() == "plugins")
+                {
+                    plugins = el;
+                }
+            }
+
+            if (plugins == null) {
+                plugins = new XElement("plugins");
+                root.Add(plugins);
+            }
+
+            
+            XElement DropPlugin = new XElement("DropPlugin");
+            DropPlugin.Add(new XElement("dataDirectory", getStorage(diagram).saveDataDirectory));
+            plugins.Add(DropPlugin);
+            
+            return true;
+        }
+
+        public bool LoadAction(Diagram.Diagram diagram, XElement root)
+        {
+
+            foreach (XElement el in root.Descendants())
+            {
+                try
+                {
+                    if (el.Name.ToString() == "plugins")
+                    {
+                        foreach (XElement plugin in el.Descendants())
+                        {
+                            if (plugin.Name.ToString() == "DropPlugin")
+                            {
+                                foreach (XElement option in el.Descendants())
+                                {
+                                    if (option.Name.ToString() == "dataDirectory")
+                                    {
+                                        getStorage(diagram).saveDataDirectory = option.Value;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Program.log.Write("load xml diagram drop plugin: " + ex.Message);
+                }
+            }
+
+
+            return false;
+        }
+
+        public void PopupAddItemsAction(DiagramView diagramView, ToolStripMenuItem pluginsItem)
+        {
+
+        }
+
+        public void PopupOpenAction(DiagramView diagramView, ToolStripMenuItem pluginsItem)
+        {
+            System.Windows.Forms.ToolStripMenuItem selectDataDirectoryItem = new System.Windows.Forms.ToolStripMenuItem();
+            selectDataDirectoryItem.Name = "selectDataDirectoryItem";
+            selectDataDirectoryItem.Text = "Select data directory";
+            selectDataDirectoryItem.Click += new System.EventHandler((sender, e) => this.SelectDataDirectoryItem_Click(sender, e, diagramView));
+
+            pluginsItem.DropDownItems.Add(selectDataDirectoryItem);
+        }
+
+        public void SelectDataDirectoryItem_Click(object sender, EventArgs e, Diagram.DiagramView diagramView)
+        {
+            using (var folderDialog = new FolderBrowserDialog())
+            {
+                if (folderDialog.ShowDialog() == DialogResult.OK)
+                {
+                    getStorage(diagramView.diagram).saveDataDirectory = folderDialog.SelectedPath;
+                }
+            }
+
         }
     }
 }

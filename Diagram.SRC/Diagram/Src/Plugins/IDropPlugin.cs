@@ -1,7 +1,9 @@
-﻿namespace Diagram
+﻿using System.Windows.Forms;
+
+namespace Diagram
 {
     public interface IDropPlugin : IDiagramPlugin
     {
-        bool DropAction(DiagramView diagramview);
+        bool DropAction(DiagramView diagramview, DragEventArgs e);
     }
 }
