@@ -164,6 +164,9 @@
     <Compile Include="Src\Components\EditPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Src\Components\DisplayInfo.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Src\Components\SearchPanel.cs">
       <SubType>Component</SubType>
     </Compile>

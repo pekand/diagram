@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using Diagram;
 using System.Drawing;
+using System.ComponentModel;
 
 namespace DropPlugin
 {
@@ -48,7 +49,6 @@ namespace DropPlugin
 
         public bool DropAction(DiagramView diagramview, DragEventArgs e)
         {
-
             if (getStorage(diagramview.diagram).saveDataDirectory == null) {
                 return false;
             }
@@ -60,6 +60,7 @@ namespace DropPlugin
 
             try
             {
+
                 Nodes newNodes = new Nodes();
 
                 string[] formats = e.Data.GetFormats();
@@ -70,11 +71,14 @@ namespace DropPlugin
                 Os.CreateDirectory(datedir);
 
                 int counter = 1;
-                while (Os.DirectoryExists(Os.Combine(datedir, counter.ToString().PadLeft(4, '0'))) && counter < 9999) {
+                while (Os.DirectoryExists(Os.Combine(datedir, counter.ToString().PadLeft(4, '0'))) && counter < 9999)
+                {
                     counter++;
                 }
 
                 string dropdir = Os.Combine(datedir, counter.ToString().PadLeft(4, '0'));
+                List<string> fileList = new List<string>();
+
                 Os.CreateDirectory(dropdir);
 
                 foreach (string file in files)
@@ -83,15 +87,39 @@ namespace DropPlugin
                     newNodes.Add(newrec);
                     newrec.setName(Os.GetFileName(file));
 
-                    newrec.link = file;
                     if (Os.DirectoryExists(file) || Os.Exists(file)) // directory
                     {
-                        Os.Copy(file, dropdir);
+                        fileList.Add(file);
                         newrec.link = Os.MakeRelative(dropdir, diagramview.diagram.FileName);
                     }
                 }
 
                 diagramview.diagram.Unsave("create", newNodes, null, diagramview.shift, diagramview.scale, diagramview.currentLayer.id);
+
+
+                DisplayInfo displayInfo = new DisplayInfo(diagramview);
+                
+
+                Job.doJob(
+                   new DoWorkEventHandler(
+                       delegate (object o, DoWorkEventArgs args)
+                       {
+                           displayInfo.SetText("copy");
+
+                           foreach (String file in fileList)
+                           {
+                               displayInfo.SetText("copy: " + Os.GetFileName(file));
+                               Os.Copy(file, dropdir);
+                           }
+                       }
+                   ),
+                   new RunWorkerCompletedEventHandler(
+                       delegate (object o, RunWorkerCompletedEventArgs args)
+                       {                           
+                           displayInfo.RemoveComponent();
+                       }
+                   )
+               );
 
                 return true;
             }

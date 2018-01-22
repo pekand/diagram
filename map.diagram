@@ -37,8 +37,8 @@
       <text>Main.cs</text>
       <link>UID7118462915</link>
       <layer>0</layer>
-      <x>-510</x>
-      <y>2121</y>
+      <x>-510.420135</x>
+      <y>2120.621095</y>
       <width>71</width>
       <height>36</height>
       <scale>0</scale>
@@ -52,8 +52,8 @@
       <text>Program.cs</text>
       <link>UID2573216529</link>
       <layer>0</layer>
-      <x>-734.000000000000000000000000</x>
-      <y>2121</y>
+      <x>-734.323130000000000000000000</x>
+      <y>2120.621095</y>
       <width>94</width>
       <height>36</height>
       <scale>0</scale>
@@ -67,8 +67,8 @@
       <text>ProgramOptions.cs</text>
       <link>UID0014460148</link>
       <layer>0</layer>
-      <x>-522</x>
-      <y>2246</y>
+      <x>-522.02755</x>
+      <y>2245.621095</y>
       <width>142</width>
       <height>36</height>
       <scale>0</scale>
@@ -82,8 +82,8 @@
       <text>KeyMap.cs</text>
       <link>UID6078031921</link>
       <layer>0</layer>
-      <x>16</x>
-      <y>2185</y>
+      <x>15.81294</x>
+      <y>2184.621095</y>
       <width>92</width>
       <height>36</height>
       <scale>0</scale>
@@ -97,8 +97,8 @@
       <text>Log.cs</text>
       <link>UID8455348623</link>
       <layer>0</layer>
-      <x>-719</x>
-      <y>2233</y>
+      <x>-719.45334</x>
+      <y>2232.621095</y>
       <width>64</width>
       <height>36</height>
       <scale>0</scale>
@@ -112,8 +112,8 @@
       <text>OptionsFile.cs</text>
       <link>UID8285897740</link>
       <layer>0</layer>
-      <x>-532</x>
-      <y>2195</y>
+      <x>-532.3485</x>
+      <y>2194.621095</y>
       <width>111</width>
       <height>36</height>
       <scale>0</scale>
@@ -127,8 +127,8 @@
       <text>Translations.cs</text>
       <link>UID1436834852</link>
       <layer>0</layer>
-      <x>744</x>
-      <y>2388</y>
+      <x>743.52125</x>
+      <y>2387.621095</y>
       <width>116</width>
       <height>36</height>
       <scale>0</scale>
@@ -142,8 +142,8 @@
       <text>ColorType.cs</text>
       <link>UID6485317568</link>
       <layer>0</layer>
-      <x>-326</x>
-      <y>2500</y>
+      <x>-326.2105</x>
+      <y>2499.621095</y>
       <width>105</width>
       <height>36</height>
       <scale>0</scale>
@@ -157,8 +157,8 @@
       <text>Diagram.cs</text>
       <link>UID2487098516</link>
       <layer>0</layer>
-      <x>-161</x>
-      <y>2121</y>
+      <x>-161.48133</x>
+      <y>2120.621095</y>
       <width>93</width>
       <height>36</height>
       <scale>0</scale>
@@ -172,8 +172,8 @@
       <text>DiagramBlock.cs</text>
       <link>UID6305074892</link>
       <layer>0</layer>
-      <x>-270</x>
-      <y>2055</y>
+      <x>-270.314</x>
+      <y>2054.621095</y>
       <width>127</width>
       <height>36</height>
       <scale>0</scale>
@@ -187,8 +187,8 @@
       <text>Layer.cs</text>
       <link>UID1099250588</link>
       <layer>0</layer>
-      <x>-153</x>
-      <y>2230</y>
+      <x>-153.172735</x>
+      <y>2229.621095</y>
       <width>76</width>
       <height>36</height>
       <scale>0</scale>
@@ -202,8 +202,8 @@
       <text>Layers.cs</text>
       <link>UID6548243626</link>
       <layer>0</layer>
-      <x>-156</x>
-      <y>2172</y>
+      <x>-156.106985</x>
+      <y>2171.621095</y>
       <width>83</width>
       <height>36</height>
       <scale>0</scale>
@@ -217,8 +217,8 @@
       <text>Line.cs</text>
       <link>UID5674116969</link>
       <layer>0</layer>
-      <x>-149</x>
-      <y>2374</y>
+      <x>-149.019095</x>
+      <y>2373.621095</y>
       <width>68</width>
       <height>36</height>
       <scale>0</scale>
@@ -232,8 +232,8 @@
       <text>Lines.cs</text>
       <link>UID2846356573</link>
       <layer>0</layer>
-      <x>-152</x>
-      <y>2293</y>
+      <x>-152.45334</x>
+      <y>2292.621095</y>
       <width>74</width>
       <height>36</height>
       <scale>0</scale>
@@ -247,8 +247,8 @@
       <text>Node.cs</text>
       <link>UID6202169477</link>
       <layer>0</layer>
-      <x>-243</x>
-      <y>2374</y>
+      <x>-243.41102</x>
+      <y>2373.621095</y>
       <width>74</width>
       <height>36</height>
       <scale>0</scale>
@@ -262,8 +262,8 @@
       <text>Nodes.cs</text>
       <link>UID2727152862</link>
       <layer>0</layer>
-      <x>-246.0000000000000000000000000</x>
-      <y>2293.0000000000000000000000000</y>
+      <x>-246.3452650000000000000000000</x>
+      <y>2292.6210950000000000000000000</y>
       <width>81</width>
       <height>36</height>
       <scale>0</scale>
@@ -277,8 +277,8 @@
       <text>Options.cs</text>
       <link>UID6652785641</link>
       <layer>0</layer>
-      <x>-149</x>
-      <y>1984</y>
+      <x>-149.202685</x>
+      <y>1983.621095</y>
       <width>89</width>
       <height>36</height>
       <scale>0</scale>
@@ -292,8 +292,8 @@
       <text>Position.cs</text>
       <link>UID0604640560</link>
       <layer>0</layer>
-      <x>-176</x>
-      <y>2499</y>
+      <x>-176.00672</x>
+      <y>2498.621095</y>
       <width>91</width>
       <height>36</height>
       <scale>0</scale>
@@ -307,8 +307,8 @@
       <text>UndoOperations.cs</text>
       <link>UID6178817122</link>
       <layer>0</layer>
-      <x>-69</x>
-      <y>2051</y>
+      <x>-69.0373</x>
+      <y>2050.621095</y>
       <width>142</width>
       <height>36</height>
       <scale>0</scale>
@@ -322,8 +322,8 @@
       <text>Compress.cs</text>
       <link>UID4089400971</link>
       <layer>0</layer>
-      <x>744</x>
-      <y>2094</y>
+      <x>743.71595</x>
+      <y>2093.621095</y>
       <width>104</width>
       <height>36</height>
       <scale>0</scale>
@@ -337,8 +337,8 @@
       <text>Encrypt.cs</text>
       <link>UID5102459625</link>
       <layer>0</layer>
-      <x>744</x>
-      <y>2045</y>
+      <x>743.723745</x>
+      <y>2044.621095</y>
       <width>88</width>
       <height>36</height>
       <scale>0</scale>
@@ -352,8 +352,8 @@
       <text>Fonts.cs</text>
       <link>UID1751506871</link>
       <layer>0</layer>
-      <x>744</x>
-      <y>2192</y>
+      <x>743.827265</x>
+      <y>2191.621095</y>
       <width>76</width>
       <height>36</height>
       <scale>0</scale>
@@ -367,8 +367,8 @@
       <text>Job.cs</text>
       <link>UID8736422044</link>
       <layer>0</layer>
-      <x>744</x>
-      <y>2339</y>
+      <x>743.9307800000000000000</x>
+      <y>2338.6210950000000000000</y>
       <width>64</width>
       <height>36</height>
       <scale>0</scale>
@@ -382,8 +382,8 @@
       <text>Media.cs</text>
       <link>UID0928056661</link>
       <layer>0</layer>
-      <x>744</x>
-      <y>2143</y>
+      <x>743.761505</x>
+      <y>2142.621095</y>
       <width>79</width>
       <height>36</height>
       <scale>0</scale>
@@ -397,8 +397,8 @@
       <text>Network.cs</text>
       <link>UID6787833981</link>
       <layer>0</layer>
-      <x>744</x>
-      <y>1996</y>
+      <x>743.822705</x>
+      <y>1995.621095</y>
       <width>92</width>
       <height>36</height>
       <scale>0</scale>
@@ -412,8 +412,8 @@
       <text>Os.cs</text>
       <link>UID8599434163</link>
       <layer>0</layer>
-      <x>744</x>
-      <y>1947</y>
+      <x>743.7257</x>
+      <y>1946.621095</y>
       <width>59</width>
       <height>36</height>
       <scale>0</scale>
@@ -427,8 +427,8 @@
       <text>Patterns.cs</text>
       <link>UID4820527610</link>
       <layer>0</layer>
-      <x>744</x>
-      <y>2241</y>
+      <x>743.93208</x>
+      <y>2240.621095</y>
       <width>93</width>
       <height>36</height>
       <scale>0</scale>
@@ -442,8 +442,8 @@
       <text>Tick.cs</text>
       <link>UID9091710163</link>
       <layer>0</layer>
-      <x>744</x>
-      <y>2290</y>
+      <x>743.87153</x>
+      <y>2289.621095</y>
       <width>67</width>
       <height>36</height>
       <scale>0</scale>
@@ -457,8 +457,8 @@
       <text>AboutForm.cs</text>
       <link>UID4238351112</link>
       <layer>0</layer>
-      <x>-899</x>
-      <y>2234</y>
+      <x>-899.45985</x>
+      <y>2233.621095</y>
       <width>109</width>
       <height>36</height>
       <scale>0</scale>
@@ -472,8 +472,8 @@
       <text>ChangePasswordForm.cs</text>
       <link>UID9355910334</link>
       <layer>0</layer>
-      <x>-377.5000000</x>
-      <y>1969.5000000</y>
+      <x>-377.7131000</x>
+      <y>1969.1210950</y>
       <width>182</width>
       <height>36</height>
       <scale>0</scale>
@@ -487,8 +487,8 @@
       <text>ColorPickerForm.cs</text>
       <link>UID2354438225</link>
       <layer>0</layer>
-      <x>200</x>
-      <y>2343</y>
+      <x>199.9197</x>
+      <y>2342.621095</y>
       <width>145</width>
       <height>36</height>
       <scale>0</scale>
@@ -502,8 +502,8 @@
       <text>Infinite diagram</text>
       <link>.\Diagram.SRC</link>
       <layer>0</layer>
-      <x>-904</x>
-      <y>2121</y>
+      <x>-904.19815</x>
+      <y>2120.621095</y>
       <width>118</width>
       <height>36</height>
       <scale>0</scale>
@@ -517,8 +517,8 @@
       <text>Console.cs</text>
       <link>UID4944902991</link>
       <layer>0</layer>
-      <x>-672</x>
-      <y>2308</y>
+      <x>-672.22938</x>
+      <y>2307.621095</y>
       <width>92</width>
       <height>36</height>
       <scale>0</scale>
@@ -532,8 +532,8 @@
       <text>DiagramView</text>
       <link>UID5701725971</link>
       <layer>0</layer>
-      <x>83</x>
-      <y>2121</y>
+      <x>82.87285</x>
+      <y>2120.621095</y>
       <width>106</width>
       <height>36</height>
       <scale>0</scale>
@@ -547,8 +547,8 @@
       <text>LineWidthForm.cs</text>
       <link>UID4672738884</link>
       <layer>0</layer>
-      <x>201</x>
-      <y>2392</y>
+      <x>200.8709</x>
+      <y>2391.621095</y>
       <width>135</width>
       <height>36</height>
       <scale>0</scale>
@@ -562,8 +562,8 @@
       <text>MainForm.cs</text>
       <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Forms\MainForm.cs</link>
       <layer>0</layer>
-      <x>-770</x>
-      <y>1964</y>
+      <x>-770.439</x>
+      <y>1963.621095</y>
       <width>103</width>
       <height>36</height>
       <scale>0</scale>
@@ -577,8 +577,8 @@
       <text>NewPasswordForm.cs</text>
       <link>UID2816442898</link>
       <layer>0</layer>
-      <x>-376.5000000</x>
-      <y>1920.5000000</y>
+      <x>-376.8973500</x>
+      <y>1920.1210950</y>
       <width>161</width>
       <height>36</height>
       <scale>0</scale>
@@ -592,8 +592,8 @@
       <text>PasswordForm.cs</text>
       <link>UID8255589531</link>
       <layer>0</layer>
-      <x>-377.5000000</x>
-      <y>1871.5000000</y>
+      <x>-377.6636000</x>
+      <y>1871.1210950</y>
       <width>134</width>
       <height>36</height>
       <scale>0</scale>
@@ -607,8 +607,8 @@
       <text>TextForm.cs</text>
       <link>UID6772159546</link>
       <layer>0</layer>
-      <x>200</x>
-      <y>2294</y>
+      <x>199.62675</x>
+      <y>2293.621095</y>
       <width>100</width>
       <height>36</height>
       <scale>0</scale>
@@ -622,8 +622,8 @@
       <text>Breadcrumbs.cs</text>
       <link>UID0790776066</link>
       <layer>0</layer>
-      <x>475</x>
-      <y>2125</y>
+      <x>474.67165</x>
+      <y>2124.621095</y>
       <width>123</width>
       <height>36</height>
       <scale>0</scale>
@@ -637,8 +637,8 @@
       <text>EditLinkPanel.cs</text>
       <link>UID4079765418</link>
       <layer>0</layer>
-      <x>473</x>
-      <y>2272</y>
+      <x>472.89235</x>
+      <y>2271.621095</y>
       <width>126</width>
       <height>36</height>
       <scale>0</scale>
@@ -652,8 +652,8 @@
       <text>EditPanel.cs</text>
       <link>UID2281296902</link>
       <layer>0</layer>
-      <x>473</x>
-      <y>2321</y>
+      <x>472.5291</x>
+      <y>2320.621095</y>
       <width>100</width>
       <height>36</height>
       <scale>0</scale>
@@ -667,8 +667,8 @@
       <text>Notifications.cs</text>
       <link>C:\Users\root\Desktop\Data\Projects\infinite-diagram\Diagram.SRC\Diagram\Src\Components\Notifications.cs</link>
       <layer>0</layer>
-      <x>475</x>
-      <y>2223</y>
+      <x>474.9822</x>
+      <y>2222.621095</y>
       <width>117</width>
       <height>36</height>
       <scale>0</scale>
@@ -682,8 +682,8 @@
       <text>Popup.cs</text>
       <link>UID5085107645</link>
       <layer>0</layer>
-      <x>474</x>
-      <y>1978</y>
+      <x>473.648225</x>
+      <y>1977.621095</y>
       <width>81</width>
       <height>36</height>
       <scale>0</scale>
@@ -697,8 +697,8 @@
       <text>Script.cs</text>
       <link>UID6870742772</link>
       <layer>0</layer>
-      <x>473</x>
-      <y>2174</y>
+      <x>472.910595</x>
+      <y>2173.621095</y>
       <width>77</width>
       <height>36</height>
       <scale>0</scale>
@@ -712,8 +712,8 @@
       <text>ScrollBar.cs</text>
       <link>UID2684111687</link>
       <layer>0</layer>
-      <x>473</x>
-      <y>2027</y>
+      <x>472.5688</x>
+      <y>2026.621095</y>
       <width>97</width>
       <height>36</height>
       <scale>0</scale>
@@ -727,8 +727,8 @@
       <text>SearchPanel.cs</text>
       <link>UID1308094022</link>
       <layer>0</layer>
-      <x>473</x>
-      <y>2076</y>
+      <x>472.64625</x>
+      <y>2075.621095</y>
       <width>120</width>
       <height>36</height>
       <scale>0</scale>
@@ -742,8 +742,8 @@
       <text>Server.cs</text>
       <link>UID0876993960</link>
       <layer>0</layer>
-      <x>-599</x>
-      <y>2071</y>
+      <x>-599.21961</x>
+      <y>2070.621095</y>
       <width>82</width>
       <height>36</height>
       <scale>0</scale>
@@ -756,8 +756,8 @@
       <fontcolor>Black</fontcolor>
       <text>Lib</text>
       <layer>0</layer>
-      <x>549</x>
-      <y>1835</y>
+      <x>548.575305</x>
+      <y>1834.621095</y>
       <width>42</width>
       <height>36</height>
       <scale>0</scale>
@@ -770,8 +770,8 @@
       <fontcolor>Black</fontcolor>
       <text>types</text>
       <layer>0</layer>
-      <x>-234</x>
-      <y>2433</y>
+      <x>-234.13498</x>
+      <y>2432.621095</y>
       <width>57</width>
       <height>36</height>
       <scale>0</scale>
@@ -784,8 +784,8 @@
       <fontcolor>Black</fontcolor>
       <text>password</text>
       <layer>0</layer>
-      <x>-462.0000000</x>
-      <y>2025.5000000</y>
+      <x>-462.1069850</x>
+      <y>2025.1210950</y>
       <width>83</width>
       <height>36</height>
       <scale>0</scale>
@@ -798,8 +798,8 @@
       <fontcolor>Black</fontcolor>
       <text>run events</text>
       <layer>0</layer>
-      <x>-684</x>
-      <y>2010</y>
+      <x>-684.19813</x>
+      <y>2009.621095</y>
       <width>88</width>
       <height>36</height>
       <scale>0</scale>
@@ -812,8 +812,8 @@
       <fontcolor>Black</fontcolor>
       <text>components</text>
       <layer>0</layer>
-      <x>323</x>
-      <y>2121</y>
+      <x>322.872185</x>
+      <y>2120.621095</y>
       <width>99</width>
       <height>36</height>
       <scale>0</scale>
@@ -826,8 +826,8 @@
       <fontcolor>Black</fontcolor>
       <text>edit</text>
       <layer>0</layer>
-      <x>387</x>
-      <y>2293</y>
+      <x>386.667755</x>
+      <y>2292.621095</y>
       <width>46</width>
       <height>36</height>
       <scale>0</scale>
@@ -841,8 +841,8 @@
       <text>MainForm.cs</text>
       <link>UID2589432679</link>
       <layer>0</layer>
-      <x>-389</x>
-      <y>2178</y>
+      <x>-389.439</x>
+      <y>2177.621095</y>
       <width>103</width>
       <height>36</height>
       <scale>0</scale>
@@ -883,8 +883,8 @@
       <fontcolor>Black</fontcolor>
       <text>dialogs</text>
       <layer>0</layer>
-      <x>102</x>
-      <y>2251</y>
+      <x>101.93859</x>
+      <y>2250.621095</y>
       <width>68</width>
       <height>36</height>
       <scale>0</scale>
@@ -898,8 +898,8 @@
       <text>ReleaseNote.txt</text>
       <link>.\Diagram.SRC\Diagram\Doc\ReleaseNote.txt</link>
       <layer>0</layer>
-      <x>-1247</x>
-      <y>1812</y>
+      <x>-1247.1122</x>
+      <y>1811.621095</y>
       <width>122</width>
       <height>36</height>
       <scale>0</scale>
@@ -912,8 +912,8 @@
       <fontcolor>Black</fontcolor>
       <text>Pallete</text>
       <layer>0</layer>
-      <x>-531</x>
-      <y>2647</y>
+      <x>-531.296435</x>
+      <y>2646.621095</y>
       <width>66</width>
       <height>36</height>
       <scale>0</scale>
@@ -926,8 +926,8 @@
       <fontcolor>Black</fontcolor>
       <text>Components</text>
       <layer>0</layer>
-      <x>-452</x>
-      <y>2647</y>
+      <x>-452.15125</x>
+      <y>2646.621095</y>
       <width>102</width>
       <height>36</height>
       <scale>0</scale>
@@ -940,8 +940,8 @@
       <fontcolor>Black</fontcolor>
       <text>Models</text>
       <layer>0</layer>
-      <x>-337</x>
-      <y>2647</y>
+      <x>-337.3967</x>
+      <y>2646.621095</y>
       <width>68</width>
       <height>36</height>
       <scale>0</scale>
@@ -954,8 +954,8 @@
       <fontcolor>Black</fontcolor>
       <text>Forms</text>
       <layer>0</layer>
-      <x>-257</x>
-      <y>2647</y>
+      <x>-257.175345</x>
+      <y>2646.621095</y>
       <width>63</width>
       <height>36</height>
       <scale>0</scale>
@@ -968,8 +968,8 @@
       <fontcolor>Black</fontcolor>
       <text>Libs</text>
       <layer>0</layer>
-      <x>-183</x>
-      <y>2647</y>
+      <x>-183.35894</x>
+      <y>2646.621095</y>
       <width>49</width>
       <height>36</height>
       <scale>0</scale>
@@ -982,8 +982,8 @@
       <fontcolor>Black</fontcolor>
       <text>Tools</text>
       <layer>0</layer>
-      <x>-123</x>
-      <y>2647</y>
+      <x>-123.0549</x>
+      <y>2646.621095</y>
       <width>58</width>
       <height>36</height>
       <scale>0</scale>
@@ -1224,8 +1224,8 @@
                     
 #endif</text>
       <layer>0</layer>
-      <x>-1813</x>
-      <y>2502</y>
+      <x>-1859.2519500000000000000</x>
+      <y>2502.9388100000000000000</y>
       <width>91</width>
       <height>97</height>
       <scale>0</scale>
@@ -1238,8 +1238,8 @@
       <fontcolor>Black</fontcolor>
       <text>Actions</text>
       <layer>0</layer>
-      <x>-592</x>
-      <y>2952</y>
+      <x>-592.28081</x>
+      <y>2951.621095</y>
       <width>69</width>
       <height>36</height>
       <scale>0</scale>
@@ -1281,8 +1281,8 @@
       <fontcolor>Black</fontcolor>
       <text>dll</text>
       <layer>0</layer>
-      <x>-1356</x>
-      <y>2405</y>
+      <x>-1356.17209</x>
+      <y>2404.621095</y>
       <width>38</width>
       <height>36</height>
       <scale>0</scale>
@@ -1296,8 +1296,8 @@
       <text>http://www.newtonsoft.com/json</text>
       <link>http://www.newtonsoft.com/json</link>
       <layer>0</layer>
-      <x>-1308</x>
-      <y>2405</y>
+      <x>-1308.3075</x>
+      <y>2404.621095</y>
       <width>217</width>
       <height>36</height>
       <scale>0</scale>
@@ -1310,8 +1310,8 @@
       <fontcolor>Black</fontcolor>
       <text>foreach(Node node in nodes) {}</text>
       <layer>0</layer>
-      <x>-1827</x>
-      <y>2641</y>
+      <x>-1873.3524000000000000000</x>
+      <y>2641.6210950000000000000</y>
       <width>214</width>
       <height>36</height>
       <scale>0</scale>
@@ -1325,8 +1325,8 @@
       <text>server:open file</text>
       <link>UID7984925616</link>
       <layer>0</layer>
-      <x>-427.0000000000000000</x>
-      <y>5205.00</y>
+      <x>-427.1590500000000000</x>
+      <y>5204.621095</y>
       <width>118</width>
       <height>36</height>
       <scale>0</scale>
@@ -1339,8 +1339,8 @@
       <fontcolor>Black</fontcolor>
       <text>server</text>
       <layer>0</layer>
-      <x>-370.0000000000000000</x>
-      <y>5252.00</y>
+      <x>-370.2977400000000000</x>
+      <y>5251.621095</y>
       <width>62</width>
       <height>36</height>
       <scale>0</scale>
@@ -1354,8 +1354,8 @@
       <text>dblclick</text>
       <link>scan.bat c1703aa4d2</link>
       <layer>0</layer>
-      <x>-562.0000000000000000</x>
-      <y>5051.00</y>
+      <x>-562.3589350000000000</x>
+      <y>5050.621095</y>
       <width>69</width>
       <height>36</height>
       <scale>0</scale>
@@ -1397,8 +1397,8 @@
       <text>execute command</text>
       <link>UID5087096741</link>
       <layer>0</layer>
-      <x>24.0000000000000000</x>
-      <y>5049.00</y>
+      <x>23.7589000000000000</x>
+      <y>5048.621095</y>
       <width>136</width>
       <height>36</height>
       <scale>0</scale>
@@ -1412,8 +1412,8 @@
       <text>OpenLink</text>
       <link>UID9292140736</link>
       <layer>0</layer>
-      <x>-75.0000000000000000</x>
-      <y>5049.00</y>
+      <x>-75.1558100000000000</x>
+      <y>5048.621095</y>
       <width>83</width>
       <height>36</height>
       <scale>0</scale>
@@ -1427,8 +1427,8 @@
       <text>OpenLinkAsync</text>
       <link>UID3758665113</link>
       <layer>0</layer>
-      <x>-245.0000000000000000</x>
-      <y>5049.00</y>
+      <x>-245.3570000000000000</x>
+      <y>5048.621095</y>
       <width>120</width>
       <height>36</height>
       <scale>0</scale>
@@ -1442,8 +1442,8 @@
       <text>OpenDiagram</text>
       <link>UID1771511767</link>
       <layer>0</layer>
-      <x>-278.0000000000000000</x>
-      <y>5205.00</y>
+      <x>-278.0021500000000000</x>
+      <y>5204.621095</y>
       <width>110</width>
       <height>36</height>
       <scale>0</scale>
@@ -1457,8 +1457,8 @@
       <text>BringToFront</text>
       <link>UID0703915427</link>
       <layer>0</layer>
-      <x>21.0000000000000000</x>
-      <y>5205.00</y>
+      <x>20.6703500000000000</x>
+      <y>5204.621095</y>
       <width>104</width>
       <height>36</height>
       <scale>0</scale>
@@ -1471,8 +1471,8 @@
       <fontcolor>Black</fontcolor>
       <text>bring to front</text>
       <layer>0</layer>
-      <x>-570.0000000000000000</x>
-      <y>5209.00</y>
+      <x>-570.1369500000000000</x>
+      <y>5208.621095</y>
       <width>101</width>
       <height>36</height>
       <scale>0</scale>
@@ -1486,8 +1486,8 @@
       <text>if diagram exist focus</text>
       <link>UID4510272262</link>
       <layer>0</layer>
-      <x>-149.0000000000000000</x>
-      <y>5205.00</y>
+      <x>-149.0809000000000000</x>
+      <y>5204.621095</y>
       <width>153</width>
       <height>36</height>
       <scale>0</scale>
@@ -1501,8 +1501,8 @@
       <text>create diagram and focus</text>
       <link>UID4510272263</link>
       <layer>0</layer>
-      <x>-149.0000000000000000</x>
-      <y>5261.00</y>
+      <x>-149.4845500000000000</x>
+      <y>5260.621095</y>
       <width>178</width>
       <height>36</height>
       <scale>0</scale>
@@ -1516,8 +1516,8 @@
       <text>Notifications</text>
       <link>UID8876272772</link>
       <layer>0</layer>
-      <x>477</x>
-      <y>2369</y>
+      <x>476.75825</x>
+      <y>2368.621095</y>
       <width>99</width>
       <height>36</height>
       <scale>0</scale>
@@ -1531,8 +1531,8 @@
       <text>Plugins</text>
       <link>UID8736657869</link>
       <layer>0</layer>
-      <x>-515</x>
-      <y>1759</y>
+      <x>-515.32313</x>
+      <y>1758.621095</y>
       <width>69</width>
       <height>36</height>
       <scale>0</scale>
@@ -1546,8 +1546,8 @@
       <text>Polygons</text>
       <link>UID7474399328</link>
       <layer>0</layer>
-      <x>-48</x>
-      <y>2293</y>
+      <x>-48.00998</x>
+      <y>2292.621095</y>
       <width>81</width>
       <height>36</height>
       <scale>0</scale>
@@ -1562,8 +1562,8 @@
       <link>UID0290945800
 </link>
       <layer>0</layer>
-      <x>-252</x>
-      <y>1669</y>
+      <x>-252.00605</x>
+      <y>1668.621095</y>
       <width>133</width>
       <height>36</height>
       <scale>0</scale>
@@ -1578,8 +1578,8 @@
       <link>UID0454615899
 </link>
       <layer>0</layer>
-      <x>-417</x>
-      <y>1717</y>
+      <x>-417.2795</x>
+      <y>1716.621095</y>
       <width>118</width>
       <height>36</height>
       <scale>0</scale>
@@ -1593,8 +1593,8 @@
       <text>Tools</text>
       <link>UID6975866488</link>
       <layer>0</layer>
-      <x>561</x>
-      <y>2175</y>
+      <x>560.9451</x>
+      <y>2174.621095</y>
       <width>58</width>
       <height>36</height>
       <scale>0</scale>
@@ -1609,8 +1609,8 @@
       <link>UID2534425093
 </link>
       <layer>0</layer>
-      <x>-45</x>
-      <y>2374</y>
+      <x>-45.075735</x>
+      <y>2373.621095</y>
       <width>74</width>
       <height>36</height>
       <scale>0</scale>
@@ -1625,8 +1625,8 @@
       <link>UID8493692592
 </link>
       <layer>0</layer>
-      <x>744</x>
-      <y>2434</y>
+      <x>743.634555</x>
+      <y>2433.621095</y>
       <width>84</width>
       <height>36</height>
       <scale>0</scale>
@@ -1691,8 +1691,8 @@
       <text>install-windows</text>
       <link>install-windows</link>
       <layer>0</layer>
-      <x>-923</x>
-      <y>1855</y>
+      <x>-923.0536</x>
+      <y>1854.621095</y>
       <width>117</width>
       <height>36</height>
       <scale>0</scale>
@@ -1761,8 +1761,8 @@
       <fontcolor>Black</fontcolor>
       <text>project</text>
       <layer>0</layer>
-      <x>-1016</x>
-      <y>1737</y>
+      <x>-1016.370005</x>
+      <y>1736.621095</y>
       <width>65</width>
       <height>36</height>
       <scale>0</scale>
@@ -1810,8 +1810,8 @@
       <fontcolor>Black</fontcolor>
       <text>version update</text>
       <layer>0</layer>
-      <x>-1285</x>
-      <y>1773</y>
+      <x>-1285.21895</x>
+      <y>1772.621095</y>
       <width>114</width>
       <height>36</height>
       <scale>0</scale>
@@ -1826,8 +1826,8 @@
       <text>Program.cs</text>
       <link>UID2573216529</link>
       <layer>0</layer>
-      <x>-1274</x>
-      <y>1884</y>
+      <x>-1274.32313</x>
+      <y>1883.621095</y>
       <width>94</width>
       <height>36</height>
       <scale>0</scale>
@@ -1841,8 +1841,8 @@
       <text>install-linux</text>
       <link>install-linux</link>
       <layer>0</layer>
-      <x>-1155</x>
-      <y>1735</y>
+      <x>-1155.38563</x>
+      <y>1734.621095</y>
       <width>92</width>
       <height>36</height>
       <scale>0</scale>
@@ -1856,8 +1856,8 @@
       <text>install-windows</text>
       <link>install-windows</link>
       <layer>0</layer>
-      <x>-1155</x>
-      <y>1884</y>
+      <x>-1155.0536</x>
+      <y>1883.621095</y>
       <width>117</width>
       <height>36</height>
       <scale>0</scale>
@@ -1871,8 +1871,8 @@
       <text>check if server exist</text>
       <link>UID9899460299</link>
       <layer>0</layer>
-      <x>-394.0000000000000000</x>
-      <y>3520.00</y>
+      <x>-394.3394000000000000</x>
+      <y>3519.621095</y>
       <width>144</width>
       <height>36</height>
       <scale>0</scale>
@@ -1885,8 +1885,8 @@
       <fontcolor>Black</fontcolor>
       <text>server</text>
       <layer>0</layer>
-      <x>-616.0000000000000000</x>
-      <y>3520.00</y>
+      <x>-616.2977400000000000</x>
+      <y>3519.621095</y>
       <width>62</width>
       <height>36</height>
       <scale>0</scale>
@@ -1900,8 +1900,8 @@
       <text>create server</text>
       <link>UID2964640610</link>
       <layer>0</layer>
-      <x>-518.0000000000000000</x>
-      <y>3520.00</y>
+      <x>-518.2027000000000000</x>
+      <y>3519.621095</y>
       <width>104</width>
       <height>36</height>
       <scale>0</scale>
@@ -1914,8 +1914,8 @@
       <fontcolor>Black</fontcolor>
       <text>start thread</text>
       <layer>0</layer>
-      <x>-53.0000000000000000</x>
-      <y>3594.00</y>
+      <x>-53.3641450000000000</x>
+      <y>3593.621095</y>
       <width>93</width>
       <height>36</height>
       <scale>0</scale>
@@ -1930,8 +1930,8 @@
       <link>UID8117850972
 </link>
       <layer>0</layer>
-      <x>-222.0000000000000000</x>
-      <y>3519.00</y>
+      <x>-222.2385000000000000</x>
+      <y>3518.621095</y>
       <width>104</width>
       <height>36</height>
       <scale>0</scale>
@@ -1947,8 +1947,8 @@ and send response</text>
       <link>UID8117850972
 </link>
       <layer>0</layer>
-      <x>-102.0000000000000000</x>
-      <y>3509.00</y>
+      <x>-102.3802000000000000</x>
+      <y>3508.575525</y>
       <width>167</width>
       <height>51</height>
       <scale>0</scale>
@@ -1961,8 +1961,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>client</text>
       <layer>0</layer>
-      <x>-311.0000000000000000</x>
-      <y>3605.00</y>
+      <x>-311.3322450000000000</x>
+      <y>3604.621095</y>
       <width>56</width>
       <height>36</height>
       <scale>0</scale>
@@ -1977,8 +1977,8 @@ and send response</text>
       <link>UID8096061355
 </link>
       <layer>0</layer>
-      <x>-223.0000000000000000</x>
-      <y>3601.00</y>
+      <x>-223.2958000000000000</x>
+      <y>3600.621095</y>
       <width>113</width>
       <height>36</height>
       <scale>0</scale>
@@ -1993,8 +1993,8 @@ and send response</text>
       <link>UID9190377024
 </link>
       <layer>0</layer>
-      <x>74.0000000000000000</x>
-      <y>3516.00</y>
+      <x>73.5505500000000000</x>
+      <y>3515.621095</y>
       <width>131</width>
       <height>36</height>
       <scale>0</scale>
@@ -2007,8 +2007,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>ping</text>
       <layer>0</layer>
-      <x>260.0000000000000000</x>
-      <y>3446.00</y>
+      <x>259.7569450000000000</x>
+      <y>3445.621095</y>
       <width>50</width>
       <height>36</height>
       <scale>0</scale>
@@ -2021,8 +2021,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>close</text>
       <layer>0</layer>
-      <x>260.0000000000000000</x>
-      <y>3506.00</y>
+      <x>259.7068200000000000</x>
+      <y>3505.621095</y>
       <width>56</width>
       <height>36</height>
       <scale>0</scale>
@@ -2035,8 +2035,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>open</text>
       <layer>0</layer>
-      <x>260.0000000000000000</x>
-      <y>3607.00</y>
+      <x>259.5043450000000000</x>
+      <y>3606.621095</y>
       <width>54</width>
       <height>36</height>
       <scale>0</scale>
@@ -2049,8 +2049,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>stop</text>
       <layer>0</layer>
-      <x>260.0000000000000000</x>
-      <y>3555.00</y>
+      <x>259.7992650000000000</x>
+      <y>3554.621095</y>
       <width>50</width>
       <height>36</height>
       <scale>0</scale>
@@ -2064,8 +2064,8 @@ and send response</text>
       <text>OpenLink</text>
       <link>UID9292140736</link>
       <layer>0</layer>
-      <x>334.0000000000000000</x>
-      <y>3607.00</y>
+      <x>333.8441900000000000</x>
+      <y>3606.621095</y>
       <width>83</width>
       <height>36</height>
       <scale>0</scale>
@@ -2078,8 +2078,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>stop server lisening</text>
       <layer>0</layer>
-      <x>320.0000000000000000</x>
-      <y>3555.00</y>
+      <x>319.6729500000000000</x>
+      <y>3554.621095</y>
       <width>142</width>
       <height>36</height>
       <scale>0</scale>
@@ -2092,8 +2092,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>close application</text>
       <layer>0</layer>
-      <x>326.0000000000000000</x>
-      <y>3506.00</y>
+      <x>325.9347000000000000</x>
+      <y>3505.621095</y>
       <width>126</width>
       <height>36</height>
       <scale>0</scale>
@@ -2106,8 +2106,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>check if server is live</text>
       <layer>0</layer>
-      <x>320.0000000000000000</x>
-      <y>3446.00</y>
+      <x>319.6137500000000000</x>
+      <y>3445.621095</y>
       <width>150</width>
       <height>36</height>
       <scale>0</scale>
@@ -2121,8 +2121,8 @@ and send response</text>
       <text>force exit application</text>
       <link>UID0090378181</link>
       <layer>0</layer>
-      <x>598.0000000000000000</x>
-      <y>3506.00</y>
+      <x>597.6931500000000000</x>
+      <y>3505.621095</y>
       <width>149</width>
       <height>36</height>
       <scale>0</scale>
@@ -2136,8 +2136,8 @@ and send response</text>
       <text>close application </text>
       <link>UID0787891060</link>
       <layer>0</layer>
-      <x>462.0000000000000000</x>
-      <y>3506.00</y>
+      <x>461.9347000000000000</x>
+      <y>3505.621095</y>
       <width>126</width>
       <height>36</height>
       <scale>0</scale>
@@ -2150,8 +2150,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>application start</text>
       <layer>0</layer>
-      <x>-664.0000000000000000</x>
-      <y>3139.00</y>
+      <x>-664.3472000000000000</x>
+      <y>3138.621095</y>
       <width>120</width>
       <height>36</height>
       <scale>0</scale>
@@ -2165,8 +2165,8 @@ and send response</text>
       <text>start program</text>
       <link>UID4670767500</link>
       <layer>0</layer>
-      <x>-507.0000000000000000</x>
-      <y>3139.00</y>
+      <x>-507.4611500000000000</x>
+      <y>3138.621095</y>
       <width>105</width>
       <height>36</height>
       <scale>0</scale>
@@ -2180,8 +2180,8 @@ and send response</text>
       <text>init application</text>
       <link>UID8239288102</link>
       <layer>0</layer>
-      <x>-377.0000000000000000</x>
-      <y>3139.00</y>
+      <x>-377.3517500000000000</x>
+      <y>3138.621095</y>
       <width>111</width>
       <height>36</height>
       <scale>0</scale>
@@ -2194,8 +2194,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>main</text>
       <layer>0</layer>
-      <x>-351.0000000000000000</x>
-      <y>3193.00</y>
+      <x>-351.1440950000000000</x>
+      <y>3192.621095</y>
       <width>54</width>
       <height>36</height>
       <scale>0</scale>
@@ -2208,8 +2208,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>program</text>
       <layer>0</layer>
-      <x>-484.0000000000000000</x>
-      <y>3189.00</y>
+      <x>-484.2853700000000000</x>
+      <y>3188.621095</y>
       <width>75</width>
       <height>36</height>
       <scale>0</scale>
@@ -2223,8 +2223,8 @@ and send response</text>
       <text>init server</text>
       <link>UID2964640610</link>
       <layer>0</layer>
-      <x>-222.0000000000000000</x>
-      <y>3129.00</y>
+      <x>-222.4780750000000000</x>
+      <y>3128.621095</y>
       <width>83</width>
       <height>36</height>
       <scale>0</scale>
@@ -2238,8 +2238,8 @@ and send response</text>
       <text>process command line arguments</text>
       <link>UID5172911205</link>
       <layer>0</layer>
-      <x>-222.0000000000000000</x>
-      <y>3177.00</y>
+      <x>-222.0868000000000000</x>
+      <y>3176.621095</y>
       <width>230</width>
       <height>36</height>
       <scale>0</scale>
@@ -2253,8 +2253,8 @@ and send response</text>
       <text>load config files</text>
       <link>UID3013916734</link>
       <layer>0</layer>
-      <x>-222.0000000000000000</x>
-      <y>3039.00</y>
+      <x>-222.0432000000000000</x>
+      <y>3038.621095</y>
       <width>119</width>
       <height>36</height>
       <scale>0</scale>
@@ -2269,8 +2269,8 @@ and send response</text>
       <link>UID2589432679
 </link>
       <layer>0</layer>
-      <x>-222.0000000000000000</x>
-      <y>3227.00</y>
+      <x>-222.3732500000000000</x>
+      <y>3226.621095</y>
       <width>115</width>
       <height>36</height>
       <scale>0</scale>
@@ -2284,8 +2284,8 @@ and send response</text>
       <text>load plugins</text>
       <link>UID9841812564</link>
       <layer>0</layer>
-      <x>-222.0000000000000000</x>
-      <y>3085.00</y>
+      <x>-222.4051600000000000</x>
+      <y>3084.621095</y>
       <width>97</width>
       <height>36</height>
       <scale>0</scale>
@@ -2299,8 +2299,8 @@ and send response</text>
       <text>OpenDiagram</text>
       <link>UID1771511767</link>
       <layer>0</layer>
-      <x>287.0000000000000000</x>
-      <y>3163.00</y>
+      <x>286.9978500000000000</x>
+      <y>3162.621095</y>
       <width>110</width>
       <height>36</height>
       <scale>0</scale>
@@ -2314,8 +2314,8 @@ and send response</text>
       <text>dblclick event</text>
       <link>UID3769224705</link>
       <layer>0</layer>
-      <x>-469.0000000000000000</x>
-      <y>5050.00</y>
+      <x>-469.4787500000000000</x>
+      <y>5049.621095</y>
       <width>106</width>
       <height>36</height>
       <scale>0</scale>
@@ -2330,8 +2330,8 @@ and send response</text>
       <link>UID8515606919
 </link>
       <layer>0</layer>
-      <x>-342.0000000000000000</x>
-      <y>5051.00</y>
+      <x>-342.3589350000000000</x>
+      <y>5050.621095</y>
       <width>69</width>
       <height>36</height>
       <scale>0</scale>
@@ -2344,8 +2344,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>mouse down</text>
       <layer>0</layer>
-      <x>-408.0000000000000000</x>
-      <y>5116.00</y>
+      <x>-408.0666000000000000</x>
+      <y>5115.621095</y>
       <width>102</width>
       <height>36</height>
       <scale>0</scale>
@@ -2359,8 +2359,8 @@ and send response</text>
       <text>reset status</text>
       <link>UID5045070650</link>
       <layer>0</layer>
-      <x>-270.0000000000000000</x>
-      <y>5115.00</y>
+      <x>-270.1291150000000000</x>
+      <y>5114.621095</y>
       <width>95</width>
       <height>36</height>
       <scale>0</scale>
@@ -2373,8 +2373,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>lock diagram</text>
       <layer>0</layer>
-      <x>-570.0000000000000000</x>
-      <y>5394.00</y>
+      <x>-570.1415000000000000</x>
+      <y>5393.621095</y>
       <width>102</width>
       <height>36</height>
       <scale>0</scale>
@@ -2388,8 +2388,8 @@ and send response</text>
       <text>set event power change event</text>
       <link>UID7641650028</link>
       <layer>0</layer>
-      <x>-449.0000000000000000</x>
-      <y>5394.00</y>
+      <x>-449.4917500000000000</x>
+      <y>5393.621095</y>
       <width>206</width>
       <height>36</height>
       <scale>0</scale>
@@ -2403,8 +2403,8 @@ and send response</text>
       <text>OnPowerChange</text>
       <link>UID1864495676</link>
       <layer>0</layer>
-      <x>-229.0000000000000000</x>
-      <y>5395.00</y>
+      <x>-229.3915000000000000</x>
+      <y>5394.621095</y>
       <width>129</width>
       <height>36</height>
       <scale>0</scale>
@@ -2418,8 +2418,8 @@ and send response</text>
       <text>lock diagrams</text>
       <link>UID6105963009</link>
       <layer>0</layer>
-      <x>-90.0000000000000000</x>
-      <y>5395.00</y>
+      <x>-90.0757500000000000</x>
+      <y>5394.621095</y>
       <width>109</width>
       <height>36</height>
       <scale>0</scale>
@@ -2433,8 +2433,8 @@ and send response</text>
       <text>lock diagram</text>
       <link>UID9013092575</link>
       <layer>0</layer>
-      <x>29.0000000000000000</x>
-      <y>5395.00</y>
+      <x>28.8585000000000000</x>
+      <y>5394.621095</y>
       <width>102</width>
       <height>36</height>
       <scale>0</scale>
@@ -2448,8 +2448,8 @@ and send response</text>
       <text>lock by keyboard shortcut</text>
       <link>UID6442152339</link>
       <layer>0</layer>
-      <x>-277.0000000000000000</x>
-      <y>5446.00</y>
+      <x>-277.3654500000000000</x>
+      <y>5445.621095</y>
       <width>179</width>
       <height>36</height>
       <scale>0</scale>
@@ -2462,8 +2462,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>lock by shortcut</text>
       <layer>0</layer>
-      <x>-419.0000000000000000</x>
-      <y>5448.00</y>
+      <x>-419.2971000000000000</x>
+      <y>5447.621095</y>
       <width>119</width>
       <height>36</height>
       <scale>0</scale>
@@ -2477,8 +2477,8 @@ and send response</text>
       <text>lock views</text>
       <link>UID1708360605</link>
       <layer>0</layer>
-      <x>141.0000000000000000</x>
-      <y>5395.00</y>
+      <x>140.9919800000000000</x>
+      <y>5394.621095</y>
       <width>87</width>
       <height>36</height>
       <scale>0</scale>
@@ -2491,8 +2491,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>layers</text>
       <layer>0</layer>
-      <x>-570.0000000000000000</x>
-      <y>5629.00</y>
+      <x>-570.0783400000000000</x>
+      <y>5628.621095</y>
       <width>61</width>
       <height>36</height>
       <scale>0</scale>
@@ -2506,8 +2506,8 @@ and send response</text>
       <text>LayerOut</text>
       <link>UID4661843385</link>
       <layer>0</layer>
-      <x>-295.0000000000000000</x>
-      <y>5797.00</y>
+      <x>-295.4644050000000000</x>
+      <y>5796.621095</y>
       <width>80</width>
       <height>36</height>
       <scale>0</scale>
@@ -2522,8 +2522,8 @@ and send response</text>
       <link>UID1557077053
 </link>
       <layer>0</layer>
-      <x>-451.0000000000000000</x>
-      <y>5755.00</y>
+      <x>-451.2580500000000000</x>
+      <y>5754.621095</y>
       <width>129</width>
       <height>36</height>
       <scale>0</scale>
@@ -2536,8 +2536,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>DiagramView events</text>
       <layer>0</layer>
-      <x>-628.0000000000000000</x>
-      <y>4213.00</y>
+      <x>-628.1812000000000000</x>
+      <y>4212.621095</y>
       <width>150</width>
       <height>36</height>
       <scale>0</scale>
@@ -2551,8 +2551,8 @@ and send response</text>
       <text>MouseUp</text>
       <link>UID3026627853</link>
       <layer>0</layer>
-      <x>-163.0000000000000000</x>
-      <y>4694.00</y>
+      <x>-163.1069850000000000</x>
+      <y>4693.621095</y>
       <width>83</width>
       <height>36</height>
       <scale>0</scale>
@@ -2566,8 +2566,8 @@ and send response</text>
       <text>paint</text>
       <link>UID5225221692</link>
       <layer>0</layer>
-      <x>-214.0000000000000000</x>
-      <y>4389.00</y>
+      <x>-214.1506050000000000</x>
+      <y>4388.621095</y>
       <width>54</width>
       <height>36</height>
       <scale>0</scale>
@@ -2582,8 +2582,8 @@ and send response</text>
       <note>UID5891984730</note>
       <link>UID5891984730</link>
       <layer>0</layer>
-      <x>-298.0000000000000000</x>
-      <y>4637.00</y>
+      <x>-298.0855000000000000</x>
+      <y>4636.621095</y>
       <width>139</width>
       <height>36</height>
       <scale>0</scale>
@@ -2597,8 +2597,8 @@ and send response</text>
       <text>MouseDown</text>
       <link>UID3419722424</link>
       <layer>0</layer>
-      <x>-400.0000000000000000</x>
-      <y>4686.00</y>
+      <x>-400.3830000000000000</x>
+      <y>4685.621095</y>
       <width>100</width>
       <height>36</height>
       <scale>0</scale>
@@ -2612,8 +2612,8 @@ and send response</text>
       <text>MouseMove</text>
       <link>UID3677213415</link>
       <layer>0</layer>
-      <x>-281.0000000000000000</x>
-      <y>4696.00</y>
+      <x>-281.1213050000000000</x>
+      <y>4695.621095</y>
       <width>99</width>
       <height>36</height>
       <scale>0</scale>
@@ -2629,8 +2629,8 @@ and send response</text>
 
 }</text>
       <layer>0</layer>
-      <x>-1828</x>
-      <y>1964</y>
+      <x>-1874.1640500000000000000</x>
+      <y>1964.9843800000000000000</y>
       <width>196</width>
       <height>82</height>
       <scale>0</scale>
@@ -2649,8 +2649,8 @@ and send response</text>
     }
 }</text>
       <layer>0</layer>
-      <x>-1828</x>
-      <y>2067</y>
+      <x>-1874.4674500000000000000</x>
+      <y>2067.8476500000000000000</y>
       <width>234</width>
       <height>127</height>
       <scale>0</scale>
@@ -2667,8 +2667,8 @@ and send response</text>
             
 #endif</text>
       <layer>0</layer>
-      <x>-1828</x>
-      <y>2248</y>
+      <x>-1874.1953100000000000000</x>
+      <y>2248.9388100000000000000</y>
       <width>85</width>
       <height>97</height>
       <scale>0</scale>
@@ -2683,8 +2683,8 @@ and send response</text>
 
 #endif</text>
       <layer>0</layer>
-      <x>-1692</x>
-      <y>2263</y>
+      <x>-1738.1028600000000000000</x>
+      <y>2263.5299550000000000000</y>
       <width>89</width>
       <height>66</height>
       <scale>0</scale>
@@ -2699,8 +2699,8 @@ and send response</text>
 
 #endif</text>
       <layer>0</layer>
-      <x>-1587</x>
-      <y>2263</y>
+      <x>-1633.2519500000000000000</x>
+      <y>2263.5299550000000000000</y>
       <width>91</width>
       <height>66</height>
       <scale>0</scale>
@@ -2713,8 +2713,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>Program.log.write("message");</text>
       <layer>0</layer>
-      <x>-1828</x>
-      <y>2404</y>
+      <x>-1874.3146500000000000000</x>
+      <y>2404.6210950000000000000</y>
       <width>210</width>
       <height>36</height>
       <scale>0</scale>
@@ -2727,8 +2727,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>Snippets</text>
       <layer>0</layer>
-      <x>-1828</x>
-      <y>1874</y>
+      <x>-1874.4832850000000000000</x>
+      <y>1874.6210950000000000000</y>
       <width>77</width>
       <height>36</height>
       <scale>0</scale>
@@ -2740,8 +2740,8 @@ and send response</text>
       <id>1410</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>-1901</x>
-      <y>1810</y>
+      <x>-1947.0000000000000000000</x>
+      <y>1811.0000000000000000000</y>
       <width>20</width>
       <height>20</height>
       <scale>0</scale>
@@ -2754,8 +2754,8 @@ and send response</text>
       <id>1411</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>-1901</x>
-      <y>3085</y>
+      <x>-1947.0000000000000000000</x>
+      <y>3086.0000000000000000000</y>
       <width>20</width>
       <height>20</height>
       <scale>0</scale>
@@ -2768,8 +2768,8 @@ and send response</text>
       <id>1412</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>-1901</x>
-      <y>1882</y>
+      <x>-1947.0000000000000000000</x>
+      <y>1883.0000000000000000000</y>
       <width>20</width>
       <height>20</height>
       <scale>0</scale>
@@ -2782,8 +2782,8 @@ and send response</text>
       <id>1413</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>-1900</x>
-      <y>1995</y>
+      <x>-1946.0000000000000000000</x>
+      <y>1996.0000000000000000000</y>
       <width>20</width>
       <height>20</height>
       <scale>0</scale>
@@ -2796,8 +2796,8 @@ and send response</text>
       <id>1414</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>-1900</x>
-      <y>2120</y>
+      <x>-1946.0000000000000000000</x>
+      <y>2121.0000000000000000000</y>
       <width>20</width>
       <height>20</height>
       <scale>0</scale>
@@ -2810,8 +2810,8 @@ and send response</text>
       <id>1415</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>-1900</x>
-      <y>2286</y>
+      <x>-1946.0000000000000000000</x>
+      <y>2287.0000000000000000000</y>
       <width>20</width>
       <height>20</height>
       <scale>0</scale>
@@ -2824,8 +2824,8 @@ and send response</text>
       <id>1416</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>-1900</x>
-      <y>2412</y>
+      <x>-1946.0000000000000000000</x>
+      <y>2413.0000000000000000000</y>
       <width>20</width>
       <height>20</height>
       <scale>0</scale>
@@ -2838,8 +2838,8 @@ and send response</text>
       <id>1417</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>-1901</x>
-      <y>2540</y>
+      <x>-1947.0000000000000000000</x>
+      <y>2541.0000000000000000000</y>
       <width>20</width>
       <height>20</height>
       <scale>0</scale>
@@ -2852,8 +2852,8 @@ and send response</text>
       <id>1418</id>
       <fontcolor>Black</fontcolor>
       <layer>0</layer>
-      <x>-1901</x>
-      <y>2649</y>
+      <x>-1947.0000000000000000000</x>
+      <y>2650.0000000000000000000</y>
       <width>20</width>
       <height>20</height>
       <scale>0</scale>
@@ -2869,8 +2869,8 @@ and send response</text>
       <link>UID4637488042
 </link>
       <layer>0</layer>
-      <x>-103.0000000000000000</x>
-      <y>4403.00</y>
+      <x>-103.2241500000000000</x>
+      <y>4402.621095</y>
       <width>108</width>
       <height>36</height>
       <scale>0</scale>
@@ -2883,8 +2883,8 @@ and send response</text>
       <fontcolor>Black</fontcolor>
       <text>plugins</text>
       <layer>0</layer>
-      <x>-566.0000000000000000</x>
-      <y>5915.00</y>
+      <x>-566.0614100000000000</x>
+      <y>5914.621095</y>
       <width>68</width>
       <height>36</height>
       <scale>0</scale>
@@ -2898,8 +2898,8 @@ and send response</text>
       <text>IKeyPressPlugin</text>
       <link>UID0290945802</link>
       <layer>0</layer>
-      <x>-251</x>
-      <y>1728</y>
+      <x>-251.1812</x>
+      <y>1727.621095</y>
       <width>125</width>
       <height>36</height>
       <scale>0</scale>
@@ -2913,8 +2913,8 @@ and send response</text>
       <text>Plugins</text>
       <link>UID8736657869</link>
       <layer>0</layer>
-      <x>-415.0000000000000000</x>
-      <y>5909.00</y>
+      <x>-415.3231300000000000</x>
+      <y>5908.621095</y>
       <width>69</width>
       <height>36</height>
       <scale>0</scale>
@@ -2929,8 +2929,8 @@ and send response</text>
       <link>UID0290945800
 </link>
       <layer>0</layer>
-      <x>-149.0000000000000000</x>
-      <y>5862.00</y>
+      <x>-149.0060500000000000</x>
+      <y>5861.621095</y>
       <width>133</width>
       <height>36</height>
       <scale>0</scale>
@@ -2945,8 +2945,8 @@ and send response</text>
       <link>UID0454615899
 </link>
       <layer>0</layer>
-      <x>-293.0000000000000000</x>
-      <y>5907.00</y>
+      <x>-293.2795000000000000</x>
+      <y>5906.621095</y>
       <width>118</width>
       <height>36</height>
       <scale>0</scale>
@@ -2960,8 +2960,8 @@ and send response</text>
       <text>IKeyPressPlugin</text>
       <link>UID0290945802</link>
       <layer>0</layer>
-      <x>-124.0000000000000000</x>
-      <y>5982.00</y>
+      <x>-124.1812000000000000</x>
+      <y>5981.621095</y>
       <width>125</width>
       <height>36</height>
       <scale>0</scale>
@@ -2975,8 +2975,8 @@ and send response</text>
       <text>FindUidPlugin</text>
       <link>UID0290845813</link>
       <layer>0</layer>
-      <x>32.0000000000000000</x>
-      <y>5822.00</y>
+      <x>31.8709000000000000</x>
+      <y>5821.621095</y>
       <width>110</width>
       <height>36</height>
       <scale>0</scale>
@@ -2991,8 +2991,8 @@ and send response</text>
       <link>UID0290845812
 </link>
       <layer>0</layer>
-      <x>-145.0000000000000000</x>
-      <y>5927.00</y>
+      <x>-145.0764000000000000</x>
+      <y>5926.621095</y>
       <width>152</width>
       <height>36</height>
       <scale>0</scale>
@@ -3006,8 +3006,8 @@ and send response</text>
       <text>node open action</text>
       <link>UID0290845815</link>
       <layer>0</layer>
-      <x>32.0000000000000000</x>
-      <y>5869.00</y>
+      <x>31.7224500000000000</x>
+      <y>5868.621095</y>
       <width>129</width>
       <height>36</height>
       <scale>0</scale>
@@ -3022,8 +3022,8 @@ and send response</text>
       <link>UID0290845814
 </link>
       <layer>0</layer>
-      <x>40.0000000000000000</x>
-      <y>6031.00</y>
+      <x>39.7224450000000000</x>
+      <y>6030.621095</y>
       <width>89</width>
       <height>36</height>
       <scale>0</scale>
@@ -3037,8 +3037,8 @@ and send response</text>
       <text>key press action</text>
       <link>UID0290845814</link>
       <layer>0</layer>
-      <x>33.0000000000000000</x>
-      <y>5965.00</y>
+      <x>32.7921000000000000</x>
+      <y>5964.621095</y>
       <width>123</width>
       <height>36</height>
       <scale>0</scale>
@@ -3053,8 +3053,8 @@ and send response</text>
       <link>UID0290845816
 </link>
       <layer>0</layer>
-      <x>32.0000000000000000</x>
-      <y>5913.00</y>
+      <x>31.6521500000000000</x>
+      <y>5912.621095</y>
       <width>148</width>
       <height>36</height>
       <scale>0</scale>
@@ -3077,8 +3077,8 @@ rec = Diagram.CreateNode(Position(selected.position.x+200, selected.position.y),
 DiagramView.Invalidate();</note>
       <link>$</link>
       <layer>0</layer>
-      <x>-1207</x>
-      <y>2757</y>
+      <x>-1207.1649</x>
+      <y>2756.621095</y>
       <width>105</width>
       <height>36</height>
       <scale>0</scale>
@@ -3092,8 +3092,8 @@ DiagramView.Invalidate();</note>
       <text>IronPython.net /</text>
       <link>http://ironpython.net/</link>
       <layer>0</layer>
-      <x>-1344</x>
-      <y>2761</y>
+      <x>-1344.1109</x>
+      <y>2760.621095</y>
       <width>121</width>
       <height>36</height>
       <scale>0</scale>
@@ -3162,8 +3162,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>ironPython</text>
       <layer>0</layer>
-      <x>-1375</x>
-      <y>2545</y>
+      <x>-1375.0868</x>
+      <y>2544.621095</y>
       <width>90</width>
       <height>36</height>
       <scale>0</scale>
@@ -3193,8 +3193,8 @@ DiagramView.Invalidate();
 print 'uid created'</note>
       <link>$</link>
       <layer>0</layer>
-      <x>-1204</x>
-      <y>2816</y>
+      <x>-1204.0256</x>
+      <y>2815.621095</y>
       <width>93</width>
       <height>36</height>
       <scale>0</scale>
@@ -3223,8 +3223,8 @@ DiagramView.Invalidate();
 print 'uid created'</note>
       <link>$</link>
       <layer>0</layer>
-      <x>-916.0000000000000000</x>
-      <y>3254.00</y>
+      <x>-916.0256000000000000</x>
+      <y>3253.621095</y>
       <width>93</width>
       <height>36</height>
       <scale>0</scale>
@@ -3239,8 +3239,8 @@ print 'uid created'</note>
       <link>UID3114212444
 </link>
       <layer>0</layer>
-      <x>-249.0000000000000000</x>
-      <y>4787.00</y>
+      <x>-249.1069850000000000</x>
+      <y>4786.621095</y>
       <width>83</width>
       <height>36</height>
       <scale>0</scale>
@@ -3255,8 +3255,8 @@ print 'uid created'</note>
       <link>UID4343244331
 </link>
       <layer>0</layer>
-      <x>-143.0000000000000000</x>
-      <y>4787.00</y>
+      <x>-143.3309400000000000</x>
+      <y>4786.621095</y>
       <width>65</width>
       <height>36</height>
       <scale>0</scale>
@@ -3271,8 +3271,8 @@ print 'uid created'</note>
       <link>UID1343430442
 </link>
       <layer>0</layer>
-      <x>-44.0000000000000000</x>
-      <y>4787.00</y>
+      <x>-44.1069850000000000</x>
+      <y>4786.621095</y>
       <width>83</width>
       <height>36</height>
       <scale>0</scale>
@@ -3287,8 +3287,8 @@ print 'uid created'</note>
       <link>UID3440232213
 </link>
       <layer>0</layer>
-      <x>-400.0000000000000000</x>
-      <y>4838.00</y>
+      <x>-400.4813300000000000</x>
+      <y>4837.621095</y>
       <width>83</width>
       <height>36</height>
       <scale>0</scale>
@@ -3303,8 +3303,8 @@ print 'uid created'</note>
       <link>UID0040214033
 </link>
       <layer>0</layer>
-      <x>-300.0000000000000000</x>
-      <y>4839.00</y>
+      <x>-300.0112800000000000</x>
+      <y>4838.621095</y>
       <width>87</width>
       <height>36</height>
       <scale>0</scale>
@@ -3319,8 +3319,8 @@ print 'uid created'</note>
       <link>UID2004324112
 </link>
       <layer>0</layer>
-      <x>-254.0000000000000000</x>
-      <y>4322.00</y>
+      <x>-254.2508600000000000</x>
+      <y>4321.621095</y>
       <width>66</width>
       <height>36</height>
       <scale>0</scale>
@@ -3335,8 +3335,8 @@ print 'uid created'</note>
       <link>UID0104120032
 </link>
       <layer>0</layer>
-      <x>-72.0000000000000000</x>
-      <y>4514.00</y>
+      <x>-72.2026850000000000</x>
+      <y>4513.621095</y>
       <width>89</width>
       <height>36</height>
       <scale>0</scale>
@@ -3351,8 +3351,8 @@ print 'uid created'</note>
       <link>UID1444131132
 </link>
       <layer>0</layer>
-      <x>-406.0000000000000000</x>
-      <y>4763.00</y>
+      <x>-406.3550500000000000</x>
+      <y>4762.621095</y>
       <width>126</width>
       <height>36</height>
       <scale>0</scale>
@@ -3367,8 +3367,8 @@ print 'uid created'</note>
       <link>UID1111344210
 </link>
       <layer>0</layer>
-      <x>-62.0000000000000000</x>
-      <y>4692.00</y>
+      <x>-62.3329000000000000</x>
+      <y>4691.621095</y>
       <width>104</width>
       <height>36</height>
       <scale>0</scale>
@@ -3382,8 +3382,8 @@ print 'uid created'</note>
       <text>Cut</text>
       <link>UID4343312404</link>
       <layer>0</layer>
-      <x>-251.0000000000000000000000000</x>
-      <y>6218.0000000000000000000000000</y>
+      <x>-251.4058150000000000000000000</x>
+      <y>6217.6210950000000000000000000</y>
       <width>45</width>
       <height>36</height>
       <scale>0</scale>
@@ -3398,8 +3398,8 @@ print 'uid created'</note>
       <link>UID0421401402
 </link>
       <layer>0</layer>
-      <x>-168.0000000000000000</x>
-      <y>4514.00</y>
+      <x>-168.0067200000000000</x>
+      <y>4513.621095</y>
       <width>81</width>
       <height>36</height>
       <scale>0</scale>
@@ -3413,8 +3413,8 @@ print 'uid created'</note>
       <text>FormClosed</text>
       <link>UID2411004144</link>
       <layer>0</layer>
-      <x>-133.0000000000000000</x>
-      <y>4453.00</y>
+      <x>-133.1538600000000000</x>
+      <y>4452.621095</y>
       <width>99</width>
       <height>36</height>
       <scale>0</scale>
@@ -3427,8 +3427,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>form</text>
       <layer>0</layer>
-      <x>-374.0000000000000000</x>
-      <y>4379.00</y>
+      <x>-374.4526900000000000</x>
+      <y>4378.621095</y>
       <width>51</width>
       <height>36</height>
       <scale>0</scale>
@@ -3442,8 +3442,8 @@ print 'uid created'</note>
       <text>Load</text>
       <link>UID0112423443</link>
       <layer>0</layer>
-      <x>-219.0000000000000000</x>
-      <y>4453.00</y>
+      <x>-219.4956550000000000</x>
+      <y>4452.621095</y>
       <width>54</width>
       <height>36</height>
       <scale>0</scale>
@@ -3457,8 +3457,8 @@ print 'uid created'</note>
       <text>InitializeComponent</text>
       <link>UID4012344444</link>
       <layer>0</layer>
-      <x>-131.0000000000000000</x>
-      <y>4248.00</y>
+      <x>-131.1844500000000000</x>
+      <y>4247.621095</y>
       <width>145</width>
       <height>36</height>
       <scale>0</scale>
@@ -3486,8 +3486,8 @@ print 'uid created'</note>
       <text>Copy</text>
       <link>UID4434132203</link>
       <layer>0</layer>
-      <x>-252.0000000000000000000000000</x>
-      <y>6122.0000000000000000000000000</y>
+      <x>-252.2508650000000000000000000</x>
+      <y>6121.6210950000000000000000000</y>
       <width>56</width>
       <height>36</height>
       <scale>0</scale>
@@ -3501,8 +3501,8 @@ print 'uid created'</note>
       <text>MoveTimer_Tick</text>
       <link>UID2144001341</link>
       <layer>0</layer>
-      <x>-160.0000000000000000</x>
-      <y>4333.00</y>
+      <x>-160.0165000000000000</x>
+      <y>4332.621095</y>
       <width>126</width>
       <height>36</height>
       <scale>0</scale>
@@ -3517,8 +3517,8 @@ print 'uid created'</note>
       <link>UID0302011231
 </link>
       <layer>0</layer>
-      <x>-262.0000000000000000</x>
-      <y>4252.00</y>
+      <x>-262.2072400000000000</x>
+      <y>4251.621095</y>
       <width>95</width>
       <height>36</height>
       <scale>0</scale>
@@ -3573,8 +3573,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>clipboard operations</text>
       <layer>0</layer>
-      <x>-583.0000000000000000000000000</x>
-      <y>6215.0000000000000000000000000</y>
+      <x>-583.0907000000000000000000000</x>
+      <y>6214.6210950000000000000000000</y>
       <width>148</width>
       <height>36</height>
       <scale>0</scale>
@@ -3602,8 +3602,8 @@ print 'uid created'</note>
       <text>Paste</text>
       <link>UID3240032142</link>
       <layer>0</layer>
-      <x>-253.0000000000000000000000000</x>
-      <y>6370.0000000000000000000000000</y>
+      <x>-253.2808150000000000000000000</x>
+      <y>6369.6210950000000000000000000</y>
       <width>59</width>
       <height>36</height>
       <scale>0</scale>
@@ -3634,8 +3634,8 @@ for i in range(100):
 DiagramView.Invalidate();</note>
       <link>$</link>
       <layer>0</layer>
-      <x>-1201</x>
-      <y>2684</y>
+      <x>-1201.325735</x>
+      <y>2683.621095</y>
       <width>56</width>
       <height>36</height>
       <scale>0</scale>
@@ -3648,8 +3648,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>rename node</text>
       <layer>0</layer>
-      <x>-576.0000000000000000</x>
-      <y>6471.00</y>
+      <x>-576.0965500000000000</x>
+      <y>6470.621095</y>
       <width>105</width>
       <height>36</height>
       <scale>0</scale>
@@ -3663,8 +3663,8 @@ DiagramView.Invalidate();</note>
       <text>FindUidPlugin</text>
       <link>Diagram.SRC\Plugins\FindUidPlugin</link>
       <layer>0</layer>
-      <x>-658</x>
-      <y>1718</y>
+      <x>-658.1291</x>
+      <y>1717.621095</y>
       <width>110</width>
       <height>36</height>
       <scale>0</scale>
@@ -3678,8 +3678,8 @@ DiagramView.Invalidate();</note>
       <text>FirstPlugin</text>
       <link>Diagram.SRC\Plugins\FirstPlugin</link>
       <layer>0</layer>
-      <x>-639</x>
-      <y>1664</y>
+      <x>-639.277555</x>
+      <y>1663.621095</y>
       <width>89</width>
       <height>36</height>
       <scale>0</scale>
@@ -3693,8 +3693,8 @@ DiagramView.Invalidate();</note>
       <text>ScriptingPlugin</text>
       <link>Diagram.SRC\Plugins\ScriptingPlugin</link>
       <layer>0</layer>
-      <x>-663</x>
-      <y>1768</y>
+      <x>-663.1825</x>
+      <y>1767.621095</y>
       <width>116</width>
       <height>36</height>
       <scale>0</scale>
@@ -3708,8 +3708,8 @@ DiagramView.Invalidate();</note>
       <text>IOpenDiagramPlugin</text>
       <link>UID0290845812</link>
       <layer>0</layer>
-      <x>-254</x>
-      <y>1781</y>
+      <x>-254.0764</x>
+      <y>1780.621095</y>
       <width>152</width>
       <height>36</height>
       <scale>0</scale>
@@ -3723,8 +3723,8 @@ DiagramView.Invalidate();</note>
       <text>rename node after click</text>
       <link>UID3101342400</link>
       <layer>0</layer>
-      <x>-441.0000000000000000</x>
-      <y>6472.00</y>
+      <x>-441.4136000000000000</x>
+      <y>6471.621095</y>
       <width>166</width>
       <height>36</height>
       <scale>0</scale>
@@ -3765,8 +3765,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>update python</text>
       <layer>0</layer>
-      <x>1221</x>
-      <y>1769</y>
+      <x>1220.8403</x>
+      <y>1768.621095</y>
       <width>111</width>
       <height>36</height>
       <scale>0</scale>
@@ -3780,8 +3780,8 @@ DiagramView.Invalidate();</note>
       <text>IronPython.net / Download</text>
       <link>http://ironpython.net/download/</link>
       <layer>0</layer>
-      <x>1318</x>
-      <y>1821</y>
+      <x>1317.9933</x>
+      <y>1820.621095</y>
       <width>186</width>
       <height>36</height>
       <scale>0</scale>
@@ -3794,8 +3794,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>2.7.7</text>
       <layer>0</layer>
-      <x>1301</x>
-      <y>1701</y>
+      <x>1300.5076</x>
+      <y>1700.621095</y>
       <width>54</width>
       <height>36</height>
       <scale>0</scale>
@@ -3808,8 +3808,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>download zip</text>
       <layer>0</layer>
-      <x>1357</x>
-      <y>1771</y>
+      <x>1356.7029</x>
+      <y>1770.621095</y>
       <width>104</width>
       <height>36</height>
       <scale>0</scale>
@@ -3839,8 +3839,8 @@ rec = Diagram.CreateNode(Position(0, 0), sys.version, 0)
 DiagramView.Invalidate();</note>
       <link>$</link>
       <layer>0</layer>
-      <x>1306</x>
-      <y>1648</y>
+      <x>1305.8058</x>
+      <y>1647.587895</y>
       <width>110</width>
       <height>39</height>
       <scale>0</scale>
@@ -3853,8 +3853,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>compres lib to </text>
       <layer>0</layer>
-      <x>1471</x>
-      <y>1771</y>
+      <x>1470.62805</x>
+      <y>1770.621095</y>
       <width>109</width>
       <height>36</height>
       <scale>0</scale>
@@ -3867,8 +3867,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>IronPython.zip</text>
       <layer>0</layer>
-      <x>1537</x>
-      <y>1816</y>
+      <x>1536.8455</x>
+      <y>1815.621095</y>
       <width>112</width>
       <height>36</height>
       <scale>0</scale>
@@ -3881,8 +3881,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>infinite-diagram\Diagram.SRC\Diagram\dll\IronPython.zip</text>
       <layer>0</layer>
-      <x>1496</x>
-      <y>1719</y>
+      <x>1495.79995</x>
+      <y>1718.621095</y>
       <width>372</width>
       <height>36</height>
       <scale>0</scale>
@@ -3895,8 +3895,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>C:\Users\USER_NAME\AppData\Roaming\Diagram\plugins</text>
       <layer>0</layer>
-      <x>1243</x>
-      <y>2010</y>
+      <x>1242.77845</x>
+      <y>2009.621095</y>
       <width>386</width>
       <height>36</height>
       <scale>0</scale>
@@ -3909,8 +3909,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>C:\Users\USER_NAME\AppData\Roaming\Diagram\plugins\diagram.debug.json</text>
       <layer>0</layer>
-      <x>1202</x>
-      <y>2077</y>
+      <x>1201.98355</x>
+      <y>2076.621095</y>
       <width>511</width>
       <height>36</height>
       <scale>0</scale>
@@ -3923,8 +3923,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>C:\Users\USER_NAME\AppData\Roaming\Diagram\plugins\diagram.json</text>
       <layer>0</layer>
-      <x>1243</x>
-      <y>2214</y>
+      <x>1242.9829</x>
+      <y>2213.621095</y>
       <width>469</width>
       <height>36</height>
       <scale>0</scale>
@@ -3944,8 +3944,8 @@ DiagramView.Invalidate();</note>
     "recentFiles": []
 }</text>
       <layer>0</layer>
-      <x>1753</x>
-      <y>2008</y>
+      <x>1752.72785</x>
+      <y>2007.8021</y>
       <width>324</width>
       <height>142</height>
       <scale>0</scale>
@@ -3965,8 +3965,8 @@ DiagramView.Invalidate();</note>
     "recentFiles": ["diagram1.diagram", "diagram2.diagram"]
 }</text>
       <layer>0</layer>
-      <x>1741</x>
-      <y>2168</y>
+      <x>1740.5944</x>
+      <y>2167.8021</y>
       <width>379</width>
       <height>142</height>
       <scale>0</scale>
@@ -4091,8 +4091,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>nuget install packages automaticaly</text>
       <layer>0</layer>
-      <x>2155</x>
-      <y>1203</y>
+      <x>2154.93145</x>
+      <y>1202.621095</y>
       <width>241</width>
       <height>36</height>
       <scale>0</scale>
@@ -4107,8 +4107,8 @@ DiagramView.Invalidate();</note>
       <text>packages.config</text>
       <link>Diagram.SRC\Diagram\packages.config</link>
       <layer>0</layer>
-      <x>1145</x>
-      <y>1258</y>
+      <x>1144.61305</x>
+      <y>1257.621095</y>
       <width>123</width>
       <height>36</height>
       <scale>0</scale>
@@ -4121,8 +4121,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>Uninstall-Package PCKG_NAME</text>
       <layer>0</layer>
-      <x>1510</x>
-      <y>1349</y>
+      <x>1509.90995</x>
+      <y>1348.621095</y>
       <width>225</width>
       <height>36</height>
       <scale>0</scale>
@@ -4135,8 +4135,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>Get-Package</text>
       <layer>0</layer>
-      <x>1633</x>
-      <y>1235</y>
+      <x>1632.7029</x>
+      <y>1234.621095</y>
       <width>104</width>
       <height>36</height>
       <scale>0</scale>
@@ -4150,8 +4150,8 @@ DiagramView.Invalidate();</note>
       <text>NuGet Package Manager Console Guide | Microsoft Docs</text>
       <link>https://docs.microsoft.com/en-us/nuget/tools/package-manager-console</link>
       <layer>0</layer>
-      <x>1818</x>
-      <y>1288</y>
+      <x>1817.94255</x>
+      <y>1287.621095</y>
       <width>375</width>
       <height>36</height>
       <scale>0</scale>
@@ -4220,8 +4220,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>Get-Package -updates</text>
       <layer>0</layer>
-      <x>1633</x>
-      <y>1287</y>
+      <x>1632.66125</x>
+      <y>1286.621095</y>
       <width>161</width>
       <height>36</height>
       <scale>0</scale>
@@ -4235,8 +4235,8 @@ DiagramView.Invalidate();</note>
       <text>Install-Package PCKG_NAME
 </text>
       <layer>0</layer>
-      <x>1633</x>
-      <y>1392</y>
+      <x>1632.84635</x>
+      <y>1391.621095</y>
       <width>208</width>
       <height>36</height>
       <scale>0</scale>
@@ -4250,8 +4250,8 @@ DiagramView.Invalidate();</note>
       <text>NuGet Gallery</text>
       <link>https://www.nuget.org/packages</link>
       <layer>0</layer>
-      <x>1145</x>
-      <y>1212</y>
+      <x>1144.7817</x>
+      <y>1211.621095</y>
       <width>111</width>
       <height>36</height>
       <scale>0</scale>
@@ -4265,8 +4265,8 @@ DiagramView.Invalidate();</note>
       <text>packages.config</text>
       <link>Diagram.SRC\Plugins\ScriptingPlugin\packages.config</link>
       <layer>0</layer>
-      <x>1145</x>
-      <y>1305</y>
+      <x>1144.61305</x>
+      <y>1304.621095</y>
       <width>123</width>
       <height>36</height>
       <scale>0</scale>
@@ -4280,8 +4280,8 @@ DiagramView.Invalidate();</note>
       <text>ScriptingPlugin</text>
       <link>Diagram.SRC\Plugins\ScriptingPlugin</link>
       <layer>0</layer>
-      <x>1289</x>
-      <y>1305</y>
+      <x>1288.8175</x>
+      <y>1304.621095</y>
       <width>116</width>
       <height>36</height>
       <scale>0</scale>
@@ -4295,8 +4295,8 @@ DiagramView.Invalidate();</note>
       <text>Diagram.SRC</text>
       <link>Diagram.SRC</link>
       <layer>0</layer>
-      <x>1289</x>
-      <y>1255</y>
+      <x>1288.8917</x>
+      <y>1254.621095</y>
       <width>109</width>
       <height>36</height>
       <scale>0</scale>
@@ -4310,8 +4310,8 @@ DiagramView.Invalidate();</note>
       <text>DynamicLanguageRuntime 1.1.2</text>
       <link>https://www.nuget.org/packages/DynamicLanguageRuntime/</link>
       <layer>0</layer>
-      <x>1330</x>
-      <y>1352</y>
+      <x>1329.7843</x>
+      <y>1351.621095</y>
       <width>224</width>
       <height>36</height>
       <scale>0</scale>
@@ -4325,8 +4325,8 @@ DiagramView.Invalidate();</note>
       <text>IronPython 2.7.7</text>
       <link>https://www.nuget.org/packages/IronPython/</link>
       <layer>0</layer>
-      <x>1394</x>
-      <y>1399</y>
+      <x>1393.9783</x>
+      <y>1398.621095</y>
       <width>125</width>
       <height>36</height>
       <scale>0</scale>
@@ -4340,8 +4340,8 @@ DiagramView.Invalidate();</note>
       <text>IronPython.StdLib 2.7.7</text>
       <link>https://www.nuget.org/packages/IronPython.StdLib/</link>
       <layer>0</layer>
-      <x>1357</x>
-      <y>1448</y>
+      <x>1356.5623</x>
+      <y>1447.621095</y>
       <width>167</width>
       <height>36</height>
       <scale>0</scale>
@@ -4355,8 +4355,8 @@ DiagramView.Invalidate();</note>
       <text>ncalc</text>
       <link>https://www.nuget.org/packages/ncalc/</link>
       <layer>0</layer>
-      <x>1467</x>
-      <y>1209</y>
+      <x>1466.70682</x>
+      <y>1208.621095</y>
       <width>56</width>
       <height>36</height>
       <scale>0</scale>
@@ -4370,8 +4370,8 @@ DiagramView.Invalidate();</note>
       <text>Newtonsoft.Json 10.0.3</text>
       <link>https://www.nuget.org/packages/Newtonsoft.Json/</link>
       <layer>0</layer>
-      <x>1443</x>
-      <y>1259</y>
+      <x>1442.60785</x>
+      <y>1258.621095</y>
       <width>167</width>
       <height>36</height>
       <scale>0</scale>
@@ -4385,8 +4385,8 @@ DiagramView.Invalidate();</note>
       <text>build-IronPython-lib.bat</text>
       <link>Diagram.SRC\Plugins\ScriptingPlugin\build-IronPython-lib.bat</link>
       <layer>0</layer>
-      <x>1557</x>
-      <y>1461</y>
+      <x>1556.51285</x>
+      <y>1460.621095</y>
       <width>165</width>
       <height>36</height>
       <scale>0</scale>
@@ -4399,8 +4399,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>build stdlib</text>
       <layer>0</layer>
-      <x>1732</x>
-      <y>1461</y>
+      <x>1731.75825</x>
+      <y>1460.621095</y>
       <width>89</width>
       <height>36</height>
       <scale>0</scale>
@@ -4414,8 +4414,8 @@ DiagramView.Invalidate();</note>
       <text>Tests</text>
       <link>Diagram.SRC\Tests</link>
       <layer>0</layer>
-      <x>1148</x>
-      <y>2402</y>
+      <x>1147.987415</x>
+      <y>2401.621095</y>
       <width>58</width>
       <height>36</height>
       <scale>0</scale>
@@ -4429,8 +4429,8 @@ DiagramView.Invalidate();</note>
       <text>Diagram.Tests</text>
       <link>Diagram.SRC\Tests\Diagram.Tests</link>
       <layer>0</layer>
-      <x>1229</x>
-      <y>2400</y>
+      <x>1228.5968</x>
+      <y>2399.621095</y>
       <width>113</width>
       <height>36</height>
       <scale>0</scale>
@@ -4444,8 +4444,8 @@ DiagramView.Invalidate();</note>
       <text>test.xml</text>
       <link>Diagram.SRC\Tests\Diagram.Tests\bin\x64\Debug\test.xml</link>
       <layer>0</layer>
-      <x>1362</x>
-      <y>2397</y>
+      <x>1361.58312</x>
+      <y>2396.621095</y>
       <width>71</width>
       <height>36</height>
       <scale>0</scale>
@@ -4514,8 +4514,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>subnodes</text>
       <layer>0</layer>
-      <x>1357</x>
-      <y>2661</y>
+      <x>1356.99914</x>
+      <y>2660.621095</y>
       <width>84</width>
       <height>36</height>
       <scale>0</scale>
@@ -4529,8 +4529,8 @@ DiagramView.Invalidate();</note>
       <text>open diagram from existing file</text>
       <link>UID2130542088</link>
       <layer>0</layer>
-      <x>54.7812499999999705</x>
-      <y>3206.00</y>
+      <x>54.6996999999999705</x>
+      <y>3205.621095</y>
       <width>211</width>
       <height>36</height>
       <scale>0</scale>
@@ -4544,8 +4544,8 @@ DiagramView.Invalidate();</note>
       <text>OpenDiagramView</text>
       <link>UID8210770134</link>
       <layer>0</layer>
-      <x>-427.0000000000000000</x>
-      <y>6617.00</y>
+      <x>-427.4240500000000000</x>
+      <y>6616.621095</y>
       <width>139</width>
       <height>36</height>
       <scale>0</scale>
@@ -4558,8 +4558,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>merge views</text>
       <layer>0</layer>
-      <x>-574.0000000000000000</x>
-      <y>6617.00</y>
+      <x>-574.2150500000000000</x>
+      <y>6616.621095</y>
       <width>101</width>
       <height>36</height>
       <scale>0</scale>
@@ -4573,8 +4573,8 @@ DiagramView.Invalidate();</note>
       <text>OpenViewAndGoToEnd</text>
       <link>UID0905369008</link>
       <layer>0</layer>
-      <x>-288.0000000000000000</x>
-      <y>6775.00</y>
+      <x>-288.0490500000000000</x>
+      <y>6774.621095</y>
       <width>171</width>
       <height>36</height>
       <scale>0</scale>
@@ -4588,8 +4588,8 @@ DiagramView.Invalidate();</note>
       <text>ShowIfIsLastViews</text>
       <link>UID3969703093</link>
       <layer>0</layer>
-      <x>-108.0000000000000000</x>
-      <y>6575.00</y>
+      <x>-108.3882500000000000</x>
+      <y>6574.621095</y>
       <width>139</width>
       <height>36</height>
       <scale>0</scale>
@@ -4603,8 +4603,8 @@ DiagramView.Invalidate();</note>
       <text>HideViews</text>
       <link>UID3131107610</link>
       <layer>0</layer>
-      <x>-108.0000000000000000</x>
-      <y>6667.00</y>
+      <x>-108.2384900000000000</x>
+      <y>6666.621095</y>
       <width>89</width>
       <height>36</height>
       <scale>0</scale>
@@ -4618,8 +4618,8 @@ DiagramView.Invalidate();</note>
       <text>SwitchViews</text>
       <link>UID9164062779</link>
       <layer>0</layer>
-      <x>-248.0000000000000000</x>
-      <y>6617.00</y>
+      <x>-248.3420000000000000</x>
+      <y>6616.621095</y>
       <width>101</width>
       <height>36</height>
       <scale>0</scale>
@@ -4632,8 +4632,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>f7</text>
       <layer>0</layer>
-      <x>-403.0000000000000000</x>
-      <y>6670.00</y>
+      <x>-403.4481300000000000</x>
+      <y>6669.621095</y>
       <width>35</width>
       <height>36</height>
       <scale>0</scale>
@@ -4646,8 +4646,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>f8</text>
       <layer>0</layer>
-      <x>-233.0000000000000000</x>
-      <y>6668.00</y>
+      <x>-233.4481300000000000</x>
+      <y>6667.621095</y>
       <width>35</width>
       <height>36</height>
       <scale>0</scale>
@@ -4661,8 +4661,8 @@ DiagramView.Invalidate();</note>
       <text>ShowAllViews</text>
       <link>UID5230996149</link>
       <layer>0</layer>
-      <x>-108.0000000000000000</x>
-      <y>6621.00</y>
+      <x>-108.4644000000000000</x>
+      <y>6620.621095</y>
       <width>110</width>
       <height>36</height>
       <scale>0</scale>
@@ -4676,8 +4676,8 @@ DiagramView.Invalidate();</note>
       <text>OpenViewAndGoToHome</text>
       <link>UID2147390186</link>
       <layer>0</layer>
-      <x>-288.0000000000000000</x>
-      <y>6829.00</y>
+      <x>-288.1460500000000000</x>
+      <y>6828.621095</y>
       <width>183</width>
       <height>36</height>
       <scale>0</scale>
@@ -4704,8 +4704,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>CTRL+END</text>
       <layer>0</layer>
-      <x>-86.0000000000000000</x>
-      <y>6774.00</y>
+      <x>-86.1577650000000000</x>
+      <y>6773.621095</y>
       <width>97</width>
       <height>36</height>
       <scale>0</scale>
@@ -4719,8 +4719,8 @@ DiagramView.Invalidate();</note>
       <text>openLayerInNewView</text>
       <link>UID1964118363</link>
       <layer>0</layer>
-      <x>-288.0000000000000000</x>
-      <y>6882.00</y>
+      <x>-288.0516500000000000</x>
+      <y>6881.621095</y>
       <width>158</width>
       <height>36</height>
       <scale>0</scale>
@@ -4733,8 +4733,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>CTRL+HOME</text>
       <layer>0</layer>
-      <x>-84.0000000000000000</x>
-      <y>6828.00</y>
+      <x>-84.2613000000000000</x>
+      <y>6827.621095</y>
       <width>109</width>
       <height>36</height>
       <scale>0</scale>
@@ -4747,8 +4747,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>option</text>
       <layer>0</layer>
-      <x>-120.0000000000000000</x>
-      <y>6882.00</y>
+      <x>-120.4689650000000000</x>
+      <y>6881.621095</y>
       <width>61</width>
       <height>36</height>
       <scale>0</scale>
@@ -4762,8 +4762,8 @@ DiagramView.Invalidate();</note>
       <text>Rename</text>
       <link>UID1498635893</link>
       <layer>0</layer>
-      <x>-234.0000000000000000</x>
-      <y>6476.00</y>
+      <x>-234.1727350000000000</x>
+      <y>6475.621095</y>
       <width>76</width>
       <height>36</height>
       <scale>0</scale>
@@ -4776,8 +4776,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>plugins</text>
       <layer>0</layer>
-      <x>-431.0000000000000000</x>
-      <y>7030.00</y>
+      <x>-431.0614100000000000</x>
+      <y>7029.621095</y>
       <width>68</width>
       <height>36</height>
       <scale>0</scale>
@@ -4791,8 +4791,8 @@ DiagramView.Invalidate();</note>
       <text>IKeyPressPlugin</text>
       <link>UID0290945802</link>
       <layer>0</layer>
-      <x>-244.0000000000000000</x>
-      <y>6988.00</y>
+      <x>-244.1812000000000000</x>
+      <y>6987.621095</y>
       <width>125</width>
       <height>36</height>
       <scale>0</scale>
@@ -4806,8 +4806,8 @@ DiagramView.Invalidate();</note>
       <text>KeyPressAction</text>
       <link>UID0290845814</link>
       <layer>0</layer>
-      <x>-98.0000000000000000</x>
-      <y>6981.00</y>
+      <x>-98.2313500000000000</x>
+      <y>6980.621095</y>
       <width>121</width>
       <height>36</height>
       <scale>0</scale>
@@ -4821,8 +4821,8 @@ DiagramView.Invalidate();</note>
       <text>INodeOpenPlugin</text>
       <link>UID0290945800</link>
       <layer>0</layer>
-      <x>-244.0000000000000000</x>
-      <y>7048.00</y>
+      <x>-244.0060500000000000</x>
+      <y>7047.621095</y>
       <width>133</width>
       <height>36</height>
       <scale>0</scale>
@@ -4836,8 +4836,8 @@ DiagramView.Invalidate();</note>
       <text>IOpenDiagramPlugin</text>
       <link>UID0290845812</link>
       <layer>0</layer>
-      <x>-245.0000000000000000</x>
-      <y>7093.00</y>
+      <x>-245.0764000000000000</x>
+      <y>7092.621095</y>
       <width>152</width>
       <height>36</height>
       <scale>0</scale>
@@ -4851,8 +4851,8 @@ DiagramView.Invalidate();</note>
       <text>OpenDiagramAction</text>
       <link>UID0290845816</link>
       <layer>0</layer>
-      <x>-64.0000000000000000</x>
-      <y>7111.00</y>
+      <x>-64.1265000000000000</x>
+      <y>7110.621095</y>
       <width>148</width>
       <height>36</height>
       <scale>0</scale>
@@ -4866,8 +4866,8 @@ DiagramView.Invalidate();</note>
       <text>ClickOnNodeAction</text>
       <link>UID6935831875</link>
       <layer>0</layer>
-      <x>-82.0000000000000000</x>
-      <y>7043.00</y>
+      <x>-82.3771500000000000</x>
+      <y>7042.621095</y>
       <width>143</width>
       <height>36</height>
       <scale>0</scale>
@@ -4880,8 +4880,8 @@ DiagramView.Invalidate();</note>
       <fontcolor>Black</fontcolor>
       <text>clode application</text>
       <layer>0</layer>
-      <x>-607.970055134198932200000000</x>
-      <y>3816.0539097545409162000000000</y>
+      <x>-608.419505134198932200000000</x>
+      <y>3815.6750047545409162000000000</y>
       <width>126</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -4895,8 +4895,8 @@ DiagramView.Invalidate();</note>
       <text>Plugins</text>
       <link>UID8736657869</link>
       <layer>0</layer>
-      <x>-339.0000000000000000</x>
-      <y>7032.00</y>
+      <x>-339.3231300000000000</x>
+      <y>7031.621095</y>
       <width>69</width>
       <height>36</height>
       <scale>0</scale>
@@ -4910,8 +4910,8 @@ DiagramView.Invalidate();</note>
       <text>GoToNode</text>
       <link>UID0896814291</link>
       <layer>0</layer>
-      <x>379.0000000000000000</x>
-      <y>7955.00</y>
+      <x>378.6905450000000000</x>
+      <y>7954.621095</y>
       <width>91</width>
       <height>36</height>
       <scale>0</scale>
@@ -4925,8 +4925,8 @@ DiagramView.Invalidate();</note>
       <text>GoToNodeWithAnimation</text>
       <link>UID7284214377</link>
       <layer>0</layer>
-      <x>350.0000000000000000</x>
-      <y>7901.00</y>
+      <x>349.8058000000000000</x>
+      <y>7900.621095</y>
       <width>180</width>
       <height>36</height>
       <scale>0</scale>
@@ -4940,8 +4940,8 @@ DiagramView.Invalidate();</note>
       <text>SearchPanelChanged</text>
       <link>UID7186033387</link>
       <layer>0</layer>
-      <x>44.0000000000000000</x>
-      <y>7920.00</y>
+      <x>43.5545000000000000</x>
+      <y>7919.621095</y>
       <width>158</width>
       <height>36</height>
       <scale>0</scale>
@@ -4970,8 +4970,8 @@ DiagramView.Invalidate();
 print 'uid created'</note>
       <link>$</link>
       <layer>0</layer>
-      <x>-794.0000000000000000000000000</x>
-      <y>7893.0000000000000000000000000</y>
+      <x>-794.0256000000000000000000000</x>
+      <y>7892.6210950000000000000000000</y>
       <width>93</width>
       <height>36</height>
       <scale>0</scale>
@@ -4985,8 +4985,8 @@ print 'uid created'</note>
       <text>SearchNext</text>
       <link>UID2131053451</link>
       <layer>0</layer>
-      <x>229.0000000000000000</x>
-      <y>7963.00</y>
+      <x>228.9053900000000000</x>
+      <y>7962.621095</y>
       <width>96</width>
       <height>36</height>
       <scale>0</scale>
@@ -5000,8 +5000,8 @@ print 'uid created'</note>
       <text>SearchPrev</text>
       <link>UID5583938471</link>
       <layer>0</layer>
-      <x>229.0000000000000000</x>
-      <y>8025.00</y>
+      <x>228.9053900000000000</x>
+      <y>8024.621095</y>
       <width>96</width>
       <height>36</height>
       <scale>0</scale>
@@ -5015,8 +5015,8 @@ print 'uid created'</note>
       <text>DrawNodesSelectArea</text>
       <link>UID1806594258</link>
       <layer>0</layer>
-      <x>-244.0000000000000000</x>
-      <y>7326.00</y>
+      <x>-244.2144000000000000</x>
+      <y>7325.621095</y>
       <width>163</width>
       <height>36</height>
       <scale>0</scale>
@@ -5030,8 +5030,8 @@ print 'uid created'</note>
       <text>DrawNodes</text>
       <link>UID4202302087</link>
       <layer>0</layer>
-      <x>-244.0000000000000000</x>
-      <y>7273.00</y>
+      <x>-244.0881000000000000</x>
+      <y>7272.621095</y>
       <width>96</width>
       <height>36</height>
       <scale>0</scale>
@@ -5045,8 +5045,8 @@ print 'uid created'</note>
       <text>DrawLines</text>
       <link>UID4936881338</link>
       <layer>0</layer>
-      <x>-244.0000000000000000</x>
-      <y>7232.00</y>
+      <x>-244.1961750000000000</x>
+      <y>7231.621095</y>
       <width>89</width>
       <height>36</height>
       <scale>0</scale>
@@ -5060,8 +5060,8 @@ print 'uid created'</note>
       <text>paint</text>
       <link>UID5225221692</link>
       <layer>0</layer>
-      <x>-483.0000000000000000</x>
-      <y>7315.00</y>
+      <x>-483.1506050000000000</x>
+      <y>7314.621095</y>
       <width>54</width>
       <height>36</height>
       <scale>0</scale>
@@ -5075,8 +5075,8 @@ print 'uid created'</note>
       <text>DrawDiagram</text>
       <link>UID4637488042</link>
       <layer>0</layer>
-      <x>-401.0000000000000000</x>
-      <y>7314.00</y>
+      <x>-401.2241500000000000</x>
+      <y>7313.621095</y>
       <width>108</width>
       <height>36</height>
       <scale>0</scale>
@@ -5090,8 +5090,8 @@ print 'uid created'</note>
       <text>DrawGrid</text>
       <link>UID7187365714</link>
       <layer>0</layer>
-      <x>-244.0000000000000000</x>
-      <y>7187.00</y>
+      <x>-244.2521650000000000</x>
+      <y>7186.621095</y>
       <width>82</width>
       <height>36</height>
       <scale>0</scale>
@@ -5105,8 +5105,8 @@ print 'uid created'</note>
       <text>DrawMiniScreen</text>
       <link>UID9733202717</link>
       <layer>0</layer>
-      <x>-244.0000000000000000</x>
-      <y>7388.00</y>
+      <x>-244.1649000000000000</x>
+      <y>7387.621095</y>
       <width>125</width>
       <height>36</height>
       <scale>0</scale>
@@ -5120,8 +5120,8 @@ print 'uid created'</note>
       <text>DrawCoordinates</text>
       <link>UID7119976091</link>
       <layer>0</layer>
-      <x>-244.0000000000000000</x>
-      <y>7450.00</y>
+      <x>-244.3016500000000000</x>
+      <y>7449.621095</y>
       <width>130</width>
       <height>36</height>
       <scale>0</scale>
@@ -5134,8 +5134,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>breadcrumbs.Draw</text>
       <layer>0</layer>
-      <x>-244.0000000000000000</x>
-      <y>7503.00</y>
+      <x>-244.2170000000000000</x>
+      <y>7502.621095</y>
       <width>140</width>
       <height>36</height>
       <scale>0</scale>
@@ -5149,8 +5149,8 @@ print 'uid created'</note>
       <text>DrawZoomScaleInfo</text>
       <link>UID4537424673</link>
       <layer>0</layer>
-      <x>-244.0000000000000000</x>
-      <y>7566.00</y>
+      <x>-244.4618000000000000</x>
+      <y>7565.621095</y>
       <width>148</width>
       <height>36</height>
       <scale>0</scale>
@@ -5164,8 +5164,8 @@ print 'uid created'</note>
       <text>searchNext</text>
       <link>UID3222624449</link>
       <layer>0</layer>
-      <x>-74.0000000000000000</x>
-      <y>7917.00</y>
+      <x>-74.4487800000000000</x>
+      <y>7916.621095</y>
       <width>93</width>
       <height>36</height>
       <scale>0</scale>
@@ -5179,8 +5179,8 @@ print 'uid created'</note>
       <text>MouseUp</text>
       <link>UID3026627853</link>
       <layer>0</layer>
-      <x>-95.0000000000000000</x>
-      <y>7711.00</y>
+      <x>-95.1069850000000000</x>
+      <y>7710.621095</y>
       <width>83</width>
       <height>36</height>
       <scale>0</scale>
@@ -5194,8 +5194,8 @@ print 'uid created'</note>
       <text>SearchFirst</text>
       <link>UID1194762485</link>
       <layer>0</layer>
-      <x>229.0000000000000000</x>
-      <y>7911.00</y>
+      <x>228.6345550000000000</x>
+      <y>7910.621095</y>
       <width>94</width>
       <height>36</height>
       <scale>0</scale>
@@ -5208,8 +5208,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>search</text>
       <layer>0</layer>
-      <x>-398.0000000000000000</x>
-      <y>7922.00</y>
+      <x>-398.3309400000000000</x>
+      <y>7921.621095</y>
       <width>65</width>
       <height>36</height>
       <scale>0</scale>
@@ -5223,8 +5223,8 @@ print 'uid created'</note>
       <text>ShowSearchPanel</text>
       <link>UID3966468665</link>
       <layer>0</layer>
-      <x>-224.0000000000000000</x>
-      <y>7919.00</y>
+      <x>-224.2521500000000000</x>
+      <y>7918.621095</y>
       <width>137</width>
       <height>36</height>
       <scale>0</scale>
@@ -5238,8 +5238,8 @@ print 'uid created'</note>
       <text>MouseDown</text>
       <link>UID3419722424</link>
       <layer>0</layer>
-      <x>-336.0000000000000000</x>
-      <y>7708.00</y>
+      <x>-336.3830000000000000</x>
+      <y>7707.621095</y>
       <width>100</width>
       <height>36</height>
       <scale>0</scale>
@@ -5253,8 +5253,8 @@ print 'uid created'</note>
       <text>MouseMove</text>
       <link>UID3677213415</link>
       <layer>0</layer>
-      <x>-219.0000000000000000</x>
-      <y>7709.00</y>
+      <x>-219.1213050000000000</x>
+      <y>7708.621095</y>
       <width>99</width>
       <height>36</height>
       <scale>0</scale>
@@ -5269,8 +5269,8 @@ print 'uid created'</note>
       <link>UID1111344210
 </link>
       <layer>0</layer>
-      <x>10.0000000000000000</x>
-      <y>7708.00</y>
+      <x>9.6671000000000000</x>
+      <y>7707.621095</y>
       <width>104</width>
       <height>36</height>
       <scale>0</scale>
@@ -5283,8 +5283,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>mouse</text>
       <layer>0</layer>
-      <x>-434.0000000000000000</x>
-      <y>7710.00</y>
+      <x>-434.3309400000000000</x>
+      <y>7709.621095</y>
       <width>65</width>
       <height>36</height>
       <scale>0</scale>
@@ -5298,8 +5298,8 @@ print 'uid created'</note>
       <text>selecting nodes</text>
       <link>UID0351799057</link>
       <layer>0</layer>
-      <x>-138.0000000000000000</x>
-      <y>7780.00</y>
+      <x>-138.4338000000000000</x>
+      <y>7779.621095</y>
       <width>119</width>
       <height>36</height>
       <scale>0</scale>
@@ -5313,8 +5313,8 @@ print 'uid created'</note>
       <text>CTRL+F</text>
       <link>UID0886546362</link>
       <layer>0</layer>
-      <x>-315.0000000000000000</x>
-      <y>7922.00</y>
+      <x>-315.3582850000000000</x>
+      <y>7921.621095</y>
       <width>76</width>
       <height>36</height>
       <scale>0</scale>
@@ -5328,8 +5328,8 @@ print 'uid created'</note>
       <text>ShowSearchPanel</text>
       <link>UID3966468665</link>
       <layer>0</layer>
-      <x>229.0000000000000000</x>
-      <y>8079.00</y>
+      <x>228.7478500000000000</x>
+      <y>8078.621095</y>
       <width>137</width>
       <height>36</height>
       <scale>0</scale>
@@ -5343,8 +5343,8 @@ print 'uid created'</note>
       <text>AddDiagramPart</text>
       <link>UID4178168001</link>
       <layer>0</layer>
-      <x>-173.0000000000000000000000010</x>
-      <y>6368.0000000000000000000000010</y>
+      <x>-173.0132500000000000000000010</x>
+      <y>6367.6210950000000000000000010</y>
       <width>126</width>
       <height>36</height>
       <scale>0</scale>
@@ -5357,8 +5357,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>create log class</text>
       <layer>0</layer>
-      <x>-739.625</x>
-      <y>2163.625</y>
+      <x>-739.9644</x>
+      <y>2163.246095</y>
       <width>119</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5371,8 +5371,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>create main class</text>
       <layer>0</layer>
-      <x>-739.625</x>
-      <y>2177.250</y>
+      <x>-739.6838</x>
+      <y>2176.871095</y>
       <width>131</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5385,8 +5385,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>regiter global unhanced exception function</text>
       <layer>0</layer>
-      <x>-739.625</x>
-      <y>2170.250</y>
+      <x>-739.7274</x>
+      <y>2169.871095</y>
       <width>282</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5399,8 +5399,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>run main form from main class</text>
       <layer>0</layer>
-      <x>-739.625000000000000000000000</x>
-      <y>2185.0937500000000000000000000</y>
+      <x>-739.875200000000000000000000</x>
+      <y>2184.7148450000000000000000000</y>
       <width>208</width>
       <height>36</height>
       <scale>-3</scale>
@@ -5413,8 +5413,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>open diagram from dialog</text>
       <layer>0</layer>
-      <x>-636.2187500000000295</x>
-      <y>3379.00</y>
+      <x>-636.6623000000000295</x>
+      <y>3378.621095</y>
       <width>179</width>
       <height>36</height>
       <scale>0</scale>
@@ -5428,8 +5428,8 @@ print 'uid created'</note>
       <text>open empty diagram</text>
       <link>UID5981683893</link>
       <layer>0</layer>
-      <x>57.7812499999999705</x>
-      <y>3141.00</y>
+      <x>57.5980999999999705</x>
+      <y>3140.621095</y>
       <width>149</width>
       <height>36</height>
       <scale>0</scale>
@@ -5443,8 +5443,8 @@ print 'uid created'</note>
       <text>create new diagram</text>
       <link>UID8780020416</link>
       <layer>0</layer>
-      <x>432.7812499999999705</x>
-      <y>3160.00</y>
+      <x>432.3929999999999705</x>
+      <y>3159.621095</y>
       <width>144</width>
       <height>36</height>
       <scale>0</scale>
@@ -5458,8 +5458,8 @@ print 'uid created'</note>
       <text>OpenDiagramView</text>
       <link>UID8210770134</link>
       <layer>0</layer>
-      <x>701.7812499999999705</x>
-      <y>3158.00</y>
+      <x>701.3571999999999705</x>
+      <y>3157.621095</y>
       <width>139</width>
       <height>36</height>
       <scale>0</scale>
@@ -5473,8 +5473,8 @@ print 'uid created'</note>
       <text>open view</text>
       <link>UID3015837184</link>
       <layer>0</layer>
-      <x>597.7812499999999705</x>
-      <y>3158.00</y>
+      <x>597.6866399999999705</x>
+      <y>3157.621095</y>
       <width>86</width>
       <height>36</height>
       <scale>0</scale>
@@ -5488,8 +5488,8 @@ print 'uid created'</note>
       <text>CTRL+O</text>
       <link>UID7674842403</link>
       <layer>0</layer>
-      <x>-437.2187500000000295</x>
-      <y>3378.00</y>
+      <x>-437.2228700000000295</x>
+      <y>3377.621095</y>
       <width>79</width>
       <height>36</height>
       <scale>0</scale>
@@ -5502,8 +5502,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>diagramView</text>
       <layer>0</layer>
-      <x>-323.2187500000000295</x>
-      <y>3422.00</y>
+      <x>-323.7066000000000295</x>
+      <y>3421.621095</y>
       <width>103</width>
       <height>36</height>
       <scale>0</scale>
@@ -5517,8 +5517,8 @@ print 'uid created'</note>
       <text>OpenFileDialog</text>
       <link>UID5922343203</link>
       <layer>0</layer>
-      <x>-329.2187500000000295</x>
-      <y>3378.00</y>
+      <x>-329.4279500000000295</x>
+      <y>3377.621095</y>
       <width>119</width>
       <height>36</height>
       <scale>0</scale>
@@ -5532,8 +5532,8 @@ print 'uid created'</note>
       <text>OpenDiagramFromFile</text>
       <link>UID4892447333</link>
       <layer>0</layer>
-      <x>-201.2187500000000295</x>
-      <y>3375.00</y>
+      <x>-201.3856000000000295</x>
+      <y>3374.621095</y>
       <width>164</width>
       <height>36</height>
       <scale>0</scale>
@@ -5546,8 +5546,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>diagramView</text>
       <layer>0</layer>
-      <x>-167.2187500000000295</x>
-      <y>3425.00</y>
+      <x>-167.7066000000000295</x>
+      <y>3424.621095</y>
       <width>103</width>
       <height>36</height>
       <scale>0</scale>
@@ -5574,8 +5574,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>main</text>
       <layer>0</layer>
-      <x>360.0000000000000000</x>
-      <y>3216.00</y>
+      <x>359.8559050000000000</x>
+      <y>3215.621095</y>
       <width>54</width>
       <height>36</height>
       <scale>0</scale>
@@ -5589,8 +5589,8 @@ print 'uid created'</note>
       <text>send open mesage to server</text>
       <link>UID1105610325</link>
       <layer>0</layer>
-      <x>426.7812499999999705</x>
-      <y>3090.00</y>
+      <x>426.3760999999999705</x>
+      <y>3089.621095</y>
       <width>197</width>
       <height>36</height>
       <scale>0</scale>
@@ -5603,8 +5603,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>(if is not main process)</text>
       <layer>0</layer>
-      <x>437.7812499999999705</x>
-      <y>3038.00</y>
+      <x>437.7146499999999705</x>
+      <y>3037.621095</y>
       <width>162</width>
       <height>36</height>
       <scale>0</scale>
@@ -5618,8 +5618,8 @@ print 'uid created'</note>
       <text>process open message</text>
       <link>UID0548148814</link>
       <layer>0</layer>
-      <x>640.7812499999999705</x>
-      <y>3087.00</y>
+      <x>640.7354999999999705</x>
+      <y>3086.621095</y>
       <width>166</width>
       <height>36</height>
       <scale>0</scale>
@@ -5633,8 +5633,8 @@ print 'uid created'</note>
       <text>OpenDiagram</text>
       <link>UID0515997503</link>
       <layer>0</layer>
-      <x>821.7812499999999705</x>
-      <y>3085.00</y>
+      <x>821.7790999999999705</x>
+      <y>3084.621095</y>
       <width>110</width>
       <height>36</height>
       <scale>0</scale>
@@ -5647,8 +5647,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>MainForm</text>
       <layer>0</layer>
-      <x>829.7812499999999705</x>
-      <y>3027.00</y>
+      <x>829.6182799999999705</x>
+      <y>3026.621095</y>
       <width>86</width>
       <height>36</height>
       <scale>0</scale>
@@ -5662,8 +5662,8 @@ print 'uid created'</note>
       <text>OpenDiagram</text>
       <link>UID1771511767</link>
       <layer>0</layer>
-      <x>943.7812499999999705</x>
-      <y>3085.00</y>
+      <x>943.7790999999999705</x>
+      <y>3084.621095</y>
       <width>110</width>
       <height>36</height>
       <scale>0</scale>
@@ -5776,8 +5776,8 @@ DiagramView.Invalidate();
 print 'uid created'</note>
       <link>$</link>
       <layer>0</layer>
-      <x>-745.2187500000000295</x>
-      <y>6107.00</y>
+      <x>-745.2443500000000295</x>
+      <y>6106.621095</y>
       <width>93</width>
       <height>36</height>
       <scale>0</scale>
@@ -5791,8 +5791,8 @@ print 'uid created'</note>
       <text>LayerIn</text>
       <link>UID3904383109</link>
       <layer>0</layer>
-      <x>-238.2187500000000295</x>
-      <y>5684.00</y>
+      <x>-238.3413600000000295</x>
+      <y>5683.621095</y>
       <width>70</width>
       <height>36</height>
       <scale>0</scale>
@@ -5805,8 +5805,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>+/-</text>
       <layer>0</layer>
-      <x>-417.2187500000000295</x>
-      <y>5807.00</y>
+      <x>-417.6440950000000295</x>
+      <y>5806.621095</y>
       <width>40</width>
       <height>36</height>
       <scale>0</scale>
@@ -5820,8 +5820,8 @@ print 'uid created'</note>
       <text>Enter</text>
       <link>UID6919250456</link>
       <layer>0</layer>
-      <x>-449.2187500000000295</x>
-      <y>5691.00</y>
+      <x>-449.3504750000000295</x>
+      <y>5690.621095</y>
       <width>57</width>
       <height>36</height>
       <scale>0</scale>
@@ -5835,8 +5835,8 @@ print 'uid created'</note>
       <text>LayerInOrEdit</text>
       <link>UID4538903767</link>
       <layer>0</layer>
-      <x>-364.2187500000000295</x>
-      <y>5687.00</y>
+      <x>-364.3400500000000295</x>
+      <y>5686.621095</y>
       <width>109</width>
       <height>36</height>
       <scale>0</scale>
@@ -5850,8 +5850,8 @@ print 'uid created'</note>
       <text>LayerIn</text>
       <link>UID5010004621</link>
       <layer>0</layer>
-      <x>-305.2187500000000295</x>
-      <y>5749.00</y>
+      <x>-305.3413600000000295</x>
+      <y>5748.621095</y>
       <width>70</width>
       <height>36</height>
       <scale>0</scale>
@@ -5865,8 +5865,8 @@ print 'uid created'</note>
       <text>GoToLayer</text>
       <link>UID5640777236</link>
       <layer>0</layer>
-      <x>6.7812499999999705</x>
-      <y>5561.00</y>
+      <x>6.7100749999999705</x>
+      <y>5560.621095</y>
       <width>93</width>
       <height>36</height>
       <scale>0</scale>
@@ -5880,8 +5880,8 @@ print 'uid created'</note>
       <text>BuildLayerHistory</text>
       <link>UID3310785252</link>
       <layer>0</layer>
-      <x>146.7812499999999705</x>
-      <y>5562.00</y>
+      <x>146.6332499999999705</x>
+      <y>5561.621095</y>
       <width>132</width>
       <height>36</height>
       <scale>0</scale>
@@ -5895,8 +5895,8 @@ print 'uid created'</note>
       <text>IsNodeInLayerHistory</text>
       <link>UID4653357181</link>
       <layer>0</layer>
-      <x>138.7812499999999705</x>
-      <y>5613.00</y>
+      <x>138.5010999999999705</x>
+      <y>5612.621095</y>
       <width>156</width>
       <height>36</height>
       <scale>0</scale>
@@ -5910,8 +5910,8 @@ print 'uid created'</note>
       <text>CanDeleteNode</text>
       <link>UID0424081301</link>
       <layer>0</layer>
-      <x>4.7812499999999705</x>
-      <y>5612.00</y>
+      <x>4.6657999999999705</x>
+      <y>5611.621095</y>
       <width>122</width>
       <height>36</height>
       <scale>0</scale>
@@ -5925,8 +5925,8 @@ print 'uid created'</note>
       <text>breadcrumbs.Update</text>
       <link>UID2139429132</link>
       <layer>0</layer>
-      <x>305.7812499999999705</x>
-      <y>5560.00</y>
+      <x>305.4444499999999705</x>
+      <y>5559.621095</y>
       <width>152</width>
       <height>36</height>
       <scale>0</scale>
@@ -5940,8 +5940,8 @@ print 'uid created'</note>
       <text>DiagramView</text>
       <link>UID0302011231</link>
       <layer>0</layer>
-      <x>860.0</x>
-      <y>3155.0</y>
+      <x>859.87285</x>
+      <y>3154.621095</y>
       <width>106</width>
       <height>36</height>
       <scale>0</scale>
@@ -5954,8 +5954,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>constructor</text>
       <layer>0</layer>
-      <x>867.0</x>
-      <y>3209.0</y>
+      <x>866.816195</x>
+      <y>3208.621095</y>
       <width>92</width>
       <height>36</height>
       <scale>0</scale>
@@ -5969,8 +5969,8 @@ print 'uid created'</note>
       <text>OpenFile</text>
       <link>UID4610064109</link>
       <layer>0</layer>
-      <x>470.0</x>
-      <y>3255.0</y>
+      <x>469.835075</x>
+      <y>3254.621095</y>
       <width>80</width>
       <height>36</height>
       <scale>0</scale>
@@ -5983,8 +5983,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>diagram</text>
       <layer>0</layer>
-      <x>471.0</x>
-      <y>3317.0</y>
+      <x>470.93403</x>
+      <y>3316.621095</y>
       <width>74</width>
       <height>36</height>
       <scale>0</scale>
@@ -5998,8 +5998,8 @@ print 'uid created'</note>
       <text>LoadXML</text>
       <link>UID9397528693</link>
       <layer>0</layer>
-      <x>572.0</x>
-      <y>3256.0</y>
+      <x>571.886505</x>
+      <y>3255.621095</y>
       <width>83</width>
       <height>36</height>
       <scale>0</scale>
@@ -6013,8 +6013,8 @@ print 'uid created'</note>
       <text>LoadInnerXML</text>
       <link>UID3586094034</link>
       <layer>0</layer>
-      <x>682.0000000000000000000000000</x>
-      <y>3256.0000000000000000000000000</y>
+      <x>681.7387000000000000000000000</x>
+      <y>3255.6210950000000000000000000</y>
       <width>114</width>
       <height>36</height>
       <scale>0</scale>
@@ -6028,8 +6028,8 @@ print 'uid created'</note>
       <text>DiagramViewLoad</text>
       <link>UID0112423443</link>
       <layer>0</layer>
-      <x>-430.0</x>
-      <y>5572.0</y>
+      <x>-430.4006</x>
+      <y>5571.621095</y>
       <width>136</width>
       <height>36</height>
       <scale>0</scale>
@@ -6043,8 +6043,8 @@ print 'uid created'</note>
       <text>breadcrumbs.Draw</text>
       <link>UID1441007106</link>
       <layer>0</layer>
-      <x>468.0000000000000000</x>
-      <y>5559.00</y>
+      <x>467.7830000000000000</x>
+      <y>5558.621095</y>
       <width>140</width>
       <height>36</height>
       <scale>0</scale>
@@ -6058,8 +6058,8 @@ print 'uid created'</note>
       <text>GoToHome</text>
       <link>UID5474632736</link>
       <layer>0</layer>
-      <x>-214.0</x>
-      <y>5569.0</y>
+      <x>-214.2105</x>
+      <y>5568.621095</y>
       <width>95</width>
       <height>36</height>
       <scale>0</scale>
@@ -6073,8 +6073,8 @@ print 'uid created'</note>
       <text>GoToNode</text>
       <link>UID0896814291</link>
       <layer>0</layer>
-      <x>-104.0</x>
-      <y>5566.0</y>
+      <x>-104.309455</x>
+      <y>5565.621095</y>
       <width>91</width>
       <height>36</height>
       <scale>0</scale>
@@ -6088,8 +6088,8 @@ print 'uid created'</note>
       <text>OpenViewAndGoToHome</text>
       <link>UID2147390186</link>
       <layer>0</layer>
-      <x>-438.0</x>
-      <y>5615.0</y>
+      <x>-438.14605</x>
+      <y>5614.621095</y>
       <width>183</width>
       <height>36</height>
       <scale>0</scale>
@@ -6117,8 +6117,8 @@ print 'uid created'</note>
       <text>GetDiagramPart</text>
       <link>UID4762897496</link>
       <layer>0</layer>
-      <x>-173.0000000000000000000000000</x>
-      <y>6118.0000000000000000000000000</y>
+      <x>-173.3641500000000000000000000</x>
+      <y>6117.6210950000000000000000000</y>
       <width>123</width>
       <height>36</height>
       <scale>0</scale>
@@ -6132,8 +6132,8 @@ print 'uid created'</note>
       <text>copy</text>
       <link>UID4434132203</link>
       <layer>0</layer>
-      <x>-174.0000000000000000000000000</x>
-      <y>6197.0000000000000000000000000</y>
+      <x>-174.2274250000000000000000000</x>
+      <y>6196.6210950000000000000000000</y>
       <width>53</width>
       <height>36</height>
       <scale>0</scale>
@@ -6147,8 +6147,8 @@ print 'uid created'</note>
       <text>DeleteSelectedNodes</text>
       <link>UID6677508921</link>
       <layer>0</layer>
-      <x>-173.0000000000000000000000000</x>
-      <y>6241.0000000000000000000000000</y>
+      <x>-173.2163500000000000000000000</x>
+      <y>6240.6210950000000000000000000</y>
       <width>157</width>
       <height>36</height>
       <scale>0</scale>
@@ -6162,8 +6162,8 @@ print 'uid created'</note>
       <text>DeleteNodes</text>
       <link>UID3218416151</link>
       <layer>0</layer>
-      <x>191.0000000000000000000000000</x>
-      <y>6237.0000000000000000000000000</y>
+      <x>190.5447000000000000000000000</x>
+      <y>6236.6210950000000000000000000</y>
       <width>103</width>
       <height>36</height>
       <scale>0</scale>
@@ -6177,8 +6177,8 @@ print 'uid created'</note>
       <text>CanDeleteNode</text>
       <link>UID0424081301</link>
       <layer>0</layer>
-      <x>309.0000000000000000000000000</x>
-      <y>6239.0000000000000000000000000</y>
+      <x>308.8845500000000000000000000</x>
+      <y>6238.6210950000000000000000000</y>
       <width>122</width>
       <height>36</height>
       <scale>0</scale>
@@ -6192,8 +6192,8 @@ print 'uid created'</note>
       <text>GetAllNodesAndLines</text>
       <link>UID4508113260</link>
       <layer>0</layer>
-      <x>11.0000000000000000000000000</x>
-      <y>6236.0000000000000000000000000</y>
+      <x>10.9796000000000000000000000</x>
+      <y>6235.6210950000000000000000000</y>
       <width>159</width>
       <height>36</height>
       <scale>0</scale>
@@ -6207,8 +6207,8 @@ print 'uid created'</note>
       <text>GetAllLinesFromNode</text>
       <link>UID1353555007</link>
       <layer>0</layer>
-      <x>27.0000000000000000000000000</x>
-      <y>6286.0000000000000000000000000</y>
+      <x>26.6118000000000000000000000</x>
+      <y>6285.6210950000000000000000000</y>
       <width>159</width>
       <height>36</height>
       <scale>0</scale>
@@ -6222,8 +6222,8 @@ print 'uid created'</note>
       <text>DeleteNode</text>
       <link>UID6856126776</link>
       <layer>0</layer>
-      <x>449.0000000000000000000000000</x>
-      <y>6235.0000000000000000000000000</y>
+      <x>448.9789550000000000000000000</x>
+      <y>6234.6210950000000000000000000</y>
       <width>97</width>
       <height>36</height>
       <scale>0</scale>
@@ -6237,8 +6237,8 @@ print 'uid created'</note>
       <text>RemoveNodeFromSelection</text>
       <link>UID2688115953</link>
       <layer>0</layer>
-      <x>406.0000000000000000000000000</x>
-      <y>6283.0000000000000000000000000</y>
+      <x>405.9529500000000000000000000</x>
+      <y>6282.6210950000000000000000000</y>
       <width>197</width>
       <height>36</height>
       <scale>0</scale>
@@ -6252,8 +6252,8 @@ print 'uid created'</note>
       <text>RemoveNode</text>
       <link>UID6631907739</link>
       <layer>0</layer>
-      <x>565.0000000000000000000000000</x>
-      <y>6232.0000000000000000000000000</y>
+      <x>564.7986000000000000000000000</x>
+      <y>6231.6210950000000000000000000</y>
       <width>108</width>
       <height>36</height>
       <scale>0</scale>
@@ -6322,8 +6322,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>context menu</text>
       <layer>0</layer>
-      <x>1259.00000000000000000000000</x>
-      <y>3028.000000000000000000000000</y>
+      <x>1258.64170000000000000000000</x>
+      <y>3027.621095000000000000000000</y>
       <width>106</width>
       <height>36</height>
       <scale>0</scale>
@@ -6336,8 +6336,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>context menu</text>
       <layer>0</layer>
-      <x>1394.87500000000000000000000</x>
-      <y>3037.859375000000000000000000</y>
+      <x>1394.51670000000000000000000</x>
+      <y>3037.480470000000000000000000</y>
       <width>106</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6351,8 +6351,8 @@ print 'uid created'</note>
       <text>Popup</text>
       <link>UID5085107645</link>
       <layer>0</layer>
-      <x>1403.06250000000000000000000</x>
-      <y>3037.796875000000000000000000</y>
+      <x>1402.98676500000000000000000</x>
+      <y>3037.417970000000000000000000</y>
       <width>64</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6366,8 +6366,8 @@ print 'uid created'</note>
       <text>constructor</text>
       <link>UID1752805239</link>
       <layer>0</layer>
-      <x>1407.68750000000000000000000</x>
-      <y>3037.796875000000000000000000</y>
+      <x>1407.50369500000000000000000</x>
+      <y>3037.417970000000000000000000</y>
       <width>92</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6381,8 +6381,8 @@ print 'uid created'</note>
       <text>InitializeComponent</text>
       <link>UID7904769190</link>
       <layer>0</layer>
-      <x>1414.50000000000000000000000</x>
-      <y>3037.796875000000000000000000</y>
+      <x>1414.31555000000000000000000</x>
+      <y>3037.417970000000000000000000</y>
       <width>145</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6396,8 +6396,8 @@ print 'uid created'</note>
       <text>PopupMenu_Opening</text>
       <link>UID0017225057</link>
       <layer>0</layer>
-      <x>1424.62500000000000000000000</x>
-      <y>3037.734375000000000000000000</y>
+      <x>1424.58640000000000000000000</x>
+      <y>3037.355470000000000000000000</y>
       <width>158</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6411,8 +6411,8 @@ print 'uid created'</note>
       <text>LeftItem_Click</text>
       <link>UID3723301860</link>
       <layer>0</layer>
-      <x>1417.93750000000000000000000</x>
-      <y>3057.421875000000000000000000</y>
+      <x>1417.66385000000000000000000</x>
+      <y>3057.042970000000000000000000</y>
       <width>111</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6426,8 +6426,8 @@ print 'uid created'</note>
       <text>OpenLinkDirectoryItem_Click</text>
       <link>UID9061148695</link>
       <layer>0</layer>
-      <x>1417.87500000000000000000000</x>
-      <y>3053.671875000000000000000000</y>
+      <x>1417.61310000000000000000000</x>
+      <y>3053.292970000000000000000000</y>
       <width>202</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6441,8 +6441,8 @@ print 'uid created'</note>
       <text>OpenlinkItem_Click</text>
       <link>UID8259578882</link>
       <layer>0</layer>
-      <x>1417.87500000000000000000000</x>
-      <y>3050.609375000000000000000000</y>
+      <x>1417.87220000000000000000000</x>
+      <y>3050.230470000000000000000000</y>
       <width>143</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6456,8 +6456,8 @@ print 'uid created'</note>
       <text>ColorItem_Click</text>
       <link>UID4476972922</link>
       <layer>0</layer>
-      <x>1409.62500000000000000000000</x>
-      <y>3046.984375000000000000000000</y>
+      <x>1409.35785000000000000000000</x>
+      <y>3046.605470000000000000000000</y>
       <width>121</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6471,8 +6471,8 @@ print 'uid created'</note>
       <text>EditItem_Click</text>
       <link>UID7223285114</link>
       <layer>0</layer>
-      <x>1409.62500000000000000000000</x>
-      <y>3044.109375000000000000000000</y>
+      <x>1409.43145000000000000000000</x>
+      <y>3043.730470000000000000000000</y>
       <width>112</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6486,8 +6486,8 @@ print 'uid created'</note>
       <text>RemoveShortcutItem_Click</text>
       <link>UID3987406806</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3157.296875000000000000000000</y>
+      <x>1415.85460000000000000000000</x>
+      <y>3156.917970000000000000000000</y>
       <width>190</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6501,8 +6501,8 @@ print 'uid created'</note>
       <text>LineColorItem_Click</text>
       <link>UID2597097201</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3164.984375000000000000000000</y>
+      <x>1416.02455000000000000000000</x>
+      <y>3164.605470000000000000000000</y>
       <width>147</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6516,8 +6516,8 @@ print 'uid created'</note>
       <text>SortItem_Click</text>
       <link>UID8063135807</link>
       <layer>0</layer>
-      <x>1417.93750000000000000000000</x>
-      <y>3075.984375000000000000000000</y>
+      <x>1417.52455000000000000000000</x>
+      <y>3075.605470000000000000000000</y>
       <width>113</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6531,8 +6531,8 @@ print 'uid created'</note>
       <text>GroupHorizontalItem_Click</text>
       <link>UID4865517556</link>
       <layer>0</layer>
-      <x>1417.93750000000000000000000</x>
-      <y>3072.921875000000000000000000</y>
+      <x>1417.54410000000000000000000</x>
+      <y>3072.542970000000000000000000</y>
       <width>188</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6546,8 +6546,8 @@ print 'uid created'</note>
       <text>GroupVericalItem_Click</text>
       <link>UID5565272429</link>
       <layer>0</layer>
-      <x>1417.93750000000000000000000</x>
-      <y>3069.921875000000000000000000</y>
+      <x>1417.46595000000000000000000</x>
+      <y>3069.542970000000000000000000</y>
       <width>168</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6561,8 +6561,8 @@ print 'uid created'</note>
       <text>InColumnItem_Click</text>
       <link>UID6421466918</link>
       <layer>0</layer>
-      <x>1417.93750000000000000000000</x>
-      <y>3066.859375000000000000000000</y>
+      <x>1417.69185000000000000000000</x>
+      <y>3066.480470000000000000000000</y>
       <width>147</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6576,8 +6576,8 @@ print 'uid created'</note>
       <text>RightItem_Click</text>
       <link>UID3530533003</link>
       <layer>0</layer>
-      <x>1417.93750000000000000000000</x>
-      <y>3060.671875000000000000000000</y>
+      <x>1417.54795000000000000000000</x>
+      <y>3060.292970000000000000000000</y>
       <width>120</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6591,8 +6591,8 @@ print 'uid created'</note>
       <text>ToLineItem_Click</text>
       <link>UID3603051682</link>
       <layer>0</layer>
-      <x>1417.93750000000000000000000</x>
-      <y>3063.921875000000000000000000</y>
+      <x>1417.58050000000000000000000</x>
+      <y>3063.542970000000000000000000</y>
       <width>130</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6606,8 +6606,8 @@ print 'uid created'</note>
       <text>NewItem_Click</text>
       <link>UID8052745540</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3094.609375000000000000000000</y>
+      <x>1416.25695000000000000000000</x>
+      <y>3094.230470000000000000000000</y>
       <width>116</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6621,8 +6621,8 @@ print 'uid created'</note>
       <text>OpenItem_Click</text>
       <link>UID1150105418</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3106.109375000000000000000000</y>
+      <x>1416.19380000000000000000000</x>
+      <y>3105.730470000000000000000000</y>
       <width>122</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6636,8 +6636,8 @@ print 'uid created'</note>
       <text>ExportToPngItem_Click</text>
       <link>UID4836284357</link>
       <layer>0</layer>
-      <x>1426.00000000000000000000000</x>
-      <y>3105.109375000000000000000000</y>
+      <x>1425.60330000000000000000000</x>
+      <y>3104.730470000000000000000000</y>
       <width>168</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6651,8 +6651,8 @@ print 'uid created'</note>
       <text>TextItem_Click</text>
       <link>UID6650610161</link>
       <layer>0</layer>
-      <x>1426.00000000000000000000000</x>
-      <y>3102.234375000000000000000000</y>
+      <x>1425.82205000000000000000000</x>
+      <y>3101.855470000000000000000000</y>
       <width>115</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6666,8 +6666,8 @@ print 'uid created'</note>
       <text>SaveAsItem_Click</text>
       <link>UID3588710029</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3100.359375000000000000000000</y>
+      <x>1415.82530000000000000000000</x>
+      <y>3099.980470000000000000000000</y>
       <width>135</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6681,8 +6681,8 @@ print 'uid created'</note>
       <text>SaveItem_Click</text>
       <link>UID9649741776</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3097.484375000000000000000000</y>
+      <x>1415.83965000000000000000000</x>
+      <y>3097.105470000000000000000000</y>
       <width>119</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6696,8 +6696,8 @@ print 'uid created'</note>
       <text>TransparentItem_Click</text>
       <link>UID0380589581</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3137.171875000000000000000000</y>
+      <x>1415.97245000000000000000000</x>
+      <y>3136.792970000000000000000000</y>
       <width>162</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6711,8 +6711,8 @@ print 'uid created'</note>
       <text>PasteToNoteItem_Click</text>
       <link>UID7415891621</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3131.421875000000000000000000</y>
+      <x>1415.91580000000000000000000</x>
+      <y>3131.042970000000000000000000</y>
       <width>168</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6726,8 +6726,8 @@ print 'uid created'</note>
       <text>PasteToLinkItem_Click</text>
       <link>UID9249220502</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3128.546875000000000000000000</y>
+      <x>1416.28105000000000000000000</x>
+      <y>3128.167970000000000000000000</y>
       <width>165</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6741,8 +6741,8 @@ print 'uid created'</note>
       <text>CopyNoteItem_Click</text>
       <link>UID6551958449</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3125.671875000000000000000000</y>
+      <x>1415.96010000000000000000000</x>
+      <y>3125.292970000000000000000000</y>
       <width>149</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6756,8 +6756,8 @@ print 'uid created'</note>
       <text>RedoItem_Click</text>
       <link>UID5586948047</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3119.921875000000000000000000</y>
+      <x>1416.07790000000000000000000</x>
+      <y>3119.542970000000000000000000</y>
       <width>121</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6771,8 +6771,8 @@ print 'uid created'</note>
       <text>UndoItem_Click</text>
       <link>UID3923079972</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3117.046875000000000000000000</y>
+      <x>1416.07790000000000000000000</x>
+      <y>3116.667970000000000000000000</y>
       <width>121</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6786,8 +6786,8 @@ print 'uid created'</note>
       <text>CopyLinkItem_Click</text>
       <link>UID8346428952</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3122.796875000000000000000000</y>
+      <x>1415.82530000000000000000000</x>
+      <y>3122.417970000000000000000000</y>
       <width>145</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6801,8 +6801,8 @@ print 'uid created'</note>
       <text>PasteItem_Click</text>
       <link>UID0613534707</link>
       <layer>0</layer>
-      <x>1409.31250000000000000000000</x>
-      <y>3088.796875000000000000000000</y>
+      <x>1408.93210000000000000000000</x>
+      <y>3088.417970000000000000000000</y>
       <width>123</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6816,8 +6816,8 @@ print 'uid created'</note>
       <text>CutItem_Click</text>
       <link>UID3013972101</link>
       <layer>0</layer>
-      <x>1409.31250000000000000000000</x>
-      <y>3085.671875000000000000000000</y>
+      <x>1409.30710000000000000000000</x>
+      <y>3085.292970000000000000000000</y>
       <width>110</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6831,8 +6831,8 @@ print 'uid created'</note>
       <text>CopyItem_Click</text>
       <link>UID5971111226</link>
       <layer>0</layer>
-      <x>1409.31250000000000000000000</x>
-      <y>3082.359375000000000000000000</y>
+      <x>1408.96205000000000000000000</x>
+      <y>3081.980470000000000000000000</y>
       <width>120</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6846,8 +6846,8 @@ print 'uid created'</note>
       <text>ExitItem_Click</text>
       <link>UID6941677987</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3111.859375000000000000000000</y>
+      <x>1416.00305000000000000000000</x>
+      <y>3111.480470000000000000000000</y>
       <width>111</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6861,8 +6861,8 @@ print 'uid created'</note>
       <text>RecentItem_Click</text>
       <link>UID3280882177</link>
       <layer>0</layer>
-      <x>1424.50000000000000000000000</x>
-      <y>3109.046875000000000000000000</y>
+      <x>1424.42360000000000000000000</x>
+      <y>3108.667970000000000000000000</y>
       <width>132</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6876,8 +6876,8 @@ print 'uid created'</note>
       <text>ProtectItem_Click</text>
       <link>UID9793719013</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3160.171875000000000000000000</y>
+      <x>1416.23940000000000000000000</x>
+      <y>3159.792970000000000000000000</y>
       <width>132</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6891,8 +6891,8 @@ print 'uid created'</note>
       <text>BringBottomItem_Click</text>
       <link>UID2153145961</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3154.421875000000000000000000</y>
+      <x>1416.17170000000000000000000</x>
+      <y>3154.042970000000000000000000</y>
       <width>164</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6906,8 +6906,8 @@ print 'uid created'</note>
       <text>BringTopItem_Click</text>
       <link>UID0233830733</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3151.546875000000000000000000</y>
+      <x>1416.09030000000000000000000</x>
+      <y>3151.167970000000000000000000</y>
       <width>144</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6921,8 +6921,8 @@ print 'uid created'</note>
       <text>EditLinkItem_Click</text>
       <link>UID9954689045</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3148.671875000000000000000000</y>
+      <x>1415.98220000000000000000000</x>
+      <y>3148.292970000000000000000000</y>
       <width>137</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6936,8 +6936,8 @@ print 'uid created'</note>
       <text>FontColorItem_Click</text>
       <link>UID8784417583</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3145.796875000000000000000000</y>
+      <x>1416.30515000000000000000000</x>
+      <y>3145.417970000000000000000000</y>
       <width>149</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6951,8 +6951,8 @@ print 'uid created'</note>
       <text>FontItem_Click</text>
       <link>UID0168436072</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3142.921875000000000000000000</y>
+      <x>1416.25045000000000000000000</x>
+      <y>3142.542970000000000000000000</y>
       <width>116</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6966,8 +6966,8 @@ print 'uid created'</note>
       <text>FontItem_Click</text>
       <link>UID0168436072</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3140.046875000000000000000000</y>
+      <x>1416.25045000000000000000000</x>
+      <y>3139.667970000000000000000000</y>
       <width>116</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6981,8 +6981,8 @@ print 'uid created'</note>
       <text>SplitNodeItem_Click</text>
       <link>UID1436745968</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3232.046875000000000000000000</y>
+      <x>1416.14040000000000000000000</x>
+      <y>3231.667970000000000000000000</y>
       <width>148</width>
       <height>36</height>
       <scale>-4</scale>
@@ -6996,8 +6996,8 @@ print 'uid created'</note>
       <text>IncludeFileItem_Click</text>
       <link>UID4450324996</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3188.984375000000000000000000</y>
+      <x>1416.16385000000000000000000</x>
+      <y>3188.605470000000000000000000</y>
       <width>155</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7011,8 +7011,8 @@ print 'uid created'</note>
       <text>DeploayAttachmentItem_Click</text>
       <link>UID5589053079</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3186.109375000000000000000000</y>
+      <x>1416.02975000000000000000000</x>
+      <y>3185.730470000000000000000000</y>
       <width>208</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7026,8 +7026,8 @@ print 'uid created'</note>
       <text>ImageEmbeddedItem_Click</text>
       <link>UID5459560991</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3178.859375000000000000000000</y>
+      <x>1416.19900000000000000000000</x>
+      <y>3178.480470000000000000000000</y>
       <width>193</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7041,8 +7041,8 @@ print 'uid created'</note>
       <text>ImageRemoveItem_Click</text>
       <link>UID5686987514</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3175.796875000000000000000000</y>
+      <x>1415.84225000000000000000000</x>
+      <y>3175.417970000000000000000000</y>
       <width>177</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7056,8 +7056,8 @@ print 'uid created'</note>
       <text>ImageAddItem_Click</text>
       <link>UID2469843788</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3172.921875000000000000000000</y>
+      <x>1416.19185000000000000000000</x>
+      <y>3172.542970000000000000000000</y>
       <width>151</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7071,8 +7071,8 @@ print 'uid created'</note>
       <text>LineWidthItem_Click</text>
       <link>UID9637709557</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3167.484375000000000000000000</y>
+      <x>1415.87870000000000000000000</x>
+      <y>3167.105470000000000000000000</y>
       <width>149</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7086,8 +7086,8 @@ print 'uid created'</note>
       <text>OpenDiagramDirectoryItem_Click</text>
       <link>UID8883607610</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3228.796875000000000000000000</y>
+      <x>1416.20425000000000000000000</x>
+      <y>3228.417970000000000000000000</y>
       <width>229</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7101,8 +7101,8 @@ print 'uid created'</note>
       <text>OutItem_Click</text>
       <link>UID2210293088</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3219.359375000000000000000000</y>
+      <x>1415.92295000000000000000000</x>
+      <y>3218.980470000000000000000000</y>
       <width>110</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7116,8 +7116,8 @@ print 'uid created'</note>
       <text>InItem_Click</text>
       <link>UID9204174888</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3216.171875000000000000000000</y>
+      <x>1416.26475000000000000000000</x>
+      <y>3215.792970000000000000000000</y>
       <width>100</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7131,8 +7131,8 @@ print 'uid created'</note>
       <text>RefreshItem_Click</text>
       <link>UID7176007006</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3210.609375000000000000000000</y>
+      <x>1415.95095000000000000000000</x>
+      <y>3210.230470000000000000000000</y>
       <width>136</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7146,8 +7146,8 @@ print 'uid created'</note>
       <text>SetStartPositionItem_Click</text>
       <link>UID2244493951</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3207.421875000000000000000000</y>
+      <x>1416.17755000000000000000000</x>
+      <y>3207.042970000000000000000000</y>
       <width>187</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7161,8 +7161,8 @@ print 'uid created'</note>
       <text>NewViewItem_Click</text>
       <link>UID5872215491</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3201.109375000000000000000000</y>
+      <x>1415.83510000000000000000000</x>
+      <y>3200.730470000000000000000000</y>
       <width>145</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7176,8 +7176,8 @@ print 'uid created'</note>
       <text>CenterItem_Click</text>
       <link>UID6631268419</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3204.296875000000000000000000</y>
+      <x>1415.88520000000000000000000</x>
+      <y>3203.917970000000000000000000</y>
       <width>129</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7191,8 +7191,8 @@ print 'uid created'</note>
       <text>RemoveFileItem_Click</text>
       <link>UID1291567591</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3194.734375000000000000000000</y>
+      <x>1416.27845000000000000000000</x>
+      <y>3194.355470000000000000000000</y>
       <width>162</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7206,8 +7206,8 @@ print 'uid created'</note>
       <text>IncludeDirectoryItem_Click</text>
       <link>UID3536207534</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3191.859375000000000000000000</y>
+      <x>1416.30320000000000000000000</x>
+      <y>3191.480470000000000000000000</y>
       <width>188</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7221,8 +7221,8 @@ print 'uid created'</note>
       <text>VisitWebsiteItem_Click</text>
       <link>UID6474020819</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3281.984375000000000000000000</y>
+      <x>1416.09355000000000000000000</x>
+      <y>3281.605470000000000000000000</y>
       <width>164</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7236,8 +7236,8 @@ print 'uid created'</note>
       <text>RestoreWindowItem_Click</text>
       <link>UID1381135212</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3247.921875000000000000000000</y>
+      <x>1415.99135000000000000000000</x>
+      <y>3247.542970000000000000000000</y>
       <width>185</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7251,8 +7251,8 @@ print 'uid created'</note>
       <text>ReadonlyItem_Click</text>
       <link>UID4803037156</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3245.046875000000000000000000</y>
+      <x>1415.94120000000000000000000</x>
+      <y>3244.667970000000000000000000</y>
       <width>146</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7266,8 +7266,8 @@ print 'uid created'</note>
       <text>ChangePasswordItem_Click</text>
       <link>UID8349505191</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3242.171875000000000000000000</y>
+      <x>1416.29470000000000000000000</x>
+      <y>3241.792970000000000000000000</y>
       <width>197</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7281,8 +7281,8 @@ print 'uid created'</note>
       <text>EncryptItem_Click</text>
       <link>UID3914074702</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3239.296875000000000000000000</y>
+      <x>1416.21270000000000000000000</x>
+      <y>3238.917970000000000000000000</y>
       <width>135</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7296,8 +7296,8 @@ print 'uid created'</note>
       <text>ConsoleItem_Click</text>
       <link>UID3607589960</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3279.109375000000000000000000</y>
+      <x>1416.25955000000000000000000</x>
+      <y>3278.730470000000000000000000</y>
       <width>139</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7311,8 +7311,8 @@ print 'uid created'</note>
       <text>OpenConfigDirItem_Click</text>
       <link>UID8429947533</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3273.796875000000000000000000</y>
+      <x>1415.99915000000000000000000</x>
+      <y>3273.417970000000000000000000</y>
       <width>179</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7326,8 +7326,8 @@ print 'uid created'</note>
       <text>OpenLayerInNewViewItem_Click</text>
       <link>UID9903539710</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3270.921875000000000000000000</y>
+      <x>1416.13785000000000000000000</x>
+      <y>3270.542970000000000000000000</y>
       <width>225</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7341,8 +7341,8 @@ print 'uid created'</note>
       <text>SetBackgroundItem_Click</text>
       <link>UID5641879391</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3268.046875000000000000000000</y>
+      <x>1416.04080000000000000000000</x>
+      <y>3267.667970000000000000000000</y>
       <width>182</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7356,8 +7356,8 @@ print 'uid created'</note>
       <text>SetIconItem_Click</text>
       <link>UID8410362372</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3265.171875000000000000000000</y>
+      <x>1416.20620000000000000000000</x>
+      <y>3264.792970000000000000000000</y>
       <width>135</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7371,8 +7371,8 @@ print 'uid created'</note>
       <text>ResetFontItem_Click</text>
       <link>UID6952845622</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3262.296875000000000000000000</y>
+      <x>1415.81425000000000000000000</x>
+      <y>3261.917970000000000000000000</y>
       <width>151</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7386,8 +7386,8 @@ print 'uid created'</note>
       <text>DefaultFontItem_Click</text>
       <link>UID8175529111</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3259.421875000000000000000000</y>
+      <x>1415.95685000000000000000000</x>
+      <y>3259.042970000000000000000000</y>
       <width>159</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7401,8 +7401,8 @@ print 'uid created'</note>
       <text>BordersItem_Click</text>
       <link>UID5362447098</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3256.546875000000000000000000</y>
+      <x>1415.95095000000000000000000</x>
+      <y>3256.167970000000000000000000</y>
       <width>136</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7416,8 +7416,8 @@ print 'uid created'</note>
       <text>CoordinatesItem_Click</text>
       <link>UID1609350123</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3253.671875000000000000000000</y>
+      <x>1415.93015000000000000000000</x>
+      <y>3253.292970000000000000000000</y>
       <width>162</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7431,8 +7431,8 @@ print 'uid created'</note>
       <text>GridItem_Click</text>
       <link>UID1216267651</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3250.796875000000000000000000</y>
+      <x>1415.97960000000000000000000</x>
+      <y>3250.417970000000000000000000</y>
       <width>114</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7446,8 +7446,8 @@ print 'uid created'</note>
       <text>AboutItem_Click</text>
       <link>UID7115733373</link>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3284.859375000000000000000000</y>
+      <x>1416.04795000000000000000000</x>
+      <y>3284.480470000000000000000000</y>
       <width>124</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7460,8 +7460,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>linkItem</text>
       <layer>0</layer>
-      <x>1409.62500000000000000000000</x>
-      <y>3051.734375000000000000000000</y>
+      <x>1409.16580000000000000000000</x>
+      <y>3051.355470000000000000000000</y>
       <width>71</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7474,8 +7474,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>alignItem</text>
       <layer>0</layer>
-      <x>1409.31250000000000000000000</x>
-      <y>3067.546875000000000000000000</y>
+      <x>1409.15083000000000000000000</x>
+      <y>3067.167970000000000000000000</y>
       <width>80</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7572,8 +7572,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>exportItem</text>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3103.234375000000000000000000</y>
+      <x>1416.15539000000000000000000</x>
+      <y>3102.855470000000000000000000</y>
       <width>89</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7586,8 +7586,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>recentItem</text>
       <layer>0</layer>
-      <x>1416.31250000000000000000000</x>
-      <y>3108.984375000000000000000000</y>
+      <x>1416.15539000000000000000000</x>
+      <y>3108.605470000000000000000000</y>
       <width>89</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7600,8 +7600,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>fileItem</text>
       <layer>0</layer>
-      <x>1407.37500000000000000000000</x>
-      <y>3103.734375000000000000000000</y>
+      <x>1406.94249500000000000000000</x>
+      <y>3103.355470000000000000000000</y>
       <width>68</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7614,8 +7614,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>editMenuItem</text>
       <layer>0</layer>
-      <x>1407.37500000000000000000000</x>
-      <y>3124.609375000000000000000000</y>
+      <x>1407.01540000000000000000000</x>
+      <y>3124.230470000000000000000000</y>
       <width>107</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7628,8 +7628,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>nodeItem</text>
       <layer>0</layer>
-      <x>1407.37500000000000000000000</x>
-      <y>3147.546875000000000000000000</y>
+      <x>1407.02648000000000000000000</x>
+      <y>3147.167970000000000000000000</y>
       <width>81</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7642,8 +7642,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>lineItem</text>
       <layer>0</layer>
-      <x>1407.37500000000000000000000</x>
-      <y>3165.859375000000000000000000</y>
+      <x>1407.03169000000000000000000</x>
+      <y>3165.480470000000000000000000</y>
       <width>72</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7656,8 +7656,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>imageItem</text>
       <layer>0</layer>
-      <x>1407.37500000000000000000000</x>
-      <y>3176.234375000000000000000000</y>
+      <x>1407.05968500000000000000000</x>
+      <y>3175.855470000000000000000000</y>
       <width>88</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7670,8 +7670,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>attachmentItem</text>
       <layer>0</layer>
-      <x>1407.37500000000000000000000</x>
-      <y>3190.609375000000000000000000</y>
+      <x>1407.33180000000000000000000</x>
+      <y>3190.230470000000000000000000</y>
       <width>119</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7684,8 +7684,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>viewItem</text>
       <layer>0</layer>
-      <x>1407.37500000000000000000000</x>
-      <y>3206.796875000000000000000000</y>
+      <x>1407.02387500000000000000000</x>
+      <y>3206.417970000000000000000000</y>
       <width>78</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7698,8 +7698,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>layerItem</text>
       <layer>0</layer>
-      <x>1407.37500000000000000000000</x>
-      <y>3218.484375000000000000000000</y>
+      <x>1406.87804500000000000000000</x>
+      <y>3218.105470000000000000000000</y>
       <width>80</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7740,8 +7740,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>toolsItem</text>
       <layer>0</layer>
-      <x>1407.37500000000000000000000</x>
-      <y>3231.359375000000000000000000</y>
+      <x>1407.25564500000000000000000</x>
+      <y>3230.980470000000000000000000</y>
       <width>80</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7754,8 +7754,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>optionItem</text>
       <layer>0</layer>
-      <x>1407.37500000000000000000000</x>
-      <y>3253.921875000000000000000000</y>
+      <x>1407.05317500000000000000000</x>
+      <y>3253.542970000000000000000000</y>
       <width>88</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7768,8 +7768,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>helpItem</text>
       <layer>0</layer>
-      <x>1407.37500000000000000000000</x>
-      <y>3282.046875000000000000000000</y>
+      <x>1407.27908500000000000000000</x>
+      <y>3281.667970000000000000000000</y>
       <width>77</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7782,8 +7782,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>quickActionSeparator</text>
       <layer>0</layer>
-      <x>1396.93750000000000000000000</x>
-      <y>3074.984375000000000000000000</y>
+      <x>1396.87025000000000000000000</x>
+      <y>3074.605470000000000000000000</y>
       <width>155</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7796,8 +7796,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>editSeparator</text>
       <layer>0</layer>
-      <x>1398.43750000000000000000000</x>
-      <y>3086.734375000000000000000000</y>
+      <x>1397.95550000000000000000000</x>
+      <y>3086.355470000000000000000000</y>
       <width>106</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7810,8 +7810,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>helpSeparator</text>
       <layer>0</layer>
-      <x>1390.25000000000000000000000</x>
-      <y>3216.484375000000000000000000</y>
+      <x>1389.85720000000000000000000</x>
+      <y>3216.105470000000000000000000</y>
       <width>110</width>
       <height>36</height>
       <scale>-4</scale>
@@ -7853,8 +7853,8 @@ print 'uid created'</note>
       <text>Saveas</text>
       <link>UID9358805584</link>
       <layer>0</layer>
-      <x>93.9330582617584076000000000</x>
-      <y>3754.0000000000000000000000000</y>
+      <x>93.8071982617584076000000000</x>
+      <y>3753.6210950000000000000000000</y>
       <width>70</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -7868,8 +7868,8 @@ print 'uid created'</note>
       <text>Save</text>
       <link>UID8354947577</link>
       <layer>0</layer>
-      <x>-4.0669417382415924000000000</x>
-      <y>3767.0000000000000000000000000</y>
+      <x>-4.4402017382415924000000000</x>
+      <y>3766.6210950000000000000000000</y>
       <width>55</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -7883,8 +7883,8 @@ print 'uid created'</note>
       <text>SaveInnerXMLFile</text>
       <link>UID8716692347</link>
       <layer>0</layer>
-      <x>-52.0669417382415924000000000</x>
-      <y>3894.0000000000000000000000000</y>
+      <x>-52.3516417382415924000000000</x>
+      <y>3893.6210950000000000000000000</y>
       <width>137</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -7898,8 +7898,8 @@ print 'uid created'</note>
       <text>SaveXMLFile</text>
       <link>UID6023051509</link>
       <layer>0</layer>
-      <x>7.9330582617584076000000000</x>
-      <y>3828.0000000000000000000000000</y>
+      <x>7.7961082617584076000000000</x>
+      <y>3827.6210950000000000000000000</y>
       <width>106</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -7913,8 +7913,8 @@ print 'uid created'</note>
       <text>DiagramView_FormClosed</text>
       <link>UID2411004144</link>
       <layer>0</layer>
-      <x>263.9330582617584076000000000</x>
-      <y>3826.0000000000000000000000000</y>
+      <x>263.5852082617584076000000000</x>
+      <y>3825.6210950000000000000000000</y>
       <width>188</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -7928,8 +7928,8 @@ print 'uid created'</note>
       <text>DiagramApp_FormClosing</text>
       <link>UID8741811919</link>
       <layer>0</layer>
-      <x>-433.0669417382415924000000000</x>
-      <y>3827.0000000000000000000000000</y>
+      <x>-433.2754917382415924000000000</x>
+      <y>3826.6210950000000000000000000</y>
       <width>186</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -7943,8 +7943,8 @@ print 'uid created'</note>
       <text>ShowIfIsLastViews</text>
       <link>UID3969703093</link>
       <layer>0</layer>
-      <x>-432.0669417382415924000000000</x>
-      <y>3908.0000000000000000000000000</y>
+      <x>-432.4551917382415924000000000</x>
+      <y>3907.6210950000000000000000000</y>
       <width>139</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -7958,8 +7958,8 @@ print 'uid created'</note>
       <text>CloseView</text>
       <link>UID2584689730</link>
       <layer>0</layer>
-      <x>475.7143082617583781000000000</x>
-      <y>3823.0000000000000000000000000</y>
+      <x>475.4758182617583781000000000</x>
+      <y>3822.6210950000000000000000000</y>
       <width>89</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -7973,8 +7973,8 @@ print 'uid created'</note>
       <text>CloseDiagram</text>
       <link>UID4103426891</link>
       <layer>0</layer>
-      <x>587.7143082617583781000000000</x>
-      <y>3821.0000000000000000000000000</y>
+      <x>587.4146082617583781000000000</x>
+      <y>3820.6210950000000000000000000</y>
       <width>111</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -7988,8 +7988,8 @@ print 'uid created'</note>
       <text>CloseDiagramWithDialog</text>
       <link>UID3110763859</link>
       <layer>0</layer>
-      <x>-208.2856917382416219000000000</x>
-      <y>3828.0000000000000000000000000</y>
+      <x>-208.4024417382416219000000000</x>
+      <y>3827.6210950000000000000000000</y>
       <width>178</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8002,8 +8002,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>canclose</text>
       <layer>0</layer>
-      <x>156.7143082617583781000000000</x>
-      <y>3829.0000000000000000000000000</y>
+      <x>156.3501632617583781000000000</x>
+      <y>3828.6210950000000000000000000</y>
       <width>78</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8017,8 +8017,8 @@ print 'uid created'</note>
       <text>CloseFile</text>
       <link>UID3849853197</link>
       <layer>0</layer>
-      <x>544.9330582617584076000000000</x>
-      <y>3750.0000000000000000000000000</y>
+      <x>544.4706082617584076000000000</x>
+      <y>3749.6210950000000000000000000</y>
       <width>81</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8032,8 +8032,8 @@ print 'uid created'</note>
       <text>RemoveDiagram</text>
       <link>UID1434097522</link>
       <layer>0</layer>
-      <x>636.7143082617583781000000000</x>
-      <y>3753.0000000000000000000000000</y>
+      <x>636.4426082617583781000000000</x>
+      <y>3752.6210950000000000000000000</y>
       <width>127</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8047,8 +8047,8 @@ print 'uid created'</note>
       <text>CloseEmptyApplication</text>
       <link>UID0787891060</link>
       <layer>0</layer>
-      <x>738.7143082617583781000000000</x>
-      <y>3817.0000000000000000000000000</y>
+      <x>738.2271582617583781000000000</x>
+      <y>3816.6210950000000000000000000</y>
       <width>165</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8061,8 +8061,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>main</text>
       <layer>0</layer>
-      <x>666.7143082617583781000000000</x>
-      <y>3703.0000000000000000000000000</y>
+      <x>666.5702132617583781000000000</x>
+      <y>3702.6210950000000000000000000</y>
       <width>54</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8076,8 +8076,8 @@ print 'uid created'</note>
       <text>ExitApplication</text>
       <link>UID0090378181</link>
       <layer>0</layer>
-      <x>946.7143082617583781000000000</x>
-      <y>3815.0000000000000000000000000</y>
+      <x>946.2935082617583781000000000</x>
+      <y>3814.6210950000000000000000000</y>
       <width>114</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8091,8 +8091,8 @@ print 'uid created'</note>
       <text>RequestStop</text>
       <link>UID3713513860</link>
       <layer>0</layer>
-      <x>1086.7143082617583781000000000</x>
-      <y>3814.0000000000000000000000000</y>
+      <x>1086.2948082617583781000000000</x>
+      <y>3813.6210950000000000000000000</y>
       <width>103</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8105,8 +8105,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>sever</text>
       <layer>0</layer>
-      <x>1110.7143082617583781000000000</x>
-      <y>3872.0000000000000000000000000</y>
+      <x>1110.7017232617583781000000000</x>
+      <y>3871.6210950000000000000000000</y>
       <width>58</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8120,8 +8120,8 @@ print 'uid created'</note>
       <text>close message process</text>
       <link>UID5024907634</link>
       <layer>0</layer>
-      <x>1226.7143082617583781000000000</x>
-      <y>3812.0000000000000000000000000</y>
+      <x>1226.3710082617583781000000000</x>
+      <y>3811.6210950000000000000000000</y>
       <width>167</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8135,8 +8135,8 @@ print 'uid created'</note>
       <text>TerminateApplication</text>
       <link>UID4213278976</link>
       <layer>0</layer>
-      <x>1411.7143082617583781000000000</x>
-      <y>3813.0000000000000000000000000</y>
+      <x>1411.3339082617583781000000000</x>
+      <y>3812.6210950000000000000000000</y>
       <width>153</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8149,8 +8149,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>main</text>
       <layer>0</layer>
-      <x>795.7143082617583781000000000</x>
-      <y>3765.0000000000000000000000000</y>
+      <x>795.5702132617583781000000000</x>
+      <y>3764.6210950000000000000000000</y>
       <width>54</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8163,8 +8163,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>MainForm</text>
       <layer>0</layer>
-      <x>1488.7143082617583781000000000</x>
-      <y>3863.0000000000000000000000000</y>
+      <x>1488.5513382617583781000000000</x>
+      <y>3862.6210950000000000000000000</y>
       <width>86</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8178,8 +8178,8 @@ print 'uid created'</note>
       <text>TerminateApplication</text>
       <link>UID4067187261</link>
       <layer>0</layer>
-      <x>1587.7143082617583781000000000</x>
-      <y>3813.0000000000000000000000000</y>
+      <x>1587.3339082617583781000000000</x>
+      <y>3812.6210950000000000000000000</y>
       <width>153</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8192,8 +8192,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>main</text>
       <layer>0</layer>
-      <x>1702.7143082617583781000000000</x>
-      <y>3863.0000000000000000000000000</y>
+      <x>1702.5702132617583781000000000</x>
+      <y>3862.6210950000000000000000000</y>
       <width>54</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8206,8 +8206,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>server</text>
       <layer>0</layer>
-      <x>1279.7143082617583781000000000</x>
-      <y>3862.0000000000000000000000000</y>
+      <x>1279.4165682617583781000000000</x>
+      <y>3861.6210950000000000000000000</y>
       <width>62</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8220,8 +8220,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>main</text>
       <layer>0</layer>
-      <x>986.7143082617583781000000000</x>
-      <y>3762.0000000000000000000000000</y>
+      <x>986.5702132617583781000000000</x>
+      <y>3761.6210950000000000000000000</y>
       <width>54</width>
       <height>36</height>
       <scale>0.0</scale>
@@ -8290,8 +8290,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>y</text>
       <layer>0</layer>
-      <x>296.0</x>
-      <y>1256.0</y>
+      <x>295.843535</x>
+      <y>1255.621095</y>
       <width>31</width>
       <height>36</height>
       <scale>0</scale>
@@ -8304,8 +8304,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>-y</text>
       <layer>0</layer>
-      <x>295.0</x>
-      <y>1484.0</y>
+      <x>294.55838</x>
+      <y>1483.621095</y>
       <width>35</width>
       <height>36</height>
       <scale>0</scale>
@@ -8318,8 +8318,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>x</text>
       <layer>0</layer>
-      <x>113.0</x>
-      <y>1400.0</y>
+      <x>112.843535</x>
+      <y>1399.621095</y>
       <width>31</width>
       <height>36</height>
       <scale>0</scale>
@@ -8332,8 +8332,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>-x</text>
       <layer>0</layer>
-      <x>457.0</x>
-      <y>1396.0</y>
+      <x>456.55838</x>
+      <y>1395.621095</y>
       <width>35</width>
       <height>36</height>
       <scale>0</scale>
@@ -8346,8 +8346,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>diagram</text>
       <layer>0</layer>
-      <x>174.0</x>
-      <y>1327.0</y>
+      <x>173.93403</x>
+      <y>1326.621095</y>
       <width>74</width>
       <height>36</height>
       <scale>0</scale>
@@ -8500,8 +8500,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>y</text>
       <layer>0</layer>
-      <x>751.0</x>
-      <y>1482.0</y>
+      <x>750.843535</x>
+      <y>1481.621095</y>
       <width>31</width>
       <height>36</height>
       <scale>0</scale>
@@ -8514,8 +8514,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>-y</text>
       <layer>0</layer>
-      <x>742.0</x>
-      <y>1248.0</y>
+      <x>741.55838</x>
+      <y>1247.621095</y>
       <width>35</width>
       <height>36</height>
       <scale>0</scale>
@@ -8528,8 +8528,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>x</text>
       <layer>0</layer>
-      <x>898.0</x>
-      <y>1394.0</y>
+      <x>897.843535</x>
+      <y>1393.621095</y>
       <width>31</width>
       <height>36</height>
       <scale>0</scale>
@@ -8542,8 +8542,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>-x</text>
       <layer>0</layer>
-      <x>573.0</x>
-      <y>1396.0</y>
+      <x>572.55838</x>
+      <y>1395.621095</y>
       <width>35</width>
       <height>36</height>
       <scale>0</scale>
@@ -8556,8 +8556,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>screen</text>
       <layer>0</layer>
-      <x>629.0</x>
-      <y>1313.0</y>
+      <x>628.66906</x>
+      <y>1312.621095</y>
       <width>65</width>
       <height>36</height>
       <scale>0</scale>
@@ -8570,8 +8570,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>Displey = ( Shift  + Rectangle ) / Scale</text>
       <layer>0</layer>
-      <x>573.0</x>
-      <y>1572.0</y>
+      <x>572.82535</x>
+      <y>1571.621095</y>
       <width>255</width>
       <height>36</height>
       <scale>0</scale>
@@ -8584,8 +8584,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>-s + d* s = r</text>
       <layer>0</layer>
-      <x>858.0</x>
-      <y>1575.0</y>
+      <x>857.71268</x>
+      <y>1574.621095</y>
       <width>94</width>
       <height>36</height>
       <scale>0</scale>
@@ -8598,8 +8598,8 @@ print 'uid created'</note>
       <fontcolor>Black</fontcolor>
       <text>create node</text>
       <layer>0</layer>
-      <x>-412.0000000000000000</x>
-      <y>8248.00</y>
+      <x>-412.4006000000000000</x>
+      <y>8247.621095</y>
       <width>96</width>
       <height>36</height>
       <scale>0</scale>
@@ -8613,14 +8613,55 @@ print 'uid created'</note>
       <text>doubleclick</text>
       <link>UID6734640900</link>
       <layer>0</layer>
-      <x>-267.0</x>
-      <y>8220.0</y>
+      <x>-267.314015</x>
+      <y>8219.621095</y>
       <width>92</width>
       <height>36</height>
       <scale>0</scale>
       <color>#FFFFB8</color>
       <timecreate>2017-12-12 22:43:21</timecreate>
       <timemodify>2017-12-12 22:43:26</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2199</id>
+      <fontcolor>Black</fontcolor>
+      <text>Job.doJob(
+    new DoWorkEventHandler(
+        delegate (object o, DoWorkEventArgs args)
+        {
+
+        }
+    ),
+    new RunWorkerCompletedEventHandler(
+        delegate (object o, RunWorkerCompletedEventArgs args)
+        {
+
+        }
+    )
+);</text>
+      <layer>0</layer>
+      <x>-1883.2735913665723002000</x>
+      <y>2746.0817694046619637000</y>
+      <width>404</width>
+      <height>232</height>
+      <scale>0.0</scale>
+      <color>#FFFFB8</color>
+      <timecreate>2018-1-20 18:06:22</timecreate>
+      <timemodify>2018-1-20 18:06:22</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2200</id>
+      <fontcolor>Black</fontcolor>
+      <layer>0</layer>
+      <x>-1946.2735913665723002000</x>
+      <y>2850.0817694046619637000</y>
+      <width>20</width>
+      <height>20</height>
+      <scale>0.0</scale>
+      <color>#FFFFB8</color>
+      <transparent>true</transparent>
+      <timecreate>2018-1-20 18:06:39</timecreate>
+      <timemodify>2018-1-20 18:06:39</timemodify>
     </rectangle>
   </rectangles>
   <lines>
@@ -12336,5 +12377,14 @@ print 'uid created'</note>
       <color>Black</color>
       <layer>0</layer>
     </line>
+    <line>
+      <start>2200</start>
+      <end>2199</end>
+      <scale>0.0</scale>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
   </lines>
+  <polygons />
 </diagram>
