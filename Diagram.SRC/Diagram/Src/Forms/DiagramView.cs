@@ -3523,14 +3523,15 @@ namespace Diagram
                     if (rec.isimage)
                     {
                         // DRAW Image
-                        gfx.DrawImage(
-                                rec.image, new RectangleF(
-                                    (float)((this.shift.x + cx + rec.position.x) / s),
-                                    (float)((this.shift.y + cy + rec.position.y) / s),
-                                    (float)(rec.width / s),
-                                    (float)(rec.height / s)
-                                )
+                        
+                        RectangleF imageRec = new RectangleF(
+                            (float)((this.shift.x + cx + rec.position.x) / s),
+                            (float)((this.shift.y + cy + rec.position.y) / s),
+                            (float)((rec.width) / (s / Tools.GetScale(rec.scale))),
+                            (float)((rec.height) / (s / Tools.GetScale(rec.scale)))
                         );
+                        
+                        gfx.DrawImage(rec.image, imageRec);
 
                         if (rec.selected && !export)
                         {
@@ -3682,7 +3683,7 @@ namespace Diagram
                             );
 
                             decimal size = (decimal)rec.font.Size / (s / Tools.GetScale(rec.scale));
-                            if (0 < size && size < 100) //check if is not to small after zoom or too big
+                            if (3 < size && size < 100) //check if is not to small after zoom or too big
                             {
                                 gfx.DrawString(
                                     (rec.protect) ? Node.protectedName : rec.name,
@@ -4083,8 +4084,12 @@ namespace Diagram
         // NODE Go to node layer UID5640777236
         public void GoToLayer(long layer = 0)
         {
-            this.currentLayer = this.diagram.layers.GetLayer(layer);
-            this.BuildLayerHistory(layer);
+            Layer l = this.diagram.layers.GetLayer(layer);
+            if (l != null) 
+            {
+                this.currentLayer = l;
+                this.BuildLayerHistory(layer);
+            }
         }
         
         // NODE find node in mouse cursor position
