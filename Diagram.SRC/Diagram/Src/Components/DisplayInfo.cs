@@ -25,18 +25,13 @@ namespace Diagram
             this.Parent.Invalidate();
         }
 
-        public void setText(string text)
-        {
-            this.Text = text;
-            Parent.Invalidate();
-        }
-        
         public void SetText(string text)
         {
             if (this.InvokeRequired)
             {
                 SetTextCallback d = new SetTextCallback(SetText);
                 this.Invoke(d, new object[] { text });
+                (Parent as DiagramView).Invalidate();
             }
             else
             {

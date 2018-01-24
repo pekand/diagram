@@ -104,12 +104,39 @@ namespace DropPlugin
                    new DoWorkEventHandler(
                        delegate (object o, DoWorkEventArgs args)
                        {
-                           displayInfo.SetText("copy");
+
+                           long fullSize = 0;
+                           long transferedSize = 0;
+                           long status = 0;
 
                            foreach (String file in fileList)
                            {
-                               displayInfo.SetText("copy: " + Os.GetFileName(file));
-                               Os.Copy(file, dropdir);
+                               if (Os.IsFile(file)) {
+                                   fullSize += Os.FileSize(file);
+                               }
+
+                               if (Os.IsDirectory(file))
+                               {
+                                   fullSize += Os.DirectorySize(file);
+                               }
+                           }
+
+                           displayInfo.SetText("");
+
+                           foreach (String file in fileList)
+                           {
+                              
+                               Os.Copy(file, dropdir, (long count) => {
+                                   transferedSize += count;
+                                   if (fullSize > 0)
+                                   {
+                                       int currentStatus =(int)((double)transferedSize / (double)fullSize * 100.0);
+                                       if (currentStatus != status) {
+                                           displayInfo.SetText(currentStatus.ToString() + "%");
+                                           status = currentStatus;
+                                       }
+                                   }
+                               });
                            }
                        }
                    ),
@@ -117,6 +144,7 @@ namespace DropPlugin
                        delegate (object o, RunWorkerCompletedEventArgs args)
                        {                           
                            displayInfo.RemoveComponent();
+                           diagramview.Invalidate();
                        }
                    )
                );

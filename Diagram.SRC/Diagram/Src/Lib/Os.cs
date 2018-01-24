@@ -112,30 +112,6 @@ namespace Diagram
             return null;
         }
 
-        /// <summary>
-        /// copy file or directory </summary>
-        public static bool Copy(string SourcePath, string DestinationPath)
-        {
-            try
-            {
-                if (Directory.Exists(SourcePath))
-                {
-                    foreach (string dirPath in Directory.GetDirectories(SourcePath, "*", SearchOption.AllDirectories))
-                        Os.CreateDirectory(dirPath.Replace(SourcePath, DestinationPath));
-
-                    foreach (string newPath in Directory.GetFiles(SourcePath, "*.*", SearchOption.AllDirectories))
-                        File.Copy(newPath, newPath.Replace(SourcePath, DestinationPath), true);
-                }
-                else if (File.Exists(SourcePath)) {
-                    File.Copy(SourcePath, Os.Combine(DestinationPath, Os.GetFileName(SourcePath)), true);
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
         /*************************************************************************************************************************/
         // DIRECTORY OPERATIONS
 
@@ -290,6 +266,46 @@ namespace Diagram
                 .ToString()
                 .Replace('/', Path.DirectorySeparatorChar)
             );
+        }
+
+        public static long FileSize(string path)
+        {
+            if (!FileExists(path))
+            {
+                return 0;
+            }
+
+            return new System.IO.FileInfo(path).Length;
+        }
+
+        public static long DirectorySize(string path, int level = 100)
+        {
+            if (level == 0)
+            {
+                return 0;
+            }
+
+            if (!DirectoryExists(path))
+            {
+                return 0;
+            }
+
+            DirectoryInfo d = new DirectoryInfo(path);
+
+            long size = 0;
+            // Add file sizes.
+            FileInfo[] fis = d.GetFiles();
+            foreach (FileInfo fi in fis)
+            {
+                size += fi.Length;
+            }
+            // Add subdirectory sizes.
+            DirectoryInfo[] dis = d.GetDirectories();
+            foreach (DirectoryInfo di in dis)
+            {
+                size += DirectorySize(di.FullName, level--);
+            }
+            return size;
         }
 
         /*************************************************************************************************************************/
@@ -506,9 +522,54 @@ namespace Diagram
             proc.StartInfo.FileName = "mailto:"+email;
             proc.Start();
         }
-        
-        
 
+
+        public delegate void CopyProgressDelegate(long count);
+
+        public static void CopyByBlock(string inputPath, string outputPath, CopyProgressDelegate callback = null)
+        {
+            using (FileStream input = File.Open(inputPath, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (FileStream output = File.Open(outputPath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read))
+            {
+
+                byte[] buffer = new byte[1024 * 1024];
+                int bytesRead;
+                while ((bytesRead = input.Read(buffer, 0, buffer.Length)) != 0)
+                {
+                    output.Write(buffer, 0, bytesRead);
+                    if (callback != null)
+                    {
+                        callback(bytesRead);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// copy file or directory </summary>
+        public static bool Copy(string SourcePath, string DestinationPath , CopyProgressDelegate callback = null)
+        {
+            try
+            {
+                if (Directory.Exists(SourcePath))
+                {
+                    foreach (string dirPath in Directory.GetDirectories(SourcePath, "*", SearchOption.AllDirectories))
+                        Os.CreateDirectory(dirPath.Replace(SourcePath, DestinationPath));
+
+                    foreach (string newPath in Directory.GetFiles(SourcePath, "*.*", SearchOption.AllDirectories))
+                        CopyByBlock(newPath, newPath.Replace(SourcePath, DestinationPath), callback);
+                }
+                else if (File.Exists(SourcePath))
+                {
+                    CopyByBlock(SourcePath, Os.Combine(DestinationPath, Os.GetFileName(SourcePath)), callback);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         /*************************************************************************************************************************/
         // TOOLS
 
