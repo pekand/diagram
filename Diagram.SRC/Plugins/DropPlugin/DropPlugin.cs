@@ -239,7 +239,15 @@ namespace DropPlugin
             selectDataDirectoryItem.Click += new System.EventHandler((sender, e) => this.SelectDataDirectoryItem_Click(sender, e, diagramView));
 
             pluginsItem.DropDownItems.Add(selectDataDirectoryItem);
+
+            System.Windows.Forms.ToolStripMenuItem removeDataDirectoryItem = new System.Windows.Forms.ToolStripMenuItem();
+            removeDataDirectoryItem.Name = "removeDataDirectoryItem";
+            removeDataDirectoryItem.Text = "Remove data directory";
+            removeDataDirectoryItem.Click += new System.EventHandler((sender, e) => this.RemoveDataDirectoryItem_Click(sender, e, diagramView));
+
+            pluginsItem.DropDownItems.Add(removeDataDirectoryItem);
         }
+
 
         public void SelectDataDirectoryItem_Click(object sender, EventArgs e, Diagram.DiagramView diagramView)
         {
@@ -250,6 +258,12 @@ namespace DropPlugin
                     getStorage(diagramView.diagram).saveDataDirectory = folderDialog.SelectedPath;
                 }
             }
+
+        }
+
+        public void RemoveDataDirectoryItem_Click(object sender, EventArgs e, Diagram.DiagramView diagramView)
+        {
+            getStorage(diagramView.diagram).saveDataDirectory = null;
 
         }
     }
