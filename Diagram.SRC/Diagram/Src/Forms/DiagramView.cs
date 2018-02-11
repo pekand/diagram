@@ -91,6 +91,8 @@ namespace Diagram
 
         // ATTRIBUTES Layers
         public Layer currentLayer = null;
+
+        public decimal firstLayereScale = 0;
         public Position firstLayereShift = new Position();    // left corner position in zero top layer
         public List<Layer> layersHistory = new List<Layer>(); // layer history - last layer is current selected layer
 
@@ -250,8 +252,10 @@ namespace Diagram
 
             // initialize breadcrumbs
             this.breadcrumbs = new Breadcrumbs(this);
-            
+
             // initialize layer history
+            this.shift.Set(this.diagram.options.firstLayereShift);
+            this.scale = this.diagram.options.firstLayereScale;
             this.currentLayer = this.diagram.layers.GetLayer(0);
             this.BuildLayerHistory(0);
 
@@ -313,6 +317,9 @@ namespace Diagram
             bottomScrollBar.OnChangePosition += new PositionChangeEventHandler(PositionChangeBottom);
             rightScrollBar.OnChangePosition += new PositionChangeEventHandler(PositionChangeRight);
 
+            this.shift.Set(this.diagram.options.firstLayereShift);
+            this.scale = this.diagram.options.firstLayereScale;
+
             // set startup position
             if (this.parentView != null)
             {
@@ -340,7 +347,7 @@ namespace Diagram
         public void DiagramApp_FormClosing(object sender, FormClosingEventArgs e) //UID8741811919
         {
             bool close = true;
-
+           
             close = this.diagram.CloseDiagramWithDialog(this);
 
             if (close)
@@ -411,7 +418,7 @@ namespace Diagram
         {
             diagram.options.homePosition.x = this.shift.x;
             diagram.options.homePosition.y = this.shift.y;
-            diagram.options.endScale = this.scale;
+            diagram.options.homeScale = this.scale;
             diagram.options.homeLayer = this.currentLayer.id;
             this.diagram.Unsave();
         }
@@ -2533,19 +2540,23 @@ namespace Diagram
         // LAYER IN UID3904383109                                                                     // [LAYER]
         public void LayerIn(Node node)
         {
-            if (this.currentLayer.parentNode == null)
+            // save current layer position
+            if (this.currentLayer.parentNode == null) // save position if current layer is top
             {
                 this.firstLayereShift.Set(shift);
+                this.firstLayereScale = this.scale;
             }
             else
             {
-                this.currentLayer.parentNode.layerShift.Set(this.shift);
+               this.currentLayer.parentNode.layerShift.Set(this.shift);
+               this.currentLayer.parentNode.layerScale = this.scale;
             }
 
             this.currentLayer = this.diagram.layers.CreateLayer(node);
             this.currentLayer.parentNode.haslayer = true;
             this.layersHistory.Add(this.currentLayer);
             this.shift.Set(this.currentLayer.parentNode.layerShift);
+            this.scale = this.currentLayer.parentNode.layerScale;
 
             this.SetTitle();
             this.breadcrumbs.Update();
@@ -2557,6 +2568,7 @@ namespace Diagram
         {
             if (this.currentLayer.parentLayer != null) { //this layer is not top layer
 
+                // restore position from parent layer
                 this.currentLayer.parentNode.layerShift.Set(this.shift);
 
                 if (this.currentLayer.nodes.Count() == 0) {
@@ -2570,10 +2582,12 @@ namespace Diagram
                 if (this.currentLayer.parentNode == null)
                 {
                     this.shift.Set(this.firstLayereShift);
+                    this.scale = this.firstLayereScale;
                 }
                 else
                 {
                     this.shift.Set(this.currentLayer.parentNode.layerShift);
+                    this.scale = this.currentLayer.parentNode.layerScale;
                 }
 
                 this.SetTitle();
@@ -3471,6 +3485,7 @@ namespace Diagram
             decimal s = Tools.GetScale(this.scale);
 
             Pen nodeBorder = new Pen(Color.Black, 1);
+            Pen layerIndicator = new Pen(Color.Blue, 1);
             Pen nodeSelectBorder = new Pen(Color.Black, 3);
             Pen nodeLinkBorder = new Pen(Color.DarkRed, 3);
             Pen nodeMarkBorder = new Pen(Color.Navy, 3);
@@ -3536,10 +3551,10 @@ namespace Diagram
                         if (rec.selected && !export)
                         {
                             RectangleF rectBorder = new RectangleF(
-                                (float)((this.shift.x + cx + rec.position.x - 3) / s),
-                                (float)((this.shift.y + cy + rec.position.y - 3) / s),
-                                (float)((rec.width + 5) / s),
-                                (float)((rec.height + 5) / s)
+                                (float)((this.shift.x + cx + rec.position.x) / s),
+                                (float)((this.shift.y + cy + rec.position.y) / s),
+                                (float)((rec.width) / (s / Tools.GetScale(rec.scale))),
+                                (float)((rec.height) / (s / Tools.GetScale(rec.scale)))
                             );
 
                             RectangleF[] rects = { rectBorder };
@@ -3641,15 +3656,15 @@ namespace Diagram
                                  RectangleF[] rects =
                                  {
                                      new RectangleF(
-                                        (float)((this.shift.x + cx + rec.position.x - 2) / s),
-                                        (float)((this.shift.y + cy + rec.position.y - 2) / s),
-                                        (float)((rec.width + 4) / (s / Tools.GetScale(rec.scale))),
-                                        (float)((rec.height + 4) / (s / Tools.GetScale(rec.scale)))
+                                        (float)((this.shift.x + cx + rec.position.x) / s),
+                                        (float)((this.shift.y + cy + rec.position.y) / s),
+                                        (float)((rec.width) / (s / Tools.GetScale(rec.scale))),
+                                        (float)((rec.height) / (s / Tools.GetScale(rec.scale)))
                                     )
                                  };
 
                                 gfx.DrawRectangles(
-                                    nodeBorder,
+                                    layerIndicator,
                                     rects
                                 );
                             }

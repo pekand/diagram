@@ -44,6 +44,7 @@ namespace Diagram
         public long layer = 0; // layer id or parent node id
         public bool haslayer = false; // nose has one or more childrens
         public Position layerShift = new Position(); // last position in layer
+        public decimal layerScale = 0; // inner layer scale
 
         /*************************************************************************************************************************/
         // SHORTCUT

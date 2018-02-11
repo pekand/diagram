@@ -12,6 +12,7 @@ namespace Diagram
 
         public Position shift = new Position();            // startup position in diagram
         public double scale = 1;
+        public decimal firstLayereScale = 0;
         public Position firstLayereShift = new Position(); // position in layer
 
         /*************************************************************************************************************************/

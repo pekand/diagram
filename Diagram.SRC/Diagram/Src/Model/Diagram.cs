@@ -248,6 +248,7 @@ namespace Diagram
             option.Add(new XElement("endScale", this.options.endScale));
             option.Add(new XElement("firstLayereShift.x", this.options.firstLayereShift.x));
             option.Add(new XElement("firstLayereShift.y", this.options.firstLayereShift.y));
+            option.Add(new XElement("firstLayereScale", this.options.firstLayereScale));
             if (this.options.openLayerInNewView) option.Add(new XElement("openLayerInNewView", this.options.openLayerInNewView));
             option.Add(new XElement("homelayer", this.options.homeLayer));
             option.Add(new XElement("endlayer", this.options.endLayer));
@@ -307,6 +308,7 @@ namespace Diagram
                     rectangle.Add(new XElement("haslayer", rec.haslayer));
                     rectangle.Add(new XElement("layershiftx", rec.layerShift.x));
                     rectangle.Add(new XElement("layershifty", rec.layerShift.y));
+                    rectangle.Add(new XElement("layerscale", rec.layerScale));
                 }
 
                 rectangle.Add(new XElement("x", rec.position.x));
@@ -621,6 +623,11 @@ namespace Diagram
                         this.options.firstLayereShift.y = Tools.StringToDecimal(el.Value);
                     }
 
+                    if (el.Name.ToString() == "firstLayereScale")
+                    {
+                        this.options.firstLayereScale = Int64.Parse(el.Value);
+                    }
+
                     if (el.Name.ToString() == "openLayerInNewView")
                     {
                         this.options.openLayerInNewView = bool.Parse(el.Value);
@@ -770,6 +777,11 @@ namespace Diagram
                             if (el.Name.ToString() == "layershifty")
                             {
                                 R.layerShift.y = Tools.StringToDecimal(el.Value);
+                            }
+
+                            if (el.Name.ToString() == "layerscale")
+                            {
+                                R.layerScale = Tools.StringToDecimal(el.Value);
                             }
 
                             if (el.Name.ToString() == "x")
