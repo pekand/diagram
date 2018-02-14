@@ -3562,7 +3562,7 @@ namespace Diagram
 
                                 PointF infoPosition = new PointF(
                                     (float)((this.shift.x + rec.position.x) / s),
-                                    (float)((this.shift.y + rec.position.y - 20) / s)
+                                    (float)((this.shift.y + rec.position.y) / s - ((decimal)20 / (s / Tools.GetScale(rec.scale))))
                                 );
 
                                 gfx.DrawString(

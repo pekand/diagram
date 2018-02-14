@@ -476,15 +476,17 @@ namespace Diagram
 
             // remove node from polygons
             Polygons polygonsToremove = new Polygons();
-            foreach (Polygon p in layer.polygons)
-            {
-                if (p.nodes.Contains(node)) {
-                    p.nodes.Remove(node);
+            if (layer.polygons != null && layer.polygons.Count > 0) { 
+                foreach (Polygon p in layer.polygons)
+                {
+                    if (p.nodes.Contains(node)) {
+                        p.nodes.Remove(node);
 
-                    if (p.nodes.Count <= 2) {
-                        polygonsToremove.Add(p);
+                        if (p.nodes.Count <= 2) {
+                            polygonsToremove.Add(p);
+                        }
+
                     }
-
                 }
             }
 
