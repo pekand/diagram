@@ -3683,7 +3683,7 @@ namespace Diagram
                             );
 
                             decimal size = (decimal)rec.font.Size / (s / Tools.GetScale(rec.scale));
-                            if (3 < size && size < 100) //check if is not to small after zoom or too big
+                            if (1 < size && size < 200) //check if is not to small after zoom or too big
                             {
                                 gfx.DrawString(
                                     (rec.protect) ? Node.protectedName : rec.name,
