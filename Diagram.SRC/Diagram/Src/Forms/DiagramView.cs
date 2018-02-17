@@ -3536,10 +3536,10 @@ namespace Diagram
                         if (rec.selected && !export)
                         {
                             RectangleF rectBorder = new RectangleF(
-                                (float)((this.shift.x + cx + rec.position.x - 3) / s),
-                                (float)((this.shift.y + cy + rec.position.y - 3) / s),
-                                (float)((rec.width + 5) / s),
-                                (float)((rec.height + 5) / s)
+                                (float)((this.shift.x + cx + rec.position.x) / s),
+                                (float)((this.shift.y + cy + rec.position.y) / s),
+                                (float)((rec.width) / (s / Tools.GetScale(rec.scale))),
+                                (float)((rec.height) / (s / Tools.GetScale(rec.scale)))
                             );
 
                             RectangleF[] rects = { rectBorder };
