@@ -3640,11 +3640,11 @@ namespace Diagram
                             {
                                  RectangleF[] rects =
                                  {
-                                     new RectangleF(
-                                        (float)((this.shift.x + cx + rec.position.x - 2) / s),
-                                        (float)((this.shift.y + cy + rec.position.y - 2) / s),
-                                        (float)((rec.width + 4) / (s / Tools.GetScale(rec.scale))),
-                                        (float)((rec.height + 4) / (s / Tools.GetScale(rec.scale)))
+                                      new RectangleF(
+                                        (float)((this.shift.x + cx + rec.position.x) / s),
+                                        (float)((this.shift.y + cy + rec.position.y) / s),
+                                        (float)((rec.width) / (s / Tools.GetScale(rec.scale))),
+                                        (float)((rec.height) / (s / Tools.GetScale(rec.scale)))
                                     )
                                  };
 
