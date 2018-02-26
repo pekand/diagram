@@ -3952,13 +3952,14 @@ namespace Diagram
             {
                 if (!this.editPanel.Visible)
                 {
-                    this.editPanel.prevSelectedNode = this.selectedNodes[0];
+                    Node rec = this.selectedNodes[0];
+                    Position pos = rec.position.Clone();
+
+                    pos.Add(this.shift).Split(Tools.GetScale(this.scale)).Add((rec.width+10) / (Tools.GetScale(this.scale) / Tools.GetScale(rec.scale)), 0);
+
+                    this.editPanel.prevSelectedNode = rec;
                     this.editPanel.showEditPanel(
-                        this.selectedNodes[0]
-                            .position
-                            .Clone()
-                            .Add(this.shift)
-                            .Add(this.selectedNodes[0].width + 10, 0),
+                        pos,
                         ' ',
                         false
                     );

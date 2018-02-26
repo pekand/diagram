@@ -3819,14 +3819,6 @@ DiagramView.Invalidate();</note>
     </rectangle>
     <rectangle>
       <id>5</id>
-      <font type="font">
-        <name>Open Sans</name>
-        <size>10</size>
-        <bold>false</bold>
-        <italic>false</italic>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-      </font>
       <fontcolor>Black</fontcolor>
       <text>script version</text>
       <note>import clr
@@ -3841,8 +3833,8 @@ DiagramView.Invalidate();</note>
       <layer>0</layer>
       <x>1305.6116</x>
       <y>1647.175790</y>
-      <width>110</width>
-      <height>39</height>
+      <width>105</width>
+      <height>36</height>
       <scale>0</scale>
       <color>#FFFFB8</color>
       <timecreate>2017-10-7 11:01:08</timecreate>
@@ -8663,6 +8655,20 @@ print 'uid created'</note>
       <timecreate>2018-1-20 18:06:39</timecreate>
       <timemodify>2018-1-20 18:06:39</timemodify>
     </rectangle>
+    <rectangle>
+      <id>2201</id>
+      <fontcolor>Black</fontcolor>
+      <text>recpos.Add(this.shift).Split(Tools.GetScale(this.scale));</text>
+      <layer>0</layer>
+      <x>490</x>
+      <y>1653</y>
+      <width>357</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#FFFFB8</color>
+      <timecreate>2018-2-26 23:56:44</timecreate>
+      <timemodify>2018-2-26 23:56:44</timemodify>
+    </rectangle>
   </rectangles>
   <lines>
     <line>
@@ -12381,6 +12387,14 @@ print 'uid created'</note>
       <start>2200</start>
       <end>2199</end>
       <scale>0.0</scale>
+      <arrow>0</arrow>
+      <color>Black</color>
+      <layer>0</layer>
+    </line>
+    <line>
+      <start>2201</start>
+      <end>2193</end>
+      <scale>0</scale>
       <arrow>0</arrow>
       <color>Black</color>
       <layer>0</layer>
