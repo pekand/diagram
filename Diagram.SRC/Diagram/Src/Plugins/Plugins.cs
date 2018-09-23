@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Diagram
 {
@@ -16,6 +16,10 @@ namespace Diagram
         public ICollection<INodeOpenPlugin> nodeOpenPlugins = new List<INodeOpenPlugin>();
         public ICollection<IKeyPressPlugin> keyPressPlugins = new List<IKeyPressPlugin>();
         public ICollection<IOpenDiagramPlugin> openDiagramPlugins = new List<IOpenDiagramPlugin>();
+        public ICollection<IPopupPlugin> popupPlugins = new List<IPopupPlugin>();
+        public ICollection<IDropPlugin> dropPlugins = new List<IDropPlugin>();
+        public ICollection<ISavePlugin> savePlugins = new List<ISavePlugin>();
+        public ICollection<ILoadPlugin> loadPlugins = new List<ILoadPlugin>();
 
         /// <summary>
         /// load plugins from path</summary>
@@ -120,6 +124,25 @@ namespace Diagram
                             openDiagramPlugins.Add(plugin as IOpenDiagramPlugin);
                         }
 
+                        if (type.GetInterface(typeof(IPopupPlugin).FullName) != null)
+                        {
+                            popupPlugins.Add(plugin as IPopupPlugin);
+                        }
+
+                        if (type.GetInterface(typeof(IDropPlugin).FullName) != null)
+                        {
+                            dropPlugins.Add(plugin as IDropPlugin);
+                        }
+
+                        if (type.GetInterface(typeof(ISavePlugin).FullName) != null)
+                        {
+                            savePlugins.Add(plugin as ISavePlugin);
+                        }
+
+                        if (type.GetInterface(typeof(ILoadPlugin).FullName) != null)
+                        {
+                           loadPlugins.Add(plugin as ILoadPlugin);
+                        }
                     }
                 }
             }
@@ -141,7 +164,7 @@ namespace Diagram
                 {
                     try
                     {
-                        stopNextAction = plugin.ClickOnNodeAction(diagram, diagramView, node);
+                        stopNextAction = plugin.ClickOnNodeAction(diagram, diagramView, node); //UID6935831875
                         if (stopNextAction)
                         {
                             break;
@@ -159,7 +182,7 @@ namespace Diagram
 
         /// <summary>
         /// run event for all registred plugins in KeyPressPlugins </summary>
-        public bool KeyPressAction(Diagram diagram, DiagramView diagramView, String key)
+        public bool KeyPressAction(Diagram diagram, DiagramView diagramView, Keys keyData)
         {
             bool stopNextAction = false;
 
@@ -169,7 +192,7 @@ namespace Diagram
                 {
                     try
                     {
-                        stopNextAction = plugin.KeyPressAction(diagram, diagramView, key);
+                        stopNextAction = plugin.KeyPressAction(diagram, diagramView, keyData);
                         if (stopNextAction)
                         {
                             break;
@@ -204,6 +227,144 @@ namespace Diagram
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// </summary>
+        public void PopupAddItemsAction(DiagramView diagramView, Popup popup)
+        {
+            if (popupPlugins.Count > 0)
+            {
+                foreach (IPopupPlugin plugin in popupPlugins)
+                {
+                    try
+                    {
+                        plugin.PopupAddItemsAction(diagramView, popup.GetPluginsItem());
+
+                    }
+                    catch (Exception e)
+                    {
+                        Program.log.Write("Exception in plugin: " + plugin.Name + " : " + e.Message);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        public void PopupOpenAction(DiagramView diagramView, Popup popup)
+        {
+            if (popupPlugins.Count > 0)
+            {
+                foreach (IPopupPlugin plugin in popupPlugins)
+                {
+                    try
+                    {
+                        plugin.PopupOpenAction(diagramView, popup.GetPluginsItem());
+
+                    }
+                    catch (Exception e)
+                    {
+                        Program.log.Write("Exception in plugin: " + plugin.Name + " : " + e.Message);
+                    }
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// </summary>
+        public bool DropAction(DiagramView diagramView, DragEventArgs ev)
+        {
+            if (dropPlugins.Count > 0)
+            {
+                bool acceptAction = false;
+
+                foreach (IDropPlugin plugin in dropPlugins)
+                {
+                    try
+                    {
+                        acceptAction = plugin.DropAction(diagramView, ev);
+
+                        if (acceptAction) {
+                            return true;
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        Program.log.Write("Exception in plugin: " + plugin.Name + " : " + e.Message);
+                    }
+                }
+
+                return acceptAction;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// </summary>
+        public bool SaveAction(Diagram diagram, XElement root)
+        {
+            if (dropPlugins.Count > 0)
+            {
+                bool acceptAction = false;
+
+                foreach (ISavePlugin plugin in savePlugins)
+                {
+                    try
+                    {
+                        acceptAction = plugin.SaveAction(diagram, root);
+
+                        if (acceptAction)
+                        {
+                            return true;
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        Program.log.Write("Exception in plugin: " + plugin.Name + " : " + e.Message);
+                    }
+                }
+
+                return acceptAction;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// </summary>
+        public bool LoadAction(Diagram diagram, XElement root)
+        {
+            if (dropPlugins.Count > 0)
+            {
+                bool acceptAction = false;
+
+                foreach (ILoadPlugin plugin in loadPlugins)
+                {
+                    try
+                    {
+                        acceptAction = plugin.LoadAction(diagram, root);
+
+                        if (acceptAction)
+                        {
+                            return true;
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        Program.log.Write("Exception in plugin: " + plugin.Name + " : " + e.Message);
+                    }
+                }
+
+                return acceptAction;
+            }
+
+            return false;
         }
     }
 }

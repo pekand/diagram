@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using System.Security;
 
@@ -56,268 +55,6 @@ namespace Diagram
         /// local messsaging server for communication between running program instances</summary>
         private Server server = null;
 
-
-        /*************************************************************************************************************************/
-        // MAIN APPLICATION
-
-        // command line arguments
-        private string[] args = null;
-
-        /// <summary>
-        /// form for catching messages from local server</summary>
-        public MainForm mainform = null;
-
-        /// <summary>
-        /// parse command line arguments and open forms</summary>
-        public Main() //UID8239288102
-        {
-            // inicialize program UID3013916734
-            options = new ProgramOptions();
-            optionsFile = new OptionsFile(options);
-
-            // load external plugins UID9841812564
-            plugins = new Plugins();
-
-            // executable location directory 
-            string pluginsLocalDirectory = Os.Combine(Os.GetCurrentApplicationDirectory(), this.pluginsDirectoryName);
-            if (Os.DirectoryExists(pluginsLocalDirectory))
-            {
-                plugins.LoadPlugins(pluginsLocalDirectory);
-            }
-            
-#if !DEBUG
-            string pluginsGlobalDirectory = Os.Combine(optionsFile.GetGlobalConfigDirectory(), this.pluginsDirectoryName);
-            if (Os.DirectoryExists(pluginsGlobalDirectory))
-            {
-                plugins.LoadPlugins(pluginsGlobalDirectory);
-            }
-#endif
-
-            // create local server for comunication between local instances UID2964640610
-            server = new Server(this);
-
-            if(server.StartServer())
-            {
-                if (Update.UpdateApplication())
-                {
-                    this.ExitApplication();
-                }
-            }
-
-            Program.log.Write("Program: Main");
-
-#if DEBUG
-            Program.log.Write("program: debug mode");
-#else
-			Program.log.Write("program: release mode");
-#endif
-
-            // TODO: Load global options file and save it when application is closed
-            // load options
-            // options.loadOptions();
-
-
-            // get command line arguments
-            this.args = Environment.GetCommandLineArgs();
-#if DEBUG
-            // custom debug arguments
-            if (this.args.Length == 1 && Os.FileExists("test.diagram")) // if not argument is added from system ad some testing arguments
-            {
-                // comand line arguments testing
-                this.args = new string[] {
-                    System.Reflection.Assembly.GetExecutingAssembly().Location
-                    ,"test.diagram"
-                };
-            }
-#endif
-            // process comand line arguments
-            this.ParseCommandLineArguments(this.args);
-
-#if !MONO
-            // sleep or hibernate event UID7641650028
-            SystemEvents.PowerModeChanged += OnPowerChange;
-#endif
-
-            // check if this program instance created server (is main application)
-            // or if running debug console from command line parameter
-            if (server.mainProcess || this.console != null)
-            {
-                this.mainform = new MainForm(this);
-            }
-        }
-
-        /// <summary>
-        /// process comand line arguments</summary>
-        public void ParseCommandLineArguments(string[] args) // [PARSE] [COMMAND LINE] UID5172911205
-        {
-
-            // options - create new file with given name if not exist
-            bool CommandLineCreateIfNotExistFile = false;
-
-            bool ShowCommandLineHelp = false;
-            bool ShowDebugConsole = false;
-
-            // list of diagram files names for open
-            List<String> CommandLineOpen = new List<String>();
-
-            String arg = "";
-            for (int i = 0; i < args.Count(); i++)
-            {
-
-                //skip application name
-                if (i == 0)
-                {
-                    continue;
-                }
-
-                // current processing argument
-                arg = args[i];
-
-                // [COMAND LINE] [CREATE]  oprions create new file with given name if not exist
-                if (arg == "-h" || arg == "--help" || arg == "/?")
-                {
-                    ShowCommandLineHelp = true;
-                }
-                else if (arg == "-c" || arg == "--console")
-                {
-                    ShowDebugConsole = true;
-                } 
-                else if(arg == "-e")
-                {
-                    CommandLineCreateIfNotExistFile = true;
-                }
-                else
-                {
-                    // [COMAND LINE] [OPEN] check if argument is diagram file
-                    if (Os.GetExtension(arg).ToLower() == ".diagram")
-                    {
-                        CommandLineOpen.Add(arg);
-                    }
-                    else
-                    {
-                        Program.log.Write("bed commmand line argument: " + arg);
-                    }
-                }
-            }
-
-            if (ShowDebugConsole) {
-                this.ShowConsole();
-            }
-
-            // open diagram given as arguments
-            if (ShowCommandLineHelp)
-            {
-                String help =
-                "diagram -h --help /?  >> show this help\n" +
-                "diagram -c --console /?  >> show debug console\n" +
-                "diagram -e {filename} >> create file if not exist\n" +
-                "diagram {filepath} {filepath} >> open existing file\n";
-                MessageBox.Show(help, "Command line parameters");
-            }
-            else
-            if (CommandLineOpen.Count > 0)
-            {
-                for (int i = 0; i < CommandLineOpen.Count(); i++)
-                {
-                    string file = CommandLineOpen[i];
-
-                    // tray create diagram file if command line option is set
-                    if (CommandLineCreateIfNotExistFile && !Os.FileExists(file))
-                    {
-                        try
-                        {
-                            Os.CreateEmptyFile(file);
-                        }
-                        catch (Exception ex)
-                        {
-                            Program.log.Write("create empty diagram file error: " + ex.Message);
-                        }
-                    }
-
-                    if (Os.FileExists(file))
-                    {
-                        this.OpenDiagram(file);
-                    }
-                }
-
-                // cose application if is not diagram model opened
-                this.CloseEmptyApplication();
-            }
-            else
-            {
-                //open empty diagram
-                this.OpenDiagram();
-            }
-        }
-
-        /// <summary>
-        /// close application if not diagram view or node edit form is open </summary>
-        public void CloseEmptyApplication() //UID0787891060
-        {
-            Program.log.Write("Program : CloseApplication");
-
-            bool canclose = true;
-
-            if (Diagrams.Count > 0 || DiagramViews.Count > 0 || TextWindows.Count > 0)
-            {
-                canclose = false;
-            }
-
-            if (console != null)
-            {
-                // prevent close application if debug console is open
-                // console must by closed mannualy by user
-                Program.log.Write("Program : Console is still open...");
-                canclose = false;
-            }
-
-            if (canclose)
-            {
-                ExitApplication();
-            }
-        }
-
-        /// <summary>
-        /// force close application</summary>
-        public void ExitApplication() //UID0090378181
-        {
-            Program.log.Write("Program : ExitApplication");
-
-            if (mainform != null)
-            {
-                mainform.Close();
-            }
-
-            if (passwordForm != null)
-            {
-                passwordForm.Close();
-            }
-
-            if (newPasswordForm != null)
-            {
-                newPasswordForm.Close();
-            }
-
-            if (changePasswordForm != null)
-            {
-                changePasswordForm.Close();
-            }
-
-            if (console != null)
-            {
-                console.Close();
-            }
-
-            if (this.server != null && this.server.mainProcess) {
-                server.RequestStop();
-            }
-
-            this.optionsFile.SaveConfigFile();
-            Application.Exit();
-            Application.ExitThread();
-            Environment.Exit(0);
-        }
-
         /*************************************************************************************************************************/
         // DIAGRAMS
 
@@ -334,7 +71,7 @@ namespace Diagram
 
         /// <summary>
         /// remove diagram from list of all diagrams</summary>
-        public void RemoveDiagram(Diagram diagram)
+        public void RemoveDiagram(Diagram diagram) //UID1434097522
         {
             this.Diagrams.Remove(diagram);
         }
@@ -346,92 +83,87 @@ namespace Diagram
         {
             Program.log.Write("Program : OpenDiagram: " + FilePath);
 
+            if (passwordForm != null) // prevent open diagram if another diagram triing open 
+            {
+                return;
+            }
+            
             // open new empty diagram
-            if (FilePath == "")
+            if (FilePath == "" && !server.mainProcess)
             {
                 // if server already exist in system, send him message whitch open empty diagram
-                if (!server.mainProcess)
-                {
-                    server.SendMessage("open:");
-                }
-                // open diagram in current program instance
-                else
-                {
-                    // create new model
-                    Diagram diagram = new Diagram(this);
-                    Diagrams.Add(diagram);
-                    // open diagram view on diagram model
-                    diagram.OpenDiagramView();
-                }
+                server.SendMessage("open:");
+                return;
             }
-            // open existing diagram file
-            else
+            
+            // open diagram in current program instance
+            if (FilePath == "" && server.mainProcess)
             {
-                if (passwordForm != null) // prevent open diagram if another diagram triing open 
+                // create new model
+                Diagram emptyDiagram = new Diagram(this);
+                Diagrams.Add(emptyDiagram);
+                // open diagram view on diagram model
+                emptyDiagram.OpenDiagramView();
+                return;
+            }
+              
+            // open existing diagram file
+            
+            if (!Os.FileExists(FilePath))
+            {
+                return;
+            }
+            
+            FilePath = Os.NormalizedFullPath(FilePath);
+            
+            // if server already exist in system, send him message whitch open diagram file
+            if (!server.mainProcess)
+            {
+                FilePath = Os.GetFullPath(FilePath);
+                server.SendMessage("open:" + FilePath); //UID1105610325
+                return;
+            }  
+
+            // open diagram in current program instance
+
+            // check if file is already opened in current instance
+            bool alreadyOpen = false;
+            foreach (Diagram openedDiagram in Diagrams)
+            {
+                if (openedDiagram.FileName != FilePath)
+                {
+                    continue;
+                }
+
+                openedDiagram.FocusToView();
+
+                alreadyOpen = true;
+                break;
+            }
+
+            if (alreadyOpen)
+            {
+                return;
+            }
+            
+            Diagram diagram = new Diagram(this); //UID8780020416
+            lock (diagram)
+            {
+                // create new model
+                if (!diagram.OpenFile(FilePath))
                 {
                     return;
                 }
+                
+                this.options.AddRecentFile(FilePath);
+                Diagrams.Add(diagram);
+                // open diagram view on diagram model
+                DiagramView newDiagram = diagram.OpenDiagramView(); //UID3015837184
 
-                if (Os.FileExists(FilePath))
-                {
-                    FilePath = Os.GetFullPath(FilePath);
+                this.plugins.OpenDiagramAction(diagram); //UID0290845816
 
-                    // if server already exist in system, send him message whitch open diagram file
-                    if (!server.mainProcess)
-                    {
-                        server.SendMessage("open:" + FilePath);
-                    }
-                    // open diagram in current program instance
-                    else
-                    {
-                        // check if file is already opened in current instance
-                        bool alreadyOpen = false;
-
-                        foreach (Diagram diagram in Diagrams)
-                        {
-                            if (diagram.FileName == Os.NormalizedFullPath(FilePath))
-                            {
-                                // focus
-                                if (diagram.DiagramViews.Count() > 0)
-                                {
-                                    Program.log.Write("window get focus");
-                                    Program.log.Write("OpenDiagram: diagramView: setFocus");
-
-                                    if (!diagram.DiagramViews[0].Visible)
-                                    {
-                                        diagram.DiagramViews[0].Show();
-                                    }
-
-                                    Program.log.Write("bring focus");
-                                    Media.BringToFront(diagram.DiagramViews[0]); //UID4510272262
-                                }
-                                alreadyOpen = true;
-                                break;
-                            }
-                        }
-
-                        if (!alreadyOpen)
-                        {
-                            Diagram diagram = new Diagram(this);
-                            lock (diagram)
-                            {
-                                // create new model
-                                if (diagram.OpenFile(FilePath))
-                                {
-                                    this.options.AddRecentFile(FilePath);
-                                    Diagrams.Add(diagram);
-                                    // open diagram view on diagram model
-                                    DiagramView newDiagram = diagram.OpenDiagramView();
-
-                                    this.plugins.OpenDiagramAction(diagram); //UID0290845816
-
-                                    Program.log.Write("bring focus");
-                                    Media.BringToFront(newDiagram); //UID4510272263
-                                }
-                            }
-                        }
-                    }
-                }
+                Program.log.Write("bring focus");
+                Media.BringToFront(newDiagram); //UID4510272263
             }
         }
 
@@ -458,7 +190,7 @@ namespace Diagram
 
         /// <summary>
         /// hide diagram views except diagramView</summary>
-        public void SwitchViews(DiagramView diagramView = null)
+        public void SwitchViews(DiagramView diagramView = null) //UID9164062779
         {
             bool someIsHidden = false;
             foreach (DiagramView view in DiagramViews)
@@ -472,7 +204,7 @@ namespace Diagram
 
             if (someIsHidden)
             {
-                ShowViews();
+                ShowAllViews();
             }
             else
             {
@@ -482,37 +214,34 @@ namespace Diagram
 
         /// <summary>
         /// show views if last visible view is closed</summary>
-        public void ShowIfIsLastViews(DiagramView diagramView = null)
+        public void ShowFirstHiddenView(DiagramView diagramView = null) //UID3969703093
         {
-            bool someIsVisible = false;
             foreach (DiagramView view in DiagramViews)
             {
-                if (view.Visible && diagramView != view)
+                if (!view.Visible && diagramView != view)
                 {
-                    someIsVisible = true;
+                    view.Show();
                     break;
                 }
-            }
-
-            if (!someIsVisible)
-            {
-                ShowViews();
             }
         }
 
         /// <summary>
         /// show diagram views</summary>
-        public void ShowViews()
+        public void ShowAllViews() //UID5230996149
         {
             foreach (DiagramView view in DiagramViews)
             {
-                view.Show();
+                if (!view.Visible)
+                {
+                    view.Show();
+                }
             }
         }
 
         /// <summary>
         /// hide diagram views</summary>
-        public void HideViews(DiagramView diagramView = null)
+        public void HideViews(DiagramView diagramView = null) //UID3131107610
         {
             foreach (DiagramView view in DiagramViews)
             {
@@ -719,6 +448,309 @@ namespace Diagram
             Program.log.SetConsole(null);
             this.console = null;
             this.CloseEmptyApplication();
+        }
+
+        /*************************************************************************************************************************/
+        // MAIN APPLICATION
+
+        // command line arguments
+        private string[] args = null;
+
+        /// <summary>
+        /// form for catching messages from local server</summary>
+        public MainForm mainform = null;
+
+        /// <summary>
+        /// close application if not diagram view or node edit form is open </summary>
+        public void CloseEmptyApplication() //UID0787891060
+        {
+            Program.log.Write("Program : CloseApplication");
+
+            bool canclose = true;
+
+            if (Diagrams.Count > 0 || DiagramViews.Count > 0 || TextWindows.Count > 0)
+            {
+                canclose = false;
+            }
+
+            if (console != null)
+            {
+                // prevent close application if debug console is open
+                // console must by closed mannualy by user
+                Program.log.Write("Program : Console is still open...");
+                canclose = false;
+            }
+
+            if (canclose)
+            {
+                ExitApplication();
+            }
+        }
+
+        /// <summary>
+        /// force close application</summary>
+        public void ExitApplication() //UID0090378181
+        {
+            Program.log.Write("Program : ExitApplication");
+
+            if (passwordForm != null)
+            {
+                passwordForm.Close();
+            }
+
+            if (newPasswordForm != null)
+            {
+                newPasswordForm.Close();
+            }
+
+            if (changePasswordForm != null)
+            {
+                changePasswordForm.Close();
+            }
+
+            if (mainform != null)
+            {
+                mainform.Close();
+            }
+            
+            if (console != null)
+            {
+                console.Close();
+            }
+
+            if (this.server != null && this.server.mainProcess)
+            {
+                this.optionsFile.SaveConfigFile();                
+                server.RequestStop();
+            }
+        }
+
+        public void TerminateApplication() //UID4067187261
+        {
+            try
+            {                
+                Application.Exit();
+                Application.ExitThread();
+                Environment.Exit(0);
+            }
+            catch (Exception e)
+            {
+                Program.log.Write("Terminate aplication exception: " + e.Message);
+                Program.log.Write("Terminate aplication trace: " + e.StackTrace);
+            }
+        }
+
+        /// <summary>
+        /// process comand line arguments</summary>
+        public void ParseCommandLineArguments(string[] args) // [PARSE] [COMMAND LINE] UID5172911205
+        {
+            // options - create new file with given name if not exist
+            bool CommandLineCreateIfNotExistFile = false;
+
+            bool ShowCommandLineHelp = false;
+            bool ShowDebugConsole = false;
+
+            // list of diagram files names for open
+            List<String> CommandLineOpen = new List<String>();
+
+            String arg = "";
+            for (int i = 0; i < args.Length; i++)
+            {
+
+                //skip application name
+                if (i == 0)
+                {
+                    continue;
+                }
+
+                // current processing argument
+                arg = args[i];
+
+                // [COMAND LINE] [CREATE]  oprions create new file with given name if not exist
+                if (arg == "-h" || arg == "--help" || arg == "/?")
+                {
+                    ShowCommandLineHelp = true;
+                    break;
+
+                }
+                if (arg == "-c" || arg == "--console")
+                {
+                    ShowDebugConsole = true;
+                    break;
+                }
+
+                if (arg == "-e")
+                {
+                    CommandLineCreateIfNotExistFile = true;
+                    break;
+                }
+
+                // [COMAND LINE] [OPEN] check if argument is diagram file
+                if (Os.GetExtension(arg).ToLower() == ".diagram")
+                {
+                    CommandLineOpen.Add(arg);
+                    break;
+                }
+
+                Program.log.Write("bed commmand line argument: " + arg);
+            }
+
+            if (ShowDebugConsole)
+            {
+                this.ShowConsole();
+            }
+
+            // open diagram given as arguments
+            if (ShowCommandLineHelp)
+            {
+                String help =
+                "diagram -h --help /?  >> show this help\n" +
+                "diagram -c --console /?  >> show debug console\n" +
+                "diagram -e {filename} >> create file if not exist\n" +
+                "diagram {filepath} {filepath} >> open existing file\n";
+                MessageBox.Show(help, "Command line parameters");
+                return;
+            }
+
+            if (CommandLineOpen.Count == 0)
+            {
+                //open empty diagram UID5981683893
+                this.OpenDiagram();
+                return;
+            }
+
+            for (int i = 0; i < CommandLineOpen.Count; i++)
+            {
+                string file = CommandLineOpen[i];
+
+                // tray create diagram file if command line option is set
+                if (CommandLineCreateIfNotExistFile && !Os.FileExists(file))
+                {
+                    try
+                    {
+                        Os.CreateEmptyFile(file);
+                    }
+                    catch (Exception ex)
+                    {
+                        Program.log.Write("create empty diagram file error: " + ex.Message);
+                    }
+                }
+
+                if (Os.FileExists(file))
+                {
+                    this.OpenDiagram(file); //UID2130542088
+                }
+            }
+
+            // cose application if is not diagram model opened
+            this.CloseEmptyApplication();
+        }
+
+        /// <summary>
+        /// load options from global configuration files</summary>
+        public void LoadOptionFiles() //UID3013916734
+        {
+            options = new ProgramOptions();
+            optionsFile = new OptionsFile(options);
+        }
+
+        /// <summary>
+        /// load plugins from assebmblies</summary>
+        public void LoadPugins()
+        {
+            // load external plugins UID9841812564
+            plugins = new Plugins();
+
+            // load plugins from current application directory (portable mode)
+            string pluginsLocalDirectory = Os.Combine(Os.GetCurrentApplicationDirectory(), this.pluginsDirectoryName);
+            if (Os.DirectoryExists(pluginsLocalDirectory))
+            {
+                plugins.LoadPlugins(pluginsLocalDirectory);
+            }
+      
+#if !DEBUG
+            // load plugins from global plugins directory
+            string pluginsGlobalDirectory = Os.Combine(optionsFile.GetGlobalConfigDirectory(), this.pluginsDirectoryName);
+            if (Os.DirectoryExists(pluginsGlobalDirectory))
+            {
+                plugins.LoadPlugins(pluginsGlobalDirectory);
+            }
+#endif
+
+        }
+
+        /// <summary>
+        /// load server</summary>
+        public void LoadServer()
+        {
+            // create local server for comunication between local instances UID2964640610
+            server = new Server(this);
+
+            if (server.StartServer())
+            {
+                Update.UpdateApplication(this);
+            }
+        }
+
+        /// <summary>
+        /// process command line arguments</summary>
+        public void ProcessCommandLineArguments()
+        {
+            // get command line arguments
+            this.args = Environment.GetCommandLineArgs();
+#if DEBUG
+            // custom debug arguments
+            if (this.args.Length == 1 && Os.FileExists("test.diagram")) // if not argument is added from system ad some testing arguments
+            {
+                // comand line arguments testing
+                this.args = new string[] {
+                    Os.GetThisAssemblyLocation()
+                    ,"test.diagram"
+                };
+            }
+#endif
+            // process comand line arguments
+            this.ParseCommandLineArguments(this.args);
+        }
+
+
+        /// <summary>
+        /// register power save event </summary>
+        public void RegisterPowerChangeEvent()
+        {
+#if !MONO
+            // sleep or hibernate event UID7641650028
+            SystemEvents.PowerModeChanged += OnPowerChange;
+#endif
+        }
+
+        /// <summary>
+        /// parse command line arguments and open forms</summary>
+        public Main() //UID8239288102
+        {
+            Program.log.Write("Program: Main");
+
+#if DEBUG
+            Program.log.Write("program: debug mode");
+#else
+			Program.log.Write("program: release mode");
+#endif
+            this.LoadOptionFiles();
+
+            this.LoadPugins();
+
+            this.LoadServer();
+
+            this.ProcessCommandLineArguments();
+
+            this.RegisterPowerChangeEvent();
+
+            // check if this program instance created server (is main application)
+            // or if running debug console from command line parameter
+            if (server.mainProcess || this.console != null)
+            {
+                this.mainform = new MainForm(this);
+            }
         }
 
     }

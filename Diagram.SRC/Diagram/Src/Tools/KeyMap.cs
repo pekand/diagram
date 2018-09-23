@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Diagram
@@ -32,9 +28,8 @@ namespace Diagram
         public static string open = "CTRL+O";
         public static string search = "CTRL+F";
         public static string searchNext = "F3";
-        public static string evaluateExpression = "CTRL+G";
         public static string date = "CTRL+D";
-        public static string promote = "CTRL+P";
+        public static string promote = "CTRL+SHIFT+P";
         public static string refresh = "CTRL+R";
         public static string hideBackground = "F6";
         public static string reverseSearch = "SHIFT+F3";
@@ -76,10 +71,11 @@ namespace Diagram
         public static string nextMarkNode = "ALT+RIGHT";
         public static string prevMarkNode = "ALT+LEFT";
         public static string switchSecurityLock = "CTRL+ALT+L";
+        public static string createPolygon = "CTRL+P";
 
         /// <summary>
         /// check if key string match keyData representing key pressed code</summary>
-        public static bool parseKey(string key, Keys keyData)
+        public static bool ParseKey(string key, Keys keyData)
         {
 
             string[] parts = key.Split('+');
@@ -230,7 +226,7 @@ namespace Diagram
 
         /// <summary>
         /// conver pressed key to string</summary>
-        public static string parseKey(Keys keyData)
+        public static string ParseKey(Keys keyData)
         {
 
             KeysConverter kc = new KeysConverter();

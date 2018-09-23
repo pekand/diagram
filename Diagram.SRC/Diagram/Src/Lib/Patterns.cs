@@ -104,14 +104,14 @@ namespace Diagram
 
         /// <summary>
         ///  parse integer (representing node id) from goto command string </summary>
-        public static int getGotoIdCommand(string text)
+        public static long getGotoIdCommand(string text)
         {
             Match match = Regex.Match(text, @"^\s*#(\\d+)\s*$", RegexOptions.IgnoreCase);
 
 	        if (match.Success)
 	        {
 	            string key = match.Groups[1].Value;
-                return Int32.Parse(key);
+                return Int64.Parse(key);
             }
 
             return -1;
@@ -208,6 +208,18 @@ namespace Diagram
                 "<meta.*?http-equiv=\"refresh\".*?(CONTENT|content)=[\"']\\d;\\s?(URL|url)=(?<url>.*?)([\"']\\s*\\/?>)",
                 RegexOptions.IgnoreCase
             ).Groups["url"].Value;
+        }
+
+        /// <summary>
+        /// check if url start on http or https </summary>
+        public static bool isScriptId(String link, string id)
+        {
+            Regex regex = new Regex(@"^\s*@(\w+){1}\s*$");
+            Match match = regex.Match(link);
+            if (match.Success && match.Groups[1].Value == id)
+                return true;
+
+            return false;
         }
 
     }

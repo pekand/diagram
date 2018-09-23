@@ -176,13 +176,13 @@ namespace Plugin
         }
 
         // get node by id
-        public Node Id(int id)
+        public Node Id(long id)
         {
             return this.script.diagram.GetNodeByID(id);
         }
 
         // create node with position object
-        public Node Create(Position p, string name = "", int layer = -1)
+        public Node Create(Position p, string name = "", long layer = -1)
         {
             if (layer < 0)
             {
@@ -193,7 +193,7 @@ namespace Plugin
         }
 
         // create node with coordinates
-        public Node Create(int x, int y, string name = "", int layer = -1)
+        public Node Create(long x, long y, string name = "", long layer = -1)
         {
             return this.script.diagram.CreateNode(new Position(x,y), name, layer);
         }
@@ -248,7 +248,7 @@ namespace Plugin
         // POSITION
 
         // create position object
-        public Position Position(int x, int y)
+        public Position Position(long x, long y)
         {
             return new Position(x, y);
         }
@@ -260,7 +260,7 @@ namespace Plugin
         }
 
         // go to position by coordinates
-        public void Go(int x, int y, int layer = -1)
+        public void Go(long x, long y, long layer = -1)
         {
             if (layer >= 0)
             {
@@ -274,13 +274,13 @@ namespace Plugin
         // CONVERT
 
         // convert string to int
-        public int Val(string s)
+        public long Val(string s)
         {			
-			return Converter.ToInt (s);
+			return Converter.ToInt(s);
         }
 
         // convert int to string
-        public string Val(int v)
+        public string Val(long v)
         {
             return v.ToString();
         }

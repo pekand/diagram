@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace Diagram
+﻿namespace Diagram
 {
     /// <summary>
     /// Line between two nodes in diagram</summary>
@@ -9,8 +7,9 @@ namespace Diagram
         /*************************************************************************************************************************/
         // POSITION
 
-        public int start = 0; // node id 
-        public int end = 0; // node id 
+        public long start = 0; // node id 
+        public long end = 0; // node id 
+        public decimal scale = 0;
 
         public Node startNode = null; // linked start node for quick access
         public Node endNode = null; // linked end node for quick access
@@ -20,12 +19,12 @@ namespace Diagram
 
         public bool arrow = false; // node is rendered as arrow
         public ColorType color = new ColorType(); // line color
-        public int width = 1; // line width
+        public long width = 1; // line width
 
         /*************************************************************************************************************************/
         // LAYER
 
-        public int layer = 0; // layer parent node id
+        public long layer = 0; // layer parent node id
 
         /*************************************************************************************************************************/
         // CONSTRUCTORS

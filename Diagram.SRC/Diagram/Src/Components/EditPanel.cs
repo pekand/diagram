@@ -67,14 +67,14 @@ namespace Diagram
             if (!this.Visible)
             {
                 int padding = Node.NodePadding;
-                this.Left = currentPosition.x;
-                this.Top = currentPosition.y;
+                this.Left = (int)currentPosition.x; // TODO: scale long to int
+                this.Top = (int)currentPosition.y;
 
                 this.edit.Left = padding + 1;
                 this.edit.Top = padding + 0;
 
                 Font defaultFont = this.diagramView.diagram.FontDefault;
-                Font font = new Font(defaultFont.FontFamily, defaultFont.Size / this.diagramView.scale, defaultFont.Style);
+                Font font = new Font(defaultFont.FontFamily, defaultFont.Size, defaultFont.Style);
 
                 this.edit.Font = font;
 
@@ -108,14 +108,14 @@ namespace Diagram
                 this.editedNode.visible = false;
                 this.diagramView.diagram.InvalidateDiagram();
 
-                this.Left = currentPosition.x;
-                this.Top = currentPosition.y;
+                this.Left = (int)currentPosition.x; // TODO: scale long to int
+                this.Top = (int)currentPosition.y;
 
                 this.edit.Left = padding + 1;
                 this.edit.Top = padding + 0;
 
                 Font nodeFont = this.editedNode.font;
-                Font font = new Font(nodeFont.FontFamily, nodeFont.Size / this.diagramView.scale, nodeFont.Style);
+                Font font = new Font(nodeFont.FontFamily, nodeFont.Size, nodeFont.Style);
 
                 this.edit.Font = font;
                 this.edit.Text = this.editedNode.name; // add first character
@@ -139,12 +139,12 @@ namespace Diagram
             if (this.editedNode == null) {
                 this.editedNode = this.diagramView.CreateNode(new Position(this.Left, this.Top));
                 this.editedNode.setName(edit.Text);
-                this.diagramView.diagram.undoOperations.add("create", this.editedNode, this.diagramView.shift, this.diagramView.currentLayer.id);
+                this.diagramView.diagram.undoOperations.add("create", this.editedNode, this.diagramView.shift, this.diagramView.scale, this.diagramView.currentLayer.id);
                 this.diagramView.diagram.Unsave();
             }
             else if (this.editedNode.name != edit.Text)
             {
-                this.diagramView.diagram.undoOperations.add("edit", this.editedNode, this.diagramView.shift, this.diagramView.currentLayer.id);
+                this.diagramView.diagram.undoOperations.add("edit", this.editedNode, this.diagramView.shift, this.diagramView.scale, this.diagramView.currentLayer.id);
                 this.editedNode.setName(edit.Text);
                 this.diagramView.diagram.Unsave();
             }
@@ -194,33 +194,33 @@ namespace Diagram
 
             Keys keyData = e.KeyCode;
 
-            if (KeyMap.parseKey("ESCAPE", keyData)) // zrusenie editácie v panely
+            if (KeyMap.ParseKey("ESCAPE", keyData)) // zrusenie editácie v panely
             {
                 this.saveNodeNamePanel();
                 this.Focus();
             }
 
-            if (KeyMap.parseKey("ENTER", keyData) && !e.Shift) // zvretie panelu a vytvorenie novej editacie
+            if (KeyMap.ParseKey("ENTER", keyData) && !e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
                 this.saveNodeNamePanel();
                 this.Focus();
             }
 
-            if (KeyMap.parseKey("TAB", keyData) && !e.Shift) // zvretie panelu a vytvorenie novej editacie
+            if (KeyMap.ParseKey("TAB", keyData) && !e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
                 this.saveNodeNamePanel();
                 this.Focus();
                 this.diagramView.AddNodeAfterNode();
             }
 
-            if (KeyMap.parseKey("TAB", keyData) && e.Shift) // zvretie panelu a vytvorenie novej editacie
+            if (KeyMap.ParseKey("TAB", keyData) && e.Shift) // zvretie panelu a vytvorenie novej editacie
             {
                 this.saveNodeNamePanel();
                 this.Focus();
                 this.diagramView.AddNodeBelowNode();
             }
 
-            if (KeyMap.parseKey("ENTER", keyData) || KeyMap.parseKey("TAB", keyData))
+            if (KeyMap.ParseKey("ENTER", keyData) || KeyMap.ParseKey("TAB", keyData))
             {
                 if (!e.Shift)
                 {

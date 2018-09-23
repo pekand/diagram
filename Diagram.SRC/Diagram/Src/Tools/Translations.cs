@@ -1,9 +1,4 @@
-﻿
-/*
-    class Translations
-*/
-
-namespace Diagram
+﻿namespace Diagram
 {
     /// <summary>
     /// text translation table</summary> 

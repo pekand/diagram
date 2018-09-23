@@ -54,7 +54,7 @@ namespace Plugin
             return false;
         }
 
-        public void OpenFileOnPosition(string file, int pos = 0)
+        public void OpenFileOnPosition(string file, long pos = 0)
         {
             Os.OpenFileOnPosition(file, pos);
         }
@@ -69,7 +69,7 @@ namespace Plugin
                     try {
                         foreach (string file in Directory.EnumerateFiles(diagramDirectory, "*.cs", SearchOption.AllDirectories))
                         {
-                            int pos = 1;
+                            long pos = 1;
                             foreach (string line in File.ReadAllLines(file))
                             {
                                 if (line.Contains(uid)) {

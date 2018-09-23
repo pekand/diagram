@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Infinite Diagram"
-#define MyAppVersion "0.5.0.36"
+#define MyAppVersion "0.5.0.43"
 #define MyAppPublisher "pekand@gmail.com"
 #define MyAppURL "http://www.infinite-diagram.com"
 #define MyAppExeName "Diagram.exe"
@@ -38,8 +38,6 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "files\Diagram.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "files\diagram.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "files\NCalc.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "files\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 
-/*
- 
-*/
-
 namespace Diagram
 {
     public class SearchPanel : Panel //UID1308094022
@@ -125,7 +121,7 @@ namespace Diagram
             this.centerPanel();
         }
 
-        public void searchNext()
+        public void searchNext() //UID3222624449
         {
             string currentText = textBoxSearch.Text;
 

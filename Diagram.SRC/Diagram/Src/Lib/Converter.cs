@@ -34,10 +34,10 @@ namespace Diagram
 
 
 
-		public static int ToInt(string s)
+		public static long ToInt(string s)
 		{
-			int i;
-			bool result = Int32.TryParse(s, out i);
+			long i;
+			bool result = Int64.TryParse(s, out i);
 			if (!result) {
 				return 0;
 			}

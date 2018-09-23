@@ -50,10 +50,10 @@ namespace Diagram
             {
                 if (!this.ServerExists()) // check if server exists
                 {                    
-                    Int32 port = main.options.server_default_port;
+                    long port = main.options.server_default_port;
                     IPAddress localAddr = IPAddress.Parse(main.options.server_default_ip);
 
-                    this.tcpListener = new TcpListener(localAddr, port);
+                    this.tcpListener = new TcpListener(localAddr, (Int32)port);
                     this.listenThread = new Thread(new ThreadStart(ListenForClients)); // start thread with server
                     this.listenThread.Start();
                     this.mainProcess = true;
@@ -160,7 +160,7 @@ namespace Diagram
                 // connect to server
                 TcpClient client = new TcpClient();
                 client.SendTimeout = 1000;
-                IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse(main.options.server_default_ip), main.options.server_default_port);
+                IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse(main.options.server_default_ip), (Int32)main.options.server_default_port);
                 client.Connect(serverEndPoint);
                 NetworkStream clientStream = client.GetStream();
 
@@ -218,15 +218,15 @@ namespace Diagram
                 return true;
             }
             else
-            if (Messsage == "close")
+            if (Messsage == "close") //UID5024907634
             {
-                main.mainform.Invoke(new Action(() => main.mainform.CloseEmptyApplication()));
+                main.mainform.Invoke(new Action(() => main.mainform.TerminateApplication()));
                 return true;
             }
             else
             {
 
-                Match match = Regex.Match(Messsage, @"open:(.*)", RegexOptions.IgnoreCase); 
+                Match match = Regex.Match(Messsage, @"open:(.*)", RegexOptions.IgnoreCase); //UID0548148814
                 if (match.Success)
                 {
                     string FileName = match.Groups[1].Value;
@@ -239,7 +239,7 @@ namespace Diagram
             return false;
         }
 
-        // send close message to server
+        // send close message to server UID3713513860
         public void RequestStop()
         {
             _shouldStop = true;

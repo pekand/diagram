@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 
-/*
- 
-*/
-
 namespace Diagram
 {
     public partial class MainForm : Form //UID2589432679
@@ -47,21 +43,16 @@ namespace Diagram
             }));
         }
 
-        public void OpenDiagram(String Message)
+        public void OpenDiagram(String Message) //UID0515997503
         {
             main.OpenDiagram(Message);
         }
 
-        public void ExitApplication()
-        {
-            main.ExitApplication();
-        }
-
         /// <summary>
         /// close application if not form is open</summary>
-        public void CloseEmptyApplication() //UID4213278976
+        public void TerminateApplication() //UID4213278976
         {
-            main.CloseEmptyApplication();
+            main.TerminateApplication();
         }
     }
 }

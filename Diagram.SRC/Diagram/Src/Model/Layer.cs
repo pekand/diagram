@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Diagram
+﻿namespace Diagram
 {
     /// <summary>
     /// diagram layer</summary>
     public class Layer //UID1099250588
     {
-        public int id = 0; // parent node id, layer owner
+        public long id = 0; // parent node id, layer owner
 
         /*************************************************************************************************************************/
         // PARENTS
@@ -23,7 +17,7 @@ namespace Diagram
 
         public Nodes nodes = new Nodes();               // all layer nodes
         public Lines lines = new Lines();               // all layer lines
-        //public Polygons ploygons = new Polygons();      // all layer polygons
+        public Polygons polygons = new Polygons();      // all layer polygons
 
         /*************************************************************************************************************************/
         // CONSTRUCTORS

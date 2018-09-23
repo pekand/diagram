@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Diagram
+﻿namespace Diagram
 {
     /// <summary>
     /// container for manipulation with part of diagram</summary> 
@@ -12,11 +6,13 @@ namespace Diagram
     {
         public Nodes nodes = new Nodes();
         public Lines lines = new Lines();
+        public Polygons polygons = new Polygons();
 
-        public DiagramBlock(Nodes nodes = null, Lines lines = null)
+        public DiagramBlock(Nodes nodes = null, Lines lines = null, Polygons polygons = null)
         {
             this.nodes = nodes;
             this.lines = lines;
+            this.polygons = polygons;
         }
     }
 }

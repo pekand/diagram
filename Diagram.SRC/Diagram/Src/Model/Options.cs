@@ -1,5 +1,4 @@
-﻿
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace Diagram
 {
@@ -12,15 +11,18 @@ namespace Diagram
         // POSITION
 
         public Position shift = new Position();            // startup position in diagram
+        public double scale = 1;
         public Position firstLayereShift = new Position(); // position in layer
 
         /*************************************************************************************************************************/
         // HOME AND END POSITIONS
 
         public Position homePosition = new Position();     // diagram start and home key position
-        public int homeLayer = 0;                          // startup layer after diagram open
+        public long homeLayer = 0;                          // startup layer after diagram open
+        public decimal homeScale = 0;                          // startup scale after diagram open
         public Position endPosition = new Position();      // diagram end key position seet by end key
-        public int endLayer = 0;                           // startup layer after diagram open
+        public long endLayer = 0;                           // startup layer after diagram open
+        public decimal endScale = 0;                           // startup scale after diagram open
 
         /*************************************************************************************************************************/
         // STATES
@@ -35,18 +37,18 @@ namespace Diagram
         // WINDOW STATES
 
         public bool restoreWindow = false;                 // restore last window position and state 
-        public int Left = 0;                               // diagram view position 
-        public int Top = 0;                                // diagram view position 
-        public int Width = 100;                            // diagram view position 
-        public int Height = 100;                           // diagram view position 
-        public int WindowState = 0;                        // 0 unset; 1 maximalized; 2 normal; 3 minimalized
+        public long Left = 0;                               // diagram view position 
+        public long Top = 0;                                // diagram view position 
+        public long Width = 100;                            // diagram view position 
+        public long Height = 100;                           // diagram view position 
+        public long WindowState = 0;                        // 0 unset; 1 maximalized; 2 normal; 3 minimalized
 
         /*************************************************************************************************************************/
         // MOVE SPEED
 
-        public int keyArrowSlowMoveNodeSpeed = 1;          // node moving speed
-        public int keyArrowFastMoveNodeSpeed = 100;        // node moving speed
-        public int keyArrowSlowSpeed = 50;                 // node moving speed
+        public long keyArrowSlowMoveNodeSpeed = 1;          // node moving speed
+        public long keyArrowFastMoveNodeSpeed = 100;        // node moving speed
+        public long keyArrowSlowSpeed = 50;                 // node moving speed
 
         /*************************************************************************************************************************/
         // COLORS

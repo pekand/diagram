@@ -10,7 +10,7 @@ namespace Plugin
 {
     public class FirstPlugin : INodeOpenPlugin, IKeyPressPlugin, IOpenDiagramPlugin //UID0290845814
     {
-        private static int counter = 0;
+        private static long counter = 0;
 
         public string Name
         {
@@ -49,7 +49,7 @@ namespace Plugin
             return false;
         }
 
-        public bool KeyPressAction(Diagram.Diagram diagram, DiagramView diagramview, String Key)
+        public bool KeyPressAction(Diagram.Diagram diagram, DiagramView diagramview, Keys keyData)
         {
             log.Write("Do Something in First Plugin:" + (counter++).ToString());
 

@@ -7,16 +7,40 @@ namespace Diagram
     /// Point position in canvas</summary>
     public class Position //UID0604640560
     {
-        public int x = 0;
-        public int y = 0;
+        public decimal x = 0;
+        public decimal y = 0;
 
         /*************************************************************************************************************************/
         // CONSTRUCTORS
 
         /// <summary>
         /// Constructor</summary>
-        public Position(int x = 0, int y = 0)
+        public Position()
+        {
+            this.x = 0;
+            this.y = 0;
+        }
+
+        /// <summary>
+        /// Constructor</summary>
+        public Position(long x = 0, long y = 0)
         { 
+            this.x = x;
+            this.y = y;
+        }
+
+        /// <summary>
+        /// Constructor</summary>
+        public Position(double x = 0, double y = 0)
+        {
+            this.x = (decimal)x;
+            this.y = (decimal)y;
+        }
+
+        /// <summary>
+        /// Constructor</summary>
+        public Position(decimal x = 0, decimal y = 0)
+        {
             this.x = x;
             this.y = y;
         }
@@ -42,7 +66,16 @@ namespace Diagram
 
         // <summary>
         /// set </summary>
-        public Position Set(int x, int y)
+        public Position Set(long x, long y)
+        {
+            this.x = x;
+            this.y = y;
+            return this;
+        }
+
+        // <summary>
+        /// set </summary>
+        public Position Set(decimal x, decimal y)
         {
             this.x = x;
             this.y = y;
@@ -98,19 +131,35 @@ namespace Diagram
 
         // <summary>
         /// add vector</summary>
-        public Position Add(int x, int y)
+        public Position Add(long x, long y)
         {
             this.x += x;
             this.y += y;
             return this;
         }
 
+        public Position Add(long x)
+        {
+            this.x += x;
+            this.y += x;
+            return this;
+        }
+
         // <summary>
         /// add vector</summary>
-        public Position Add(float a, float b)
+        public Position Add(double a, double b)
         {
-            this.x += (int)a;
-            this.y += (int)b;
+            this.x += (decimal)a;
+            this.y += (decimal)b;
+            return this;
+        }
+
+        // <summary>
+        /// add vector</summary>
+        public Position Add(decimal a, decimal b)
+        {
+            this.x += a;
+            this.y += b;
             return this;
         }
 
@@ -135,7 +184,7 @@ namespace Diagram
 
         // <summary>
         /// subtract vector</summary>
-        public Position Subtract(int a, int b)
+        public Position Subtract(long a, long b)
         {
             this.x -= a;
             this.y -= b;
@@ -144,16 +193,25 @@ namespace Diagram
 
         // <summary>
         /// subtract vector</summary>
-        public Position Subtract(float a, float b)
+        public Position Subtract(double a, double b)
         {
-            this.x -= (int)a;
-            this.y -= (int)b;
+            this.x -= (decimal)a;
+            this.y -= (decimal)b;
+            return this;
+        }
+
+        // <summary>
+        /// subtract vector</summary>
+        public Position Subtract(decimal a, decimal b)
+        {
+            this.x -= a;
+            this.y -= b;
             return this;
         }
 
         // <summary>
         /// subtract constant</summary>
-        public Position Subtract(int c)
+        public Position Subtract(long c)
         {
             this.x -= c;
             this.y -= c;
@@ -174,14 +232,14 @@ namespace Diagram
         /// Count distance between two points</summary>
         public double Distance(Position b)
         {
-            return Math.Sqrt((b.x - this.x) * (b.x - this.x) + (b.y - this.y) * (b.y - this.y));
+            return Math.Sqrt((double)((b.x - this.x) * (b.x - this.x) + (b.y - this.y) * (b.y - this.y)));
         }
 
         // <summary>
         /// Count distance to zero vector</summary>
         public double Size()
         {
-            return Math.Sqrt((0 - this.x) * (0 - this.x) + (0 - this.y) * (0 - this.y));
+            return Math.Sqrt((double)((0 - this.x) * (0 - this.x) + (0 - this.y) * (0 - this.y)));
         }
 
         // <summary>
@@ -195,32 +253,68 @@ namespace Diagram
 
         // <summary>
         /// scale vector</summary>
+        public Position Scale(long scale)
+        {
+            this.x = this.x * (decimal)scale;
+            this.y = this.y * (decimal)scale;
+            return this;
+        }
+
+        // <summary>
+        /// scale vector</summary>
         public Position Scale(double scale)
         {
-            this.x = (int)(this.x * scale);
-            this.y = (int)(this.y * scale);
+            this.x = this.x * (decimal)scale;
+            this.y = this.y * (decimal)scale;
+            return this;
+        }
+
+        // <summary>
+        /// scale vector</summary>
+        public Position Scale(decimal scale)
+        {
+            this.x = this.x * scale;
+            this.y = this.y * scale;
             return this;
         }
 
         // <summary>
         /// zoom vector</summary>
-        public Position Split(float scale)
+        public Position Split(long scale)
         {
-            this.x = (int)(this.x / scale);
-            this.y = (int)(this.y / scale);
+            this.x = this.x / (decimal)scale;
+            this.y = this.y / (decimal)scale;
+            return this;
+        }
+
+        // <summary>
+        /// zoom vector</summary>
+        public Position Split(double scale)
+        {
+            this.x = this.x / (decimal)scale;
+            this.y = this.y / (decimal)scale;
+            return this;
+        }
+
+        // <summary>
+        /// zoom vector</summary>
+        public Position Split(decimal scale)
+        {
+            this.x = this.x / scale;
+            this.y = this.y / scale;
             return this;
         }
 
         // <summary>
         /// scale vector by constant</summary>
-        public static Position operator *(Position a, int c)
+        public static Position operator *(Position a, decimal c)
         {
             return new Position(a).Scale(c);
         }
 
         // <summary>
         /// scale vector by constant</summary>
-        public static Position operator /(Position a, int c)
+        public static Position operator /(Position a, decimal c)
         {
             return new Position(a).Split(c);
         }

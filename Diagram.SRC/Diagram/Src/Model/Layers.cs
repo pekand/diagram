@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Diagram
 {
@@ -10,9 +8,9 @@ namespace Diagram
     /// collection of layers</summary>
     public class Layers //UID6548243626
     {
-        private int maxid = 0;                    // last used node id
+        private long maxid = 0;                    // last used node id
 
-        private Dictionary<int, Node> allNodes = new Dictionary<int, Node>();
+        private Dictionary<long, Node> allNodes = new Dictionary<long, Node>();
 
         private List<Layer> layers = new List<Layer>();
 
@@ -70,7 +68,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // SELECT ITEM
 
-        public Node GetNode(int id)
+        public Node GetNode(long id)
         {
             if (this.allNodes.ContainsKey(id)) {
                 return this.allNodes[id];
@@ -93,7 +91,7 @@ namespace Diagram
             return null;
         }
 
-        public Line GetLine(int startId, int endId)
+        public Line GetLine(long startId, long endId)
         {
             Node start = GetNode(startId);
 
@@ -112,7 +110,7 @@ namespace Diagram
             return GetLine(start, end);
         }
 
-        public bool HasLayer(int id = 0)
+        public bool HasLayer(long id = 0)
         {
             foreach (Layer l in this.layers)
             {
@@ -125,7 +123,7 @@ namespace Diagram
             return false;
         }
 
-        public Layer GetLayer(int id = 0)
+        public Layer GetLayer(long id = 0)
         {
             foreach (Layer l in this.layers)
             {
@@ -208,7 +206,19 @@ namespace Diagram
             return lines;
         }
 
-        // all nodes contain nodes and all sublayer nodes, allLines contain all node lines and all sublayer lines
+        public Polygons GetAllPolygons()
+        {
+            Polygons polygons = new Polygons();
+
+            foreach (Layer l in this.layers)
+            {
+                polygons.AddRange(l.polygons);
+            }
+
+            return polygons;
+        }        
+
+        // all nodes contain nodes and all sublayer nodes, allLines contain all node lines and all sublayer lines UID4508113260
         public void GetAllNodesAndLines(Nodes nodes, ref Nodes allNodes, ref Lines allLines)
         {
             foreach (Node node in nodes)
@@ -275,7 +285,7 @@ namespace Diagram
             return lines;
         }
 
-        public Lines GetAllLinesFromNode(Node node)
+        public Lines GetAllLinesFromNode(Node node) //UID1353555007
         {
             Lines lines = new Lines();
 
@@ -293,6 +303,66 @@ namespace Diagram
             }
 
             return lines;
+        }
+
+        public Lines GetAllLinesFromNodes(Nodes nodes)
+        {
+            Lines lines = new Lines();
+
+            foreach (Line li in this.GetAllLines())
+            {
+                foreach (Node recstart in nodes)
+                {
+                    if (li.start == recstart.id)
+                    {
+                        foreach (Node recend in nodes)
+                        {
+                            if (li.end == recend.id)
+                            {
+                                lines.Add(li);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return lines;
+        }
+        
+        /// <summary>
+        /// Find all polygons whitch contain only nodes</summary>
+        public Polygons GetAllPolygonsFromNodes(Nodes nodes)
+        {
+            Polygons polygons = new Polygons();
+
+            foreach (Polygon polygon in this.GetAllPolygons())
+            {
+                bool containAll = true;
+                
+                foreach (Node polygonNode in polygon.nodes)
+                {
+                    bool containNode = false;
+
+                    foreach (Node node in nodes)
+                    {
+                        if (polygonNode.id == node.id) {
+                            containNode = true;
+                            break;
+                        }
+                    }
+
+                    if (!containNode) {
+                        containAll = false;
+                        break;
+                    }
+                }
+                
+                if (containAll) {
+                    polygons.Add(polygon);
+                }
+            }
+
+            return polygons;
         }
 
         /// <summary>
@@ -389,7 +459,7 @@ namespace Diagram
         /*************************************************************************************************************************/
         // REMOVE ITEM
 
-        public void RemoveNode(int id)
+        public void RemoveNode(long id)
         {
             Node node = this.GetNode(id);
             if (node != null)
@@ -398,11 +468,31 @@ namespace Diagram
             }
         }
 
-        public void RemoveNode(Node node)
+        public void RemoveNode(Node node) //UID6631907739
         {
             this.allNodes.Remove(node.id);
 
             Layer layer = GetLayer(node.layer);
+
+            // remove node from polygons
+            Polygons polygonsToremove = new Polygons();
+            if (layer.polygons != null && layer.polygons.Count > 0) { 
+                foreach (Polygon p in layer.polygons)
+                {
+                    if (p.nodes.Contains(node)) {
+                        p.nodes.Remove(node);
+
+                        if (p.nodes.Count <= 2) {
+                            polygonsToremove.Add(p);
+                        }
+
+                    }
+                }
+            }
+
+            if (polygonsToremove.Count > 0) {
+                this.RemovePolygons(polygonsToremove);
+            }
 
             foreach (Node n in layer.nodes)
             {
@@ -441,7 +531,7 @@ namespace Diagram
             return layer;
         }
 
-        public Layer RemoveLine(int startId, int endId)
+        public Layer RemoveLine(long startId, long endId)
         {
             Line line = GetLine(startId, endId);
 
@@ -454,7 +544,7 @@ namespace Diagram
         }
 
         // LAYER remove layer and all sub layers
-        public void RemoveLayer(int layerId)
+        public void RemoveLayer(long layerId)
         {
             Layer layer = this.GetLayer(layerId);
 
@@ -491,7 +581,7 @@ namespace Diagram
         // MOVE ITEM
 
         // MOVE move node from layer to other layer
-        public void MoveNode(Node node, int layer)
+        public void MoveNode(Node node, long layer)
         {
             Layer outLayer = GetLayer(layer);
             Layer inLayer = GetLayer(node.layer);
@@ -529,5 +619,47 @@ namespace Diagram
             }
         }
 
+        public Polygon CreatePolygon(Nodes Nodes, long layerId = 0)
+        {
+            Layer layer = GetLayer(layerId);
+
+            if (layer != null)
+            {
+                Polygon polygon = new Polygon();
+                polygon.layer = layerId;
+                polygon.nodes.Set(Nodes);
+                layer.polygons.Add(polygon);
+                return polygon;
+            }
+
+            return null;
+        }
+
+        public void AddPolygon(Polygon polygon)
+        {
+            Layer layer = GetLayer(polygon.layer);
+
+            if (layer != null)
+            {
+                layer.polygons.Add(polygon);
+            }
+        }
+
+        public void RemovePolygon(Polygon polygon)
+        {
+            Layer layer = GetLayer(polygon.layer);
+
+            if (layer != null)
+            {
+                layer.polygons.Remove(polygon);
+            }
+        }
+
+        public void RemovePolygons(Polygons polygons)
+        {
+            foreach (Polygon polygon in polygons) {
+                this.RemovePolygon(polygon);
+            }
+        }
     }
 }
