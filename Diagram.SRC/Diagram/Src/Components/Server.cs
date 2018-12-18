@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.ComponentModel;
 
 namespace Diagram
 {
@@ -15,6 +16,12 @@ namespace Diagram
     {
         /*************************************************************************************************************************/
         
+#if DEBUG
+        private const string uid = "1b63a17a-3f78-428b-86d1-10e598a9f089";
+#else
+        private const string uid = "c3b82368-a7ff-4b23-a42d-19eecc9210df";
+#endif
+                    
         public Main main = null; // parent
 
         public bool mainProcess = false; // is true when server runing in this process, false if server already run in other process
@@ -22,6 +29,8 @@ namespace Diagram
         private volatile bool _shouldStop = false; // signal for server loop to stop
         private TcpListener tcpListener; // server
         private Thread listenThread; // thread for server loop
+        
+        private Mutex mutex = null;
 
         /*************************************************************************************************************************/
         // SERVER LOOP
@@ -54,8 +63,21 @@ namespace Diagram
                     IPAddress localAddr = IPAddress.Parse(main.options.server_default_ip);
 
                     this.tcpListener = new TcpListener(localAddr, (Int32)port);
-                    this.listenThread = new Thread(new ThreadStart(ListenForClients)); // start thread with server
-                    this.listenThread.Start();
+                    Job.doJob(
+                        new DoWorkEventHandler(
+                            delegate (object o, DoWorkEventArgs args)
+                            {
+                                this.ListenForClients();
+                            }
+                        ),
+                        new RunWorkerCompletedEventHandler(
+                            delegate (object o, RunWorkerCompletedEventArgs args)
+                            {
+                                this.afterServerIsStopped();
+                            }
+                        )
+                    );                   
+
                     this.mainProcess = true;
                     Program.log.Write("Server: start on " + main.options.server_default_ip + ":" + main.options.server_default_port);
 
@@ -76,9 +98,17 @@ namespace Diagram
             return false;   
         }
 
+        private void afterServerIsStopped()
+        {
+
+        }
+
         // start server loop UID8117850972
         public void ListenForClients()
         {
+            
+            this.createMutex();
+            
             try
             {
                 this.tcpListener.Start();
@@ -94,12 +124,14 @@ namespace Diagram
                     clientThread.Start(client);
                 }
 
-                Program.log.Write("Server: close");
+                Program.log.Write("Server: close");                
             }
             catch (Exception ex)
             {
 				Program.log.Write("Server: error: " + ex.Message);
             }
+
+            this.destroyMutex();
         }
 
         // process message catched from server UID1561149138
@@ -244,6 +276,36 @@ namespace Diagram
         {
             _shouldStop = true;
             SendMessage("stop");
+        }
+
+        private void createMutex() {
+            try
+            {
+                Program.log.Write("Mutex: checking " + uid);
+                mutex = new Mutex(false, uid);                
+                mutex.WaitOne();
+            }
+            catch(Exception ex)
+            {
+               
+                Program.log.Write("Mutex creating error: " + ex.Message);
+            }
+        }
+
+        private void destroyMutex()
+        {
+            if (mutex != null)
+            {
+                try
+                {
+                    Program.log.Write("Mutex: closed " + uid);
+                    mutex.ReleaseMutex();
+                }
+                catch (Exception ex)
+                {
+                    Program.log.Write("Mutex: error" + ex.Message);
+                }
+            }
         }
     }
 }
