@@ -1,2 +1,2 @@
-python3 update-version.py
+python update-version.py
 pause
