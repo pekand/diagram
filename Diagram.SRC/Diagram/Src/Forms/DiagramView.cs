@@ -5169,6 +5169,17 @@ namespace Diagram
                 this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
 
                 //first all hide then show
+                bool someHasImmages = false;
+                foreach (Node rec in this.selectedNodes)
+                {
+                    if (rec.isimage)
+                    {
+                        someHasImmages = true;
+                        break;
+                    }
+                }
+
+                //first all hide then show
                 bool allHidden = true;
                 foreach (Node rec in this.selectedNodes)
                 {
@@ -5189,8 +5200,16 @@ namespace Diagram
                     }
                 }
 
-                if (someEmptyUnHidden)
+                if (someHasImmages)
                 {
+                    foreach (Node rec in this.selectedNodes)
+                    {
+                        if (rec.isimage)
+                        {
+                            this.diagram.RemoveImage(rec);
+                        }
+                    }
+                } else if (someEmptyUnHidden) {
                     foreach (Node rec in this.selectedNodes)
                     {
 
@@ -5199,9 +5218,7 @@ namespace Diagram
                             rec.transparent = true;
                         }
                     }
-                }
-                else
-                {
+                } else {
                     foreach (Node rec in this.selectedNodes)
                     {
 
