@@ -6,44 +6,7 @@ do
     fi
 done
 
-if [ "$1" = "svn" ]; then
-
-    if [ "$2" = "commit" ]; then
-        echo -e "\e[31m Svn commit  \e[0m"
-
-        MESSAGE=`date +%Y-%m-%d`
-        if [ "$3" != "" ]; then
-            MESSAGE=$3
-        fi
-
-        svn add --force .
-        svn commit -m "$MESSAGE"
-    fi
-
-    if [ "$2" = "update" ]; then
-        echo -e "\e[31m Svn update  \e[0m"
-
-        svn update
-    fi
-
-    if [ "$2" = "status" ]; then
-        echo -e "\e[31m Svn update  \e[0m"
-
-        svn status
-    fi
-
-    if [ "$2" = "ignore" ]; then
-        echo -e "\e[31m Svn set ignore list  \e[0m"
-        svn propset svn:ignore -F ignorelist.txt .
-    fi
-
-    if [ "$2" = "" ]; then
-        echo "svn commit {message}"
-        echo "svn update"
-        echo "svn status"
-        echo "svn ignore - set ignore list"
-    fi
-elif [ "$1" = "debug" ]; then
+if [ "$1" = "debug" ]; then
     cd ./Diagram.SRC/
     xbuild /p:Configuration=Debug Diagram.Mono.sln
 
@@ -78,7 +41,6 @@ elif [ "$1" = "clean" ]; then
         echo "  project"
     fi
 else
-    echo "svn"
     echo "debug"
     echo "build"
     echo "install"
