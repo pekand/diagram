@@ -51,7 +51,35 @@ namespace Plugin
                 return true;
             }
 
+            Match matchString = (new Regex(@"^~[^ ]*$")).Match(text);
+
+            if (matchString.Success)
+            {
+                return true;
+            }
+
             return false;
+        }
+
+        public string GetUid(string text)
+        {
+            text = text.Trim();
+
+            Match matchUid = (new Regex(@"^UID\d{10}$")).Match(text);
+
+            if (matchUid.Success)
+            {
+                return text;
+            }
+
+            Match matchString = (new Regex(@"^~([^ ]*)$")).Match(text);
+
+            if (matchString.Success)
+            {
+                return matchString.Groups[1].Value;
+            }
+
+            return null;
         }
 
         public void OpenFileOnPosition(string file, long pos = 0)
@@ -61,14 +89,19 @@ namespace Plugin
 
         public bool ClickOnNodeAction(Diagram.Diagram diagram, DiagramView diagramview, Node node)
         {
-            if (diagram.FileName !="" && this.IsUid(node.link.Trim())) {
-                string uid = node.link.Trim();
+            if (diagram.FileName !="" && this.IsUid(node.link)) {
+                string uid = this.GetUid(node.link);
                 if (Os.FileExists(diagram.FileName)) {
                     string diagramDirectory = Os.GetFileDirectory(diagram.FileName);
 
                     try {
-                        foreach (string file in Directory.EnumerateFiles(diagramDirectory, "*.cs", SearchOption.AllDirectories))
+                        foreach (string file in Directory.EnumerateFiles(diagramDirectory, "*.*", SearchOption.AllDirectories))
                         {
+                            // skip self
+                            if (file == diagram.FileName) {
+                                continue;
+                            }
+
                             long pos = 1;
                             foreach (string line in File.ReadAllLines(file))
                             {
