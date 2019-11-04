@@ -38,6 +38,30 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "files\Diagram.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "files\diagram.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "files\Diagram.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "files\diagram.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "plugins\CreateDirectoryPlugin\CreateDirectoryPlugin.dll"; DestDir: "{userappdata}\Diagram\plugins\CreateDirectoryPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\DropPlugin\DropPlugin.dll"; DestDir: "{userappdata}\Diagram\plugins\DropPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\FindUidPlugin\FindUidPlugin.dll"; DestDir: "{userappdata}\Diagram\plugins\FindUidPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\NcalcPlugin\NcalcPlugin.dll"; DestDir: "{userappdata}\Diagram\plugins\NcalcPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp                         
+Source: "plugins\ScriptingPlugin\ScriptingPlugin.dll"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\IronPython.dll"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\IronPython.Modules.dll"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\IronPython.Modules.xml"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\IronPython.SQLite.dll"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\IronPython.SQLite.xml"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\IronPython.Wpf.dll"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\IronPython.Wpf.xml"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\IronPython.xml"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\IronPython.zip"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\Microsoft.Dynamic.dll"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\Microsoft.Dynamic.xml"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\Microsoft.Scripting.AspNet.dll"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\Microsoft.Scripting.AspNet.xml"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\Microsoft.Scripting.dll"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\Microsoft.Scripting.Metadata.dll"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\Microsoft.Scripting.Metadata.xml"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
+Source: "plugins\ScriptingPlugin\Microsoft.Scripting.xml"; DestDir: "{userappdata}\Diagram\plugins\ScriptingPlugin\"; Flags: ignoreversion createallsubdirs recursesubdirs comparetimestamp
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

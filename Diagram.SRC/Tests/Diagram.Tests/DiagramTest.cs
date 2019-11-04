@@ -132,8 +132,8 @@ namespace Diagram
             // check copied nodes position
             Assert.AreEqual(firstNodeCopy.position.x, 300, "firstNodeCopy bad position");
             Assert.AreEqual(firstNodeCopy.position.y, 300, "firstNodeCopy bad position");
-            Assert.AreEqual(secondNodeCopy.position.x, 400, "secondNode bad position");
-            Assert.AreEqual(secondNodeCopy.position.y, 400, "secondNode bad position");
+            Assert.AreEqual(secondNodeCopy.position.x, 350, "secondNode bad position");
+            Assert.AreEqual(secondNodeCopy.position.y, 350, "secondNode bad position");
 
 
             Assert.IsTrue(lineCopy.start == firstNodeCopy.id, "firstNode copy invalid id");
