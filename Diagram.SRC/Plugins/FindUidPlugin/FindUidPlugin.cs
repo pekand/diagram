@@ -94,27 +94,34 @@ namespace Plugin
                 if (Os.FileExists(diagram.FileName)) {
                     string diagramDirectory = Os.GetFileDirectory(diagram.FileName);
 
-                    try {
-                        foreach (string file in Directory.EnumerateFiles(diagramDirectory, "*.*", SearchOption.AllDirectories))
+                    foreach (string file in Directory.EnumerateFiles(diagramDirectory, "*.*", SearchOption.AllDirectories))
+                    {
+                        try
                         {
+
                             // skip self
-                            if (file == diagram.FileName) {
+                            if (file == diagram.FileName)
+                            {
                                 continue;
                             }
 
                             long pos = 1;
                             foreach (string line in File.ReadAllLines(file))
                             {
-                                if (line.Contains(uid)) {
+                                if (line.Contains(uid))
+                                {
 
                                     this.OpenFileOnPosition(file, pos);
                                     return true;
                                 }
                                 pos++;
                             }
+
                         }
-                    } catch (Exception ex) {
-                        Program.log.Write("FindUidPlugin: " + ex.Message);
+                        catch (Exception ex)
+                        {
+                            Program.log.Write("FindUidPlugin: " + ex.Message);
+                        }
                     }
                 }
             }
