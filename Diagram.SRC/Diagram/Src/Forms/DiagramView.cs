@@ -284,6 +284,8 @@ namespace Diagram
             // predefined window position
             if (this.diagram.options.restoreWindow)
             {
+                // RESTORE_WINDOW_POSITION_AND_SIZE
+
                 this.Left = (int)this.diagram.options.Left;
                 this.Top = (int)this.diagram.options.Top;
                 this.Width = (int)this.diagram.options.Width;
@@ -292,10 +294,31 @@ namespace Diagram
             }
             else
             {
+                // DEFAULT_WINDOW_POSITION_AND_SIZE
                 this.Left = 50;
                 this.Top = 40;
-                this.Width = Media.ScreenWidth(this) - 100;
-                this.Height = Media.ScreenHeight(this) - 100;
+
+                int screenWidth = Media.ScreenWidth(this);
+                int sreenHeight = Media.ScreenHeight(this);
+
+                int windowWidth = screenWidth - 100;
+                int windowHeight = sreenHeight - 100;
+
+                if (screenWidth > 1920 ) {
+                    windowWidth = 1920;
+                }
+
+                if (sreenHeight > 1080)
+                {
+                    windowHeight = 1080;
+                }
+
+                this.Width = windowWidth;
+                this.Height = windowHeight;
+
+                this.Left = (screenWidth - windowWidth) /2 ;
+                this.Top = (sreenHeight - windowHeight) / 2;
+
                 this.WindowState = FormWindowState.Normal;
             }
 

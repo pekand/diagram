@@ -22,7 +22,7 @@ namespace Diagram
         /// get active form screen width </summary>
         public static int ScreenWidth(Form form)
         {
-            return ((Screen.FromControl(form).Bounds.Size.Width > 1920) ? 1920 : Screen.FromControl(form).Bounds.Size.Width);
+            return Screen.FromControl(form).Bounds.Size.Width;
         }
 
         /// <summary>
