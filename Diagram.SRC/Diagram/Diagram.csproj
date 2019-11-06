@@ -171,6 +171,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Src\Components\Server.cs" />
+    <Compile Include="Src\Features.cs" />
     <Compile Include="Src\Forms\ColorPickerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -382,7 +383,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="diagram.debug.ico" />
+    <EmbeddedResource Include="FeaturesList.txt" />
     <Content Include="Resources\diagram.debug.ico" />
+    <Content Include="Src\ReleaseNote.txt" />
     <None Include="Resources\ico_diagram_debug.ico" />
   </ItemGroup>
   <PropertyGroup>
