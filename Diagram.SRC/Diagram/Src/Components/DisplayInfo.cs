@@ -12,8 +12,6 @@ namespace Diagram
     {
         delegate void SetTextCallback(string text);
 
-        string Text = "";
-
         EventHandler resizeEvent = null;
         PaintEventHandler paintEvent = null;
 

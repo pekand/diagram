@@ -3447,7 +3447,6 @@ namespace Diagram
         // DRAW lines UID4936881338
         private void DrawPolygons(Graphics gfx, Polygons polygons, Position correction = null, bool export = false)
         {
-            bool isvisible = false; // drawonly visible elements
             decimal s = Tools.GetScale(this.scale);
 
             // fix position for image file export

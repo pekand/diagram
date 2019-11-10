@@ -385,7 +385,6 @@
     <Content Include="diagram.debug.ico" />
     <EmbeddedResource Include="FeaturesList.txt" />
     <Content Include="Resources\diagram.debug.ico" />
-    <Content Include="Src\ReleaseNote.txt" />
     <None Include="Resources\ico_diagram_debug.ico" />
   </ItemGroup>
   <PropertyGroup>
