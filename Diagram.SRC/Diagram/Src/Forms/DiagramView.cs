@@ -132,6 +132,8 @@ namespace Diagram
         // COLORPICKERFORM
         private ColorPickerForm colorPickerForm = new ColorPickerForm();
 
+        private FormWindowState oldFormWindowState = new FormWindowState();
+
         // COMPONENTS
         private IContainer components;        
         
@@ -357,6 +359,8 @@ namespace Diagram
             {
                 this.diagram.RefreshBackgroundImages();
             }
+
+            oldFormWindowState = FormWindowState.Normal;
         }
 
         // FORM Quit Close
@@ -2401,6 +2405,16 @@ namespace Diagram
             this.LogEvent("Resize");
 #endif
 
+            if (WindowState == FormWindowState.Maximized)
+            {
+                oldFormWindowState = FormWindowState.Maximized;                
+            }
+
+            if (WindowState == FormWindowState.Normal)
+            {
+                oldFormWindowState = FormWindowState.Normal;
+            }
+
             if (this.stateZooming)
             {
                 this.stateZooming = false;
@@ -2418,6 +2432,22 @@ namespace Diagram
             if (this.diagram != null)
             {
                 this.diagram.InvalidateDiagram ();
+            }
+        }
+
+        // RESTORE FORM
+        public void restoreFormWindowState()
+        {
+            Media.BringToFront(this);
+
+            if (this.oldFormWindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Maximized;                
+            }
+
+            if (this.oldFormWindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Normal;
             }
         }
 

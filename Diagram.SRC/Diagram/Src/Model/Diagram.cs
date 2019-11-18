@@ -2141,10 +2141,10 @@ namespace Diagram
             Program.log.Write("window get focus");
             Program.log.Write("OpenDiagram: diagramView: setFocus");
 
-            if (this.DiagramViews.Count() != 0 && !this.DiagramViews[0].Visible)
+            if (this.DiagramViews.Count() != 0)
             {
                 this.DiagramViews[0].Show();
-                Media.BringToFront(this.DiagramViews[0]); //UID4510272262
+                this.DiagramViews[0].restoreFormWindowState(); //UID4510272262
                 return true;
             }
 
