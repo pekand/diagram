@@ -1,4 +1,5 @@
 rmdir /S /Q .\files
+rmdir /S /Q .\plugins
 mkdir .\files
 mkdir .\plugins
 
