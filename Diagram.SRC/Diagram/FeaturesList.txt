@@ -1,3 +1,4 @@
+Improve performance of uid plugin, search files by size. Small files first.
 Restore window after open already oppened diagram.
 Add features tab to console with last features list.
 Center new diagram in big screen.

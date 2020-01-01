@@ -904,7 +904,7 @@ namespace Diagram
             this.diagram.InvalidateDiagram();
         }
 
-        // EVENT Mouse move UID3677213415                                                      // [MOUSE] [MOVE] [EVENT]
+        // EVENT Mouse move UID3677213415                                                              // [MOUSE] [MOVE] [EVENT]
         public void DiagramApp_MouseMove(object sender, MouseEventArgs e)
         {
 
@@ -5107,7 +5107,7 @@ namespace Diagram
                     }
                 }
 
-                if (aretimes) // sum dates
+                if (aretimes) // sum times
                 {
                     try
                     {
@@ -5125,10 +5125,7 @@ namespace Diagram
                         Program.log.Write("time span error: " + ex.Message);
                     }
                 }
-                else
-                // count difference between two dates
-                
-                if (this.selectedNodes.Count() == 2)
+                else if (this.selectedNodes.Count() == 2)  // count difference between two dates
                 {
                     try
                     {

@@ -87,7 +87,7 @@ namespace Plugin
         // NODE evaluate masth expression
         public bool EvaluateExpression(DiagramView diagramView)
         {
-            if (diagramView.selectedNodes.Count == 1)
+            if (diagramView.selectedNodes.Count == 1) //evaluate as math expression
             {
                 string expression = diagramView.selectedNodes[0].name;
                 string expressionResult = "";

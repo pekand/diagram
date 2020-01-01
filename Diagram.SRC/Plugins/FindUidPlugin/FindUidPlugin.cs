@@ -65,14 +65,14 @@ namespace Plugin
         {
             text = text.Trim();
 
-            Match matchUid = (new Regex(@"^UID\d{10}$")).Match(text);
+            Match matchUid = (new Regex(@"^UID\d{10}$")).Match(text); // match TEXT in  UIDTEXT for search
 
             if (matchUid.Success)
             {
                 return text;
             }
 
-            Match matchString = (new Regex(@"^~([^ ]*)$")).Match(text);
+            Match matchString = (new Regex(@"^~([^ ]*)$")).Match(text); // match TEXT in ~TEXT for search
 
             if (matchString.Success)
             {
@@ -87,6 +87,12 @@ namespace Plugin
             Os.OpenFileOnPosition(file, pos);
         }
 
+        private class FileNameAndSizePair
+        {
+            public long size = 0;
+            public string name = "";         
+        }
+
         public bool ClickOnNodeAction(Diagram.Diagram diagram, DiagramView diagramview, Node node)
         {
             if (diagram.FileName !="" && this.IsUid(node.link)) {
@@ -94,24 +100,38 @@ namespace Plugin
                 if (Os.FileExists(diagram.FileName)) {
                     string diagramDirectory = Os.GetFileDirectory(diagram.FileName);
 
+                    List<FileNameAndSizePair> files = new List<FileNameAndSizePair>();
+
                     foreach (string file in Directory.EnumerateFiles(diagramDirectory, "*.*", SearchOption.AllDirectories))
+                    {
+                        FileNameAndSizePair pair = new FileNameAndSizePair();
+                        pair.name = file;
+                        pair.size = new System.IO.FileInfo(file).Length;
+                        files.Add(pair);                       
+                    }
+
+                    files.Sort(delegate (FileNameAndSizePair p1, FileNameAndSizePair p2) {
+                        return p1.size < p2.size ? -1 : p1.size > p2.size ? 1 : 0; 
+                    });
+
+                    foreach (FileNameAndSizePair file in files)
                     {
                         try
                         {
 
                             // skip self
-                            if (file == diagram.FileName)
+                            if (file.name == diagram.FileName)
                             {
                                 continue;
                             }
 
                             long pos = 1;
-                            foreach (string line in File.ReadAllLines(file))
+                            foreach (string line in File.ReadAllLines(file.name))
                             {
                                 if (line.Contains(uid))
                                 {
 
-                                    this.OpenFileOnPosition(file, pos);
+                                    this.OpenFileOnPosition(file.name, pos);
                                     return true;
                                 }
                                 pos++;
