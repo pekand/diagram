@@ -1,0 +1,48 @@
+Color picker in to one square
+Improve performance of uid plugin, search files by size. Small files first.
+Restore window after open already oppened diagram.
+Add features tab to console with last features list.
+Center new diagram in big screen.
+Move plugin to installation.
+Update .net version .
+Remove image with f6.
+Close thread after application exit.
+Scale diagram.
+Fix copy layer.
+Scale diagram.
+Fix config file test.
+Move ncalc to plugin.
+Remove newton json and configfile class.
+Check for updates.
+Fix save diagram.
+Fix open url with hash problem.
+Open email.
+Run script in thread.
+Move script engine to plugin.
+Remove new line when node is cut.
+Search in node links.
+Hide node when is created by middle button draging.
+Plugin error handling.
+Get focus for form after bring to front.
+Unloc diagram on click to view.
+Close edit panels when diagram is closed.
+Fix bring to frond forms.
+Send response from server after message recives with status.
+Focus on fomrm change window state to normal if is minimalized.
+Support for find uid in file plugin.
+Basic blugins infrastructure.
+Improve security string comparison.
+Fix bring form to front function.
+Use strong name keyfile.
+Open recent files.
+Migrate to visual studio 2017.
+Go to node with @end and @home mark in link.
+Add more image types to change diagram icons.
+Change remove backround dialog text.
+Get utf-8 string from clipboard.
+Diagram image background.
+Speedup search nodes.
+Unsave after insert date.
+Add link edit to bottom of node textbox.
+Add ling go to node command type (#).
+Add release note for version tracking.

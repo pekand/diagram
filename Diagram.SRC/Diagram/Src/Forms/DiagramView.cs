@@ -132,6 +132,8 @@ namespace Diagram
         // COLORPICKERFORM
         private ColorPickerForm colorPickerForm = new ColorPickerForm();
 
+        private FormWindowState oldFormWindowState = new FormWindowState();
+
         // COMPONENTS
         private IContainer components;        
         
@@ -284,6 +286,8 @@ namespace Diagram
             // predefined window position
             if (this.diagram.options.restoreWindow)
             {
+                // RESTORE_WINDOW_POSITION_AND_SIZE
+
                 this.Left = (int)this.diagram.options.Left;
                 this.Top = (int)this.diagram.options.Top;
                 this.Width = (int)this.diagram.options.Width;
@@ -292,10 +296,31 @@ namespace Diagram
             }
             else
             {
+                // DEFAULT_WINDOW_POSITION_AND_SIZE
                 this.Left = 50;
                 this.Top = 40;
-                this.Width = Media.ScreenWidth(this) - 100;
-                this.Height = Media.ScreenHeight(this) - 100;
+
+                int screenWidth = Media.ScreenWidth(this);
+                int sreenHeight = Media.ScreenHeight(this);
+
+                int windowWidth = screenWidth - 100;
+                int windowHeight = sreenHeight - 100;
+
+                if (screenWidth > 1920 ) {
+                    windowWidth = 1920;
+                }
+
+                if (sreenHeight > 1080)
+                {
+                    windowHeight = 1080;
+                }
+
+                this.Width = windowWidth;
+                this.Height = windowHeight;
+
+                this.Left = (screenWidth - windowWidth) /2 ;
+                this.Top = (sreenHeight - windowHeight) / 2;
+
                 this.WindowState = FormWindowState.Normal;
             }
 
@@ -334,6 +359,8 @@ namespace Diagram
             {
                 this.diagram.RefreshBackgroundImages();
             }
+
+            oldFormWindowState = FormWindowState.Normal;
         }
 
         // FORM Quit Close
@@ -877,7 +904,7 @@ namespace Diagram
             this.diagram.InvalidateDiagram();
         }
 
-        // EVENT Mouse move UID3677213415                                                      // [MOUSE] [MOVE] [EVENT]
+        // EVENT Mouse move UID3677213415                                                              // [MOUSE] [MOVE] [EVENT]
         public void DiagramApp_MouseMove(object sender, MouseEventArgs e)
         {
 
@@ -2378,6 +2405,16 @@ namespace Diagram
             this.LogEvent("Resize");
 #endif
 
+            if (WindowState == FormWindowState.Maximized)
+            {
+                oldFormWindowState = FormWindowState.Maximized;                
+            }
+
+            if (WindowState == FormWindowState.Normal)
+            {
+                oldFormWindowState = FormWindowState.Normal;
+            }
+
             if (this.stateZooming)
             {
                 this.stateZooming = false;
@@ -2395,6 +2432,22 @@ namespace Diagram
             if (this.diagram != null)
             {
                 this.diagram.InvalidateDiagram ();
+            }
+        }
+
+        // RESTORE FORM
+        public void restoreFormWindowState()
+        {
+            Media.BringToFront(this);
+
+            if (this.oldFormWindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Maximized;                
+            }
+
+            if (this.oldFormWindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Normal;
             }
         }
 
@@ -3424,7 +3477,6 @@ namespace Diagram
         // DRAW lines UID4936881338
         private void DrawPolygons(Graphics gfx, Polygons polygons, Position correction = null, bool export = false)
         {
-            bool isvisible = false; // drawonly visible elements
             decimal s = Tools.GetScale(this.scale);
 
             // fix position for image file export
@@ -5055,7 +5107,7 @@ namespace Diagram
                     }
                 }
 
-                if (aretimes) // sum dates
+                if (aretimes) // sum times
                 {
                     try
                     {
@@ -5073,10 +5125,7 @@ namespace Diagram
                         Program.log.Write("time span error: " + ex.Message);
                     }
                 }
-                else
-                // count difference between two dates
-                
-                if (this.selectedNodes.Count() == 2)
+                else if (this.selectedNodes.Count() == 2)  // count difference between two dates
                 {
                     try
                     {
@@ -5169,6 +5218,17 @@ namespace Diagram
                 this.diagram.undoOperations.add("edit", this.selectedNodes, null, this.shift, this.scale, this.currentLayer.id);
 
                 //first all hide then show
+                bool someHasImmages = false;
+                foreach (Node rec in this.selectedNodes)
+                {
+                    if (rec.isimage)
+                    {
+                        someHasImmages = true;
+                        break;
+                    }
+                }
+
+                //first all hide then show
                 bool allHidden = true;
                 foreach (Node rec in this.selectedNodes)
                 {
@@ -5189,8 +5249,16 @@ namespace Diagram
                     }
                 }
 
-                if (someEmptyUnHidden)
+                if (someHasImmages)
                 {
+                    foreach (Node rec in this.selectedNodes)
+                    {
+                        if (rec.isimage)
+                        {
+                            this.diagram.RemoveImage(rec);
+                        }
+                    }
+                } else if (someEmptyUnHidden) {
                     foreach (Node rec in this.selectedNodes)
                     {
 
@@ -5199,9 +5267,7 @@ namespace Diagram
                             rec.transparent = true;
                         }
                     }
-                }
-                else
-                {
+                } else {
                     foreach (Node rec in this.selectedNodes)
                     {
 

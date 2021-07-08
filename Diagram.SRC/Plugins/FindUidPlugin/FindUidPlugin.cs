@@ -51,7 +51,35 @@ namespace Plugin
                 return true;
             }
 
+            Match matchString = (new Regex(@"^~[^ ]*$")).Match(text);
+
+            if (matchString.Success)
+            {
+                return true;
+            }
+
             return false;
+        }
+
+        public string GetUid(string text)
+        {
+            text = text.Trim();
+
+            Match matchUid = (new Regex(@"^UID\d{10}$")).Match(text); // match TEXT in  UIDTEXT for search
+
+            if (matchUid.Success)
+            {
+                return text;
+            }
+
+            Match matchString = (new Regex(@"^~([^ ]*)$")).Match(text); // match TEXT in ~TEXT for search
+
+            if (matchString.Success)
+            {
+                return matchString.Groups[1].Value;
+            }
+
+            return null;
         }
 
         public void OpenFileOnPosition(string file, long pos = 0)
@@ -59,29 +87,61 @@ namespace Plugin
             Os.OpenFileOnPosition(file, pos);
         }
 
+        private class FileNameAndSizePair
+        {
+            public long size = 0;
+            public string name = "";         
+        }
+
         public bool ClickOnNodeAction(Diagram.Diagram diagram, DiagramView diagramview, Node node)
         {
-            if (diagram.FileName !="" && this.IsUid(node.link.Trim())) {
-                string uid = node.link.Trim();
+            if (diagram.FileName !="" && this.IsUid(node.link)) {
+                string uid = this.GetUid(node.link);
                 if (Os.FileExists(diagram.FileName)) {
                     string diagramDirectory = Os.GetFileDirectory(diagram.FileName);
 
-                    try {
-                        foreach (string file in Directory.EnumerateFiles(diagramDirectory, "*.cs", SearchOption.AllDirectories))
-                        {
-                            long pos = 1;
-                            foreach (string line in File.ReadAllLines(file))
-                            {
-                                if (line.Contains(uid)) {
+                    List<FileNameAndSizePair> files = new List<FileNameAndSizePair>();
 
-                                    this.OpenFileOnPosition(file, pos);
+                    foreach (string file in Directory.EnumerateFiles(diagramDirectory, "*.*", SearchOption.AllDirectories))
+                    {
+                        FileNameAndSizePair pair = new FileNameAndSizePair();
+                        pair.name = file;
+                        pair.size = new System.IO.FileInfo(file).Length;
+                        files.Add(pair);                       
+                    }
+
+                    files.Sort(delegate (FileNameAndSizePair p1, FileNameAndSizePair p2) {
+                        return p1.size < p2.size ? -1 : p1.size > p2.size ? 1 : 0; 
+                    });
+
+                    foreach (FileNameAndSizePair file in files)
+                    {
+                        try
+                        {
+
+                            // skip self
+                            if (file.name == diagram.FileName)
+                            {
+                                continue;
+                            }
+
+                            long pos = 1;
+                            foreach (string line in File.ReadAllLines(file.name))
+                            {
+                                if (line.Contains(uid))
+                                {
+
+                                    this.OpenFileOnPosition(file.name, pos);
                                     return true;
                                 }
                                 pos++;
                             }
+
                         }
-                    } catch (Exception ex) {
-                        Program.log.Write("FindUidPlugin: " + ex.Message);
+                        catch (Exception ex)
+                        {
+                            Program.log.Write("FindUidPlugin: " + ex.Message);
+                        }
                     }
                 }
             }

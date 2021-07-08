@@ -567,6 +567,7 @@ namespace Diagram
             }
             catch (Exception ex)
             {
+                Program.log.Write(ex.Message);
                 return false;
             }
         }

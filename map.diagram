@@ -3819,14 +3819,6 @@ DiagramView.Invalidate();</note>
     </rectangle>
     <rectangle>
       <id>5</id>
-      <font type="font">
-        <name>Open Sans</name>
-        <size>10</size>
-        <bold>false</bold>
-        <italic>false</italic>
-        <underline>false</underline>
-        <strikeout>false</strikeout>
-      </font>
       <fontcolor>Black</fontcolor>
       <text>script version</text>
       <note>import clr
@@ -3841,8 +3833,8 @@ DiagramView.Invalidate();</note>
       <layer>0</layer>
       <x>1305.6116</x>
       <y>1647.175790</y>
-      <width>110</width>
-      <height>39</height>
+      <width>105</width>
+      <height>36</height>
       <scale>0</scale>
       <color>#FFFFB8</color>
       <timecreate>2017-10-7 11:01:08</timecreate>
@@ -8662,6 +8654,36 @@ print 'uid created'</note>
       <transparent>true</transparent>
       <timecreate>2018-1-20 18:06:39</timecreate>
       <timemodify>2018-1-20 18:06:39</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2201</id>
+      <fontcolor>Black</fontcolor>
+      <text>RESTORE_WINDOW_POSITION_AND_SIZE</text>
+      <link>~RESTORE_WINDOW_POSITION_AND_SIZE</link>
+      <layer>0</layer>
+      <x>2267.0</x>
+      <y>3083.0</y>
+      <width>306</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2019-11-5 15:26:45</timecreate>
+      <timemodify>2019-11-5 15:26:51</timemodify>
+    </rectangle>
+    <rectangle>
+      <id>2202</id>
+      <fontcolor>Black</fontcolor>
+      <text>DEFAULT_WINDOW_POSITION_AND_SIZE</text>
+      <link>~DEFAULT_WINDOW_POSITION_AND_SIZE</link>
+      <layer>0</layer>
+      <x>2267.0</x>
+      <y>3142.0</y>
+      <width>302</width>
+      <height>36</height>
+      <scale>0</scale>
+      <color>#D9CCFF</color>
+      <timecreate>2019-11-5 15:27:14</timecreate>
+      <timemodify>2019-11-5 15:27:22</timemodify>
     </rectangle>
   </rectangles>
   <lines>
